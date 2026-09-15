@@ -3,3 +3,4 @@ tools/
 __pycache__/
 *.vcd
 mobilefacenet/.deps/
+mobilefacenet/.deps-py39/

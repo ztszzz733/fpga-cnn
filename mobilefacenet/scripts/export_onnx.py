@@ -12,7 +12,7 @@ import re
 import sys
 import numpy as np
 
-LOCAL_DEPS = Path(__file__).resolve().parents[1] / '.deps'
+LOCAL_DEPS = Path(__file__).resolve().parents[1] / ('.deps-py39' if sys.version_info < (3,10) else '.deps')
 if LOCAL_DEPS.is_dir():
     sys.path.insert(0, str(LOCAL_DEPS))
 try:
@@ -21,6 +21,7 @@ try:
 except ImportError as exc:
     raise SystemExit('Install mobilefacenet/requirements.txt (ONNX is needed only for export).') from exc
 from reference import execute, layer_param, output_shape, task_line, write_memh, write_golden, OPS
+from pack_queue import pack as pack_task_queue
 
 
 def require(condition, message):
@@ -347,6 +348,8 @@ def export_model(model_path, out_dir, input_npy=None, activation_frac=4, input_f
     (out/'model_layers.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
     (out/'tasks.txt').write_text(str(len(tasks))+'\n'+'\n'.join(tasks)+'\n', encoding='ascii')
     (out/'features.golden.bin').write_bytes(y.tobytes())
+    config['queue']=pack_task_queue(out)
+    (out/'layer_config.json').write_text(json.dumps(config,indent=2),encoding='utf-8')
     return config
 
 
@@ -371,6 +374,7 @@ def main():
         config = export_model(args.model, args.out, args.input_npy, args.activation_frac, args.input_frac, args.relu6_max, plan)
         print(f"Exported {len(config['layers'])} tasks, {config['memory_map']['slots']} feature slots, RAM {config['ram_bytes']} bytes")
         print('Run RTL: python mobilefacenet/scripts/run_tests.py mobilefacenet --tasks '+str(Path(args.out)/'tasks.txt')+f" --ram-bytes {config['ram_bytes']}")
+        print('Run queue: python mobilefacenet/scripts/run_tests.py task_queue --queue-dir '+str(Path(args.out))+f" --ram-bytes {config['queue']['ram_bytes']}")
         if not args.input_npy:
             print('Input is all zeros: smoke test only. Supply --input-npy for model input validation.')
     except (ValueError, onnx.checker.ValidationError, onnx.shape_inference.InferenceError) as exc:

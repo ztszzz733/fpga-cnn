@@ -1,5 +1,7 @@
 # 模块接口与独立仿真
 
+新增的任务读取器、任务FIFO、队列控制器，以及旧执行器的连接方式，见[任务队列说明](task_queue.md)。原计算模块接口保持不变；顶层增加可配置的TASK_PREFETCH_DEPTH参数。
+
 完整代码在本目录对应链接中。全部时序模块用同一个时钟，上升沿采样；`rst_n` 为低有效异步复位，`clear` 为同步清除。scratchpad 故意不整块复位，先填入数据后才允许有效计算。
 
 在工程根目录运行 `python mobilefacenet/scripts/run_tests.py 测试名称`。以下模块均已有实际通过的自检查 testbench；基础模块可以由一个联合 testbench 分别实例化，覆盖其接口和边界行为。出现 `$fatal` 或缺少 PASS 标记都算失败。

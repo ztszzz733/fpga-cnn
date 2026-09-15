@@ -43,6 +43,10 @@ signals = [
     ("22", "av[7:0]"), ("22", "wv[7:0]"),
     ("22", "normal_result[31:0]"), ("22", "out_value[7:0]"),
 ]
+if args.scope=='tb_task_queue.dut':
+    signals += [("28","queue_active"),("22","queue_state[3:0]"),("22","queue_fetched[31:0]"),
+                ("22","queue_buffered[31:0]"),("22","queue_completed[31:0]"),
+                ("28","exec_start"),("28","exec_done"),("22","cop[3:0]")]
 save.write_text(f'[dumpfile] "{wave.as_posix()}"\n[timestart] 0\n[size] 1400 850\n'
                 '[sst_width] 230\n[signals_width] 260\n[sst_expanded] 0\n'
                 + "".join(f"@{fmt}\n{args.scope}.{name}\n" for fmt,name in signals), encoding="utf-8")

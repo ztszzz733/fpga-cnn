@@ -1,6 +1,8 @@
 # MobileFaceNet 算子加速器
 
-基于原 CNN 工程复用 MMIO、MAC、缓冲和 RAM 接口，并新增普通卷积 / Depthwise 双执行路径和算子控制器。顶层是 `mobilefacenet_accelerator_top`。**一次 START 执行一个算子，外部程序按网络顺序配置寄存器。** 没有 CPU、SoC、驱动、人脸检测或特征比较模块。
+基于原 CNN 工程复用 MMIO、MAC、缓冲和 RAM 接口，并新增普通卷积 / Depthwise 双执行路径和算子控制器。顶层是 `mobilefacenet_accelerator_top`。**支持单算子模式，也支持一次START从RAM任务队列连续执行多层。** 没有 CPU、SoC、驱动、人脸检测或特征比较模块。
+
+**2026-09-15新增任务队列：**保留9个MMIO；OP_TYPE=15时，INPUT_ADDR给任务表地址、FEATURE_SIZE给任务数量，CONTROL写0x3D启动。默认先取4条任务再顺序执行，任务FIFO深度可配置。接口、32字节任务布局、多任务预取与验证方式见[任务队列说明](docs/task_queue.md)。下文原单算子配置和自定义输入实验继续适用。
 
 本目录独立编译，原 `rtl/`、`tb/` 中的 CNN 版本保留。两个版本包含同名基础模块，**不要把两个目录的 RTL 混在同一文件列表中**。新 RTL 列表见 [rtl/files.f](rtl/files.f)。
 
@@ -8,13 +10,13 @@
 
 ## 运行
 
-以下命令均在工程根目录 `D:\code\FPGA1` 运行。需要 Python 3.10+、NumPy、Icarus Verilog；ONNX 导入需要 ONNX；结构检查需要 Yosys。本机脚本可找到已有 OSS CAD Suite，其他电脑将工具加入 PATH 或设置 `IVERILOG`、`VVP`、`YOSYS`。
+以下命令均在工程根目录 `D:\code\FPGA1` 运行。需要 Python 3.9+、NumPy、Icarus Verilog；ONNX 导入需要 ONNX；结构检查需要 Yosys。本机脚本可找到已有 OSS CAD Suite，其他电脑将工具加入 PATH 或设置 `IVERILOG`、`VVP`、`YOSYS`。requirements.txt会按Python版本选择兼容的ONNX；项目本地依赖目录为Python3.9的`.deps-py39`，以及更新Python版本的`.deps`。
 
 ```powershell
 # 安装 Python 依赖；本机已经有 NumPy，ONNX 隔离安装在 mobilefacenet/.deps
 python -m pip install -r mobilefacenet/requirements.txt
 
-# RTL 全部测试：按模块开发顺序运行，最后执行 34 个算子任务
+# RTL 全部测试：17个testbench，包含34个原算子任务与9层任务队列
 python mobilefacenet/scripts/run_tests.py
 
 # 一次复现全部：Python + RTL + ONNX 导出后 RTL 比对 + Yosys 结构检查
@@ -80,6 +82,7 @@ python mobilefacenet/scripts/check_structure.py
 | 3 | ADD | 输入 A 在 INPUT_ADDR、输入 B 在 WEIGHT_ADDR；可右移与激活 |
 | 4 | COPY | 按字节复制；LAYER_PARAM=0 |
 | 5 | FINAL_OUTPUT | width=height=1，输入 / 输出通道均为 128；LAYER_PARAM=0 |
+| 15 | QUEUE_START（仅MMIO） | INPUT_ADDR=32字节对齐任务表地址；FEATURE_SIZE整个32位值=任务数量 |
 
 非卷积算子的 kernel / stride / padding 字段必须写 0，输入 / 输出通道相等。Flatten / Reshape 不改变 CHW 内存次序，不需要专用运算单元；导出器只修改 shape 元数据，最后由 FINAL_OUTPUT 复制到指定地址。独立 ReLU6 可直接调用；普通 ReLU 通过卷积 / ADD 的激活位调用。
 
@@ -112,7 +115,7 @@ flowchart TD
     M <--> RAM[外部 32 位 Data RAM]
 ```
 
-控制器只运行一个算子，不知道网络共有多少层。普通卷积按输出通道、输出 y/x、输入通道、kernel tap 顺序执行；DW 固定输入通道为当前输出通道，累加 K² 项；普通卷积累加 CI×K² 项。每个输出重新装入 bias。
+算子控制器只运行一个算子，不知道网络共有多少层；新增任务队列控制器读取RAM描述符并依次启动它。普通卷积按输出通道、输出 y/x、输入通道、kernel tap 顺序执行；DW 固定输入通道为当前输出通道，累加 K² 项；普通卷积累加 CI×K² 项。每个输出重新装入 bias。
 
 输入/权重缓冲先装满当前通道窗口，再向引擎发送样本。padding 位置直接写零、不发输入 RAM 请求。两个引擎各有一个 MAC 和累加器，一次只启用其中一个。缓冲采用独立地址/写使能接口，后续可以替换成 3/7 行缓存，第一版未实现行缓存复用。
 

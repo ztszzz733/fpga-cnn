@@ -2,10 +2,12 @@
 from pathlib import Path
 import copy
 import json
+import struct
 import unittest
 import numpy as np
 from export_onnx import onnx, helper, numpy_helper, export_model, load_graph, lower, fuse_batchnorm
-from reference import convolution, requantize
+from reference import convolution, requantize, address
+from pack_queue import pack as pack_queue
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT/'build'/'onnx_fixture'
@@ -113,6 +115,22 @@ class ReferenceTests(unittest.TestCase):
         self.assertGreater(np.count_nonzero(np.fromfile(OUT/'export'/'features.golden.bin',dtype=np.int8)),100)
         self.assertIn('stem_bn',stem['fused_nodes'])
         self.assertEqual(config['input_clipped_values'],0)
+        queue = config['queue']
+        self.assertEqual(queue['abi_version'], 1)
+        self.assertEqual(queue['task_count'], 9)
+        self.assertEqual(queue['queue_base'] % 32, 0)
+        packed = (OUT/'export'/'queue.bin').read_bytes()
+        self.assertEqual(len(packed), 9*32)
+        words = struct.unpack('<8I', packed[:32])
+        self.assertEqual(words[0], 0x100)  # Version 1, normal Conv; not MMIO CONTROL.
+        self.assertEqual(words[1], address(stem['input_addr']))
+        self.assertEqual(struct.unpack_from('<I', packed, 8*32)[0], 0x105)
+        ram = (OUT/'export'/'queue_ram.bin').read_bytes()
+        self.assertEqual(ram[queue['queue_base']:queue['queue_base']+len(packed)], packed)
+        with self.assertRaisesRegex(ValueError, 'aligned'):
+            pack_queue(OUT/'export', base=queue['queue_base']+1)
+        with self.assertRaisesRegex(ValueError, 'overlaps'):
+            pack_queue(OUT/'export', base=address(stem['input_addr']) & ~31)
 
     def test_unsupported_prelu_is_error(self):
         model = copy.deepcopy(self.model)

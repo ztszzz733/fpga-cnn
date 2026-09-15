@@ -1,7 +1,8 @@
 `timescale 1ns/1ps
 module mobilefacenet_accelerator_top #(
     parameter [31:0] BASE_ADDR=32'h40000000,
-    parameter signed [31:0] RELU6_MAX=32'sd96
+    parameter signed [31:0] RELU6_MAX=32'sd96,
+    parameter TASK_PREFETCH_DEPTH=4
 )(
     input wire clk,rst_n,input wire [31:0] mmio_addr,mmio_wdata,
     input wire mmio_we,mmio_re,output wire [31:0] mmio_rdata,output wire mmio_ready,
@@ -9,6 +10,12 @@ module mobilefacenet_accelerator_top #(
     input wire [31:0] mem_rdata,input wire mem_ready
 );
     wire start,reset,core_busy,done,error,mem_idle;
+    wire exec_start,exec_busy,exec_done,exec_error,queue_active,queue_done,queue_error,fetch_phase;
+    wire fetch_valid,fetch_ready,fetch_response,bus_ready,bus_response;
+    wire [31:0] fetch_addr,bus_rdata,task_ia,task_oa,task_wa,task_ba,task_fs,task_ch,task_lp;
+    wire [31:0] queue_base,queue_completed,queue_fetched,queue_buffered;
+    wire [63:0] queue_end;
+    wire [3:0] task_op,queue_state;
     wire [3:0] op,cop;
     wire [31:0] ia,oa,wa,ba,fs,ch,lp,cia,coa,cwa,cba,cfs,cch,clp;
     wire [31:0] ax,ay,elem,input_address,weight_address,bias_address,output_address,second_address,ow,oh,count;
@@ -22,11 +29,31 @@ module mobilefacenet_accelerator_top #(
     wire engine_ready=cop==0 ? nr : dr;
     wire engine_done=cop==0 ? nd : dd;
     wire engine_error=cop==0 ? ne : (cop==1 ? de : 1'b0);
+    assign core_busy=exec_busy || queue_active;
+    assign done=queue_active ? queue_done : exec_done;
+    assign error=queue_active ? queue_error : exec_error;
+    assign cr=bus_ready && !fetch_phase;
+    assign rv=bus_response && !fetch_phase;
+    assign rsp=bus_rdata;
+    assign fetch_ready=bus_ready && fetch_phase;
+    assign fetch_response=bus_response && fetch_phase;
+    // Protect the whole task table, including descriptors not yet prefetched.
+    wire queue_output_safe=!queue_active || ({32'd0,coa}+{32'd0,count}<={32'd0,queue_base}) ||
+                           ({32'd0,coa}>=queue_end);
     accelerator_regs #(.BASE_ADDR(BASE_ADDR)) regs(clk,rst_n,mmio_addr,mmio_wdata,mmio_we,mmio_re,
         mmio_rdata,mmio_ready,start,reset,op,core_busy || !mem_idle,done,error,ia,oa,wa,ba,fs,ch,lp);
-    mobilefacenet_controller controller(clk,rst_n,reset,start,ia,oa,wa,ba,fs,ch,lp,op,
-        cia,coa,cwa,cba,cfs,cch,clp,cop,cfg_valid,pad,ow,oh,count,mem_idle,cr,rv,engine_ready,engine_done,engine_error,
-        cv,cwrite,cbyte,select_addr,core_busy,done,error,clear,iw,ww,bw,es,sv,out_we,zero,ax,ay,elem,ic,oc,tap,state);
+    task_queue_controller #(.PREFETCH_DEPTH(TASK_PREFETCH_DEPTH)) task_queue(
+        .clk(clk),.rst_n(rst_n),.soft_reset(reset),.start(start),.op_type(op),
+        .input_addr(ia),.output_addr(oa),.weight_addr(wa),.bias_addr(ba),.feature_size(fs),.channels(ch),.layer_param(lp),
+        .exec_busy(exec_busy),.exec_done(exec_done),.exec_error(exec_error),.mem_idle(mem_idle),.exec_start(exec_start),
+        .task_op(task_op),.task_input(task_ia),.task_output(task_oa),.task_weight(task_wa),.task_bias(task_ba),
+        .task_size(task_fs),.task_channels(task_ch),.task_param(task_lp),.active(queue_active),.done(queue_done),.error(queue_error),
+        .fetch_phase(fetch_phase),.fetch_valid(fetch_valid),.fetch_ready(fetch_ready),.fetch_addr(fetch_addr),
+        .fetch_rsp_valid(fetch_response),.fetch_rsp_data(bus_rdata),.queue_base(queue_base),.queue_end(queue_end),
+        .completed(queue_completed),.fetched(queue_fetched),.buffered(queue_buffered),.debug_state(queue_state));
+    mobilefacenet_controller controller(clk,rst_n,reset,exec_start,task_ia,task_oa,task_wa,task_ba,task_fs,task_ch,task_lp,task_op,
+        cia,coa,cwa,cba,cfs,cch,clp,cop,cfg_valid && queue_output_safe,pad,ow,oh,count,mem_idle,cr,rv,engine_ready,engine_done,engine_error,
+        cv,cwrite,cbyte,select_addr,exec_busy,exec_done,exec_error,clear,iw,ww,bw,es,sv,out_we,zero,ax,ay,elem,ic,oc,tap,state);
     address_generator addresses(cia,coa,cwa,cba,cfs,cch,clp,cop,ax,ay,elem,ic,oc,tap,
         input_address,weight_address,bias_address,output_address,second_address,ow,oh,count,pad,cfg_valid);
     input_buffer input_store(clk,iw,tap,tap,zero ? 8'sd0 : rsp[7:0],av);
@@ -59,6 +86,8 @@ module mobilefacenet_accelerator_top #(
             default:command_addr=0;
         endcase
     end
-    accelerator_mem_if memory_interface(clk,rst_n,reset,cv,cr,cwrite,cbyte,command_addr,
-        {24'd0,out_value},rv,rsp,mem_idle,mem_addr,mem_wdata,mem_read,mem_write,mem_rdata,mem_ready);
+    // Ownership changes only when no transaction or response is outstanding.
+    accelerator_mem_if memory_interface(clk,rst_n,reset,fetch_phase ? fetch_valid : cv,bus_ready,
+        fetch_phase ? 1'b0 : cwrite,fetch_phase ? 1'b0 : cbyte,fetch_phase ? fetch_addr : command_addr,
+        {24'd0,out_value},bus_response,bus_rdata,mem_idle,mem_addr,mem_wdata,mem_read,mem_write,mem_rdata,mem_ready);
 endmodule

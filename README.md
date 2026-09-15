@@ -1,5 +1,7 @@
 # 简化 CNN 图像加速器
 
+2026-09-15：MobileFaceNet版本已增加[RAM任务队列与多任务预取缓冲](mobilefacenet/docs/task_queue.md)，CPU可以一次START执行多层，预取深度可配置。
+
 **MobileFaceNet 新版本已放在 [mobilefacenet/](mobilefacenet/README.md)**：保留9个MMIO，新增Normal/DW3/DW7、ReLU6、Residual Add、128维输出和ONNX导出/逐层Golden验证。运行 `python mobilefacenet/scripts/verify_all.py` 可执行完整验证。原CNN版本在下文，两个版本独立编译。
 
 本工程只包含 **CNN 加速器本体和 9 个 MMIO 寄存器**。没有 CPU、指令 ROM、完整 SoC、外设或软件驱动。Testbench 中的 MMIO 访问任务仅用于模拟未来 CPU 的寄存器读写。

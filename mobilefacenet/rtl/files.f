@@ -15,3 +15,6 @@ rtl/quantizer.sv
 rtl/relu6_unit.sv
 rtl/sample_buffer.sv
 rtl/weight_buffer.sv
+rtl/task_descriptor_fifo.sv
+rtl/task_descriptor_reader.sv
+rtl/task_queue_controller.sv
