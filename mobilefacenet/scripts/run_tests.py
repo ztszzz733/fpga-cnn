@@ -18,6 +18,7 @@ parser.add_argument("--task-limit", type=int, default=0, help="run first N integ
 parser.add_argument("--tasks", help="use an exported tasks.txt instead of built-in vectors")
 parser.add_argument("--queue-dir", help="use a directory produced by pack_queue.py")
 parser.add_argument("--queue-experiment", action="store_true", help="capture editable queue outputs and omit deliberate error injections")
+parser.add_argument("--serial",action="store_true",help="use pre-array serial convolution for an identical-task baseline")
 parser.add_argument("--prefetch-depth", type=int, default=4, help="queue descriptor FIFO depth (>=1)")
 parser.add_argument("--ram-bytes", type=int, default=262144, help="simulation RAM size")
 args = parser.parse_args()
@@ -38,7 +39,7 @@ env = dict(os.environ)
 env["PATH"] = os.pathsep.join([str(Path(tool).parent), str(Path(tool).parent.parent / "lib"), env.get("PATH", "")])
 build = ROOT / "build"
 build.mkdir(exist_ok=True)
-stage_order = ['accelerator_regs', 'mac_unit', 'conv_engine', 'depthwise_conv_engine', 'conv1x1',
+stage_order = ['accelerator_regs', 'mac_unit', 'systolic_pe', 'systolic_matmul', 'systolic_read_cache', 'conv_engine', 'depthwise_conv_engine', 'conv1x1',
                'relu6_unit', 'add_unit', 'quantizer', 'address_generator', 'buffers',
                'accelerator_mem_if', 'mobilefacenet_controller', 'task_descriptor_fifo', 'task_descriptor_reader',
                'top_smoke', 'mobilefacenet', 'task_queue']
@@ -51,9 +52,10 @@ for bench in benches:
     output = build / (bench.stem + ".vvp")
     command = [tool, "-g2012", "-Wall", "-s", bench.stem, "-o", str(output)]
     if bench.stem=='tb_mobilefacenet':
-        command += [f'-Ptb_mobilefacenet.RAM_BYTES={args.ram_bytes}']
+        command += [f'-Ptb_mobilefacenet.RAM_BYTES={args.ram_bytes}',f'-Ptb_mobilefacenet.USE_SYSTOLIC={int(not args.serial)}']
     if bench.stem=='tb_task_queue':
-        command += [f'-Ptb_task_queue.RAM_BYTES={args.ram_bytes}',f'-Ptb_task_queue.PREFETCH_DEPTH={args.prefetch_depth}']
+        command += [f'-Ptb_task_queue.RAM_BYTES={args.ram_bytes}',f'-Ptb_task_queue.PREFETCH_DEPTH={args.prefetch_depth}',
+                    f'-Ptb_task_queue.USE_SYSTOLIC={int(not (args.serial or args.queue_experiment))}']
     command += [str(p) for p in sorted((ROOT / "rtl").glob("*.sv"))]
     command += [str(p) for p in sorted((ROOT / "tb").glob("model_*.sv"))] + [str(bench)]
     log = []

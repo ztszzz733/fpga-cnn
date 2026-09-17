@@ -1,0 +1,57 @@
+{
+  "flow": "Yosys synth -flatten -noabc; generic gates, not LUT/DSP/BRAM or timing",
+  "results": {
+    "serial": {
+      "num_wires": 46762,
+      "num_wire_bits": 256267,
+      "num_pub_wires": 597,
+      "num_pub_wire_bits": 10860,
+      "num_ports": 14,
+      "num_port_bits": 200,
+      "num_memories": 0,
+      "num_memory_bits": 0,
+      "num_processes": 0,
+      "num_cells": 155521,
+      "num_submodules": 0,
+      "num_cells_by_type": {
+        "$_AND_": 62689,
+        "$_DFFE_PN0P_": 1285,
+        "$_DFFE_PN1P_": 14,
+        "$_DFFE_PP_": 1808,
+        "$_DFF_PN0_": 12,
+        "$_DFF_PN1_": 1,
+        "$_MUX_": 16131,
+        "$_NOT_": 12280,
+        "$_OR_": 33156,
+        "$_XOR_": 28122,
+        "$scopeinfo": 23
+      }
+    },
+    "systolic": {
+      "num_wires": 73249,
+      "num_wire_bits": 434404,
+      "num_pub_wires": 2602,
+      "num_pub_wire_bits": 39880,
+      "num_ports": 14,
+      "num_port_bits": 200,
+      "num_memories": 0,
+      "num_memory_bits": 0,
+      "num_processes": 0,
+      "num_cells": 269097,
+      "num_submodules": 0,
+      "num_cells_by_type": {
+        "$_AND_": 101969,
+        "$_DFFE_PN0P_": 4640,
+        "$_DFFE_PN1P_": 14,
+        "$_DFFE_PP_": 6796,
+        "$_DFF_PN0_": 12,
+        "$_DFF_PN1_": 2,
+        "$_MUX_": 41648,
+        "$_NOT_": 14653,
+        "$_OR_": 48286,
+        "$_XOR_": 50986,
+        "$scopeinfo": 91
+      }
+    }
+  }
+}

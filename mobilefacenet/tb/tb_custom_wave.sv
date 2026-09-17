@@ -7,7 +7,8 @@ module tb_custom_wave;
     reg [31:0] addr=0,wdata=0; reg we=0,re=0;
     wire [31:0] rdata,ma,md,mr;
     wire ready,rd,wr,mready;
-    mobilefacenet_accelerator_top dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
+    // This teaching bench deliberately shows the preserved single-MAC timing.
+    mobilefacenet_accelerator_top #(.USE_SYSTOLIC(0)) dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
     model_data_ram #(4096,3) ram(clk,rst_n,ma,md,rd,wr,mr,mready);
     // [0] bias, [1] layer param, [2] expected output;
     // subsequent triplets: input, weight, expected accumulator after this MAC.

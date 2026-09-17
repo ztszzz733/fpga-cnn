@@ -47,6 +47,17 @@ if args.scope=='tb_task_queue.dut':
     signals += [("28","queue_active"),("22","queue_state[3:0]"),("22","queue_fetched[31:0]"),
                 ("22","queue_buffered[31:0]"),("22","queue_completed[31:0]"),
                 ("28","exec_start"),("28","exec_done"),("22","cop[3:0]"),("28","regs.done_sticky")]
+with wave.open(encoding='ascii') as header:
+    has_array=False
+    for line in header:
+        if '$scope' in line and 'systolic_path' in line:has_array=True
+        if '$enddefinitions' in line:break
+if has_array:
+    signals=[s for s in signals if s[1] not in ('sv','tap[5:0]','av[7:0]','wv[7:0]','normal_result[31:0]','out_value[7:0]')]
+    signals += [('28','array_running'),('22','systolic_path.engine.state[3:0]'),
+                ('22','systolic_path.engine.mb[31:0]'),('22','systolic_path.engine.nb[31:0]'),
+                ('22','systolic_path.engine.kb[31:0]'),('22','systolic_path.engine.tile.tick[5:0]'),
+                ('22','systolic_path.engine.raw[31:0]'),('22','systolic_path.engine.out_value[7:0]')]
 save.write_text(f'[dumpfile] "{wave.as_posix()}"\n[timestart] 0\n[size] 1400 850\n'
                 '[sst_width] 230\n[signals_width] 260\n[sst_expanded] 0\n'
                 + "".join(f"@{fmt}\n{args.scope}.{name}\n" for fmt,name in signals), encoding="utf-8")

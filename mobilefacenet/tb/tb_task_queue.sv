@@ -1,10 +1,10 @@
 `timescale 1ns/1ps
 module tb_task_queue;
-    parameter RAM_BYTES=262144,PREFETCH_DEPTH=4;
+    parameter RAM_BYTES=262144,PREFETCH_DEPTH=4,USE_SYSTOLIC=1;
     reg clk=0;always #5 clk=~clk;
     reg rst_n=0;reg [31:0] addr=0,wdata=0;reg we=0,re=0;
     wire [31:0] rdata,ma,md,mr;wire ready,rd,wr,mready;
-    mobilefacenet_accelerator_top #(.TASK_PREFETCH_DEPTH(PREFETCH_DEPTH)) dut(
+    mobilefacenet_accelerator_top #(.TASK_PREFETCH_DEPTH(PREFETCH_DEPTH),.USE_SYSTOLIC(USE_SYSTOLIC)) dut(
         clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
     model_data_ram #(RAM_BYTES,3) ram(clk,rst_n,ma,md,rd,wr,mr,mready);
     reg [31:0] meta[0:1],dest[0:4095],lengths[0:4095];
@@ -14,6 +14,8 @@ module tb_task_queue;
     integer i,j,fd,rc,n,checked=0,desc_reads=0,max_buffered=0,old_writes=0,old_reads=0,outfd;
     reg monitoring=0;reg [31:0] status;
     reg experiment=0;
+    integer perf_fd,detail_fd,cycles=0,layer_cycle,layer_reads,queue_cycle,queue_reads,queue_writes;
+    always @(posedge clk) cycles=cycles+1;
     integer capture_fd,mac_fd,ram_fd,capture_task,capture_address,sample_tap,sample_a,sample_w;
     // Sample the accepted operands before the edge; results after nonblocking updates.
     always @(posedge clk) if(monitoring && experiment) begin
@@ -74,6 +76,7 @@ module tb_task_queue;
             if(checked==0 && desc_reads!=8*(n<PREFETCH_DEPTH ? n : PREFETCH_DEPTH))
                 $fatal(1,"prefetch batch not filled before first execution");
             old_writes=ram.writes;
+            layer_reads=ram.reads;layer_cycle=cycles;
             for(i=0;i<RAM_BYTES;i=i+1) before_ram[i]=ram.bytes[i];
         end
         if(dut.exec_done) begin
@@ -84,6 +87,8 @@ module tb_task_queue;
             for(i=0;i<RAM_BYTES;i=i+1) if((i<dest[checked] || i>=dest[checked]+lengths[checked]) && ram.bytes[i]!==before_ram[i])
                 $fatal(1,"queue task %0d clobbered %h",checked,i);
             if(ram.writes-old_writes!=lengths[checked]) $fatal(1,"write count");
+            $fwrite(perf_fd,"%0d,%0d,%0d,%0d,%0d\n",checked,lengths[checked],cycles-layer_cycle,ram.reads-layer_reads,ram.writes-old_writes);
+            for(i=0;i<lengths[checked];i=i+1) $fwrite(detail_fd,"%0d,%0d,%0d,%0d\n",checked,i,$signed(expected[i]),$signed(ram.bytes[dest[checked]+i]));
             if(experiment) for(i=0;i<lengths[checked];i=i+1)
                 $fwrite(ram_fd,"%0d,%0d,%0d,%0d,%0d\n",$time,checked,i,$signed(expected[i]),$signed(ram.bytes[dest[checked]+i]));
             $display("QUEUE LAYER PASS %0d: %0d bytes",checked,lengths[checked]);$fflush();checked=checked+1;
@@ -91,6 +96,8 @@ module tb_task_queue;
     end
     initial begin
         folder="build/queue_vectors";if($value$plusargs("queue_dir=%s",folder)) begin end
+        perf_fd=$fopen("build/queue_metrics.csv","w");$fwrite(perf_fd,"task,bytes,cycles,reads,writes\n");
+        detail_fd=$fopen("build/queue_comparison.csv","w");$fwrite(detail_fd,"task,index,expected,actual\n");
         experiment=$test$plusargs("experiment");
         if($test$plusargs("vcd")) begin
             if(experiment) path={folder,"/custom_queue.vcd"};else path="build/task_queue.vcd";
@@ -114,9 +121,12 @@ module tb_task_queue;
             if(rc!=3 || lengths[j]==0 || dest[j]+lengths[j]>RAM_BYTES) $fatal(1,"check entry");
         end
         $fclose(fd);repeat(2) @(negedge clk);rst_n=1;monitoring=1;
+        queue_cycle=cycles;queue_reads=ram.reads;queue_writes=ram.writes;
         launch(meta[0],meta[1]);read_reg(4,status);if(status!==1) $fatal(1,"missing queue BUSY");
         write_reg(8,0);read_reg(8,status);if(status!==meta[0]) $fatal(1,"config unlocked");
         wait_status(2);monitoring=0;
+        $fwrite(perf_fd,"TOTAL,128,%0d,%0d,%0d\n",cycles-queue_cycle,ram.reads-queue_reads,ram.writes-queue_writes);
+        $fclose(perf_fd);$fclose(detail_fd);
         if(checked!=n || desc_reads!=8*n || dut.queue_completed!==n || dut.queue_fetched!==n ||
            max_buffered!=(n<PREFETCH_DEPTH ? n : PREFETCH_DEPTH)) $fatal(1,"counts or FIFO occupancy");
         if(lengths[n-1]!=128) $fatal(1,"fixture must finish with 128 features");
@@ -136,6 +146,11 @@ module tb_task_queue;
         if(ram.writes!=old_writes) $fatal(1,"reserved header executed");
         copy_task(0,'h20004,'h104);launch('h20000,1);wait_status(4);
         if(ram.writes!=old_writes) $fatal(1,"descriptor table overwritten");
+        // Conv output may not overwrite a future (possibly unprefetched) descriptor.
+        copy_task(0,'h20044,'h100);copy_task(1,'h1201,'h104);copy_task(2,'h1301,'h104);
+        word('h2000c,'h801);word('h20010,'h900);word('h20014,'h10001);word('h2001c,'h11);
+        launch('h20000,3);wait_status(4);
+        if(ram.writes!=old_writes) $fatal(1,"conv overwrote future task table");
         // An execution error in task 1 stops before task 2; completed task 0 stays committed.
         copy_task(0,'h1101,'h104);copy_task(1,'h1201,'h104);copy_task(2,'h1301,'h104);
         word('h20034,0);old_writes=ram.writes;launch('h20000,3);wait_status(4);
@@ -147,6 +162,14 @@ module tb_task_queue;
         copy_task(0,'h1101,'h104);copy_task(1,'h1201,'h104);launch('h20000,2);
         while(!(rd && dut.fetch_phase && !mready)) @(negedge clk);abort_and_check();
         launch('h20000,2);while(!(wr && !mready)) @(negedge clk);abort_and_check();
+        if(USE_SYSTOLIC) begin
+            copy_task(0,'h1101,'h100);word('h2000c,'h801);word('h20010,'h900);
+            word('h20014,'h10001);word('h2001c,'h11);launch('h20000,1);
+            while(!dut.sx_busy) @(negedge clk);
+            // Observe the array run via a debug wire available in both configurations.
+            while(!dut.array_running) @(negedge clk);abort_and_check();
+            copy_task(0,'h1101,'h104);
+        end
         launch('h20000,2);wait_status(2);
         if(dut.queue_completed!==2) $fatal(1,"restart count");
         for(i=0;i<16;i=i+1) if(ram.bytes['h1101+i]!==ram.bytes['h101+i] || ram.bytes['h1201+i]!==ram.bytes['h101+i]) $fatal(1,"restart data");

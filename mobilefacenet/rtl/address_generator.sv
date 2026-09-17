@@ -4,7 +4,7 @@
 // are duplicated in the controller. BatchNorm is folded offline:
 // a[c]=gamma[c]/sqrt(var[c]+epsilon), W'[c]=a[c]*W[c],
 // b'[c]=beta[c]+a[c]*(b[c]-mean[c]). Quantize AFTER folding.
-module address_generator(
+module address_generator #(parameter POINT_ONLY=0)(
     input wire [31:0] input_base,output_base,weight_base,bias_base,
     input wire [31:0] feature_size,channels,layer_param,input wire [3:0] op_type,
     input wire [31:0] output_x,output_y,element_index,
@@ -13,7 +13,7 @@ module address_generator(
     output wire [31:0] second_address,output_width,output_height,output_count,
     output reg input_is_padding,output wire config_valid
 );
-    wire convolution=op_type==0 || op_type==1;
+    wire convolution=!POINT_ONLY && (op_type==0 || op_type==1);
     wire [63:0] w={48'd0,feature_size[15:0]},h={48'd0,feature_size[31:16]};
     wire [63:0] ci={48'd0,channels[15:0]},co={48'd0,channels[31:16]};
     wire [63:0] k={60'd0,layer_param[3:0]},s={60'd0,layer_param[7:4]},p={60'd0,layer_param[11:8]};
@@ -37,7 +37,7 @@ module address_generator(
         (op_type!=3 || (weight_end<=64'h100000000 && weight_disjoint)) &&
         ((op_type!=4 && op_type!=5) || layer_param==0) &&
         (op_type!=5 || (w==1 && h==1 && ci==128));
-    assign config_valid=op_type<=5 && layer_param[31:23]==0 && w!=0 && h!=0 && ci!=0 && co!=0 &&
+    assign config_valid=op_type<=5 && (!POINT_ONLY || op_type>=2) && layer_param[31:23]==0 && w!=0 && h!=0 && ci!=0 && co!=0 &&
         ow!=0 && oh!=0 && in_size<=64'hffffffff && out_size<=64'hffffffff &&
         in_end<=64'h100000000 && out_end<=64'h100000000 && input_disjoint &&
         (convolution ? conv_valid : point_valid);

@@ -1,5 +1,7 @@
 # 验证记录与范围
 
+2026-09-17阵列版本的最新记录见[8×8实测报告](../reports/systolic8/README.md)，设计与复现方式见[阵列说明](systolic8.md)。以下保留2026-09-15串行任务队列版本的历史记录。
+
 验证日期：2026-09-15，包含RAM任务队列改版。本机实际使用 Icarus Verilog / VVP、Python 3.11、NumPy、ONNX 及 Yosys 执行。复现命令：
 
 ```powershell

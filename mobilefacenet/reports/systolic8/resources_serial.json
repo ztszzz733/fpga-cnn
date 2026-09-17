@@ -1,0 +1,58 @@
+{
+   "creator": "Yosys 0.68+48 (git sha1 ff5817c34-dirty, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 15.2.1)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\mobilefacenet_accelerator_top": {
+         "num_wires":         46762,
+         "num_wire_bits":     256267,
+         "num_pub_wires":     597,
+         "num_pub_wire_bits": 10860,
+         "num_ports":         14,
+         "num_port_bits":     200,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         155521,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 62689,
+            "$_DFFE_PN0P_": 1285,
+            "$_DFFE_PN1P_": 14,
+            "$_DFFE_PP_": 1808,
+            "$_DFF_PN0_": 12,
+            "$_DFF_PN1_": 1,
+            "$_MUX_": 16131,
+            "$_NOT_": 12280,
+            "$_OR_": 33156,
+            "$_XOR_": 28122,
+            "$scopeinfo": 23
+         }
+      }
+   },
+      "design": {
+         "num_wires":         46762,
+         "num_wire_bits":     256267,
+         "num_pub_wires":     597,
+         "num_pub_wire_bits": 10860,
+         "num_ports":         14,
+         "num_port_bits":     200,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         155521,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 62689,
+            "$_DFFE_PN0P_": 1285,
+            "$_DFFE_PN1P_": 14,
+            "$_DFFE_PP_": 1808,
+            "$_DFF_PN0_": 12,
+            "$_DFF_PN1_": 1,
+            "$_MUX_": 16131,
+            "$_NOT_": 12280,
+            "$_OR_": 33156,
+            "$_XOR_": 28122,
+            "$scopeinfo": 23
+         }
+      }
+}

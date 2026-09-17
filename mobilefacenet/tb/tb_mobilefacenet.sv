@@ -1,15 +1,15 @@
 `timescale 1ns/1ps
 module tb_mobilefacenet;
-    parameter RAM_BYTES=262144;
+    parameter RAM_BYTES=262144,USE_SYSTOLIC=1;
     reg clk=0;always #5 clk=~clk;
     reg rst_n=0;reg [31:0] addr=0,wdata=0;reg we=0,re=0;
     wire [31:0] rdata,ma,md,mr;wire ready,rd,wr,mready;
-    mobilefacenet_accelerator_top dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
+    mobilefacenet_accelerator_top #(.USE_SYSTOLIC(USE_SYSTOLIC)) dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
     model_data_ram #(RAM_BYTES,3) ram(clk,rst_n,ma,md,rd,wr,mr,mready);
     reg [7:0] golden[0:RAM_BYTES-1],before_ram[0:RAM_BYTES-1];
     reg [31:0] status,back,op,ia,oa,wa,ba,fs,ch,lp,nout;
     string init_file,case_name,golden_file,task_file;
-    integer fd,n,rc,i,j,limit=0,cycles=0,begin_cycle,old_writes,old_reads,expected_status,feature_fd;
+    integer fd,n,rc,i,j,limit=0,cycles=0,begin_cycle,old_writes,old_reads,expected_status,feature_fd,perf_fd,detail_fd;
     always @(posedge clk) cycles=cycles+1;
     task write_reg(input [31:0] off,value);
         @(negedge clk);addr='h40000000+off;wdata=value;we=1;#1;
@@ -38,6 +38,8 @@ module tb_mobilefacenet;
     endtask
     initial begin
         if($test$plusargs("vcd")) begin $dumpfile("build/mobilefacenet.vcd");$dumpvars(0,dut);end
+        perf_fd=$fopen("build/operator_metrics.csv","w");$fwrite(perf_fd,"task,bytes,cycles,reads,writes\n");
+        detail_fd=$fopen("build/operator_comparison.csv","w");$fwrite(detail_fd,"task,index,expected,actual\n");
         task_file="build/vectors/tasks.txt";
         if($value$plusargs("tasks=%s",task_file)) begin end
         if($value$plusargs("limit=%d",limit)) begin end
@@ -54,7 +56,7 @@ module tb_mobilefacenet;
             end
             $readmemh(golden_file,golden,0,nout-1);
             for(i=0;i<RAM_BYTES;i=i+1) before_ram[i]=ram.bytes[i];
-            configure();old_writes=ram.writes;begin_cycle=cycles;expected_status=2;
+            configure();old_writes=ram.writes;old_reads=ram.reads;begin_cycle=cycles;expected_status=2;
             write_reg(0,(op<<2)|1);read_reg(4,status);
             if(status!==1) $fatal(1,"missing BUSY %s %h",case_name,status);
             if(j==0) begin
@@ -77,7 +79,10 @@ module tb_mobilefacenet;
                 $fclose(feature_fd);
             end
             $display("LAYER PASS %s: %0d bytes, %0d cycles",case_name,nout,cycles-begin_cycle);$fflush();
+            $fwrite(perf_fd,"%s,%0d,%0d,%0d,%0d\n",case_name,nout,cycles-begin_cycle,ram.reads-old_reads,ram.writes-old_writes);
+            for(i=0;i<nout;i=i+1) $fwrite(detail_fd,"%s,%0d,%0d,%0d\n",case_name,i,$signed(golden[i]),$signed(ram.bytes[oa+i]));
         end
+        $fclose(perf_fd);$fclose(detail_fd);
         $fclose(fd);
         bad_config(0,32,'h17);bad_config(1,32,'h11);bad_config(0,32,3);
         bad_config(0,24,0);bad_config(0,28,0);bad_config(1,28,'h20001);

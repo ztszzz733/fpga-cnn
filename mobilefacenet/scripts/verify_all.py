@@ -51,7 +51,7 @@ if __name__ == '__main__':
     run('run_tests.py','task_queue','--queue-dir',str(BUILD/'onnx_fixture'/'export'))
     compare_queue('onnx_queue',BUILD/'onnx_fixture'/'export')
     run('check_structure.py')
-    (BUILD/'verification.json').write_text(json.dumps(dict(status='passed', rtl_benches=17,
+    (BUILD/'verification.json').write_text(json.dumps(dict(status='passed', rtl_benches=20,
         synthetic_layer_comparisons=34, onnx_layer_comparisons=9, software_tests=7,
         queue_layer_comparisons=36,queue_prefetch_depths=[1,3,4],queue_abi_version=1,
         structure='Yosys proc/opt/check -assert; no place and route', final_outputs=results), indent=2), encoding='utf-8')

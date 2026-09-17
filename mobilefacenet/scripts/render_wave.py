@@ -42,7 +42,8 @@ def decode(value, name=""):
     if "x" in value.lower() or "z" in value.lower():
         return "X"
     number = int(value, 2)
-    signed_widths = {"av[7:0]":8, "wv[7:0]":8, "out_value[7:0]":8, "normal_result[31:0]":32}
+    signed_widths = {"av[7:0]":8, "wv[7:0]":8, "out_value[7:0]":8, "normal_result[31:0]":32,
+                     "systolic_path.engine.raw[31:0]":32,"systolic_path.engine.out_value[7:0]":8}
     bits = signed_widths.get(name)
     if bits and number >= (1 << (bits-1)):
         number -= 1 << bits
@@ -84,6 +85,7 @@ def plot(filename, title, subtitle, traces, start, end, tick, note, highlights=(
         high,low=y+6,y+40
         data=series(name)
         display_name=name.split("[")[0]
+        if display_name.startswith('systolic_path.engine.'):display_name=display_name.removeprefix('systolic_path.engine.')
         if name=='regs.done_sticky':display_name='STATUS.DONE'
         color="#087f77" if not is_bus else "#2459b9"
         draw.text((50,y+20),display_name,font=font(18),anchor="lm",fill="#20344d")
@@ -120,6 +122,24 @@ def plot(filename, title, subtitle, traces, start, end, tick, note, highlights=(
 
 
 first_done = next(t for t,v in series("done") if v=="1")
+if PREFIX+'systolic_path.engine.tile.tick[5:0]' in signals:
+    eng='systolic_path.engine.'
+    first_run=next(t for t,v in series('array_running') if v=='1')
+    first_post=next(t for t,v in series(eng+'state[3:0]') if 'x' not in v and 'z' not in v and int(v,2)==10)
+    plot('wave_mac_detail.png','8×8阵列：第一个输出块的计算',
+         '真实 VCD · tile.tick仅统计当前归约块 · raw随输出row/col选择变化 · 有符号十进制',
+         [('clk',False),('array_running',False),(eng+'tile.tick[5:0]',True),
+          (eng+'kb[31:0]',True),(eng+'row[2:0]',True),(eng+'col[2:0]',True),
+          (eng+'raw[31:0]',True),(eng+'out_value[7:0]',True)],
+         max(0,first_run-20),first_post+180,max(10,int((first_post-first_run)/8)//10*10),
+         'normal_result属于保留的串行通路；阵列结果请看raw，量化输出看systolic_path.engine.out_value。')
+    plot('wave_overview.png','8×8阵列：完整算子任务',
+         '读取并排列分块 → 阵列计算 → 后处理 → 按原地址格式写回RAM',
+         [('start',False),('core_busy',False),('mem_read',False),('mem_write',False),
+          ('array_running',False),(eng+'out_value[7:0]',True),('regs.done_sticky',False)],
+         0,first_done+40,max(10,int(first_done/8)//10*10),
+         '暂停RAM取数时尚未运行阵列；同一输出块可能包含多个K归约块。')
+    raise SystemExit(0)
 first_sample = next(t for t,v in series("sv") if v=="1")
 first_output = next(t for t,v in series("out_we") if v=="1")
 if args.custom or args.queue_dir:

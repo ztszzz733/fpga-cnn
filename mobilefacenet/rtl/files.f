@@ -18,3 +18,9 @@ rtl/weight_buffer.sv
 rtl/task_descriptor_fifo.sv
 rtl/task_descriptor_reader.sv
 rtl/task_queue_controller.sv
+rtl/systolic_pe.sv
+rtl/systolic_array8.sv
+rtl/systolic_tile.sv
+rtl/systolic_read_cache.sv
+rtl/conv_window_address.sv
+rtl/systolic_conv_controller.sv

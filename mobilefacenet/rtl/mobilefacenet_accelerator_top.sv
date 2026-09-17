@@ -2,7 +2,8 @@
 module mobilefacenet_accelerator_top #(
     parameter [31:0] BASE_ADDR=32'h40000000,
     parameter signed [31:0] RELU6_MAX=32'sd96,
-    parameter TASK_PREFETCH_DEPTH=4
+    parameter TASK_PREFETCH_DEPTH=4,
+    parameter USE_SYSTOLIC=1
 )(
     input wire clk,rst_n,input wire [31:0] mmio_addr,mmio_wdata,
     input wire mmio_we,mmio_re,output wire [31:0] mmio_rdata,output wire mmio_ready,
@@ -16,6 +17,14 @@ module mobilefacenet_accelerator_top #(
     wire [31:0] queue_base,queue_completed,queue_fetched,queue_buffered;
     wire [63:0] queue_end;
     wire [3:0] task_op,queue_state;
+    wire legacy_busy,legacy_done,legacy_error,sx_busy,sx_done,sx_error,sx_valid,sx_write,sx_byte;
+    wire [31:0] sx_addr,sx_wdata;
+    wire array_running;
+    wire sx_start=USE_SYSTOLIC && exec_start && task_op<=1;
+    wire legacy_start=exec_start && !(USE_SYSTOLIC && task_op<=1);
+    assign exec_busy=legacy_busy || sx_busy;
+    assign exec_done=legacy_done || sx_done;
+    assign exec_error=legacy_error || sx_error;
     wire [3:0] op,cop;
     wire [31:0] ia,oa,wa,ba,fs,ch,lp,cia,coa,cwa,cba,cfs,cch,clp;
     wire [31:0] ax,ay,elem,input_address,weight_address,bias_address,output_address,second_address,ow,oh,count;
@@ -32,8 +41,8 @@ module mobilefacenet_accelerator_top #(
     assign core_busy=exec_busy || queue_active;
     assign done=queue_active ? queue_done : exec_done;
     assign error=queue_active ? queue_error : exec_error;
-    assign cr=bus_ready && !fetch_phase;
-    assign rv=bus_response && !fetch_phase;
+    assign cr=bus_ready && !fetch_phase && !sx_busy;
+    assign rv=bus_response && !fetch_phase && !sx_busy;
     assign rsp=bus_rdata;
     assign fetch_ready=bus_ready && fetch_phase;
     assign fetch_response=bus_response && fetch_phase;
@@ -51,18 +60,34 @@ module mobilefacenet_accelerator_top #(
         .fetch_phase(fetch_phase),.fetch_valid(fetch_valid),.fetch_ready(fetch_ready),.fetch_addr(fetch_addr),
         .fetch_rsp_valid(fetch_response),.fetch_rsp_data(bus_rdata),.queue_base(queue_base),.queue_end(queue_end),
         .completed(queue_completed),.fetched(queue_fetched),.buffered(queue_buffered),.debug_state(queue_state));
-    mobilefacenet_controller controller(clk,rst_n,reset,exec_start,task_ia,task_oa,task_wa,task_ba,task_fs,task_ch,task_lp,task_op,
+    generate if(USE_SYSTOLIC) begin:systolic_path
+        systolic_conv_controller #(.RELU6_MAX(RELU6_MAX)) engine(
+            clk,rst_n,reset,sx_start,task_ia,task_oa,task_wa,task_ba,task_fs,task_ch,task_lp,task_op,
+            queue_active,queue_base,queue_end,sx_busy,sx_done,sx_error,
+            sx_valid,bus_ready && !fetch_phase && sx_busy,sx_write,sx_byte,sx_addr,sx_wdata,
+            bus_response && !fetch_phase && sx_busy,bus_rdata,array_running);
+    end else begin:serial_path
+        assign sx_busy=0;assign sx_done=0;assign sx_error=0;assign sx_valid=0;
+        assign sx_write=0;assign sx_byte=0;assign sx_addr=0;assign sx_wdata=0;
+        assign array_running=0;
+    end endgenerate
+    mobilefacenet_controller controller(clk,rst_n,reset,legacy_start,task_ia,task_oa,task_wa,task_ba,task_fs,task_ch,task_lp,task_op,
         cia,coa,cwa,cba,cfs,cch,clp,cop,cfg_valid && queue_output_safe,pad,ow,oh,count,mem_idle,cr,rv,engine_ready,engine_done,engine_error,
-        cv,cwrite,cbyte,select_addr,exec_busy,exec_done,exec_error,clear,iw,ww,bw,es,sv,out_we,zero,ax,ay,elem,ic,oc,tap,state);
-    address_generator addresses(cia,coa,cwa,cba,cfs,cch,clp,cop,ax,ay,elem,ic,oc,tap,
+        cv,cwrite,cbyte,select_addr,legacy_busy,legacy_done,legacy_error,clear,iw,ww,bw,es,sv,out_we,zero,ax,ay,elem,ic,oc,tap,state);
+    address_generator #(.POINT_ONLY(USE_SYSTOLIC)) addresses(cia,coa,cwa,cba,cfs,cch,clp,cop,ax,ay,elem,ic,oc,tap,
         input_address,weight_address,bias_address,output_address,second_address,ow,oh,count,pad,cfg_valid);
     input_buffer input_store(clk,iw,tap,tap,zero ? 8'sd0 : rsp[7:0],av);
     weight_buffer weight_store(clk,ww,tap,tap,rsp[7:0],wv);
     bias_buffer bias_store(clk,rst_n,clear,bw,rsp,bias_value);
+    generate if(!USE_SYSTOLIC) begin:legacy_macs
     conv_engine conv(clk,rst_n,clear,es && cop==0,clp[3:0],cch[15:0],bias_value,
         sv && cop==0,nr,av,wv,nb,nd,ne,normal_result);
     depthwise_conv_engine depthwise(clk,rst_n,clear,es && cop==1,clp[3:0],bias_value,
         sv && cop==1,dr,av,wv,db,dd,de,depthwise_result);
+    end else begin:unused_legacy_macs
+        assign nr=1;assign nd=0;assign ne=0;assign nb=0;assign normal_result=0;
+        assign dr=1;assign dd=0;assign de=0;assign db=0;assign depthwise_result=0;
+    end endgenerate
     add_unit residual(av,wv,add_result);
     always @* begin
         case(cop)
@@ -87,7 +112,8 @@ module mobilefacenet_accelerator_top #(
         endcase
     end
     // Ownership changes only when no transaction or response is outstanding.
-    accelerator_mem_if memory_interface(clk,rst_n,reset,fetch_phase ? fetch_valid : cv,bus_ready,
-        fetch_phase ? 1'b0 : cwrite,fetch_phase ? 1'b0 : cbyte,fetch_phase ? fetch_addr : command_addr,
-        {24'd0,out_value},bus_response,bus_rdata,mem_idle,mem_addr,mem_wdata,mem_read,mem_write,mem_rdata,mem_ready);
+    accelerator_mem_if memory_interface(clk,rst_n,reset,fetch_phase ? fetch_valid : sx_busy ? sx_valid : cv,bus_ready,
+        fetch_phase ? 1'b0 : sx_busy ? sx_write : cwrite,fetch_phase ? 1'b0 : sx_busy ? sx_byte : cbyte,
+        fetch_phase ? fetch_addr : sx_busy ? sx_addr : command_addr,
+        sx_busy ? sx_wdata : {24'd0,out_value},bus_response,bus_rdata,mem_idle,mem_addr,mem_wdata,mem_read,mem_write,mem_rdata,mem_ready);
 endmodule

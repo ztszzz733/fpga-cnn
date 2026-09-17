@@ -1,5 +1,9 @@
 # MobileFaceNet 算子加速器
 
+**2026-09-17：已接入8×8阵列。** 默认 `USE_SYSTOLIC=1`，普通1×1/3×3卷积使用脉动映射，DW3/7使用同一64个PE的独立通道模式。MMIO、32字节任务描述符和外部RAM接口兼容；`USE_SYSTOLIC=0`保留串行基线。模块图、供数时序、分块及复位约定见[阵列设计](docs/systolic8.md)，完整新旧对照运行 `python mobilefacenet/scripts/verify_systolic.py`。
+
+已完成的[实测报告与逐项CSV](reports/systolic8/README.md)包含全部任务前后周期、RAM读写次数和通用门级综合统计。112×112测试链周期合计2091450→830850；这不是训练模型帧率或FPGA时序结论。
+
 基于原 CNN 工程复用 MMIO、MAC、缓冲和 RAM 接口，并新增普通卷积 / Depthwise 双执行路径和算子控制器。顶层是 `mobilefacenet_accelerator_top`。**支持单算子模式，也支持一次START从RAM任务队列连续执行多层。** 没有 CPU、SoC、驱动、人脸检测或特征比较模块。
 
 **2026-09-15新增任务队列：**保留9个MMIO；OP_TYPE=15时，INPUT_ADDR给任务表地址、FEATURE_SIZE给任务数量，CONTROL写0x3D启动。默认先取4条任务再顺序执行，任务FIFO深度可配置。接口、32字节任务布局、多任务预取与验证方式见[任务队列说明](docs/task_queue.md)。下文原单算子配置和自定义输入实验继续适用。
