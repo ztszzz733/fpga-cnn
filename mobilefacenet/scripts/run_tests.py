@@ -17,10 +17,13 @@ parser.add_argument("--waves", action="store_true", help="write build/mobileface
 parser.add_argument("--task-limit", type=int, default=0, help="run first N integration tasks; 0=all")
 parser.add_argument("--tasks", help="use an exported tasks.txt instead of built-in vectors")
 parser.add_argument("--queue-dir", help="use a directory produced by pack_queue.py")
+parser.add_argument("--queue-experiment", action="store_true", help="capture editable queue outputs and omit deliberate error injections")
 parser.add_argument("--prefetch-depth", type=int, default=4, help="queue descriptor FIFO depth (>=1)")
 parser.add_argument("--ram-bytes", type=int, default=262144, help="simulation RAM size")
 args = parser.parse_args()
 if args.prefetch_depth<1:parser.error("--prefetch-depth must be >=1")
+if args.queue_experiment and (args.tests != ['task_queue'] or not args.queue_dir):
+    parser.error("--queue-experiment requires task_queue and --queue-dir")
 if args.waves and (not args.tests or any(n.removeprefix("tb_") not in ("mobilefacenet","task_queue") for n in args.tests)):
     parser.error("--waves requires explicit mobilefacenet or task_queue test names")
 tool = shutil.which(args.iverilog)
@@ -61,6 +64,7 @@ for bench in benches:
             if args.tasks:runtime_args += [f'+tasks={Path(args.tasks).resolve().as_posix()}']
         if bench.stem=='tb_task_queue' and args.queue_dir:
             runtime_args += [f'+queue_dir={Path(args.queue_dir).resolve().as_posix()}']
+        if args.queue_experiment:runtime_args += ['+experiment']
         for cmd in (command, [vvp, str(output)] + runtime_args):
             proc = subprocess.Popen(cmd, cwd=ROOT, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             def stream_output():

@@ -4,6 +4,8 @@
 
 **2026-09-15新增任务队列：**保留9个MMIO；OP_TYPE=15时，INPUT_ADDR给任务表地址、FEATURE_SIZE给任务数量，CONTROL写0x3D启动。默认先取4条任务再顺序执行，任务FIFO深度可配置。接口、32字节任务布局、多任务预取与验证方式见[任务队列说明](docs/task_queue.md)。下文原单算子配置和自定义输入实验继续适用。
 
+**自己改输入看队列输出：**编辑 `examples/custom_queue_input.json`，运行 `python mobilefacenet/scripts/custom_queue.py`。默认输出45，把输入中的9改成10后输出46；自动产生实际波形图片、逐步对照表及128字节结果，见[自定义队列实验](docs/custom_queue.md)。
+
 本目录独立编译，原 `rtl/`、`tb/` 中的 CNN 版本保留。两个版本包含同名基础模块，**不要把两个目录的 RTL 混在同一文件列表中**。新 RTL 列表见 [rtl/files.f](rtl/files.f)。
 
 已实现用户要求的 ReLU / ReLU6 算子基线；实际 MobileFaceNet 有不同变体，一些使用 PReLU。导入器不会将 PReLU 替换成 ReLU6。尚未提供训练模型，当前验证使用确定性测试网络，不能据此宣称真实人脸识别精度或任意 MobileFaceNet 模型都兼容。

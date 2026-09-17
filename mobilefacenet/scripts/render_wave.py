@@ -7,10 +7,12 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--custom',action='store_true',help='render the editable 3x3 single-output experiment')
+parser.add_argument('--queue-dir',type=Path,help='render the editable task queue experiment')
 args=parser.parse_args()
-OUTPUT_DIR=ROOT/'build'/'custom_wave' if args.custom else ROOT/'build'
-VCD=OUTPUT_DIR/'custom.vcd' if args.custom else OUTPUT_DIR/'mobilefacenet.vcd'
-PREFIX='tb_custom_wave.dut.' if args.custom else 'tb_mobilefacenet.dut.'
+if args.custom and args.queue_dir:parser.error('Choose one experiment')
+OUTPUT_DIR=args.queue_dir.resolve() if args.queue_dir else ROOT/'build'/'custom_wave' if args.custom else ROOT/'build'
+VCD=OUTPUT_DIR/('custom_queue.vcd' if args.queue_dir else 'custom.vcd' if args.custom else 'mobilefacenet.vcd')
+PREFIX='tb_task_queue.dut.' if args.queue_dir else 'tb_custom_wave.dut.' if args.custom else 'tb_mobilefacenet.dut.'
 scope, signals, events = [], {}, {}
 time_ps = 0
 for line in VCD.read_text(encoding="ascii").splitlines():
@@ -82,6 +84,7 @@ def plot(filename, title, subtitle, traces, start, end, tick, note, highlights=(
         high,low=y+6,y+40
         data=series(name)
         display_name=name.split("[")[0]
+        if name=='regs.done_sticky':display_name='STATUS.DONE'
         color="#087f77" if not is_bus else "#2459b9"
         draw.text((50,y+20),display_name,font=font(18),anchor="lm",fill="#20344d")
         draw.line((left,y+55,right,y+55),fill="#eef1f6",width=1)
@@ -119,14 +122,23 @@ def plot(filename, title, subtitle, traces, start, end, tick, note, highlights=(
 first_done = next(t for t,v in series("done") if v=="1")
 first_sample = next(t for t,v in series("sv") if v=="1")
 first_output = next(t for t,v in series("out_we") if v=="1")
-if args.custom:
+if args.custom or args.queue_dir:
     case=json.loads((OUTPUT_DIR/'case_used.json').read_text(encoding='utf-8'))
-    plot("wave_mac_detail.png", "自己改输入：9次乘加与最终输出",
+    plot("wave_mac_detail.png", "自己改输入：第一层9次乘加与量化输出" if args.queue_dir else "自己改输入：9次乘加与最终输出",
          f"真实 VCD · 单通道3×3卷积 · Bias={case['bias']} · quant_shift={case['quant_shift']} · 总线显示有符号十进制",
          [("clk",False),("sv",False),("tap[5:0]",True),("av[7:0]",True),("wv[7:0]",True),
           ("normal_result[31:0]",True),("out_we",False),("out_value[7:0]",True)],
          max(0,first_sample-15),first_output+30,10,
          "对照 comparison.md：每个 sv 有效的时钟上升沿做一次乘加；该沿之后观察累加值；out_we 后观察输出。")
+    if args.queue_dir:
+        plot('wave_overview.png','自己改输入：一次START自动执行3条任务',
+             '真实 VCD · 3×3 Conv → 1×1 Conv生成128维 → FINAL写回 · 表中任务编号从0开始',
+             [('start',False),('core_busy',False),('queue_state[3:0]',True),
+              ('queue_fetched[31:0]',True),('queue_completed[31:0]',True),('exec_start',False),
+              ('out_value[7:0]',True),('regs.done_sticky',False)],
+             0,END_NS,max(10,int(END_NS/8)//10*10),
+             '每层具体输出时间见 comparison.md；全部任务完成后STATUS.DONE保持1，queue_completed=3。')
+        raise SystemExit(0)
     plot("wave_overview.png", "自己改输入：一次完整的加速器任务",
          "MMIO配置 → START → 读取输入/权重/Bias → 9次乘加 → 量化 → RAM写回 → DONE",
          [("start",False),("core_busy",False),("mem_read",False),("mem_write",False),

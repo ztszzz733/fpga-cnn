@@ -46,7 +46,7 @@ signals = [
 if args.scope=='tb_task_queue.dut':
     signals += [("28","queue_active"),("22","queue_state[3:0]"),("22","queue_fetched[31:0]"),
                 ("22","queue_buffered[31:0]"),("22","queue_completed[31:0]"),
-                ("28","exec_start"),("28","exec_done"),("22","cop[3:0]")]
+                ("28","exec_start"),("28","exec_done"),("22","cop[3:0]"),("28","regs.done_sticky")]
 save.write_text(f'[dumpfile] "{wave.as_posix()}"\n[timestart] 0\n[size] 1400 850\n'
                 '[sst_width] 230\n[signals_width] 260\n[sst_expanded] 0\n'
                 + "".join(f"@{fmt}\n{args.scope}.{name}\n" for fmt,name in signals), encoding="utf-8")
@@ -68,6 +68,10 @@ with log.open("w", encoding="utf-8") as out:
         code = process.wait(timeout=2)
     except subprocess.TimeoutExpired:
         print(f"GTKWave process started (PID {process.pid}): {wave}")
-        print("If the window does not appear, use: python mobilefacenet/scripts/view_wave.py --image")
+        if args.vcd:
+            print(f"If no window appears, open this VCD in GTKWave manually: {wave}")
+            print("Editable experiments also generate wave_mac_detail.png and wave_overview.png beside the VCD.")
+        else:
+            print("If the window does not appear, use: python mobilefacenet/scripts/view_wave.py --image")
     else:
         sys.exit(f"GTKWave exited ({code}); see {log}")

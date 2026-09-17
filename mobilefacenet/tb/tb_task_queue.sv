@@ -13,6 +13,19 @@ module tb_task_queue;
     string folder,path;
     integer i,j,fd,rc,n,checked=0,desc_reads=0,max_buffered=0,old_writes=0,old_reads=0,outfd;
     reg monitoring=0;reg [31:0] status;
+    reg experiment=0;
+    integer capture_fd,mac_fd,ram_fd,capture_task,capture_address,sample_tap,sample_a,sample_w;
+    // Sample the accepted operands before the edge; results after nonblocking updates.
+    always @(posedge clk) if(monitoring && experiment) begin
+        if(dut.out_we) begin
+            capture_task=checked;capture_address=dut.output_address;
+            #1;$fwrite(capture_fd,"%0d,%0d,%08h,%0d\n",$time,capture_task,capture_address,$signed(dut.out_value));
+        end
+        else if(checked==0 && dut.sv && dut.engine_ready) begin
+            sample_tap=dut.tap;sample_a=$signed(dut.av);sample_w=$signed(dut.wv);
+            #1;$fwrite(mac_fd,"%0d,%0d,%0d,%0d,%0d\n",$time,sample_tap,sample_a,sample_w,$signed(dut.normal_result));
+        end
+    end
     task write_reg(input [31:0] off,value);
         @(negedge clk);addr='h40000000+off;wdata=value;we=1;#1;
         if(ready!==1) $fatal(1,"MMIO ready");@(negedge clk);we=0;
@@ -71,12 +84,27 @@ module tb_task_queue;
             for(i=0;i<RAM_BYTES;i=i+1) if((i<dest[checked] || i>=dest[checked]+lengths[checked]) && ram.bytes[i]!==before_ram[i])
                 $fatal(1,"queue task %0d clobbered %h",checked,i);
             if(ram.writes-old_writes!=lengths[checked]) $fatal(1,"write count");
+            if(experiment) for(i=0;i<lengths[checked];i=i+1)
+                $fwrite(ram_fd,"%0d,%0d,%0d,%0d,%0d\n",$time,checked,i,$signed(expected[i]),$signed(ram.bytes[dest[checked]+i]));
             $display("QUEUE LAYER PASS %0d: %0d bytes",checked,lengths[checked]);$fflush();checked=checked+1;
         end
     end
     initial begin
-        if($test$plusargs("vcd")) begin $dumpfile("build/task_queue.vcd");$dumpvars(0,dut);end
         folder="build/queue_vectors";if($value$plusargs("queue_dir=%s",folder)) begin end
+        experiment=$test$plusargs("experiment");
+        if($test$plusargs("vcd")) begin
+            if(experiment) path={folder,"/custom_queue.vcd"};else path="build/task_queue.vcd";
+            $dumpfile(path);$dumpvars(0,dut);
+        end
+        if(experiment) begin
+            path={folder,"/actual_outputs.csv"};capture_fd=$fopen(path,"w");
+            path={folder,"/actual_mac.csv"};mac_fd=$fopen(path,"w");
+            path={folder,"/ram_comparison.csv"};ram_fd=$fopen(path,"w");
+            if(!capture_fd || !mac_fd || !ram_fd) $fatal(1,"capture file open");
+            $fwrite(capture_fd,"time_ns,task,address_hex,value\n");
+            $fwrite(mac_fd,"time_ns,tap,input,weight,acc_after\n");
+            $fwrite(ram_fd,"time_ns,task,index,expected,actual\n");
+        end
         path={folder,"/meta.hex"};$readmemh(path,meta);
         path={folder,"/queue_ram.hex"};$readmemh(path,ram.bytes);
         path={folder,"/queue_checks.txt"};fd=$fopen(path,"r");if(!fd) $fatal(1,"missing queue checks");
@@ -94,6 +122,12 @@ module tb_task_queue;
         if(lengths[n-1]!=128) $fatal(1,"fixture must finish with 128 features");
         outfd=$fopen("build/queue_features.bin","wb");for(i=0;i<128;i=i+1) $fwrite(outfd,"%c",ram.bytes[dest[n-1]+i]);$fclose(outfd);
         repeat(10) @(negedge clk);read_reg(4,status);if(status!==2) $fatal(1,"DONE not sticky");
+        if(experiment) begin
+            $fclose(capture_fd);$fclose(mac_fd);$fclose(ram_fd);
+            path={folder,"/features.actual.bin"};outfd=$fopen(path,"wb");
+            for(i=0;i<128;i=i+1) $fwrite(outfd,"%c",ram.bytes[dest[n-1]+i]);$fclose(outfd);
+            $display("PASS tb_task_queue (editable experiment, %0d tasks, STATUS=2)",n);$finish;
+        end
         bad_launch('h20000,0);bad_launch('h20004,1);bad_launch('hffffffe0,2);
         copy_task(0,'h1101,'h204);old_writes=ram.writes;launch('h20000,1);wait_status(4);
         if(ram.writes!=old_writes) $fatal(1,"bad version executed");
