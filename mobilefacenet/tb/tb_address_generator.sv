@@ -15,11 +15,9 @@ module tb_address_generator;
         op=1;lp='h17;sz='h70007;x=0;y=0;tap=48;good();
         if(ow!==1 || ia!==ib+97 || wa!==wb+97) $fatal(1,"DW7 last tap");
         op=0;lp='h11;sz='h50005;good();
-        op=3;lp=0;i=7;good();if(ia!==ib+7 || sa!==wb+7 || oa!==ob+7) $fatal(1,"ADD");
-        op=5;sz='h10001;ch='h800080;good();if(count!==128) $fatal(1,"final size");
-        ch='h7f007f;bad();op=4;good();lp=1;bad();
+        for(i=2;i<16;i=i+1) begin op=i;bad();end
         op=0;ch='h10001;sz='h30003;lp='h13;good();
-        lp='h400013;bad();lp='h800013;bad();lp=3;bad();lp='h15;bad();
+        lp='h100013;bad();lp='h200013;bad();lp='h400013;bad();lp='h800013;bad();lp=3;bad();lp='h15;bad();
         lp='h13;bb='h3001;bad();bb='h3000;ob=ib;bad();ob='h1001;
         ib='hfffffffc;bad();ib='h101;ob='hffffffff;good();
         ob='h1001;op=1;ch='h20001;bad();op=6;bad();

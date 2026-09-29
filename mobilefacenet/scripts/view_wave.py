@@ -13,13 +13,7 @@ parser.add_argument('--vcd',type=Path,help='open an existing VCD without generat
 parser.add_argument('--scope',default='tb_mobilefacenet.dut',help='DUT hierarchy for signal selection')
 args=parser.parse_args()
 if args.image and args.vcd:parser.error('For custom input images, run custom_wave.py instead.')
-if args.image:
-    if not (ROOT / "build" / "mobilefacenet.vcd").is_file():
-        subprocess.run([sys.executable, str(ROOT / "scripts" / "run_tests.py"), "mobilefacenet", "--task-limit", "1", "--waves"],
-                       cwd=ROOT, check=True)
-    subprocess.run([sys.executable, str(ROOT / "scripts" / "render_wave.py")], cwd=ROOT, check=True)
-    print("Waveform PNG images generated. Open mobilefacenet/build/wave_overview.png or mobilefacenet/build/wave_mac_detail.png.")
-    sys.exit(0)
+if args.image:parser.error('Use accelerator_wave.py --open; image rendering is archived with the old version.')
 suite = Path(r"D:\ke\fpga\oss-cad-suite-windows-x64-20260811\oss-cad-suite")
 viewer = shutil.which(os.environ.get("GTKWAVE", "gtkwave"))
 if not viewer and (suite / "bin" / "gtkwave.exe").is_file():
@@ -36,17 +30,15 @@ save=wave.with_suffix('.gtkw')
 signals = [
     ("28", "clk"), ("28", "rst_n"), ("28", "start"),
     ("28", "core_busy"), ("28", "done"), ("28", "error"),
-    ("22", "mmio_rdata[31:0]"), ("22", "state[4:0]"),
+    ("22", "mmio_rdata[31:0]"),
     ("28", "mem_read"), ("28", "mem_write"), ("28", "mem_ready"),
     ("22", "mem_addr[31:0]"), ("22", "mem_wdata[31:0]"),
-    ("28", "sv"), ("22", "tap[5:0]"),
-    ("22", "av[7:0]"), ("22", "wv[7:0]"),
-    ("22", "normal_result[31:0]"), ("22", "out_value[7:0]"),
+
 ]
 if args.scope=='tb_task_queue.dut':
     signals += [("28","queue_active"),("22","queue_state[3:0]"),("22","queue_fetched[31:0]"),
                 ("22","queue_buffered[31:0]"),("22","queue_completed[31:0]"),
-                ("28","exec_start"),("28","exec_done"),("22","cop[3:0]"),("28","regs.done_sticky")]
+                ("28","exec_start"),("28","exec_done"),("22","task_op[3:0]"),("28","regs.done_sticky")]
 with wave.open(encoding='ascii') as header:
     has_array=False
     for line in header:
@@ -81,8 +73,8 @@ with log.open("w", encoding="utf-8") as out:
         print(f"GTKWave process started (PID {process.pid}): {wave}")
         if args.vcd:
             print(f"If no window appears, open this VCD in GTKWave manually: {wave}")
-            print("Editable experiments also generate wave_mac_detail.png and wave_overview.png beside the VCD.")
+
         else:
-            print("If the window does not appear, use: python mobilefacenet/scripts/view_wave.py --image")
+            print("For the current timing view: python mobilefacenet/scripts/accelerator_wave.py --open")
     else:
         sys.exit(f"GTKWave exited ({code}); see {log}")

@@ -1,6 +1,9 @@
 `timescale 1ns/1ps
 // Nine word-wide MMIO registers. A request is accepted on each rising edge
-// with ready=1. CONTROL commands read as zero; STATUS is read-only.
+// with ready=1. CONTROL START/RESET read as zero; STATUS is read-only.
+// Queue-only: INPUT_ADDR is queue base, FEATURE_SIZE is the 32-bit task count.
+// OUTPUT_ADDR/WEIGHT_ADDR/BIAS_ADDR/CHANNELS/LAYER_PARAM are reserved (read 0,
+// writes ignored). Their legacy module outputs remain tied to zero after reset.
 module accelerator_regs #(
     parameter [31:0] BASE_ADDR = 32'h4000_0000
 )(
@@ -43,9 +46,9 @@ module accelerator_regs #(
             accelerator_start <= 0; accelerator_reset <= 0; op_type <= 0;
             done_sticky <= 0; error_sticky <= 0;
             input_addr <= 0; output_addr <= 0; weight_addr <= 0; bias_addr <= 0;
-            feature_size <= {16'd112,16'd112};
-            channels <= {16'd1,16'd3};
-            layer_param <= 32'h0010_0113; // 3x3, stride=1, pad=1, ReLU
+            feature_size <= 0;
+            channels <= 0;
+            layer_param <= 0;
         end else begin
             accelerator_start <= 0; accelerator_reset <= 0;
             if (accelerator_done && !accelerator_reset) done_sticky <= 1;
@@ -65,12 +68,7 @@ module accelerator_regs #(
                 end else if ((offset >= 8) && !locked) begin
                     case (offset)
                         32'h08: input_addr <= mmio_wdata;
-                        32'h0c: output_addr <= mmio_wdata;
-                        32'h10: weight_addr <= mmio_wdata;
-                        32'h14: bias_addr <= mmio_wdata;
                         32'h18: feature_size <= mmio_wdata;
-                        32'h1c: channels <= mmio_wdata;
-                        32'h20: layer_param <= mmio_wdata;
                         default: ;
                     endcase
                 end

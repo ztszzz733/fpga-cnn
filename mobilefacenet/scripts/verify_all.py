@@ -1,4 +1,4 @@
-"""Reproduce RTL, Python, ONNX export and structural validation in one command."""
+"""Reproduce the current Conv/DW-only RTL, descriptor and structural checks."""
 from pathlib import Path
 import hashlib
 import json
@@ -39,20 +39,16 @@ def compare_queue(label, folder):
 if __name__ == '__main__':
     # Do not leave a stale successful summary if a later regression fails.
     (BUILD/'verification.json').write_text(json.dumps(dict(status='running')), encoding='utf-8')
-    run('test_reference.py')
+    run('test_array_profile.py')
     run('run_tests.py')
     compare('synthetic112', BUILD/'vectors'/'final_features.golden.bin')
     compare_queue('queue_depth4',BUILD/'queue_vectors')
     for depth in (1,3):
         run('run_tests.py','task_queue','--prefetch-depth',str(depth))
         compare_queue(f'queue_depth{depth}',BUILD/'queue_vectors')
-    run('run_tests.py', 'mobilefacenet', '--tasks', str(BUILD/'onnx_fixture'/'export'/'tasks.txt'))
-    compare('onnx_fixture', BUILD/'onnx_fixture'/'export'/'features.golden.bin')
-    run('run_tests.py','task_queue','--queue-dir',str(BUILD/'onnx_fixture'/'export'))
-    compare_queue('onnx_queue',BUILD/'onnx_fixture'/'export')
     run('check_structure.py')
-    (BUILD/'verification.json').write_text(json.dumps(dict(status='passed', rtl_benches=20,
-        synthetic_layer_comparisons=34, onnx_layer_comparisons=9, software_tests=7,
-        queue_layer_comparisons=36,queue_prefetch_depths=[1,3,4],queue_abi_version=1,
+    (BUILD/'verification.json').write_text(json.dumps(dict(status='passed', profile='queue_only_array',rtl_benches=13,
+        synthetic_layer_comparisons=21, software_tests=4,
+        queue_layer_comparisons=27,queue_prefetch_depths=[1,3,4],queue_abi_version=1,
         structure='Yosys proc/opt/check -assert; no place and route', final_outputs=results), indent=2), encoding='utf-8')
     print('PASS complete verification. Report: '+str(BUILD/'verification.json'))

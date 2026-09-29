@@ -1,4 +1,4 @@
-"""Operator cases plus a synthetic 112x112 -> residual bottleneck -> 128 graph.
+"""Array-only Conv/DW cases plus a synthetic 112x112 -> 128 graph.
 This fixture has deterministic random weights; it is NOT a trained face model.
 """
 from pathlib import Path
@@ -16,10 +16,10 @@ def main():
     lines=[];manifest=[]
     cases=[
         ('conv3', 'conv',5,4,2,3,3,1,1,2,0,0),
-        ('conv_stride','conv',7,6,3,2,3,2,1,3,0,1),
+        ('conv_stride','conv',7,6,3,2,3,2,1,3,0,0),
         ('conv1','conv',4,3,3,5,1,1,0,2,0,0),
         ('dw3','depthwise',5,4,3,3,3,1,1,1,0,0),
-        ('dw_stride','depthwise',7,6,2,2,3,2,1,2,0,1),
+        ('dw_stride','depthwise',7,6,2,2,3,2,1,2,0,0),
         ('dw7','depthwise',7,7,3,3,7,1,0,3,0,0),
         ('dw7_pad','depthwise',8,7,2,2,7,2,3,2,0,0),
         ('negative_add','add',7,1,1,1,0,0,0,0,0,0),
@@ -31,6 +31,7 @@ def main():
         ('copy','copy',5,3,2,2,0,0,0,0,0,0),
         ('final','final_output',1,1,128,128,0,0,0,0,0,0),
     ]
+    cases=[x for x in cases if x[1] in ('conv','depthwise') and not x[-2] and not x[-1]]
     for num,(name,op,w,h,ci,co,k,s,p,q,relu,relu6) in enumerate(cases):
         layer=dict(layer_id=num,name=name,op=op,width=w,height=h,in_channels=ci,out_channels=co,
                    kernel=k,stride=s,padding=p,quant_shift=q,relu_enable=relu,relu6_enable=relu6,
@@ -60,39 +61,18 @@ def main():
         write_memh(OUT/f'{name}.memh',segments);write_golden(OUT/f'{name}.hex',y)
         lines.append(task_line(f'build/vectors/{name}.memh',name,layer,f'build/vectors/{name}.hex'))
         manifest.append(dict(**layer,output_shape=list(y.shape),first_outputs=y.reshape(-1)[:16].tolist()))
-    # A compact residual block: actual earlier RTL results feed later tasks.
-    source=0x101;ci,h,w=2,3,3;wa,ba=0x30003,0x3e000
-    segments=[(source,rng.integers(-8,9,(ci,h,w),dtype=np.int8).tobytes())];block=[]
-    for n,(op,co,k,p) in enumerate([('conv',4,1,0),('depthwise',4,3,1),('conv',2,1,0),('add',2,0,0)]):
-        dst=0x18001 if source==0x10001 else 0x10001
-        layer=dict(layer_id=n,name=f'residual_{n}_{op}',op=op,input_addr=source,output_addr=dst,
-            weight_addr=0x101 if op=='add' else wa,bias_addr=ba,width=w,height=h,in_channels=ci,out_channels=co,
-            kernel=k,stride=1 if k else 0,padding=p,quant_shift=1 if k else 0,relu6_enable=n<2)
-        if k:
-            weight=rng.integers(-3,4,(co,1 if op=='depthwise' else ci,k,k),dtype=np.int8)
-            bias=rng.integers(-10,11,co,dtype=np.int32)
-            segments.extend([(wa,weight.tobytes()),(ba,bias.astype('<i4').tobytes())]);wa+=weight.size;ba+=bias.nbytes
-        block.append(layer);source=dst;ci=co
-    memory=bytearray([0xa5])*RAM_BYTES
-    for addr,data in segments:memory[addr:addr+len(data)]=data
-    write_memh(OUT/'residual.memh',segments)
-    for n,layer in enumerate(block):
-        y=execute(memory,layer);path=f"build/vectors/{layer['name']}.hex";write_golden(ROOT/path,y)
-        lines.append(task_line('build/vectors/residual.memh' if n==0 else '-',layer['name'],layer,path))
-        manifest.append(dict(**layer,output_shape=list(y.shape),first_outputs=y.reshape(-1)[:16].tolist()))
-    # External host schedule. A/B ping-pong; R is explicitly saved for the skip.
-    A,B,R,FINAL=0x10001,0x18001,0x24001,0x28001
-    specs=[('conv',2,3,2,1,3,1),('depthwise',2,3,2,1,2,1),('conv',4,1,1,0,2,1),
-           ('depthwise',4,3,2,1,2,1),('conv',4,1,1,0,2,1),('depthwise',4,3,2,1,2,1),
-           ('copy',4,0,0,0,0,0),('conv',8,1,1,0,2,1),('depthwise',8,3,1,1,2,1),
-           ('conv',4,1,1,0,2,0),('add',4,0,0,0,0,0),('conv',8,1,1,0,2,1),
-           ('depthwise',8,7,1,0,3,0),('conv',128,1,1,0,1,0),('final_output',128,0,0,0,0,0)]
+    # Pure Conv/DW chain, no residual or activation. Final Conv writes FINAL directly.
+    A,B,FINAL=0x10001,0x18001,0x28001
+    specs=[('conv',2,3,2,1,3,0),('depthwise',2,3,2,1,2,0),('conv',4,1,1,0,2,0),
+           ('depthwise',4,3,2,1,2,0),('conv',4,1,1,0,2,0),('depthwise',4,3,2,1,2,0),
+           ('conv',8,1,1,0,2,0),('depthwise',8,3,1,1,2,0),('conv',4,1,1,0,2,0),
+           ('conv',8,1,1,0,2,0),('depthwise',8,7,1,0,3,0),('conv',128,1,1,0,1,0)]
     x=rng.integers(-16,17,(3,112,112),dtype=np.int8)
     segments=[(0x101,x.tobytes())];layers=[];source=0x101;ci,h,w=x.shape;wa,ba=0x30003,0x3e000
     for index,(op,co,k,s,p,q,r6) in enumerate(specs):
-        dst=R if op=='copy' else FINAL if op=='final_output' else B if source==A else A
+        dst=FINAL if index==len(specs)-1 else B if source==A else A
         layer=dict(layer_id=index,name=f'chain_{index:02d}_{op}',op=op,input_addr=source,output_addr=dst,
-            weight_addr=R if op=='add' else wa,bias_addr=ba,width=w,height=h,in_channels=ci,out_channels=co,
+            weight_addr=wa,bias_addr=ba,width=w,height=h,in_channels=ci,out_channels=co,
             kernel=k,stride=s,padding=p,quant_shift=q,relu6_enable=r6)
         if op in ('conv','depthwise'):
             weight=rng.integers(-3,4,(co,1 if op=='depthwise' else ci,k,k),dtype=np.int8)

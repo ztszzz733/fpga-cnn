@@ -21,11 +21,14 @@ module tb_accelerator_regs;
     integer i;
     initial begin
         repeat(2) @(negedge clk); rst_n=1;
-        rd('h40000018,{16'd112,16'd112}); rd('h4000001c,'h00010003);
-        rd('h40000020,'h00100113); rd('h40000004,0);
-        for (i=2;i<9;i=i+1) begin wr('h40000000+4*i,32'h12340000+i); rd('h40000000+4*i,32'h12340000+i); end
+        rd('h40000018,0); rd('h4000001c,0);
+        rd('h40000020,0); rd('h40000004,0);
+        for (i=2;i<9;i=i+1) begin
+            wr('h40000000+4*i,32'h12340000+i);
+            rd('h40000000+4*i,(i==2 || i==6) ? 32'h12340000+i : 0);
+        end
         wr('h40000004,7); rd('h40000004,0);
-        wr('h40000000,1); if (!start) $fatal(1,"missing START");
+        wr('h40000000,61); if (!start || op!==15) $fatal(1,"missing queue START");
         busy=1; @(negedge clk); if(start) $fatal(1,"START not pulse");
         wr('h40000008,99); rd('h40000008,'h12340002);
         wr('h40000000,1); if(start) $fatal(1,"START while busy");
@@ -34,7 +37,7 @@ module tb_accelerator_regs;
         rd('h40000004,6); rd('h40000004,6);
         wr('h40000000,3); if(!reset || start) $fatal(1,"RESET priority");
         done=1; error=1; @(negedge clk); done=0; error=0;
-        rd('h40000004,0); rd('h40000000,0);
+        rd('h40000004,0); rd('h40000000,60);
         error=1; @(negedge clk); error=0; rd('h40000004,4);
         wr('h40000000,1); rd('h40000004,0);
         @(negedge clk); addr='h40000024; re=1; #1;
@@ -42,7 +45,8 @@ module tb_accelerator_regs;
         addr='h40000009; #1; if(ready) $fatal(1,"unaligned address");
         addr='h50000008; #1; if(ready) $fatal(1,"base decode");
         wr('h40000000,12); rd('h40000000,12);
-        wr('h40000000,13); if(!start || op!==3) $fatal(1,"ADD opcode start");
+        // Registers forward the command; the queue controller rejects invalid modes.
+        wr('h40000000,13); if(!start || op!==3) $fatal(1,"command forwarded for validation");
         busy=1; wr('h40000000,4); if(op!==3) $fatal(1,"opcode changed while busy");
         busy=0; wr('h40000000,2); rd('h40000000,12);
         $display("PASS tb_accelerator_regs"); $finish;

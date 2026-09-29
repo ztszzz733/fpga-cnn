@@ -283,6 +283,14 @@ def export_model(model_path, out_dir, input_npy=None, activation_frac=4, input_f
     model, shapes, constants = load_graph(model_path)
     report = inspect_model(model, shapes, constants)
     name, shape, layers = lower(model, shapes, constants, activation_frac, input_frac, relu6_max, plan)
+    # The last convolution now writes the model output directly. Do not emit a
+    # hardware COPY/FINAL task. Reject activations/residuals rather than dropping them.
+    if layers and layers[-1]['op']=='final_output':
+        require(len(layers)>1 and layers[-1]['_inputs']==[layers[-2]['_output']],
+                'Array-only export requires the final tensor to come from the last convolution')
+        layers=layers[:-1]
+    require(layers and all(x['op'] in ('conv','depthwise') and not (layer_param(x)&0xfff00000) for x in layers),
+            'Array-only hardware supports Conv/DW with no ReLU/ReLU6/ADD/COPY; restore the full-op version for this model')
     out = Path(out_dir).resolve()
     require(not any(c.isspace() for c in str(out)), 'Testbench task paths cannot contain spaces; choose another export directory')
     out.mkdir(parents=True, exist_ok=True)
@@ -334,7 +342,7 @@ def export_model(model_path, out_dir, input_npy=None, activation_frac=4, input_f
         task_name = re.sub(r'[^A-Za-z0-9_-]', '_', layer['name'])
         tasks.append(task_line((out/'ram_init.hex').as_posix() if i == 0 else '-', f'{i}_{task_name}', layer, golden.as_posix()))
         entry = {k:v for k,v in layer.items() if not k.startswith('_')}
-        entry.update(control_start=(OPS[layer['op']]<<2)|1, feature_size=(layer['height']<<16)|layer['width'],
+        entry.update(descriptor_header=0x100 | OPS[layer['op']], feature_size=(layer['height']<<16)|layer['width'],
                      channels=(layer['out_channels']<<16)|layer['in_channels'], layer_param=layer_param(layer))
         public.append(entry)
     config = dict(format_version=1, layout='CHW', weight_layout='OIHW / C1KK', byte_order='little', dtype='int8',

@@ -102,7 +102,7 @@ if __name__=='__main__':
     config=json.loads((folder/'layer_config.json').read_text())
     memory=bytearray((folder/'ram_init.bin').read_bytes())
     for layer in config['layers']:
-        y=execute(memory,layer,config['relu6_max'])
+        y=execute(memory,layer,config.get('relu6_max',96))
         print(layer['layer_id'],layer['name'],layer['op'],list(y.shape),y.reshape(-1)[:8].tolist())
         write_golden(folder/f"layer_{layer['layer_id']:03d}.golden.hex",y)
     (folder/'features.bin').write_bytes(y.tobytes())

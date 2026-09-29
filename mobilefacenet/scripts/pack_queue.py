@@ -7,6 +7,10 @@ from reference import OPS, address, layer_param, output_shape, write_memh
 
 
 def descriptor(layer):
+    if layer['op'] not in ('conv','depthwise'):
+        raise ValueError(f"Array-only hardware does not support {layer['op']}; only conv/depthwise are accepted")
+    if layer_param(layer) & 0xfff00000:
+        raise ValueError('Array-only hardware requires activation/residual/reserved flags [31:20] = 0')
     op=OPS[layer['op']]
     words=[0x100 | op, *[address(layer.get(k,0)) for k in ('input_addr','output_addr','weight_addr','bias_addr')],
            layer['height']<<16 | layer['width'], layer['out_channels']<<16 | layer['in_channels'],layer_param(layer)]

@@ -1,143 +1,128 @@
-# RAM任务队列（描述符格式v1）
+# RAM任务队列：唯一算子提交入口
 
-队列模式由CPU或testbench启动一次，随后加速器从同一块Data RAM读取任务配置，按顺序执行全部算子。计算模块和RAM接口不变，没有增加CPU、SoC、DMA、脉动阵列或上板逻辑。
+当前版本只支持通过队列执行普通Conv和Depthwise。CPU或测试程序先准备RAM中的数据、权重、Bias和任务表，再提交整个队列。
+即使只有一个算子，也要使用一条任务的队列。已移除旧的MMIO单算子直通路径。
 
-本版是启动前准备好的**有限连续任务表**，运行期间任务内容和数量固定。它不是允许CPU边运行边追加的环形队列。
+## CPU只提交队列
 
-## CPU如何启动
+保留9个地址，但CPU不再通过这些寄存器写入单层配置：
 
-保留原有9个MMIO地址，新增CONTROL的OP_TYPE=15作为队列启动命令：
+|MMIO地址|名称|当前用途|
+|---|---|---|
+|0x40000000|CONTROL|写0x3D启动队列；写2复位|
+|0x40000004|STATUS|bit0 BUSY，bit1 DONE，bit2 ERROR|
+|0x40000008|INPUT_ADDR / QUEUE_BASE|任务表字节地址，必须32字节对齐|
+|0x4000000C|原OUTPUT_ADDR|保留：读0、写无效|
+|0x40000010|原WEIGHT_ADDR|保留：读0、写无效|
+|0x40000014|原BIAS_ADDR|保留：读0、写无效|
+|0x40000018|FEATURE_SIZE / TASK_COUNT|完整32位值表示条数，必须大于0|
+|0x4000001C|原CHANNELS|保留：读0、写无效|
+|0x40000020|原LAYER_PARAM|保留：读0、写无效|
 
-| MMIO地址 | 队列模式的用途 |
-|---|---|
-| 0x40000008 INPUT_ADDR | 任务表起始字节地址，必须32字节对齐 |
-| 0x40000018 FEATURE_SIZE | **整个32位值表示任务数量**，不是宽高打包 |
-| 0x40000000 CONTROL | 写0x3D，即OP_TYPE=15且START=1 |
-| 0x40000004 STATUS | BUSY覆盖整个队列，全部成功才置DONE，失败置ERROR |
-
-其他配置寄存器在队列模式中不作为算子配置使用，各层配置从描述符读取。START/RESET仍是脉冲，STATUS仍是只读的sticky状态。RESET写CONTROL=2。
+QUEUE_BASE和TASK_COUNT复位值为0。CONTROL的START和RESET为脉冲，读回这两位为0。
+CONTROL[5:2]仍保留命令编码；只有15与START一起写入时有效，即0x3D。
+旧的CONTROL=1、5等直接启动请求会置ERROR，不访问RAM、不启动阵列。
+RESET优先于START；只写命令编码、不写START不会执行任何任务。
 
 ```text
-CPU/测试程序先把输入、参数、任务表放入RAM
-INPUT_ADDR  = queue_base
-FEATURE_SIZE = task_count
-CONTROL      = 0x3D
-等待 BUSY=0
-检查 DONE=1、ERROR=0
+CPU/测试程序先把输入、参数和描述符表放入RAM
+MMIO[0x40000008] = queue_base
+MMIO[0x40000018] = task_count  // 单任务填1
+MMIO[0x40000000] = 0x3D
+等待 STATUS.BUSY=0
+检查 STATUS.DONE=1 且 STATUS.ERROR=0
 ```
 
-OP_TYPE=0…5的原单算子模式保持兼容。现有自定义输入实验、旧的单层测试无需改动。MMIO OP_TYPE的6…14暂保留；15表示队列提交，不是可放进任务表的计算算子。
+队列是启动前准备好的有限连续表，不是允许运行期间追加任务的环形队列。
 
-## 一条任务的内存布局
+## 每条任务的布局
 
-每条固定32字节，8个32位字，little-endian。第i条地址=`queue_base+i*32`。
+固定32字节，8个little-endian 32bit字；第i条位于queue_base+i*32。
 
-| 字节偏移 | 内容 |
+|字节偏移|内容|
 |---|---|
-| +0x00 | HEADER：[7:0]算子编号、[15:8]格式版本1、[31:16]保留为0 |
-| +0x04 | 输入字节地址 INPUT_ADDR |
-| +0x08 | 输出字节地址 OUTPUT_ADDR |
-| +0x0C | 权重地址，ADD时为第二输入地址 |
-| +0x10 | Bias地址 |
-| +0x14 | FEATURE_SIZE：[15:0]宽、[31:16]高 |
-| +0x18 | CHANNELS：[15:0]输入通道、[31:16]输出通道 |
-| +0x1C | LAYER_PARAM：沿用原kernel/stride/padding/量化/激活定义 |
+|+0x00|HEADER：[7:0]算子编号，[15:8]版本1，[31:16]保留0|
+|+0x04|输入Feature Map字节地址|
+|+0x08|输出Feature Map字节地址|
+|+0x0C|权重字节地址|
+|+0x10|Bias字节地址|
+|+0x14|低16位width，高16位height|
+|+0x18|低16位input_channels，高16位output_channels|
+|+0x1C|kernel、stride、padding、quant_shift；[31:20]必须0|
 
-HEADER的例子：普通卷积0x00000100、Depthwise 0x00000101、ADD 0x00000103、FINAL_OUTPUT 0x00000105。**HEADER不是MMIO的CONTROL值，不含START或RESET位。**
+普通Conv的HEADER是0x100，Depthwise是0x101。HEADER不是CONTROL，不含START/RESET。
+描述符算子只允许0或1，15也不能作为任务表内的计算算子。
+最后128个特征写到末层描述符的OUTPUT_ADDR，与已保留的MMIO OUTPUT_ADDR位置无关。
 
-描述符预留8位算子编码，但本版计算硬件仍只接受0…5。扩大编码空间不代表已经实现256种算子。其他版本或非零保留位会明确报错，避免静默解释错误。
-
-每层可以有不同输入/输出地址、尺寸、通道和量化设置。最终特征写入最后任务描述符的OUTPUT_ADDR；队列模式不会自动把它复制到MMIO OUTPUT_ADDR寄存器中。
-
-## 多任务预取如何预留
+## 硬件路径和时序
 
 ```mermaid
 flowchart LR
-    RAM[Data RAM中的任务表] --> R[task_descriptor_reader]
-    R -->|完整256位任务 ready/valid| F[task_descriptor_fifo]
-    F --> Q[task_queue_controller]
-    Q --> C[原mobilefacenet_controller]
-    C --> E[原计算模块与Buffer]
-    E --> RAM
+    RAM[Data RAM任务表] --> READER[task_descriptor_reader]
+    READER --> FIFO[task_descriptor_fifo]
+    FIFO -->|全部算子配置| CTRL[systolic_conv_controller]
+    FIFO --> Q[task_queue_controller]
+    MMIO[MMIO：队列地址/条数/START] --> Q
+    Q -->|FIFO握手才产生exec_start| CTRL
+    CTRL --> ARRAY[8×8脉动阵列]
+    ARRAY --> OUT[量化与写回RAM]
 ```
 
-顶层参数 `TASK_PREFETCH_DEPTH` 默认4，表示最多缓存4条待执行任务，FIFO数据容量为4×32=128字节。另有读取器的一条任务组装暂存，以及当前执行任务的锁存配置。深度必须>=1，已验证1、3、4，包括非2的幂深度。
-
-对于9个任务、深度4：
+默认TASK_PREFETCH_DEPTH=4，FIFO缓存最多4条待执行描述符。
+每条描述符需要8次32bit读取；RAM仍使用原ready握手，不增加复杂总线。
 
 ```text
-取任务0、1、2、3 → 缓冲达到4条 → 顺序执行0、1、2、3
-取任务4、5、6、7 → 缓冲达到4条 → 顺序执行4、5、6、7
-取任务8         → 剩余不足4条也能执行 → DONE
+取0、1、2、3 → 依次执行0、1、2、3
+取4、5、6、7 → 依次执行4、5、6、7
+取8         → 执行8 → 队列DONE
 ```
 
-因此，本版已经支持按批缓存多个任务。外部RAM仍然一次读取一个32位字，每条任务读8次；没有新增突发协议，也没有在算子执行期间并发预取。任务读取和算子访存分阶段共用原来的Memory Master，切换时没有未完成事务。
+不同任务不同时运行，当前也不边执行边预取下一批。FIFO深度可改，已验证1、3、4。
+单任务同样经历读取8字、FIFO入队、派发、计算、写回、队列完成，不存在特殊快速旁路。
+每层内部done仅通知队列控制器，所有任务成功后才置MMIO DONE。
 
-以后可替换描述符读取器，使其一次突发读取多条，再按ready/valid送入FIFO；也可增加响应归属跟踪和仲裁，实现“执行当前批时预取下一批”。FIFO满时会反压，不应丢任务。上述改进不需要改普通卷积和Depthwise计算模块。
+|queue_state|含义|
+|---|---|
+|0|空闲，等待队列启动；旧直接模式转ERROR|
+|1|检查任务表地址和数量|
+|2|读取当前批描述符|
+|3|检查队首任务，FIFO握手并产生exec_start|
+|4|等待当前算子done/error|
+|5|等待执行器和内存接口空闲，更新完成计数|
+|6|整个队列完成|
+|7|队列出错|
 
-## 完成、异常与复位
+## 异常和复位
 
-- 每个算子内部done只通知队列控制器，不会提前置MMIO DONE；整个队列执行成功后才置DONE。
-- 队列运行期间，包括取描述符、批间切换和等待RAM，BUSY保持1。配置写入被锁定。
-- 忙时再次START被拒绝并置ERROR，当前队列继续执行；成功结束后可以得到STATUS=6（DONE+ERROR），与原忙时保护语义一致。
-- 空队列、任务表未对齐、任务表范围超出32位地址空间：ERROR，不访问RAM。
-- 描述符版本、算子编号、保留位或某层参数非法：停止于该任务，不执行后面的任务。预取可能已读取后续描述符，但不会执行它们；已完成任务的RAM结果保留。
-- 每一层输出都不得覆盖**整个任务表**，包括尚未预取的任务。原来的输入/权重/Bias输出重叠检查仍然保留。
-- RESET取消队列、清空预取FIFO，同时复位算子控制器。已经呈现给RAM的事务仍须等ready后排空；已发生的写入不回滚。等待STATUS.BUSY清零后，可重新准备输入并启动。
-- 本版不对外部RAM响应设置超时，实际RAM大小由集成方保证。CPU不能在运行中修改任务表及加速器正在使用的数据。
+- 非法直接启动、队列地址未对齐、条数0或地址溢出：ERROR，不访存。
+- 描述符版本、算子、保留位或算子参数非法：停止执行后续任务，已完成输出保留。预取可能已读到后续描述符。
+- 输出不得覆盖整个任务表，包括尚未预取的任务。
+- BUSY期间配置锁定，重复START置ERROR且不会重复启动；正在运行的队列继续完成。
+- RESET清空FIFO、取消计算；已向RAM发出的事务需要等待ready排空，已发生写入不回滚。等BUSY清零后可重新提交。
+- RAM没有响应超时。运行中不要修改任务表或正在使用的数据。
 
-## 仿真
+## 验证和部署
 
-在工程根目录运行：
+在项目根目录运行：
 
 ```powershell
-# 独立FIFO与描述符读取器
-python mobilefacenet/scripts/run_tests.py task_descriptor_fifo task_descriptor_reader
-
-# 一次START执行9个任务，逐层与Python比对
-python mobilefacenet/scripts/run_tests.py task_queue
-
-# 验证不同任务预取容量
-python mobilefacenet/scripts/run_tests.py task_queue --prefetch-depth 1
-python mobilefacenet/scripts/run_tests.py task_queue --prefetch-depth 3
-python mobilefacenet/scripts/run_tests.py task_queue --prefetch-depth 4
-
-# 队列模式波形
-python mobilefacenet/scripts/run_tests.py task_queue --waves
-python mobilefacenet/scripts/view_wave.py --vcd mobilefacenet/build/task_queue.vcd --scope tb_task_queue.dut
-
-# 完整新旧模式回归、ONNX队列与结构检查
+python mobilefacenet/scripts/run_tests.py queue_only
 python mobilefacenet/scripts/verify_all.py
+python mobilefacenet/scripts/accelerator_wave.py --open --view timing
 ```
 
-默认9任务测试包含：Conv1、COPY保存残差、DW3、ADD、ReLU6、Conv3、DW7、Conv1输出128通道、FINAL_OUTPUT。只在启动前装入一次RAM，后续任务直接读取前面任务实际写回的结果；Golden数据只用于比对。测试还检查每层之外的RAM字节没有被破坏。
+queue_only覆盖全部旧直接启动编码、保留寄存器无效、一条任务经FIFO执行、复位重启。
+完整回归包含13个testbench、21层算子比较和深度1/3/4的9任务链。
+原mobilefacenet测试名称和tasks.txt输入格式保留，但testbench现在将每层写入RAM中的单条描述符再提交队列，不再直接配置算子寄存器。
 
-自动检查包括：读描述符地址顺序、每条恰好8次整字读取、首次执行前已填满预取批、尾批处理、层级DONE不外泄、无重复/乱序执行、版本/范围/参数错误、任务表保护、忙时START、读取/写入阶段复位与重新启动。
-
-内部调试信号：`queue_state`为队列状态，`state`仍为原算子状态；`queue_fetched`为完整取回的任务数，`queue_completed`为成功完成数，`queue_buffered`为等待执行的任务数。当前任务不是成功完成任务，因此在计算时completed尚未增加。
-
-| queue_state | 含义 |
-|---|---|
-| 0 | 空闲，允许旧单算子路径直通 |
-| 1 | 检查任务表地址与数量 |
-| 2 | 读取并填充当前预取批 |
-| 3 | 检查队首描述符并启动算子 |
-| 4 | 等待算子done/error |
-| 5 | 等待执行器与Memory IF完全空闲，更新完成计数 |
-| 6 | 整个队列完成 |
-| 7 | 队列出错 |
-
-## ONNX部署数据
-
-ONNX导出器现在会自动额外生成 `queue.bin`、`queue_ram.bin`、`queue_ram.hex`、`queue_config.json`。原来的逐层MMIO任务文件仍保留。
-
-对已有导出目录也可单独打包：
+ONNX导出层条目提供descriptor_header，不再提供旧的逐层control_start。
+queue_config.json中的control_start仍为61，表示唯一队列启动命令。
 
 ```powershell
 python mobilefacenet/scripts/pack_queue.py mobilefacenet/build/my_model
 python mobilefacenet/scripts/run_tests.py task_queue --queue-dir mobilefacenet/build/my_model --ram-bytes 262144
 ```
 
-最后一个RAM容量只是示例，按 `queue_config.json` 的ram_bytes填写。打包器自动选择不与输入、输出、权重、Bias重叠的32字节对齐位置；`--base 0x...`可以显式指定，重叠或地址溢出会报错。任务描述符和数据位于同一RAM镜像。
-
-队列测试产生的最终128字节为 `build/queue_features.bin`；`verify_all.py`还会保留不同预取深度和ONNX队列的日志、结果和SHA-256到 `build/verification.json`。本版仍使用测试模型验证功能，未增加真实训练模型或识别精度结论。
+按queue_config.json里的ram_bytes设置实际仿真RAM容量。
+打包器选择不与数据重叠的位置，生成queue.bin、queue_ram.hex、queue_config.json。
+当前硬件不支持激活和残差，不能直接运行带这些算子的完整MobileFaceNet。

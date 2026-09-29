@@ -18,10 +18,15 @@ parser.add_argument("--task-limit", type=int, default=0, help="run first N integ
 parser.add_argument("--tasks", help="use an exported tasks.txt instead of built-in vectors")
 parser.add_argument("--queue-dir", help="use a directory produced by pack_queue.py")
 parser.add_argument("--queue-experiment", action="store_true", help="capture editable queue outputs and omit deliberate error injections")
+parser.add_argument("--overview", action="store_true", help="capture one complete task_queue run with selected whole-accelerator signals")
 parser.add_argument("--serial",action="store_true",help="use pre-array serial convolution for an identical-task baseline")
 parser.add_argument("--prefetch-depth", type=int, default=4, help="queue descriptor FIFO depth (>=1)")
 parser.add_argument("--ram-bytes", type=int, default=262144, help="simulation RAM size")
 args = parser.parse_args()
+if args.serial or args.queue_experiment:
+    parser.error('This version is array-only; scalar/elementwise experiments are archived in legacy/.')
+if args.overview and (args.tests != ['task_queue'] or args.queue_experiment or args.serial or args.waves):
+    parser.error('--overview requires task_queue with the default array path, without --waves/--serial/--queue-experiment')
 if args.prefetch_depth<1:parser.error("--prefetch-depth must be >=1")
 if args.queue_experiment and (args.tests != ['task_queue'] or not args.queue_dir):
     parser.error("--queue-experiment requires task_queue and --queue-dir")
@@ -39,10 +44,10 @@ env = dict(os.environ)
 env["PATH"] = os.pathsep.join([str(Path(tool).parent), str(Path(tool).parent.parent / "lib"), env.get("PATH", "")])
 build = ROOT / "build"
 build.mkdir(exist_ok=True)
-stage_order = ['accelerator_regs', 'mac_unit', 'systolic_pe', 'systolic_matmul', 'systolic_read_cache', 'conv_engine', 'depthwise_conv_engine', 'conv1x1',
-               'relu6_unit', 'add_unit', 'quantizer', 'address_generator', 'buffers',
-               'accelerator_mem_if', 'mobilefacenet_controller', 'task_descriptor_fifo', 'task_descriptor_reader',
-               'top_smoke', 'mobilefacenet', 'task_queue']
+stage_order = ['accelerator_regs', 'systolic_pe', 'systolic_matmul', 'systolic_read_cache',
+               'quantizer', 'address_generator',
+               'accelerator_mem_if', 'task_descriptor_fifo', 'task_descriptor_reader',
+               'top_smoke', 'queue_only', 'mobilefacenet', 'task_queue']
 benches = [ROOT / "tb" / f"tb_{n.removeprefix('tb_')}.sv" for n in (args.tests or stage_order)]
 if any(b.stem=='tb_mobilefacenet' for b in benches) and not args.tasks:
     subprocess.run([sys.executable,str(ROOT/'scripts'/'generate_vectors.py')],cwd=ROOT,check=True)
@@ -67,6 +72,7 @@ for bench in benches:
         if bench.stem=='tb_task_queue' and args.queue_dir:
             runtime_args += [f'+queue_dir={Path(args.queue_dir).resolve().as_posix()}']
         if args.queue_experiment:runtime_args += ['+experiment']
+        if args.overview:runtime_args += ['+overview']
         for cmd in (command, [vvp, str(output)] + runtime_args):
             proc = subprocess.Popen(cmd, cwd=ROOT, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             def stream_output():

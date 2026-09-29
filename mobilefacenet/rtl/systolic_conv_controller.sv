@@ -1,8 +1,8 @@
 `timescale 1ns/1ps
 // A task is tiled over OC, flattened spatial positions, then reduction chunks of 8.
 // Each buffer entry is loaded before RUN. RAM stalls cannot advance the array.
-// Only convolution operators enter here; pointwise ops retain the original path.
-module systolic_conv_controller #(parameter signed [31:0] RELU6_MAX=96)(
+// Unsupported opcodes and activation flags fail in CHECK before RAM access.
+module systolic_conv_controller(
     input wire clk,rst_n,clear,start,
     input wire [31:0] ia,oa,wa,ba,fs,ch,lp,input wire [3:0] op,
     input wire queue_active,input wire [31:0] queue_base,input wire [63:0] queue_end,
@@ -42,11 +42,10 @@ module systolic_conv_controller #(parameter signed [31:0] RELU6_MAX=96)(
         a_we,b_we,bias_we,row,col,kidx,(state==B_REQ && padding) ? 8'd0 : read_data[7:0],
         read_data,tile_busy,tile_done,sums);
     wire signed [31:0] raw=$signed(sums[({row,col}*32)+:32]);
-    wire signed [31:0] shifted,activated,unused_shift;
-    wire signed [7:0] quantized,unused_quant,out_value;
-    quantizer shift(raw,clp[19:12],shifted,unused_quant);
-    relu6_unit #(.RELU6_MAX(RELU6_MAX)) activation(shifted,clp[20],clp[21],activated);
-    quantizer saturate(activated,8'd0,unused_shift,quantized);
+    wire signed [31:0] shifted;
+    wire signed [7:0] quantized,out_value;
+    // Output format conversion only: arithmetic shift and signed INT8 clamp.
+    quantizer requant(raw,clp[19:12],shifted,quantized);
     output_buffer output_store(clk,rst_n,clear || state==CHECK,state==POST,quantized,out_value);
     assign cmd_valid=!clear && (state==WRITE_REQ || cache_valid);
     assign cmd_write=state==WRITE_REQ;assign cmd_byte=state==WRITE_REQ;

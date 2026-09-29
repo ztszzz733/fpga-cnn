@@ -1,10 +1,10 @@
 `timescale 1ns/1ps
-// CONTROL OP_TYPE=15 selects queue mode. INPUT_ADDR=base, FEATURE_SIZE=count.
+// Queue-only entry: CONTROL OP_TYPE must be 15. INPUT_ADDR=base, FEATURE_SIZE=count.
 // A batch of up to PREFETCH_DEPTH descriptors is fetched before execution.
 // One operator executes at a time; no speculative data writes or reordered tasks.
 module task_queue_controller #(parameter PREFETCH_DEPTH=4)(
     input wire clk,rst_n,soft_reset,start,input wire [3:0] op_type,
-    input wire [31:0] input_addr,output_addr,weight_addr,bias_addr,feature_size,channels,layer_param,
+    input wire [31:0] input_addr,feature_size,
     input wire exec_busy,exec_done,exec_error,mem_idle,
     output wire exec_start,output wire [3:0] task_op,
     output wire [31:0] task_input,task_output,task_weight,task_bias,task_size,task_channels,task_param,
@@ -21,7 +21,8 @@ module task_queue_controller #(parameter PREFETCH_DEPTH=4)(
     reg failed;
     wire [255:0] reader_data,head_data;
     wire reader_idle,reader_valid,reader_ready,head_valid,head_ready;
-    wire begin_queue=state==IDLE && start && op_type==15 && mem_idle && !exec_busy;
+    wire accept_start=state==IDLE && start && mem_idle && !exec_busy && !soft_reset;
+    wire begin_queue=accept_start && op_type==15;
     wire flush=soft_reset || begin_queue;
     assign active=state!=IDLE;
     assign done=state==DONE;
@@ -31,17 +32,18 @@ module task_queue_controller #(parameter PREFETCH_DEPTH=4)(
     assign queue_end={32'd0,queue_base}+({32'd0,total}<<5);
     wire legal_queue=queue_base[4:0]==0 && total!=0 && queue_end<=64'h100000000;
     // Word 0: version=1 in [15:8], opcode in [7:0], reserved [31:16]=0.
-    wire legal_header=head_data[31:8]==24'd1 && head_data[7:0]<=5;
+    wire legal_header=head_data[31:8]==24'd1 && head_data[7:0]<=1;
     assign head_ready=state==DISPATCH && legal_header && !exec_busy && mem_idle && !soft_reset;
-    assign exec_start=active ? head_valid && head_ready : start && op_type!=15 && !soft_reset;
-    assign task_op=active ? head_data[3:0] : op_type;
-    assign task_input=active ? head_data[63:32] : input_addr;
-    assign task_output=active ? head_data[95:64] : output_addr;
-    assign task_weight=active ? head_data[127:96] : weight_addr;
-    assign task_bias=active ? head_data[159:128] : bias_addr;
-    assign task_size=active ? head_data[191:160] : feature_size;
-    assign task_channels=active ? head_data[223:192] : channels;
-    assign task_param=active ? head_data[255:224] : layer_param;
+    // The FIFO is the sole source of execution commands and layer parameters.
+    assign exec_start=head_valid && head_ready;
+    assign task_op=head_data[3:0];
+    assign task_input=head_data[63:32];
+    assign task_output=head_data[95:64];
+    assign task_weight=head_data[127:96];
+    assign task_bias=head_data[159:128];
+    assign task_size=head_data[191:160];
+    assign task_channels=head_data[223:192];
+    assign task_param=head_data[255:224];
     task_descriptor_reader reader(
         .clk(clk),.rst_n(rst_n),.clear(flush),
         .start(fetch_phase && reader_idle && reader_ready && fetched<total),
@@ -56,8 +58,11 @@ module task_queue_controller #(parameter PREFETCH_DEPTH=4)(
         if(!rst_n) begin state<=IDLE;queue_base<=0;total<=0;completed<=0;fetched<=0;failed<=0;end
         else if(soft_reset) begin state<=IDLE;completed<=0;fetched<=0;failed<=0;end
         else case(state)
-            IDLE:if(begin_queue) begin
-                queue_base<=input_addr;total<=feature_size;completed<=0;fetched<=0;failed<=0;state<=VALIDATE;
+            IDLE:if(accept_start) begin
+                completed<=0;fetched<=0;failed<=0;
+                if(begin_queue) begin
+                    queue_base<=input_addr;total<=feature_size;state<=VALIDATE;
+                end else state<=ERROR; // Reject former direct mode without RAM or array activity.
             end
             VALIDATE:state<=legal_queue ? FILL : ERROR;
             FILL:if(reader_valid && reader_ready) begin

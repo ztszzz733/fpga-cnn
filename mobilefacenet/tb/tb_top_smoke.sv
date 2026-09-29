@@ -9,6 +9,10 @@ module tb_top_smoke;
         @(negedge clk); addr='h40000000+off;data=d;we=1;
         @(negedge clk); we=0;
     endtask
+    task word(input integer a,input [31:0] d);
+        ram.bytes[a]=d[7:0];ram.bytes[a+1]=d[15:8];
+        ram.bytes[a+2]=d[23:16];ram.bytes[a+3]=d[31:24];
+    endtask
     integer i;
     initial begin
         if($test$plusargs("vcd")) begin
@@ -19,8 +23,9 @@ module tb_top_smoke;
         for(i=0;i<9;i=i+1) begin ram.bytes['h100+i]=i+1; ram.bytes['h200+i]=1; end
         for(i=0;i<4;i=i+1) ram.bytes['h300+i]=0;
         repeat(2) @(negedge clk); rst_n=1;
-        write_reg(8,'h100);write_reg(12,'h401);write_reg(16,'h200);write_reg(20,'h300);
-        write_reg(24,'h30003);write_reg(28,'h10001);write_reg(32,'h13);write_reg(0,1);
+        word('h800,'h100);word('h804,'h100);word('h808,'h401);word('h80c,'h200);
+        word('h810,'h300);word('h814,'h30003);word('h818,'h10001);word('h81c,'h13);
+        write_reg(8,'h800);write_reg(24,1);write_reg(0,61);
         @(negedge clk); addr='h40000004;re=1;#1;
         if(!result[0]) $fatal(1,"missing BUSY");
         while(!result[1] && !result[2]) begin @(negedge clk); #1; end

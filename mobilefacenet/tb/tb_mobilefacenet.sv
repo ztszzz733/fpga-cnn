@@ -1,10 +1,12 @@
 `timescale 1ns/1ps
 module tb_mobilefacenet;
     parameter RAM_BYTES=262144,USE_SYSTOLIC=1;
+    // The test adapter places each tasks.txt entry in a real one-entry RAM queue.
+    localparam QUEUE_BASE=(RAM_BYTES-32)&32'hffffffe0;
     reg clk=0;always #5 clk=~clk;
     reg rst_n=0;reg [31:0] addr=0,wdata=0;reg we=0,re=0;
     wire [31:0] rdata,ma,md,mr;wire ready,rd,wr,mready;
-    mobilefacenet_accelerator_top #(.USE_SYSTOLIC(USE_SYSTOLIC)) dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
+    mobilefacenet_accelerator_top dut(clk,rst_n,addr,wdata,we,re,rdata,ready,ma,md,rd,wr,mr,mready);
     model_data_ram #(RAM_BYTES,3) ram(clk,rst_n,ma,md,rd,wr,mr,mready);
     reg [7:0] golden[0:RAM_BYTES-1],before_ram[0:RAM_BYTES-1];
     reg [31:0] status,back,op,ia,oa,wa,ba,fs,ch,lp,nout;
@@ -19,20 +21,31 @@ module tb_mobilefacenet;
         @(negedge clk);addr='h40000000+off;re=1;#1;
         if(ready!==1) $fatal(1,"MMIO ready");value=rdata;@(negedge clk);re=0;
     endtask
+    task word(input integer a,input [31:0] value);
+        ram.bytes[a]=value[7:0];ram.bytes[a+1]=value[15:8];
+        ram.bytes[a+2]=value[23:16];ram.bytes[a+3]=value[31:24];
+    endtask
     task configure;
-        write_reg(8,ia);write_reg(12,oa);write_reg(16,wa);write_reg(20,ba);
-        write_reg(24,fs);write_reg(28,ch);write_reg(32,lp);
+        word(QUEUE_BASE,32'h100 | op);word(QUEUE_BASE+4,ia);word(QUEUE_BASE+8,oa);
+        word(QUEUE_BASE+12,wa);word(QUEUE_BASE+16,ba);word(QUEUE_BASE+20,fs);
+        word(QUEUE_BASE+24,ch);word(QUEUE_BASE+28,lp);
+        write_reg(8,QUEUE_BASE);write_reg(24,1);
     endtask
     task wait_complete;
         read_reg(4,status);
         while(status[0]) begin repeat(64) @(negedge clk);read_reg(4,status);end
     endtask
     task bad_config(input [3:0] mode,input [31:0] off,value);
-        ia='h101;oa='h10001;wa='h20003;ba='h30000;fs='h30003;ch='h10001;lp='h13;configure();
-        if(off!='hffffffff) write_reg(off,value);
+        ia='h101;oa='h10001;wa='h20003;ba='h30000;fs='h30003;ch='h10001;lp='h13;op=mode;
+        case(off)
+            8:ia=value;12:oa=value;16:wa=value;20:ba=value;
+            24:fs=value;28:ch=value;32:lp=value;default:;
+        endcase
+        configure();
         old_reads=ram.reads;old_writes=ram.writes;
-        write_reg(0,(mode<<2)|1);wait_complete();
-        if(status!==4 || ram.reads!=old_reads || ram.writes!=old_writes)
+        write_reg(0,61);wait_complete();
+        // Only the eight descriptor words may be read for an invalid task.
+        if(status!==4 || ram.reads-old_reads!=8 || ram.writes!=old_writes)
             $fatal(1,"invalid accepted mode=%d off=%h value=%h status=%h",mode,off,value,status);
         write_reg(0,2);read_reg(4,status);if(status!==0) $fatal(1,"reset status");
     endtask
@@ -55,13 +68,14 @@ module tb_mobilefacenet;
                 $readmemh(init_file,ram.bytes);
             end
             $readmemh(golden_file,golden,0,nout-1);
+            configure();
             for(i=0;i<RAM_BYTES;i=i+1) before_ram[i]=ram.bytes[i];
-            configure();old_writes=ram.writes;old_reads=ram.reads;begin_cycle=cycles;expected_status=2;
-            write_reg(0,(op<<2)|1);read_reg(4,status);
+            old_writes=ram.writes;old_reads=ram.reads;begin_cycle=cycles;expected_status=2;
+            write_reg(0,61);read_reg(4,status);
             if(status!==1) $fatal(1,"missing BUSY %s %h",case_name,status);
             if(j==0) begin
-                write_reg(24,0);read_reg(24,back);if(back!==fs) $fatal(1,"config unlocked");
-                write_reg(0,(op<<2)|1);expected_status=6;
+                write_reg(24,0);read_reg(24,back);if(back!==1) $fatal(1,"queue count unlocked");
+                write_reg(0,61);expected_status=6;
             end
             wait_complete();
             if(status!==expected_status) $fatal(1,"%s status %h",case_name,status);
@@ -72,7 +86,7 @@ module tb_mobilefacenet;
             if(ram.writes-old_writes!=nout) $fatal(1,"write count");
             repeat(8) @(negedge clk);read_reg(4,status);
             if(status!==expected_status || ram.writes-old_writes!=nout) $fatal(1,"sticky done/restart");
-            if(op==5) begin
+            if(nout==128 && j==n-1) begin
                 if(nout!=128) $fatal(1,"final length");
                 feature_fd=$fopen("build/rtl_features.bin","wb");
                 for(i=0;i<128;i=i+1) $fwrite(feature_fd,"%c",ram.bytes[oa+i]);
@@ -88,17 +102,19 @@ module tb_mobilefacenet;
         bad_config(0,24,0);bad_config(0,28,0);bad_config(1,28,'h20001);
         bad_config(0,20,'h30001);bad_config(0,8,'hfffffffc);bad_config(0,12,'h101);
         bad_config(0,16,'hfffffffc);bad_config(0,32,'h400013);bad_config(0,32,'h800013);
-        bad_config(7,'hffffffff,0);bad_config(5,32,0);
-        // Abort an active RAM operation, then restart a COPY without hard reset.
-        ia='h101;oa='h10001;wa='h20003;ba='h30000;fs='h50005;ch='h10001;lp='h113;configure();
-        write_reg(0,1);while(!rd) @(negedge clk);write_reg(0,2);wait_complete();
+        for(i=2;i<15;i=i+1) bad_config(i,'hffffffff,0);
+        bad_config(0,32,'h100013);bad_config(0,32,'h200013);
+        // Abort RAM, then restart an identity Conv1 through the array.
+        op=0;ia='h101;oa='h10001;wa='h20003;ba='h30000;fs='h50005;ch='h10001;lp='h113;configure();
+        write_reg(0,61);while(!rd) @(negedge clk);write_reg(0,2);wait_complete();
         if(status!==0) $fatal(1,"abort status");
         old_reads=ram.reads;old_writes=ram.writes;repeat(32) @(negedge clk);
         if(ram.reads!=old_reads || ram.writes!=old_writes) $fatal(1,"work after abort");
-        fs='h10008;lp=0;configure();write_reg(0,17);wait_complete();
+        fs='h10008;lp='h11;ram.bytes[wa]=1;
+        for(i=0;i<4;i=i+1) ram.bytes[ba+i]=0;configure();write_reg(0,61);wait_complete();
         if(status!==2) $fatal(1,"restart status");
-        for(i=0;i<8;i=i+1) if(ram.bytes[oa+i]!==ram.bytes[ia+i]) $fatal(1,"restart copy");
-        $display("PASS tb_mobilefacenet (%0d layer comparisons, 14 invalid cases, busy START, reset/restart)",n);$finish;
+        for(i=0;i<8;i=i+1) if(ram.bytes[oa+i]!==ram.bytes[ia+i]) $fatal(1,"restart identity Conv1");
+        $display("PASS tb_mobilefacenet (%0d layer comparisons, removed ops/activation and invalid configs, busy START, reset/restart)",n);$finish;
     end
     initial begin repeat(100000000) @(posedge clk);$fatal(1,"timeout");end
 endmodule
