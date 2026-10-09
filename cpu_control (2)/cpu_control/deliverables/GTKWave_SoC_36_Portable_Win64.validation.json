@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "platform": "Windows x64",
+  "archive": "GTKWave_SoC_36_Portable_Win64.zip",
+  "archive_bytes": 23388807,
+  "archive_sha256": "3631814105a7923584d9b7dc5b20956febeaa5895baaf76c11f1781942d546bb",
+  "verified_files": 1169,
+  "tested_actual_zip_extraction": true,
+  "tested_chinese_path_with_spaces": true,
+  "tested_unrelated_working_directory": true,
+  "test_path_environment": "Windows system directories only; Tcl/Tk/GTK environment overrides cleared",
+  "signal_count": 36,
+  "view_start_ps": 313260000,
+  "native_gtkwave_selfcheck": "COUNT=36\nDUMP=waves\\soc_wires.vcd\nVIEW_START=313260000\nSAMPLE=313280000 00000005 0\nSAMPLE=313300000 A5A505A5 1\nPASS portable GTKWave loaded 36 ordered signals and verified real waveform values\n"
+}

@@ -1,0 +1,26 @@
+
+GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+
+[0] start time.
+[513805000] end time.
+GTKWAVE | Executing Tcl script 'D:\cpu_control\deliverables\gtkwave_soc_36/export_and_verify.tcl'
+GTKWAVE | Entry '1'
+GTKWAVE | Trace Hier Max Depth is now: 1
+GTKWAVE | Print using 'PS'
+GTKWAVE | Print using 'A4 (11.68" x 8.26")'
+GTKWAVE | Print using 'Full'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_all_36.ps'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_all_36.gtkw'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_all_36.png'
+GTKWAVE | Print using 'PS'
+GTKWAVE | Print using 'A4 (11.68" x 8.26")'
+GTKWAVE | Print using 'Full'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_cnn_detail.ps'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_cnn_detail.gtkw'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_cnn_detail.png'
+GTKWAVE | Print using 'PS'
+GTKWAVE | Print using 'A4 (11.68" x 8.26")'
+GTKWAVE | Print using 'Full'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_write_detail.ps'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_write_detail.gtkw'
+GTKWAVE | Filename 'D:/cpu_control/deliverables/gtkwave_soc_36/soc_write_detail.png'

@@ -1,0 +1,7 @@
+rtl/common/cpu_control_pkg.sv
+rtl/cpu_control/main_decoder.sv
+rtl/cpu_control/alu_decoder.sv
+rtl/cpu_control/hazard_unit.sv
+rtl/cpu_control/branch_control.sv
+rtl/cpu_control/pipeline_control.sv
+rtl/cpu_control/cpu_control.sv

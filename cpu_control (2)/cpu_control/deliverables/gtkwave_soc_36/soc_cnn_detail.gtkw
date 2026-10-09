@@ -1,0 +1,83 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Oct 08 16:57:19 2026
+[*]
+[dumpfile] "D:\cpu_control\deliverables\gtkwave_soc_36\soc_wires.vcd"
+[dumpfile_mtime] "Thu Oct 08 15:38:11 2026"
+[dumpfile_size] 4399739
+[savefile] "D:\cpu_control\deliverables\gtkwave_soc_36\soc_cnn_detail.gtkw"
+[timestart] 312800000
+[size] 1600 1000
+[pos] -1 -1
+*-17.558353 -1 235000 311965000 312455000 313805000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[markername] ACPU_LOAD_REQUEST
+[markername] BLOAD_COMPLETE
+[markername] CCNN_START
+[markername] DCPU_FINISH
+[sst_width] 180
+[signals_width] 280
+[sst_expanded] 0
+[sst_vpaned_height] 0
+@28
+soc_wires.clk
+soc_wires.rst_n_in
+soc_wires.rst_n
+soc_wires.imem_re
+@22
+soc_wires.imem_addr[31:0]
+soc_wires.imem_rdata[31:0]
+@28
+[color] 6
+soc_wires.load_req
+[color] 6
+soc_wires.load_complete
+[color] 6
+soc_wires.load_error
+soc_wires.uart_tx
+soc_wires.uart_rx
+soc_wires.io_mem_req
+soc_wires.io_mem_we
+soc_wires.io_mem_gnt
+soc_wires.io_mem_error
+@22
+soc_wires.io_mem_addr[31:0]
+soc_wires.io_mem_be[3:0]
+soc_wires.io_mem_wdata[31:0]
+@28
+[color] 3
+soc_wires.cnn_mmio_re
+[color] 3
+soc_wires.cnn_mmio_we
+[color] 3
+soc_wires.cnn_mmio_ready
+@22
+[color] 3
+soc_wires.cnn_mmio_addr[31:0]
+[color] 3
+soc_wires.cnn_mmio_wdata[31:0]
+[color] 3
+soc_wires.cnn_mmio_rdata[31:0]
+@28
+[color] 4
+soc_wires.mem_read
+[color] 4
+soc_wires.mem_write
+[color] 4
+soc_wires.mem_ready
+@22
+[color] 4
+soc_wires.mem_addr[31:0]
+[color] 4
+soc_wires.mem_wdata[31:0]
+[color] 4
+soc_wires.mem_rdata[31:0]
+@28
+soc_wires.dmem_re
+soc_wires.dmem_we
+@22
+soc_wires.dmem_wstrb[3:0]
+soc_wires.dmem_addr[31:0]
+soc_wires.dmem_wdata[31:0]
+soc_wires.dmem_rdata[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

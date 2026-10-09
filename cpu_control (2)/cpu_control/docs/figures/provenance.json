@@ -1,0 +1,38 @@
+{
+  "source_vcd": "build/runs/20260914_124846_374213_all_seed1/waves/cpu_control.vcd",
+  "source_vcd_sha256": "250e904ad38d5d47c1bf33a65d15fcd4a83df5b5827dc7f93449a5e4c7f13412",
+  "result_json": "build/runs/20260914_124846_374213_all_seed1/result.json",
+  "case_windows": {
+    "decode": {
+      "start_ns": 30.001,
+      "end_ns": 112.501
+    },
+    "forwarding": {
+      "start_ns": 10582.501,
+      "end_ns": 10642.501
+    },
+    "branch_units": {
+      "start_ns": 12182.501,
+      "end_ns": 12302.501
+    },
+    "load_use": {
+      "start_ns": 12530.001,
+      "end_ns": 12600.001
+    },
+    "branch_flush": {
+      "start_ns": 12920.001,
+      "end_ns": 13000.001
+    }
+  },
+  "visual_inspection": "decode, forwarding, load_use, branch_flush PNGs opened and checked on 2026-09-14",
+  "files": {
+    "branch_flush.png": "818635faf4b6fc2a8508100acc757f65e21c6695923042cf262a5e3982dcb338",
+    "branch_flush.svg": "ab3a10288d9864f7fa0066626dc6738621bf3e4803bcb8231ce5a6d61aaab09c",
+    "decode.png": "066b2467028b85af7e11882b3db0f49cea1fb4298619349e2064ba0b69d9d91e",
+    "decode.svg": "9ef28fa2e4dcfc899110e399aadeeba3af65f157d1398777e6baad317f6e2836",
+    "forwarding.png": "7d212b70d60a166ccb464ba421be2a894c5ef9117a23768267c709818c6db26a",
+    "forwarding.svg": "90504eba6cad712dac5ee249fdcf41bb23a7a0b7f3a5375b562bada8105e5fdb",
+    "load_use.png": "5f5ad2b4927c2687d600bc74f6d39dbd365dd4705cb04a94a10bdea95ac06365",
+    "load_use.svg": "a38e4c44d3f6fb62290ba9b35e8f9d7f9d09076f35c72ebb70d679a7872bad38"
+  }
+}

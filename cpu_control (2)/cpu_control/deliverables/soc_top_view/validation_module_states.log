@@ -1,0 +1,4 @@
+module_states TOTAL=10 SIGNALS=9
+UNIQUE=9
+STATE=WORK
+PASS GTKWave six-module session

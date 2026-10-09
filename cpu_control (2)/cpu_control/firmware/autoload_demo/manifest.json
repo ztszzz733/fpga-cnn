@@ -1,0 +1,30 @@
+{
+  "input_signed_int8": [
+    1,
+    -2,
+    3,
+    4
+  ],
+  "weight": 2,
+  "bias": 3,
+  "expected_signed_int8": [
+    5,
+    -1,
+    9,
+    11
+  ],
+  "batch_crc32": "fe679cc9",
+  "sram_load_base": "0x100",
+  "load_bytes": 256,
+  "descriptor": "0x1e0",
+  "output_bytes": "0x141..0x144",
+  "cpu_local_control": "0x40",
+  "cpu_local_status": "0x44",
+  "result_words": [
+    "0x09ff05a5",
+    "0xa5a5a50b"
+  ],
+  "finish_mailbox": "0x88",
+  "instruction_count": 98,
+  "rom_words": 1024
+}

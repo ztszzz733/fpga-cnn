@@ -1,0 +1,19 @@
+{
+  "format": "uncompressed mxfile / mxGraphModel",
+  "pages": 2,
+  "first_level_modules": [
+    "CPU CORE",
+    "CNN",
+    "IMEM",
+    "DATASRAM",
+    "IMAGE_BRIDGE",
+    "CLOCK"
+  ],
+  "port_widths": {
+    "cnn_addr": 352,
+    "cnn_wdata": 352,
+    "cnn_rdata": 352,
+    "cnn_valid/write/byte": 33,
+    "cnn_ready/response": 22
+  }
+}

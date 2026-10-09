@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "source_markdown_count": 18,
+  "paired_guides": 21,
+  "local_links_checked": 283,
+  "missing_links": [],
+  "protected_code_and_config_files": 23,
+  "code_and_config_unchanged": true,
+  "source_documents_unchanged": true,
+  "original_prose_unchanged_except_links": true,
+  "hardware_tests": "NOT_RERUN: documentation-only task"
+}

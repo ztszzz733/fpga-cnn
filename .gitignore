@@ -1,6 +1,16 @@
+# Generated build output and local tools
 build/
 tools/
+.tools/
+.venv/
 __pycache__/
-*.vcd
+.pytest_cache/
+*.pyc
 mobilefacenet/.deps/
 mobilefacenet/.deps-py39/
+
+# Generated simulation waveforms and compiled simulation output
+*.vcd
+*.fst
+*.wdb
+*.vvp

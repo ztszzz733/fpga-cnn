@@ -1,0 +1,3 @@
+COUNT=31
+DUMP=overlap.vcd
+PASS GTKWave overlap session

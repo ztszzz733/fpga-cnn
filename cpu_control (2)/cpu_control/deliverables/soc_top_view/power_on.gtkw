@@ -1,0 +1,178 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Oct 09 13:37:20 2026
+[*]
+[dumpfile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\soc_top.fst"
+[dumpfile_mtime] "Fri Oct 09 13:36:34 2026"
+[dumpfile_size] 1390833
+[savefile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\power_on.gtkw"
+[timestart] 0
+[size] 1800 1050
+[pos] -1 -1
+*-16.290026 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 160
+[signals_width] 340
+[sst_expanded] 0
+[sst_vpaned_height] 0
+@200
+-TOP STATES
+@2022
+[color] 4
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.cpu_state[1:0]
+[color] 1
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.cnn_state[1:0]
+[color] 3
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.sram_state[1:0]
+[color] 5
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.imem_state[1:0]
+[color] 6
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.bridge_state[1:0]
+[color] 2
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\state_names.txt
+soc_top.clock_state[1:0]
+@22
+soc_top.soc_module_state[11:0]
+soc_top.soc_active[5:0]
+soc_top.soc_fault[5:0]
+@200
+-EXTERNAL INPUTS
+@28
+soc_top.sys_clk
+soc_top.rst_n_in
+soc_top.uart_rx
+@200
+-CPU CORE
+@22
+[color] 4
+soc_top.imem_addr[31:0]
+@28
+[color] 4
+soc_top.imem_re
+@22
+[color] 4
+soc_top.dmem_addr[31:0]
+[color] 4
+soc_top.dmem_wdata[31:0]
+[color] 4
+soc_top.dmem_wstrb[3:0]
+@28
+[color] 4
+soc_top.dmem_re
+[color] 4
+soc_top.dmem_we
+@22
+[color] 4
+soc_top.cnn_mmio_addr[31:0]
+[color] 4
+soc_top.cnn_mmio_wdata[31:0]
+@28
+[color] 4
+soc_top.cnn_mmio_re
+[color] 4
+soc_top.cnn_mmio_we
+[color] 4
+soc_top.load_req
+@200
+-CNN
+@22
+[color] 1
+soc_top.cnn_mmio_rdata[31:0]
+@28
+[color] 1
+soc_top.cnn_mmio_ready
+@22
+[color] 1
+soc_top.cnn_valid[10:0]
+[color] 1
+soc_top.cnn_write[10:0]
+[color] 1
+soc_top.cnn_byte[10:0]
+[color] 1
+soc_top.cnn_addr[351:0]
+[color] 1
+soc_top.cnn_wdata[351:0]
+@28
+[color] 1
+soc_top.cnn_cancel
+[color] 1
+soc_top.cnn_status_busy
+[color] 1
+soc_top.cnn_status_done
+[color] 1
+soc_top.cnn_status_error
+@200
+-DATASRAM
+@22
+[color] 3
+soc_top.dmem_rdata[31:0]
+[color] 3
+soc_top.cnn_ready[10:0]
+[color] 3
+soc_top.cnn_response[10:0]
+[color] 3
+soc_top.cnn_rdata[351:0]
+@28
+[color] 3
+soc_top.cnn_mem_fault
+[color] 3
+soc_top.io_mem_gnt
+[color] 3
+soc_top.io_mem_rvalid
+@22
+[color] 3
+soc_top.io_mem_rdata[31:0]
+@28
+[color] 3
+soc_top.io_mem_error
+@200
+-IMEM
+@22
+[color] 5
+soc_top.imem_rdata[31:0]
+@200
+-IMAGE_BRIDGE
+@28
+[color] 6
+soc_top.load_complete
+[color] 6
+soc_top.load_error
+[color] 6
+soc_top.io_mem_req
+[color] 6
+soc_top.io_mem_we
+@22
+[color] 6
+soc_top.io_mem_addr[31:0]
+[color] 6
+soc_top.io_mem_wdata[31:0]
+[color] 6
+soc_top.io_mem_be[3:0]
+@28
+[color] 6
+soc_top.uart_tx
+[color] 6
+soc_top.bridge_ready
+[color] 6
+soc_top.bridge_busy
+[color] 6
+soc_top.bridge_error
+@200
+-CLOCK
+@28
+[color] 2
+soc_top.clk
+[color] 2
+soc_top.rst_n
+@200
+-TOP OUTPUTS
+@28
+soc_top.led_ready
+soc_top.led_busy
+soc_top.led_error
+[pattern_trace] 1
+[pattern_trace] 0

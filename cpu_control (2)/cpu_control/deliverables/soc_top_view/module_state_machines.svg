@@ -1,0 +1,277 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1500" viewBox="0 0 2200 1500">
+<defs><marker id="a0" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#58a6ff"/></marker><marker id="a1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#efdf69"/></marker><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ef72b3"/></marker><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ff666c"/></marker><marker id="a4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#e5e7eb"/></marker><marker id="a5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#9ca3af"/></marker></defs>
+<rect width="2200" height="1500" fill="#101216"/>
+<text x="1100.0" y="67.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="34" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">第一层状态机：六个大模块并行观察</tspan>
+</text>
+<text x="1100.0" y="132.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#9ca3af">
+<tspan x="1100.0" dy="0">采样模块活动，不改变执行顺序；RESET 优先。下图 FAULT 仅在模块具备故障源时使用。</tspan>
+</text>
+<rect x="50" y="210" width="660" height="555" fill="#14181e" stroke="#58a6ff" stroke-width="2"/>
+<text x="380.0" y="247.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#58a6ff">
+<tspan x="380.0" dy="0">CPU CORE</tspan>
+</text>
+<rect x="280" y="295" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="380.0" y="327.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="380.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="100" y="445" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="205.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="205.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="450" y="445" width="210" height="75" fill="#252b34" stroke="#58a6ff" stroke-width="2"/>
+<text x="555.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="555.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="335,360 335,400 205,400 205,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="430,360 430,400 555,400 555,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="210.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="210.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="550.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="550.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="310,460 450,460" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="382.0" y="434.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="382.0" dy="0">有活动</tspan>
+</text>
+<polyline points="450,506 310,506" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="382.0" y="534.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="382.0" dy="0">无活动</tspan>
+</text>
+<text x="380.0" y="604.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="380.0" dy="0">FAULT / 3：保留</tspan>
+</text>
+<text x="380.0" y="674.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="380.0" dy="0">活动依据：取指 / 数据访问 / MMIO / load_req</tspan>
+</text>
+<text x="380.0" y="722.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="380.0" dy="0">无故障输入，FAULT 为保留状态</tspan>
+</text>
+<rect x="770" y="210" width="660" height="555" fill="#14181e" stroke="#ff666c" stroke-width="2"/>
+<text x="1100.0" y="247.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#ff666c">
+<tspan x="1100.0" dy="0">CNN</tspan>
+</text>
+<rect x="1000" y="295" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1100.0" y="327.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="820" y="445" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="925.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="925.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="1170" y="445" width="210" height="75" fill="#252b34" stroke="#ff666c" stroke-width="2"/>
+<text x="1275.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1275.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="1055,360 1055,400 925,400 925,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="1150,360 1150,400 1275,400 1275,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="930.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="930.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="1270.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1270.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="1030,460 1170,460" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1102.0" y="434.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1102.0" dy="0">有活动</tspan>
+</text>
+<polyline points="1170,506 1030,506" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1102.0" y="534.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1102.0" dy="0">无活动</tspan>
+</text>
+<rect x="1000" y="575" width="200" height="60" fill="#252b34" stroke="#ff666c" stroke-width="2"/>
+<text x="1100.0" y="605.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">FAULT / 3</tspan>
+</text>
+<polyline points="1280,520 1280,605 1200,605" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<polyline points="925,520 925,605 1000,605" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="1290.0" y="562.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#ff666c">
+<tspan x="1290.0" dy="0">检测到故障</tspan>
+</text>
+<text x="1100.0" y="674.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">活动依据：cnn_status_busy</tspan>
+</text>
+<text x="1100.0" y="722.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1100.0" dy="0">queue error / memory fault；软复位清监测状态</tspan>
+</text>
+<rect x="1490" y="210" width="660" height="555" fill="#14181e" stroke="#efdf69" stroke-width="2"/>
+<text x="1820.0" y="247.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#efdf69">
+<tspan x="1820.0" dy="0">DATASRAM</tspan>
+</text>
+<rect x="1720" y="295" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1820.0" y="327.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1820.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="1540" y="445" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1645.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1645.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="1890" y="445" width="210" height="75" fill="#252b34" stroke="#efdf69" stroke-width="2"/>
+<text x="1995.0" y="482.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1995.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="1775,360 1775,400 1645,400 1645,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="1870,360 1870,400 1995,400 1995,445" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1650.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1650.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="1990.0" y="379.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1990.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="1750,460 1890,460" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1822.0" y="434.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1822.0" dy="0">有活动</tspan>
+</text>
+<polyline points="1890,506 1750,506" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1822.0" y="534.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1822.0" dy="0">无活动</tspan>
+</text>
+<rect x="1720" y="575" width="200" height="60" fill="#252b34" stroke="#ff666c" stroke-width="2"/>
+<text x="1820.0" y="605.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1820.0" dy="0">FAULT / 3</tspan>
+</text>
+<polyline points="2000,520 2000,605 1920,605" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<polyline points="1645,520 1645,605 1720,605" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="2010.0" y="562.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#ff666c">
+<tspan x="2010.0" dy="0">检测到故障</tspan>
+</text>
+<text x="1820.0" y="674.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1820.0" dy="0">活动依据：CPU、CNN、桥的请求或响应</tspan>
+</text>
+<text x="1820.0" y="722.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1820.0" dy="0">cnn_mem_fault；系统复位恢复</tspan>
+</text>
+<rect x="50" y="830" width="660" height="555" fill="#14181e" stroke="#8aa8ff" stroke-width="2"/>
+<text x="380.0" y="867.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#8aa8ff">
+<tspan x="380.0" dy="0">IMEM</tspan>
+</text>
+<rect x="280" y="915" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="380.0" y="947.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="380.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="100" y="1065" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="205.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="205.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="450" y="1065" width="210" height="75" fill="#252b34" stroke="#8aa8ff" stroke-width="2"/>
+<text x="555.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="555.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="335,980 335,1020 205,1020 205,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="430,980 430,1020 555,1020 555,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="210.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="210.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="550.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="550.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="310,1080 450,1080" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="382.0" y="1054.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="382.0" dy="0">有活动</tspan>
+</text>
+<polyline points="450,1126 310,1126" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="382.0" y="1154.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="382.0" dy="0">无活动</tspan>
+</text>
+<text x="380.0" y="1224.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="380.0" dy="0">FAULT / 3：保留</tspan>
+</text>
+<text x="380.0" y="1294.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="380.0" dy="0">活动依据：imem_re</tspan>
+</text>
+<text x="380.0" y="1342.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="380.0" dy="0">无独立故障输入，FAULT 为保留状态</tspan>
+</text>
+<rect x="770" y="830" width="660" height="555" fill="#14181e" stroke="#d987ed" stroke-width="2"/>
+<text x="1100.0" y="867.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#d987ed">
+<tspan x="1100.0" dy="0">IMAGE_BRIDGE</tspan>
+</text>
+<rect x="1000" y="915" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1100.0" y="947.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="820" y="1065" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="925.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="925.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="1170" y="1065" width="210" height="75" fill="#252b34" stroke="#d987ed" stroke-width="2"/>
+<text x="1275.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1275.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="1055,980 1055,1020 925,1020 925,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="1150,980 1150,1020 1275,1020 1275,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="930.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="930.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="1270.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1270.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="1030,1080 1170,1080" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1102.0" y="1054.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1102.0" dy="0">有活动</tspan>
+</text>
+<polyline points="1170,1126 1030,1126" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1102.0" y="1154.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1102.0" dy="0">无活动</tspan>
+</text>
+<rect x="1000" y="1195" width="200" height="60" fill="#252b34" stroke="#ff666c" stroke-width="2"/>
+<text x="1100.0" y="1225.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">FAULT / 3</tspan>
+</text>
+<polyline points="1280,1140 1280,1225 1200,1225" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<polyline points="925,1140 925,1225 1000,1225" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="1290.0" y="1182.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#ff666c">
+<tspan x="1290.0" dy="0">检测到故障</tspan>
+</text>
+<text x="1100.0" y="1294.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1100.0" dy="0">活动依据：bridge_busy</tspan>
+</text>
+<text x="1100.0" y="1342.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1100.0" dy="0">bridge_error；系统复位恢复</tspan>
+</text>
+<rect x="1490" y="830" width="660" height="555" fill="#14181e" stroke="#f3a54d" stroke-width="2"/>
+<text x="1820.0" y="867.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" fill="#f3a54d">
+<tspan x="1820.0" dy="0">CLOCK</tspan>
+</text>
+<rect x="1720" y="915" width="200" height="65" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1820.0" y="947.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1820.0" dy="0">RESET / 0</tspan>
+</text>
+<rect x="1540" y="1065" width="210" height="75" fill="#252b34" stroke="#9ca3af" stroke-width="2"/>
+<text x="1645.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1645.0" dy="0">IDLE / 1</tspan>
+</text>
+<rect x="1890" y="1065" width="210" height="75" fill="#252b34" stroke="#f3a54d" stroke-width="2"/>
+<text x="1995.0" y="1102.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1995.0" dy="0">WORK / 2</tspan>
+</text>
+<polyline points="1775,980 1775,1020 1645,1020 1645,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<polyline points="1870,980 1870,1020 1995,1020 1995,1065" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1650.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1650.0" dy="0">释放复位 / 无活动</tspan>
+</text>
+<text x="1990.0" y="999.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1990.0" dy="0">释放复位 / 有活动</tspan>
+</text>
+<polyline points="1750,1080 1890,1080" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1822.0" y="1054.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1822.0" dy="0">有活动</tspan>
+</text>
+<polyline points="1890,1126 1750,1126" fill="none" stroke="#e5e7eb" stroke-width="2.5" marker-end="url(#a4)"/>
+<text x="1822.0" y="1154.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1822.0" dy="0">无活动</tspan>
+</text>
+<text x="1820.0" y="1224.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="1820.0" dy="0">FAULT / 3：保留</tspan>
+</text>
+<text x="1820.0" y="1294.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#e5e7eb">
+<tspan x="1820.0" dy="0">活动依据：rst_n 已释放</tspan>
+</text>
+<text x="1820.0" y="1342.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1820.0" dy="0">IDLE=等待释放；无停钟或 PLL 失锁检测</tspan>
+</text>
+<text x="1100.0" y="1450.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="1100.0" dy="0">所有状态遇硬复位回 RESET。CNN 软复位优先回 IDLE；若存储故障仍未清除，下个采样周期重新进入 FAULT。</tspan>
+</text>
+</svg>

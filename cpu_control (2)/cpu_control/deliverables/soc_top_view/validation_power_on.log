@@ -1,0 +1,4 @@
+power_on TOTAL=70 SIGNALS=61
+UNIQUE=61
+STATE=WORK
+PASS GTKWave six-module session

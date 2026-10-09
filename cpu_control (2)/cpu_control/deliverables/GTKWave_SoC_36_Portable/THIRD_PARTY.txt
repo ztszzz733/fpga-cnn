@@ -1,0 +1,15 @@
+GTKWave 3.3.100 Windows x64 official portable distribution.
+The complete supplied runtime directory is included without modifying its binaries.
+GTKWave copyright: (c) 1999-2019 BSI (as displayed by this release).
+GTKWave and its included third-party libraries retain their respective licenses.
+
+Upstream binary package:
+https://sourceforge.net/projects/gtkwave/files/gtkwave-3.3.100-bin-win64/gtkwave-3.3.100-bin-win64.zip/download
+Upstream ZIP SHA256:
+cace98e9c1e5bb6ab74ac2c4c1a2913617b6db7071418d052d2cf999a1acf39d
+
+Project and source distribution:
+https://gtkwave.sourceforge.net/
+https://sourceforge.net/projects/gtkwave/files/
+
+Wave data and launch scripts are provided by the CPU_CONTROL project.

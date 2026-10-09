@@ -1,0 +1,258 @@
+{
+  "seed": 1,
+  "tasks": [
+    {
+      "id": 0,
+      "name": "conv1x1_tail_reduction",
+      "opcode": 0,
+      "input": 1025,
+      "output": 1249,
+      "shape": [
+        3,
+        5,
+        9,
+        3
+      ]
+    },
+    {
+      "id": 1,
+      "name": "conv3x3_int32",
+      "opcode": 0,
+      "input": 1313,
+      "output": 1504,
+      "shape": [
+        3,
+        5,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "name": "relu_after_conv_RAW",
+      "opcode": 6,
+      "input": 1249,
+      "output": 1697,
+      "shape": [
+        3,
+        5,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "name": "independent_add",
+      "opcode": 3,
+      "input": 1760,
+      "output": 1857,
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 4,
+      "name": "independent_prelu",
+      "opcode": 7,
+      "input": 1904,
+      "output": 1985,
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "name": "depthwise3x3",
+      "opcode": 1,
+      "input": 2033,
+      "output": 2145,
+      "shape": [
+        4,
+        5,
+        2,
+        2
+      ]
+    },
+    {
+      "id": 6,
+      "name": "requant_after_conv_RAW",
+      "opcode": 10,
+      "input": 1504,
+      "output": 2241,
+      "shape": [
+        3,
+        5,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 7,
+      "name": "maxpool2x2",
+      "opcode": 8,
+      "input": 2304,
+      "output": 2337,
+      "shape": [
+        4,
+        4,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "name": "independent_relu6",
+      "opcode": 2,
+      "input": 2352,
+      "output": 2401,
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "name": "independent_relu",
+      "opcode": 6,
+      "input": 2448,
+      "output": 2497,
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "name": "depthwise7x7",
+      "opcode": 1,
+      "input": 2545,
+      "output": 2657,
+      "shape": [
+        3,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 11,
+      "name": "matmul_9x9x11",
+      "opcode": 9,
+      "input": 2689,
+      "output": 2945,
+      "shape": [
+        1,
+        11,
+        9,
+        9
+      ]
+    },
+    {
+      "id": 12,
+      "name": "add_after_relu_RAW",
+      "opcode": 3,
+      "input": 1697,
+      "output": 3057,
+      "shape": [
+        3,
+        5,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 13,
+      "name": "independent_int32_requant",
+      "opcode": 10,
+      "input": 3120,
+      "output": 3297,
+      "shape": [
+        1,
+        32,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "name": "hazard_original_read",
+      "opcode": 6,
+      "input": 3344,
+      "output": 3425,
+      "shape": [
+        1,
+        64,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 15,
+      "name": "hazard_consume_before_overwrite",
+      "opcode": 2,
+      "input": 3425,
+      "output": 3505,
+      "shape": [
+        1,
+        64,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "name": "hazard_WAR_input_overwrite",
+      "opcode": 7,
+      "input": 3584,
+      "output": 3344,
+      "shape": [
+        1,
+        64,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 17,
+      "name": "hazard_WAW_output_overwrite",
+      "opcode": 3,
+      "input": 3696,
+      "output": 3425,
+      "shape": [
+        1,
+        64,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "name": "store_overlap_wide_output",
+      "opcode": 0,
+      "input": 3857,
+      "output": 4017,
+      "shape": [
+        1,
+        64,
+        1,
+        8
+      ]
+    }
+  ],
+  "load_bytes": 8192,
+  "used_end": 4537,
+  "queue": 256,
+  "crc32": "5075bc29",
+  "expected_checksum": "a28dc4dc",
+  "instruction_count": 67
+}

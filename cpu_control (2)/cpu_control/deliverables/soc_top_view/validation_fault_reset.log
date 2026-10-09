@@ -1,0 +1,4 @@
+fault_reset TOTAL=70 SIGNALS=61
+UNIQUE=61
+STATE=FAULT
+PASS GTKWave six-module session

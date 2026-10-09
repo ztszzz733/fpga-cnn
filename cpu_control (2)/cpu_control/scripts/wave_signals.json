@@ -1,0 +1,451 @@
+{
+  "groups": {
+    "clock": [
+      {
+        "path": "tb_cpu_control.clk",
+        "label": "clk"
+      },
+      {
+        "path": "tb_cpu_control.rst_n",
+        "label": "rst_n"
+      }
+    ],
+    "instruction_fetch": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.link_rst", "label": "stub rst_n"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.stage_instruction", "label": "selected instruction"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.pc_f", "label": "PC_F"},
+      {"path": "tb_cpu_control.link.instr_d", "label": "instr_D after fetch"},
+      {"path": "tb_cpu_control.link.valid_d", "label": "valid_D"}
+    ],
+    "instruction_decode": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.link.instr_d", "label": "instr_D"},
+      {"path": "tb_cpu_control.link.valid_d", "label": "valid_D"},
+      {"path": "tb_cpu_control.link.alu_ctrl", "label": "alu_ctrl_D", "enum": {"0":"ADD","1":"SUB","2":"AND","3":"OR","4":"XOR","5":"SLT","6":"SLTU","7":"SLL","8":"SRL","9":"SRA"}},
+      {"path": "tb_cpu_control.link.imm_type_d", "label": "imm_type_D", "enum": {"0":"NONE","1":"I","2":"S","3":"B","4":"U","5":"J"}},
+      {"path": "tb_cpu_control.link.regwrite_d", "label": "regwrite_D"},
+      {"path": "tb_cpu_control.link.memread_d", "label": "memread_D"},
+      {"path": "tb_cpu_control.link.memwrite_d", "label": "memwrite_D"},
+      {"path": "tb_cpu_control.link.wb_sel_d", "label": "wb_sel_D", "enum": {"0":"ALU","1":"LOAD","2":"PC+4"}},
+      {"path": "tb_cpu_control.link.branch_type_d", "label": "branch_D", "enum": {"0":"NONE","1":"BEQ","2":"BNE","3":"BLT","4":"BGE","5":"BLTU","6":"BGEU"}},
+      {"path": "tb_cpu_control.link.jump_d", "label": "jump_D", "enum": {"0":"NONE","1":"JAL","2":"JALR"}}
+      ,{"path": "tb_cpu_control.link.uses_rs1_d", "label": "uses_rs1_D"}
+      ,{"path": "tb_cpu_control.link.uses_rs2_d", "label": "uses_rs2_D"}
+      ,{"path": "tb_cpu_control.link.u_control.illegal_d", "label": "illegal_D"}
+    ],
+    "instruction_execute": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.link.valid_e", "label": "valid_E"},
+      {"path": "tb_cpu_control.link.rd_e", "label": "rd_E"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.alu_ctrl_e", "label": "alu_ctrl_E", "enum": {"0":"ADD","1":"SUB","2":"AND","3":"OR","4":"XOR","5":"SLT","6":"SLTU","7":"SLL","8":"SRL","9":"SRA"}},
+      {"path": "tb_cpu_control.link.u_datapath_stub.alu_a", "label": "ALU input A"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.alu_b", "label": "ALU input B"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.alu_result_e", "label": "ALU result E"},
+      {"path": "tb_cpu_control.link.fwd_a", "label": "forward A", "enum": {"0":"REG","1":"WB","2":"MEM"}},
+      {"path": "tb_cpu_control.link.fwd_b", "label": "forward B", "enum": {"0":"REG","1":"WB","2":"MEM"}},
+      {"path": "tb_cpu_control.link.branch_type_e", "label": "branch_E", "enum": {"0":"NONE","1":"BEQ","2":"BNE","3":"BLT","4":"BGE","5":"BLTU","6":"BGEU"}},
+      {"path": "tb_cpu_control.link.jump_e", "label": "jump_E", "enum": {"0":"NONE","1":"JAL","2":"JALR"}},
+      {"path": "tb_cpu_control.link.pc_sel", "label": "pc_sel", "enum": {"0":"NEXT","1":"TARGET","2":"JALR"}}
+    ],
+    "instruction_memory": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.link.valid_m", "label": "valid_M"},
+      {"path": "tb_cpu_control.link.rd_m", "label": "rd_M"},
+      {"path": "tb_cpu_control.link.regwrite_m", "label": "regwrite_M"},
+      {"path": "tb_cpu_control.link.memread_m", "label": "memread_M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.memwrite_m_debug", "label": "memwrite_M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.result_m", "label": "result/address M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.store_m", "label": "store data M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.load_value_m", "label": "load data M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.store_count", "label": "stores", "radix": "dec"}
+    ],
+    "instruction_writeback": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.link.valid_w", "label": "valid_W"},
+      {"path": "tb_cpu_control.link.rd_w", "label": "rd_W"},
+      {"path": "tb_cpu_control.link.regwrite_w", "label": "regwrite_W"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.wb_value", "label": "writeback value"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.commit_count", "label": "register writes", "radix": "dec"}
+    ],
+    "instruction_all": [
+      {"path": "tb_cpu_control.clk", "label": "clk"},
+      {"path": "tb_cpu_control.link_rst", "label": "stub rst_n"},
+      {"path": "tb_cpu_control.stage_vector_id", "label": "selected id", "radix": "dec"},
+      {"path": "tb_cpu_control.stage_instruction", "label": "selected instruction"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.pc_f", "label": "PC_F"},
+      {"path": "tb_cpu_control.link.instr_d", "label": "instr_D"},
+      {"path": "tb_cpu_control.link.valid_d", "label": "valid_D"},
+      {"path": "tb_cpu_control.link.valid_e", "label": "valid_E"},
+      {"path": "tb_cpu_control.link.valid_m", "label": "valid_M"},
+      {"path": "tb_cpu_control.link.valid_w", "label": "valid_W"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.alu_result_e", "label": "ALU result E"},
+      {"path": "tb_cpu_control.link.memread_m", "label": "memread_M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.memwrite_m_debug", "label": "memwrite_M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.load_value_m", "label": "load data M"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.wb_value", "label": "writeback value"},
+      {"path": "tb_cpu_control.link.pc_sel", "label": "pc_sel", "enum": {"0":"NEXT","1":"TARGET","2":"JALR"}},
+      {"path": "tb_cpu_control.link.u_datapath_stub.store_count", "label": "stores", "radix": "dec"},
+      {"path": "tb_cpu_control.link.u_datapath_stub.commit_count", "label": "register writes", "radix": "dec"}
+    ],
+    "decode": [
+      {
+        "path": "tb_cpu_control.clk",
+        "label": "clk"
+      },
+      {
+        "path": "tb_cpu_control.instr_d",
+        "label": "instr_d"
+      },
+      {
+        "path": "tb_cpu_control.alu_ctrl",
+        "label": "alu_ctrl",
+        "enum": {
+          "0": "ADD",
+          "1": "SUB",
+          "2": "AND",
+          "3": "OR",
+          "4": "XOR",
+          "5": "SLT",
+          "6": "SLTU",
+          "7": "SLL",
+          "8": "SRL",
+          "9": "SRA"
+        }
+      },
+      {
+        "path": "tb_cpu_control.imm_type_d",
+        "label": "imm_type_d",
+        "enum": {
+          "0": "NONE",
+          "1": "I",
+          "2": "S",
+          "3": "B",
+          "4": "U",
+          "5": "J"
+        }
+      },
+      {
+        "path": "tb_cpu_control.alu_src_a_sel",
+        "label": "alu_src_a_sel",
+        "enum": {
+          "0": "RS1",
+          "1": "PC",
+          "2": "ZERO"
+        }
+      },
+      {
+        "path": "tb_cpu_control.alu_src_b_sel",
+        "label": "alu_src_b_sel",
+        "enum": {
+          "0": "RS2",
+          "1": "IMM"
+        }
+      },
+      {
+        "path": "tb_cpu_control.regwrite_d",
+        "label": "regwrite_d"
+      },
+      {
+        "path": "tb_cpu_control.memread_d",
+        "label": "memread_d"
+      },
+      {
+        "path": "tb_cpu_control.memwrite_d",
+        "label": "memwrite_d"
+      },
+      {
+        "path": "tb_cpu_control.wb_sel_d",
+        "label": "wb_sel_d",
+        "enum": {
+          "0": "ALU",
+          "1": "LOAD",
+          "2": "PC+4"
+        }
+      },
+      {
+        "path": "tb_cpu_control.branch_type_d",
+        "label": "branch_type_d",
+        "enum": {
+          "0": "NONE",
+          "1": "BEQ",
+          "2": "BNE",
+          "3": "BLT",
+          "4": "BGE",
+          "5": "BLTU",
+          "6": "BGEU"
+        }
+      },
+      {
+        "path": "tb_cpu_control.jump_d",
+        "label": "jump_d",
+        "enum": {
+          "0": "NONE",
+          "1": "JAL",
+          "2": "JALR"
+        }
+      },
+      {
+        "path": "tb_cpu_control.uses_rs1_d",
+        "label": "uses_rs1_d"
+      },
+      {
+        "path": "tb_cpu_control.uses_rs2_d",
+        "label": "uses_rs2_d"
+      },
+      {
+        "path": "tb_cpu_control.dut.illegal_d",
+        "label": "illegal_d"
+      }
+    ],
+    "ex": [
+      {
+        "path": "tb_cpu_control.valid_e",
+        "label": "valid_e"
+      },
+      {
+        "path": "tb_cpu_control.rs1_e",
+        "label": "rs1_e"
+      },
+      {
+        "path": "tb_cpu_control.rs2_e",
+        "label": "rs2_e"
+      },
+      {
+        "path": "tb_cpu_control.branch_type_e",
+        "label": "branch_type_e"
+      },
+      {
+        "path": "tb_cpu_control.jump_e",
+        "label": "jump_e"
+      },
+      {
+        "path": "tb_cpu_control.cmp_eq_e",
+        "label": "cmp_eq_e"
+      },
+      {
+        "path": "tb_cpu_control.cmp_lt_e",
+        "label": "cmp_lt_e"
+      },
+      {
+        "path": "tb_cpu_control.cmp_ltu_e",
+        "label": "cmp_ltu_e"
+      }
+    ],
+    "hazard": [
+      {
+        "path": "tb_cpu_control.clk",
+        "label": "clk"
+      },
+      {
+        "path": "tb_cpu_control.valid_e",
+        "label": "valid_e"
+      },
+      {
+        "path": "tb_cpu_control.rs1_e",
+        "label": "rs1_e"
+      },
+      {
+        "path": "tb_cpu_control.rs2_e",
+        "label": "rs2_e"
+      },
+      {
+        "path": "tb_cpu_control.rd_m",
+        "label": "rd_m"
+      },
+      {
+        "path": "tb_cpu_control.rd_w",
+        "label": "rd_w"
+      },
+      {
+        "path": "tb_cpu_control.memread_m",
+        "label": "memread_m"
+      },
+      {
+        "path": "tb_cpu_control.uses_rs1_e",
+        "label": "uses_rs1_e"
+      },
+      {
+        "path": "tb_cpu_control.uses_rs2_e",
+        "label": "uses_rs2_e"
+      },
+      {
+        "path": "tb_cpu_control.fwd_a",
+        "label": "fwd_a",
+        "enum": {
+          "0": "REG",
+          "1": "WB",
+          "2": "MEM"
+        }
+      },
+      {
+        "path": "tb_cpu_control.fwd_b",
+        "label": "fwd_b",
+        "enum": {
+          "0": "REG",
+          "1": "WB",
+          "2": "MEM"
+        }
+      },
+      {
+        "path": "tb_cpu_control.fwd_store",
+        "label": "fwd_store",
+        "enum": {
+          "0": "REG",
+          "1": "WB",
+          "2": "MEM"
+        }
+      },
+      {
+        "path": "tb_cpu_control.dut.load_use",
+        "label": "load_use"
+      },
+      {
+        "path": "tb_cpu_control.dut.operand_unready",
+        "label": "operand_unready"
+      }
+    ],
+    "gating": [
+      {
+        "path": "tb_cpu_control.clk",
+        "label": "clk"
+      },
+      {
+        "path": "tb_cpu_control.rst_n",
+        "label": "rst_n"
+      },
+      {
+        "path": "tb_cpu_control.pc_sel",
+        "label": "pc_sel",
+        "enum": {
+          "0": "NEXT",
+          "1": "TARGET",
+          "2": "JALR"
+        }
+      },
+      {
+        "path": "tb_cpu_control.pc_en",
+        "label": "pc_en"
+      },
+      {
+        "path": "tb_cpu_control.if_id_en",
+        "label": "if_id_en"
+      },
+      {
+        "path": "tb_cpu_control.if_id_flush",
+        "label": "if_id_flush"
+      },
+      {
+        "path": "tb_cpu_control.id_ex_flush",
+        "label": "id_ex_flush"
+      }
+    ],
+    "pipeline": [
+      {
+        "path": "tb_cpu_control.clk",
+        "label": "clk"
+      },
+      {
+        "path": "tb_cpu_control.link_rst",
+        "label": "stub rst_n"
+      },
+      {
+        "path": "tb_cpu_control.link.u_datapath_stub.pc_f",
+        "label": "PC_F"
+      },
+      {
+        "path": "tb_cpu_control.link.instr_d",
+        "label": "instr_D"
+      },
+      {
+        "path": "tb_cpu_control.link.valid_d",
+        "label": "valid_d"
+      },
+      {
+        "path": "tb_cpu_control.link.valid_e",
+        "label": "valid_e"
+      },
+      {
+        "path": "tb_cpu_control.link.valid_m",
+        "label": "valid_m"
+      },
+      {
+        "path": "tb_cpu_control.link.valid_w",
+        "label": "valid_w"
+      },
+      {
+        "path": "tb_cpu_control.link.memread_e",
+        "label": "memread_e"
+      },
+      {
+        "path": "tb_cpu_control.link.memread_m",
+        "label": "memread_m"
+      },
+      {
+        "path": "tb_cpu_control.link.rd_e",
+        "label": "rd_e"
+      },
+      {
+        "path": "tb_cpu_control.link.rd_m",
+        "label": "rd_m"
+      },
+      {
+        "path": "tb_cpu_control.link.rd_w",
+        "label": "rd_w"
+      },
+      {
+        "path": "tb_cpu_control.link.u_datapath_stub.wb_value",
+        "label": "WB_data"
+      },
+      {
+        "path": "tb_cpu_control.link.fwd_a",
+        "label": "fwd_A",
+        "enum": {
+          "0": "REG",
+          "1": "WB",
+          "2": "MEM"
+        }
+      },
+      {
+        "path": "tb_cpu_control.link.pc_sel",
+        "label": "pc_sel",
+        "enum": {
+          "0": "NEXT",
+          "1": "TARGET",
+          "2": "JALR"
+        }
+      },
+      {
+        "path": "tb_cpu_control.link.pc_en",
+        "label": "pc_en"
+      },
+      {
+        "path": "tb_cpu_control.link.if_id_en",
+        "label": "if_id_en"
+      },
+      {
+        "path": "tb_cpu_control.link.if_id_flush",
+        "label": "if_id_flush"
+      },
+      {
+        "path": "tb_cpu_control.link.id_ex_flush",
+        "label": "id_ex_flush"
+      },
+      {
+        "path": "tb_cpu_control.link.u_datapath_stub.store_count",
+        "label": "stores",
+        "radix": "dec"
+      },
+      {
+        "path": "tb_cpu_control.link.u_datapath_stub.commit_count",
+        "label": "reg commits",
+        "radix": "dec"
+      }
+    ]
+  }
+}

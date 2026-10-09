@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "tool": "GTKWave 3.3.100 Windows portable",
+  "signals": [
+    "clk",
+    "rst_n_in",
+    "rst_n",
+    "imem_re",
+    "imem_addr",
+    "imem_rdata",
+    "load_req",
+    "load_complete",
+    "load_error",
+    "uart_tx",
+    "uart_rx",
+    "io_mem_req",
+    "io_mem_we",
+    "io_mem_gnt",
+    "io_mem_error",
+    "io_mem_addr",
+    "io_mem_be",
+    "io_mem_wdata",
+    "cnn_mmio_re",
+    "cnn_mmio_we",
+    "cnn_mmio_ready",
+    "cnn_mmio_addr",
+    "cnn_mmio_wdata",
+    "cnn_mmio_rdata",
+    "mem_read",
+    "mem_write",
+    "mem_ready",
+    "mem_addr",
+    "mem_wdata",
+    "mem_rdata",
+    "dmem_re",
+    "dmem_we",
+    "dmem_wstrb",
+    "dmem_addr",
+    "dmem_wdata",
+    "dmem_rdata"
+  ],
+  "signal_count": 36,
+  "visible_trace_count": 36,
+  "native_saved_sessions_verified": 3,
+  "images": {
+    "soc_all_36": [
+      1600,
+      1000
+    ],
+    "soc_cnn_detail": [
+      1600,
+      1000
+    ],
+    "soc_write_detail": [
+      1600,
+      1000
+    ]
+  },
+  "vcd_sha256": "cae950ac67e6c5d8942c45b95006aab073fabda3e81bb12d792d5f8eb52600ab",
+  "native_value_checks": [
+    "313280 ns: mem_wdata=00000005, mem_write=0",
+    "313300 ns: mem_wdata=A5A505A5, mem_write=1"
+  ]
+}

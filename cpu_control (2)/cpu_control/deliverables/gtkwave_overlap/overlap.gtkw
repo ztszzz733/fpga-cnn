@@ -1,0 +1,58 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Oct 09 12:41:12 2026
+[*]
+[dumpfile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\gtkwave_overlap\overlap.vcd"
+[dumpfile_mtime] "Fri Oct 09 12:39:06 2026"
+[dumpfile_size] 347690
+[savefile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\gtkwave_overlap\overlap.gtkw"
+[timestart] 10000565000
+[size] 1700 1100
+[pos] -1 -1
+*-18.982967 -1 10001065000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[markername] ASTORE_COMPUTE_OVERLAP
+[sst_width] 200
+[signals_width] 290
+[sst_expanded] 0
+[sst_vpaned_height] 0
+@28
+soc_overlap.clk
+soc_overlap.queue_active
+soc_overlap.queue_done
+@22
+soc_overlap.task_dispatch[31:0]
+soc_overlap.unit_start[7:0]
+soc_overlap.unit_busy[7:0]
+soc_overlap.task_completed[31:0]
+@28
+soc_overlap.hazard_wait
+@22
+soc_overlap.pe_fire_map[63:0]
+soc_overlap.bank_requests[10:0]
+soc_overlap.bank_grants[10:0]
+soc_overlap.own_load_compute_count[31:0]
+soc_overlap.own_store_compute_count[31:0]
+soc_overlap.ctx0_full[1:0]
+@28
+soc_overlap.ctx0_producer
+soc_overlap.ctx0_consumer
+soc_overlap.ctx0_compute_active
+soc_overlap.ctx0_ld_valid
+soc_overlap.ctx0_ld_ready
+soc_overlap.ctx0_st_valid
+soc_overlap.ctx0_st_ready
+@22
+soc_overlap.ctx0_ws[1:0]
+soc_overlap.ctx1_full[1:0]
+@28
+soc_overlap.ctx1_producer
+soc_overlap.ctx1_consumer
+soc_overlap.ctx1_compute_active
+soc_overlap.ctx1_ld_valid
+soc_overlap.ctx1_ld_ready
+soc_overlap.ctx1_st_valid
+soc_overlap.ctx1_st_ready
+@22
+soc_overlap.ctx1_ws[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
