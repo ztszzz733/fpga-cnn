@@ -1,0 +1,35 @@
+diff --git a/rtl/ctrl/neureka_ctrl.sv b/rtl/ctrl/neureka_ctrl.sv
+index 466b3ce..df7bd99 100644
+--- a/rtl/ctrl/neureka_ctrl.sv
++++ b/rtl/ctrl/neureka_ctrl.sv
+@@ -954,7 +954,7 @@ module neureka_ctrl #(
+ 
+   // block-level enables depend on the operating mode -- during WEIGHTOFFS, only 1; in 1x1 mode, as many as the weight_bits are; and in 3x3, all 9 according to the filter_mask_map
+   assign ctrl_engine.ctrl_binconv_array.ctrl_pe.ctrl_col.enable_block  = ((state==LOAD || state==WEIGHTOFFS) && config_.filter_mode == NEUREKA_FILTER_MODE_1X1) ? '1 :
+-                                                                          (config_.filter_mode == NEUREKA_FILTER_MODE_1X1)                                      ? 9'h0ffffffff :
++                                                                          (config_.filter_mode == NEUREKA_FILTER_MODE_1X1)                                      ? 9'h1ff :
+                                                                                                                                                                   ~filter_mask_map;
+ 
+ 
+diff --git a/rtl/neureka_streamer.sv b/rtl/neureka_streamer.sv
+index 8b86078..140cbe3 100644
+--- a/rtl/neureka_streamer.sv
++++ b/rtl/neureka_streamer.sv
+@@ -257,7 +257,7 @@ module neureka_streamer
+         .rst_ni  ( rst_ni                 ),
+         .clear_i ( clear_i                ),
+         .sel_i   ( ctrl_i.ld_st_mux_sel   ),
+-        .in      ( virt_tcdm[0:1].target  ),
++        .in      ( virt_tcdm[0:1]  ),
+         .out     ( tcdm_prefifo.initiator )
+       );
+ 
+@@ -294,7 +294,7 @@ module neureka_streamer
+         .rst_ni  ( rst_ni               ),
+         .clear_i ( clear_i              ),
+         .sel_i   ( ctrl_i.ld_st_mux_sel ),
+-        .in      ( virt_tcdm[0:1].target       ),
++        .in      ( virt_tcdm[0:1]       ),
+         .out     ( tcdm_prefilter.initiator       )
+       );
+ 

@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "tests": {
+    "full_524x524_six_frames": {
+      "run": "20261010_200607_777416_stream_images",
+      "status": "PASS",
+      "metrics": {
+        "frames": 6,
+        "pixels": 1647456,
+        "outputs": 817452,
+        "requests": 1614,
+        "compute_cycles": 1634904,
+        "rx_compute_overlap": 591408,
+        "rx_write_overlap": 276576,
+        "total_cycles": 71710883
+      }
+    },
+    "smoke_64x64_six_frames": {
+      "run": "20261010_200513_980242_stream_images",
+      "status": "PASS",
+      "metrics": {
+        "frames": 6,
+        "pixels": 24576,
+        "outputs": 11532,
+        "requests": 24,
+        "compute_cycles": 23064,
+        "rx_compute_overlap": 7125,
+        "rx_write_overlap": 4086,
+        "total_cycles": 1068476
+      }
+    },
+    "crc_error": {
+      "run": "20261010_200542_816462_stream_images",
+      "status": "PASS",
+      "metrics": {
+        "frames": 0,
+        "pixels": 256,
+        "outputs": 90,
+        "requests": 3,
+        "compute_cycles": 180,
+        "rx_compute_overlap": 0,
+        "rx_write_overlap": 0,
+        "total_cycles": 19377
+      }
+    },
+    "uart_timeout": {
+      "run": "20261010_200549_881428_stream_images",
+      "status": "PASS",
+      "metrics": {
+        "frames": 0,
+        "pixels": 256,
+        "outputs": 90,
+        "requests": 3,
+        "compute_cycles": 180,
+        "rx_compute_overlap": 0,
+        "rx_write_overlap": 0,
+        "total_cycles": 23612
+      }
+    },
+    "packet_backpressure": {
+      "run": "20261010_200812_514491_stream_backpressure",
+      "status": "PASS",
+      "metrics": {}
+    }
+  },
+  "gtkwave": "64/12/64 unique traces; state translation PASS"
+}

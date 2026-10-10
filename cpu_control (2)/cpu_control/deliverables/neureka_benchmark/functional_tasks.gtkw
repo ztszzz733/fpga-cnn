@@ -1,0 +1,37 @@
+[*] Actual events from completed final-RTL functional run; not raw bus signals
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/neureka_benchmark/functional_tasks.vcd"
+[size] 1700 800
+[pos] 0 0
+*-18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[signals_width] 420
+[sst_expanded] 0
+@28
+[color] 3
+actual_task_events.CHW_to_HWC_run1
+@28
+[color] 4
+actual_task_events.NEureka_conv_run1
+@28
+[color] 3
+actual_task_events.HWC_to_CHW_run1
+@28
+[color] 2
+actual_task_events.ReLU_run1
+@28
+[color] 6
+actual_task_events.MaxPool2x2_run1
+@28
+[color] 3
+actual_task_events.CHW_to_HWC_run2
+@28
+[color] 4
+actual_task_events.NEureka_conv_run2
+@28
+[color] 3
+actual_task_events.HWC_to_CHW_run2
+@28
+[color] 2
+actual_task_events.ReLU_run2
+@28
+[color] 6
+actual_task_events.MaxPool2x2_run2

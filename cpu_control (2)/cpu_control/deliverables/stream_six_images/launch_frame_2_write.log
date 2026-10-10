@@ -1,0 +1,11 @@
+
+GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+
+FSTLOAD | Processing 18 facs.
+FSTLOAD | Built 18 signals and 0 aliases.
+FSTLOAD | Building facility hierarchy tree.
+FSTLOAD | Sorting facility hierarchy tree.
+GTKWAVE | Executing Tcl script 'D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\verify_frame_2_write.tcl'
+GTKWAVE | Entry '1'
+GTKWAVE | Trace Hier Max Depth is now: 1
+GTKWAVE | Filename 'D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/stream_six_images/frame_2_write.gtkw'

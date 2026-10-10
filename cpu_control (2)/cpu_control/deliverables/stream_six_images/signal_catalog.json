@@ -1,0 +1,450 @@
+{
+  "sys_clk": {
+    "width": 1,
+    "source": "外部",
+    "target": "CLOCK",
+    "description": "外部输入时钟；本次仿真周期 10 ns。",
+    "valid": "连续时钟"
+  },
+  "rst_n_in": {
+    "width": 1,
+    "source": "外部",
+    "target": "CLOCK",
+    "description": "外部低有效复位。",
+    "valid": "0=复位"
+  },
+  "clk": {
+    "width": 1,
+    "source": "CLOCK",
+    "target": "CPU CORE,CNN,DATASRAM,IMEM,IMAGE_BRIDGE",
+    "description": "内部工作时钟，当前为 sys_clk 直通。",
+    "valid": "所有同步事务在上升沿采样"
+  },
+  "rst_n": {
+    "width": 1,
+    "source": "CLOCK",
+    "target": "CPU CORE,CNN,DATASRAM,IMEM,IMAGE_BRIDGE",
+    "description": "异步置复位、三拍同步释放后的内部低有效复位。",
+    "valid": "0=复位"
+  },
+  "imem_addr": {
+    "width": 32,
+    "source": "CPU CORE",
+    "target": "IMEM",
+    "description": "取指字节地址，程序计数器对应的访问地址。",
+    "valid": "imem_re=1 且地址有效"
+  },
+  "imem_re": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "IMEM",
+    "description": "取指读取使能。",
+    "valid": "上升沿为 1 时读取"
+  },
+  "imem_rdata": {
+    "width": 32,
+    "source": "IMEM",
+    "target": "CPU CORE",
+    "description": "同步返回的 32 位指令；复位/非法地址返回 NOP。",
+    "valid": "imem_re 被采样后的数据"
+  },
+  "dmem_addr": {
+    "width": 32,
+    "source": "CPU CORE",
+    "target": "DATASRAM",
+    "description": "CPU 数据访问字节地址。",
+    "valid": "dmem_re 或 dmem_we"
+  },
+  "dmem_wdata": {
+    "width": 32,
+    "source": "CPU CORE",
+    "target": "DATASRAM",
+    "description": "CPU 写入的数据。",
+    "valid": "dmem_we"
+  },
+  "dmem_wstrb": {
+    "width": 4,
+    "source": "CPU CORE",
+    "target": "DATASRAM",
+    "description": "字节写掩码；bit i 控制数据位 [8i+7:8i]。",
+    "valid": "dmem_we"
+  },
+  "dmem_re": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "DATASRAM",
+    "description": "CPU 数据读取使能，固定一拍响应。",
+    "valid": "上升沿采样"
+  },
+  "dmem_we": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "DATASRAM",
+    "description": "CPU 数据写入使能。",
+    "valid": "上升沿采样"
+  },
+  "dmem_rdata": {
+    "width": 32,
+    "source": "DATASRAM",
+    "target": "CPU CORE",
+    "description": "CPU 固定一拍读返回值；没有单独 ready/rvalid。",
+    "valid": "dmem_re 被采样后有效"
+  },
+  "cnn_mmio_addr": {
+    "width": 32,
+    "source": "CPU CORE",
+    "target": "CNN",
+    "description": "CNN 寄存器字节地址，基址 0x40000000。",
+    "valid": "cnn_mmio_re 或 cnn_mmio_we"
+  },
+  "cnn_mmio_wdata": {
+    "width": 32,
+    "source": "CPU CORE",
+    "target": "CNN",
+    "description": "CONTROL bit0 启动，bit1 取消；OUTPUT_BASE 指定结果起址。",
+    "valid": "cnn_mmio_we && cnn_mmio_ready"
+  },
+  "cnn_mmio_re": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "CNN",
+    "description": "CNN 寄存器读使能。",
+    "valid": "cnn_mmio_ready=1 时完成"
+  },
+  "cnn_mmio_we": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "CNN",
+    "description": "CNN 寄存器写使能。",
+    "valid": "cnn_mmio_ready=1 时接受"
+  },
+  "cnn_mmio_rdata": {
+    "width": 32,
+    "source": "CNN",
+    "target": "CPU CORE",
+    "description": "STATUS busy/done/error，已完成帧数、消费像素数及固定尺寸。",
+    "valid": "cnn_mmio_re && cnn_mmio_ready"
+  },
+  "cnn_mmio_ready": {
+    "width": 1,
+    "source": "CNN",
+    "target": "CPU CORE",
+    "description": "地址选中且有 MMIO 请求时的组合就绪信号。",
+    "valid": "与 re/we 同周期"
+  },
+  "load_req": {
+    "width": 1,
+    "source": "CPU CORE",
+    "target": "IMAGE_BRIDGE",
+    "description": "CPU 请求加载一批资料；完成后 CPU 拉低确认。",
+    "valid": "四阶段握手中的请求电平"
+  },
+  "load_complete": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "CPU CORE",
+    "description": "六张图的像素全部交给 CNN，或发生接收错误；计算收尾看 CNN done。",
+    "valid": "保持到 CPU 撤销 load_req"
+  },
+  "load_error": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "CPU CORE",
+    "description": "本批像素流失败，支持包格式、包 CRC、UART 帧和超时检测。",
+    "valid": "load_complete=1 时判断结果"
+  },
+  "cnn_valid": {
+    "width": 11,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "位 0/1 分别是水平/垂直梯度特征写回；其余通道未使用。",
+    "valid": "valid[i] && ready[i] 在上升沿接受"
+  },
+  "cnn_write": {
+    "width": 11,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "对应通道为 1 写、为 0 读。",
+    "valid": "对应通道 valid=1"
+  },
+  "cnn_byte": {
+    "width": 11,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "对应通道为 1 表示字节访问，0 表示对齐的 32 位字访问。",
+    "valid": "对应通道 valid=1"
+  },
+  "cnn_addr": {
+    "width": 352,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "11×32 位字节地址；通道 i 使用 [32i+31:32i]。",
+    "valid": "对应通道 valid=1，未接受前保持"
+  },
+  "cnn_wdata": {
+    "width": 352,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "11×32 位写数据；字节写使用该通道最低 8 位。",
+    "valid": "对应通道 valid && write"
+  },
+  "cnn_cancel": {
+    "width": 1,
+    "source": "CNN",
+    "target": "DATASRAM",
+    "description": "CONTROL bit1 取消或 bridge_error 错误中止，不回滚已写入的结果。",
+    "valid": "高有效"
+  },
+  "cnn_ready": {
+    "width": 11,
+    "source": "DATASRAM",
+    "target": "CNN",
+    "description": "每个通道获得对应存储体服务的就绪位。",
+    "valid": "与 valid 同周期为 1 才接受"
+  },
+  "cnn_response": {
+    "width": 11,
+    "source": "DATASRAM",
+    "target": "CNN",
+    "description": "逐通道完成响应，读和写都有响应。",
+    "valid": "请求接受后的寄存完成周期"
+  },
+  "cnn_rdata": {
+    "width": 352,
+    "source": "DATASRAM",
+    "target": "CNN",
+    "description": "11×32 位读返回值；字节读取符号扩展。",
+    "valid": "response[i]=1 且对应事务是读"
+  },
+  "cnn_mem_fault": {
+    "width": 1,
+    "source": "DATASRAM",
+    "target": "顶层",
+    "description": "CNN 非法地址/非对齐字访问故障锁存；送状态监测和 LED 组合逻辑。",
+    "valid": "保持到系统复位；软复位不清除"
+  },
+  "uart_rx": {
+    "width": 1,
+    "source": "外部",
+    "target": "IMAGE_BRIDGE",
+    "description": "外部设备向 SoC 发送串口回复。",
+    "valid": "UART 空闲为高，8N1"
+  },
+  "uart_tx": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "外部",
+    "description": "SoC 向外部设备发送 IMIO 请求。",
+    "valid": "UART 空闲为高，8N1"
+  },
+  "bridge_ready": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "顶层",
+    "description": "桥的就绪状态，用于顶层 led_ready。",
+    "valid": "实际 ready 输出"
+  },
+  "bridge_busy": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "顶层",
+    "description": "桥正在执行加载事务。",
+    "valid": "实际 busy 输出"
+  },
+  "bridge_error": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "顶层",
+    "description": "桥失败锁存状态，用于监测和 led_error。",
+    "valid": "系统复位恢复"
+  },
+  "cnn_status_busy": {
+    "width": 1,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "固定六帧处理正在进行；包括等待 UART 像素。",
+    "valid": "高=存在未完成工作，不等于 PE 每周期乘加"
+  },
+  "cnn_status_done": {
+    "width": 1,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "全部帧处理完成脉冲；STATUS done 同时保持为 1。",
+    "valid": "不是 MMIO 中的 sticky done"
+  },
+  "cnn_status_error": {
+    "width": 1,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "流错误、内存错误或像素边界错误，结果无效。",
+    "valid": "顶层 cnn_state 保持 FAULT 至软/硬复位"
+  },
+  "led_ready": {
+    "width": 1,
+    "source": "顶层",
+    "target": "外部",
+    "description": "bridge_ready && !cnn_mem_fault。",
+    "valid": "高有效；不是 CNN 完成标志"
+  },
+  "led_busy": {
+    "width": 1,
+    "source": "顶层",
+    "target": "外部",
+    "description": "bridge_busy OR cnn_status_busy。",
+    "valid": "不代表 CNN busy"
+  },
+  "led_error": {
+    "width": 1,
+    "source": "顶层",
+    "target": "外部",
+    "description": "bridge_error OR cnn_mem_fault OR cnn_status_error。",
+    "valid": "未包含 CNN 描述符错误"
+  },
+  "cpu_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "CPU CORE 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "cnn_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "CNN 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "sram_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "DATASRAM 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "imem_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "IMEM 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "bridge_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "IMAGE_BRIDGE 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "clock_state": {
+    "width": 2,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "CLOCK 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。",
+    "valid": "每个上升沿采样后更新；不控制功能模块"
+  },
+  "soc_module_state": {
+    "width": 12,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "每模块两位，低到高：CPU、CNN、DATASRAM、IMEM、IMAGE_BRIDGE、CLOCK。",
+    "valid": "六路并行状态打包"
+  },
+  "soc_active": {
+    "width": 6,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "bit0～5 对应上述顺序，状态为 WORK 的位为 1。",
+    "valid": "可同时多位为 1"
+  },
+  "soc_fault": {
+    "width": 6,
+    "source": "顶层监测逻辑",
+    "target": "波形观察",
+    "description": "bit0～5 对应上述顺序，状态为 FAULT 的位为 1。",
+    "valid": "CPU/IMEM/CLOCK 当前没有故障检测源"
+  },
+  "pixel_valid": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "CNN",
+    "description": "已校验像素有效；与 ready 同拍为 1 才传递。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixel_ready": {
+    "width": 1,
+    "source": "CNN",
+    "target": "IMAGE_BRIDGE",
+    "description": "CNN 可接收下一像素；写回未排空时反压。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixel_data": {
+    "width": 8,
+    "source": "IMAGE_BRIDGE",
+    "target": "CNN",
+    "description": "无符号灰度像素 0～255，逐行排列。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixel_sof": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "CNN",
+    "description": "帧首像素标记，随像素握手。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixel_eof": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "CNN",
+    "description": "帧尾像素标记，随像素握手。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixel_frame": {
+    "width": 32,
+    "source": "IMAGE_BRIDGE",
+    "target": "CNN",
+    "description": "帧编号 0～5，随像素握手。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "rx_receiving": {
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "target": "顶层",
+    "description": "UART 回复接收阶段，包括协议头、像素和 CRC。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "packets_checked": {
+    "width": 32,
+    "source": "IMAGE_BRIDGE",
+    "target": "顶层",
+    "description": "校验成功且发布给 CNN 的包数。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "compute_fire": {
+    "width": 1,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "上一上升沿完成一个位置的两路 3×3 卷积。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "frame_done": {
+    "width": 1,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "一帧全部结果写回响应排空后的脉冲。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "frames_done": {
+    "width": 32,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "完成帧数，最终为 6。",
+    "valid": "像素字段按 valid && ready 采样"
+  },
+  "pixels_consumed": {
+    "width": 32,
+    "source": "CNN",
+    "target": "顶层",
+    "description": "已消费的累计像素数，最终为 1647456。",
+    "valid": "像素字段按 valid && ready 采样"
+  }
+}

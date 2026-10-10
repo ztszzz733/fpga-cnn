@@ -1,0 +1,37 @@
+{
+  "source": "wave_windows.json / provenance.json",
+  "images": {
+    "wave_overlap.png": {
+      "start_ps": 858000000,
+      "end_ps": 859200000,
+      "signals": [
+        "uart_rx",
+        "rx_receiving",
+        "pixel_valid",
+        "pixel_data",
+        "pixel_ready",
+        "compute_fire",
+        "cnn_valid",
+        "cnn_ready",
+        "cnn_response",
+        "cnn_state",
+        "sram_state"
+      ]
+    },
+    "wave_six_frames.png": {
+      "start_ps": 0,
+      "end_ps": 717108930000,
+      "signals": [
+        "cpu_state",
+        "cnn_state",
+        "bridge_state",
+        "clock_state",
+        "pixel_frame",
+        "frame_done",
+        "frames_done",
+        "soc_fault"
+      ]
+    }
+  },
+  "rendering": "Actual VCD transitions; narrow pulses rendered at minimum one pixel; no invented transitions"
+}

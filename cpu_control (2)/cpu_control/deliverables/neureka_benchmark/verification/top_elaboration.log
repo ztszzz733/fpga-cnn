@@ -1,0 +1,1419 @@
+Final invocation selected from build/neureka_top_lint.log
+COMMAND ["/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/.tools/verilator-linux/verilator/bin/verilator_bin", "--lint-only", "--timing", "--assert", "-Wno-fatal", "--top-module", "face_soc_neureka_top", "-f", "rtl/filelists/system_neureka.f"]
+%Warning-MISINDENT: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:138:28: Misleading indentation
+  138 |             state_change_d = 1'b1; 
+      |                            ^
+                    third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:134:11: ... Expected indentation matching this earlier statement's line:
+  134 |           if(streamin_en)
+      |           ^~
+                    ... For warning description see https://verilator.org/warn/MISINDENT?v=0.000
+                    ... Use "/* verilator lint_off MISINDENT */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_source.sv:151:3: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'PASSTHROUGH_FIFO' generates 32 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_all_source'
+  151 |   if (PASSTHROUGH_FIFO) begin : passthrough_gen
+      |   ^~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=0.000
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:278:5: Logical operator GENIF expects 1 bit on the If, but If's NOT generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  278 |     if (~EXT_IN_REGGED) begin : gen_assign_ext
+      |     ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:313:5: Logical operator GENIF expects 1 bit on the If, but If's NOT generates 32 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  313 |     if (~EXT_IN_REGGED) begin : gen_assign_ext
+      |     ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:101:5: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'DEBUG_DISPLAY' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  101 |     if(DEBUG_DISPLAY) begin : debug_display
+      |     ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:291:5: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'SHADOWED' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  291 |     if(SHADOWED) begin: shadowed_gen
+      |     ^~
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_normquant_shifter.sv:137:3: Logical operator GENIF expects 1 bit on the If, but If's VARREF 'OUTPUT_REGISTER' generates 32 bits.
+                                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant.shift_sat_gen[3].i_shifter'
+  137 |   if(OUTPUT_REGISTER) begin : output_register_gen
+      |   ^~
+%Warning-ASCRANGE: third_party/hwpe-stream/rtl/hwpe_stream_interfaces.sv:81:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_double_infeat_buffer.i_even_infeat_buffer.i_infeat_buffer_scm.neureka_infeat_buffer_scm_i.CG_CELL_WORD_ITER[35].i_cg'
+   81 |   logic [STRB_WIDTH-1:0]   strb;
+      |         ^
+                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=0.000
+                   ... Use "/* verilator lint_off ASCRANGE */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile_latch.sv:103:105: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'WriteAddr' generates 6 bits.
+                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile.i_regfile.gen_scm_regfile.hwpe_ctrl_regfile_latch_i'
+  103 |                   if ( (clear == 1'b1) | ((WriteEnable == 1'b1 ) && (WriteBE[j] == 1'b1) &&  (WriteAddr == i)) )
+      |                                                                                                         ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/array/neureka_scale.sv:77:41: Bit extraction of array[7:0] requires 3 bit index, not 5 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe.col_gen[31].i_col.i_binconv_scale'
+   77 |   assign shifted_data_out = shifted_data[ctrl_i.shift_sel];
+      |                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_scale.sv:83:23: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 1 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe.col_gen[31].i_col.i_binconv_scale'
+   83 |   assign data_o.strb  = data_i.strb;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:98:108: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+   98 |   assign flags_o.almost_empty = (cs == MIDDLE) && ((pop_pointer_q == push_pointer_q-1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) )) ? 1'b1 : 1'b0;
+      |                                                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:99:108: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+   99 |   assign flags_o.almost_full  = (cs == MIDDLE) && ((pop_pointer_q == push_pointer_q-1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) )) ? 1'b1 : 1'b0;
+      |                                                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:167:73: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  167 |             if((pop_pointer_q == push_pointer_q -1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) ))
+      |                                                                         ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:172:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  172 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:184:31: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  184 |             if(push_pointer_q == FIFO_DEPTH-1)
+      |                               ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:189:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  189 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:195:76: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  195 |             if(( push_pointer_q == pop_pointer_q - 1) || ( (push_pointer_q == FIFO_DEPTH-1) && (pop_pointer_q == 0) ))
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:199:31: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  199 |             if(push_pointer_q == FIFO_DEPTH - 1)
+      |                               ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:212:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 1 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr.i_fifo'
+  212 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_normquant_shifter.sv:45:22: Operator ASSIGNW expects 6 bits on the Assign RHS, but Assign RHS's VARREF 'shift_i' generates 8 bits.
+                                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant_bias.shift_sat_gen[7].i_shifter'
+   45 |   assign right_shift = shift_i;
+      |                      ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_col.sv:212:39: Operator ADD expects 12 bits on the RHS, but RHS's SEL generates 8 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe.col_gen[31].i_col'
+  212 |       binconv_col_pres_nonscaled_data += popcount_data[i];
+      |                                       ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_col.sv:296:87: Operator COND expects 5 bits on the Conditional True, but Conditional True's SEL generates 4 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe.col_gen[31].i_col'
+  296 |                                   (ctrl_i.filter_mode == NEUREKA_FILTER_MODE_1X1)     ? ctrl_i.scale_shift :
+      |                                                                                       ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_col.sv:296:87: Operator COND expects 5 bits on the Conditional False, but Conditional False's SEL generates 4 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe.col_gen[31].i_col'
+  296 |                                   (ctrl_i.filter_mode == NEUREKA_FILTER_MODE_1X1)     ? ctrl_i.scale_shift :
+      |                                                                                       ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:98:108: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+   98 |   assign flags_o.almost_empty = (cs == MIDDLE) && ((pop_pointer_q == push_pointer_q-1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) )) ? 1'b1 : 1'b0;
+      |                                                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:99:108: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+   99 |   assign flags_o.almost_full  = (cs == MIDDLE) && ((pop_pointer_q == push_pointer_q-1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) )) ? 1'b1 : 1'b0;
+      |                                                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:167:73: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  167 |             if((pop_pointer_q == push_pointer_q -1 ) || ((pop_pointer_q == FIFO_DEPTH-1) && (push_pointer_q == 0) ))
+      |                                                                         ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:172:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  172 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:184:31: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  184 |             if(push_pointer_q == FIFO_DEPTH-1)
+      |                               ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:189:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  189 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:195:76: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  195 |             if(( push_pointer_q == pop_pointer_q - 1) || ( (push_pointer_q == FIFO_DEPTH-1) && (pop_pointer_q == 0) ))
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:199:31: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'push_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  199 |             if(push_pointer_q == FIFO_DEPTH - 1)
+      |                               ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo.sv:212:30: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'pop_pointer_q' generates 3 bits.
+                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.i_addr_misaligned_fifo'
+  212 |             if(pop_pointer_q == FIFO_DEPTH-1)
+      |                              ^~
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:55:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   55 |   logic [UW-1:0]    user;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:60:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   60 |   logic [UW-1:0] r_user;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:65:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   65 |   logic [EW-1:0] ecc;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:66:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   66 |   logic [EW-1:0] r_ecc;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:69:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   69 |   logic [EHW-1:0] ereq;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:70:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   70 |   logic [EHW-1:0] egnt;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:71:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   71 |   logic [EHW-1:0] r_evalid;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:72:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   72 |   logic [EHW-1:0] r_eready;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:56:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   56 |   logic [IW-1:0]    id;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/common/hci_interfaces.sv:61:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_fifo_load_norm'
+   61 |   logic [IW-1:0] r_id;
+      |         ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:155:27: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'curr_loop' generates 2 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  155 |         else if(curr_loop == j)
+      |                           ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:153:22: Operator GT expects 32 bits on the LHS, but LHS's VARREF 'curr_loop' generates 2 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  153 |         if(curr_loop > j)
+      |                      ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:169:27: Operator ASSIGN expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 64 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  169 |       next_idx[curr_loop] = curr_idx + 1;
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:173:24: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'curr_loop' generates 2 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  173 |     else if (curr_loop < NB_LOOPS-1) begin
+      |                        ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:163:65: Operator SUB expects 32 or 16 bits on the LHS, but LHS's SEL generates 12 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  163 |     else if(curr_idx[curr_loop] < uloop_code_i.range[curr_loop] - 1) begin
+      |                                                                 ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:147:66: Operator SUB expects 32 or 16 bits on the LHS, but LHS's SEL generates 12 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  147 |     else if((curr_idx[curr_loop] < uloop_code_i.range[curr_loop] - 1) && (curr_loop > 0)) begin
+      |                                                                  ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:137:61: Operator SUB expects 32 or 16 bits on the LHS, but LHS's SEL generates 12 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  137 |     if((curr_idx[curr_loop] < uloop_code_i.range[curr_loop] - 1) && (curr_op < uloop_code_i.loops[curr_loop].nb_ops - 1)) begin
+      |                                                             ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:251:32: Operator ASSIGNW expects 12 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  251 |       assign flags_int.idx [i] = curr_idx[i];
+      |                                ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:336:27: Operator ASSIGN expects 288 bits on the Assign RHS, but Assign RHS's VARREF 'registers' generates 128 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  336 |         flags_o.next_offs = registers;
+      |                           ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:340:32: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  340 |           flags_o.next_idx[i]  = curr_idx[i];
+      |                                ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_uloop.sv:345:23: Operator ASSIGN expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'out_loop' generates 2 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.i_uloop'
+  345 |         flags_o.loop  = out_loop;
+      |                       ^
+%Warning-ASCRANGE: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:54:9: Ascending bit range vector: left < right of bit range: [7:8]
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+   54 |   logic [N_MANDATORY_REGS+N_RESERVED_REGS+N_GENERIC_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS] [31:0] regfile_mem_generic;
+      |         ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:173:67: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  173 |           regfile_latch_rd_addr = regfile_in_i.addr[LOG_REGS-1:0] + regfile_in_i.addr[LOG_REGS_MC-1:LOG_REGS]*N_IO_REGS - N_RESERVED_REGS - N_MAX_GENERIC_REGS + N_GENERIC_REGS - N_MANDATORY_REGS;  
+      |                                                                   ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:173:33: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  173 |           regfile_latch_rd_addr = regfile_in_i.addr[LOG_REGS-1:0] + regfile_in_i.addr[LOG_REGS_MC-1:LOG_REGS]*N_IO_REGS - N_RESERVED_REGS - N_MAX_GENERIC_REGS + N_GENERIC_REGS - N_MANDATORY_REGS;  
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:174:67: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  174 |           regfile_latch_wr_addr = regfile_in_i.addr[LOG_REGS-1:0] + regfile_in_i.addr[LOG_REGS_MC-1:LOG_REGS]*N_IO_REGS - N_RESERVED_REGS - N_MAX_GENERIC_REGS + N_GENERIC_REGS - N_MANDATORY_REGS;  
+      |                                                                   ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:174:33: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  174 |           regfile_latch_wr_addr = regfile_in_i.addr[LOG_REGS-1:0] + regfile_in_i.addr[LOG_REGS_MC-1:LOG_REGS]*N_IO_REGS - N_RESERVED_REGS - N_MAX_GENERIC_REGS + N_GENERIC_REGS - N_MANDATORY_REGS;  
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:177:67: Operator SUB expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  177 |           regfile_latch_rd_addr = regfile_in_i.addr[LOG_REGS-1:0] - N_RESERVED_REGS - N_MANDATORY_REGS;
+      |                                                                   ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:177:33: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  177 |           regfile_latch_rd_addr = regfile_in_i.addr[LOG_REGS-1:0] - N_RESERVED_REGS - N_MANDATORY_REGS;
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:178:67: Operator SUB expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  178 |           regfile_latch_wr_addr = regfile_in_i.addr[LOG_REGS-1:0] - N_RESERVED_REGS - N_MANDATORY_REGS;
+      |                                                                   ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:178:33: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  178 |           regfile_latch_wr_addr = regfile_in_i.addr[LOG_REGS-1:0] - N_RESERVED_REGS - N_MANDATORY_REGS;
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:307:60: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'r_finished_cnt' generates 2 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  307 |   assign regfile_mem_mandatory[REGFILE_MANDATORY_FINISHED] = r_finished_cnt;
+      |                                                            ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:332:41: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  332 |       if(regfile_in_i.src[ID_WIDTH-1:0] == (i & {$clog2(ID_WIDTH){1'b1}}))
+      |                                         ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:332:47: Operator AND expects 32 bits on the RHS, but RHS's REPLICATE generates 4 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  332 |       if(regfile_in_i.src[ID_WIDTH-1:0] == (i & {$clog2(ID_WIDTH){1'b1}}))
+      |                                               ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_regfile.sv:399:31: Operator ASSIGNW expects 1536 bits on the Assign RHS, but Assign RHS's SEL generates 800 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.i_regfile'
+  399 |   assign reg_file.hwpe_params = regfile_mem[flags_i.running_context][N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS+N_IO_REGS-1:N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS];
+      |                               ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_assign.sv:36:33: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'user' generates 1 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   36 |   assign tcdm_initiator.user    = tcdm_target.user;
+      |                                 ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_assign.sv:37:33: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'id' generates 8 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   37 |   assign tcdm_initiator.id      = tcdm_target.id;
+      |                                 ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_assign.sv:40:30: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARXREF 'r_user' generates 2 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   40 |   assign tcdm_target.r_user  = tcdm_initiator.r_user;
+      |                              ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_assign.sv:41:30: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's VARXREF 'r_id' generates 2 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   41 |   assign tcdm_target.r_id    = tcdm_initiator.r_id;
+      |                              ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_assign.sv:45:34: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'ereq' generates 1 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   45 |   assign tcdm_initiator.ereq     = tcdm_target.ereq;
+      |                                  ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_assign.sv:46:34: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARXREF 'egnt' generates 2 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   46 |   assign tcdm_target.egnt        = tcdm_initiator.egnt;
+      |                                  ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_assign.sv:47:34: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARXREF 'r_evalid' generates 2 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   47 |   assign tcdm_target.r_evalid    = tcdm_initiator.r_evalid;
+      |                                  ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_assign.sv:48:34: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'r_eready' generates 1 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   48 |   assign tcdm_initiator.r_eready = tcdm_target.r_eready;
+      |                                  ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_assign.sv:49:34: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'ecc' generates 1 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   49 |   assign tcdm_initiator.ecc      = tcdm_target.ecc;
+      |                                  ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_assign.sv:50:34: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARXREF 'r_ecc' generates 2 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.no_tcdm_fifos_gen.i_tcdm_assign'
+   50 |   assign tcdm_target.r_ecc       = tcdm_initiator.r_ecc;
+      |                                  ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/streamer/hwpe_stream_addressgen_v3.sv:273:23: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's VARREF 'gen_addr_int' generates 32 bits.
+                                                                                              : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink.i_addressgen'
+  273 |   assign addr_o.data  = gen_addr_int;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_passthrough.sv:110:23: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's VARXREF 'data' generates 32 bits.
+                                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr'
+  110 |   assign push.data    = push_i.data;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_passthrough.sv:115:37: Operator COND expects 36 bits on the Conditional True, but Conditional True's VARXREF 'data' generates 32 bits.
+                                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr'
+  115 |   assign pop_o.data   = passthrough ? push_i.data  : pop.data;
+      |                                     ^
+%Warning-WIDTHTRUNC: third_party/hwpe-stream/rtl/fifo/hwpe_stream_fifo_passthrough.sv:115:23: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's COND generates 36 bits.
+                                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source.passthrough_gen.i_fifo_addr'
+  115 |   assign pop_o.data   = passthrough ? push_i.data  : pop.data;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:92:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   92 |     assign product_48b[0] = $signed(product[0]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:93:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   93 |     assign product_48b[1] = $signed(product[1]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:94:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   94 |     assign product_48b[2] = $signed(product[2]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:95:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   95 |     assign product_48b[3] = $signed(product[3]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:97:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   97 |     assign product_16b[0] = $signed(product[0] + (product[1] <<< 8));
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:98:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   98 |     assign product_16b[1] = $signed(product[2] + (product[3] <<< 8));
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:99:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+   99 |     assign product_8b[0]  = $signed(product[0]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:100:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+  100 |     assign product_8b[1]  = $signed(product[1]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:101:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+  101 |     assign product_8b[2]  = $signed(product[2]);
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_normquant.sv:102:27: Operator ASSIGNW expects 48 bits on the Assign RHS, but Assign RHS's SIGNED generates 40 bits.
+                                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_normquant'
+  102 |     assign product_8b[3]  = $signed(product[3]);
+      |                           ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/array/neureka_binconv_pe.sv:98:49: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 4 bits.
+                                                                              : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe'
+   98 |           assign weight_transposed[ii_jj].strb  = weight_i[jj].strb;
+      |                                                 ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/array/neureka_binconv_pe.sv:120:30: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's DIVS generates 32 or 5 bits.
+                                                                               : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe'
+  120 |         ctrl_col.scale_shift = ii/4;  
+      |                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_pe.sv:161:25: Operator ADD expects 25 bits on the RHS, but RHS's SIGNED generates 20 bits.
+                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe'
+  161 |       binconv_core_pres += COLUMN_PRES_SIZE'(signed'(col_pres_data[i]));
+      |                         ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_pe.sv:165:34: Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 2 bits.
+                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe'
+  165 |   assign binconv_core_pres_strb  = col_pres[0].strb;
+      |                                  ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_pe.sv:173:41: Operator COND expects 25 bits on the Conditional False, but Conditional False's SEL generates 20 bits.
+                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array.column_gen[15].i_pe'
+  173 |   assign column_pres_o.data  = enable_i ? binconv_core_pres_q : ctrl_i.padding_value[COLUMN_PRES_SIZE-1:0];
+      |                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/input_buffer/neureka_input_buffer.sv:185:40: Operator EQ expects 32 or 16 bits on the LHS, but LHS's REPLICATE generates 7 bits.
+                                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_double_infeat_buffer.i_even_infeat_buffer'
+  185 |         if(scm_we && ({1'b0, vlen_cnt} == ctrl_i.load_len-1)) begin
+      |                                        ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/input_buffer/neureka_input_buffer.sv:227:45: Operator MODDIV expects 32 bits on the LHS, but LHS's VARREF 'vlen_cnt_fast_q' generates 6 bits.
+                                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_double_infeat_buffer.i_even_infeat_buffer'
+  227 |   assign vlen_cnt_fast_d = (vlen_cnt_fast_q % INFEAT_BUFFER_SIZE_W) == PE_W-1 ? vlen_cnt_fast_q+3 : vlen_cnt_fast_q+1;
+      |                                             ^
+%Warning-WIDTHTRUNC: third_party/hwpe-stream/rtl/basic/hwpe_stream_assign.sv:31:22: Operator ASSIGNW expects 256 bits on the Assign RHS, but Assign RHS's VARXREF 'data' generates 288 bits.
+                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_assign_streamin'
+   31 |   assign pop_o.data  = push_i.data;
+      |                      ^
+%Warning-WIDTHTRUNC: third_party/hwpe-stream/rtl/basic/hwpe_stream_assign.sv:32:22: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 36 bits.
+                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_assign_streamin'
+   32 |   assign pop_o.strb  = push_i.strb;
+      |                      ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/basic/hwpe_stream_assign.sv:31:22: Operator ASSIGNW expects 320 bits on the Assign RHS, but Assign RHS's VARXREF 'data' generates 288 bits.
+                                                                                   : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_assign_feat'
+   31 |   assign pop_o.data  = push_i.data;
+      |                      ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/basic/hwpe_stream_assign.sv:32:22: Operator ASSIGNW expects 40 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 36 bits.
+                                                                                   : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_assign_feat'
+   32 |   assign pop_o.strb  = push_i.strb;
+      |                      ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_fifo.sv:265:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_weight_tcdm_fifo'
+  265 |   logic [UW-1:0]    tcdm_initiator_user;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_fifo.sv:266:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_weight_tcdm_fifo'
+  266 |   logic [IW-1:0]    tcdm_initiator_id;
+      |         ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_fifo.sv:267:9: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_weight_tcdm_fifo'
+  267 |   logic [EW-1:0]    tcdm_initiator_ecc;
+      |         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_buffer.sv:95:29: Operator ASSIGN expects 256 bits on the Assign RHS, but Assign RHS's REPLICATE generates 192 bits.
+                                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+   95 |       3'b111 : rdata_wide_o = {64'b0, buffer_q[4*WIDTH_FACTOR-1:4*WIDTH_FACTOR-NMULT]};
+      |                             ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:55:31: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 5 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   55 |     else if((~invert_i && cnt == AW - 1) || (invert_i && cnt == AW)) begin
+      |                               ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:55:62: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 5 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   55 |     else if((~invert_i && cnt == AW - 1) || (invert_i && cnt == AW)) begin
+      |                                                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:69:23: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 5 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   69 |   assign shifted = cnt==AW ? 1 : ({BW{a_i[cnt]}} & b_i) << cnt;
+      |                       ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:69:42: Bit extraction of var[15:0] requires 4 bit index, not 5 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   69 |   assign shifted = cnt==AW ? 1 : ({BW{a_i[cnt]}} & b_i) << cnt;
+      |                                          ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:69:50: Operator AND expects 48 bits on the LHS, but LHS's REPLICATE generates 32 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   69 |   assign shifted = cnt==AW ? 1 : ({BW{a_i[cnt]}} & b_i) << cnt;
+      |                                                  ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:69:50: Operator AND expects 48 bits on the RHS, but RHS's VARREF 'b_i' generates 32 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   69 |   assign shifted = cnt==AW ? 1 : ({BW{a_i[cnt]}} & b_i) << cnt;
+      |                                                  ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_seq_mult.sv:82:16: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 5 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_outfeat_hom_reset_iter_mult'
+   82 |     else if(cnt==AW) begin
+      |                ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:229:94: Operator EQ expects 6 bits on the RHS, but RHS's CONST '4'h1' generates 4 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  229 |           if((config_i.filter_mode != NEUREKA_FILTER_MODE_3X3_DW) && (flags_uloop.idx_update == 4'b0001) && (~flags_uloop.done)) begin
+      |                                                                                              ^~
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:270:25: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's COND generates 16 bits.
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  270 |     code_uloop.range[0] = config_i.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? config_i.subtile_nb_wo : config_i.subtile_nb_ki;
+      |                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:271:25: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's COND generates 16 bits.
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  271 |     code_uloop.range[1] = config_i.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? config_i.subtile_nb_ho : config_i.subtile_nb_wo;
+      |                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:272:25: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's COND generates 16 bits.
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  272 |     code_uloop.range[2] = config_i.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? config_i.subtile_nb_ko : config_i.subtile_nb_ho;
+      |                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:273:25: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's COND generates 32 or 16 bits.
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  273 |     code_uloop.range[3] = config_i.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? 1                      : config_i.subtile_nb_ko;
+      |                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:373:79: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  373 |   assign index.k_out_major = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[2] : flags_uloop.idx[3];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:373:79: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  373 |   assign index.k_out_major = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[2] : flags_uloop.idx[3];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:374:79: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  374 |   assign index.i_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[1] : flags_uloop.idx[2];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:374:79: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  374 |   assign index.i_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[1] : flags_uloop.idx[2];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:375:79: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  375 |   assign index.j_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[0] : flags_uloop.idx[1];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:375:79: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  375 |   assign index.j_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[0] : flags_uloop.idx[1];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:376:79: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  376 |   assign index.k_in_major  = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[2] : flags_uloop.idx[0];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:376:79: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  376 |   assign index.k_in_major  = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.idx[2] : flags_uloop.idx[0];
+      |                                                                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:378:84: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  378 |   assign next_index.k_out_major = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[2] : flags_uloop.next_idx[3];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:378:84: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  378 |   assign next_index.k_out_major = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[2] : flags_uloop.next_idx[3];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:379:84: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  379 |   assign next_index.i_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[1] : flags_uloop.next_idx[2];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:379:84: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  379 |   assign next_index.i_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[1] : flags_uloop.next_idx[2];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:380:84: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  380 |   assign next_index.j_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[0] : flags_uloop.next_idx[1];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:380:84: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  380 |   assign next_index.j_major     = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[0] : flags_uloop.next_idx[1];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:381:84: Operator COND expects 16 bits on the Conditional True, but Conditional True's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  381 |   assign next_index.k_in_major  = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[2] : flags_uloop.next_idx[0];
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:381:84: Operator COND expects 16 bits on the Conditional False, but Conditional False's SEL generates 12 bits.
+                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm'
+  381 |   assign next_index.k_in_major  = config_i.filter_mode==NEUREKA_FILTER_MODE_3X3_DW ? flags_uloop.next_idx[2] : flags_uloop.next_idx[0];
+      |                                                                                    ^
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:117:52: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'i' generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  117 |                   offloading_core[pointer_context] <= i;
+      |                                                    ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:161:60: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'counter_pending' generates 2 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  161 |       assign regfile_flags.full_context = (counter_pending == N_CONTEXT) ? 1 : 0;   
+      |                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:195:60: Operator LTE expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  195 |     regfile_flags.is_mandatory  = (cfg.add[LOG_REGS+2-1:2] <= N_MANDATORY_REGS+N_RESERVED_REGS-1)                     ? 1 : 0;   
+      |                                                            ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:196:60: Operator GT expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  196 |     regfile_flags.is_contexted  = (cfg.add[LOG_REGS+2-1:2] > N_MANDATORY_REGS+N_RESERVED_REGS+N_MAX_GENERIC_REGS-1)   ? 1 : 0;   
+      |                                                            ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:198:98: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  198 |     regfile_flags.is_testset    = (cfg.req == 1'b1 && cfg.wen == 1'b1 && cfg.add[LOG_REGS+2-1:2] == REGFILE_MANDATORY_ACQUIRE) ? 1 : 0;   
+      |                                                                                                  ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:199:98: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  199 |     regfile_flags.is_trigger    = (cfg.req == 1'b1 && cfg.wen == 1'b0 && cfg.add[LOG_REGS+2-1:2] == REGFILE_MANDATORY_TRIGGER && cfg.data == '0) ? 1 : 0;   
+      |                                                                                                  ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:200:98: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  200 |     regfile_flags.is_commit     = (cfg.req == 1'b1 && cfg.wen == 1'b0 && cfg.add[LOG_REGS+2-1:2] == REGFILE_MANDATORY_TRIGGER) ? 1 : 0;   
+      |                                                                                                  ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:209:25: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's SUB generates 32 or 2 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  209 |     assign context_addr = cfg.add[LOG_REGS_MC+2:LOG_REGS+2] - 1;
+      |                         ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:213:27: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 7 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  213 |           regfile_in.addr = {pointer_context, cfg.add[LOG_REGS+2-1:2]};
+      |                           ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:217:29: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 7 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  217 |             regfile_in.addr = {pointer_context, cfg.add[LOG_REGS+2-1:2]};
+      |                             ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:219:29: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 7 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  219 |             regfile_in.addr = {context_addr,    cfg.add[LOG_REGS+2-1:2]};
+      |                             ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:236:22: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARXREF 'id' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  236 |     regfile_in.src   = cfg.id;
+      |                      ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:264:94: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  264 |   assign ext_access = (regfile_flags.is_mandatory == 1'b1) && (regfile_in.addr[LOG_REGS-1:0] == REGFILE_MANDATORY_RESERVED) & cfg.req;
+      |                                                                                              ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:396:72: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 4 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  396 |         flags_o.evt[i][N_EVT-1:1] <= (offloading_core[running_context] == i) ? ctrl_i.evt              : '0;
+      |                                                                        ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:398:64: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 4 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  398 |         flags_o.evt[i][0] <= (offloading_core[running_context] == i)         ? regfile_flags.true_done : 1'b0;
+      |                                                                ^~
+%Warning-WIDTHTRUNC: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:413:15: Bit extraction of var[7:0] requires 3 bit index, not 4 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  413 |       sw_evt_q[cfg.data[3:0]] <= 1'b1;
+      |               ^
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:412:81: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  412 |     else if((cfg.req == 1'b1) && (cfg.wen == 1'b0) && (cfg.add[LOG_REGS+2-1:2]) == REGFILE_MANDATORY_SWEVT) begin
+      |                                                                                 ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:428:98: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  428 |       if((s_clear == '0) && ((cfg.req == 1'b1) && (cfg.wen == 1'b0) && (cfg.add[LOG_REGS+2-1:2]) == REGFILE_MANDATORY_SOFTCLEAR))
+      |                                                                                                  ^~
+%Warning-WIDTHEXPAND: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:443:106: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave'
+  443 |       if((s_clear_regfile == '0) && ((cfg.req == 1'b1) && (cfg.wen == 1'b0) && (cfg.add[LOG_REGS+2-1:2]) == REGFILE_MANDATORY_SOFTCLEAR && cfg.data=='0))
+      |                                                                                                          ^~
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_ooo.sv:79:29: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+   79 |   logic        [NB_CHAN-1:0][UW-1:0]            in_user;
+      |                             ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_ooo.sv:81:29: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+   81 |   logic        [NB_CHAN-1:0][EW-1:0]            in_ecc;
+      |                             ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_ooo.sv:82:29: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+   82 |   logic        [NB_CHAN-1:0][EHW-1:0]           in_egnt;
+      |                             ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_ooo.sv:83:29: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+   83 |   logic        [NB_CHAN-1:0][EHW-1:0]           in_r_evalid;
+      |                             ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_mux_ooo.sv:104:24: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rr_counter_q' generates 1 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  104 |       if (rr_counter_q == NB_CHAN-1)
+      |                        ^~
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_mux_ooo.sv:174:28: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARXREF 'r_id' generates 1 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  174 |     assign in[ii].r_id     = out.r_id;
+      |                            ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_mux_ooo.sv:175:28: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'in_egnt' generates 4 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  175 |     assign in[ii].egnt     = in_egnt;
+      |                            ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_mux_ooo.sv:176:28: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'in_r_evalid' generates 4 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  176 |     assign in[ii].r_evalid = in_r_evalid;
+      |                            ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_mux_ooo.sv:179:49: Operator COND expects 32 bits on the Conditional True, but Conditional True's SEL generates 1 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  179 |     assign rr_priority_d[ii] = priority_force_i ? priority_i[ii] : (rr_counter_q + ii) % NB_CHAN;
+      |                                                 ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_mux_ooo.sv:179:82: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'rr_counter_q' generates 1 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  179 |     assign rr_priority_d[ii] = priority_force_i ? priority_i[ii] : (rr_counter_q + ii) % NB_CHAN;
+      |                                                                                  ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_mux_ooo.sv:179:30: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_mux_ooo'
+  179 |     assign rr_priority_d[ii] = priority_force_i ? priority_i[ii] : (rr_counter_q + ii) % NB_CHAN;
+      |                              ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_static.sv:72:31: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   72 |     logic        [NB_CHAN-1:0][UW-1:0]            in_user;
+      |                               ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_static.sv:73:31: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   73 |     logic        [NB_CHAN-1:0][IW-1:0]            in_id;
+      |                               ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_static.sv:74:31: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   74 |     logic        [NB_CHAN-1:0][EW-1:0]            in_ecc;
+      |                               ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_static.sv:75:31: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   75 |     logic        [NB_CHAN-1:0][EHW-1:0]           in_egnt;
+      |                               ^
+%Warning-ASCRANGE: third_party/hci/rtl/core/hci_core_mux_static.sv:76:31: Ascending bit range vector: left < right of bit range: [-1:0]
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   76 |     logic        [NB_CHAN-1:0][EHW-1:0]           in_r_evalid;
+      |                               ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_mux_static.sv:99:30: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'in_egnt' generates 4 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+   99 |       assign in[ii].egnt     = in_egnt;
+      |                              ^
+%Warning-WIDTHTRUNC: third_party/hci/rtl/core/hci_core_mux_static.sv:100:30: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'in_r_evalid' generates 4 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.use_fifo_gen.i_ld_st_mux_static'
+  100 |       assign in[ii].r_evalid = in_r_evalid;
+      |                              ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_sink.sv:172:33: Operator ASSIGNW expects 288 bits on the Assign RHS, but Assign RHS's VARXREF 'data' generates 256 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink'
+  172 |   assign stream_data_misaligned = stream.data;
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_sink.sv:173:33: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's VARXREF 'strb' generates 32 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink'
+  173 |   assign stream_strb_misaligned = stream.strb;
+      |                                 ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_sink.sv:301:25: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'address_cnt_q' generates 16 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_sink'
+  301 |         if(address_cnt_q==ctrl_i.addressgen_ctrl.tot_len) begin
+      |                         ^~
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_source.sv:219:23: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's CONST '4'h0' generates 4 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source'
+  219 |   assign tcdm.be      = 4'h0;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/hci/rtl/core/hci_core_source.sv:321:58: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'stream_cnt_q' generates 16 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_streamer.i_weight_source'
+  321 |         if((addr_fifo_flags.empty==1'b1) && (stream_cnt_q==ctrl_i.addressgen_ctrl.tot_len)) begin
+      |                                                          ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:143:20: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's SIGNED generates 25 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  143 |   assign conv_data = $signed(conv_i.data);
+      |                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:147:43: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's SIGNED generates 20 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  147 |         dw_conv_data[(ii+1)*ACC-1:ii*ACC] = $signed(conv_dw_i[ii].data); 
+      |                                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:156:57: Operator OR expects 32 bits on the LHS, but LHS's EQ generates 1 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  156 |     ctrl_normquant.start = (fsm_state_q == AQ_NORMQUANT | (OUTREG_NORMQUANT & fsm_state_q == AQ_ACCUM & ctrl_i.weight_offset == 1)) ? 1'b1 : 1'b0;
+      |                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:156:77: Operator AND expects 32 bits on the RHS, but RHS's EQ generates 1 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  156 |     ctrl_normquant.start = (fsm_state_q == AQ_NORMQUANT | (OUTREG_NORMQUANT & fsm_state_q == AQ_ACCUM & ctrl_i.weight_offset == 1)) ? 1'b1 : 1'b0;
+      |                                                                             ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:156:103: Operator AND expects 32 bits on the RHS, but RHS's EQ generates 1 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  156 |     ctrl_normquant.start = (fsm_state_q == AQ_NORMQUANT | (OUTREG_NORMQUANT & fsm_state_q == AQ_ACCUM & ctrl_i.weight_offset == 1)) ? 1'b1 : 1'b0;
+      |                                                                                                       ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:156:133: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's OR generates 32 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  156 |     ctrl_normquant.start = (fsm_state_q == AQ_NORMQUANT | (OUTREG_NORMQUANT & fsm_state_q == AQ_ACCUM & ctrl_i.weight_offset == 1)) ? 1'b1 : 1'b0;
+      |                                                                                                                                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:344:46: Operator COND expects 256 bits on the Conditional True, but Conditional True's REPLICATE generates 121 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  344 |   assign normquant_in = ctrl_i.weight_offset ? { 96'b0, $signed(conv_i.data) } : (ctrl_i.norm_mode == NEUREKA_MODE_32B) ? {96'b0,{rdata}}: rdata_wide;
+      |                                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:344:121: Operator COND expects 256 bits on the Conditional True, but Conditional True's REPLICATE generates 128 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  344 |   assign normquant_in = ctrl_i.weight_offset ? { 96'b0, $signed(conv_i.data) } : (ctrl_i.norm_mode == NEUREKA_MODE_32B) ? {96'b0,{rdata}}: rdata_wide;
+      |                                                                                                                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:344:23: Operator ASSIGNW expects 128 bits on the Assign RHS, but Assign RHS's COND generates 256 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  344 |   assign normquant_in = ctrl_i.weight_offset ? { 96'b0, $signed(conv_i.data) } : (ctrl_i.norm_mode == NEUREKA_MODE_32B) ? {96'b0,{rdata}}: rdata_wide;
+      |                       ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:454:100: Operator SUB expects 32 or 16 bits on the LHS, but LHS's SEL generates 4 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  454 |                                             conv_handshake_d & ((qw_accumulation_cnt_q == ctrl_i.qw-1) | (ctrl_i.weight_offset & ctrl_i.depthwise));
+      |                                                                                                    ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:473:61: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  473 |       we_all      = ctrl_i.weight_offset ? OUTREG_NORMQUANT ? conv_handshake_2q : conv_handshake_q : conv_handshake_d;  
+      |                                                             ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:478:38: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  478 |                     OUTREG_NORMQUANT ? 32'h01<<addr_cnt_stage2_2q : 32'h01<<addr_cnt_stage2_q :
+      |                                      ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:485:56: Operator COND expects 1024 bits on the Conditional True, but Conditional True's REPLICATE generates 512 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  485 |                     ctrl_i.norm_mode==NEUREKA_MODE_16B ? {(2*AP/WIDTH_FACTOR){normalized_q[2*ACC-1:0]}} :{AP{normalized_q[ACC-1:0]}};
+      |                                                        ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:486:38: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  486 |       we_all      = OUTREG_NORMQUANT ? addr_cnt_en_stage1_2q : addr_cnt_en_stage1_q;
+      |                                      ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:488:38: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  488 |       bypass      = OUTREG_NORMQUANT ?
+      |                                      ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:493:19: Operator ASSIGN expects 5 bits on the Assign RHS, but Assign RHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  493 |       raddr       = addr_cnt_stage1_q;
+      |                   ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:500:20: Operator ASSIGN expects 5 bits on the Assign RHS, but Assign RHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  500 |       raddr        = addr_cnt_stage1_q;
+      |                    ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:515:13: Operator ASSIGN expects 5 bits on the Assign RHS, but Assign RHS's SHIFTL generates 16 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  515 |       raddr = addr_cnt_stage1_q << 1 ;
+      |             ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:517:20: Operator ASSIGN expects 5 bits on the Assign RHS, but Assign RHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  517 |       raddr        = addr_cnt_stage1_q;
+      |                    ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:581:30: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  581 |         if((OUTREG_NORMQUANT && addr_cnt_stage2_2q == ctrl_i.scale_len-1 && addr_cnt_en_stage1_2q == 1'b1) ||
+      |                              ^~
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:582:12: Logical operator LOGNOT expects 1 bit on the LHS, but LHS's VARREF 'OUTREG_NORMQUANT' generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  582 |           (!OUTREG_NORMQUANT && addr_cnt_stage2_q == ctrl_i.scale_len-1 && addr_cnt_en_stage1_q)) begin
+      |            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:607:94: Operator MODDIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  607 |           if((addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (streamin_i.valid & streamin_i.ready)) begin
+      |                                                                                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:607:33: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  607 |           if((addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (streamin_i.valid & streamin_i.ready)) begin
+      |                                 ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:607:57: Operator DIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  607 |           if((addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (streamin_i.valid & streamin_i.ready)) begin
+      |                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:617:138: Operator MODDIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  617 |         else if(ctrl_i.quant_mode == NEUREKA_MODE_32B && (addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (conv_o.valid & conv_o.ready)) begin
+      |                                                                                                                                          ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:617:77: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  617 |         else if(ctrl_i.quant_mode == NEUREKA_MODE_32B && (addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (conv_o.valid & conv_o.ready)) begin
+      |                                                                             ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:617:101: Operator DIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  617 |         else if(ctrl_i.quant_mode == NEUREKA_MODE_32B && (addr_cnt_stage1_q == (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1)) && (conv_o.valid & conv_o.ready)) begin
+      |                                                                                                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:667:54: Operator AND expects 32 bits on the RHS, but RHS's EQ generates 1 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  667 |  assign full_accumulation_cnt_en = (OUTREG_NORMQUANT & ctrl_i.weight_offset == 1'b1) ? conv_handshake_2q : conv_handshake_q;
+      |                                                      ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:667:86: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's AND generates 32 bits.
+                                                                                                : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  667 |  assign full_accumulation_cnt_en = (OUTREG_NORMQUANT & ctrl_i.weight_offset == 1'b1) ? conv_handshake_2q : conv_handshake_q;
+      |                                                                                      ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:680:46: Operator SUB expects 32 or 16 bits on the LHS, but LHS's SEL generates 4 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  680 |         if(qw_accumulation_cnt_q != ctrl_i.qw-1)
+      |                                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:739:144: Operator MODDIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  739 |                        (ctrl_i.quant_mode == NEUREKA_MODE_32B && addr_cnt_stage1_q < (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1) ) ? '1 :
+      |                                                                                                                                                ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:739:84: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'addr_cnt_stage1_q' generates 16 bits.
+                                                                                                 : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  739 |                        (ctrl_i.quant_mode == NEUREKA_MODE_32B && addr_cnt_stage1_q < (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1) ) ? '1 :
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/accumulator/neureka_accumulator_normquant.sv:739:107: Operator DIV expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+  739 |                        (ctrl_i.quant_mode == NEUREKA_MODE_32B && addr_cnt_stage1_q < (ctrl_i.streamout_len/WIDTH_FACTOR + (ctrl_i.streamout_len%WIDTH_FACTOR==0 ? 0 : 1) -1) ) ? '1 :
+      |                                                                                                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_array.sv:319:124: Operator AND expects 33 bits on the LHS, but LHS's SEL generates 32 bits.
+                                                                                    : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array'
+  319 |         ctrl_pe.enable_col = ctrl_i.ctrl_pe.ctrl_col.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? ctrl_i.ctrl_pe.enable_col & depthwise_cnt_oh_q :
+      |                                                                                                                            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/array/neureka_binconv_array.sv:319:96: Operator COND expects 33 bits on the Conditional False, but Conditional False's SEL generates 32 bits.
+                                                                                   : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array'
+  319 |         ctrl_pe.enable_col = ctrl_i.ctrl_pe.ctrl_col.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? ctrl_i.ctrl_pe.enable_col & depthwise_cnt_oh_q :
+      |                                                                                                ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/array/neureka_binconv_array.sv:319:28: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's COND generates 33 bits.
+                                                                                  : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_binconv_array'
+  319 |         ctrl_pe.enable_col = ctrl_i.ctrl_pe.ctrl_col.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? ctrl_i.ctrl_pe.enable_col & depthwise_cnt_oh_q :
+      |                            ^
+%Warning-WIDTHTRUNC: third_party/hwpe-stream/rtl/basic/hwpe_stream_deserialize.sv:101:20: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's SEL generates 10 bits.
+                                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_deserialize_load_streamin'
+  101 |       stream_cnt_d = ctrl_i.first_stream;
+      |                    ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/basic/hwpe_stream_deserialize.sv:104:23: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'stream_cnt_q' generates 4 bits.
+                                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_deserialize_load_streamin'
+  104 |       if(stream_cnt_q < NB_OUT_STREAMS-1) begin
+      |                       ^
+%Warning-WIDTHTRUNC: third_party/hwpe-stream/rtl/basic/hwpe_stream_serialize.sv:133:20: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's SEL generates 10 bits.
+                                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_serialize_store_out'
+  133 |       stream_cnt_d = ctrl_i.first_stream;
+      |                    ^
+%Warning-WIDTHEXPAND: third_party/hwpe-stream/rtl/basic/hwpe_stream_serialize.sv:136:23: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'stream_cnt_q' generates 4 bits.
+                                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.i_serialize_store_out'
+  136 |       if(stream_cnt_q < NB_IN_STREAMS-1) begin
+      |                       ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:87:16: Operator ASSIGNW expects 18 bits on the Assign RHS, but Assign RHS's SEL generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+   87 |   assign evt_o = slave_flags.evt;
+      |                ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:208:96: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  208 |   assign h_size_in  = (index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_hi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_H : INFEAT_BUFFER_SIZE_H) : config_.subtile_rem_hi;
+      |                                                                                                ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:208:21: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  208 |   assign h_size_in  = (index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_hi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_H : INFEAT_BUFFER_SIZE_H) : config_.subtile_rem_hi;
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:209:96: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  209 |   assign w_size_in  = (index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_W : INFEAT_BUFFER_SIZE_W) : config_.subtile_rem_wi;
+      |                                                                                                ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:209:21: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  209 |   assign w_size_in  = (index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_W : INFEAT_BUFFER_SIZE_W) : config_.subtile_rem_wi;
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:210:96: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  210 |   assign h_size_out = (index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_ho==0) ? PE_H : config_.subtile_rem_ho;
+      |                                                                                                ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:210:21: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  210 |   assign h_size_out = (index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_ho==0) ? PE_H : config_.subtile_rem_ho;
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:211:96: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  211 |   assign w_size_out = (index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wo==0) ? PE_W : config_.subtile_rem_wo;
+      |                                                                                                ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:211:21: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  211 |   assign w_size_out = (index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wo==0) ? PE_W : config_.subtile_rem_wo;
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:213:106: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  213 |   assign next_h_size_in  = (next_index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_hi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_H : INFEAT_BUFFER_SIZE_H) : config_.subtile_rem_hi;
+      |                                                                                                          ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:213:26: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  213 |   assign next_h_size_in  = (next_index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_hi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_H : INFEAT_BUFFER_SIZE_H) : config_.subtile_rem_hi;
+      |                          ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:214:106: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  214 |   assign next_w_size_in  = (next_index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_W : INFEAT_BUFFER_SIZE_W) : config_.subtile_rem_wi;
+      |                                                                                                          ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:214:26: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  214 |   assign next_w_size_in  = (next_index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wi==0) ? (config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? PE_W : INFEAT_BUFFER_SIZE_W) : config_.subtile_rem_wi;
+      |                          ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:215:106: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  215 |   assign next_h_size_out = (next_index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_ho==0) ? PE_H : config_.subtile_rem_ho;
+      |                                                                                                          ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:215:26: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  215 |   assign next_h_size_out = (next_index.i_major < config_.subtile_nb_ho-1) || (config_.subtile_rem_ho==0) ? PE_H : config_.subtile_rem_ho;
+      |                          ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:216:106: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  216 |   assign next_w_size_out = (next_index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wo==0) ? PE_W : config_.subtile_rem_wo;  
+      |                                                                                                          ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:216:26: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  216 |   assign next_w_size_out = (next_index.j_major < config_.subtile_nb_wo-1) || (config_.subtile_rem_wo==0) ? PE_W : config_.subtile_rem_wo;  
+      |                          ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:218:99: Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  218 |   assign k_in_lim   = (index.k_in_major < config_.subtile_nb_ki-1) || (config_.subtile_rem_ki==0) ? NEUREKA_TP_IN :  
+      |                                                                                                   ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:218:21: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  218 |   assign k_in_lim   = (index.k_in_major < config_.subtile_nb_ki-1) || (config_.subtile_rem_ki==0) ? NEUREKA_TP_IN :  
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:220:149: Operator NEQ expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  220 |   assign k_out_lim  = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (index.k_out_major == config_.subtile_nb_ko-1) && (config_.subtile_rem_ko != NEUREKA_TP_IN)  && (config_.subtile_rem_ko != 0) ? config_.subtile_rem_ko : NEUREKA_TP_IN :
+      |                                                                                                                                                     ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:221:97: Operator NEQ expects 32 bits on the LHS, but LHS's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  221 |                       (index.k_out_major == config_.subtile_nb_ko-1) && (config_.subtile_rem_ko != NEUREKA_TP_OUT) && (config_.subtile_rem_ko != 0) ? config_.subtile_rem_ko : NEUREKA_TP_OUT;
+      |                                                                                                 ^~
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:220:201: Operator COND expects 32 bits on the Conditional True, but Conditional True's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  220 |   assign k_out_lim  = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (index.k_out_major == config_.subtile_nb_ko-1) && (config_.subtile_rem_ko != NEUREKA_TP_IN)  && (config_.subtile_rem_ko != 0) ? config_.subtile_rem_ko : NEUREKA_TP_IN :
+      |                                                                                                                                                                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:221:149: Operator COND expects 32 bits on the Conditional True, but Conditional True's SEL generates 16 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  221 |                       (index.k_out_major == config_.subtile_nb_ko-1) && (config_.subtile_rem_ko != NEUREKA_TP_OUT) && (config_.subtile_rem_ko != 0) ? config_.subtile_rem_ko : NEUREKA_TP_OUT;
+      |                                                                                                                                                     ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:220:21: Operator ASSIGNW expects 6 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  220 |   assign k_out_lim  = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (index.k_out_major == config_.subtile_nb_ko-1) && (config_.subtile_rem_ko != NEUREKA_TP_IN)  && (config_.subtile_rem_ko != 0) ? config_.subtile_rem_ko : NEUREKA_TP_IN :
+      |                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:229:72: Operator COND expects 32 or 16 bits on the Conditional False, but Conditional False's SEL generates 4 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  229 |   assign qw_lim       = config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? 1 : config_.weight_bits;
+      |                                                                        ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:528:81: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'k_out_lim' generates 6 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  528 |   assign tot_len_weights       = config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? k_out_lim :
+      |                                                                                 ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:529:84: Operator COND expects 32 bits on the Conditional True, but Conditional True's SEL generates 4 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  529 |                                  config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? config_.weight_bits :
+      |                                                                                    ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:532:81: Operator COND expects 32 or 16 bits on the Conditional False, but Conditional False's SEL generates 4 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  532 |   assign d0_len_weights        = config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? 1      : config_.weight_bits;
+      |                                                                                 ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:538:73: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'd0_len_weights' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  538 |   assign ctrl_streamer.weight_source_ctrl.addressgen_ctrl.d0_len        = d0_len_weights;
+      |                                                                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:542:73: Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'dim_enable_1h_weights' generates 3 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  542 |   assign ctrl_streamer.weight_source_ctrl.addressgen_ctrl.dim_enable_1h = dim_enable_1h_weights;
+      |                                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:568:123: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  568 |   assign h_size_out_X_w_size_out_with_strb = (config_.quant_mode == NEUREKA_MODE_8B) || (k_out_lim <= 8)? (config_.last_pe+1)   :
+      |                                                                                                                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:569:125: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  569 |                                                                                      (k_out_lim <= 16)  ? 2*(config_.last_pe+1) :
+      |                                                                                                                             ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:570:125: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  570 |                                                                                      (k_out_lim <= 24)  ? 3*(config_.last_pe+1) : 
+      |                                                                                                                             ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:571:104: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  571 |                                                                                      4*(config_.last_pe+1);
+      |                                                                                                        ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:572:137: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  572 |   assign h_size_X_w_size_with_strb_streamin= (config_.streamin_mode == NEUREKA_STREAMIN_MODE_8B) || (k_out_lim <= 8)  ? (config_.last_pe+1) :
+      |                                                                                                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:573:124: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  573 |                                                                                      (k_out_lim <= 16) ? 2*(config_.last_pe+1) :
+      |                                                                                                                            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:574:124: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  574 |                                                                                      (k_out_lim <= 24) ? 3*(config_.last_pe+1) : 
+      |                                                                                                                            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:575:104: Operator ADD expects 32 bits on the LHS, but LHS's SEL generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  575 |                                                                                      4*(config_.last_pe+1);
+      |                                                                                                        ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:597:160: Operator DIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  597 |   assign ctrl_streamer.streamin_source_ctrl.addressgen_ctrl.d0_len        = (config_.streamin_mode == NEUREKA_STREAMIN_MODE_32B) ? (k_out_lim/8 > 0 ? k_out_lim/8 + (k_out_lim%8==0 ? 0 : 1) : 1) : 1;
+      |                                                                                                                                                                ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:604:145: Operator DIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  604 |   assign ctrl_streamer.outfeat_sink_ctrl.addressgen_ctrl.d0_len        = (config_.quant_mode == NEUREKA_MODE_32B) ? (k_out_lim/8 > 0 ? k_out_lim/8 + (k_out_lim%8==0 ? 0 : 1) : 1) : 1;
+      |                                                                                                                                                 ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:656:25: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  656 |   assign scale_base_mul = config_.filter_mode ==  NEUREKA_FILTER_MODE_3X3_DW    ? 
+      |                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:663:30: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  663 |   assign scale_bias_base_mul =  config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? 
+      |                              ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:667:31: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  667 |   assign scale_shift_base_mul = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? 
+      |                               ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:673:92: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'norm_len' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  673 |   assign ctrl_streamer.norm_source_ctrl.addressgen_ctrl.tot_len   = state==NORMQUANT       ? norm_len :
+      |                                                                                            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:674:94: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'norm_bias_len' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  674 |                                                                       state==NORMQUANT_BIAS  ? norm_bias_len :
+      |                                                                                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:675:94: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'norm_shift_len' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  675 |                                                                       state==NORMQUANT_SHIFT ? norm_shift_len : '0;
+      |                                                                                              ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:863:84: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  863 |   assign ctrl_engine.ctrl_double_infeat_buffer.ctrl_odd_infeat_buffer.load_len     =  config_.filter_mode == NEUREKA_FILTER_MODE_1X1 ? INFEAT_BUFFER_SIZE_W*(PE_H-1)+PE_W : INFEAT_BUFFER_SIZE_HW;
+      |                                                                                    ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:923:19: Operator ASSIGN expects 6 bits on the Assign RHS, but Assign RHS's VARREF 'i' generates 32 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  923 |         last_pe_d = i;
+      |                   ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:946:73: Operator ASSIGNW expects 32 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  946 |   assign ctrl_engine.ctrl_binconv_array.ctrl_pe.padding_value           = config_.padding_value;
+      |                                                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:953:51: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's VARREF 'enable_pe' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  953 |   assign ctrl_engine.ctrl_binconv_array.enable_pe = enable_pe;
+      |                                                   ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:990:41: Operator ASSIGNW expects 36 bits on the Assign RHS, but Assign RHS's VARREF 'enable_pe' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  990 |   assign ctrl_engine.enable_accumulator = enable_pe;
+      |                                         ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1030:134: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1030 |   assign ctrl_engine.ctrl_accumulator.full_accumulation_len = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (state==WEIGHTOFFS ? k_out_lim : ( (state==MATRIXVEC) ? qw_lim : qw_k_out_lim)) :  
+      |                                                                                                                                      ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1030:169: Operator COND expects 32 bits on the Conditional True, but Conditional True's VARREF 'qw_lim' generates 16 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1030 |   assign ctrl_engine.ctrl_accumulator.full_accumulation_len = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (state==WEIGHTOFFS ? k_out_lim : ( (state==MATRIXVEC) ? qw_lim : qw_k_out_lim)) :  
+      |                                                                                                                                                                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1030:61: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1030 |   assign ctrl_engine.ctrl_accumulator.full_accumulation_len = config_.filter_mode == NEUREKA_FILTER_MODE_3X3_DW ? (state==WEIGHTOFFS ? k_out_lim : ( (state==MATRIXVEC) ? qw_lim : qw_k_out_lim)) :  
+      |                                                             ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1032:59: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1032 |   assign ctrl_engine.ctrl_accumulator.streamout_len       = k_out_lim;
+      |                                                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1033:110: Operator DIV expects 32 or 16 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1033 |   assign ctrl_engine.ctrl_accumulator.scale_len           = config_.norm_mode == NEUREKA_MODE_8B  ? k_out_lim/4+(k_out_lim%4==0 ? 0 : 1) :
+      |                                                                                                              ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1034:112: Operator DIV expects 32 or 16 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1034 |                                                               config_.norm_mode == NEUREKA_MODE_16B ? k_out_lim/2+(k_out_lim%2==0 ? 0 : 1) : 
+      |                                                                                                                ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1034:101: Operator COND expects 32 or 16 bits on the Conditional False, but Conditional False's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1034 |                                                               config_.norm_mode == NEUREKA_MODE_16B ? k_out_lim/2+(k_out_lim%2==0 ? 0 : 1) : 
+      |                                                                                                     ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1036:59: Operator ASSIGNW expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                          : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1036 |   assign ctrl_engine.ctrl_accumulator.bias_len            = k_out_lim;
+      |                                                           ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1040:59: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'enable_pe' generates 16 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1040 |   assign ctrl_engine.ctrl_accumulator.enable_streamout    = enable_pe;
+      |                                                           ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1049:188: Operator MODDIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1049 |   assign ctrl_engine.ctrl_serialize_streamin.nb_contig_m1       = (config_.streamin_mode == NEUREKA_STREAMIN_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 :
+      |                                                                                                                                                                                            ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1049:132: Operator DIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1049 |   assign ctrl_engine.ctrl_serialize_streamin.nb_contig_m1       = (config_.streamin_mode == NEUREKA_STREAMIN_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 :
+      |                                                                                                                                    ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1049:65: Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1049 |   assign ctrl_engine.ctrl_serialize_streamin.nb_contig_m1       = (config_.streamin_mode == NEUREKA_STREAMIN_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 :
+      |                                                                 ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1054:177: Operator MODDIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1054 |   assign ctrl_engine.ctrl_serialize_streamout.nb_contig_m1       = (config_.quant_mode == NEUREKA_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 : 
+      |                                                                                                                                                                                 ^
+%Warning-WIDTHEXPAND: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1054:121: Operator DIV expects 32 bits on the LHS, but LHS's VARREF 'k_out_lim' generates 6 bits.
+                                                                           : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1054 |   assign ctrl_engine.ctrl_serialize_streamout.nb_contig_m1       = (config_.quant_mode == NEUREKA_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 : 
+      |                                                                                                                         ^
+%Warning-WIDTHTRUNC: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:1054:66: Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+ 1054 |   assign ctrl_engine.ctrl_serialize_streamout.nb_contig_m1       = (config_.quant_mode == NEUREKA_MODE_32B) ? (k_out_lim/(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE) + (k_out_lim%(NEUREKA_MEM_BANDWIDTH/NEUREKA_ACCUM_SIZE)==0 ? 0 : 1) )-1 : 
+      |                                                                  ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:52:59: Operator ADD expects 64 bits on the LHS, but LHS's VARREF 'input_base' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   52 |             if(!input_is_padding) input_address=input_base+((channel_index*h+iy)*w+ix);
+      |                                                           ^
+%Warning-WIDTHTRUNC: partners/cnn/FPGA1/rtl/address_generator.sv:52:48: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 64 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   52 |             if(!input_is_padding) input_address=input_base+((channel_index*h+iy)*w+ix);
+      |                                                ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:54:35: Operator ADD expects 64 bits on the LHS, but LHS's VARREF 'weight_base' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   54 |         weight_address=weight_base+((op_type==1 ? {48'd0,output_channel} : {48'd0,output_channel}*ci+input_channel)*k*k+tap);
+      |                                   ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:54:101: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'input_channel' generates 16 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   54 |         weight_address=weight_base+((op_type==1 ? {48'd0,output_channel} : {48'd0,output_channel}*ci+input_channel)*k*k+tap);
+      |                                                                                                     ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:54:120: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'tap' generates 6 bits.
+                                                                        : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   54 |         weight_address=weight_base+((op_type==1 ? {48'd0,output_channel} : {48'd0,output_channel}*ci+input_channel)*k*k+tap);
+      |                                                                                                                        ^
+%Warning-WIDTHTRUNC: partners/cnn/FPGA1/rtl/address_generator.sv:54:23: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 64 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   54 |         weight_address=weight_base+((op_type==1 ? {48'd0,output_channel} : {48'd0,output_channel}*ci+input_channel)*k*k+tap);
+      |                       ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:56:35: Operator ADD expects 64 bits on the LHS, but LHS's VARREF 'output_base' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   56 |         output_address=output_base+(({48'd0,output_channel}*oh+output_y)*ow+output_x)*(layer_param[23] ? 64'd4 : 64'd1);
+      |                                   ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:56:63: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'output_y' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   56 |         output_address=output_base+(({48'd0,output_channel}*oh+output_y)*ow+output_x)*(layer_param[23] ? 64'd4 : 64'd1);
+      |                                                               ^
+%Warning-WIDTHEXPAND: partners/cnn/FPGA1/rtl/address_generator.sv:56:76: Operator ADD expects 64 bits on the RHS, but RHS's VARREF 'output_x' generates 32 bits.
+                                                                       : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   56 |         output_address=output_base+(({48'd0,output_channel}*oh+output_y)*ow+output_x)*(layer_param[23] ? 64'd4 : 64'd1);
+      |                                                                            ^
+%Warning-WIDTHTRUNC: partners/cnn/FPGA1/rtl/address_generator.sv:56:23: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 64 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_cnn.scalar_check.check_config'
+   56 |         output_address=output_base+(({48'd0,output_channel}*oh+output_y)*ow+output_x)*(layer_param[23] ? 64'd4 : 64'd1);
+      |                       ^
+%Warning-WIDTHEXPAND: rtl/soc/autoload/image_bridge_autoload.sv:52:21: Operator XOR expects 32 bits on the RHS, but RHS's VARREF 'value' generates 8 bits.
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+   52 |             c = old ^ value;
+      |                     ^
+%Warning-WIDTHTRUNC: rtl/soc/autoload/image_bridge_autoload.sv:104:37: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's VARREF 'chunk_length' generates 32 bits.
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+  104 |                     request_bytes[6]<=chunk_length; request_bytes[7]<=chunk_length>>8;
+      |                                     ^~
+%Warning-WIDTHTRUNC: rtl/soc/autoload/image_bridge_autoload.sv:104:69: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+  104 |                     request_bytes[6]<=chunk_length; request_bytes[7]<=chunk_length>>8;
+      |                                                                     ^~
+%Warning-WIDTHTRUNC: rtl/soc/autoload/image_bridge_autoload.sv:106:43: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+  106 |                         request_bytes[8+b]<=source_address>>(8*b);
+      |                                           ^~
+%Warning-WIDTHTRUNC: rtl/soc/autoload/image_bridge_autoload.sv:113:48: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                     : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+  113 |                             request_bytes[12+b]<=(~crc_byte(packet_crc,request_bytes[index]))>>(8*b);
+      |                                                ^~
+%Warning-WIDTHEXPAND: rtl/soc/autoload/image_bridge_autoload.sv:138:62: Operator NEQ expects 32 bits on the LHS, but LHS's REPLICATE generates 16 bits.
+                                                                      : ... note: In instance 'face_soc_neureka_top.u_image_bridge'
+  138 |                         {response_bytes[7],response_bytes[6]}!=chunk_length ||
+      |                                                              ^~
+%Warning-WIDTHEXPAND: rtl/soc/autoload/cpu_core_autoload.sv:60:46: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 30 bits.
+                                                                 : ... note: In instance 'face_soc_neureka_top.u_cpu_core'
+   60 |     wire local_status = core_dmem_addr[31:2] == ((LOAD_CTRL_ADDR + 32'd4) >> 2);
+      |                                              ^~
+%Warning-WIDTHTRUNC: partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:23:23: Operator ASSIGNW expects 14 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                                : ... note: In instance 'face_soc_neureka_top.u_imem'
+   23 |     assign word_index = (imem_addr - IMEM_BASE) >> 2;
+      |                       ^
+%Warning-ALWCOMBORDER: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:873:5: Always_comb variable driven after use: 'ctrl_engine'
+                                                                         : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl'
+  873 |     ctrl_engine.ctrl_double_infeat_buffer.ctrl_even_infeat_buffer              = ctrl_engine.ctrl_double_infeat_buffer.ctrl_odd_infeat_buffer;
+      |     ^~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/ALWCOMBORDER?v=0.000
+                       ... Use "/* verilator lint_off ALWCOMBORDER */" and lint_on around source to disable this message.
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:56:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'add'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:56:5: 
+   56 |     add = w_add;
+      |     ^~~
+                      rtl/neureka/neureka_conv_engine.sv:33:51: ... Location of always_comb write
+   33 |   if(state==SOFT_CLEAR) begin periph.req=1;periph.add=32'h14;end
+      |                                                   ^~~
+                      ... For warning description see https://verilator.org/warn/MULTIDRIVEN?v=0.000
+                      ... Use "/* verilator lint_off MULTIDRIVEN */" and lint_on around source to disable this message.
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:57:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'data'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:57:5: 
+   57 |     data = w_data;
+      |     ^~~~
+                      rtl/neureka/neureka_conv_engine.sv:31:76: ... Location of always_comb write
+   31 |   if(state==CONFIGURE) begin periph.req=1;periph.add=32'h20+index*4;periph.data=word_q;end
+      |                                                                            ^~~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:58:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'wen'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:58:5: 
+   58 |     wen = 1'b0;
+      |     ^~~
+                      rtl/neureka/neureka_conv_engine.sv:30:61: ... Location of always_comb write
+   30 |   if(state==ACQUIRE) begin periph.req=1;periph.add=4;periph.wen=1;end
+      |                                                             ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:59:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'req'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:59:5: 
+   59 |     req = 1'b1;
+      |     ^~~
+                      rtl/neureka/neureka_conv_engine.sv:34:20: ... Location of always_comb write
+   34 |   if(clear) periph.req=0;
+      |                    ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:60:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'be'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:60:5: 
+   60 |     be = w_be;
+      |     ^~
+                      rtl/neureka/neureka_conv_engine.sv:29:49: ... Location of always_comb write
+   29 |   periph.req=0;periph.add=0;periph.wen=0;periph.be=15;periph.data=0;periph.id=0;
+      |                                                 ^~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:61:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'id'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:61:5: 
+   61 |     id = '0;
+      |     ^~
+                      rtl/neureka/neureka_conv_engine.sv:29:76: ... Location of always_comb write
+   29 |   periph.req=0;periph.add=0;periph.wen=0;periph.be=15;periph.data=0;periph.id=0;
+      |                                                                            ^~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:65:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'req'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:65:5: 
+   65 |     req = 1'b0;
+      |     ^~~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:59:5: ... Location of always_comb write
+   59 |     req = 1'b1;
+      |     ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:76:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'add'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:76:5: 
+   76 |     add = r_add;
+      |     ^~~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:56:5: ... Location of always_comb write
+   56 |     add = w_add;
+      |     ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:77:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'req'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:77:5: 
+   77 |     req = 1'b1;
+      |     ^~~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:65:5: ... Location of always_comb write
+   65 |     req = 1'b0;
+      |     ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:78:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'wen'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:78:5: 
+   78 |     wen = 1'b1;
+      |     ^~~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:58:5: ... Location of always_comb write
+   58 |     wen = 1'b0;
+      |     ^~~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:79:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'id'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:79:5: 
+   79 |     id = '0;
+      |     ^~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:61:5: ... Location of always_comb write
+   61 |     id = '0;
+      |     ^~
+%Warning-MULTIDRIVEN: third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:85:5: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'req'
+                                                                            : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator.i_accumulator_buffer'
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:85:5: 
+   85 |     req = 1'b0;
+      |     ^~~
+                      third_party/hwpe-ctrl/rtl/hwpe_ctrl_interfaces.sv:77:5: ... Location of always_comb write
+   77 |     req = 1'b1;
+      |     ^~~
+%Warning-UNSIGNED: partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:20:36: Comparison is constant due to unsigned arithmetic
+                                                                              : ... note: In instance 'face_soc_neureka_top.u_imem'
+   20 |     assign addr_valid = (imem_addr >= IMEM_BASE) &&
+      |                                    ^~
+                   ... For warning description see https://verilator.org/warn/UNSIGNED?v=0.000
+                   ... Use "/* verilator lint_off UNSIGNED */" and lint_on around source to disable this message.
+%Warning-COMBDLY: third_party/tech_cells_generic/src/deprecated/cluster_clk_cells.sv:41:31: Non-blocking assignment '<=' in combinational logic process
+                                                                                          : ... This will be executed as a blocking assignment '='!
+   41 |     if (clk_i == 1'b0) clk_en <= en_i | test_en_i;
+      |                               ^~
+                  ... For warning description see https://verilator.org/warn/COMBDLY?v=0.000
+                  ... Use "/* verilator lint_off COMBDLY */" and lint_on around source to disable this message.
+                  *** See https://verilator.org/warn/COMBDLY?v=0.000 before disabling this,
+                  else you may end up with different sim results.
+%Warning-COMBDLY: third_party/tech_cells_generic/src/rtl/tc_clk.sv:41:31: Non-blocking assignment '<=' in combinational logic process
+                                                                        : ... This will be executed as a blocking assignment '='!
+   41 |     if (clk_i == 1'b0) clk_en <= en_i | test_en_i;
+      |                               ^~
+%Warning-MULTIDRIVEN: third_party/neureka/rtl/accumulator/neureka_accumulator_buffer.sv:53:51: Signal has multiple driving blocks with different clocking: 'i_accumulator_buffer.buffer_q'
+                                                                                             : ... note: In instance 'face_soc_neureka_top.u_cnn.convolution.core.i_engine.accumulator_gen[15].i_accumulator'
+                      third_party/neureka/rtl/accumulator/neureka_accumulator_buffer.sv:117:9: ... Location of first driving block
+  117 |         buffer_q[ii] <= buffer_d[ii];
+      |         ^~~~~~~~
+                      third_party/neureka/rtl/accumulator/neureka_accumulator_buffer.sv:117:9: ... Location of other driving block
+  117 |         buffer_q[ii] <= buffer_d[ii];
+      |         ^~~~~~~~
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:54:19: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.state_d'
+   54 |   state_neureka_t state_d, state_q;
+      |                   ^~~~~~~
+                    ... For warning description see https://verilator.org/warn/UNOPTFLAT?v=0.000
+                    ... Use "/* verilator lint_off UNOPTFLAT */" and lint_on around source to disable this message.
+                    third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:54:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.state_d
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:88:3:      Example path: ALWAYS
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:64:18:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.slave_ctrl
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:193:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:231:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:52:17:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_in
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:264:21:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:265:35:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:55:9: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.state_change_d'
+   55 |   logic state_change_d, state_change_q;
+      |         ^~~~~~~~~~~~~~
+                    third_party/neureka/rtl/ctrl/neureka_ctrl_fsm.sv:55:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_ctrl_fsm.state_change_d
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:88:3:      Example path: ALWAYS
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:64:18:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.slave_ctrl
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:193:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:231:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:52:17:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_in
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:264:21:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:265:35:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:56:20: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.config_'
+   56 |   config_neureka_t config_;
+      |                    ^~~~~~~
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:56:20:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.config_
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:758:3:      Example path: ALWAYS
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:743:37:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.implicit_padding_map
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:852:96:      Example path: ASSIGNW
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:68:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_engine
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:872:3:      Example path: ALWAYS
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:68:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_engine
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:68:19: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_engine'
+   68 |   ctrl_engine_t   ctrl_engine, ctrl_engine_d, ctrl_engine_q;
+      |                   ^~~~~~~~~~~
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:68:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_engine
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:872:3:      Example path: ALWAYS
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:68:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_engine
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:69:19: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_streamer'
+   69 |   ctrl_streamer_t ctrl_streamer, ctrl_streamer_d, ctrl_streamer_q;
+      |                   ^~~~~~~~~~~~~
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:69:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_streamer
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:599:77:      Example path: ASSIGNW
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:69:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.ctrl_streamer
+%Warning-UNOPTFLAT: third_party/neureka/rtl/ctrl/neureka_ctrl.sv:65:18: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.slave_flags'
+   65 |   flags_slave_t  slave_flags;
+      |                  ^~~~~~~~~~~
+                    third_party/neureka/rtl/ctrl/neureka_ctrl.sv:65:18:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.slave_flags
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:193:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:231:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:52:17:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_in
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:264:21:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:265:35:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+%Warning-UNOPTFLAT: third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9: Signal unoptimizable: Circular combinational logic: 'face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access'
+  262 |   logic ext_access;
+      |         ^~~~~~~~~~
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:265:35:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:58:19:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_flags
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:231:3:      Example path: ALWAYS
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:52:17:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.regfile_in
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:264:21:      Example path: ASSIGNW
+                    third_party/hwpe-ctrl/rtl/hwpe_ctrl_slave.sv:262:9:      Example path: face_soc_neureka_top.u_cnn.convolution.core.i_ctrl.i_slave.ext_access
+- V e r i l a t i o n   R e p o r t:  rev UNKNOWN.REV
+- Verilator: Built from 80.012 MB sources in 155 modules, into 70.480 MB in 107 C++ files needing 0.000 MB
+- Verilator: Walltime 409.778 s (elab=2.352, cvt=402.478, bld=0.000); cpu 418.373 s on 1 threads; alloced 891.652 MB

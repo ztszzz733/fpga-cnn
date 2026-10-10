@@ -1,0 +1,8 @@
+BUILD
+__pycache__
+.cache
+.pytest_cache
+app/gen
+**/compile_commands.json
+**/*.log
+**/*.pt

@@ -1,0 +1,29 @@
+{
+  "width": 524,
+  "height": 524,
+  "frames": 6,
+  "format": "GRAY8 row-major",
+  "frame_pixels": 274576,
+  "output_width": 261,
+  "output_height": 261,
+  "channels": [
+    "abs(Sobel X)/4",
+    "abs(Sobel Y)/4"
+  ],
+  "pool": "2x2 max, stride 2",
+  "padding": "valid",
+  "output_base": 4096,
+  "output_frame_bytes": 136242,
+  "output_total_bytes": 817452,
+  "input_names": [
+    "smooth_ramp",
+    "checkerboard",
+    "concentric_rings",
+    "diagonal_stripes",
+    "geometric_shapes",
+    "seeded_texture"
+  ],
+  "input_sha256": "a18c754d064c402e527b1df64441dc6bfcab610b311cde3369c3e1283bf7e8c8",
+  "expected_sha256": "353523073484f33cbfaaa6aa4ff67fe4304a5cb1acb7cdb3da01c38fd6ada52d",
+  "expected_checksum": 4077665037
+}

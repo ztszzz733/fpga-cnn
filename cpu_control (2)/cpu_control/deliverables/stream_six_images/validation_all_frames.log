@@ -1,0 +1,3 @@
+SIGNALS=12 UNIQUE=12
+CNN_STATE=WORK
+PASS GTKWave stream session

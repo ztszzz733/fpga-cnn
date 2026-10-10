@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.neureka_build/bridge/obj/Vtb_neureka_bridge"]
+PASS tb_neureka_bridge: 17 transactions, partial-byte stores, bank contention, exact grant/response latency
+- /mnt/d/code/FPGA1/.neureka_build/bridge/tb_neureka_bridge.sv:38: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 2us; walltime 0.006 s; speed 326.409 us/s
+- Verilator: cpu 0.007 s on 1 threads; alloced 185 MB

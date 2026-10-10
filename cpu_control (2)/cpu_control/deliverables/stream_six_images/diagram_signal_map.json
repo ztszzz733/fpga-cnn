@@ -1,0 +1,212 @@
+{
+  "sys_clk": [
+    "p1_62",
+    "p1_63"
+  ],
+  "rst_n_in": [
+    "p1_62",
+    "p1_63"
+  ],
+  "clk": [
+    "p1_7",
+    "p1_13",
+    "p1_19",
+    "p1_25",
+    "p1_31",
+    "p1_37",
+    "p1_62",
+    "p1_63"
+  ],
+  "rst_n": [
+    "p1_7",
+    "p1_13",
+    "p1_19",
+    "p1_25",
+    "p1_31",
+    "p1_37",
+    "p1_62",
+    "p1_63"
+  ],
+  "imem_addr": [
+    "p1_39"
+  ],
+  "imem_re": [
+    "p1_39"
+  ],
+  "imem_rdata": [
+    "p1_41"
+  ],
+  "dmem_addr": [
+    "p1_43"
+  ],
+  "dmem_wdata": [
+    "p1_43"
+  ],
+  "dmem_wstrb": [
+    "p1_43"
+  ],
+  "dmem_re": [
+    "p1_43"
+  ],
+  "dmem_we": [
+    "p1_43"
+  ],
+  "dmem_rdata": [
+    "p1_45"
+  ],
+  "cnn_mmio_addr": [
+    "p1_47"
+  ],
+  "cnn_mmio_wdata": [
+    "p1_47"
+  ],
+  "cnn_mmio_re": [
+    "p1_47"
+  ],
+  "cnn_mmio_we": [
+    "p1_47"
+  ],
+  "cnn_mmio_rdata": [
+    "p1_49"
+  ],
+  "cnn_mmio_ready": [
+    "p1_49"
+  ],
+  "load_req": [
+    "p1_51"
+  ],
+  "load_complete": [
+    "p1_53"
+  ],
+  "load_error": [
+    "p1_53"
+  ],
+  "cnn_valid": [
+    "p1_59"
+  ],
+  "cnn_write": [
+    "p1_59"
+  ],
+  "cnn_byte": [
+    "p1_59"
+  ],
+  "cnn_addr": [
+    "p1_59"
+  ],
+  "cnn_wdata": [
+    "p1_59"
+  ],
+  "cnn_cancel": [
+    "p1_59"
+  ],
+  "cnn_ready": [
+    "p1_61"
+  ],
+  "cnn_response": [
+    "p1_61"
+  ],
+  "cnn_rdata": [
+    "p1_61"
+  ],
+  "cnn_mem_fault": [
+    "p1_62"
+  ],
+  "uart_rx": [
+    "p1_62",
+    "p1_63"
+  ],
+  "uart_tx": [
+    "p1_62",
+    "p1_63"
+  ],
+  "bridge_ready": [
+    "p1_62"
+  ],
+  "bridge_busy": [
+    "p1_62"
+  ],
+  "bridge_error": [
+    "p1_55"
+  ],
+  "cnn_status_busy": [
+    "p1_62"
+  ],
+  "cnn_status_done": [
+    "p1_62"
+  ],
+  "cnn_status_error": [
+    "p1_62"
+  ],
+  "led_ready": [
+    "p1_62"
+  ],
+  "led_busy": [
+    "p1_62"
+  ],
+  "led_error": [
+    "p1_62"
+  ],
+  "cpu_state": [
+    "p1_6"
+  ],
+  "cnn_state": [
+    "p1_18"
+  ],
+  "sram_state": [
+    "p1_24"
+  ],
+  "imem_state": [
+    "p1_12"
+  ],
+  "bridge_state": [
+    "p1_30"
+  ],
+  "clock_state": [
+    "p1_36"
+  ],
+  "soc_module_state": [
+    "p1_62"
+  ],
+  "soc_active": [
+    "p1_62"
+  ],
+  "soc_fault": [
+    "p1_62"
+  ],
+  "pixel_valid": [
+    "p1_55"
+  ],
+  "pixel_ready": [
+    "p1_57"
+  ],
+  "pixel_data": [
+    "p1_55"
+  ],
+  "pixel_sof": [
+    "p1_55"
+  ],
+  "pixel_eof": [
+    "p1_55"
+  ],
+  "pixel_frame": [
+    "p1_55"
+  ],
+  "rx_receiving": [
+    "p1_62"
+  ],
+  "packets_checked": [
+    "p1_62"
+  ],
+  "compute_fire": [
+    "p1_62"
+  ],
+  "frame_done": [
+    "p1_62"
+  ],
+  "frames_done": [
+    "p1_62"
+  ],
+  "pixels_consumed": [
+    "p1_62"
+  ]
+}

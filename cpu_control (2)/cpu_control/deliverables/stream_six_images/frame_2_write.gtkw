@@ -1,0 +1,72 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Oct 10 13:18:25 2026
+[*]
+[dumpfile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\first_two.fst"
+[dumpfile_mtime] "Sat Oct 10 13:17:34 2026"
+[dumpfile_size] 988066
+[savefile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\frame_2_write.gtkw"
+[timestart] 114244650000
+[size] 1800 1050
+[pos] -1 -1
+*-14.011528 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 340
+[sst_expanded] 1
+[sst_vpaned_height] 311
+@200
+-CLOCK
+@28
+[color] 2
+stream_top.clk
+@200
+-UART INPUT
+@28
+stream_top.uart_rx
+@200
+-IMAGE_BRIDGE
+@28
+[color] 6
+stream_top.rx_receiving
+[color] 6
+stream_top.pixel_valid
+[color] 6
+stream_top.pixel_eof
+@22
+[color] 6
+stream_top.pixel_data[7:0]
+[color] 6
+stream_top.pixel_frame[31:0]
+@200
+-CNN
+@28
+[color] 1
+stream_top.pixel_ready
+[color] 1
+stream_top.compute_fire
+@22
+[color] 1
+stream_top.cnn_valid[10:0]
+[color] 1
+stream_top.cnn_write[10:0]
+[color] 1
+stream_top.cnn_byte[10:0]
+[color] 1
+stream_top.cnn_addr[351:0]
+[color] 1
+stream_top.cnn_wdata[351:0]
+@28
+[color] 1
+stream_top.frame_done
+@22
+[color] 1
+stream_top.frames_done[31:0]
+@200
+-DATASRAM
+@22
+[color] 3
+stream_top.cnn_ready[10:0]
+[color] 3
+stream_top.cnn_response[10:0]
+[pattern_trace] 1
+[pattern_trace] 0

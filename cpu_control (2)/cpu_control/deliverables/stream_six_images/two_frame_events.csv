@@ -1,0 +1,11 @@
+time_ps,event,frame,value
+851445000,first_write,0,4096
+113390415000,pixel_eof_level,0,1
+113390425000,pixel_eof_handshake,0,1
+113390425000,pixel_eof_level,0,0
+113390465000,frame_done,0,1
+114238025000,first_write,1,140338
+226776995000,pixel_eof_level,1,1
+226777005000,pixel_eof_handshake,1,1
+226777005000,pixel_eof_level,1,0
+226777045000,frame_done,1,2

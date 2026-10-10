@@ -1,0 +1,6 @@
+{
+  "functional_run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261010_225915_neureka",
+  "large_neureka_status": "stopped after user waived exact speed comparison",
+  "final_rtl_hashes_match": true,
+  "full_soc_check": "elaboration only; no UART end-to-end simulation"
+}

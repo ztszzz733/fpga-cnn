@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "config": {
+    "width": 524,
+    "height": 524,
+    "frames": 6,
+    "chunk": 1024,
+    "fault": 0,
+    "waves": true
+  },
+  "run": "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/runs/20261010_200607_777416_stream_images",
+  "manifest": {
+    "width": 524,
+    "height": 524,
+    "frames": 6,
+    "format": "GRAY8 row-major",
+    "frame_pixels": 274576,
+    "output_width": 261,
+    "output_height": 261,
+    "channels": [
+      "abs(Sobel X)/4",
+      "abs(Sobel Y)/4"
+    ],
+    "pool": "2x2 max, stride 2",
+    "padding": "valid",
+    "output_base": 4096,
+    "output_frame_bytes": 136242,
+    "output_total_bytes": 817452,
+    "input_names": [
+      "smooth_ramp",
+      "checkerboard",
+      "concentric_rings",
+      "diagonal_stripes",
+      "geometric_shapes",
+      "seeded_texture"
+    ],
+    "input_sha256": "a18c754d064c402e527b1df64441dc6bfcab610b311cde3369c3e1283bf7e8c8",
+    "expected_sha256": "353523073484f33cbfaaa6aa4ff67fe4304a5cb1acb7cdb3da01c38fd6ada52d",
+    "expected_checksum": 4077665037
+  },
+  "source_hashes": {
+    "partners/datapath/delivery/rtl/common/cpu_control_pkg.sv": "282674f7b85146db982bc045e68cb7ade87014ded611260697889941553ff8ab",
+    "rtl/cpu_control/main_decoder.sv": "8c0d9e00efeaf56ec228e721c55c2e1c54693b595dcd407dd27cfcc98caf4b19",
+    "rtl/cpu_control/alu_decoder.sv": "0c75f2dd2aad254ee6d884c4879500c9352970c15d41d09066f759dc8e49930f",
+    "rtl/cpu_control/hazard_unit.sv": "8cf9ae3bb11d1560f9c6663f7e84738eb84dc1454f87ab2c9ab5d35bfad0b54d",
+    "rtl/cpu_control/branch_control.sv": "dc044aa97aa3311110efe587199848d83bb56295556885836aac3bdbee18eb74",
+    "rtl/cpu_control/pipeline_control.sv": "bd15824b24040c9f10df23feb979d8ec03c9d8a573b01561cad58f396eba29fc",
+    "rtl/cpu_control/cpu_control.sv": "d1e049875d1309ef7d50c327dcf4dbecb2187d129cadcbc5b373557aa3ace239",
+    "partners/datapath/delivery/rtl/cpu_datapath/alu.sv": "133e1b5c05850410c50e34090afd5d8d575145dc1d8c1b5f7bc25390605aa487",
+    "partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv": "da329cce5cffabe808fc525e47f6256ce457da37e33e34b4635303ecfcf7e707",
+    "partners/datapath/delivery/rtl/cpu_datapath/pc.sv": "ec3d15f60e25aaeea58a3e219a6b750d1f8bbf84f02e0d3999c7dfe34550d3ad",
+    "partners/datapath/delivery/rtl/cpu_datapath/regfile.sv": "810dd840850adbefd2b6cf937954a233c0827ef376b2278172eb5fc7909d18fb",
+    "partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv": "8de5655cb646af4112a30765d169895c5e6433b897b014aa45ca7b736e358c24",
+    "partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv": "16dfd5bd5050c35b358c990c3708dbbe3bee929c8682de15ccff01c0e564c2de",
+    "partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv": "835c3d52ba53c890d03192fe13dcc91e94b9e7d7c426ebf9fbdafc77739565be",
+    "partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv": "f1f6e9f395f5957b433b1be35ebe50208d63cba00a007b3fa39041be6132b078",
+    "partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv": "ffa8f530cde9a1272eda25108c81e1a4774ad981985407d2f103afc1080f59b1",
+    "partners/datapath/delivery/rtl/cpu_datapath/lsu.sv": "0cf58c3e1496dcff2954793ea8a16ce410dc7a7b5d3c63b1af56ac29917a98d1",
+    "partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv": "f08d75bdc22b6fa4c9a20345493e95591acaa64f9ccc15b73563c2a1695f67e1",
+    "partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv": "6905813dd3076886b12084b1009420cbf3fd204797978fa25301338405811b38",
+    "partners/datapath/delivery/rtl/soc_memory/imem_rom.sv": "38ae89d6f040a231d434cc26b24c3a9d5b787c31de9ee2ef57b199cd3c4b9e60",
+    "rtl/soc/clock_unit.sv": "0bbb75103ed416af7e4884b60b239308ff1fbf1e7ea271388cbf9e0a905fb07c",
+    "rtl/soc/autoload/autoload_uart.sv": "441bdfa015021f36e1922934e55c7e355715228c4d34e259693dc0b5b7b42091",
+    "rtl/soc/autoload/cpu_core_autoload.sv": "2a9e2db78841791823dd015b22dac028d1025da8906957a72815c238c14f0bcf",
+    "rtl/overlap/datasram_banked.sv": "130603b3a77f3ea9d317eae1df924229d467d7f599c9a3b62323b9072941246c",
+    "rtl/stream/image_bridge_stream.sv": "c8ecbb98073c37e6b51b1ed1d0f3db509e055e74899709c6ef261adefa45c312",
+    "rtl/stream/cnn_stream_features.sv": "162c13879ce03beb7709d6eaf2e975b3e7455264609e9df8f4dacfe84b3067be",
+    "rtl/stream/face_soc_stream_top.sv": "b2cee5b60cd72e15d4b5450fd3fc50a7702a678332a2c53853bdde9640040d12",
+    "tb/integration/tb_soc_stream.sv": "9638aa2418ff4c70f79a59fc0737ba8fde4a6535603eae22d5c97a4a3c1b4e8d"
+  },
+  "metrics": {
+    "frames": 6,
+    "pixels": 1647456,
+    "outputs": 817452,
+    "requests": 1614,
+    "compute_cycles": 1634904,
+    "rx_compute_overlap": 591408,
+    "rx_write_overlap": 276576,
+    "total_cycles": 71710883
+  },
+  "actual_sha256": "353523073484f33cbfaaa6aa4ff67fe4304a5cb1acb7cdb3da01c38fd6ada52d",
+  "wall_seconds": 122.16893120700001
+}

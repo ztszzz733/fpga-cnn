@@ -1,0 +1,9 @@
+
+COMMAND ["/tmp/fpga1_neureka_native/neureka/obj/Vtb_neureka_benchmark"]
+PROGRESS cycle=0 queue=0 task=0 wrapper=0 core=0 pending=000 remaining=000000000
+METRICS cnn_cycles=18196 read_transactions=12092 write_transactions=2280 bank_wait_cycles=2196 checked_bytes=534
+PASS tb_neureka_benchmark CPU completion cycle=18226
+- /tmp/fpga1_neureka_native/neureka/137_tb_neureka_benchmark.sv:93: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 182us; walltime 5.347 s; speed 33.460 us/s
+- Verilator: cpu 5.450 s on 1 threads; alloced 213 MB

@@ -1,0 +1,48 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat Oct 10 12:21:44 2026
+[*]
+[dumpfile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\all_frames.fst"
+[dumpfile_mtime] "Sat Oct 10 12:17:38 2026"
+[dumpfile_size] 802655
+[savefile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\all_frames.gtkw"
+[timestart] 0
+[size] 1800 1050
+[pos] -1 -1
+*-36.785275 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 340
+[sst_expanded] 1
+[sst_vpaned_height] 311
+@200
+-FRAME PROGRESS AND STATES
+@2022
+[color] 4
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.cpu_state[1:0]
+[color] 1
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.cnn_state[1:0]
+[color] 3
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.sram_state[1:0]
+[color] 5
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.imem_state[1:0]
+[color] 6
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.bridge_state[1:0]
+[color] 2
+^2 D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\stream_six_images\state_names.txt
+stream_top.clock_state[1:0]
+@22
+stream_top.soc_module_state[11:0]
+stream_top.soc_active[5:0]
+stream_top.soc_fault[5:0]
+@28
+stream_top.frame_done
+@22
+stream_top.frames_done[31:0]
+stream_top.pixel_frame[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

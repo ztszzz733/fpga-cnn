@@ -1,5 +1,30 @@
 # 项目从哪里开始
 
+## NEureka 可编程卷积适配
+
+新增隔离入口 `face_soc_neureka_top`（`rtl/filelists/system_neureka.f`）：把官方 NEureka RTL 接入原 CPU 的任务队列和四 bank DATASRAM，原通用 CNN 与固定 Sobel 流式入口均保留。顶层仍为六模块；排布转换、配置和 HCI 桥接都在 CNN 内部。当前为 SRAM 任务模式，不能直接替代此前 UART 逐像素流式入口。
+
+- [适配与软件配置说明](docs/neureka_integration.md)
+- [适配与功能验证说明](deliverables/neureka_benchmark/适配与验证说明.md)
+- [架构、任务时间线与网页版说明](deliverables/neureka_benchmark/适配与验证说明.html)
+- [可编辑 draw.io 架构图](deliverables/neureka_benchmark/neureka_architecture.drawio)
+- [已通过功能验证的任务阶段波形](deliverables/neureka_benchmark/open_functional_tasks.cmd)（由真实任务事件生成，非总线逐拍转储）
+- [开源版本、许可证与兼容补丁](third_party/NEUREKA_SOURCES.md)
+
+已完成连续小图任务、桥接和顶层展开检查。按最新要求不再追求具体加速倍数；新版大图测速已停止，不能宣称大图验证或完整人脸网络通过。可选的前后对比脚本保留，运行方式见说明。
+
+## 2026-10-10 六张图片边接收边计算
+
+新隔离入口 `face_soc_stream_top` 已完成 6 张 524×524 灰度图的 UART 引脚级仿真：固定双路 Sobel 卷积、幅值缩放、2×2 最大池化，全部 817452 字节特征写入 1 MiB DATASRAM 并逐字节验证。顶层仍是六模块。该入口使用专用固定流式卷积核，旧通用脉动阵列和 19 任务演示保留。
+
+- [六帧使用说明与实测](deliverables/stream_six_images/使用说明.md)
+- [输入与实际输出图片](deliverables/stream_six_images/results.html)
+- [接收计算重叠波形](deliverables/stream_six_images/open_all_modules.cmd)
+- [六帧全程状态](deliverables/stream_six_images/open_all_frames.cmd)
+- [新版 draw.io 图](deliverables/stream_six_images/soc_architecture.drawio)
+
+运行：`scripts/run_stream_sim.ps1 -Waves`。以下章节是此前的通用多任务演示。
+
 ## 六模块状态、完整波形与 draw.io 图
 
 新增六路顶层状态监测，仍保持六个模块实例。最新交付在 [信号与状态说明](deliverables/soc_top_view/信号与状态说明.md)，包含 61 根图中标注信号的功能、方向、位宽和有效条件。完整 GTKWave 视图已去重为 61 条轨迹，每根只出现一次，按输出端模块分组着色。

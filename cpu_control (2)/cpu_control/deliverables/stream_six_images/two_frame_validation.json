@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "frames": 2,
+  "write_bytes": 272484,
+  "per_frame_bytes": 136242,
+  "compute_cycles": 544968,
+  "verified": "Every sampled write address is sequential from 0x1000 and every byte equals actual.bin; counts match reference output dimensions.",
+  "events": [
+    {
+      "time_ps": 851445000,
+      "event": "first_write",
+      "frame": 0,
+      "value": 4096
+    },
+    {
+      "time_ps": 113390415000,
+      "event": "pixel_eof_level",
+      "frame": 0,
+      "value": 1
+    },
+    {
+      "time_ps": 113390425000,
+      "event": "pixel_eof_handshake",
+      "frame": 0,
+      "value": 1
+    },
+    {
+      "time_ps": 113390425000,
+      "event": "pixel_eof_level",
+      "frame": 0,
+      "value": 0
+    },
+    {
+      "time_ps": 113390465000,
+      "event": "frame_done",
+      "frame": 0,
+      "value": 1
+    },
+    {
+      "time_ps": 114238025000,
+      "event": "first_write",
+      "frame": 1,
+      "value": 140338
+    },
+    {
+      "time_ps": 226776995000,
+      "event": "pixel_eof_level",
+      "frame": 1,
+      "value": 1
+    },
+    {
+      "time_ps": 226777005000,
+      "event": "pixel_eof_handshake",
+      "frame": 1,
+      "value": 1
+    },
+    {
+      "time_ps": 226777005000,
+      "event": "pixel_eof_level",
+      "frame": 1,
+      "value": 0
+    },
+    {
+      "time_ps": 226777045000,
+      "event": "frame_done",
+      "frame": 1,
+      "value": 2
+    }
+  ],
+  "detail_samples": [
+    [
+      {
+        "time_ps": 858005000,
+        "frame": 0,
+        "channel": 1,
+        "address": 4359,
+        "data": 0
+      },
+      {
+        "time_ps": 858045000,
+        "frame": 0,
+        "channel": 0,
+        "address": 4360,
+        "data": 1
+      },
+      {
+        "time_ps": 858055000,
+        "frame": 0,
+        "channel": 1,
+        "address": 4361,
+        "data": 0
+      },
+      {
+        "time_ps": 858095000,
+        "frame": 0,
+        "channel": 0,
+        "address": 4362,
+        "data": 1
+      }
+    ],
+    [
+      {
+        "time_ps": 114244675000,
+        "frame": 1,
+        "channel": 0,
+        "address": 140604,
+        "data": 0
+      },
+      {
+        "time_ps": 114244685000,
+        "frame": 1,
+        "channel": 1,
+        "address": 140605,
+        "data": 0
+      },
+      {
+        "time_ps": 114244725000,
+        "frame": 1,
+        "channel": 0,
+        "address": 140606,
+        "data": 0
+      },
+      {
+        "time_ps": 114244735000,
+        "frame": 1,
+        "channel": 1,
+        "address": 140607,
+        "data": 0
+      }
+    ]
+  ],
+  "overview_bin_ps": 250000000,
+  "end_ps": 226777100000
+}

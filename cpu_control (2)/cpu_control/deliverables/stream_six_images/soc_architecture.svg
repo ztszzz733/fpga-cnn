@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="2200" viewBox="0 0 2800 2200">
+<defs><marker id="a0" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#58a6ff"/></marker><marker id="a1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#efdf69"/></marker><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ef72b3"/></marker><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ff666c"/></marker><marker id="a4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#e5e7eb"/></marker><marker id="a5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#9ca3af"/></marker></defs>
+<rect width="2800" height="2200" fill="#101216"/>
+<text x="1400.0" y="50.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="34" fill="#e5e7eb">
+<tspan x="1400.0" dy="0">六张 524×524 图片流式特征提取</tspan>
+</text>
+<rect x="140" y="280" width="500" height="490" fill="#14181e" stroke="#58a6ff" stroke-width="2"/>
+<text x="390.0" y="335.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="30" fill="#58a6ff">
+<tspan x="390.0" dy="0">CPU CORE</tspan>
+</text>
+<text x="390.0" y="397.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="390.0" dy="0">cpu_core_autoload</tspan>
+</text>
+<text x="390.0" y="520.04" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#e5e7eb">
+<tspan x="390.0" dy="0">启动固定流程</tspan>
+<tspan x="390.0" dy="29.92">查询完成 · 读取校验和</tspan>
+</text>
+<rect x="168" y="665" width="444" height="55" fill="#202630" stroke="#58a6ff" stroke-width="2"/>
+<text x="390.0" y="692.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="19" fill="#e5e7eb">
+<tspan x="390.0" dy="0">cpu_state [1:0]</tspan>
+</text>
+<text x="390.0" y="744.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="390.0" dy="0">全局输入：clk / rst_n</tspan>
+</text>
+<rect x="1100" y="280" width="360" height="300" fill="#14181e" stroke="#8aa8ff" stroke-width="2"/>
+<text x="1280.0" y="316.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="26" fill="#8aa8ff">
+<tspan x="1280.0" dy="0">IMEM</tspan>
+</text>
+<text x="1280.0" y="355.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1280.0" dy="0">imem_rom</tspan>
+</text>
+<text x="1280.0" y="403.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#e5e7eb">
+<tspan x="1280.0" dy="0">固定 RV32I 程序</tspan>
+</text>
+<rect x="1125" y="480" width="310" height="55" fill="#202630" stroke="#8aa8ff" stroke-width="2"/>
+<text x="1280.0" y="507.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#e5e7eb">
+<tspan x="1280.0" dy="0">imem_state [1:0]</tspan>
+</text>
+<text x="1280.0" y="561.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="15" fill="#9ca3af">
+<tspan x="1280.0" dy="0">全局输入：clk / rst_n</tspan>
+</text>
+<rect x="140" y="1210" width="500" height="550" fill="#14181e" stroke="#ff666c" stroke-width="2"/>
+<text x="390.0" y="1265.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="30" fill="#ff666c">
+<tspan x="390.0" dy="0">CNN</tspan>
+</text>
+<text x="390.0" y="1327.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="390.0" dy="0">cnn_stream_features</tspan>
+</text>
+<text x="390.0" y="1465.08" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#e5e7eb">
+<tspan x="390.0" dy="0">两路固定 3×3 Sobel 卷积</tspan>
+<tspan x="390.0" dy="29.92">幅值 /4 → 2×2 最大池化</tspan>
+<tspan x="390.0" dy="29.92">行缓冲 · 流式写回</tspan>
+</text>
+<rect x="168" y="1655" width="444" height="55" fill="#202630" stroke="#ff666c" stroke-width="2"/>
+<text x="390.0" y="1682.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="19" fill="#e5e7eb">
+<tspan x="390.0" dy="0">cnn_state [1:0]</tspan>
+</text>
+<text x="390.0" y="1734.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="390.0" dy="0">全局输入：clk / rst_n</tspan>
+</text>
+<rect x="1180" y="1050" width="410" height="710" fill="#14181e" stroke="#efdf69" stroke-width="2"/>
+<text x="1385.0" y="1105.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="30" fill="#efdf69">
+<tspan x="1385.0" dy="0">DATASRAM</tspan>
+</text>
+<text x="1385.0" y="1167.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1385.0" dy="0">datasram_banked</tspan>
+</text>
+<text x="1385.0" y="1385.08" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#e5e7eb">
+<tspan x="1385.0" dy="0">1 MiB · 4 个存储体</tspan>
+<tspan x="1385.0" dy="29.92">六帧结果全部保留</tspan>
+<tspan x="1385.0" dy="29.92">每帧 136242 字节</tspan>
+</text>
+<rect x="1208" y="1655" width="354" height="55" fill="#202630" stroke="#efdf69" stroke-width="2"/>
+<text x="1385.0" y="1682.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="19" fill="#e5e7eb">
+<tspan x="1385.0" dy="0">sram_state [1:0]</tspan>
+</text>
+<text x="1385.0" y="1734.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="1385.0" dy="0">全局输入：clk / rst_n</tspan>
+</text>
+<rect x="2110" y="280" width="440" height="650" fill="#14181e" stroke="#d987ed" stroke-width="2"/>
+<text x="2330.0" y="335.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="30" fill="#d987ed">
+<tspan x="2330.0" dy="0">IMAGE_BRIDGE</tspan>
+</text>
+<text x="2330.0" y="397.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="2330.0" dy="0">image_bridge_stream</tspan>
+</text>
+<text x="2330.0" y="585.08" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#e5e7eb">
+<tspan x="2330.0" dy="0">25 Mbps UART</tspan>
+<tspan x="2330.0" dy="29.92">双 1024 字节包缓冲</tspan>
+<tspan x="2330.0" dy="29.92">按包 CRC · 接收和消费解耦</tspan>
+</text>
+<rect x="2138" y="825" width="384" height="55" fill="#202630" stroke="#d987ed" stroke-width="2"/>
+<text x="2330.0" y="852.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="19" fill="#e5e7eb">
+<tspan x="2330.0" dy="0">bridge_state [1:0]</tspan>
+</text>
+<text x="2330.0" y="904.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="2330.0" dy="0">全局输入：clk / rst_n</tspan>
+</text>
+<rect x="2130" y="1410" width="400" height="300" fill="#14181e" stroke="#f3a54d" stroke-width="2"/>
+<text x="2330.0" y="1446.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="26" fill="#f3a54d">
+<tspan x="2330.0" dy="0">CLOCK</tspan>
+</text>
+<text x="2330.0" y="1485.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="16" fill="#9ca3af">
+<tspan x="2330.0" dy="0">clock_unit</tspan>
+</text>
+<text x="2330.0" y="1533.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#e5e7eb">
+<tspan x="2330.0" dy="0">100 MHz · 复位同步释放</tspan>
+</text>
+<rect x="2155" y="1610" width="350" height="55" fill="#202630" stroke="#f3a54d" stroke-width="2"/>
+<text x="2330.0" y="1637.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#e5e7eb">
+<tspan x="2330.0" dy="0">clock_state [1:0]</tspan>
+</text>
+<text x="2330.0" y="1691.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="15" fill="#9ca3af">
+<tspan x="2330.0" dy="0">全局输出：clk / rst_n</tspan>
+</text>
+<polyline points="640,350 1100,350" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="870.0" y="315.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#58a6ff">
+<tspan x="870.0" dy="0">imem_addr[32] / imem_re[1]</tspan>
+</text>
+<polyline points="1100,470 640,470" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="870.0" y="441.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#efdf69">
+<tspan x="870.0" dy="0">imem_rdata[32]</tspan>
+</text>
+<polyline points="640,620 1010,620 1010,1100 1180,1100" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="905.0" y="667.52" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#58a6ff">
+<tspan x="905.0" dy="0">dmem_addr[32] / dmem_wdata[32]</tspan>
+<tspan x="905.0" dy="24.48">dmem_re[1] / dmem_we[1]</tspan>
+<tspan x="905.0" dy="24.48">dmem_wstrb[4]</tspan>
+</text>
+<polyline points="1180,1150 940,1150 940,740 640,740" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="897.5" y="770.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#efdf69">
+<tspan x="897.5" dy="0">dmem_rdata[32]</tspan>
+</text>
+<polyline points="260,770 260,1210" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="375.0" y="875.26" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#58a6ff">
+<tspan x="375.0" dy="0">cnn_mmio_addr[32] / cnn_mmio_wdata[32]</tspan>
+<tspan x="375.0" dy="24.48">cnn_mmio_re[1] / cnn_mmio_we[1]</tspan>
+</text>
+<polyline points="530,1210 530,770" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="375.0" y="1052.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#efdf69">
+<tspan x="375.0" dy="0">cnn_mmio_rdata[32] / cnn_mmio_ready[1]</tspan>
+</text>
+<polyline points="500,280 500,155 2300,155 2300,280" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1450.0" y="125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#ef72b3">
+<tspan x="1450.0" dy="0">load_req[1]</tspan>
+</text>
+<polyline points="2450,280 2450,220 600,220 600,280" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1450.0" y="190.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#ef72b3">
+<tspan x="1450.0" dy="0">load_complete[1] / load_error[1]</tspan>
+</text>
+<polyline points="2110,815 1790,815 1790,985 640,985 640,1240" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1600.0" y="860.02" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#ef72b3">
+<tspan x="1600.0" dy="0">pixel_valid[1] / pixel_data[8]</tspan>
+<tspan x="1600.0" dy="24.48">pixel_sof[1] / pixel_eof[1]</tspan>
+<tspan x="1600.0" dy="24.48">pixel_frame[32] / bridge_error[1]</tspan>
+</text>
+<polyline points="600,1210 600,1015 1750,1015 1750,920 2110,920" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1930.0" y="950.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#ef72b3">
+<tspan x="1930.0" dy="0">pixel_ready[1]</tspan>
+</text>
+<polyline points="640,1400 1180,1400" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="910.0" y="1283.02" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#58a6ff">
+<tspan x="910.0" dy="0">cnn_valid[11] / cnn_write[11]</tspan>
+<tspan x="910.0" dy="24.48">cnn_byte[11] / cnn_addr[352]</tspan>
+<tspan x="910.0" dy="24.48">cnn_wdata[352] / cnn_cancel[1]</tspan>
+</text>
+<polyline points="1180,1580 640,1580" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="910.0" y="1490.26" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="18" fill="#efdf69">
+<tspan x="910.0" dy="0">cnn_ready[11] / cnn_response[11]</tspan>
+<tspan x="910.0" dy="24.48">cnn_rdata[352]</tspan>
+</text>
+<text x="1400.0" y="1897.48" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="19" fill="#9ca3af">
+<tspan x="1400.0" dy="0">顶层引脚与观察信号（不是额外硬件模块）</tspan>
+<tspan x="1400.0" dy="25.840000000000003">sys_clk[1]   rst_n_in[1]   clk[1]   rst_n[1]</tspan>
+<tspan x="1400.0" dy="25.840000000000003">cnn_mem_fault[1]   uart_rx[1]   uart_tx[1]   bridge_ready[1]</tspan>
+<tspan x="1400.0" dy="25.840000000000003">bridge_busy[1]   cnn_status_busy[1]   cnn_status_done[1]   cnn_status_error[1]</tspan>
+<tspan x="1400.0" dy="25.840000000000003">led_ready[1]   led_busy[1]   led_error[1]   soc_active[6]</tspan>
+<tspan x="1400.0" dy="25.840000000000003">soc_fault[6]   rx_receiving[1]   packets_checked[32]   compute_fire[1]</tspan>
+<tspan x="1400.0" dy="25.840000000000003">frame_done[1]   frames_done[32]   pixels_consumed[32]   soc_module_state[12]</tspan>
+</text>
+<text x="2215.0" y="1169.2" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#e5e7eb">
+<tspan x="2215.0" dy="0">CLOCK 的 clk / rst_n 接入其余五个模块</tspan>
+<tspan x="2215.0" dy="27.200000000000003">外部 sys_clk / rst_n_in → CLOCK</tspan>
+<tspan x="2215.0" dy="27.200000000000003">uart_rx 外部 → IMAGE_BRIDGE；uart_tx 反向</tspan>
+<tspan x="2215.0" dy="27.200000000000003">彩色线为总线组，括号内是各信号位宽</tspan>
+</text>
+</svg>
