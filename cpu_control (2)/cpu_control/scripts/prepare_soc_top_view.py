@@ -89,8 +89,11 @@ def session(name,wave,selected,start,zoom):
     return count
 
 def guide(run,marks,counts):
+    report=json.loads((run/'result.json').read_text())
+    uart=report.get('uart_config',{'baud':12500000,'chunk_bytes':64})
     lines=['# 六模块顶层波形与信号说明','',
         '本交付对应新版 face_soc_overlap_top。波形来自本次真实 CPU/UART/19 任务仿真，从复位开始记录；第一层只显示六个大模块的接口及顶层状态，不展开 CPU 流水级、CNN 算子或 PE 内部状态。','',
+        f"当前仿真 UART：{uart['baud']/1000000:g} Mbps，每包 {uart['chunk_bytes']} 字节；收发两端使用一致设置，保留起止位、包 CRC 和整批 CRC。系统时钟仍为 100 MHz。",'',
         '## 打开波形','',
         '| 入口 | 显示内容 |','|---|---|',
         '| [open_all_modules.cmd](open_all_modules.cmd) | 全部接口，按模块分组着色；默认定位 CNN 运行区间 |',

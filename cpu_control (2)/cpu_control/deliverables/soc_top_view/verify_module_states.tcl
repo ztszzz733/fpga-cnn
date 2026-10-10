@@ -5,7 +5,7 @@ set state_names [list {soc_top.cpu_state[1:0]} {soc_top.cnn_state[1:0]} {soc_top
 gtkwave::highlightSignalsFromList $state_names
 gtkwave::installFileFilter $filter
 gtkwave::unhighlightSignalsFromList $state_names
-gtkwave::setZoomRangeTimes 0 10196190000
+gtkwave::setZoomRangeTimes 0 4002570000
 gtkwave::/View/Scale_To_Time_Dimension/ns
 gtkwave::/Edit/Set_Trace_Max_Hier 1
 gtkwave::/File/Write_Save_File_As [file join $out module_states.gtkw]
@@ -15,7 +15,7 @@ set shown [gtkwave::getDisplayedSignals]
 puts $log "UNIQUE=[llength [lsort -unique $shown]]"
 if {[llength $shown] != [llength [lsort -unique $shown]]} {puts $log "FAIL duplicate signal"}
 flush $log
-gtkwave::setMarker 9975645000
+gtkwave::setMarker 3782025000
 set value [gtkwave::getTraceValueAtMarkerFromName {soc_top.cnn_state[1:0]}]
 puts $log "STATE=$value"
 if {![string match "*WORK*" $value]} {puts $log "FAIL state translation"}

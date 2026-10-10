@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Fri Oct 09 13:37:20 2026
+[*] Fri Oct 09 14:33:49 2026
 [*]
 [dumpfile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\soc_top.fst"
-[dumpfile_mtime] "Fri Oct 09 13:36:34 2026"
-[dumpfile_size] 1390833
+[dumpfile_mtime] "Fri Oct 09 14:32:14 2026"
+[dumpfile_size] 641053
 [savefile] "D:\code\FPGA1\cpu_control (2)\cpu_control\deliverables\soc_top_view\power_on.gtkw"
 [timestart] 0
 [size] 1800 1050

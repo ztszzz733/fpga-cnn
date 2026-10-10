@@ -15,7 +15,7 @@ set shown [gtkwave::getDisplayedSignals]
 puts $log "UNIQUE=[llength [lsort -unique $shown]]"
 if {[llength $shown] != [llength [lsort -unique $shown]]} {puts $log "FAIL duplicate signal"}
 flush $log
-gtkwave::setMarker 9975645000
+gtkwave::setMarker 3782025000
 set value [gtkwave::getTraceValueAtMarkerFromName {soc_top.cnn_state[1:0]}]
 puts $log "STATE=$value"
 if {![string match "*WORK*" $value]} {puts $log "FAIL state translation"}

@@ -2,8 +2,9 @@
 module tb_soc_overlap;
     parameter integer ENABLE_OVERLAP=1, BANKS=4;
     parameter bit OBSERVE_FAULT=0;
+    parameter integer UART_BAUD=25000000, UART_CHUNK_BYTES=256;
     `include "overlap_vectors.svh"
-    localparam integer BIT_NS=80;
+    localparam integer BIT_NS=10*(100000000/UART_BAUD);
     logic sys_clk=0,rst_n_in=0,uart_rx=1;
     wire uart_tx,led_ready,led_busy,led_error;
     always #5 sys_clk=~sys_clk;
@@ -12,7 +13,7 @@ module tb_soc_overlap;
 `else
     face_soc_overlap_top #(.BANKS(BANKS),.ENABLE_OVERLAP(ENABLE_OVERLAP),
 `endif
-        .CLOCK_HZ(100000000),.BAUD(12500000),.UART_TIMEOUT_CYCLES(10000),
+        .CLOCK_HZ(100000000),.BAUD(UART_BAUD),.CHUNK_BYTES(UART_CHUNK_BYTES),.UART_TIMEOUT_CYCLES(10000),
         .LOAD_BYTES(LOAD_BYTES),.EXPECTED_CRC32(DEMO_CRC),
         .IMEM_SIZE(4096),.SRAM_SIZE(16384),.IMEM_INIT_FILE("program.mem")) dut (.*);
     reg [7:0] external_memory[0:LOAD_BYTES-1],request_bytes[0:15],reply_bytes[0:271];
@@ -22,6 +23,7 @@ module tb_soc_overlap;
     integer own_load_compute=0,own_store_compute=0,compute_cycles=0,multi_active=0,hazard_cycles=0;
     integer mac_ops=0,peak_active=0;
     integer timeline,finish_value=0,grants,active_units,writes=0,starts=0;
+    integer load_start_cycle=-1,load_done_cycle=-1;
     reg finished=0,ld_fire,st_fire;
     reg [31:0] crc,actual,observed;
     function automatic [31:0] crc_byte(input [31:0] old,input [7:0] value);
@@ -66,12 +68,14 @@ module tb_soc_overlap;
         chunk_addr={request_bytes[11],request_bytes[10],request_bytes[9],request_bytes[8]};
         chunk_len={request_bytes[7],request_bytes[6]};
         if(actual!==~crc || {request_bytes[0],request_bytes[1],request_bytes[2],request_bytes[3]}!==32'h494d494f ||
-           request_bytes[4]!=2 || chunk_addr!=request_count*64 || chunk_len!=64 || chunk_addr+chunk_len>LOAD_BYTES)
+           request_bytes[4]!=2 || chunk_addr!=request_count*UART_CHUNK_BYTES ||
+           chunk_len!=((LOAD_BYTES-chunk_addr<UART_CHUNK_BYTES) ? LOAD_BYTES-chunk_addr : UART_CHUNK_BYTES) ||
+           chunk_addr+chunk_len>LOAD_BYTES)
             $fatal(1,"bad external load request");
         request_count=request_count+1;
         #(BIT_NS*3);
         reply_bytes[0]='h49;reply_bytes[1]='h4d;reply_bytes[2]='h4f;reply_bytes[3]='h52;
-        reply_bytes[4]=0;reply_bytes[5]=request_bytes[5];reply_bytes[6]=chunk_len;reply_bytes[7]=0;
+        reply_bytes[4]=0;reply_bytes[5]=request_bytes[5];reply_bytes[6]=chunk_len;reply_bytes[7]=chunk_len>>8;
         for(integer i=0;i<4;i=i+1) reply_bytes[8+i]=chunk_addr>>(8*i);
         for(integer i=0;i<chunk_len;i=i+1) reply_bytes[12+i]=external_memory[chunk_addr+i];
         crc=32'hffffffff;
@@ -83,6 +87,8 @@ module tb_soc_overlap;
     end
     always @(posedge sys_clk) if(dut.rst_n) begin
         cycles=cycles+1;
+        if(dut.load_req && load_start_cycle<0) load_start_cycle=cycles;
+        if(dut.load_complete && load_done_cycle<0) load_done_cycle=cycles;
         if(led_error && !OBSERVE_FAULT) $fatal(1,"system error: bridge=%b memory=%b",dut.bridge_error,dut.cnn_mem_fault);
         if(dut.io_mem_req && dut.io_mem_gnt && dut.io_mem_we) writes=writes+1;
         if(dut.cnn_mmio_we && dut.cnn_mmio_ready && dut.cnn_mmio_addr==32'h40000000 && dut.cnn_mmio_wdata==32'h3d) begin
@@ -150,8 +156,10 @@ module tb_soc_overlap;
         if(!ENABLE_OVERLAP && (own_load_compute!=0 || own_store_compute!=0)) $fatal(1,"serial control overlaps");
         if(BANKS>1 && multi_bank==0) $fatal(1,"no bank concurrency");
 `endif
-        $display("METRICS cnn_cycles=%0d tasks=%0d compute_cycles=%0d mac_ops=%0d peak_active=%0d multi_active=%0d hazard_cycles=%0d load_compute=%0d store_compute=%0d own_load_compute=%0d own_store_compute=%0d load_store=%0d multi_bank=%0d max_grants=%0d total_cycles=%0d",
-            done_cycle-start_cycle,TASKS,compute_cycles,mac_ops,peak_active,multi_active,hazard_cycles,load_compute,store_compute,own_load_compute,own_store_compute,load_store,multi_bank,max_grants,cycles);
+        if(request_count!=(LOAD_BYTES+UART_CHUNK_BYTES-1)/UART_CHUNK_BYTES) $fatal(1,"unexpected UART packet count");
+        $display("METRICS cnn_cycles=%0d tasks=%0d compute_cycles=%0d mac_ops=%0d peak_active=%0d multi_active=%0d hazard_cycles=%0d load_compute=%0d store_compute=%0d own_load_compute=%0d own_store_compute=%0d load_store=%0d multi_bank=%0d max_grants=%0d total_cycles=%0d uart_baud=%0d chunk_bytes=%0d uart_requests=%0d load_cycles=%0d",
+            done_cycle-start_cycle,TASKS,compute_cycles,mac_ops,peak_active,multi_active,hazard_cycles,load_compute,store_compute,own_load_compute,own_store_compute,load_store,multi_bank,max_grants,cycles,
+            UART_BAUD,UART_CHUNK_BYTES,request_count,load_done_cycle-load_start_cycle);
         $fclose(timeline);
         $display("PASS tb_soc_overlap");$finish;
         end
@@ -184,4 +192,6 @@ module tb_soc_overlap;
     end
 `endif
     initial begin #50000000;$fatal(1,"watchdog PC=%h dispatched=%0d completed=%0d",dut.imem_addr,dispatched,completed);end
+    initial assert (UART_BAUD>0 && 100000000%UART_BAUD==0 && 100000000/UART_BAUD>=4 &&
+                    UART_CHUNK_BYTES>=1 && UART_CHUNK_BYTES<=256) else $fatal(1,"invalid UART simulation parameters");
 endmodule

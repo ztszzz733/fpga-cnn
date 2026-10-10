@@ -6,9 +6,12 @@
 
 - [打开完整模块波形](deliverables/soc_top_view/open_all_modules.cmd)
 - [查看六模块状态总览](deliverables/soc_top_view/open_module_states.cmd)
+- [波形阅读指南](deliverables/soc_top_view/波形阅读指南.md)（[网页版](deliverables/soc_top_view/波形阅读指南.html)，按实际时间点逐步阅读）
 - [可编辑 draw.io 架构与状态图](deliverables/soc_top_view/soc_architecture.drawio)
 
-重新生成：`scripts/run_overlap_sim.ps1 -Cases overlap,observer_fault,restart -TopWaves`，随后把输出目录传给 `scripts/prepare_soc_top_view.py`，并运行 `scripts/draw_soc_top.py`。本次数据来自 20261009_210222_569883_overlap_integration；正常、故障复位和原有恢复测试均通过。
+重新生成：`scripts/run_overlap_sim.ps1 -Cases overlap,observer_fault,restart -TopWaves`，随后把输出目录传给 `scripts/prepare_soc_top_view.py`，并运行 `scripts/draw_soc_top.py`。当前波形来自 20261009_222856_065280_overlap_integration；默认仿真 UART 已提高到 25 Mbps、每包 256 字节，正常、故障复位和原有恢复测试均通过。
+
+UART 提速对照：`scripts/run_overlap_sim.ps1 -Cases uart_baseline,overlap -TopWaves`。旧参数可用 `-UartBaud 12500000 -ChunkBytes 64` 恢复；总图接口和 61 根去重信号不变。说明见 [UART 仿真提速](docs/uart_simulation_speed.md)。
 
 ## 2026-10-09 仿真架构：搬运计算重叠
 

@@ -15,12 +15,14 @@ from run_tests import ROOT, tools, tool_env, execute
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--cases',nargs='+',choices=['original','serial','overlap','one_bank','memory','restart','observer_fault'],
+    parser.add_argument('--cases',nargs='+',choices=['original','serial','overlap','one_bank','memory','restart','observer_fault','uart_baseline'],
                         default=['original','serial','overlap','one_bank','memory','restart'])
     parser.add_argument('--seed',type=int,default=1)
     parser.add_argument('--simulator',choices=['auto','verilator','xsim'],default='auto')
     parser.add_argument('--waves',action='store_true')
     parser.add_argument('--top-waves',action='store_true',help='Trace top module I/O from reset, with limited hierarchy depth')
+    parser.add_argument('--uart-baud',type=int,choices=[12500000,25000000],default=25000000)
+    parser.add_argument('--chunk-bytes',type=int,choices=[64,255,256],default=256)
     args=parser.parse_args()
     if args.top_waves: args.waves=True
     run=ROOT/'build/runs'/(datetime.now().strftime('%Y%m%d_%H%M%S_%f')+'_overlap_integration')
@@ -32,7 +34,8 @@ def main():
         found['verilator']=str(local/'bin/verilator');env['VERILATOR_ROOT']=str(local)
     simulator=args.simulator
     if simulator=='auto': simulator='verilator' if found.get('verilator') else 'xsim'
-    result={'status':'RUNNING','seed':args.seed,'simulator':simulator,'tests':{},'run_dir':str(run)}
+    result={'status':'RUNNING','seed':args.seed,'simulator':simulator,'tests':{},'run_dir':str(run),
+            'uart_config':{'baud':args.uart_baud,'chunk_bytes':args.chunk_bytes}}
     try:
         for case in args.cases:
             folder=run/case;folder.mkdir()
@@ -41,6 +44,8 @@ def main():
             filelist=ROOT/'rtl/filelists'/('system_autoload.f' if original else 'system_overlap.f')
             sources=[ROOT/x.strip() for x in filelist.read_text().splitlines() if x.strip()]
             top={'memory':'tb_datasram_banked','restart':'tb_overlap_restart'}.get(case,'tb_soc_overlap')
+            baud=12500000 if case=='uart_baseline' else args.uart_baud
+            chunk=64 if case=='uart_baseline' else args.chunk_bytes
             sources.append(ROOT/f'tb/integration/{top}.sv')
             hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
             if simulator=='verilator':
@@ -59,6 +64,7 @@ def main():
                     shutil.copyfile(folder/'overlap_vectors.svh',stage/'overlap_vectors.svh')
                     params=[] if original else [f'-GENABLE_OVERLAP={0 if case=="serial" else 1}',f'-GBANKS={1 if case=="one_bank" else 4}']
                     if case=='observer_fault':params+=['-GOBSERVE_FAULT=1']
+                    if top=='tb_soc_overlap':params += [f'-GUART_BAUD={baud}',f'-GUART_CHUNK_BYTES={chunk}']
                     execute([compiler,'--binary','--timing','--assert','-Wno-fatal','-j','4','-CFLAGS','-std=c++20',
                              '-MAKEFLAGS','CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3',
                              '--top-module',top,'--Mdir',stage/'obj','-I'+str(stage),
@@ -71,6 +77,7 @@ def main():
                 params=[] if original else ['-generic_top',f'ENABLE_OVERLAP={0 if case=="serial" else 1}',
                                        '-generic_top',f'BANKS={1 if case=="one_bank" else 4}']
                 if case=='observer_fault':params+=['-generic_top','OBSERVE_FAULT=1']
+                if top=='tb_soc_overlap':params+=['-generic_top',f'UART_BAUD={baud}','-generic_top',f'UART_CHUNK_BYTES={chunk}']
                 execute([found['xelab'],top,'-s','overlap','-debug','typical','-mt','2',*params],folder,env,folder/'compile.log',timeout=300)
                 tcl=f'open_vcd {{wave.vcd}}\nlog_vcd [get_objects /{top}/*]\nrun all\nclose_vcd\nquit\n'
                 (folder/'run.tcl').write_text(tcl)
@@ -97,6 +104,9 @@ def main():
             result['overlap_vs_serial_speedup']=b/a
         if 'overlap' in tests and 'original' in tests:
             result['new_vs_original_speedup']=tests['original']['metrics']['cnn_cycles']/tests['overlap']['metrics']['cnn_cycles']
+        if 'overlap' in tests and 'uart_baseline' in tests:
+            result['uart_load_speedup']=tests['uart_baseline']['metrics']['load_cycles']/tests['overlap']['metrics']['load_cycles']
+            result['uart_end_to_end_speedup']=tests['uart_baseline']['metrics']['total_cycles']/tests['overlap']['metrics']['total_cycles']
         result['status']='PASS'
     except Exception as exc:
         result.update(status='FAIL',error=str(exc));print(str(exc),flush=True)

@@ -1,17 +1,17 @@
 {
-  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261009_210222_569883_overlap_integration",
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261009_222856_065280_overlap_integration",
   "marks_ps": {
     "load_req": 225000,
-    "load_complete": 9975275000,
-    "cnn_status_busy": 9975545000,
-    "cnn_status_done": 10011655000,
-    "end": 10196190000
+    "load_complete": 3781675000,
+    "cnn_status_busy": 3781925000,
+    "cnn_status_done": 3818035000,
+    "end": 4002570000
   },
   "fault_marks_ps": {
     "load_req": 225000,
-    "bridge_error": 113335000,
-    "load_complete": 113335000,
-    "end": 113420000
+    "bridge_error": 106935000,
+    "load_complete": 106935000,
+    "end": 107020000
   },
   "unique_signals": 61,
   "trace_counts": {
@@ -20,7 +20,7 @@
     "module_states": 9,
     "fault_reset": 61
   },
-  "source_vcd_sha256": "6035835560e6bed58a7c56881aecab3515222443451170da2f0667d476221427",
+  "source_vcd_sha256": "e1fcd7f354e7a9dadafd77e8d26a055eefed5c03e3487afac239be246643a9e8",
   "signal_mapping": {
     "sys_clk": "tb_soc_overlap.dut.sys_clk",
     "rst_n_in": "tb_soc_overlap.dut.rst_n_in",
