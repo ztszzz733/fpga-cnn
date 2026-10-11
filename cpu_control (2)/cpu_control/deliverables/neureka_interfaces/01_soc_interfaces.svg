@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3120" height="2200" viewBox="0 0 3120 2200">
+<defs><marker id="a0" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#58a6ff"/></marker><marker id="a1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#efdf69"/></marker><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ef72b3"/></marker><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ff666c"/></marker><marker id="a4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#e5e7eb"/></marker><marker id="a5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#9ca3af"/></marker></defs>
+<rect width="3120" height="2200" fill="#101216"/>
+<rect x="25" y="25" width="3070" height="2150" fill="#101216" stroke="#b4b4b4" stroke-width="2"/>
+<text x="1560.0" y="69.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" fill="#e5e7eb">
+<tspan x="1560.0" dy="0">NEureka SoC · 六大模块与输入输出信号</tspan>
+</text>
+<text x="1560.0" y="122.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#9ca3af">
+<tspan x="1560.0" dy="0">face_soc_neureka_top  |  信号名 / 位宽  |  蓝：地址   黄：数据   粉：控制   红：外部接口</tspan>
+</text>
+<rect x="160" y="290" width="540" height="630" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="430.0" y="557.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="430.0" dy="0">CPU_CORE</tspan>
+</text>
+<text x="430.0" y="600.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="430.0" dy="0">cpu_core_autoload</tspan>
+</text>
+<text x="430.0" y="653.9" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="430.0" dy="0">执行指令 / 提交任务</tspan>
+<tspan x="430.0" dy="27.200000000000003">MMIO 轮询完成</tspan>
+</text>
+<text x="430.0" y="873.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="430.0" dy="0">cpu_state /2</tspan>
+</text>
+<rect x="1210" y="290" width="350" height="290" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1385.0" y="387.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="1385.0" dy="0">IMEM</tspan>
+</text>
+<text x="1385.0" y="430.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1385.0" dy="0">imem_rom</tspan>
+</text>
+<text x="1385.0" y="497.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="1385.0" dy="0">指令存储</tspan>
+</text>
+<text x="1385.0" y="533.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="1385.0" dy="0">imem_state /2</tspan>
+</text>
+<rect x="160" y="1330" width="540" height="640" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="430.0" y="1602.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="430.0" dy="0">CNN</tspan>
+</text>
+<text x="430.0" y="1645.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="430.0" dy="0">mobilefacenet_neureka_top</tspan>
+</text>
+<text x="430.0" y="1698.9" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="430.0" dy="0">NEureka 4×4 PE</tspan>
+<tspan x="430.0" dy="27.200000000000003">格式转换 / 原 ReLU / 原池化</tspan>
+</text>
+<text x="430.0" y="1923.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="430.0" dy="0">cnn_state /2</tspan>
+</text>
+<rect x="1280" y="770" width="350" height="1200" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1455.0" y="1322.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="1455.0" dy="0">DATASRAM</tspan>
+</text>
+<text x="1455.0" y="1365.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="1455.0" dy="0">datasram_banked</tspan>
+</text>
+<text x="1455.0" y="1405.3" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="1455.0" dy="0">4-bank SRAM</tspan>
+<tspan x="1455.0" dy="27.200000000000003">内部仲裁</tspan>
+<tspan x="1455.0" dy="27.200000000000003">CPU / CNN / IO 共享</tspan>
+</text>
+<text x="1455.0" y="1923.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="1455.0" dy="0">sram_state /2</tspan>
+</text>
+<rect x="2210" y="770" width="420" height="680" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="2420.0" y="1062.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="2420.0" dy="0">IMAGE_BRIDGE</tspan>
+</text>
+<text x="2420.0" y="1105.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="2420.0" dy="0">image_bridge_autoload</tspan>
+</text>
+<text x="2420.0" y="1158.9" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="2420.0" dy="0">UART 接收 / CRC</tspan>
+<tspan x="2420.0" dy="27.200000000000003">加载资料到 SRAM</tspan>
+</text>
+<text x="2420.0" y="1403.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="2420.0" dy="0">bridge_state /2</tspan>
+</text>
+<rect x="2230" y="1690" width="400" height="280" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="2430.0" y="1782.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="2430.0" dy="0">CLOCK</tspan>
+</text>
+<text x="2430.0" y="1825.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="17" fill="#9ca3af">
+<tspan x="2430.0" dy="0">clock_unit</tspan>
+</text>
+<text x="2430.0" y="1892.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#9ca3af">
+<tspan x="2430.0" dy="0">时钟直通 / 复位释放</tspan>
+</text>
+<text x="2430.0" y="1923.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" fill="#ef72b3">
+<tspan x="2430.0" dy="0">clock_state /2</tspan>
+</text>
+<polyline points="700,335 1210,335" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="955.0" y="312.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="955.0" dy="0">imem_addr /32</tspan>
+</text>
+<polyline points="1210,410 700,410" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="955.0" y="387.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="955.0" dy="0">imem_rdata /32</tspan>
+</text>
+<polyline points="700,485 1210,485" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="955.0" y="462.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="955.0" dy="0">imem_re /1</tspan>
+</text>
+<polyline points="2490,770 2490,205 490,205 490,290" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1600.0" y="181.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1600.0" dy="0">load_complete /1   +   load_error /1</tspan>
+</text>
+<polyline points="700,655 2090,655 2090,805 2210,805" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1485.0" y="629.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1485.0" dy="0">load_req /1</tspan>
+</text>
+<polyline points="700,785 1280,785" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="990.0" y="767.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">dmem_addr /32</tspan>
+</text>
+<polyline points="700,825 1280,825" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="990.0" y="807.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">dmem_wdata /32</tspan>
+</text>
+<polyline points="700,865 1280,865" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="847.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">dmem_re /1 + dmem_we /1 + dmem_wstrb /4</tspan>
+</text>
+<polyline points="1280,905 700,905" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="990.0" y="887.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">dmem_rdata /32</tspan>
+</text>
+<polyline points="215,920 215,1330" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="192.0" y="1125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb" transform="rotate(-90 192.0 1125.0)">
+<tspan x="192.0" dy="0">cnn_mmio_addr /32</tspan>
+</text>
+<polyline points="320,920 320,1330" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="297.0" y="1125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb" transform="rotate(-90 297.0 1125.0)">
+<tspan x="297.0" dy="0">cnn_mmio_wdata /32</tspan>
+</text>
+<polyline points="425,920 425,1330" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="402.0" y="1125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb" transform="rotate(-90 402.0 1125.0)">
+<tspan x="402.0" dy="0">cnn_mmio_re /1 + we /1</tspan>
+</text>
+<polyline points="530,1330 530,920" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="507.0" y="1125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb" transform="rotate(-90 507.0 1125.0)">
+<tspan x="507.0" dy="0">cnn_mmio_rdata /32</tspan>
+</text>
+<polyline points="635,1330 635,920" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="612.0" y="1125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb" transform="rotate(-90 612.0 1125.0)">
+<tspan x="612.0" dy="0">cnn_mmio_ready /1</tspan>
+</text>
+<polyline points="700,1410 1280,1410" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="990.0" y="1387.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_addr /352 (11 × 32)</tspan>
+</text>
+<polyline points="700,1480 1280,1480" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="990.0" y="1457.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_wdata /352 (11 × 32)</tspan>
+</text>
+<polyline points="700,1550 1280,1550" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="1527.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_valid /11</tspan>
+</text>
+<polyline points="700,1620 1280,1620" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="1597.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_write /11  +  cnn_byte /11</tspan>
+</text>
+<polyline points="1280,1690 700,1690" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="1667.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_ready /11</tspan>
+</text>
+<polyline points="1280,1760 700,1760" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="1737.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_response /11</tspan>
+</text>
+<polyline points="1280,1830 700,1830" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="990.0" y="1807.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_rdata /352 (11 × 32)</tspan>
+</text>
+<polyline points="700,1900 1280,1900" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="990.0" y="1877.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="990.0" dy="0">cnn_cancel /1</tspan>
+</text>
+<polyline points="2210,900 1630,900" fill="none" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a0)"/>
+<text x="1920.0" y="877.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1920.0" dy="0">io_mem_addr /32</tspan>
+</text>
+<polyline points="2210,980 1630,980" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="1920.0" y="957.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1920.0" dy="0">io_mem_wdata /32</tspan>
+</text>
+<polyline points="2210,1060 1630,1060" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1920.0" y="1037.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1920.0" dy="0">io_mem_req /1 + we /1 + be /4</tspan>
+</text>
+<polyline points="1630,1190 2210,1190" fill="none" stroke="#efdf69" stroke-width="2.5" marker-end="url(#a1)"/>
+<text x="1920.0" y="1167.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1920.0" dy="0">io_mem_rdata /32</tspan>
+</text>
+<polyline points="1630,1270 2210,1270" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1920.0" y="1247.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1920.0" dy="0">io_mem_gnt /1 + rvalid /1 + error /1</tspan>
+</text>
+<polyline points="3045,920 2630,920" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="2837.5" y="897.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2837.5" dy="0">uart_rx /1</tspan>
+</text>
+<polyline points="2630,1370 3045,1370" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="2837.5" y="1347.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2837.5" dy="0">uart_tx /1</tspan>
+</text>
+<polyline points="3045,1755 2630,1755" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="2835.0" y="1733.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2835.0" dy="0">sys_clk /1</tspan>
+</text>
+<polyline points="3045,1860 2630,1860" fill="none" stroke="#ff666c" stroke-width="2.5" marker-end="url(#a3)"/>
+<text x="2835.0" y="1838.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2835.0" dy="0">rst_n_in /1</tspan>
+</text>
+<polyline points="2230,1800 1910,1800" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="2070.0" y="1775.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2070.0" dy="0">clk /1</tspan>
+</text>
+<polyline points="2230,1910 1910,1910" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="2070.0" y="1885.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="2070.0" dy="0">rst_n /1</tspan>
+</text>
+<text x="2260.0" y="1998.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="2260.0" dy="0">同名全局网分发至其余五模块；完整连接见第 2 页</tspan>
+</text>
+<text x="925.0" y="2029.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#9ca3af">
+<tspan x="925.0" dy="0">CNN 客户端：0～8 卷积桥；9 描述符 / 配置 / DMA；10 后处理。</tspan>
+</text>
+<text x="1540.0" y="2077.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#9ca3af">
+<tspan x="1540.0" dy="0">本图为当前完整 SoC 接线；已完成的大图仿真只覆盖 CPU / IMEM / CNN / SRAM，图片预加载，不含 UART 闭环。</tspan>
+</text>
+<text x="1540.0" y="2125.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="1540.0" dy="0">各模块底部为顶层观察状态：0 RESET · 1 IDLE · 2 WORK · 3 FAULT；状态逻辑不增加第七个大模块。</tspan>
+</text>
+</svg>

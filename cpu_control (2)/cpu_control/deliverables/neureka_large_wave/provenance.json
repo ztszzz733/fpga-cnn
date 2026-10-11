@@ -1,0 +1,659 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261011_153522_neureka",
+  "signals": [
+    {
+      "name": "rst_n",
+      "width": 1,
+      "expr": "rst_n",
+      "group": 0,
+      "description": "复位",
+      "overview": true,
+      "code": "s0"
+    },
+    {
+      "name": "queue_state",
+      "width": 3,
+      "expr": "cnn.state",
+      "group": 1,
+      "description": "CNN 队列状态",
+      "overview": true,
+      "code": "s1"
+    },
+    {
+      "name": "task_index",
+      "width": 32,
+      "expr": "task_index",
+      "group": 1,
+      "description": "已完成任务数/当前任务序号",
+      "overview": true,
+      "code": "s2"
+    },
+    {
+      "name": "task_opcode",
+      "width": 4,
+      "expr": "task_opcode",
+      "group": 1,
+      "description": "任务类型",
+      "overview": true,
+      "code": "s3"
+    },
+    {
+      "name": "task_launch",
+      "width": 1,
+      "expr": "cnn.launch",
+      "group": 1,
+      "description": "任务派发",
+      "overview": true,
+      "code": "s4"
+    },
+    {
+      "name": "status_busy",
+      "width": 1,
+      "expr": "status_busy",
+      "group": 1,
+      "description": "CNN 忙",
+      "overview": true,
+      "code": "s5"
+    },
+    {
+      "name": "status_done",
+      "width": 1,
+      "expr": "status_done",
+      "group": 1,
+      "description": "CNN 整批完成脉冲",
+      "overview": true,
+      "code": "s6"
+    },
+    {
+      "name": "status_error",
+      "width": 1,
+      "expr": "status_error",
+      "group": 1,
+      "description": "CNN 错误",
+      "overview": true,
+      "code": "s7"
+    },
+    {
+      "name": "wrapper_state",
+      "width": 4,
+      "expr": "cnn.convolution.state",
+      "group": 2,
+      "description": "卷积配置控制状态",
+      "overview": true,
+      "code": "s8"
+    },
+    {
+      "name": "core_busy",
+      "width": 1,
+      "expr": "core_active",
+      "group": 2,
+      "description": "NEureka 忙，包含等待",
+      "overview": true,
+      "code": "s9"
+    },
+    {
+      "name": "core_state",
+      "width": 6,
+      "expr": "core_state",
+      "group": 2,
+      "description": "NEureka 主状态，非 MAC 有效",
+      "overview": true,
+      "code": "s10"
+    },
+    {
+      "name": "dma_busy",
+      "width": 1,
+      "expr": "cnn.lbusy",
+      "group": 3,
+      "description": "格式转换忙",
+      "overview": true,
+      "code": "s11"
+    },
+    {
+      "name": "scalar_busy",
+      "width": 6,
+      "expr": "cnn.sbusy",
+      "group": 4,
+      "description": "原后处理各算子忙",
+      "overview": true,
+      "code": "s12"
+    },
+    {
+      "name": "memory_idle",
+      "width": 1,
+      "expr": "cnn.memory_idle",
+      "group": 5,
+      "description": "HCI 桥无在途事务",
+      "overview": true,
+      "code": "s13"
+    },
+    {
+      "name": "detail_valid",
+      "width": 1,
+      "expr": "trace_capture",
+      "group": 0,
+      "description": "1 表示当前详细信号有记录，0 区域显示 X",
+      "overview": true,
+      "code": "s14"
+    },
+    {
+      "name": "clk",
+      "width": 1,
+      "expr": "clk",
+      "group": 0,
+      "description": "真实时钟，采样时间比边沿晚 1ns",
+      "overview": false,
+      "code": "s15"
+    },
+    {
+      "name": "mmio_we",
+      "width": 1,
+      "expr": "mmio_we",
+      "group": 1,
+      "description": "CPU→CNN 写请求",
+      "overview": false,
+      "code": "s16"
+    },
+    {
+      "name": "mmio_re",
+      "width": 1,
+      "expr": "mmio_re",
+      "group": 1,
+      "description": "CPU→CNN 读请求",
+      "overview": false,
+      "code": "s17"
+    },
+    {
+      "name": "mmio_ready",
+      "width": 1,
+      "expr": "mmio_ready",
+      "group": 1,
+      "description": "CNN→CPU 请求可接受",
+      "overview": false,
+      "code": "s18"
+    },
+    {
+      "name": "mmio_addr",
+      "width": 32,
+      "expr": "mmio_addr",
+      "group": 1,
+      "description": "CPU→CNN 寄存器地址",
+      "overview": false,
+      "code": "s19"
+    },
+    {
+      "name": "mmio_wdata",
+      "width": 32,
+      "expr": "mmio_wdata",
+      "group": 1,
+      "description": "CPU→CNN 控制字",
+      "overview": false,
+      "code": "s20"
+    },
+    {
+      "name": "cfg_req",
+      "width": 1,
+      "expr": "cnn.cv",
+      "group": 2,
+      "description": "配置控制器→SRAM 读请求，走客户端9",
+      "overview": false,
+      "code": "s21"
+    },
+    {
+      "name": "cfg_ready",
+      "width": 1,
+      "expr": "cnn_ready[9]",
+      "group": 2,
+      "description": "SRAM→客户端9 接受请求",
+      "overview": false,
+      "code": "s22"
+    },
+    {
+      "name": "cfg_response",
+      "width": 1,
+      "expr": "cnn_response[9]",
+      "group": 2,
+      "description": "SRAM→客户端9 事务完成（也用于 DMA/描述符）",
+      "overview": false,
+      "code": "s23"
+    },
+    {
+      "name": "hci_req",
+      "width": 1,
+      "expr": "cnn.convolution.tcdm.req",
+      "group": 2,
+      "description": "NEureka→桥 请求",
+      "overview": false,
+      "code": "s24"
+    },
+    {
+      "name": "hci_gnt",
+      "width": 1,
+      "expr": "cnn.convolution.tcdm.gnt",
+      "group": 2,
+      "description": "桥→NEureka 接受，桥已完成实际 SRAM 访问",
+      "overview": false,
+      "code": "s25"
+    },
+    {
+      "name": "hci_wen",
+      "width": 1,
+      "expr": "cnn.convolution.tcdm.wen",
+      "group": 2,
+      "description": "NEureka→桥，1读0写",
+      "overview": false,
+      "code": "s26"
+    },
+    {
+      "name": "hci_rvalid",
+      "width": 1,
+      "expr": "cnn.convolution.tcdm.r_valid",
+      "group": 2,
+      "description": "桥→NEureka 回复有效，grant 后一拍",
+      "overview": false,
+      "code": "s27"
+    },
+    {
+      "name": "hci_rready",
+      "width": 1,
+      "expr": "cnn.convolution.tcdm.r_ready",
+      "group": 2,
+      "description": "NEureka→桥 可以接收回复",
+      "overview": false,
+      "code": "s28"
+    },
+    {
+      "name": "hci_addr",
+      "width": 32,
+      "expr": "cnn.convolution.tcdm.add",
+      "group": 2,
+      "description": "NEureka→桥 地址，分辨输入/权重/输出区",
+      "overview": false,
+      "code": "s29"
+    },
+    {
+      "name": "hci_be",
+      "width": 36,
+      "expr": "cnn.convolution.tcdm.be",
+      "group": 2,
+      "description": "NEureka→桥 写字节使能",
+      "overview": false,
+      "code": "s30"
+    },
+    {
+      "name": "cnn_req",
+      "width": 11,
+      "expr": "cnn_valid",
+      "group": 5,
+      "description": "CNN→SRAM 11 路请求位图",
+      "overview": false,
+      "code": "s31"
+    },
+    {
+      "name": "cnn_gnt",
+      "width": 11,
+      "expr": "cnn_ready",
+      "group": 5,
+      "description": "SRAM→CNN 11 路接受位图",
+      "overview": false,
+      "code": "s32"
+    },
+    {
+      "name": "cnn_write",
+      "width": 11,
+      "expr": "cnn_write",
+      "group": 5,
+      "description": "CNN→SRAM 1写0读",
+      "overview": false,
+      "code": "s33"
+    },
+    {
+      "name": "cnn_byte",
+      "width": 11,
+      "expr": "cnn_byte",
+      "group": 5,
+      "description": "CNN→SRAM 1字节访问0整字访问",
+      "overview": false,
+      "code": "s34"
+    },
+    {
+      "name": "cnn_response",
+      "width": 11,
+      "expr": "cnn_response",
+      "group": 5,
+      "description": "SRAM→CNN 完成位图，写也回复",
+      "overview": false,
+      "code": "s35"
+    },
+    {
+      "name": "lane0_addr",
+      "width": 32,
+      "expr": "cnn_addr[0+:32]",
+      "group": 5,
+      "description": "卷积 SRAM 客户端0地址，其他路在同一 HCI 请求中",
+      "overview": false,
+      "code": "s36"
+    },
+    {
+      "name": "lane0_wdata",
+      "width": 32,
+      "expr": "cnn_wdata[0+:32]",
+      "group": 5,
+      "description": "卷积客户端0写数据",
+      "overview": false,
+      "code": "s37"
+    },
+    {
+      "name": "lane0_rdata",
+      "width": 32,
+      "expr": "cnn_rdata[0+:32]",
+      "group": 5,
+      "description": "SRAM→卷积客户端0读数据",
+      "overview": false,
+      "code": "s38"
+    },
+    {
+      "name": "dma_cfg_addr",
+      "width": 32,
+      "expr": "cnn_addr[288+:32]",
+      "group": 3,
+      "description": "客户端9地址：描述符/配置/DMA",
+      "overview": false,
+      "code": "s39"
+    },
+    {
+      "name": "dma_cfg_wdata",
+      "width": 32,
+      "expr": "cnn_wdata[288+:32]",
+      "group": 3,
+      "description": "客户端9写数据",
+      "overview": false,
+      "code": "s40"
+    },
+    {
+      "name": "post_addr",
+      "width": 32,
+      "expr": "cnn_addr[320+:32]",
+      "group": 4,
+      "description": "后处理客户端10地址",
+      "overview": false,
+      "code": "s41"
+    },
+    {
+      "name": "post_wdata",
+      "width": 32,
+      "expr": "cnn_wdata[320+:32]",
+      "group": 4,
+      "description": "后处理客户端10写数据",
+      "overview": false,
+      "code": "s42"
+    },
+    {
+      "name": "bridge_pending",
+      "width": 9,
+      "expr": "cnn.convolution.bridge.pending",
+      "group": 5,
+      "description": "桥等待各 SRAM 客户端回复的位图",
+      "overview": false,
+      "code": "s43"
+    },
+    {
+      "name": "mem_fault",
+      "width": 1,
+      "expr": "cnn_mem_fault",
+      "group": 5,
+      "description": "SRAM 故障",
+      "overview": false,
+      "code": "s44"
+    },
+    {
+      "name": "cpu_store",
+      "width": 1,
+      "expr": "dmem_we",
+      "group": 1,
+      "description": "CPU→SRAM 写使能",
+      "overview": false,
+      "code": "s45"
+    },
+    {
+      "name": "cpu_store_addr",
+      "width": 32,
+      "expr": "dmem_addr",
+      "group": 1,
+      "description": "CPU→SRAM 地址；0x80 为完成邮箱",
+      "overview": false,
+      "code": "s46"
+    },
+    {
+      "name": "cpu_store_data",
+      "width": 32,
+      "expr": "dmem_wdata",
+      "group": 1,
+      "description": "CPU→SRAM 写数据；0x600d 为成功",
+      "overview": false,
+      "code": "s47"
+    }
+  ],
+  "markers": [
+    [
+      "A",
+      225,
+      "CPU_START"
+    ],
+    [
+      "B",
+      7864955,
+      "CONV_DISPATCH"
+    ],
+    [
+      "C",
+      7875995,
+      "FIRST_CONV_WRITE"
+    ],
+    [
+      "D",
+      40963415,
+      "OUTPUT_LAYOUT"
+    ],
+    [
+      "E",
+      61608745,
+      "RELU"
+    ],
+    [
+      "F",
+      87415355,
+      "POOL"
+    ],
+    [
+      "G",
+      87415455,
+      "FIRST_POOL_WRITE"
+    ],
+    [
+      "H",
+      101608905,
+      "ALL_DONE"
+    ]
+  ],
+  "views": {
+    "01_overview": [
+      "全程：五个任务如何依次完成",
+      0,
+      101609106,
+      [
+        "rst_n",
+        "queue_state",
+        "task_index",
+        "task_opcode",
+        "task_launch",
+        "status_busy",
+        "status_done",
+        "status_error",
+        "wrapper_state",
+        "core_busy",
+        "core_state",
+        "dma_busy",
+        "scalar_busy",
+        "detail_valid"
+      ]
+    ],
+    "02_input": [
+      "输入：CPU 启动后，DMA 从 SRAM 读图并转换格式",
+      195,
+      1275,
+      [
+        "detail_valid",
+        "clk",
+        "task_index",
+        "task_opcode",
+        "queue_state",
+        "mmio_we",
+        "mmio_ready",
+        "mmio_addr",
+        "mmio_wdata",
+        "dma_busy",
+        "cnn_req",
+        "cnn_gnt",
+        "cnn_write",
+        "cnn_byte",
+        "cnn_response",
+        "dma_cfg_addr",
+        "dma_cfg_wdata",
+        "mem_fault"
+      ]
+    ],
+    "03_conv_setup": [
+      "卷积启动：配置读取、NEureka 开始取数",
+      7864915,
+      7867955,
+      [
+        "detail_valid",
+        "clk",
+        "task_index",
+        "task_opcode",
+        "queue_state",
+        "wrapper_state",
+        "core_busy",
+        "core_state",
+        "cfg_req",
+        "hci_req",
+        "hci_gnt",
+        "hci_wen",
+        "hci_rvalid",
+        "hci_rready",
+        "hci_addr",
+        "cnn_req",
+        "cnn_gnt",
+        "cnn_write",
+        "cnn_byte",
+        "cnn_response",
+        "lane0_addr",
+        "bridge_pending"
+      ]
+    ],
+    "04_conv_write": [
+      "第一次卷积写回：先完成 SRAM 写，再向 NEureka 回复",
+      7875980,
+      7876495,
+      [
+        "detail_valid",
+        "clk",
+        "task_index",
+        "task_opcode",
+        "queue_state",
+        "core_busy",
+        "core_state",
+        "hci_req",
+        "hci_gnt",
+        "hci_wen",
+        "hci_rvalid",
+        "hci_rready",
+        "hci_addr",
+        "hci_be",
+        "cnn_req",
+        "cnn_gnt",
+        "cnn_write",
+        "cnn_byte",
+        "cnn_response",
+        "lane0_addr",
+        "lane0_wdata",
+        "bridge_pending",
+        "memory_idle"
+      ]
+    ],
+    "05_pool_write": [
+      "池化输出：客户端10写入最终结果区",
+      87415390,
+      87415490,
+      [
+        "detail_valid",
+        "clk",
+        "task_index",
+        "task_opcode",
+        "queue_state",
+        "scalar_busy",
+        "cnn_req",
+        "cnn_gnt",
+        "cnn_write",
+        "cnn_byte",
+        "cnn_response",
+        "post_addr",
+        "post_wdata",
+        "mem_fault"
+      ]
+    ],
+    "06_complete": [
+      "整批完成：CNN 完成脉冲与 CPU 成功邮箱",
+      101608885,
+      101609107,
+      [
+        "detail_valid",
+        "clk",
+        "task_index",
+        "task_opcode",
+        "queue_state",
+        "status_busy",
+        "status_done",
+        "status_error",
+        "core_busy",
+        "dma_busy",
+        "scalar_busy",
+        "mmio_re",
+        "mmio_ready",
+        "mmio_addr",
+        "cpu_store",
+        "cpu_store_addr",
+        "cpu_store_data"
+      ]
+    ]
+  },
+  "stages": [
+    [
+      "输入 CHW→HWC",
+      425,
+      7864765
+    ],
+    [
+      "NEureka 卷积 / 量化",
+      7864955,
+      40963225
+    ],
+    [
+      "输出 HWC→CHW",
+      40963415,
+      61608555
+    ],
+    [
+      "ReLU",
+      61608745,
+      87415165
+    ],
+    [
+      "2×2 MaxPool",
+      87415355,
+      101608895
+    ]
+  ],
+  "signal_checks": "PASS"
+}

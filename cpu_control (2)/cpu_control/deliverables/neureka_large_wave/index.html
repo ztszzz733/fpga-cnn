@@ -1,0 +1,150 @@
+<!doctype html><meta charset="utf-8"><title>NEureka 大图仿真</title><style>body{max-width:1500px;margin:36px auto;padding:0 24px;background:#f7f9fc;color:#20334d;font:18px/1.7 system-ui}img{width:100%;border:1px solid #dce4ed;margin:20px 0}pre{white-space:pre-wrap;font:16px/1.8 system-ui}</style><h1>NEureka 大图控制波形</h1><p>256×256 RGB → 卷积 → ReLU → 池化。实际 RTL 结果核对通过。</p><h2>全程：五个任务如何依次完成</h2><img src="01_overview.png"><h2>输入：CPU 启动后，DMA 从 SRAM 读图并转换格式</h2><img src="02_input.png"><h2>卷积启动：配置读取、NEureka 开始取数</h2><img src="03_conv_setup.png"><h2>第一次卷积写回：先完成 SRAM 写，再向 NEureka 回复</h2><img src="04_conv_write.png"><h2>池化输出：客户端10写入最终结果区</h2><img src="05_pool_write.png"><h2>整批完成：CNN 完成脉冲与 CPU 成功邮箱</h2><img src="06_complete.png"><pre># 大图仿真与控制波形阅读说明
+
+本次真实 RTL 仿真已通过：256×256、3 通道输入，3×3/stride1/valid 卷积得到 254×254×8，再做 ReLU 和 2×2/stride2 最大池化，最终得到 127×127×8。卷积、ReLU 和池化共 1,161,288 字节均与独立整数参考计算一致；CPU 最后向 0x80 写入 0x600d。
+
+这里是一张确定性生成的测试图，像素值 0～127、有正负值的 8 bit 权重。不是训练好的人脸识别网络，也不是六张 524×524 的 UART 测试。输入在复位前预置到 SRAM；下面的“输入”表示 SRAM→CNN。
+
+## 实际花了多久
+
+| 项目 | 本次实际记录 |
+|---|---|
+| 编译仿真程序 | 0.00 分钟（0.000 秒） |
+| 电脑执行仿真（含波形写出和逐字节核对） | 148.63 分钟（8917.713 秒） |
+| 本次成功脚本总耗时（生成数据、编译、仿真等） | 149.04 分钟（8942.399 秒） |
+| 硬件任务时间（CPU 启动到 CNN 完成） | 10,160,868 周期，即 101.60868 ms @100 MHz |
+
+本次复用了上次已保存的仿真程序，重新编译耗时为 0；该程序原始编译耗时为 793.346 秒。电脑死机中断的前次运行不是 PASS，其耗时也没有计入本次成功运行。
+
+电脑运行耗时由 Python 单调时钟记录，见 result.json；硬件时间来自 RTL 周期计数。两者不能混用。此处不做前后加速倍数比较。成功脚本总耗时不包含本轮前期修改记录器和准备交付文件的时间。
+
+## 先打开哪些文件
+
+| 文件 | 观察内容 |
+|---|---|
+| open_01_overview.cmd | 全程五个任务及主要状态机 |
+| open_02_input.cmd | CPU 启动及输入排布转换的 SRAM 读写 |
+| open_03_conv_setup.cmd | 配置寄存器加载到 NEureka 开始取数 |
+| open_04_conv_write.cmd | NEureka 第一次卷积结果写回 |
+| open_05_pool_write.cmd | 池化结果写入最终输出区 |
+| open_06_complete.cmd | CNN 全部完成与 CPU 写成功邮箱 |
+
+每个视图同一信号只出现一次。颜色：CPU/队列橙色、NEureka 蓝色、DMA 紫色、后处理绿色、SRAM 接口粉色。PNG 是同一 VCD 的静态预览；GTKWave 可以移动、缩放和查看数值。
+
+controls.vcd 是仿真期间直接从 RTL 取值生成，**不是任务事件重建波形**。记录器在每个时钟边沿后 1 ns 采样稳定值，不记录同一时刻的 delta-cycle 毛刺。主要状态全程记录；高频接口只记录各任务启动、首次卷积写回和最终完成附近的窗口。detail_valid=0 时这些接口明确标为 X，表示未记录，不能解释为硬件产生未知值或停止工作。
+
+## 按数据流看控制
+
+1. **CPU 发任务**：mmio_we 与 mmio_ready 配合，地址 0x40000000、写数据 0x3d 为启动。task_launch 表示派发一个任务。task_index 依次为 0～4；task_opcode 依次是 c、b、c、6、8（十六进制）。
+2. **SRAM 输入搬运**：task_index=0、dma_busy=1。客户端9的 cnn_req、cnn_gnt 同时为1且 cnn_write=0 时，下一有效上升沿接受读请求；cnn_response[9] 表示读回。随后同一路 write=1，把转换后的字节写入 HWC 输入区。
+3. **NEureka 配置与计算**：task_index=1。wrapper_state 先进行清理、配置、触发，再进入 RUN=9。core_state 反复经过 LOAD=2、WEIGHTOFFS=3、MATRIXVEC=4、量化和 STREAMOUT=8；MATRIXVEC 状态不等同于每一拍 MAC 都有效。
+4. **卷积访存**：hci_req=1 发请求，hci_wen=1 是读、0 是写。hci_addr 对照下表识别输入、权重或输出。桥把请求拆给 SRAM 客户端0～8。先完成 SRAM 的接受/回复，再 hci_gnt=1，下一拍 hci_rvalid=1；该顺序是现有桥对 NEureka 响应时序的适配。
+5. **结果写出**：task_index=1 时，客户端0～8某位 cnn_req &amp; cnn_gnt &amp; cnn_write 在上升沿成立，代表该笔卷积结果写入 SRAM。后续 task_index=2 由 DMA 转回 CHW；task_index=3 执行 ReLU；task_index=4 由客户端10写池化结果。首次写入不代表整张图处理完成。
+6. **最终完成**：status_done 为一拍脉冲，status_busy 下降。随后 CPU 向 SRAM 0x80 写入 0x600d，表明固件读取到成功。最终结果保留在池化输出区。
+
+## 关键标记
+
+| 标记 | 绝对硬件时间（µs） | 含义 |
+|---|---:|---|
+| A | 0.225 | CPU_START |
+| B | 7864.955 | CONV_DISPATCH |
+| C | 7875.995 | FIRST_CONV_WRITE |
+| D | 40963.415 | OUTPUT_LAYOUT |
+| E | 61608.745 | RELU |
+| F | 87415.355 | POOL |
+| G | 87415.455 | FIRST_POOL_WRITE |
+| H | 101608.905 | ALL_DONE |
+
+## SRAM 数据区
+
+| 内容 | 起始地址 | 字节数 |
+|---|---|---:|
+| 输入 CHW | 0x00001000 | 196,608 |
+| 输入 HWC | 0x0014cb80 | 196,608 |
+| NEureka 打包权重 | 0x001fac40 | 2,304 |
+| 卷积输出 HWC | 0x0017cbc0 | 516,128 |
+| 卷积输出 CHW | 0x00031200 | 516,128 |
+| ReLU 输出 | 0x000af280 | 516,128 |
+| 池化最终输出 | 0x0012d300 | 129,032 |
+
+## 本次实际接受的首次写入
+
+下面不是预期地址，而是仿真中在上升沿观察到 req、gnt、write 同时成立的事务。32 位写数据按小端字节解释；byte=1 时仅低 8 位写入。
+
+| 任务 | 时间（µs） | SRAM 客户端 | 地址 | 写数据 |
+|---|---:|---:|---|---|
+| 输入 CHW→HWC | 0.455 | 9 | 0x0014cb80 | 0x0000006a |
+| NEureka 卷积 / 量化 | 7875.995 | 0 | 0x0017cbc0 | 0x12fa070a |
+| 输出 HWC→CHW | 40963.445 | 9 | 0x00031200 | 0x0000000a |
+| ReLU | 61608.785 | 10 | 0x000af280 | 0x0000000a |
+| 2×2 MaxPool | 87415.455 | 10 | 0x0012d300 | 0x00000012 |
+
+PNG 中的状态号为十进制；GTKWave 默认将多位总线显示为十六进制，a/b/c/d 对应十进制 10/11/12/13。
+
+例如首次卷积写回的数据字为 0x12fa070a，小端解释为第一个输出位置的前四个通道 [10, 7, -6, 18]。后续 ReLU 将它们变成 [10, 7, 0, 18]；HWC→CHW 转换会改变存放地址，不改变这些数值。该数据字已与独立参考值核对。
+
+
+## 状态机与位图
+
+queue_state：0 IDLE、1 FETCH_START、2 FETCH_WAIT、3 ISSUE、4 EXECUTE、5 ADVANCE。
+
+wrapper_state：0 IDLE、1 ACQUIRE、2 ACQUIRE_WAIT、3 FETCH、4 FETCH_WAIT、5 CONFIGURE、6 CONFIG_WAIT、7 TRIGGER、8 TRIGGER_WAIT、9 RUN、10 DRAIN、11 SOFT_CLEAR、12 CLEAR_WAIT、13 SETTLE。
+
+core_state：0 IDLE、1 STREAMIN、2 LOAD、3 WEIGHTOFFS、4 MATRIXVEC、5 NORMQUANT、6 NORMQUANT_BIAS、7 NORMQUANT_SHIFT、8 STREAMOUT、9 STREAMOUT_DONE、10 UPDATEIDX、11 UPDATEIDX_WAIT、12 DONE。
+
+11 位 SRAM 位图按位表示客户端：bit0～8 为卷积桥、bit9 为配置/描述符/DMA、bit10 为后处理。十六进制 200 对应 bit9，400 对应 bit10；组合值表示多个客户端同时有效。scalar_busy 的 bit2 为 ReLU，bit4 为 MaxPool。
+
+## 所有已选信号
+
+| 信号 | 位宽 | 功能与方向 |
+|---|---:|---|
+| rst_n | 1 | 复位 |
+| queue_state | 3 | CNN 队列状态 |
+| task_index | 32 | 已完成任务数/当前任务序号 |
+| task_opcode | 4 | 任务类型 |
+| task_launch | 1 | 任务派发 |
+| status_busy | 1 | CNN 忙 |
+| status_done | 1 | CNN 整批完成脉冲 |
+| status_error | 1 | CNN 错误 |
+| wrapper_state | 4 | 卷积配置控制状态 |
+| core_busy | 1 | NEureka 忙，包含等待 |
+| core_state | 6 | NEureka 主状态，非 MAC 有效 |
+| dma_busy | 1 | 格式转换忙 |
+| scalar_busy | 6 | 原后处理各算子忙 |
+| memory_idle | 1 | HCI 桥无在途事务 |
+| detail_valid | 1 | 1 表示当前详细信号有记录，0 区域显示 X |
+| clk | 1 | 真实时钟，采样时间比边沿晚 1ns |
+| mmio_we | 1 | CPU→CNN 写请求 |
+| mmio_re | 1 | CPU→CNN 读请求 |
+| mmio_ready | 1 | CNN→CPU 请求可接受 |
+| mmio_addr | 32 | CPU→CNN 寄存器地址 |
+| mmio_wdata | 32 | CPU→CNN 控制字 |
+| cfg_req | 1 | 配置控制器→SRAM 读请求，走客户端9 |
+| cfg_ready | 1 | SRAM→客户端9 接受请求 |
+| cfg_response | 1 | SRAM→客户端9 事务完成（也用于 DMA/描述符） |
+| hci_req | 1 | NEureka→桥 请求 |
+| hci_gnt | 1 | 桥→NEureka 接受，桥已完成实际 SRAM 访问 |
+| hci_wen | 1 | NEureka→桥，1读0写 |
+| hci_rvalid | 1 | 桥→NEureka 回复有效，grant 后一拍 |
+| hci_rready | 1 | NEureka→桥 可以接收回复 |
+| hci_addr | 32 | NEureka→桥 地址，分辨输入/权重/输出区 |
+| hci_be | 36 | NEureka→桥 写字节使能 |
+| cnn_req | 11 | CNN→SRAM 11 路请求位图 |
+| cnn_gnt | 11 | SRAM→CNN 11 路接受位图 |
+| cnn_write | 11 | CNN→SRAM 1写0读 |
+| cnn_byte | 11 | CNN→SRAM 1字节访问0整字访问 |
+| cnn_response | 11 | SRAM→CNN 完成位图，写也回复 |
+| lane0_addr | 32 | 卷积 SRAM 客户端0地址，其他路在同一 HCI 请求中 |
+| lane0_wdata | 32 | 卷积客户端0写数据 |
+| lane0_rdata | 32 | SRAM→卷积客户端0读数据 |
+| dma_cfg_addr | 32 | 客户端9地址：描述符/配置/DMA |
+| dma_cfg_wdata | 32 | 客户端9写数据 |
+| post_addr | 32 | 后处理客户端10地址 |
+| post_wdata | 32 | 后处理客户端10写数据 |
+| bridge_pending | 9 | 桥等待各 SRAM 客户端回复的位图 |
+| mem_fault | 1 | SRAM 故障 |
+| cpu_store | 1 | CPU→SRAM 写使能 |
+| cpu_store_addr | 32 | CPU→SRAM 地址；0x80 为完成邮箱 |
+| cpu_store_data | 32 | CPU→SRAM 写数据；0x600d 为成功 |
+
+来源：`D:\code\FPGA1\cpu_control (2)\cpu_control\build\runs\20261011_153522_neureka`。result.json 保存当前 RTL/测试平台的源码 SHA-256、PASS 与耗时；sim.log 保存独立参考值核对结果；control_markers.csv 保存上升沿实际接受的首次 SRAM 写事务。first_sram_read 标记可能是描述符读取，不能把它一律当作像素读取。本次只增加测试平台记录器，没有改变 NEureka、SRAM 或 CPU RTL。
+</pre>

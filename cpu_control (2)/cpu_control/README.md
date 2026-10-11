@@ -11,7 +11,12 @@
 - [已通过功能验证的任务阶段波形](deliverables/neureka_benchmark/open_functional_tasks.cmd)（由真实任务事件生成，非总线逐拍转储）
 - [开源版本、许可证与兼容补丁](third_party/NEUREKA_SOURCES.md)
 
-已完成连续小图任务、桥接和顶层展开检查。按最新要求不再追求具体加速倍数；新版大图测速已停止，不能宣称大图验证或完整人脸网络通过。可选的前后对比脚本保留，运行方式见说明。
+已完成连续小图任务、桥接和顶层展开检查。2026-10-11 大图仿真也已通过：256×256 RGB、8 输出通道，卷积＋ReLU＋池化共 1,161,288 字节全部匹配。电脑执行仿真 8917.713 秒，硬件任务时间 101.60868 ms @100 MHz。本次复用已编译程序，重新编译耗时为 0；原始编译 793.346 秒。不提供具体加速倍数，也不代表完整人脸网络或 UART 加载闭环通过。
+
+- [大图控制波形与阅读说明](deliverables/neureka_large_wave/波形阅读说明.md)
+- [六个控制波形预览](deliverables/neureka_large_wave/index.html)
+- [GTKWave 全程入口](deliverables/neureka_large_wave/open_01_overview.cmd)
+- [卷积首次写回](deliverables/neureka_large_wave/open_04_conv_write.cmd)、[池化写回](deliverables/neureka_large_wave/open_05_pool_write.cmd)、[完成](deliverables/neureka_large_wave/open_06_complete.cmd)
 
 ## 2026-10-10 六张图片边接收边计算
 

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1710" viewBox="0 0 2560 1710">
+<defs><marker id="a0" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#58a6ff"/></marker><marker id="a1" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#efdf69"/></marker><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ef72b3"/></marker><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#ff666c"/></marker><marker id="a4" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#e5e7eb"/></marker><marker id="a5" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#9ca3af"/></marker></defs>
+<rect width="2560" height="1710" fill="#101216"/>
+<rect x="25" y="25" width="2510" height="1660" fill="#101216" stroke="#b4b4b4" stroke-width="2"/>
+<text x="1280.0" y="75.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="34" fill="#e5e7eb">
+<tspan x="1280.0" dy="0">全局时钟、复位及顶层状态信号</tspan>
+</text>
+<text x="1280.0" y="127.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="22" fill="#9ca3af">
+<tspan x="1280.0" dy="0">同一设计的辅助接线页 · 下面公式为顶层组合逻辑，不代表新增硬件大模块</tspan>
+</text>
+<rect x="110" y="245" width="420" height="380" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="320.0" y="372.44" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="320.0" dy="0">CLOCK</tspan>
+<tspan x="320.0" dy="31.28">clock_unit</tspan>
+<tspan x="320.0" dy="31.28"></tspan>
+<tspan x="320.0" dy="31.28">输入 sys_clk /1、rst_n_in /1</tspan>
+<tspan x="320.0" dy="31.28">输出 clk /1、rst_n /1</tspan>
+</text>
+<rect x="1180" y="205" width="560" height="86" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1460.0" y="248.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1460.0" dy="0">CPU_CORE  ·  cpu_core_autoload</tspan>
+</text>
+<polyline points="530,280 650,280 650,248 1180,248" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1042.5" y="226.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1042.5" dy="0">clk /1  +  rst_n /1</tspan>
+</text>
+<rect x="1180" y="317" width="560" height="86" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1460.0" y="360.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1460.0" dy="0">IMEM  ·  imem_rom</tspan>
+</text>
+<polyline points="530,340 720,340 720,360 1180,360" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1042.5" y="338.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1042.5" dy="0">clk /1  +  rst_n /1</tspan>
+</text>
+<rect x="1180" y="429" width="560" height="86" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1460.0" y="472.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1460.0" dy="0">CNN  ·  mobilefacenet_neureka_top</tspan>
+</text>
+<polyline points="530,400 790,400 790,472 1180,472" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1042.5" y="450.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1042.5" dy="0">clk /1  +  rst_n /1</tspan>
+</text>
+<rect x="1180" y="541" width="560" height="86" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1460.0" y="584.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1460.0" dy="0">DATASRAM  ·  datasram_banked</tspan>
+</text>
+<polyline points="530,460 860,460 860,584 1180,584" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1042.5" y="562.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1042.5" dy="0">clk /1  +  rst_n /1</tspan>
+</text>
+<rect x="1180" y="653" width="560" height="86" fill="#101216" stroke="#e5e7eb" stroke-width="2"/>
+<text x="1460.0" y="696.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#e5e7eb">
+<tspan x="1460.0" dy="0">IMAGE_BRIDGE  ·  image_bridge_autoload</tspan>
+</text>
+<polyline points="530,520 930,520 930,696 1180,696" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1042.5" y="674.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1042.5" dy="0">clk /1  +  rst_n /1</tspan>
+</text>
+<text x="2125.0" y="315.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" fill="#9ca3af">
+<tspan x="2125.0" dy="0">clk：sys_clk 直通</tspan>
+<tspan x="2125.0" dy="34.0"></tspan>
+<tspan x="2125.0" dy="34.0">rst_n：异步拉低，</tspan>
+<tspan x="2125.0" dy="34.0">经 3 个时钟沿同步释放</tspan>
+<tspan x="2125.0" dy="34.0"></tspan>
+<tspan x="2125.0" dy="34.0">不包含 PLL</tspan>
+</text>
+<text x="1275.0" y="846.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="29" fill="#e5e7eb">
+<tspan x="1275.0" dy="0">状态来源与外部 LED</tspan>
+</text>
+<text x="260.0" y="916.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" fill="#e5e7eb">
+<tspan x="260.0" dy="0">CNN</tspan>
+</text>
+<polyline points="440,920 1580,920" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1007.5" y="895.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1007.5" dy="0">cnn_status_busy /1 + cnn_status_done /1 + cnn_status_error /1</tspan>
+</text>
+<text x="2030.0" y="915.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="24" fill="#e5e7eb">
+<tspan x="2030.0" dy="0">顶层观察逻辑</tspan>
+</text>
+<text x="440" y="957.0" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="440" dy="0">busy/error 用于 cnn_state；done 是完成脉冲，不是板级输出</tspan>
+</text>
+<text x="260.0" y="1056.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" fill="#e5e7eb">
+<tspan x="260.0" dy="0">DATASRAM</tspan>
+</text>
+<polyline points="440,1060 1580,1060" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1007.5" y="1035.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1007.5" dy="0">cnn_mem_fault /1</tspan>
+</text>
+<text x="2030.0" y="1055.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="24" fill="#e5e7eb">
+<tspan x="2030.0" dy="0">顶层观察 / LED 组合逻辑</tspan>
+</text>
+<text x="440" y="1097.0" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="440" dy="0">参与 CNN/SRAM 故障状态以及 led_ready / led_error</tspan>
+</text>
+<text x="260.0" y="1196.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" fill="#e5e7eb">
+<tspan x="260.0" dy="0">IMAGE_BRIDGE</tspan>
+</text>
+<polyline points="440,1200 1580,1200" fill="none" stroke="#ef72b3" stroke-width="2.5" marker-end="url(#a2)"/>
+<text x="1007.5" y="1175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#e5e7eb">
+<tspan x="1007.5" dy="0">bridge_ready /1 + bridge_busy /1 + bridge_error /1</tspan>
+</text>
+<text x="2030.0" y="1195.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="24" fill="#e5e7eb">
+<tspan x="2030.0" dy="0">顶层观察 / LED 组合逻辑</tspan>
+</text>
+<text x="440" y="1237.0" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="21" fill="#9ca3af">
+<tspan x="440" dy="0">桥就绪、忙、错误；led_busy 仅表示桥忙</tspan>
+</text>
+<text x="1280.0" y="1384.36" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#ff666c">
+<tspan x="1280.0" dy="0">外部输出 / 每根 1 bit</tspan>
+<tspan x="1280.0" dy="31.28">led_ready = bridge_ready &amp;&amp; !cnn_mem_fault     ·     led_busy = bridge_busy     ·     led_error = bridge_error || cnn_mem_fault</tspan>
+</text>
+<text x="1280.0" y="1524.36" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" fill="#9ca3af">
+<tspan x="1280.0" dy="0">观察状态：cpu_state / cnn_state / sram_state / imem_state / bridge_state / clock_state，各 2 bit</tspan>
+<tspan x="1280.0" dy="31.28">soc_module_state /12；soc_active /6；soc_fault /6。它们供仿真观察，不是外部引脚。</tspan>
+</text>
+</svg>

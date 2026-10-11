@@ -1,0 +1,76 @@
+[*] Directly sampled genuine RTL control nets; detail_valid=0 means unavailable
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/neureka_large_wave/controls.vcd"
+[size] 1850 1050
+[pos] 0 0
+*-18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[signals_width] 300
+[sst_expanded] 0
+@28
+[color] 0
+control.detail_valid
+@28
+[color] 0
+control.clk
+@22
+[color] 6
+control.task_index[31:0]
+@22
+[color] 6
+control.task_opcode[3:0]
+@22
+[color] 6
+control.queue_state[2:0]
+@28
+[color] 4
+control.core_busy
+@22
+[color] 4
+control.core_state[5:0]
+@28
+[color] 4
+control.hci_req
+@28
+[color] 4
+control.hci_gnt
+@28
+[color] 4
+control.hci_wen
+@28
+[color] 4
+control.hci_rvalid
+@28
+[color] 4
+control.hci_rready
+@22
+[color] 4
+control.hci_addr[31:0]
+@22
+[color] 4
+control.hci_be[35:0]
+@22
+[color] 1
+control.cnn_req[10:0]
+@22
+[color] 1
+control.cnn_gnt[10:0]
+@22
+[color] 1
+control.cnn_write[10:0]
+@22
+[color] 1
+control.cnn_byte[10:0]
+@22
+[color] 1
+control.cnn_response[10:0]
+@22
+[color] 1
+control.lane0_addr[31:0]
+@22
+[color] 1
+control.lane0_wdata[31:0]
+@22
+[color] 1
+control.bridge_pending[8:0]
+@28
+[color] 1
+control.memory_idle

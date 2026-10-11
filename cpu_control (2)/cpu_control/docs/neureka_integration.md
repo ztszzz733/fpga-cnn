@@ -50,7 +50,7 @@ MMIO 不变：写 `BASE+0x08` 设置描述符起点，写 `BASE+0x18` 设置任�
 
 两版采用同样的 100 MHz 仿真时钟和四 bank SRAM。周期数由 RTL 实测；毫秒由周期数/100 MHz 换算，不是电脑运行仿真花的墙钟时间。没有进行工艺综合，所以没有保证两版实际可达频率相同，也没有面积、功耗或单位面积吞吐的结论。NEureka 的硬件规模和原 8×8 阵列不同。
 
-本地小图复现入口：Windows 下运行 `scripts/run_neureka_sim.ps1 -Size 11 -OutputChannels 3 -Repeats 2 -Cases neureka -Reuse 'build/runs/20261010_225915_neureka'`。脚本会在独立 `build/runs/*_neureka` 目录保存源文件哈希、程序、输入、参考值、仿真日志、任务事件和结果 JSON。已完成验证及其限制见 `deliverables/neureka_benchmark/适配与验证说明.md`。新版大图完整正确性验证尚未完成。
+本地小图复现入口：Windows 下运行 `scripts/run_neureka_sim.ps1 -Size 11 -OutputChannels 3 -Repeats 2 -Cases neureka -Reuse 'build/runs/20261010_225915_neureka'`。脚本会在独立 `build/runs/*_neureka` 目录保存源文件哈希、程序、输入、参考值、仿真日志、任务事件和结果 JSON。已完成验证及其限制见 `deliverables/neureka_benchmark/适配与验证说明.md`。2026-10-11 的 256×256 RGB、8 输出通道大图卷积＋ReLU＋池化已验证通过，共核对 1,161,288 字节；波形与计时见 [大图控制波形说明](../deliverables/neureka_large_wave/波形阅读说明.md)。该用例从 SRAM 预加载，不包含 UART。
 
 后续如需大图，可运行 `scripts/run_neureka_sim.ps1 -Size 256 -OutputChannels 8`。首次编译 NEureka 及大图 RTL 仿真可能需要较长时间；电脑运行时间不参与硬件性能比较。`--native-build` 可把编译临时文件放在 WSL 本地文件系统，结果和可复用仿真程序仍保存在工程内。`--reuse <上次通过的运行目录> --cases neureka` 可复用同一 SRAM 容量的程序，使用新图像重新做完整 RTL 仿真，结果记录保留原程序的源码哈希。修改 RTL 后应重新编译；需要原始逐拍波形时应使用启用 Waves 的新编译，不复用这里的无波形程序。
 

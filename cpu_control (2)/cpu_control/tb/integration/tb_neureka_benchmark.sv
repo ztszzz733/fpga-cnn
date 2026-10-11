@@ -53,6 +53,9 @@ module tb_neureka_benchmark;
 `ifdef DUMP_WAVES
  initial if($test$plusargs("waves")) begin $dumpfile("wave.vcd");$dumpvars(1,tb_neureka_benchmark);end
 `endif
+`ifdef CONTROL_WAVES
+ `include "neureka_control_monitor.svh"
+`endif
  always @(posedge clk) if(rst_n) begin
   cycles<=cycles+1;
   if(mmio_we && mmio_ready && mmio_addr==32'h40000000 && mmio_wdata[0]) begin
@@ -90,7 +93,7 @@ module tb_neureka_benchmark;
   end
   if(dmem_we && dmem_addr==32'h80) begin
    if(dmem_wdata!=32'h600d) $fatal(1,"CPU reported failure");
-   $fclose(events);$display("PASS tb_neureka_benchmark CPU completion cycle=%0d",cycles);$finish;
+   $fclose(events);$display("PASS tb_neureka_benchmark CPU completion cycle=%0d",cycles);#2;$finish;
   end
   if(cycles>CONV_N*500+100000) $fatal(1,"timeout");
  end

@@ -1,0 +1,49 @@
+[*] Directly sampled genuine RTL control nets; detail_valid=0 means unavailable
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/neureka_large_wave/controls.vcd"
+[size] 1850 1050
+[pos] 0 0
+*-18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[signals_width] 300
+[sst_expanded] 0
+@28
+[color] 0
+control.rst_n
+@22
+[color] 6
+control.queue_state[2:0]
+@22
+[color] 6
+control.task_index[31:0]
+@22
+[color] 6
+control.task_opcode[3:0]
+@28
+[color] 6
+control.task_launch
+@28
+[color] 6
+control.status_busy
+@28
+[color] 6
+control.status_done
+@28
+[color] 6
+control.status_error
+@22
+[color] 4
+control.wrapper_state[3:0]
+@28
+[color] 4
+control.core_busy
+@22
+[color] 4
+control.core_state[5:0]
+@28
+[color] 3
+control.dma_busy
+@22
+[color] 2
+control.scalar_busy[5:0]
+@28
+[color] 0
+control.detail_valid

@@ -1,0 +1,429 @@
+[
+  {
+    "signal": "imem_addr",
+    "width": 32,
+    "source": "CPU_CORE",
+    "destination": "IMEM",
+    "function": "取指地址 / 指令数据 / 读使能"
+  },
+  {
+    "signal": "imem_rdata",
+    "width": 32,
+    "source": "IMEM",
+    "destination": "CPU_CORE",
+    "function": "取指地址 / 指令数据 / 读使能"
+  },
+  {
+    "signal": "imem_re",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "IMEM",
+    "function": "取指地址 / 指令数据 / 读使能"
+  },
+  {
+    "signal": "load_req",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "IMAGE_BRIDGE",
+    "function": "请求启动固定批次加载"
+  },
+  {
+    "signal": "load_complete",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "CPU_CORE",
+    "function": "加载完成握手及加载错误"
+  },
+  {
+    "signal": "load_error",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "CPU_CORE",
+    "function": "加载完成握手及加载错误"
+  },
+  {
+    "signal": "dmem_addr",
+    "width": 32,
+    "source": "CPU_CORE",
+    "destination": "DATASRAM",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "dmem_wdata",
+    "width": 32,
+    "source": "CPU_CORE",
+    "destination": "DATASRAM",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "dmem_re",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "DATASRAM",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "dmem_we",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "DATASRAM",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "dmem_wstrb",
+    "width": 4,
+    "source": "CPU_CORE",
+    "destination": "DATASRAM",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "dmem_rdata",
+    "width": 32,
+    "source": "DATASRAM",
+    "destination": "CPU_CORE",
+    "function": "CPU 数据读写；wstrb 按字节使能，读返回固定时序"
+  },
+  {
+    "signal": "cnn_mmio_addr",
+    "width": 32,
+    "source": "CPU_CORE",
+    "destination": "CNN",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_mmio_wdata",
+    "width": 32,
+    "source": "CPU_CORE",
+    "destination": "CNN",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_mmio_re",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "CNN",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_mmio_we",
+    "width": 1,
+    "source": "CPU_CORE",
+    "destination": "CNN",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_mmio_rdata",
+    "width": 32,
+    "source": "CNN",
+    "destination": "CPU_CORE",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_mmio_ready",
+    "width": 1,
+    "source": "CNN",
+    "destination": "CPU_CORE",
+    "function": "CPU 配置任务 / 读取 CNN 寄存器；ready 完成 MMIO 握手"
+  },
+  {
+    "signal": "cnn_addr",
+    "width": 352,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_wdata",
+    "width": 352,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_valid",
+    "width": 11,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_write",
+    "width": 11,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_byte",
+    "width": 11,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_ready",
+    "width": 11,
+    "source": "DATASRAM",
+    "destination": "CNN",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_response",
+    "width": 11,
+    "source": "DATASRAM",
+    "destination": "CNN",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_rdata",
+    "width": 352,
+    "source": "DATASRAM",
+    "destination": "CNN",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "cnn_cancel",
+    "width": 1,
+    "source": "CNN",
+    "destination": "DATASRAM",
+    "function": "11 路访存；valid/ready 接受请求，response 返回完成，write=1 写，byte=1 字节访问；cancel 清理待处理事务"
+  },
+  {
+    "signal": "io_mem_addr",
+    "width": 32,
+    "source": "IMAGE_BRIDGE",
+    "destination": "DATASRAM",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_wdata",
+    "width": 32,
+    "source": "IMAGE_BRIDGE",
+    "destination": "DATASRAM",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_req",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "DATASRAM",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_we",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "DATASRAM",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_be",
+    "width": 4,
+    "source": "IMAGE_BRIDGE",
+    "destination": "DATASRAM",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_rdata",
+    "width": 32,
+    "source": "DATASRAM",
+    "destination": "IMAGE_BRIDGE",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_gnt",
+    "width": 1,
+    "source": "DATASRAM",
+    "destination": "IMAGE_BRIDGE",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_rvalid",
+    "width": 1,
+    "source": "DATASRAM",
+    "destination": "IMAGE_BRIDGE",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "io_mem_error",
+    "width": 1,
+    "source": "DATASRAM",
+    "destination": "IMAGE_BRIDGE",
+    "function": "加载桥的 SRAM 读写接口；本版主动加载桥实际发写请求"
+  },
+  {
+    "signal": "uart_rx",
+    "width": 1,
+    "source": "外部",
+    "destination": "IMAGE_BRIDGE",
+    "function": "外部 UART 串行数据"
+  },
+  {
+    "signal": "uart_tx",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "外部",
+    "function": "外部 UART 串行数据"
+  },
+  {
+    "signal": "sys_clk",
+    "width": 1,
+    "source": "外部",
+    "destination": "CLOCK",
+    "function": "外部时钟 / 低有效复位"
+  },
+  {
+    "signal": "rst_n_in",
+    "width": 1,
+    "source": "外部",
+    "destination": "CLOCK",
+    "function": "外部时钟 / 低有效复位"
+  },
+  {
+    "signal": "clk",
+    "width": 1,
+    "source": "CLOCK",
+    "destination": "CPU_CORE / IMEM / CNN / DATASRAM / IMAGE_BRIDGE",
+    "function": "同名全局网，时钟直通及复位同步释放"
+  },
+  {
+    "signal": "rst_n",
+    "width": 1,
+    "source": "CLOCK",
+    "destination": "CPU_CORE / IMEM / CNN / DATASRAM / IMAGE_BRIDGE",
+    "function": "同名全局网，时钟直通及复位同步释放"
+  },
+  {
+    "signal": "cnn_status_busy",
+    "width": 1,
+    "source": "CNN",
+    "destination": "顶层观察信号",
+    "function": "CNN 忙 / 完成脉冲 / 错误；不是顶层外部端口"
+  },
+  {
+    "signal": "cnn_status_done",
+    "width": 1,
+    "source": "CNN",
+    "destination": "顶层观察信号",
+    "function": "CNN 忙 / 完成脉冲 / 错误；不是顶层外部端口"
+  },
+  {
+    "signal": "cnn_status_error",
+    "width": 1,
+    "source": "CNN",
+    "destination": "顶层观察信号",
+    "function": "CNN 忙 / 完成脉冲 / 错误；不是顶层外部端口"
+  },
+  {
+    "signal": "cnn_mem_fault",
+    "width": 1,
+    "source": "DATASRAM",
+    "destination": "顶层状态及 LED 逻辑",
+    "function": "访存故障；并未直接接入 CNN 的故障输入端口"
+  },
+  {
+    "signal": "bridge_ready",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "顶层状态及 LED 逻辑",
+    "function": "UART 加载桥的就绪 / 忙 / 错误"
+  },
+  {
+    "signal": "bridge_busy",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "顶层状态及 LED 逻辑",
+    "function": "UART 加载桥的就绪 / 忙 / 错误"
+  },
+  {
+    "signal": "bridge_error",
+    "width": 1,
+    "source": "IMAGE_BRIDGE",
+    "destination": "顶层状态及 LED 逻辑",
+    "function": "UART 加载桥的就绪 / 忙 / 错误"
+  },
+  {
+    "signal": "led_ready",
+    "width": 1,
+    "source": "顶层组合逻辑",
+    "destination": "外部",
+    "function": "由本页公式组合生成；led_busy 不是 CNN 忙信号"
+  },
+  {
+    "signal": "led_busy",
+    "width": 1,
+    "source": "顶层组合逻辑",
+    "destination": "外部",
+    "function": "由本页公式组合生成；led_busy 不是 CNN 忙信号"
+  },
+  {
+    "signal": "led_error",
+    "width": 1,
+    "source": "顶层组合逻辑",
+    "destination": "外部",
+    "function": "由本页公式组合生成；led_busy 不是 CNN 忙信号"
+  },
+  {
+    "signal": "cpu_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "cnn_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "sram_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "imem_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "bridge_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "clock_state",
+    "width": 2,
+    "source": "顶层观察状态机",
+    "destination": "仿真观察",
+    "function": "RESET=0 IDLE=1 WORK=2 FAULT=3；非功能控制反馈"
+  },
+  {
+    "signal": "soc_module_state",
+    "width": 12,
+    "source": "顶层观察逻辑",
+    "destination": "仿真观察",
+    "function": "打包顺序高到低：CLOCK、IMAGE_BRIDGE、IMEM、DATASRAM、CNN、CPU_CORE"
+  },
+  {
+    "signal": "soc_active",
+    "width": 6,
+    "source": "顶层观察逻辑",
+    "destination": "仿真观察",
+    "function": "打包顺序高到低：CLOCK、IMAGE_BRIDGE、IMEM、DATASRAM、CNN、CPU_CORE"
+  },
+  {
+    "signal": "soc_fault",
+    "width": 6,
+    "source": "顶层观察逻辑",
+    "destination": "仿真观察",
+    "function": "打包顺序高到低：CLOCK、IMAGE_BRIDGE、IMEM、DATASRAM、CNN、CPU_CORE"
+  }
+]

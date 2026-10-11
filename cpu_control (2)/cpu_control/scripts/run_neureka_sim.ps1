@@ -6,6 +6,7 @@ param(
     [string[]]$Cases = @('neureka'),
     [string]$Reuse = '',
     [switch]$Waves,
+    [switch]$ControlWaves,
     [string]$Distro = 'Ubuntu-22.04'
 )
 $ErrorActionPreference = 'Stop'
@@ -20,5 +21,6 @@ if ($Reuse) {
     $simArgs += @('--reuse',$linuxReuse)
 }
 if ($Waves) { $simArgs += '--waves' }
+if ($ControlWaves) { $simArgs += '--control-waves' }
 & wsl @simArgs
 exit $LASTEXITCODE
