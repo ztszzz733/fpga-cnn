@@ -1,0 +1,9 @@
+{
+  "name": "int32_dot",
+  "status": "NOT_RUN",
+  "input_elements": 19,
+  "expected": [
+    -124
+  ],
+  "program_sha256": "16c1d1ddbaa80ba747c1a167ad742f6eeaa488978eb8ddf22461bd12cc52a87c"
+}

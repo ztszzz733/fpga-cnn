@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "upstream_commit": "1a65f1f5b48268accaa47c95f95c2601918be095",
+  "configuration": "nv_small",
+  "scope": "small RTL adapter tests, no UART, no CPU instruction execution",
+  "generation_seconds": 1.8811505529999977,
+  "source_sha256": {
+    "rtl/nvdla/nvdla_csb_adapter.sv": "810f82ecd08db19e3d4b9b77c9b803828a6b16534967ea10ddc687b574f88371",
+    "rtl/nvdla/nvdla_sram_bridge.sv": "30028b70d54b4896061e736060b8ee180d90875d5a73ca73d1155ed8a94dc699",
+    "rtl/nvdla/nvdla_cnn_top.sv": "b4b6f3e30eb072d6d63d3583d56805a1a682885ed1f77948ecadc71be266c0b8",
+    "rtl/overlap/datasram_banked.sv": "130603b3a77f3ea9d317eae1df924229d467d7f599c9a3b62323b9072941246c",
+    "tb/integration/nvdla_small_harness.sv": "1e6f0b78cdd65daf4f6e01220d30c61dbdc1ae3114d2e9620a8216aa2608752c",
+    "tb/integration/nvdla_small_driver.cpp": "f736c0fb17ab2fc4cb02eb26b541c250340a445d245c5d2f9b935a390bdb2216"
+  },
+  "timed_ram": true,
+  "compile_seconds": 514.786614734,
+  "simulator_sha256": "3efdc965a0468c5f28c04a5da9eb0d868eb469df255b898c4de0e08a355bbd88",
+  "tests": [
+    {
+      "name": "dc_1x1x8_1x1x8x1_int8_0",
+      "status": "PASS",
+      "simulation_seconds": 5.287787241000046,
+      "cycles": 8630,
+      "load_end_cycle": 2302,
+      "config_end_cycle": 8392,
+      "irq_cycle": 8618,
+      "read_beats": 17,
+      "write_beats": 1,
+      "crc_checks": 1,
+      "hardware_ns_at_100MHz": 86300
+    },
+    {
+      "name": "dc_6x8x192_3x3x192x32_int8_0",
+      "status": "PASS",
+      "simulation_seconds": 63.13796379100006,
+      "cycles": 140325,
+      "load_end_cycle": 85628,
+      "config_end_cycle": 89009,
+      "irq_cycle": 139291,
+      "read_beats": 8064,
+      "write_beats": 24,
+      "crc_checks": 1,
+      "hardware_ns_at_100MHz": 1403250
+    },
+    {
+      "name": "pdp_8x8x64_2x2_int8",
+      "status": "PASS",
+      "simulation_seconds": 4.290821027999982,
+      "cycles": 12810,
+      "load_end_cycle": 6284,
+      "config_end_cycle": 7040,
+      "irq_cycle": 11776,
+      "read_beats": 512,
+      "write_beats": 512,
+      "crc_checks": 1,
+      "hardware_ns_at_100MHz": 128100
+    }
+  ]
+}

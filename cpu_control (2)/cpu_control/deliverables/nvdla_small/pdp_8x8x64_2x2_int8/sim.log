@@ -1,0 +1,5 @@
+
+['/mnt/d/code/FPGA1/.nvdla_build/nv_small/obj/Vnvdla_small_harness', 'commands.txt']
+IRQ cycle=11776 status=0x10
+CRC expected=33d91a71 actual=33d91a71
+PASS cycles=12810 reads=512 writes=512

@@ -1,0 +1,74 @@
+[*] NVDLA small test control signals, sampled from RTL
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/nvdla_small/dc_1x1x8_1x1x8x1_int8_0/control.vcd"
+[size] 1800 1000
+[signals_width] 280
+[timestart] 0
+@28
+[color] 2
+nvdla_small.clk
+@28
+[color] 2
+nvdla_small.rst_n
+@22
+[color] 2
+nvdla_small.phase[2:0]
+@22
+[color] 2
+nvdla_small.mmio_addr[31:0]
+@22
+[color] 3
+nvdla_small.mmio_wdata[31:0]
+@22
+[color] 3
+nvdla_small.mmio_rdata[31:0]
+@28
+[color] 3
+nvdla_small.mmio_we
+@28
+[color] 3
+nvdla_small.mmio_re
+@28
+[color] 4
+nvdla_small.mmio_ready
+@22
+[color] 4
+nvdla_small.config_state[1:0]
+@22
+[color] 4
+nvdla_small.cnn_valid[10:0]
+@22
+[color] 4
+nvdla_small.cnn_ready[10:0]
+@22
+[color] 5
+nvdla_small.cnn_response[10:0]
+@22
+[color] 5
+nvdla_small.cnn_write[10:0]
+@22
+[color] 5
+nvdla_small.read_state[2:0]
+@22
+[color] 5
+nvdla_small.write_state[2:0]
+@22
+[color] 6
+nvdla_small.read_beats[31:0]
+@22
+[color] 6
+nvdla_small.write_beats[31:0]
+@28
+[color] 6
+nvdla_small.irq
+@28
+[color] 6
+nvdla_small.fault
+@22
+[color] 7
+nvdla_small.host_addr[31:0]
+@28
+[color] 7
+nvdla_small.host_we
+@28
+[color] 7
+nvdla_small.host_re

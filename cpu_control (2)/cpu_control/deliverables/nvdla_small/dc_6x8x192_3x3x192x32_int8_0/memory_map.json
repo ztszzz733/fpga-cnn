@@ -1,0 +1,17 @@
+[
+  {
+    "upstream_base": "0x9000dc00",
+    "size": 12288,
+    "sram_base": "0x1000"
+  },
+  {
+    "upstream_base": "0xa0000100",
+    "size": 55296,
+    "sram_base": "0x4000"
+  },
+  {
+    "upstream_base": "0x80000000",
+    "size": 4096,
+    "sram_base": "0x12000"
+  }
+]

@@ -3,6 +3,7 @@ build/
 tools/
 .tools/
 .neureka_build/
+.vicuna_build/
 .venv/
 __pycache__/
 .pytest_cache/

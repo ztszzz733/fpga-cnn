@@ -1,0 +1,27 @@
+{
+  "name": "int32_prelu",
+  "status": "NOT_RUN",
+  "input_elements": 19,
+  "expected": [
+    -9,
+    -8,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3,
+    -2,
+    -1,
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36
+  ],
+  "program_sha256": "1b5bc113a8536b297e09bc4946ab17aa56d0ecd30c74231a7199f72a508535d3"
+}
