@@ -1,0 +1,10 @@
+{
+"cycles":15605,
+"hardware_ns_at_100MHz":156050,
+"vector_jobs":2,
+"vector_stall_cycles":0,
+"vector_busy_nvdla_request_cycles":0,
+"both_request_cycles":0,
+"nvdla_read_beats":17,
+"nvdla_write_beats":1
+}

@@ -1,0 +1,7 @@
+
+['/mnt/d/code/FPGA1/.hybrid_build/adapter_checks/obj/Vtb_hybrid_adapters']
+PASS hybrid adapters: backpressure, byte masks, full IDs, address fault, command retention and response
+- /mnt/d/code/FPGA1/.hybrid_build/adapter_checks/tb_hybrid_adapters.sv:76: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 445ps; walltime 0.002 s; speed 122.744 ns/s
+- Verilator: cpu 0.004 s on 1 threads; alloced 185 MB

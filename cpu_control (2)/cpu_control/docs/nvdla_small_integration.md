@@ -1,5 +1,7 @@
 # NVDLA 小图适配说明
 
+> 2026-10-13 新增联合 SoC 入口：原 RV32I CPU 已通过 CNN 命令寄存器控制 NVDLA 和 Vicuna 2，三项小测试通过。见 [联合接入说明](hybrid_soc_integration.md)。下文仍描述此前独立 NVDLA 适配测试；不能把其 host 驱动流程与新版 CPU 固件测试混淆。
+
 本次目标：把真实开源 NVDLA 接到本工程的 CPU MMIO 和 banked DATASRAM 接口，先验证小尺寸计算、握手、写回结果。采用独立入口，保留已有 NEureka 版本。不运行大图，不据此声称性能提升。
 
 **2026-10-12 验证结果：三项小测试全部 PASS，均通过官方 CRC32 校验。** 正式结果来自 `build/runs/20261012_145608_nvdla_small`；存储桥短测试 PASS，六模块 SoC 展开检查 PASS。波形和具体耗时见 `deliverables/nvdla_small/README.md`。

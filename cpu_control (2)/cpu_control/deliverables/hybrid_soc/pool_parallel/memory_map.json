@@ -1,0 +1,12 @@
+[
+  {
+    "upstream_base": "0x80000000",
+    "size": 4096,
+    "sram_base": "0x1000"
+  },
+  {
+    "upstream_base": "0x80100000",
+    "size": 4096,
+    "sram_base": "0x2000"
+  }
+]

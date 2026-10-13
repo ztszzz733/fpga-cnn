@@ -1,0 +1,29 @@
+{
+  "name": "int32_residual",
+  "input_elements": 19,
+  "expected": [
+    -33,
+    -30,
+    -27,
+    -24,
+    -21,
+    -18,
+    -15,
+    -5,
+    -2,
+    1,
+    4,
+    7,
+    10,
+    13,
+    23,
+    26,
+    29,
+    32,
+    35
+  ],
+  "wall_seconds": 0.06641088099999992,
+  "actual_hex": "dfffffffe2ffffffe5ffffffe8ffffffebffffffeefffffff1fffffffbfffffffeffffff0100000004000000070000000a0000000d000000170000001a0000001d0000002000000023000000",
+  "expected_hex": "dfffffffe2ffffffe5ffffffe8ffffffebffffffeefffffff1fffffffbfffffffeffffff0100000004000000070000000a0000000d000000170000001a0000001d0000002000000023000000",
+  "status": "PASS"
+}

@@ -39,8 +39,9 @@ _start:
  li a3, 19
 '''
 END='''
- fence
- # Dependent read and delay allow the final vector store to drain.
+ # The upstream wrapper ties fencei_flush_ack low, and this controller maps
+ # FENCE to FENCE.I. Use the wrapper's scalar-read/vector-store interlock in
+ # this uncached testbench; full SoC integration must implement flush ack.
  lw t0, -4(a2)
  li t0, 20
 wait_drain:
@@ -69,13 +70,16 @@ def programs():
         ('int32_prelu','i','vmslt.vi v0, v1, 0\n vsra.vi v4, v1, 2\n vmerge.vvm v3, v1, v4, v0',[a if a>=0 else a//4 for a in ints]),
         ('fp32_add','f','vfadd.vv v3, v1, v2',[a+b for a,b in zip(floats,fb)]),
         ('fp32_mul','f','vfmul.vv v3, v1, v2',[a*b for a,b in zip(floats,fb)]),
-        ('fp32_prelu','f','vfmv.v.f v5, ft0\n vmflt.vv v0, v1, v5\n vfmul.vf v4, v1, ft1\n vmerge.vvm v3, v1, v4, v0',[a if a>=0 else a*0.25 for a in floats]),
+        # For finite FP32 values the sign bit selects the negative branch.
+        # This pinned decoder does not implement vmflt.vv; retain its failed
+        # diagnostic run separately, rather than claim floating comparisons.
+        ('fp32_prelu','f','vmslt.vi v0, v1, 0\n vfmul.vf v4, v1, ft1\n vmerge.vvm v3, v1, v4, v0',[a if a>=0 else a*0.25 for a in floats]),
         ('fp16_add','e','vfadd.vv v3, v1, v2',[a+b for a,b in zip(floats,fb)]),
         ('fp16_mul','e','vfmul.vv v3, v1, v2',[a*b for a,b in zip(floats,fb)]),
     ]:
         bits=16 if kind=='e' else 32
         a,b=(ints,other) if kind=='i' else (floats,fb)
-        setup='fmv.w.x ft0, zero\n li t0, 0x3e800000\n fmv.w.x ft1, t0\n' if name=='fp32_prelu' else ''
+        setup='li t0, 0x3e800000\n fmv.w.x ft1, t0\n' if name=='fp32_prelu' else ''
         body=f'''{setup}
 loop:
  vsetvli t1, a3, e{bits}, m1, ta, ma
@@ -161,6 +165,10 @@ def main():
         result['compiler_version']=subprocess.check_output([gcc,'--version'],text=True).splitlines()[0]
         exe=STAGE/'model/verilated_model'; assert exe.exists()
         result['simulator_sha256']=hashlib.sha256(exe.read_bytes()).hexdigest()
+        result['known_limitations']=[
+            'Pinned wrapper ties fencei_flush_ack_i=0; tests use scalar-read/vector-store interlock instead of FENCE.',
+            'Pinned vector decoder lacks vmflt.vv; FP32 PReLU uses integer sign mask plus FP multiplication for finite inputs.',
+            'Initial diagnostic failures retained in build/runs/20261013_203617_vicuna_small.']
         result['tests']=[]
         for name,src,expected,values in programs():
             case=STAGE/'cases'/name;case.mkdir(parents=True,exist_ok=True)

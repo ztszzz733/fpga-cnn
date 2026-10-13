@@ -1,0 +1,62 @@
+[*] Actual independent Vicuna RTL simulation; original driver timestamps
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/vicuna2_small/fp32_mul/wave.vcd"
+[size] 1600 950
+[signals_width] 290
+*-20 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+@28
+[color] 0
+TOP.clk_i
+@28
+[color] 0
+TOP.rst_ni
+@28
+[color] 6
+TOP.mem_ireq_o
+@22
+[color] 6
+TOP.mem_iaddr_o[31:0]
+@28
+[color] 6
+TOP.mem_irvalid_i
+@22
+[color] 3
+TOP.vproc_top.csr_vl_o[31:0]
+@22
+[color] 3
+TOP.pend_vreg_wr_map_o[31:0]
+@28
+[color] 3
+TOP.vproc_top.vect_pending_load
+@28
+[color] 3
+TOP.vproc_top.vect_pending_store
+@28
+[color] 3
+TOP.vproc_top.vcore_result_valid
+@28
+[color] 3
+TOP.vproc_top.vcore_result_ready
+@28
+[color] 4
+TOP.mem_req_o[0]
+@28
+[color] 4
+TOP.mem_we_o[0]
+@22
+[color] 4
+TOP.mem_addr_o[0][31:0]
+@22
+[color] 4
+TOP.mem_be_o[0][3:0]
+@22
+[color] 4
+TOP.mem_wdata_o[0][31:0]
+@28
+[color] 4
+TOP.mem_rvalid_i[0]
+@22
+[color] 4
+TOP.mem_rdata_i[0][31:0]
+@28
+[color] 4
+TOP.mem_err_i[0]

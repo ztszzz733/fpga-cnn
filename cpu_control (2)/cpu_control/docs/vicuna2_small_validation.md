@@ -1,5 +1,7 @@
 # CV32E40X + Vicuna 2 独立小规模验证
 
+> 2026-10-13 后续联合接入：原主 CPU、NVDLA 和 Vicuna 已在同一 SoC 中通过三项定向小测试，见 [联合接入说明](hybrid_soc_integration.md)。共享存储配置额外暴露了 FP32 指令顺序相关问题，当前测试程序采用已验证顺序；独立测试通过不等于任意集成程序可靠。
+
 ## 目的与边界
 
 验证“CNN 内部小控制核 + 可编程向量单元”能否通过更换程序执行新算子。
@@ -32,7 +34,7 @@
 3. INT32 PReLU：负数除以 4，输入选为 4 的倍数，避免混入舍入差异。
 4. FP32 加法。
 5. FP32 乘法。
-6. FP32 PReLU：系数 0.25，显式检查浮点比较和选择是否可用。
+6. FP32 PReLU：系数 0.25，以整数符号比较、浮点乘法和掩码选择实现有限数域运算。
 7. FP16 加法。
 8. FP16 乘法。
 9. INT32 点积：向量乘法、归约、跨批次累加。
@@ -79,3 +81,18 @@ python3 scripts/test_vicuna_small.py <本次 build/runs/..._vicuna_small 路径>
 主 CPU 的 MMIO 任务寄存器、内部程序加载与启动机制、共享 SRAM 仲裁、
 任务完成/故障通知、NVDLA 与向量单元之间的数据格式及量化参数约定。
 独立验证不会自动补齐以上系统接口，也不恢复已放弃的主 CPU IMEM 下载改造。
+
+## 2026-10-13 实际结果与限制
+
+`build/runs/20261013_204057_vicuna_small` 九项全部 PASS，逐字节比较实际 SRAM 转储。
+复用模型 SHA-256：`732ed0113fb58a39f541bbccbef78fb3abdb5e48476672be54bfe4869a1ec916`。
+本次重新编译硬件耗时 0；原模型编译 429.706 秒。
+工具链改为 Windows 原生单次扫描，仅提取所需工具和共享库，39 秒完成。
+执行入口：`scripts/resume_vicuna_tests.py build/runs/20261012_175753_vicuna_small`（WSL）。
+
+首次诊断 `20261013_203617_vicuna_small` 的八项输出正确，但收尾 FENCE 卡住；
+FP32 PReLU 使用 vmflt.vv 时超时。失败记录完整保留，不能算 PASS。
+原因分别是默认封装 `fencei_flush_ack_i=0`，以及当前向量译码器缺少 vmflt.vv。
+本次无缓存测试改用受向量写入互锁保护的标量读收尾；FP32 PReLU 改用符号位掩码，
+浮点乘法仍由真实向量 FPU 执行。完整接入必须处理 FENCE 应答，软件须遵守实际指令子集。
+正式结果、限制和 GTKWave 会话见 `deliverables/vicuna2_small/README.md`。

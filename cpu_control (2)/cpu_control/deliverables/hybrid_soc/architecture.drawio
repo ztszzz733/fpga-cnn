@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="NVDLA + Vicuna SoC">
+    <mxGraphModel page="1" pageWidth="1700" pageHeight="1250" background="#111111">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cpu" value="CPU CORE&lt;br&gt;RV32I firmware" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="70" y="140" width="350" height="300" />
+        </mxCell>
+        <mxCell id="imem" value="IMEM&lt;br&gt;Main CPU ROM" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="650" y="140" width="210" height="200" />
+        </mxCell>
+        <mxCell id="cnn" value="CNN&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="70" y="630" width="420" height="490" />
+        </mxCell>
+        <mxCell id="cmd" value="Command registers" vertex="1" parent="cnn" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#ff6db4;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="25" y="60" width="370" height="55" />
+        </mxCell>
+        <mxCell id="nv" value="NVDLA&lt;br&gt;Conv / SDP / PDP" vertex="1" parent="cnn" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="25" y="155" width="160" height="150" />
+        </mxCell>
+        <mxCell id="vec" value="CV32E40X&lt;br&gt;+ Vicuna 2&lt;br&gt;+ program RAM" vertex="1" parent="cnn" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#57c5a8;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="210" y="155" width="185" height="150" />
+        </mxCell>
+        <mxCell id="mem" value="DATASRAM&lt;br&gt;4 banks&lt;br&gt;arbitration inside" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="780" y="460" width="230" height="660" />
+        </mxCell>
+        <mxCell id="io" value="IMAGE_BRIDGE&lt;br&gt;UART autoload" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="1280" y="490" width="270" height="230" />
+        </mxCell>
+        <mxCell id="clock" value="CLOCK&lt;br&gt;clock / reset" vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#dddddd;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="1280" y="940" width="270" height="140" />
+        </mxCell>
+        <mxCell id="e1" value="imem_addr /32, imem_re /1" edge="1" parent="1" source="cpu" target="imem" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4b9bff;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=1;exitY=.15;entryX=0;entryY=.2;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e2" value="imem_rdata /32" edge="1" parent="1" source="imem" target="cpu" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=0;exitY=.7;entryX=1;entryY=.55;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e3" value="mmio_addr /32, wdata /32, re/we /2" edge="1" parent="1" source="cpu" target="cnn" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#ff6db4;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=.2;exitY=1;entryX=.2;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e4" value="mmio_rdata /32, ready /1" edge="1" parent="1" source="cnn" target="cpu" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=.8;exitY=0;entryX=.8;entryY=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e5" value="dmem_addr /32, wdata /32, re/we/wstrb /6" edge="1" parent="1" source="cpu" target="mem" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#4b9bff;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=1;exitY=.85;entryX=0;entryY=.1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e6" value="dmem_rdata /32" edge="1" parent="1" source="mem" target="cpu" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=0;exitY=.25;entryX=1;entryY=1;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e7" value="cnn_valid/write/byte /11 each&lt;br&gt;cnn_addr/wdata /352 each&lt;br&gt;cnn_cancel /1" edge="1" parent="1" source="cnn" target="mem" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#57c5a8;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=1;exitY=.4;entryX=0;entryY=.5;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e8" value="cnn_ready/response /11 each&lt;br&gt;cnn_rdata /352, mem_fault /1" edge="1" parent="1" source="mem" target="cnn" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=0;exitY=.85;entryX=1;entryY=.85;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e9" value="io_mem_req/we/be /6&lt;br&gt;addr/wdata /32 each" edge="1" parent="1" source="io" target="mem" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#ff6db4;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=0;exitY=.2;entryX=1;entryY=.15;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e10" value="io_mem_gnt/rvalid/error /3&lt;br&gt;rdata /32" edge="1" parent="1" source="mem" target="io" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#e8d86a;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=1;exitY=.4;entryX=0;entryY=.8;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e11" value="load_req /1" edge="1" parent="1" source="cpu" target="io" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#ff6db4;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=.9;exitY=0;entryX=.2;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="e12" value="load_complete/error /2" edge="1" parent="1" source="io" target="cpu" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#ff6db4;fontColor=#ffffff;fontSize=16;labelBackgroundColor=#111111;exitX=.8;exitY=0;entryX=.4;entryY=0;">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="notes" value="External: sys_clk, rst_n_in, uart_rx → SoC; uart_tx, led_ready/busy/error ← SoC.&lt;br&gt;CLOCK distributes clk/rst_n to all five blocks (shared nets omitted for clarity).&lt;br&gt;SRAM clients: 0=NVDLA read, 1=NVDLA write, 2=Vicuna data, 3..10 inactive.&lt;br&gt;This regression preloads SRAM; UART remains idle." vertex="1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#111111;strokeColor=#555555;fontColor=#ffffff;fontSize=18;">
+          <mxGeometry as="geometry" x="550" y="1140" width="1050" height="100" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

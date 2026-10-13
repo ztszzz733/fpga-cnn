@@ -1,0 +1,29 @@
+{
+  "name": "int32_prelu",
+  "input_elements": 19,
+  "expected": [
+    -9,
+    -8,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3,
+    -2,
+    -1,
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36
+  ],
+  "wall_seconds": 0.06714116500000022,
+  "actual_hex": "f7fffffff8fffffff9fffffffafffffffbfffffffcfffffffdfffffffeffffffffffffff0000000004000000080000000c0000001000000014000000180000001c0000002000000024000000",
+  "expected_hex": "f7fffffff8fffffff9fffffffafffffffbfffffffcfffffffdfffffffeffffffffffffff0000000004000000080000000c0000001000000014000000180000001c0000002000000024000000",
+  "status": "PASS"
+}

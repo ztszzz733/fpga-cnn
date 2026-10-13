@@ -1,0 +1,4 @@
+
+['/mnt/d/code/FPGA1/.vicuna_build/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc', '-march=rv32imf_zfh_zve32f_zvfh_zicsr', '-mabi=ilp32f', '-nostdlib', '-nostartfiles', '-Wl,--no-relax', '-T', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/link.ld', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/test.S', '-o', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/test.elf']
+
+['/mnt/d/code/FPGA1/.vicuna_build/toolchain/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-objcopy', '-O', 'binary', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/test.elf', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/test.bin']

@@ -4,6 +4,7 @@ tools/
 .tools/
 .neureka_build/
 .vicuna_build/
+.hybrid_build/
 .venv/
 __pycache__/
 .pytest_cache/

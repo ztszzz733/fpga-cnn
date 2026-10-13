@@ -1,0 +1,11 @@
+{
+  "official": "pdp_8x8x64_2x2_int8",
+  "nvdla_output": 8192,
+  "output_size": 4096,
+  "crc32": "33d91a71",
+  "chain_count": 4096,
+  "parallel": true,
+  "expected_vector_jobs": 3,
+  "program_words": 76,
+  "cpu_words": 401
+}

@@ -1,0 +1,9 @@
+int32_residual PASS
+int32_mul PASS
+int32_prelu PASS
+fp32_add PASS
+fp32_mul PASS
+fp32_prelu PASS
+fp16_add PASS
+fp16_mul PASS
+int32_dot PASS

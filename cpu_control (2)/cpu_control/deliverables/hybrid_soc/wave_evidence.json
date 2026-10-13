@@ -1,0 +1,17 @@
+{
+  "tiny_chain": {
+    "vcd_sha256": "20e975bc0621b8192957eba2f5f66e5f4b1f07aed1eaddeaf1fc8413d2e3c8cd",
+    "displayed_signals": 39,
+    "first_chained_vector_write_ns": 150495
+  },
+  "conv_chain": {
+    "vcd_sha256": "4809db6fcd1c3b01f2f0c16557ee8f4a6a83fbf31dc719ae493ff68a0bdb6a20",
+    "displayed_signals": 39,
+    "first_chained_vector_write_ns": 652375
+  },
+  "pool_parallel": {
+    "vcd_sha256": "8251b34c5f10fe69318e7629eff4730c3456e8ca11301622b38bf201fff03b33",
+    "displayed_signals": 39,
+    "first_chained_vector_write_ns": 117455
+  }
+}

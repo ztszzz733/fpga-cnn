@@ -1,0 +1,15 @@
+
+['/mnt/d/code/FPGA1/.vicuna_build/model/verilated_model', '/mnt/d/code/FPGA1/.vicuna_build/cases/int32_residual/programs.txt', '1', '32', '262144', '1', '0', 'int32_residual', '128', '2', '--trace', '/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/runs/20261013_204057_vicuna_small/int32_residual/wave.vcd']
+Starting Verilator Main()
+SUCCESS: TEST PASS - TEST 2 - Output Match
+PROGRAM EXECUTION ENDED CORRECTLY
+Total Cycles: 1188
+Instruction Count: 113 CPI : 10.513274 
+
+Number of Vector Instructions Executed: 75  
+AVG VL Elements: 3.800000  
+AVG VL Bytes: 16.000000  
+
+AVG VREG Usage %: 47.500000  
+
+Tests Passed     : 1 / 1

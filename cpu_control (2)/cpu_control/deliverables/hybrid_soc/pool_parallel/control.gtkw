@@ -1,0 +1,122 @@
+[*] Real integrated SoC RTL; unique control signals
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/hybrid_soc/pool_parallel/control.vcd"
+[size] 1700 1000
+[signals_width] 280
+*-18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+@28
+[color] 6
+hybrid_soc.clk
+@28
+[color] 6
+hybrid_soc.rst_n
+@22
+[color] 6
+hybrid_soc.phase[31:0]
+@22
+[color] 6
+hybrid_soc.status[31:0]
+@22
+[color] 6
+hybrid_soc.cpu_pc[31:0]
+@28
+[color] 6
+hybrid_soc.mmio_re
+@28
+[color] 6
+hybrid_soc.mmio_we
+@28
+[color] 6
+hybrid_soc.mmio_ready
+@22
+[color] 6
+hybrid_soc.mmio_addr[31:0]
+@22
+[color] 6
+hybrid_soc.mmio_wdata[31:0]
+@22
+[color] 6
+hybrid_soc.mmio_rdata[31:0]
+@28
+[color] 3
+hybrid_soc.cmd_busy
+@28
+[color] 3
+hybrid_soc.cmd_done
+@28
+[color] 3
+hybrid_soc.cmd_error
+@22
+[color] 3
+hybrid_soc.config_state[1:0]
+@28
+[color] 3
+hybrid_soc.nv_irq
+@28
+[color] 3
+hybrid_soc.fault
+@22
+[color] 3
+hybrid_soc.read_state[2:0]
+@22
+[color] 3
+hybrid_soc.write_state[2:0]
+@22
+[color] 3
+hybrid_soc.read_beats[31:0]
+@22
+[color] 3
+hybrid_soc.write_beats[31:0]
+@28
+[color] 4
+hybrid_soc.vec_busy
+@28
+[color] 4
+hybrid_soc.vec_done
+@22
+[color] 4
+hybrid_soc.vec_jobs[31:0]
+@22
+[color] 4
+hybrid_soc.vec_code[31:0]
+@22
+[color] 4
+hybrid_soc.vec_state[2:0]
+@22
+[color] 4
+hybrid_soc.vec_pending[31:0]
+@22
+[color] 4
+hybrid_soc.vec_reads[31:0]
+@22
+[color] 4
+hybrid_soc.vec_writes[31:0]
+@22
+[color] 4
+hybrid_soc.vec_stalls[31:0]
+@22
+[color] 4
+hybrid_soc.cnn_valid[10:0]
+@22
+[color] 4
+hybrid_soc.cnn_ready[10:0]
+@22
+[color] 4
+hybrid_soc.cnn_response[10:0]
+@22
+[color] 4
+hybrid_soc.cnn_write[10:0]
+@22
+[color] 4
+hybrid_soc.vec_addr[31:0]
+@22
+[color] 4
+hybrid_soc.vec_wdata[31:0]
+@22
+[color] 4
+hybrid_soc.vec_rdata[31:0]
+@28
+[color] 4
+hybrid_soc.uart_tx
+@28
+[color] 4
+hybrid_soc.load_req

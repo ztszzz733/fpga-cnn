@@ -1,0 +1,11 @@
+{
+  "name": "int32_dot",
+  "input_elements": 19,
+  "expected": [
+    -124
+  ],
+  "wall_seconds": 0.06718923900000018,
+  "actual_hex": "84ffffff",
+  "expected_hex": "84ffffff",
+  "status": "PASS"
+}

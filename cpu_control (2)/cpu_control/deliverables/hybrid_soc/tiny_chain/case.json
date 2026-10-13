@@ -1,0 +1,11 @@
+{
+  "official": "dc_1x1x8_1x1x8x1_int8_0",
+  "nvdla_output": 20480,
+  "output_size": 8,
+  "crc32": "8f68a2ae",
+  "chain_count": 7,
+  "parallel": false,
+  "expected_vector_jobs": 2,
+  "program_words": 76,
+  "cpu_words": 1027
+}
