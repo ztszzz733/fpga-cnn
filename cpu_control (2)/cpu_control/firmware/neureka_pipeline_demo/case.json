@@ -1,0 +1,56 @@
+{
+  "height": 15,
+  "width": 9,
+  "ci": 3,
+  "co": 5,
+  "kernel": 3,
+  "shift": 5,
+  "layout": "HWC",
+  "output": 73728,
+  "output_bytes": 455,
+  "buffers": [
+    65536,
+    69632
+  ],
+  "capacity": 1024,
+  "tiles": [
+    {
+      "row": 0,
+      "rows": 4,
+      "source": 8192,
+      "destination": 73728,
+      "bytes": 140,
+      "config": 4096,
+      "buffer": 65536
+    },
+    {
+      "row": 4,
+      "rows": 4,
+      "source": 8300,
+      "destination": 73868,
+      "bytes": 140,
+      "config": 4192,
+      "buffer": 69632
+    },
+    {
+      "row": 8,
+      "rows": 4,
+      "source": 8408,
+      "destination": 74008,
+      "bytes": 140,
+      "config": 4288,
+      "buffer": 65536
+    },
+    {
+      "row": 12,
+      "rows": 1,
+      "source": 8516,
+      "destination": 74148,
+      "bytes": 35,
+      "config": 4384,
+      "buffer": 69632
+    }
+  ],
+  "vector_sha256": "65430b1e75ef19e705b18083d7fe7d029397d9efeb8e5b46a9a5d3947c5e4d57",
+  "scope": "unsigned activations 0..127; signed INT8 weights/output; INT8 PReLU alpha=1/4; serial then pipeline without reset"
+}
