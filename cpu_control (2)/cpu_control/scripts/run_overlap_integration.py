@@ -65,8 +65,9 @@ def main():
                     params=[] if original else [f'-GENABLE_OVERLAP={0 if case=="serial" else 1}',f'-GBANKS={1 if case=="one_bank" else 4}']
                     if case=='observer_fault':params+=['-GOBSERVE_FAULT=1']
                     if top=='tb_soc_overlap':params += [f'-GUART_BAUD={baud}',f'-GUART_CHUNK_BYTES={chunk}']
+                    make_python=Path(os.sys.executable).as_posix()
                     execute([compiler,'--binary','--timing','--assert','-Wno-fatal','-j','4','-CFLAGS','-std=c++20',
-                             '-MAKEFLAGS','CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3',
+                             '-MAKEFLAGS',f'CFG_CXXFLAGS_PCH_I=-include PYTHON3={make_python}',
                              '--top-module',top,'--Mdir',stage/'obj','-I'+str(stage),
                              *(['--trace','-DDUMP_WAVES'] if args.waves else []),
                              *(['--trace-depth','2','-DTOP_WAVES'] if args.top_waves else []),

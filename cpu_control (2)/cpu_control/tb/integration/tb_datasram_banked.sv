@@ -12,7 +12,8 @@ module tb_datasram_banked;
     logic [3:0] io_mem_be=0;wire io_mem_gnt,io_mem_rvalid,io_mem_error;wire [31:0] io_mem_rdata;
     datasram_banked #(.BANKS(BANKS),.SRAM_SIZE(256)) dut(.*);
     reg [10:0] accepted,seen;
-    integer grants=0;
+    reg accepted_io,seen_io;
+    integer grants=0,hotspot_cycles=0,same_bank_parallel=0;
     task tick;begin @(posedge clk);#1;end endtask
     task cpu_write(input [31:0] addr,value);
         begin @(negedge clk);dmem_addr=addr;dmem_wdata=value;dmem_we=1;tick();@(negedge clk);dmem_we=0;end
@@ -47,6 +48,30 @@ module tb_datasram_banked;
         repeat(20) begin tick();if(cnn_ready[0] || cnn_response[0] || dmem_rdata!==32'h10203040) $fatal(1,"CPU priority");end
         @(negedge clk);dmem_re=0;tick();if(!cnn_response[0]) $fatal(1,"stalled request did not resume");
         @(negedge clk);cnn_valid=0;
+        // True dual-port proof: CPU and CNN use the same bank but different
+        // rows in the same cycle.  The old single-port bank stalled this case.
+        cnn_valid=1;cnn_write=0;cnn_byte=0;cnn_addr[0+:32]=16;
+        dmem_addr=0;dmem_re=1;tick();
+        if(!cnn_ready[0] || !cnn_response[0] || cnn_rdata[0+:32]!==32'h10203044 ||
+            dmem_rdata!==32'h10203040) $fatal(1,"same-bank dual-port access did not overlap");
+        same_bank_parallel=same_bank_parallel+1;
+        @(negedge clk);cnn_valid=0;dmem_re=0;
+        // All twelve port-B requesters target bank zero.  A fair tree-backed
+        // round robin must grant exactly one per cycle and serve all of them.
+        cnn_valid='1;cnn_write=0;cnn_byte=0;
+        for(integer i=0;i<11;i=i+1) cnn_addr[i*32+:32]=i*16;
+        io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=176;
+        seen=0;seen_io=0;hotspot_cycles=0;
+        while(seen!='1 || !seen_io) begin
+            @(posedge clk);accepted=cnn_valid & cnn_ready;accepted_io=io_mem_req && io_mem_gnt;
+            if($countones(accepted)+accepted_io!=1) $fatal(1,"hotspot arbitration grant count");
+            hotspot_cycles=hotspot_cycles+1;#1;
+            if(cnn_response!==accepted || io_mem_rvalid!==accepted_io)
+                $fatal(1,"hotspot response routing");
+            seen=seen|accepted;seen_io=seen_io|accepted_io;
+            @(negedge clk);cnn_valid=cnn_valid & ~accepted;if(accepted_io) io_mem_req=0;
+        end
+        if(hotspot_cycles!=12) $fatal(1,"round-robin fairness bound");
         cnn_access(0,1,1,1,32'h80,0);
         cnn_access(1,0,0,0,0,32'h10208040);
         cnn_access(2,0,1,1,0,32'hffffff80);
@@ -57,7 +82,7 @@ module tb_datasram_banked;
         cnn_access(3,0,0,0,0,32'hbbaa8040);
         // Cancel pending response/request without resetting SRAM.
         @(negedge clk);cnn_valid=1;cnn_write=0;cnn_byte=0;cnn_addr[0+:32]=0;tick();
-        @(negedge clk);cnn_cancel=1;tick();if(cnn_response || cnn_ready) $fatal(1,"cancel leaked response");
+        @(negedge clk);cnn_cancel=1;tick();if(|cnn_response || |cnn_ready) $fatal(1,"cancel leaked response");
         @(negedge clk);cnn_valid=0;cnn_cancel=0;
         cnn_access(0,0,0,0,0,32'hbbaa8040);
         // IO write byte enables and read-response error retain the original protocol.
@@ -67,18 +92,18 @@ module tb_datasram_banked;
         cnn_access(0,0,0,0,0,32'hbbaa1140);
         @(negedge clk);io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=256;
         do begin @(posedge clk);end while(!io_mem_gnt);
-        #1;if(!io_mem_rvalid || !io_mem_error) $fatal(1,"IO range error lost");
+        #1;if(!io_mem_rvalid || !io_mem_error || io_mem_rdata!==0) $fatal(1,"IO range error lost");
         @(negedge clk);io_mem_req=0;
         // Misaligned word request faults without a grant, locks until system reset.
         cnn_valid=1;cnn_write=0;cnn_byte=0;cnn_addr[0+:32]=1;tick();
-        if(!cnn_mem_fault || cnn_ready) $fatal(1,"missing alignment fault");
+        if(!cnn_mem_fault || |cnn_ready) $fatal(1,"missing alignment fault");
         @(negedge clk);cnn_addr[0+:32]=0;cnn_cancel=1;tick();
         if(!cnn_mem_fault) $fatal(1,"soft reset cleared system fault");
         @(negedge clk);cnn_valid=0;cnn_cancel=0;rst_n=0;tick();
         @(negedge clk);rst_n=1;cnn_access(0,0,0,0,0,32'hbbaa1140);
         @(negedge clk);cnn_valid=1;cnn_addr[0+:32]=256;tick();
-        if(!cnn_mem_fault || cnn_ready) $fatal(1,"missing range fault");
-        $display("METRICS clients=%0d grants=%0d stalled_cycles=20",11,grants);
+        if(!cnn_mem_fault || |cnn_ready) $fatal(1,"missing range fault");
+        $display("METRICS clients=%0d grants=%0d stalled_cycles=20 same_bank_parallel=%0d hotspot_cycles=%0d",11,grants,same_bank_parallel,hotspot_cycles);
         $display("PASS tb_datasram_banked");$finish;
     end
     initial begin #100000;$fatal(1,"memory test timeout");end
