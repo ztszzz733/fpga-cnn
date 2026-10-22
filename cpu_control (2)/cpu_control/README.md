@@ -1,5 +1,19 @@
 # 项目从哪里开始
 
+本次提交说明：[2026-10-22 修改说明](docs/2026-10-22修改说明.md)。源码压缩包位于仓库根目录 `releases/2026-10-22/`。
+
+## 2026-10-22 FX8 并行图像桥（代码与仿真）
+
+新增 `face_soc_neureka_fx8_top`：8 位 RX/TX、25 MHz 握手、跨时钟 FIFO、包/整帧 CRC 和 32 位 SRAM 打包写。保留六模块内部接口、原 UART 入口和已有帧/分块双缓冲。同一 CPU C 固件通过四帧功能回归；计算模型与真实内核限制见 [验证记录](docs/fx8_verification_20261022.md)。用户当前不考虑上板，板级文件仅为参考草案。
+
+- [实现与接口说明](docs/ees331_fx8_interface.md)
+- 回归：`python scripts/run_fx8.py`
+- 生产源码清单：`rtl/filelists/system_neureka_fx8.f`
+
+## 2026-10-22 Neureka 连续帧调度
+
+`face_soc_neureka_pipeline_top` 现通过 SRAM 描述符选择输入帧 A/B，保持六模块端口和连线。新增 CPU 协作式调度、独立输出 A/B 和 UART 连续四帧示例。主 CPU/桥/SRAM/调度 RTL 的并发回归通过，计算级行为模型不等于真实 Neureka/Vicuna 验收；真实核及上板限制见 [连续帧使用与验证说明](docs/neureka_continuous_frames.md)。
+
 ## NEureka 可编程卷积适配
 
 新增隔离入口 `face_soc_neureka_top`（`rtl/filelists/system_neureka.f`）：把官方 NEureka RTL 接入原 CPU 的任务队列和四 bank DATASRAM，原通用 CNN 与固定 Sobel 流式入口均保留。顶层仍为六模块；排布转换、配置和 HCI 桥接都在 CNN 内部。当前为 SRAM 任务模式，不能直接替代此前 UART 逐像素流式入口。

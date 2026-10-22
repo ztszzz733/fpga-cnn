@@ -1,0 +1,23 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "tb_neureka_fx8_frames", "-runall", "-testplusarg", "TEST_MODE=0"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Thu Oct 22 18:13:50 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_neureka_fx8_frames/xsim_script.tcl
+# xsim {tb_neureka_fx8_frames} -testplusarg TEST_MODE=0 -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+FATAL_ERROR: Vivado Simulator kernel has discovered an exceptional condition from which it cannot recover. Process will terminate. For technical support on this issue, please open a WebCase with this project attached at http://www.xilinx.com/support.
+Time: 0 ps  Iteration: 0  Process: /tb_neureka_fx8_frames/dut/u_cnn/vector_unit/core/core/if_stage_i/prefetch_unit_i/alignment_buffer_i/NetRegassign160_1175377
+  File: D:/fpga-cnn-zhang-new/fpga-cnn-moon/cpu_control (2)/cpu_control/third_party/vicuna2_tests/rtl/cv32e40x/rtl/cv32e40x_alignment_buffer.sv
+
+HDL Line: D:/fpga-cnn-zhang-new/fpga-cnn-moon/cpu_control (2)/cpu_control/third_party/vicuna2_tests/rtl/cv32e40x/rtl/cv32e40x_alignment_buffer.sv:115
+exit
+INFO: xsimkernel Simulation Memory Usage: 499844 KB (Peak: 499844 KB), Simulation CPU Usage: 1124 ms
+INFO: [Common 17-206] Exiting xsim at Thu Oct 22 18:13:55 2026...

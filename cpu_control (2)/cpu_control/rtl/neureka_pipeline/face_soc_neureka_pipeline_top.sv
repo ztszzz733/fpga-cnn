@@ -34,7 +34,8 @@ module face_soc_neureka_pipeline_top #(
     image_bridge_autoload #(.CLOCK_HZ(CLOCK_HZ),.BAUD(BAUD),.TIMEOUT_CYCLES(UART_TIMEOUT_CYCLES),
         .CHUNK_BYTES(CHUNK_BYTES),.LOAD_CTRL_ADDR(LOAD_CTRL_ADDR),.SOURCE_BASE(SOURCE_BASE),
         .LOAD_BASE(LOAD_BASE),.LOAD_BYTES(LOAD_BYTES),.EXPECTED_CRC32(EXPECTED_CRC32),
-        .SRAM_BASE(SRAM_BASE),.SRAM_SIZE(SRAM_SIZE)) u_image_bridge (.*);
+        .SRAM_BASE(SRAM_BASE),.SRAM_SIZE(SRAM_SIZE),
+        .DESCRIPTOR_MODE(1),.DESCRIPTOR_ADDR(SRAM_BASE+32'h60)) u_image_bridge (.*);
     // Preserve CPU wrapper and zero-wait mailbox wiring.
     cpu_core_autoload #(.RESET_PC(RESET_PC),.SRAM_BASE(SRAM_BASE),.SRAM_SIZE(SRAM_SIZE),
         .CNN_MMIO_BASE(CNN_MMIO_BASE),.CNN_MMIO_SIZE(32'h40000),.LOAD_CTRL_ADDR(LOAD_CTRL_ADDR)) u_cpu_core (.*);
