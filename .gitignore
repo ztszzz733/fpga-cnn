@@ -3,6 +3,9 @@ build/
 tools/
 .tools/
 .neureka_build/
+.neureka_stripes_build/
+.neureka_chain_build/
+.neureka_pipeline_build/
 .vicuna_build/
 .hybrid_build/
 .venv/
@@ -17,3 +20,5 @@ mobilefacenet/.deps-py39/
 *.fst
 *.wdb
 *.vvp
+
+.neureka_dual_build/

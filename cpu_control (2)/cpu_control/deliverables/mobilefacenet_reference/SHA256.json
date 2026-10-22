@@ -1,0 +1,14 @@
+{
+  "activation_ranges.json": "16d5edd3918bf90fd1f6d07bf44d3a912bb4f23854712bd578c1155c6c883bf8",
+  "cosine_similarity.csv": "e54a082fef8175e5342b27abdfb263537e32c0727b079efd24fc81e4ee800b12",
+  "dw_stride2_diagnostic.json": "2dfd6b448f055e0b7870314e8695c7499bfe06453d890ed24156ca5d3363071c",
+  "dw_stride2_failure.log": "c238d5604322f462517e40809db177b5919a326752a8a09e1d5dc23e9a41d62d",
+  "gdconv_lowering.json": "7a26bec798d5231dc3a7827b379e83ab519d62578b133b949220f44779417ef5",
+  "MobileFaceNet_LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+  "operators.csv": "50fd58f3626219987bf1a9c394c28edc7c6c3cb1a77bd8451649d90f683f994b",
+  "operators.json": "4242bf69da5df6340d6f94ff03d7b0d9fc42e7974774ee68242b8b69334c618e",
+  "README.md": "69843eed664b3127e7f2bd6e9bb2121130d9d897bb2ed5d6cdbe2cf256b2707c",
+  "reference_result.json": "f6f4594c6f6ed562d5e51c80b4ad1258a36a4e0694de7ca192c5e55954a29d3a",
+  "rtl_dw_stride2_result.json": "91571570eeb2374c2a4a5254f02907e8ae17c8f05ae0da7764767850ba5fd791",
+  "rtl_modes_result.json": "6887b0800345cd8b9c32d83cc8b929c5a2eb077180842bdcb163b0aef2a720b5"
+}

@@ -1,0 +1,42 @@
+[*] Real RTL, sampled each rising edge; no UART
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/neureka_stripes/control.vcd"
+[size] 1700 1000
+[signals_width] 300
+[sst_expanded] 0
+*-15 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+@22
+[color] 3
+stripe.conv_tile[31:0]
+@28
+[color] 3
+stripe.conv_write_fire
+@28
+[color] 3
+stripe.conv_done
+@28
+[color] 2
+stripe.post_start
+@22
+[color] 2
+stripe.post_tile[31:0]
+@28
+[color] 2
+stripe.post_read_fire
+@28
+[color] 2
+stripe.post_write_fire
+@22
+[color] 2
+stripe.post_addr[31:0]
+@28
+[color] 2
+stripe.post_done
+@22
+[color] 6
+stripe.slot_states[5:0]
+@22
+[color] 6
+stripe.completed_tiles[31:0]
+@28
+[color] 1
+stripe.done

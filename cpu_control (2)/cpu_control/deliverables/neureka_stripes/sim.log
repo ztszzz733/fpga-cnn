@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.neureka_stripes_build/obj/Vtb_neureka_stripes", "+stall=0"]
+PASS tb_neureka_stripes cycles=19372 tiles=6 overlap=6990
+- /mnt/d/code/FPGA1/.neureka_stripes_build/138_tb_neureka_stripes.sv:130: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 194us; walltime 7.571 s; speed 27.343 us/s
+- Verilator: cpu 7.087 s on 1 threads; alloced 200 MB

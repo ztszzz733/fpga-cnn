@@ -1,0 +1,67 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_000428_mobilefacenet_pipeline",
+  "first_overlap_ns": 140985,
+  "first_write_during_compute_ns": 143755,
+  "early_layer_handoff": {
+    "event": {
+      "cycle": "55017",
+      "event": "conv_start",
+      "node": "6",
+      "tag": "256",
+      "slot": "0"
+    },
+    "previous_layer_pending": [
+      4
+    ]
+  },
+  "views": {
+    "01_overview": [
+      "conv_frame",
+      "conv_layer",
+      "conv_stripe",
+      "core_busy",
+      "compute_active",
+      "post_frame",
+      "post_layer",
+      "post_stripe",
+      "post_busy",
+      "compute_post_overlap",
+      "slot_states",
+      "completed_mask",
+      "done",
+      "error"
+    ],
+    "02_overlap": [
+      "conv_node",
+      "conv_frame",
+      "conv_layer",
+      "conv_slot",
+      "compute_active",
+      "conv_read_fire",
+      "conv_write_fire",
+      "post_node",
+      "post_frame",
+      "post_layer",
+      "post_slot",
+      "post_read_fire",
+      "post_write_fire",
+      "post_address",
+      "compute_post_overlap"
+    ],
+    "03_layer_handoff": [
+      "conv_start",
+      "conv_frame",
+      "conv_layer",
+      "conv_stripe",
+      "core_busy",
+      "post_frame",
+      "post_layer",
+      "post_stripe",
+      "post_busy",
+      "post_write_fire",
+      "post_done",
+      "completed_mask",
+      "slot_states"
+    ]
+  }
+}

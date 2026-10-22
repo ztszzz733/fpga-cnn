@@ -1,0 +1,52 @@
+[*] Real RTL MobileFaceNet ROI controls
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/mobilefacenet_chain/control.vcd"
+[savefile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/mobilefacenet_chain/control.gtkw"
+[timestart] 0
+@22
+[color] 4
+chain.job[31:0]
+@28
+[color] 3
+chain.conv_start
+@28
+[color] 3
+chain.core_busy
+@22
+[color] 3
+chain.core_state[5:0]
+@28
+[color] 3
+chain.accum_done
+@28
+[color] 3
+chain.prefetch_done
+@28
+[color] 3
+chain.conv_read_fire
+@28
+[color] 3
+chain.conv_write_fire
+@28
+[color] 3
+chain.cdone
+@28
+[color] 2
+chain.post_start
+@28
+[color] 2
+chain.mode_add
+@28
+[color] 2
+chain.pbusy
+@28
+[color] 2
+chain.post_read_fire
+@28
+[color] 2
+chain.post_write_fire
+@28
+[color] 2
+chain.pdone
+@28
+[color] 4
+chain.memory_fault

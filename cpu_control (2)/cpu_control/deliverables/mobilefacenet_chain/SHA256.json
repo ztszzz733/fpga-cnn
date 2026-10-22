@@ -1,0 +1,17 @@
+{
+  "01_overview.png": "c7163ea5b46ec18471894f547c61e120b5531ee64193515c4226c36901edb829",
+  "02_quant_write.png": "8031f8e696d8c483ace4de8e42fb0c54fe10a9a67a735acd15377a718fbf0f93",
+  "control.gtkw": "825710ef2f757c462c3595d0cc6a48590c6c455ed9900ed31ad6bf574c9b6810",
+  "control.vcd": "c76b1f29dae89a802cf2d1b86b932a8136ed33e5121be42c0ebc4a5b561d1267",
+  "dw_stride2_workaround.json": "cda6e0975e43193159b94c04e12be9608426283e624cf62a4af4427036f9db71",
+  "events.csv": "ad374cb19992ea19fcb46718092df7449bc2fc7fdbaa05cc1bbaaf928abfe08e",
+  "gtkwave_validation.log": "f5b1be63306f2ca2b3d2a70da8709f8adaa22ed3936419f9d7c6fd0108df12f5",
+  "initial_build_result.json": "e6de59f4cc5e8481fb5b559b48991b6095095607e762c3fc8f6218444be616c9",
+  "open_gtkwave.cmd": "3cb62bccc3e7f86e87ebc78e2542b91b52d14c03a41d445d39c1cd21d9877ef0",
+  "provenance.json": "03dba76f703e1c7d922dbf37a87a3cb448ee47ecb247cce58ad67cfa13af793b",
+  "README.md": "9e9776d1b2a13a5c0da87df29cb88350bd6accf58abb3f5f7d8f80f9e46a1891",
+  "result.json": "ff58885aeaa53823d7dbff8522f11af295d12c4dcff1d8ff4fe6f40c243dc769",
+  "sim.log": "3cb956a3c8906460cd2579ad9104dccf1ea2417bdf9f90052f9e9712a6b807b2",
+  "verify.tcl": "3a2c7617fb3762f39f979565d0e90509e6dba66b50f8db0d9fd576f4b8743275",
+  "workload.json": "a2c5b3684b1e7f62ffb8b3a4f678fedad79f3dcf8fd1d45ee4ef57d2deea2d20"
+}

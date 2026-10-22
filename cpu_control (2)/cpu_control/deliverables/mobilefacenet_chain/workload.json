@@ -1,0 +1,222 @@
+{
+  "image": "D:\\code\\facemodel\\person_1.jpg",
+  "image_sha256": "4802be78ad75b6d32815dfe11658ef00718d0a78e5b8a7bb23a8c5e6eb4e81a4",
+  "onnx_sha256": "28ee4f5fb6c4f0bc0a2a66c1ec7a0b6fed0593013c0a8f442d5dd4af08b0f8fe",
+  "layers": [
+    {
+      "layer": "/Conv",
+      "kernel": 3,
+      "depthwise": false,
+      "stride": 2,
+      "input_shape": [
+        13,
+        13,
+        3
+      ],
+      "output_shape": [
+        6,
+        6,
+        64
+      ],
+      "input_scale": 0.023622047244094488,
+      "input_zero": 128,
+      "output_scale": 0.023529411764705882,
+      "output_zero": 0,
+      "float_local_rmse": 0.006151657032611126,
+      "accumulated_quantization_rmse": 0.006531567439453132,
+      "float_roi_onnx_max_error": 4.007391680715955e-07,
+      "raw_address": 16960,
+      "output_address": 26240,
+      "parameters_address": 47552,
+      "raw_min": -658912,
+      "raw_max": 756031
+    },
+    {
+      "layer": "/Conv_1",
+      "kernel": 3,
+      "depthwise": true,
+      "stride": 1,
+      "input_shape": [
+        6,
+        6,
+        64
+      ],
+      "output_shape": [
+        4,
+        4,
+        64
+      ],
+      "input_scale": 0.023529411764705882,
+      "input_zero": 0,
+      "output_scale": 0.021936769818923636,
+      "output_zero": 0,
+      "float_local_rmse": 0.017544305040725686,
+      "accumulated_quantization_rmse": 0.019604692796106743,
+      "float_roi_onnx_max_error": 6.863217334451832e-07,
+      "raw_address": 48896,
+      "output_address": 53056,
+      "parameters_address": 55296,
+      "raw_min": -26945,
+      "raw_max": 10659
+    },
+    {
+      "layer": "/Conv_2",
+      "kernel": 1,
+      "depthwise": false,
+      "stride": 1,
+      "input_shape": [
+        4,
+        4,
+        64
+      ],
+      "output_shape": [
+        4,
+        4,
+        64
+      ],
+      "input_scale": 0.021936769818923636,
+      "input_zero": 0,
+      "output_scale": 0.015440456235285609,
+      "output_zero": 0,
+      "float_local_rmse": 0.013003259577563672,
+      "accumulated_quantization_rmse": 0.02798106419928409,
+      "float_roi_onnx_max_error": 1.2832454929778692e-06,
+      "raw_address": 56640,
+      "output_address": 60800,
+      "parameters_address": 66496,
+      "raw_min": -57679,
+      "raw_max": 72433
+    }
+  ],
+  "jobs": [
+    [
+      0,
+      37888,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      47360,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      16960,
+      9216
+    ],
+    [
+      1,
+      0,
+      16960,
+      0,
+      26240,
+      47552,
+      2304,
+      64,
+      26240,
+      2304
+    ],
+    [
+      0,
+      54528,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      55104,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      48896,
+      4096
+    ],
+    [
+      1,
+      0,
+      48896,
+      0,
+      53056,
+      55296,
+      1024,
+      64,
+      53056,
+      1024
+    ],
+    [
+      0,
+      64000,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      66304,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      56640,
+      4096
+    ],
+    [
+      1,
+      0,
+      56640,
+      0,
+      60800,
+      66496,
+      1024,
+      64,
+      60800,
+      1024
+    ],
+    [
+      2,
+      0,
+      67840,
+      67968,
+      68096,
+      68224,
+      32,
+      4,
+      68096,
+      32
+    ]
+  ],
+  "bytes_used": 68368,
+  "network_channels_preserved": true,
+  "roi": "conv1 top-left 6x6; DW/PW coordinates [1:5,1:5] of full feature map",
+  "full_image": false,
+  "full_network": false,
+  "calibrated_accuracy": false,
+  "uart": false,
+  "cpu": false,
+  "prefetch": false
+}

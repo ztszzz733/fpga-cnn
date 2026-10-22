@@ -1,0 +1,164 @@
+﻿index,name,op,output_shape,kernel,group,strides,pads,weight_shape,macs,mapping
+0,/Conv,Conv,"[1, 64, 56, 56]","[3, 3]",1,"[2, 2]","[1, 1, 1, 1]","[64, 3, 3, 3]",5419008,NEureka dense3x3; padding/stride/quantization pending
+1,/Constant,Constant,[],,,,,,,Compile-time constant
+2,/Constant_1,Constant,[],,,,,,,Compile-time constant
+3,/Clip,Clip,"[1, 64, 56, 56]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+4,/Conv_1,Conv,"[1, 64, 56, 56]","[3, 3]",64,"[1, 1]","[1, 1, 1, 1]","[64, 1, 3, 3]",1806336,NEureka DW3x3; padding/stride/channel tiling pending
+5,/Relu,Relu,"[1, 64, 56, 56]",,,,,,,Existing post ReLU; model-scale integration pending
+6,/Conv_2,Conv,"[1, 64, 56, 56]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 64, 1, 1]",12845056,NEureka 1x1; channel tiling/padding/quantization pending
+7,/Relu_1,Relu,"[1, 64, 56, 56]",,,,,,,Existing post ReLU; model-scale integration pending
+8,/Conv_3,Conv,"[1, 128, 56, 56]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 64, 1, 1]",25690112,NEureka 1x1; channel tiling/padding/quantization pending
+9,/Constant_2,Constant,[],,,,,,,Compile-time constant
+10,/Constant_3,Constant,[],,,,,,,Compile-time constant
+11,/Clip_1,Clip,"[1, 128, 56, 56]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+12,/Conv_4,Conv,"[1, 128, 28, 28]","[3, 3]",128,"[2, 2]","[1, 1, 1, 1]","[128, 1, 3, 3]",903168,NEureka DW3x3; padding/stride/channel tiling pending
+13,/Constant_4,Constant,[],,,,,,,Compile-time constant
+14,/Constant_5,Constant,[],,,,,,,Compile-time constant
+15,/Clip_2,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+16,/Conv_5,Conv,"[1, 64, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+17,/Conv_6,Conv,"[1, 128, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 64, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+18,/Constant_6,Constant,[],,,,,,,Compile-time constant
+19,/Constant_7,Constant,[],,,,,,,Compile-time constant
+20,/Clip_3,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+21,/Conv_7,Conv,"[1, 128, 28, 28]","[3, 3]",128,"[1, 1]","[1, 1, 1, 1]","[128, 1, 3, 3]",903168,NEureka DW3x3; padding/stride/channel tiling pending
+22,/Constant_8,Constant,[],,,,,,,Compile-time constant
+23,/Constant_9,Constant,[],,,,,,,Compile-time constant
+24,/Clip_4,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+25,/Conv_8,Conv,"[1, 64, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+26,/Add,Add,"[1, 64, 28, 28]",,,,,,,Residual add with scale alignment needed
+27,/Conv_9,Conv,"[1, 128, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 64, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+28,/Constant_10,Constant,[],,,,,,,Compile-time constant
+29,/Constant_11,Constant,[],,,,,,,Compile-time constant
+30,/Clip_5,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+31,/Conv_10,Conv,"[1, 128, 28, 28]","[3, 3]",128,"[1, 1]","[1, 1, 1, 1]","[128, 1, 3, 3]",903168,NEureka DW3x3; padding/stride/channel tiling pending
+32,/Constant_12,Constant,[],,,,,,,Compile-time constant
+33,/Constant_13,Constant,[],,,,,,,Compile-time constant
+34,/Clip_6,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+35,/Conv_11,Conv,"[1, 64, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+36,/Add_1,Add,"[1, 64, 28, 28]",,,,,,,Residual add with scale alignment needed
+37,/Conv_12,Conv,"[1, 128, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 64, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+38,/Constant_14,Constant,[],,,,,,,Compile-time constant
+39,/Constant_15,Constant,[],,,,,,,Compile-time constant
+40,/Clip_7,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+41,/Conv_13,Conv,"[1, 128, 28, 28]","[3, 3]",128,"[1, 1]","[1, 1, 1, 1]","[128, 1, 3, 3]",903168,NEureka DW3x3; padding/stride/channel tiling pending
+42,/Constant_16,Constant,[],,,,,,,Compile-time constant
+43,/Constant_17,Constant,[],,,,,,,Compile-time constant
+44,/Clip_8,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+45,/Conv_14,Conv,"[1, 64, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+46,/Add_2,Add,"[1, 64, 28, 28]",,,,,,,Residual add with scale alignment needed
+47,/Conv_15,Conv,"[1, 128, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 64, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+48,/Constant_18,Constant,[],,,,,,,Compile-time constant
+49,/Constant_19,Constant,[],,,,,,,Compile-time constant
+50,/Clip_9,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+51,/Conv_16,Conv,"[1, 128, 28, 28]","[3, 3]",128,"[1, 1]","[1, 1, 1, 1]","[128, 1, 3, 3]",903168,NEureka DW3x3; padding/stride/channel tiling pending
+52,/Constant_20,Constant,[],,,,,,,Compile-time constant
+53,/Constant_21,Constant,[],,,,,,,Compile-time constant
+54,/Clip_10,Clip,"[1, 128, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+55,/Conv_17,Conv,"[1, 64, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[64, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+56,/Add_3,Add,"[1, 64, 28, 28]",,,,,,,Residual add with scale alignment needed
+57,/Conv_18,Conv,"[1, 256, 28, 28]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 64, 1, 1]",12845056,NEureka 1x1; channel tiling/padding/quantization pending
+58,/Constant_22,Constant,[],,,,,,,Compile-time constant
+59,/Constant_23,Constant,[],,,,,,,Compile-time constant
+60,/Clip_11,Clip,"[1, 256, 28, 28]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+61,/Conv_19,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[2, 2]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+62,/Constant_24,Constant,[],,,,,,,Compile-time constant
+63,/Constant_25,Constant,[],,,,,,,Compile-time constant
+64,/Clip_12,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+65,/Conv_20,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+66,/Conv_21,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+67,/Constant_26,Constant,[],,,,,,,Compile-time constant
+68,/Constant_27,Constant,[],,,,,,,Compile-time constant
+69,/Clip_13,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+70,/Conv_22,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+71,/Constant_28,Constant,[],,,,,,,Compile-time constant
+72,/Constant_29,Constant,[],,,,,,,Compile-time constant
+73,/Clip_14,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+74,/Conv_23,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+75,/Add_4,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+76,/Conv_24,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+77,/Constant_30,Constant,[],,,,,,,Compile-time constant
+78,/Constant_31,Constant,[],,,,,,,Compile-time constant
+79,/Clip_15,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+80,/Conv_25,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+81,/Constant_32,Constant,[],,,,,,,Compile-time constant
+82,/Constant_33,Constant,[],,,,,,,Compile-time constant
+83,/Clip_16,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+84,/Conv_26,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+85,/Add_5,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+86,/Conv_27,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+87,/Constant_34,Constant,[],,,,,,,Compile-time constant
+88,/Constant_35,Constant,[],,,,,,,Compile-time constant
+89,/Clip_17,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+90,/Conv_28,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+91,/Constant_36,Constant,[],,,,,,,Compile-time constant
+92,/Constant_37,Constant,[],,,,,,,Compile-time constant
+93,/Clip_18,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+94,/Conv_29,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+95,/Add_6,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+96,/Conv_30,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+97,/Constant_38,Constant,[],,,,,,,Compile-time constant
+98,/Constant_39,Constant,[],,,,,,,Compile-time constant
+99,/Clip_19,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+100,/Conv_31,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+101,/Constant_40,Constant,[],,,,,,,Compile-time constant
+102,/Constant_41,Constant,[],,,,,,,Compile-time constant
+103,/Clip_20,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+104,/Conv_32,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+105,/Add_7,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+106,/Conv_33,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+107,/Constant_42,Constant,[],,,,,,,Compile-time constant
+108,/Constant_43,Constant,[],,,,,,,Compile-time constant
+109,/Clip_21,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+110,/Conv_34,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+111,/Constant_44,Constant,[],,,,,,,Compile-time constant
+112,/Constant_45,Constant,[],,,,,,,Compile-time constant
+113,/Clip_22,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+114,/Conv_35,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+115,/Add_8,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+116,/Conv_36,Conv,"[1, 256, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+117,/Constant_46,Constant,[],,,,,,,Compile-time constant
+118,/Constant_47,Constant,[],,,,,,,Compile-time constant
+119,/Clip_23,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+120,/Conv_37,Conv,"[1, 256, 14, 14]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",451584,NEureka DW3x3; padding/stride/channel tiling pending
+121,/Constant_48,Constant,[],,,,,,,Compile-time constant
+122,/Constant_49,Constant,[],,,,,,,Compile-time constant
+123,/Clip_24,Clip,"[1, 256, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+124,/Conv_38,Conv,"[1, 128, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",6422528,NEureka 1x1; channel tiling/padding/quantization pending
+125,/Add_9,Add,"[1, 128, 14, 14]",,,,,,,Residual add with scale alignment needed
+126,/Conv_39,Conv,"[1, 512, 14, 14]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[512, 128, 1, 1]",12845056,NEureka 1x1; channel tiling/padding/quantization pending
+127,/Constant_50,Constant,[],,,,,,,Compile-time constant
+128,/Constant_51,Constant,[],,,,,,,Compile-time constant
+129,/Clip_25,Clip,"[1, 512, 14, 14]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+130,/Conv_40,Conv,"[1, 512, 7, 7]","[3, 3]",512,"[2, 2]","[1, 1, 1, 1]","[512, 1, 3, 3]",225792,NEureka DW3x3; padding/stride/channel tiling pending
+131,/Constant_52,Constant,[],,,,,,,Compile-time constant
+132,/Constant_53,Constant,[],,,,,,,Compile-time constant
+133,/Clip_26,Clip,"[1, 512, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+134,/Conv_41,Conv,"[1, 128, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 512, 1, 1]",3211264,NEureka 1x1; channel tiling/padding/quantization pending
+135,/Conv_42,Conv,"[1, 256, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",1605632,NEureka 1x1; channel tiling/padding/quantization pending
+136,/Constant_54,Constant,[],,,,,,,Compile-time constant
+137,/Constant_55,Constant,[],,,,,,,Compile-time constant
+138,/Clip_27,Clip,"[1, 256, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+139,/Conv_43,Conv,"[1, 256, 7, 7]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",112896,NEureka DW3x3; padding/stride/channel tiling pending
+140,/Constant_56,Constant,[],,,,,,,Compile-time constant
+141,/Constant_57,Constant,[],,,,,,,Compile-time constant
+142,/Clip_28,Clip,"[1, 256, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+143,/Conv_44,Conv,"[1, 128, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",1605632,NEureka 1x1; channel tiling/padding/quantization pending
+144,/Add_10,Add,"[1, 128, 7, 7]",,,,,,,Residual add with scale alignment needed
+145,/Conv_45,Conv,"[1, 256, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[256, 128, 1, 1]",1605632,NEureka 1x1; channel tiling/padding/quantization pending
+146,/Constant_58,Constant,[],,,,,,,Compile-time constant
+147,/Constant_59,Constant,[],,,,,,,Compile-time constant
+148,/Clip_29,Clip,"[1, 256, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+149,/Conv_46,Conv,"[1, 256, 7, 7]","[3, 3]",256,"[1, 1]","[1, 1, 1, 1]","[256, 1, 3, 3]",112896,NEureka DW3x3; padding/stride/channel tiling pending
+150,/Constant_60,Constant,[],,,,,,,Compile-time constant
+151,/Constant_61,Constant,[],,,,,,,Compile-time constant
+152,/Clip_30,Clip,"[1, 256, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+153,/Conv_47,Conv,"[1, 128, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 256, 1, 1]",1605632,NEureka 1x1; channel tiling/padding/quantization pending
+154,/Add_11,Add,"[1, 128, 7, 7]",,,,,,,Residual add with scale alignment needed
+155,/Conv_48,Conv,"[1, 512, 7, 7]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[512, 128, 1, 1]",3211264,NEureka 1x1; channel tiling/padding/quantization pending
+156,/Constant_62,Constant,[],,,,,,,Compile-time constant
+157,/Constant_63,Constant,[],,,,,,,Compile-time constant
+158,/Clip_31,Clip,"[1, 512, 7, 7]",,,,,,,Clamp/ReLU6; new quantized upper-bound path needed
+159,/Conv_49,Conv,"[1, 512, 1, 1]","[7, 7]",512,"[1, 1]","[0, 0, 0, 0]","[512, 1, 7, 7]",25088,GDConv7x7: partition into 3x3/edge terms with wide accumulation; NOT implemented
+160,/Conv_50,Conv,"[1, 128, 1, 1]","[1, 1]",1,"[1, 1]","[0, 0, 0, 0]","[128, 512, 1, 1]",65536,NEureka 1x1; channel tiling/padding/quantization pending
+161,/Constant_64,Constant,[2],,,,,,,Compile-time constant
+162,/Reshape,Reshape,"[1, 128]",,,,,,,Metadata/layout handling

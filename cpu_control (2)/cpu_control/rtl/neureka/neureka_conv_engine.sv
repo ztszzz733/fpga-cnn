@@ -61,7 +61,9 @@ module neureka_conv_engine import hci_package::*; (
      if(core_busy) seen_busy<=1;
      if((|evt) || (seen_busy && !core_busy)) state<=DRAIN;
     end
-    DRAIN:if(memory_idle && !core_busy) begin done<=1;state<=IDLE;end
+    // An idle bridge can be accepting a newly asserted final HCI request on
+    // this edge. Do not publish the output buffer before that write drains.
+    DRAIN:if(memory_idle && !core_busy && !tcdm.req) begin done<=1;state<=IDLE;end
     default:state<=IDLE;
    endcase
   end

@@ -1,0 +1,778 @@
+[
+  {
+    "node": "/Conv",
+    "op": "Conv",
+    "min": -7.244500160217285,
+    "max": 9.464240074157715,
+    "observed_symmetric_int8_scale": 0.07452157538706862,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_1",
+    "op": "Conv",
+    "min": -10.36814022064209,
+    "max": 14.336369514465332,
+    "observed_symmetric_int8_scale": 0.11288479932649868,
+    "contains_negative": true
+  },
+  {
+    "node": "/Relu",
+    "op": "Relu",
+    "min": 0.0,
+    "max": 14.336369514465332,
+    "observed_symmetric_int8_scale": 0.11288479932649868,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_2",
+    "op": "Conv",
+    "min": -15.905296325683594,
+    "max": 14.784992218017578,
+    "observed_symmetric_int8_scale": 0.1252385537455401,
+    "contains_negative": true
+  },
+  {
+    "node": "/Relu_1",
+    "op": "Relu",
+    "min": 0.0,
+    "max": 14.784992218017578,
+    "observed_symmetric_int8_scale": 0.11641726155919353,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_3",
+    "op": "Conv",
+    "min": -17.73369026184082,
+    "max": 18.223052978515625,
+    "observed_symmetric_int8_scale": 0.1434886061300443,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_1",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_4",
+    "op": "Conv",
+    "min": -10.693893432617188,
+    "max": 19.005521774291992,
+    "observed_symmetric_int8_scale": 0.14964977775033064,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_2",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_5",
+    "op": "Conv",
+    "min": -8.765824317932129,
+    "max": 7.277623653411865,
+    "observed_symmetric_int8_scale": 0.06902223872387503,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_6",
+    "op": "Conv",
+    "min": -3.3064496517181396,
+    "max": 3.691471815109253,
+    "observed_symmetric_int8_scale": 0.029066707205584668,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_3",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.691471815109253,
+    "observed_symmetric_int8_scale": 0.029066707205584668,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_7",
+    "op": "Conv",
+    "min": -9.169610977172852,
+    "max": 9.130553245544434,
+    "observed_symmetric_int8_scale": 0.07220166123758151,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_4",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_8",
+    "op": "Conv",
+    "min": -5.95026969909668,
+    "max": 5.534527778625488,
+    "observed_symmetric_int8_scale": 0.04685251731572189,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add",
+    "op": "Add",
+    "min": -9.633801460266113,
+    "max": 7.775190830230713,
+    "observed_symmetric_int8_scale": 0.0758567044115442,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_9",
+    "op": "Conv",
+    "min": -3.996525764465332,
+    "max": 3.848198890686035,
+    "observed_symmetric_int8_scale": 0.031468706806813636,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_5",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.848198890686035,
+    "observed_symmetric_int8_scale": 0.030300778666819173,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_10",
+    "op": "Conv",
+    "min": -11.087234497070312,
+    "max": 17.723543167114258,
+    "observed_symmetric_int8_scale": 0.1395554580087737,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_6",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_11",
+    "op": "Conv",
+    "min": -4.9288225173950195,
+    "max": 6.645773887634277,
+    "observed_symmetric_int8_scale": 0.052328928249088795,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_1",
+    "op": "Add",
+    "min": -10.215300559997559,
+    "max": 8.506376266479492,
+    "observed_symmetric_int8_scale": 0.08043543748029573,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_12",
+    "op": "Conv",
+    "min": -4.0227885246276855,
+    "max": 3.4705069065093994,
+    "observed_symmetric_int8_scale": 0.031675500193918786,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_7",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.4705069065093994,
+    "observed_symmetric_int8_scale": 0.027326826035507082,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_13",
+    "op": "Conv",
+    "min": -7.443655014038086,
+    "max": 16.482521057128906,
+    "observed_symmetric_int8_scale": 0.12978363037109375,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_8",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_14",
+    "op": "Conv",
+    "min": -13.284180641174316,
+    "max": 14.60931396484375,
+    "observed_symmetric_int8_scale": 0.11503396822711615,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_2",
+    "op": "Add",
+    "min": -17.223234176635742,
+    "max": 15.573840141296387,
+    "observed_symmetric_int8_scale": 0.13561601713886412,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_15",
+    "op": "Conv",
+    "min": -5.678318500518799,
+    "max": 11.9245023727417,
+    "observed_symmetric_int8_scale": 0.09389371947040707,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_9",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_16",
+    "op": "Conv",
+    "min": -9.062586784362793,
+    "max": 15.079680442810059,
+    "observed_symmetric_int8_scale": 0.11873764128196897,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_10",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_17",
+    "op": "Conv",
+    "min": -10.591458320617676,
+    "max": 20.752777099609375,
+    "observed_symmetric_int8_scale": 0.1634076936977116,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_3",
+    "op": "Add",
+    "min": -16.368310928344727,
+    "max": 21.95449447631836,
+    "observed_symmetric_int8_scale": 0.17287003524660124,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_18",
+    "op": "Conv",
+    "min": -5.45902681350708,
+    "max": 8.161914825439453,
+    "observed_symmetric_int8_scale": 0.064267045869602,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_11",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_19",
+    "op": "Conv",
+    "min": -6.231595039367676,
+    "max": 12.853191375732422,
+    "observed_symmetric_int8_scale": 0.1012062313049797,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_12",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_20",
+    "op": "Conv",
+    "min": -8.406075477600098,
+    "max": 7.070489883422852,
+    "observed_symmetric_int8_scale": 0.06618957068976455,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_21",
+    "op": "Conv",
+    "min": -3.2262027263641357,
+    "max": 3.0208077430725098,
+    "observed_symmetric_int8_scale": 0.02540317107373335,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_13",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.0208077430725098,
+    "observed_symmetric_int8_scale": 0.02378588774072842,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_22",
+    "op": "Conv",
+    "min": -6.83042573928833,
+    "max": 9.936749458312988,
+    "observed_symmetric_int8_scale": 0.07824212171899991,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_14",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_23",
+    "op": "Conv",
+    "min": -3.230111598968506,
+    "max": 3.871026039123535,
+    "observed_symmetric_int8_scale": 0.0304805199930987,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_4",
+    "op": "Add",
+    "min": -8.671814918518066,
+    "max": 6.973345756530762,
+    "observed_symmetric_int8_scale": 0.06828200723242572,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_24",
+    "op": "Conv",
+    "min": -3.343130111694336,
+    "max": 2.550330638885498,
+    "observed_symmetric_int8_scale": 0.026323859147199497,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_15",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.550330638885498,
+    "observed_symmetric_int8_scale": 0.02008134361327164,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_25",
+    "op": "Conv",
+    "min": -6.428027629852295,
+    "max": 10.461623191833496,
+    "observed_symmetric_int8_scale": 0.08237498576246848,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_16",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_26",
+    "op": "Conv",
+    "min": -3.2103991508483887,
+    "max": 3.8542895317077637,
+    "observed_symmetric_int8_scale": 0.030348736470139873,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_5",
+    "op": "Add",
+    "min": -9.627999305725098,
+    "max": 7.62393856048584,
+    "observed_symmetric_int8_scale": 0.07581101815531573,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_27",
+    "op": "Conv",
+    "min": -3.1473097801208496,
+    "max": 2.5963101387023926,
+    "observed_symmetric_int8_scale": 0.024781966772605114,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_17",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.5963101387023926,
+    "observed_symmetric_int8_scale": 0.02044338691891648,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_28",
+    "op": "Conv",
+    "min": -6.251560211181641,
+    "max": 8.277643203735352,
+    "observed_symmetric_int8_scale": 0.06517829294279805,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_18",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_29",
+    "op": "Conv",
+    "min": -3.956486940383911,
+    "max": 4.088334083557129,
+    "observed_symmetric_int8_scale": 0.032191606957142745,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_6",
+    "op": "Add",
+    "min": -10.344498634338379,
+    "max": 8.1437406539917,
+    "observed_symmetric_int8_scale": 0.0814527451522707,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_30",
+    "op": "Conv",
+    "min": -3.8494272232055664,
+    "max": 2.4786930084228516,
+    "observed_symmetric_int8_scale": 0.03031045057642178,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_19",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.4786930084228516,
+    "observed_symmetric_int8_scale": 0.0195172677828571,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_31",
+    "op": "Conv",
+    "min": -6.1095733642578125,
+    "max": 13.539717674255371,
+    "observed_symmetric_int8_scale": 0.10661195019098717,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_20",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_32",
+    "op": "Conv",
+    "min": -4.914726257324219,
+    "max": 5.31956672668457,
+    "observed_symmetric_int8_scale": 0.04188635217861866,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_7",
+    "op": "Add",
+    "min": -11.464945793151855,
+    "max": 8.839351654052734,
+    "observed_symmetric_int8_scale": 0.09027516372560516,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_33",
+    "op": "Conv",
+    "min": -3.442807912826538,
+    "max": 2.5973761081695557,
+    "observed_symmetric_int8_scale": 0.027108723723043605,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_21",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.5973761081695557,
+    "observed_symmetric_int8_scale": 0.02045178037928784,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_34",
+    "op": "Conv",
+    "min": -6.677473545074463,
+    "max": 6.4737162590026855,
+    "observed_symmetric_int8_scale": 0.05257853185098002,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_22",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_35",
+    "op": "Conv",
+    "min": -4.822671890258789,
+    "max": 5.6159820556640625,
+    "observed_symmetric_int8_scale": 0.044220331146961125,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_8",
+    "op": "Add",
+    "min": -12.754270553588867,
+    "max": 10.600924491882324,
+    "observed_symmetric_int8_scale": 0.10042732719361312,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_36",
+    "op": "Conv",
+    "min": -2.9047515392303467,
+    "max": 2.49906325340271,
+    "observed_symmetric_int8_scale": 0.02287205936401848,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_23",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.49906325340271,
+    "observed_symmetric_int8_scale": 0.019677663412619763,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_37",
+    "op": "Conv",
+    "min": -10.052420616149902,
+    "max": 12.178462982177734,
+    "observed_symmetric_int8_scale": 0.0958934093084861,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_24",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_38",
+    "op": "Conv",
+    "min": -6.342820167541504,
+    "max": 7.565674781799316,
+    "observed_symmetric_int8_scale": 0.05957224237637257,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_9",
+    "op": "Add",
+    "min": -14.505776405334473,
+    "max": 12.015329360961914,
+    "observed_symmetric_int8_scale": 0.11421871185302734,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_39",
+    "op": "Conv",
+    "min": -3.4019932746887207,
+    "max": 3.186415672302246,
+    "observed_symmetric_int8_scale": 0.026787348619596228,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_25",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.186415672302246,
+    "observed_symmetric_int8_scale": 0.025089887183482252,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_40",
+    "op": "Conv",
+    "min": -4.054434776306152,
+    "max": 9.27723503112793,
+    "observed_symmetric_int8_scale": 0.07304909473329078,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_26",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_41",
+    "op": "Conv",
+    "min": -6.51383638381958,
+    "max": 5.624233245849609,
+    "observed_symmetric_int8_scale": 0.051290050266295906,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_42",
+    "op": "Conv",
+    "min": -3.6521239280700684,
+    "max": 2.8244354724884033,
+    "observed_symmetric_int8_scale": 0.028756881323386364,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_27",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 2.8244354724884033,
+    "observed_symmetric_int8_scale": 0.022239649389672468,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_43",
+    "op": "Conv",
+    "min": -5.350806713104248,
+    "max": 6.430988788604736,
+    "observed_symmetric_int8_scale": 0.05063770699688769,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_28",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_44",
+    "op": "Conv",
+    "min": -3.968428611755371,
+    "max": 6.248533725738525,
+    "observed_symmetric_int8_scale": 0.049201052958571065,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_10",
+    "op": "Add",
+    "min": -6.483295917510986,
+    "max": 6.0828962326049805,
+    "observed_symmetric_int8_scale": 0.05104957415362981,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_45",
+    "op": "Conv",
+    "min": -3.52567720413208,
+    "max": 3.26806378364563,
+    "observed_symmetric_int8_scale": 0.027761237827811654,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_29",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 3.26806378364563,
+    "observed_symmetric_int8_scale": 0.025732785697997085,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_46",
+    "op": "Conv",
+    "min": -5.618427276611328,
+    "max": 9.703289031982422,
+    "observed_symmetric_int8_scale": 0.07640385064553087,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_30",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_47",
+    "op": "Conv",
+    "min": -5.4908928871154785,
+    "max": 3.9975085258483887,
+    "observed_symmetric_int8_scale": 0.0432353770639014,
+    "contains_negative": true
+  },
+  {
+    "node": "/Add_11",
+    "op": "Add",
+    "min": -7.3895769119262695,
+    "max": 6.832676887512207,
+    "observed_symmetric_int8_scale": 0.058185644975797396,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_48",
+    "op": "Conv",
+    "min": -7.659985542297363,
+    "max": 10.80649471282959,
+    "observed_symmetric_int8_scale": 0.0850905095498393,
+    "contains_negative": true
+  },
+  {
+    "node": "/Clip_31",
+    "op": "Clip",
+    "min": 0.0,
+    "max": 6.0,
+    "observed_symmetric_int8_scale": 0.047244094488188976,
+    "contains_negative": false
+  },
+  {
+    "node": "/Conv_49",
+    "op": "Conv",
+    "min": -2.715371608734131,
+    "max": 3.281040668487549,
+    "observed_symmetric_int8_scale": 0.025834965893602745,
+    "contains_negative": true
+  },
+  {
+    "node": "/Conv_50",
+    "op": "Conv",
+    "min": -3.848843574523926,
+    "max": 4.1453328132629395,
+    "observed_symmetric_int8_scale": 0.03264041585246409,
+    "contains_negative": true
+  }
+]

@@ -1,0 +1,452 @@
+{
+  "nodes": [
+    {
+      "frame": 0,
+      "layer": 0,
+      "y": 0,
+      "rows": 2,
+      "id": 0,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 212992,
+      "parameters": 47552,
+      "destination": 26240,
+      "count": 768,
+      "channels": 64,
+      "tag": 0,
+      "raw_golden": 16960
+    },
+    {
+      "frame": 1,
+      "layer": 0,
+      "y": 0,
+      "rows": 2,
+      "id": 1,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 213376,
+      "parameters": 178624,
+      "destination": 157312,
+      "count": 768,
+      "channels": 64,
+      "tag": 65536,
+      "raw_golden": 148032
+    },
+    {
+      "frame": 0,
+      "layer": 0,
+      "y": 2,
+      "rows": 2,
+      "id": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 213760,
+      "parameters": 47552,
+      "destination": 27008,
+      "count": 768,
+      "channels": 64,
+      "tag": 1,
+      "raw_golden": 20032
+    },
+    {
+      "frame": 1,
+      "layer": 0,
+      "y": 2,
+      "rows": 2,
+      "id": 3,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 214144,
+      "parameters": 178624,
+      "destination": 158080,
+      "count": 768,
+      "channels": 64,
+      "tag": 65537,
+      "raw_golden": 151104
+    },
+    {
+      "frame": 0,
+      "layer": 0,
+      "y": 4,
+      "rows": 2,
+      "id": 4,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 214528,
+      "parameters": 47552,
+      "destination": 27776,
+      "count": 768,
+      "channels": 64,
+      "tag": 2,
+      "raw_golden": 23104
+    },
+    {
+      "frame": 1,
+      "layer": 0,
+      "y": 4,
+      "rows": 2,
+      "id": 5,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 214912,
+      "parameters": 178624,
+      "destination": 158848,
+      "count": 768,
+      "channels": 64,
+      "tag": 65538,
+      "raw_golden": 154176
+    },
+    {
+      "frame": 0,
+      "layer": 1,
+      "y": 0,
+      "rows": 2,
+      "id": 6,
+      "deps": 5,
+      "dependency_nodes": [
+        0,
+        2
+      ],
+      "config_base": 215296,
+      "parameters": 55296,
+      "destination": 53056,
+      "count": 512,
+      "channels": 64,
+      "tag": 256,
+      "raw_golden": 48896
+    },
+    {
+      "frame": 1,
+      "layer": 1,
+      "y": 0,
+      "rows": 2,
+      "id": 7,
+      "deps": 10,
+      "dependency_nodes": [
+        1,
+        3
+      ],
+      "config_base": 215680,
+      "parameters": 186368,
+      "destination": 184128,
+      "count": 512,
+      "channels": 64,
+      "tag": 65792,
+      "raw_golden": 179968
+    },
+    {
+      "frame": 0,
+      "layer": 1,
+      "y": 2,
+      "rows": 2,
+      "id": 8,
+      "deps": 20,
+      "dependency_nodes": [
+        2,
+        4
+      ],
+      "config_base": 216064,
+      "parameters": 55296,
+      "destination": 53568,
+      "count": 512,
+      "channels": 64,
+      "tag": 257,
+      "raw_golden": 50944
+    },
+    {
+      "frame": 1,
+      "layer": 1,
+      "y": 2,
+      "rows": 2,
+      "id": 9,
+      "deps": 40,
+      "dependency_nodes": [
+        3,
+        5
+      ],
+      "config_base": 216448,
+      "parameters": 186368,
+      "destination": 184640,
+      "count": 512,
+      "channels": 64,
+      "tag": 65793,
+      "raw_golden": 182016
+    },
+    {
+      "frame": 0,
+      "layer": 2,
+      "y": 0,
+      "rows": 2,
+      "id": 10,
+      "deps": 64,
+      "dependency_nodes": [
+        6
+      ],
+      "config_base": 216832,
+      "parameters": 66496,
+      "destination": 60800,
+      "count": 512,
+      "channels": 64,
+      "tag": 512,
+      "raw_golden": 56640
+    },
+    {
+      "frame": 1,
+      "layer": 2,
+      "y": 0,
+      "rows": 2,
+      "id": 11,
+      "deps": 128,
+      "dependency_nodes": [
+        7
+      ],
+      "config_base": 217216,
+      "parameters": 197568,
+      "destination": 191872,
+      "count": 512,
+      "channels": 64,
+      "tag": 66048,
+      "raw_golden": 187712
+    },
+    {
+      "frame": 0,
+      "layer": 2,
+      "y": 2,
+      "rows": 2,
+      "id": 12,
+      "deps": 256,
+      "dependency_nodes": [
+        8
+      ],
+      "config_base": 217600,
+      "parameters": 66496,
+      "destination": 61312,
+      "count": 512,
+      "channels": 64,
+      "tag": 513,
+      "raw_golden": 58688
+    },
+    {
+      "frame": 1,
+      "layer": 2,
+      "y": 2,
+      "rows": 2,
+      "id": 13,
+      "deps": 512,
+      "dependency_nodes": [
+        9
+      ],
+      "config_base": 217984,
+      "parameters": 197568,
+      "destination": 192384,
+      "count": 512,
+      "channels": 64,
+      "tag": 66049,
+      "raw_golden": 189760
+    }
+  ],
+  "frames": [
+    {
+      "image": "D:\\code\\facemodel\\person_1.jpg",
+      "sha256": "4802be78ad75b6d32815dfe11658ef00718d0a78e5b8a7bb23a8c5e6eb4e81a4",
+      "layers": [
+        {
+          "layer": "/Conv",
+          "kernel": 3,
+          "depthwise": false,
+          "stride": 2,
+          "input_shape": [
+            13,
+            13,
+            3
+          ],
+          "output_shape": [
+            6,
+            6,
+            64
+          ],
+          "input_scale": 0.023622047244094488,
+          "input_zero": 128,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_local_rmse": 0.006151657032611126,
+          "accumulated_quantization_rmse": 0.006531567439453132,
+          "float_roi_onnx_max_error": 4.007391680715955e-07,
+          "raw_address": 16960,
+          "output_address": 26240,
+          "parameters_address": 47552,
+          "raw_min": -658912,
+          "raw_max": 756031
+        },
+        {
+          "layer": "/Conv_1",
+          "kernel": 3,
+          "depthwise": true,
+          "stride": 1,
+          "input_shape": [
+            6,
+            6,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.021936769818923636,
+          "output_zero": 0,
+          "float_local_rmse": 0.017544305040725686,
+          "accumulated_quantization_rmse": 0.019604692796106743,
+          "float_roi_onnx_max_error": 6.863217334451832e-07,
+          "raw_address": 48896,
+          "output_address": 53056,
+          "parameters_address": 55296,
+          "raw_min": -26945,
+          "raw_max": 10659
+        },
+        {
+          "layer": "/Conv_2",
+          "kernel": 1,
+          "depthwise": false,
+          "stride": 1,
+          "input_shape": [
+            4,
+            4,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_scale": 0.021936769818923636,
+          "input_zero": 0,
+          "output_scale": 0.015440456235285609,
+          "output_zero": 0,
+          "float_local_rmse": 0.013003259577563672,
+          "accumulated_quantization_rmse": 0.02798106419928409,
+          "float_roi_onnx_max_error": 1.2832454929778692e-06,
+          "raw_address": 56640,
+          "output_address": 60800,
+          "parameters_address": 66496,
+          "raw_min": -57679,
+          "raw_max": 72433
+        }
+      ],
+      "offset": 0
+    },
+    {
+      "image": "D:\\code\\facemodel\\person_2.jpg",
+      "sha256": "f64df39dca58cb3bd46775992a309e17db1005f8bdea07d1ce1080717f27215e",
+      "layers": [
+        {
+          "layer": "/Conv",
+          "kernel": 3,
+          "depthwise": false,
+          "stride": 2,
+          "input_shape": [
+            13,
+            13,
+            3
+          ],
+          "output_shape": [
+            6,
+            6,
+            64
+          ],
+          "input_scale": 0.023622047244094488,
+          "input_zero": 128,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_local_rmse": 0.004984452749771188,
+          "accumulated_quantization_rmse": 0.005741241097035108,
+          "float_roi_onnx_max_error": 5.674675476186053e-07,
+          "raw_address": 16960,
+          "output_address": 26240,
+          "parameters_address": 47552,
+          "raw_min": -511562,
+          "raw_max": 587572
+        },
+        {
+          "layer": "/Conv_1",
+          "kernel": 3,
+          "depthwise": true,
+          "stride": 1,
+          "input_shape": [
+            6,
+            6,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.021936769818923636,
+          "output_zero": 0,
+          "float_local_rmse": 0.08621400798344757,
+          "accumulated_quantization_rmse": 0.08780372273568277,
+          "float_roi_onnx_max_error": 1.0054785324342674e-06,
+          "raw_address": 48896,
+          "output_address": 53056,
+          "parameters_address": 55296,
+          "raw_min": -13350,
+          "raw_max": 11909
+        },
+        {
+          "layer": "/Conv_2",
+          "kernel": 1,
+          "depthwise": false,
+          "stride": 1,
+          "input_shape": [
+            4,
+            4,
+            64
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_scale": 0.021936769818923636,
+          "input_zero": 0,
+          "output_scale": 0.015440456235285609,
+          "output_zero": 0,
+          "float_local_rmse": 0.016733198965473844,
+          "accumulated_quantization_rmse": 0.1266817853724633,
+          "float_roi_onnx_max_error": 1.6829213391744702e-06,
+          "raw_address": 56640,
+          "output_address": 60800,
+          "parameters_address": 66496,
+          "raw_min": -60649,
+          "raw_max": 79054
+        }
+      ],
+      "offset": 131072
+    }
+  ],
+  "quantization_scales": [
+    0.023529411764705882,
+    0.021936769818923636,
+    0.015440456235285609
+  ],
+  "quantization_source": "frame0 local diagnostic ranges, frozen and reused for frame1; not accuracy-calibrated",
+  "scratch": [
+    229376,
+    237568
+  ],
+  "scratch_capacity": 8192,
+  "full_network": false,
+  "uart": false,
+  "cpu": false,
+  "input_preloaded": true,
+  "activation_storage": "Separate retained planes per frame/layer; scratch reused, no circular input line buffer",
+  "source_scripts": {
+    "gen_mobilefacenet_chain.py": "49fed85adc65245aae27e034c1359cb2efea8916690e18f72db1d32d10879a19",
+    "gen_mobilefacenet_pipeline.py": "3ec8ea99bf3652174347a798ec68e6569ea96344f24a79944417fd6fe7f33f55"
+  }
+}

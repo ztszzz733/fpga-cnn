@@ -1,0 +1,5 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.neureka_stripes_build/obj/Vtb_neureka_stripes", "+serial"]
+[2000065000] %Fatal: 138_tb_neureka_stripes.sv:173: Assertion failed in tb_neureka_stripes.checks: bounded small test timeout
+%Error: /mnt/d/code/FPGA1/.neureka_stripes_build/138_tb_neureka_stripes.sv:173: Verilog $stop
+Aborting...

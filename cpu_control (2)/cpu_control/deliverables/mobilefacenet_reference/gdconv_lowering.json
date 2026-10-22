@@ -1,0 +1,45 @@
+{
+  "hardware_implemented": false,
+  "cases": [
+    {
+      "image": "person_1.jpg",
+      "channels": 512,
+      "patches": 9,
+      "exact_integer_match": true,
+      "max_abs_accumulator": 42699,
+      "local_quantization_max_abs_error": 1.040094251707783,
+      "local_quantization_rmse": 0.14971890815605488,
+      "note": "Bias/BN excluded from this local dot-product comparison; no network INT8 accuracy claim"
+    },
+    {
+      "image": "person_2.jpg",
+      "channels": 512,
+      "patches": 9,
+      "exact_integer_match": true,
+      "max_abs_accumulator": 41569,
+      "local_quantization_max_abs_error": 1.0941509214911873,
+      "local_quantization_rmse": 0.12634516754442715,
+      "note": "Bias/BN excluded from this local dot-product comparison; no network INT8 accuracy claim"
+    },
+    {
+      "image": "person_3.jpg",
+      "channels": 512,
+      "patches": 9,
+      "exact_integer_match": true,
+      "max_abs_accumulator": 42849,
+      "local_quantization_max_abs_error": 0.7936981569124959,
+      "local_quantization_rmse": 0.13785678042999772,
+      "note": "Bias/BN excluded from this local dot-product comparison; no network INT8 accuracy claim"
+    },
+    {
+      "image": "person_4.jpg",
+      "channels": 512,
+      "patches": 9,
+      "exact_integer_match": true,
+      "max_abs_accumulator": 36046,
+      "local_quantization_max_abs_error": 0.8796906023044286,
+      "local_quantization_rmse": 0.1357247936498096,
+      "note": "Bias/BN excluded from this local dot-product comparison; no network INT8 accuracy claim"
+    }
+  ]
+}

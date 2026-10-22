@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.neureka_pipeline_build/obj/Vtb_mobilefacenet_pipeline"]
+PASS tb_mobilefacenet_pipeline cycles=115900 overlap=22453 checked=43520
+- /mnt/d/code/FPGA1/.neureka_pipeline_build/140_tb_mobilefacenet_pipeline.sv:98: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 1ms; walltime 58.893 s; speed 20.486 us/s
+- Verilator: cpu 56.579 s on 1 threads; alloced 201 MB

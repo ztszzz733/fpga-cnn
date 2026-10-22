@@ -1,0 +1,3584 @@
+[
+  {
+    "index": 0,
+    "name": "/Conv",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "image",
+      "onnx::Conv_478",
+      "onnx::Conv_479"
+    ],
+    "output": "/Conv_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 1,
+    "strides": [
+      2,
+      2
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      64,
+      3,
+      3,
+      3
+    ],
+    "macs": 5419008,
+    "mapping": "NEureka dense3x3; padding/stride/quantization pending"
+  },
+  {
+    "index": 1,
+    "name": "/Constant",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 2,
+    "name": "/Constant_1",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_1_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 3,
+    "name": "/Clip",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Conv_output_0",
+      "/Constant_output_0",
+      "/Constant_1_output_0"
+    ],
+    "output": "/Clip_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 4,
+    "name": "/Conv_1",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Clip_output_0",
+      "onnx::Conv_481",
+      "onnx::Conv_482"
+    ],
+    "output": "/Conv_1_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 64,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      64,
+      1,
+      3,
+      3
+    ],
+    "macs": 1806336,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 5,
+    "name": "/Relu",
+    "op": "Relu",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Conv_1_output_0"
+    ],
+    "output": "/Relu_output_0",
+    "mapping": "Existing post ReLU; model-scale integration pending"
+  },
+  {
+    "index": 6,
+    "name": "/Conv_2",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Relu_output_0",
+      "onnx::Conv_484",
+      "onnx::Conv_485"
+    ],
+    "output": "/Conv_2_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      64,
+      1,
+      1
+    ],
+    "macs": 12845056,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 7,
+    "name": "/Relu_1",
+    "op": "Relu",
+    "output_shape": [
+      1,
+      64,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Conv_2_output_0"
+    ],
+    "output": "/Relu_1_output_0",
+    "mapping": "Existing post ReLU; model-scale integration pending"
+  },
+  {
+    "index": 8,
+    "name": "/Conv_3",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Relu_1_output_0",
+      "onnx::Conv_487",
+      "onnx::Conv_488"
+    ],
+    "output": "/Conv_3_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      64,
+      1,
+      1
+    ],
+    "macs": 25690112,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 9,
+    "name": "/Constant_2",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_2_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 10,
+    "name": "/Constant_3",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_3_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 11,
+    "name": "/Clip_1",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      56,
+      56
+    ],
+    "inputs": [
+      "/Conv_3_output_0",
+      "/Constant_2_output_0",
+      "/Constant_3_output_0"
+    ],
+    "output": "/Clip_1_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 12,
+    "name": "/Conv_4",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_1_output_0",
+      "onnx::Conv_490",
+      "onnx::Conv_491"
+    ],
+    "output": "/Conv_4_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 128,
+    "strides": [
+      2,
+      2
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      128,
+      1,
+      3,
+      3
+    ],
+    "macs": 903168,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 13,
+    "name": "/Constant_4",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_4_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 14,
+    "name": "/Constant_5",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_5_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 15,
+    "name": "/Clip_2",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_4_output_0",
+      "/Constant_4_output_0",
+      "/Constant_5_output_0"
+    ],
+    "output": "/Clip_2_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 16,
+    "name": "/Conv_5",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_2_output_0",
+      "onnx::Conv_493",
+      "onnx::Conv_494"
+    ],
+    "output": "/Conv_5_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 17,
+    "name": "/Conv_6",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_5_output_0",
+      "onnx::Conv_496",
+      "onnx::Conv_497"
+    ],
+    "output": "/Conv_6_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      64,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 18,
+    "name": "/Constant_6",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_6_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 19,
+    "name": "/Constant_7",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_7_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 20,
+    "name": "/Clip_3",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_6_output_0",
+      "/Constant_6_output_0",
+      "/Constant_7_output_0"
+    ],
+    "output": "/Clip_3_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 21,
+    "name": "/Conv_7",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_3_output_0",
+      "onnx::Conv_499",
+      "onnx::Conv_500"
+    ],
+    "output": "/Conv_7_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 128,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      128,
+      1,
+      3,
+      3
+    ],
+    "macs": 903168,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 22,
+    "name": "/Constant_8",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_8_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 23,
+    "name": "/Constant_9",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_9_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 24,
+    "name": "/Clip_4",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_7_output_0",
+      "/Constant_8_output_0",
+      "/Constant_9_output_0"
+    ],
+    "output": "/Clip_4_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 25,
+    "name": "/Conv_8",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_4_output_0",
+      "onnx::Conv_502",
+      "onnx::Conv_503"
+    ],
+    "output": "/Conv_8_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 26,
+    "name": "/Add",
+    "op": "Add",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_5_output_0",
+      "/Conv_8_output_0"
+    ],
+    "output": "/Add_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 27,
+    "name": "/Conv_9",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_output_0",
+      "onnx::Conv_505",
+      "onnx::Conv_506"
+    ],
+    "output": "/Conv_9_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      64,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 28,
+    "name": "/Constant_10",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_10_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 29,
+    "name": "/Constant_11",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_11_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 30,
+    "name": "/Clip_5",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_9_output_0",
+      "/Constant_10_output_0",
+      "/Constant_11_output_0"
+    ],
+    "output": "/Clip_5_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 31,
+    "name": "/Conv_10",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_5_output_0",
+      "onnx::Conv_508",
+      "onnx::Conv_509"
+    ],
+    "output": "/Conv_10_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 128,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      128,
+      1,
+      3,
+      3
+    ],
+    "macs": 903168,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 32,
+    "name": "/Constant_12",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_12_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 33,
+    "name": "/Constant_13",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_13_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 34,
+    "name": "/Clip_6",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_10_output_0",
+      "/Constant_12_output_0",
+      "/Constant_13_output_0"
+    ],
+    "output": "/Clip_6_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 35,
+    "name": "/Conv_11",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_6_output_0",
+      "onnx::Conv_511",
+      "onnx::Conv_512"
+    ],
+    "output": "/Conv_11_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 36,
+    "name": "/Add_1",
+    "op": "Add",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_output_0",
+      "/Conv_11_output_0"
+    ],
+    "output": "/Add_1_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 37,
+    "name": "/Conv_12",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_1_output_0",
+      "onnx::Conv_514",
+      "onnx::Conv_515"
+    ],
+    "output": "/Conv_12_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      64,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 38,
+    "name": "/Constant_14",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_14_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 39,
+    "name": "/Constant_15",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_15_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 40,
+    "name": "/Clip_7",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_12_output_0",
+      "/Constant_14_output_0",
+      "/Constant_15_output_0"
+    ],
+    "output": "/Clip_7_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 41,
+    "name": "/Conv_13",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_7_output_0",
+      "onnx::Conv_517",
+      "onnx::Conv_518"
+    ],
+    "output": "/Conv_13_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 128,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      128,
+      1,
+      3,
+      3
+    ],
+    "macs": 903168,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 42,
+    "name": "/Constant_16",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_16_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 43,
+    "name": "/Constant_17",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_17_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 44,
+    "name": "/Clip_8",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_13_output_0",
+      "/Constant_16_output_0",
+      "/Constant_17_output_0"
+    ],
+    "output": "/Clip_8_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 45,
+    "name": "/Conv_14",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_8_output_0",
+      "onnx::Conv_520",
+      "onnx::Conv_521"
+    ],
+    "output": "/Conv_14_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 46,
+    "name": "/Add_2",
+    "op": "Add",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_1_output_0",
+      "/Conv_14_output_0"
+    ],
+    "output": "/Add_2_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 47,
+    "name": "/Conv_15",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_2_output_0",
+      "onnx::Conv_523",
+      "onnx::Conv_524"
+    ],
+    "output": "/Conv_15_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      64,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 48,
+    "name": "/Constant_18",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_18_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 49,
+    "name": "/Constant_19",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_19_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 50,
+    "name": "/Clip_9",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_15_output_0",
+      "/Constant_18_output_0",
+      "/Constant_19_output_0"
+    ],
+    "output": "/Clip_9_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 51,
+    "name": "/Conv_16",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_9_output_0",
+      "onnx::Conv_526",
+      "onnx::Conv_527"
+    ],
+    "output": "/Conv_16_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 128,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      128,
+      1,
+      3,
+      3
+    ],
+    "macs": 903168,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 52,
+    "name": "/Constant_20",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_20_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 53,
+    "name": "/Constant_21",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_21_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 54,
+    "name": "/Clip_10",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      128,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_16_output_0",
+      "/Constant_20_output_0",
+      "/Constant_21_output_0"
+    ],
+    "output": "/Clip_10_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 55,
+    "name": "/Conv_17",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Clip_10_output_0",
+      "onnx::Conv_529",
+      "onnx::Conv_530"
+    ],
+    "output": "/Conv_17_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      64,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 56,
+    "name": "/Add_3",
+    "op": "Add",
+    "output_shape": [
+      1,
+      64,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_2_output_0",
+      "/Conv_17_output_0"
+    ],
+    "output": "/Add_3_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 57,
+    "name": "/Conv_18",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Add_3_output_0",
+      "onnx::Conv_532",
+      "onnx::Conv_533"
+    ],
+    "output": "/Conv_18_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      64,
+      1,
+      1
+    ],
+    "macs": 12845056,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 58,
+    "name": "/Constant_22",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_22_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 59,
+    "name": "/Constant_23",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_23_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 60,
+    "name": "/Clip_11",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      28,
+      28
+    ],
+    "inputs": [
+      "/Conv_18_output_0",
+      "/Constant_22_output_0",
+      "/Constant_23_output_0"
+    ],
+    "output": "/Clip_11_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 61,
+    "name": "/Conv_19",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_11_output_0",
+      "onnx::Conv_535",
+      "onnx::Conv_536"
+    ],
+    "output": "/Conv_19_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      2,
+      2
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 62,
+    "name": "/Constant_24",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_24_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 63,
+    "name": "/Constant_25",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_25_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 64,
+    "name": "/Clip_12",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_19_output_0",
+      "/Constant_24_output_0",
+      "/Constant_25_output_0"
+    ],
+    "output": "/Clip_12_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 65,
+    "name": "/Conv_20",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_12_output_0",
+      "onnx::Conv_538",
+      "onnx::Conv_539"
+    ],
+    "output": "/Conv_20_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 66,
+    "name": "/Conv_21",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_20_output_0",
+      "onnx::Conv_541",
+      "onnx::Conv_542"
+    ],
+    "output": "/Conv_21_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 67,
+    "name": "/Constant_26",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_26_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 68,
+    "name": "/Constant_27",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_27_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 69,
+    "name": "/Clip_13",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_21_output_0",
+      "/Constant_26_output_0",
+      "/Constant_27_output_0"
+    ],
+    "output": "/Clip_13_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 70,
+    "name": "/Conv_22",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_13_output_0",
+      "onnx::Conv_544",
+      "onnx::Conv_545"
+    ],
+    "output": "/Conv_22_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 71,
+    "name": "/Constant_28",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_28_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 72,
+    "name": "/Constant_29",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_29_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 73,
+    "name": "/Clip_14",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_22_output_0",
+      "/Constant_28_output_0",
+      "/Constant_29_output_0"
+    ],
+    "output": "/Clip_14_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 74,
+    "name": "/Conv_23",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_14_output_0",
+      "onnx::Conv_547",
+      "onnx::Conv_548"
+    ],
+    "output": "/Conv_23_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 75,
+    "name": "/Add_4",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_20_output_0",
+      "/Conv_23_output_0"
+    ],
+    "output": "/Add_4_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 76,
+    "name": "/Conv_24",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_4_output_0",
+      "onnx::Conv_550",
+      "onnx::Conv_551"
+    ],
+    "output": "/Conv_24_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 77,
+    "name": "/Constant_30",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_30_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 78,
+    "name": "/Constant_31",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_31_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 79,
+    "name": "/Clip_15",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_24_output_0",
+      "/Constant_30_output_0",
+      "/Constant_31_output_0"
+    ],
+    "output": "/Clip_15_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 80,
+    "name": "/Conv_25",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_15_output_0",
+      "onnx::Conv_553",
+      "onnx::Conv_554"
+    ],
+    "output": "/Conv_25_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 81,
+    "name": "/Constant_32",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_32_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 82,
+    "name": "/Constant_33",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_33_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 83,
+    "name": "/Clip_16",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_25_output_0",
+      "/Constant_32_output_0",
+      "/Constant_33_output_0"
+    ],
+    "output": "/Clip_16_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 84,
+    "name": "/Conv_26",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_16_output_0",
+      "onnx::Conv_556",
+      "onnx::Conv_557"
+    ],
+    "output": "/Conv_26_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 85,
+    "name": "/Add_5",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_4_output_0",
+      "/Conv_26_output_0"
+    ],
+    "output": "/Add_5_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 86,
+    "name": "/Conv_27",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_5_output_0",
+      "onnx::Conv_559",
+      "onnx::Conv_560"
+    ],
+    "output": "/Conv_27_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 87,
+    "name": "/Constant_34",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_34_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 88,
+    "name": "/Constant_35",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_35_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 89,
+    "name": "/Clip_17",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_27_output_0",
+      "/Constant_34_output_0",
+      "/Constant_35_output_0"
+    ],
+    "output": "/Clip_17_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 90,
+    "name": "/Conv_28",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_17_output_0",
+      "onnx::Conv_562",
+      "onnx::Conv_563"
+    ],
+    "output": "/Conv_28_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 91,
+    "name": "/Constant_36",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_36_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 92,
+    "name": "/Constant_37",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_37_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 93,
+    "name": "/Clip_18",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_28_output_0",
+      "/Constant_36_output_0",
+      "/Constant_37_output_0"
+    ],
+    "output": "/Clip_18_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 94,
+    "name": "/Conv_29",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_18_output_0",
+      "onnx::Conv_565",
+      "onnx::Conv_566"
+    ],
+    "output": "/Conv_29_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 95,
+    "name": "/Add_6",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_5_output_0",
+      "/Conv_29_output_0"
+    ],
+    "output": "/Add_6_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 96,
+    "name": "/Conv_30",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_6_output_0",
+      "onnx::Conv_568",
+      "onnx::Conv_569"
+    ],
+    "output": "/Conv_30_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 97,
+    "name": "/Constant_38",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_38_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 98,
+    "name": "/Constant_39",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_39_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 99,
+    "name": "/Clip_19",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_30_output_0",
+      "/Constant_38_output_0",
+      "/Constant_39_output_0"
+    ],
+    "output": "/Clip_19_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 100,
+    "name": "/Conv_31",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_19_output_0",
+      "onnx::Conv_571",
+      "onnx::Conv_572"
+    ],
+    "output": "/Conv_31_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 101,
+    "name": "/Constant_40",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_40_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 102,
+    "name": "/Constant_41",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_41_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 103,
+    "name": "/Clip_20",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_31_output_0",
+      "/Constant_40_output_0",
+      "/Constant_41_output_0"
+    ],
+    "output": "/Clip_20_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 104,
+    "name": "/Conv_32",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_20_output_0",
+      "onnx::Conv_574",
+      "onnx::Conv_575"
+    ],
+    "output": "/Conv_32_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 105,
+    "name": "/Add_7",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_6_output_0",
+      "/Conv_32_output_0"
+    ],
+    "output": "/Add_7_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 106,
+    "name": "/Conv_33",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_7_output_0",
+      "onnx::Conv_577",
+      "onnx::Conv_578"
+    ],
+    "output": "/Conv_33_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 107,
+    "name": "/Constant_42",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_42_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 108,
+    "name": "/Constant_43",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_43_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 109,
+    "name": "/Clip_21",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_33_output_0",
+      "/Constant_42_output_0",
+      "/Constant_43_output_0"
+    ],
+    "output": "/Clip_21_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 110,
+    "name": "/Conv_34",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_21_output_0",
+      "onnx::Conv_580",
+      "onnx::Conv_581"
+    ],
+    "output": "/Conv_34_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 111,
+    "name": "/Constant_44",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_44_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 112,
+    "name": "/Constant_45",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_45_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 113,
+    "name": "/Clip_22",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_34_output_0",
+      "/Constant_44_output_0",
+      "/Constant_45_output_0"
+    ],
+    "output": "/Clip_22_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 114,
+    "name": "/Conv_35",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_22_output_0",
+      "onnx::Conv_583",
+      "onnx::Conv_584"
+    ],
+    "output": "/Conv_35_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 115,
+    "name": "/Add_8",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_7_output_0",
+      "/Conv_35_output_0"
+    ],
+    "output": "/Add_8_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 116,
+    "name": "/Conv_36",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_8_output_0",
+      "onnx::Conv_586",
+      "onnx::Conv_587"
+    ],
+    "output": "/Conv_36_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 117,
+    "name": "/Constant_46",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_46_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 118,
+    "name": "/Constant_47",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_47_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 119,
+    "name": "/Clip_23",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_36_output_0",
+      "/Constant_46_output_0",
+      "/Constant_47_output_0"
+    ],
+    "output": "/Clip_23_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 120,
+    "name": "/Conv_37",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_23_output_0",
+      "onnx::Conv_589",
+      "onnx::Conv_590"
+    ],
+    "output": "/Conv_37_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 451584,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 121,
+    "name": "/Constant_48",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_48_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 122,
+    "name": "/Constant_49",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_49_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 123,
+    "name": "/Clip_24",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_37_output_0",
+      "/Constant_48_output_0",
+      "/Constant_49_output_0"
+    ],
+    "output": "/Clip_24_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 124,
+    "name": "/Conv_38",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Clip_24_output_0",
+      "onnx::Conv_592",
+      "onnx::Conv_593"
+    ],
+    "output": "/Conv_38_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 6422528,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 125,
+    "name": "/Add_9",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_8_output_0",
+      "/Conv_38_output_0"
+    ],
+    "output": "/Add_9_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 126,
+    "name": "/Conv_39",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      512,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Add_9_output_0",
+      "onnx::Conv_595",
+      "onnx::Conv_596"
+    ],
+    "output": "/Conv_39_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      512,
+      128,
+      1,
+      1
+    ],
+    "macs": 12845056,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 127,
+    "name": "/Constant_50",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_50_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 128,
+    "name": "/Constant_51",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_51_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 129,
+    "name": "/Clip_25",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      512,
+      14,
+      14
+    ],
+    "inputs": [
+      "/Conv_39_output_0",
+      "/Constant_50_output_0",
+      "/Constant_51_output_0"
+    ],
+    "output": "/Clip_25_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 130,
+    "name": "/Conv_40",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      512,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_25_output_0",
+      "onnx::Conv_598",
+      "onnx::Conv_599"
+    ],
+    "output": "/Conv_40_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 512,
+    "strides": [
+      2,
+      2
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      512,
+      1,
+      3,
+      3
+    ],
+    "macs": 225792,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 131,
+    "name": "/Constant_52",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_52_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 132,
+    "name": "/Constant_53",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_53_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 133,
+    "name": "/Clip_26",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      512,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_40_output_0",
+      "/Constant_52_output_0",
+      "/Constant_53_output_0"
+    ],
+    "output": "/Clip_26_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 134,
+    "name": "/Conv_41",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_26_output_0",
+      "onnx::Conv_601",
+      "onnx::Conv_602"
+    ],
+    "output": "/Conv_41_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      512,
+      1,
+      1
+    ],
+    "macs": 3211264,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 135,
+    "name": "/Conv_42",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_41_output_0",
+      "onnx::Conv_604",
+      "onnx::Conv_605"
+    ],
+    "output": "/Conv_42_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 1605632,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 136,
+    "name": "/Constant_54",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_54_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 137,
+    "name": "/Constant_55",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_55_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 138,
+    "name": "/Clip_27",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_42_output_0",
+      "/Constant_54_output_0",
+      "/Constant_55_output_0"
+    ],
+    "output": "/Clip_27_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 139,
+    "name": "/Conv_43",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_27_output_0",
+      "onnx::Conv_607",
+      "onnx::Conv_608"
+    ],
+    "output": "/Conv_43_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 112896,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 140,
+    "name": "/Constant_56",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_56_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 141,
+    "name": "/Constant_57",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_57_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 142,
+    "name": "/Clip_28",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_43_output_0",
+      "/Constant_56_output_0",
+      "/Constant_57_output_0"
+    ],
+    "output": "/Clip_28_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 143,
+    "name": "/Conv_44",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_28_output_0",
+      "onnx::Conv_610",
+      "onnx::Conv_611"
+    ],
+    "output": "/Conv_44_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 1605632,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 144,
+    "name": "/Add_10",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_41_output_0",
+      "/Conv_44_output_0"
+    ],
+    "output": "/Add_10_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 145,
+    "name": "/Conv_45",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Add_10_output_0",
+      "onnx::Conv_613",
+      "onnx::Conv_614"
+    ],
+    "output": "/Conv_45_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      256,
+      128,
+      1,
+      1
+    ],
+    "macs": 1605632,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 146,
+    "name": "/Constant_58",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_58_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 147,
+    "name": "/Constant_59",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_59_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 148,
+    "name": "/Clip_29",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_45_output_0",
+      "/Constant_58_output_0",
+      "/Constant_59_output_0"
+    ],
+    "output": "/Clip_29_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 149,
+    "name": "/Conv_46",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_29_output_0",
+      "onnx::Conv_616",
+      "onnx::Conv_617"
+    ],
+    "output": "/Conv_46_output_0",
+    "kernel": [
+      3,
+      3
+    ],
+    "group": 256,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "weight_shape": [
+      256,
+      1,
+      3,
+      3
+    ],
+    "macs": 112896,
+    "mapping": "NEureka DW3x3; padding/stride/channel tiling pending"
+  },
+  {
+    "index": 150,
+    "name": "/Constant_60",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_60_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 151,
+    "name": "/Constant_61",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_61_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 152,
+    "name": "/Clip_30",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      256,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_46_output_0",
+      "/Constant_60_output_0",
+      "/Constant_61_output_0"
+    ],
+    "output": "/Clip_30_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 153,
+    "name": "/Conv_47",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Clip_30_output_0",
+      "onnx::Conv_619",
+      "onnx::Conv_620"
+    ],
+    "output": "/Conv_47_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      256,
+      1,
+      1
+    ],
+    "macs": 1605632,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 154,
+    "name": "/Add_11",
+    "op": "Add",
+    "output_shape": [
+      1,
+      128,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Add_10_output_0",
+      "/Conv_47_output_0"
+    ],
+    "output": "/Add_11_output_0",
+    "mapping": "Residual add with scale alignment needed"
+  },
+  {
+    "index": 155,
+    "name": "/Conv_48",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      512,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Add_11_output_0",
+      "onnx::Conv_622",
+      "onnx::Conv_623"
+    ],
+    "output": "/Conv_48_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      512,
+      128,
+      1,
+      1
+    ],
+    "macs": 3211264,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 156,
+    "name": "/Constant_62",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_62_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 157,
+    "name": "/Constant_63",
+    "op": "Constant",
+    "output_shape": [],
+    "inputs": [],
+    "output": "/Constant_63_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 158,
+    "name": "/Clip_31",
+    "op": "Clip",
+    "output_shape": [
+      1,
+      512,
+      7,
+      7
+    ],
+    "inputs": [
+      "/Conv_48_output_0",
+      "/Constant_62_output_0",
+      "/Constant_63_output_0"
+    ],
+    "output": "/Clip_31_output_0",
+    "clip_range": [
+      0.0,
+      6.0
+    ],
+    "mapping": "Clamp/ReLU6; new quantized upper-bound path needed"
+  },
+  {
+    "index": 159,
+    "name": "/Conv_49",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      512,
+      1,
+      1
+    ],
+    "inputs": [
+      "/Clip_31_output_0",
+      "onnx::Conv_625",
+      "onnx::Conv_626"
+    ],
+    "output": "/Conv_49_output_0",
+    "kernel": [
+      7,
+      7
+    ],
+    "group": 512,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      512,
+      1,
+      7,
+      7
+    ],
+    "macs": 25088,
+    "mapping": "GDConv7x7: partition into 3x3/edge terms with wide accumulation; NOT implemented"
+  },
+  {
+    "index": 160,
+    "name": "/Conv_50",
+    "op": "Conv",
+    "output_shape": [
+      1,
+      128,
+      1,
+      1
+    ],
+    "inputs": [
+      "/Conv_49_output_0",
+      "onnx::Conv_628",
+      "onnx::Conv_629"
+    ],
+    "output": "/Conv_50_output_0",
+    "kernel": [
+      1,
+      1
+    ],
+    "group": 1,
+    "strides": [
+      1,
+      1
+    ],
+    "pads": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "weight_shape": [
+      128,
+      512,
+      1,
+      1
+    ],
+    "macs": 65536,
+    "mapping": "NEureka 1x1; channel tiling/padding/quantization pending"
+  },
+  {
+    "index": 161,
+    "name": "/Constant_64",
+    "op": "Constant",
+    "output_shape": [
+      2
+    ],
+    "inputs": [],
+    "output": "/Constant_64_output_0",
+    "mapping": "Compile-time constant"
+  },
+  {
+    "index": 162,
+    "name": "/Reshape",
+    "op": "Reshape",
+    "output_shape": [
+      1,
+      128
+    ],
+    "inputs": [
+      "/Conv_50_output_0",
+      "/Constant_64_output_0"
+    ],
+    "output": "embedding",
+    "mapping": "Metadata/layout handling"
+  }
+]

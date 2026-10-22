@@ -1,0 +1,71 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_004229_mobilefacenet_dual",
+  "first_dual_compute_ns": 4065,
+  "dispatch": {
+    "cycle": "23414",
+    "event": "conv_start",
+    "node": "3",
+    "tag": "65537",
+    "slot": "1",
+    "engine": "1"
+  },
+  "views": {
+    "01_overview": [
+      "conv_node0",
+      "conv_frame0",
+      "conv_layer0",
+      "engine_busy0",
+      "compute_active0",
+      "conv_node1",
+      "conv_frame1",
+      "conv_layer1",
+      "engine_busy1",
+      "compute_active1",
+      "both_compute",
+      "post_node",
+      "post_busy",
+      "post_write_fire",
+      "slot_states",
+      "completed_mask",
+      "done",
+      "error"
+    ],
+    "02_dual_compute": [
+      "conv_node0",
+      "conv_frame0",
+      "conv_slot0",
+      "core_busy0",
+      "compute_active0",
+      "conv_read_fire0",
+      "conv_write_fire0",
+      "conv_node1",
+      "conv_frame1",
+      "conv_slot1",
+      "core_busy1",
+      "compute_active1",
+      "conv_read_fire1",
+      "conv_write_fire1",
+      "both_compute",
+      "post_busy",
+      "post_write_fire"
+    ],
+    "03_dispatch": [
+      "conv_start0",
+      "conv_node0",
+      "conv_frame0",
+      "conv_layer0",
+      "engine_busy0",
+      "conv_tile_done0",
+      "conv_start1",
+      "conv_node1",
+      "conv_frame1",
+      "conv_layer1",
+      "engine_busy1",
+      "conv_tile_done1",
+      "post_node",
+      "post_done",
+      "slot_states",
+      "completed_mask"
+    ]
+  }
+}

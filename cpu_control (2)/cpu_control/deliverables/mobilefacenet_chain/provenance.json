@@ -1,0 +1,22 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261021_234938_mobilefacenet_chain",
+  "signals": [
+    "job",
+    "conv_start",
+    "core_busy",
+    "core_state",
+    "accum_done",
+    "prefetch_done",
+    "conv_read_fire",
+    "conv_write_fire",
+    "cdone",
+    "post_start",
+    "mode_add",
+    "pbusy",
+    "post_read_fire",
+    "post_write_fire",
+    "pdone",
+    "memory_fault"
+  ],
+  "first_post_write_ns": 412295
+}
