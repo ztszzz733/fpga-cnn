@@ -1,0 +1,57 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_125620_mobilefacenet_triple",
+  "first_triple_write_ns": 199605,
+  "views": {
+    "01_overview": [
+      "conv_node0",
+      "compute_active0",
+      "conv_node1",
+      "compute_active1",
+      "post_node",
+      "post_busy",
+      "post_write_fire",
+      "triple_active",
+      "slot0_state",
+      "slot1_state",
+      "slot2_state",
+      "completed_mask",
+      "done",
+      "error"
+    ],
+    "02_triple_write": [
+      "conv_node0",
+      "conv_slot0",
+      "compute_active0",
+      "conv_read_fire0",
+      "conv_write_fire0",
+      "conv_node1",
+      "conv_slot1",
+      "compute_active1",
+      "conv_read_fire1",
+      "conv_write_fire1",
+      "post_node",
+      "post_slot",
+      "post_busy",
+      "post_read_fire",
+      "post_write_fire",
+      "triple_active",
+      "triple_write"
+    ],
+    "03_waits": [
+      "engine_busy0",
+      "engine_busy1",
+      "post_busy",
+      "slot0_state",
+      "slot1_state",
+      "slot2_state",
+      "wait_slot",
+      "wait_dependency",
+      "wait_engine",
+      "wait_post",
+      "mem_wait0",
+      "mem_wait1",
+      "mem_wait_post",
+      "done"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.neureka_residual_build/obj/Vtb_mobilefacenet_residual"]
+PASS tb_mobilefacenet_residual cycles=161358 overlap=42775 checked=101888
+- /mnt/d/code/FPGA1/.neureka_residual_build/140_tb_mobilefacenet_residual.sv:143: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 2ms; walltime 295.618 s; speed 5.650 us/s
+- Verilator: cpu 285.602 s on 1 threads; alloced 217 MB

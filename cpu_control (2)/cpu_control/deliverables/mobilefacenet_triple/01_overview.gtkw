@@ -1,0 +1,45 @@
+[*] Real RTL dependency pipeline
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/mobilefacenet_triple/control.vcd"
+[timestart] 0
+@24
+[color] 3
+pipeline.conv_node0[4:0]
+@28
+[color] 3
+pipeline.compute_active0
+@24
+[color] 4
+pipeline.conv_node1[4:0]
+@28
+[color] 4
+pipeline.compute_active1
+@24
+[color] 2
+pipeline.post_node[4:0]
+@28
+[color] 2
+pipeline.post_busy
+@28
+[color] 2
+pipeline.post_write_fire
+@28
+[color] 6
+pipeline.triple_active
+@24
+[color] 6
+pipeline.slot0_state[2:0]
+@24
+[color] 6
+pipeline.slot1_state[2:0]
+@24
+[color] 6
+pipeline.slot2_state[2:0]
+@22
+[color] 6
+pipeline.completed_mask[31:0]
+@28
+[color] 6
+pipeline.done
+@28
+[color] 6
+pipeline.error

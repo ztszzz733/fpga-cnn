@@ -1,0 +1,894 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "frame": 0,
+      "layer": 0,
+      "y": 0,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 425984,
+      "parameters": 20416,
+      "destination": 18048,
+      "count": 768,
+      "channels": 64,
+      "tag": 0,
+      "raw_golden": 8768,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 1,
+      "frame": 1,
+      "layer": 0,
+      "y": 0,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 426560,
+      "parameters": 217024,
+      "destination": 214656,
+      "count": 768,
+      "channels": 64,
+      "tag": 65536,
+      "raw_golden": 205376,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 2,
+      "frame": 0,
+      "layer": 0,
+      "y": 2,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 427136,
+      "parameters": 20416,
+      "destination": 18816,
+      "count": 768,
+      "channels": 64,
+      "tag": 2,
+      "raw_golden": 11840,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 3,
+      "frame": 1,
+      "layer": 0,
+      "y": 2,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 427712,
+      "parameters": 217024,
+      "destination": 215424,
+      "count": 768,
+      "channels": 64,
+      "tag": 65538,
+      "raw_golden": 208448,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 4,
+      "frame": 0,
+      "layer": 0,
+      "y": 4,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 428288,
+      "parameters": 20416,
+      "destination": 19584,
+      "count": 768,
+      "channels": 64,
+      "tag": 4,
+      "raw_golden": 14912,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 5,
+      "frame": 1,
+      "layer": 0,
+      "y": 4,
+      "rows": 2,
+      "deps": 0,
+      "dependency_nodes": [],
+      "config_base": 428864,
+      "parameters": 217024,
+      "destination": 216192,
+      "count": 768,
+      "channels": 64,
+      "tag": 65540,
+      "raw_golden": 211520,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 6,
+      "frame": 0,
+      "layer": 1,
+      "y": 0,
+      "rows": 2,
+      "deps": 1,
+      "dependency_nodes": [
+        0
+      ],
+      "config_base": 429440,
+      "parameters": 53248,
+      "destination": 48576,
+      "count": 1536,
+      "channels": 128,
+      "tag": 256,
+      "raw_golden": 30080,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 7,
+      "frame": 1,
+      "layer": 1,
+      "y": 0,
+      "rows": 2,
+      "deps": 2,
+      "dependency_nodes": [
+        1
+      ],
+      "config_base": 430592,
+      "parameters": 249856,
+      "destination": 245184,
+      "count": 1536,
+      "channels": 128,
+      "tag": 65792,
+      "raw_golden": 226688,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 8,
+      "frame": 0,
+      "layer": 1,
+      "y": 2,
+      "rows": 2,
+      "deps": 4,
+      "dependency_nodes": [
+        2
+      ],
+      "config_base": 431744,
+      "parameters": 53248,
+      "destination": 50112,
+      "count": 1536,
+      "channels": 128,
+      "tag": 258,
+      "raw_golden": 36224,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 9,
+      "frame": 1,
+      "layer": 1,
+      "y": 2,
+      "rows": 2,
+      "deps": 8,
+      "dependency_nodes": [
+        3
+      ],
+      "config_base": 432896,
+      "parameters": 249856,
+      "destination": 246720,
+      "count": 1536,
+      "channels": 128,
+      "tag": 65794,
+      "raw_golden": 232832,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 10,
+      "frame": 0,
+      "layer": 1,
+      "y": 4,
+      "rows": 2,
+      "deps": 16,
+      "dependency_nodes": [
+        4
+      ],
+      "config_base": 434048,
+      "parameters": 53248,
+      "destination": 51648,
+      "count": 1536,
+      "channels": 128,
+      "tag": 260,
+      "raw_golden": 42368,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 11,
+      "frame": 1,
+      "layer": 1,
+      "y": 4,
+      "rows": 2,
+      "deps": 32,
+      "dependency_nodes": [
+        5
+      ],
+      "config_base": 435200,
+      "parameters": 249856,
+      "destination": 248256,
+      "count": 1536,
+      "channels": 128,
+      "tag": 65796,
+      "raw_golden": 238976,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 12,
+      "frame": 0,
+      "layer": 2,
+      "y": 0,
+      "rows": 2,
+      "deps": 320,
+      "dependency_nodes": [
+        6,
+        8
+      ],
+      "config_base": 436352,
+      "parameters": 74688,
+      "destination": 72576,
+      "count": 1024,
+      "channels": 128,
+      "tag": 512,
+      "raw_golden": 64320,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 13,
+      "frame": 1,
+      "layer": 2,
+      "y": 0,
+      "rows": 2,
+      "deps": 640,
+      "dependency_nodes": [
+        7,
+        9
+      ],
+      "config_base": 437504,
+      "parameters": 271296,
+      "destination": 269184,
+      "count": 1024,
+      "channels": 128,
+      "tag": 66048,
+      "raw_golden": 260928,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 14,
+      "frame": 0,
+      "layer": 2,
+      "y": 2,
+      "rows": 2,
+      "deps": 1280,
+      "dependency_nodes": [
+        8,
+        10
+      ],
+      "config_base": 438656,
+      "parameters": 74688,
+      "destination": 73600,
+      "count": 1024,
+      "channels": 128,
+      "tag": 514,
+      "raw_golden": 68416,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 15,
+      "frame": 1,
+      "layer": 2,
+      "y": 2,
+      "rows": 2,
+      "deps": 2560,
+      "dependency_nodes": [
+        9,
+        11
+      ],
+      "config_base": 439808,
+      "parameters": 271296,
+      "destination": 270208,
+      "count": 1024,
+      "channels": 128,
+      "tag": 66050,
+      "raw_golden": 265024,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 16,
+      "frame": 0,
+      "layer": 3,
+      "y": 0,
+      "rows": 2,
+      "deps": 4096,
+      "dependency_nodes": [
+        12
+      ],
+      "config_base": 440960,
+      "parameters": 84096,
+      "destination": 83008,
+      "count": 512,
+      "channels": 64,
+      "tag": 768,
+      "raw_golden": 78848,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 17,
+      "frame": 1,
+      "layer": 3,
+      "y": 0,
+      "rows": 2,
+      "deps": 8192,
+      "dependency_nodes": [
+        13
+      ],
+      "config_base": 441536,
+      "parameters": 280704,
+      "destination": 279616,
+      "count": 512,
+      "channels": 64,
+      "tag": 66304,
+      "raw_golden": 275456,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 18,
+      "frame": 0,
+      "layer": 3,
+      "y": 2,
+      "rows": 2,
+      "deps": 16384,
+      "dependency_nodes": [
+        14
+      ],
+      "config_base": 442112,
+      "parameters": 84096,
+      "destination": 83520,
+      "count": 512,
+      "channels": 64,
+      "tag": 770,
+      "raw_golden": 80896,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 19,
+      "frame": 1,
+      "layer": 3,
+      "y": 2,
+      "rows": 2,
+      "deps": 32768,
+      "dependency_nodes": [
+        15
+      ],
+      "config_base": 442688,
+      "parameters": 280704,
+      "destination": 280128,
+      "count": 512,
+      "channels": 64,
+      "tag": 66306,
+      "raw_golden": 277504,
+      "add": 0,
+      "src_a": 0,
+      "src_b": 0,
+      "keep": 0
+    },
+    {
+      "id": 20,
+      "frame": 0,
+      "layer": 4,
+      "y": 0,
+      "rows": 1,
+      "deps": 65537,
+      "dependency_nodes": [
+        0,
+        16
+      ],
+      "config_base": 0,
+      "parameters": 94848,
+      "destination": 93760,
+      "count": 256,
+      "channels": 64,
+      "tag": 1024,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 18496,
+      "src_b": 83008,
+      "keep": 1
+    },
+    {
+      "id": 21,
+      "frame": 1,
+      "layer": 4,
+      "y": 0,
+      "rows": 1,
+      "deps": 131074,
+      "dependency_nodes": [
+        1,
+        17
+      ],
+      "config_base": 0,
+      "parameters": 291456,
+      "destination": 290368,
+      "count": 256,
+      "channels": 64,
+      "tag": 66560,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 215104,
+      "src_b": 279616,
+      "keep": 1
+    },
+    {
+      "id": 22,
+      "frame": 0,
+      "layer": 4,
+      "y": 1,
+      "rows": 1,
+      "deps": 65540,
+      "dependency_nodes": [
+        2,
+        16
+      ],
+      "config_base": 0,
+      "parameters": 94848,
+      "destination": 94016,
+      "count": 256,
+      "channels": 64,
+      "tag": 1025,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 18880,
+      "src_b": 83264,
+      "keep": 1
+    },
+    {
+      "id": 23,
+      "frame": 1,
+      "layer": 4,
+      "y": 1,
+      "rows": 1,
+      "deps": 131080,
+      "dependency_nodes": [
+        3,
+        17
+      ],
+      "config_base": 0,
+      "parameters": 291456,
+      "destination": 290624,
+      "count": 256,
+      "channels": 64,
+      "tag": 66561,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 215488,
+      "src_b": 279872,
+      "keep": 1
+    },
+    {
+      "id": 24,
+      "frame": 0,
+      "layer": 4,
+      "y": 2,
+      "rows": 1,
+      "deps": 262148,
+      "dependency_nodes": [
+        2,
+        18
+      ],
+      "config_base": 0,
+      "parameters": 94848,
+      "destination": 94272,
+      "count": 256,
+      "channels": 64,
+      "tag": 1026,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 19264,
+      "src_b": 83520,
+      "keep": 1
+    },
+    {
+      "id": 25,
+      "frame": 1,
+      "layer": 4,
+      "y": 2,
+      "rows": 1,
+      "deps": 524296,
+      "dependency_nodes": [
+        3,
+        19
+      ],
+      "config_base": 0,
+      "parameters": 291456,
+      "destination": 290880,
+      "count": 256,
+      "channels": 64,
+      "tag": 66562,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 215872,
+      "src_b": 280128,
+      "keep": 1
+    },
+    {
+      "id": 26,
+      "frame": 0,
+      "layer": 4,
+      "y": 3,
+      "rows": 1,
+      "deps": 262160,
+      "dependency_nodes": [
+        4,
+        18
+      ],
+      "config_base": 0,
+      "parameters": 94848,
+      "destination": 94528,
+      "count": 256,
+      "channels": 64,
+      "tag": 1027,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 19648,
+      "src_b": 83776,
+      "keep": 1
+    },
+    {
+      "id": 27,
+      "frame": 1,
+      "layer": 4,
+      "y": 3,
+      "rows": 1,
+      "deps": 524320,
+      "dependency_nodes": [
+        5,
+        19
+      ],
+      "config_base": 0,
+      "parameters": 291456,
+      "destination": 291136,
+      "count": 256,
+      "channels": 64,
+      "tag": 66563,
+      "raw_golden": 0,
+      "add": 1,
+      "src_a": 216256,
+      "src_b": 280384,
+      "keep": 1
+    }
+  ],
+  "frames": [
+    {
+      "image": "D:\\code\\facemodel\\person_1.jpg",
+      "image_sha256": "4802be78ad75b6d32815dfe11658ef00718d0a78e5b8a7bb23a8c5e6eb4e81a4",
+      "layers": [
+        {
+          "layer": "/Conv_5",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            6,
+            6,
+            128
+          ],
+          "output_shape": [
+            6,
+            6,
+            64
+          ],
+          "input_address": 4096,
+          "output_address": 18048,
+          "raw_address": 8768,
+          "parameters_address": 20416,
+          "weights": [
+            21760,
+            25920
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.05726074669943984,
+          "output_zero": 128,
+          "float_roi_onnx_max_error": 2.814392413341693e-06
+        },
+        {
+          "layer": "/Conv_6",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            6,
+            6,
+            64
+          ],
+          "output_shape": [
+            6,
+            6,
+            128
+          ],
+          "input_address": 18048,
+          "output_address": 48576,
+          "raw_address": 30080,
+          "parameters_address": 53248,
+          "weights": [
+            55872,
+            57984,
+            60096,
+            62208
+          ],
+          "input_scale": 0.05726074669943984,
+          "input_zero": 128,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_roi_onnx_max_error": 6.471947029407232e-07
+        },
+        {
+          "layer": "/Conv_7",
+          "kernel": 3,
+          "depthwise": true,
+          "input_shape": [
+            6,
+            6,
+            128
+          ],
+          "output_shape": [
+            4,
+            4,
+            128
+          ],
+          "input_address": 48576,
+          "output_address": 72576,
+          "raw_address": 64320,
+          "parameters_address": 74688,
+          "weights": [
+            77312,
+            77696,
+            78080,
+            78464
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_roi_onnx_max_error": 1.821653358158315e-06
+        },
+        {
+          "layer": "/Conv_8",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            4,
+            4,
+            128
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_address": 72576,
+          "output_address": 83008,
+          "raw_address": 78848,
+          "parameters_address": 84096,
+          "weights": [
+            85440,
+            89600
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.0250438240232453,
+          "output_zero": 128,
+          "float_roi_onnx_max_error": 1.919941496453248e-06
+        }
+      ],
+      "add_address": 93760,
+      "add_params": 94848,
+      "input_address": 4096
+    },
+    {
+      "image": "D:\\code\\facemodel\\person_2.jpg",
+      "image_sha256": "f64df39dca58cb3bd46775992a309e17db1005f8bdea07d1ce1080717f27215e",
+      "layers": [
+        {
+          "layer": "/Conv_5",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            6,
+            6,
+            128
+          ],
+          "output_shape": [
+            6,
+            6,
+            64
+          ],
+          "input_address": 200704,
+          "output_address": 214656,
+          "raw_address": 205376,
+          "parameters_address": 217024,
+          "weights": [
+            218368,
+            222528
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.05726074669943984,
+          "output_zero": 128,
+          "float_roi_onnx_max_error": 2.2413826670231174e-06
+        },
+        {
+          "layer": "/Conv_6",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            6,
+            6,
+            64
+          ],
+          "output_shape": [
+            6,
+            6,
+            128
+          ],
+          "input_address": 214656,
+          "output_address": 245184,
+          "raw_address": 226688,
+          "parameters_address": 249856,
+          "weights": [
+            252480,
+            254592,
+            256704,
+            258816
+          ],
+          "input_scale": 0.05726074669943984,
+          "input_zero": 128,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_roi_onnx_max_error": 7.876611229917785e-07
+        },
+        {
+          "layer": "/Conv_7",
+          "kernel": 3,
+          "depthwise": true,
+          "input_shape": [
+            6,
+            6,
+            128
+          ],
+          "output_shape": [
+            4,
+            4,
+            128
+          ],
+          "input_address": 245184,
+          "output_address": 269184,
+          "raw_address": 260928,
+          "parameters_address": 271296,
+          "weights": [
+            273920,
+            274304,
+            274688,
+            275072
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.023529411764705882,
+          "output_zero": 0,
+          "float_roi_onnx_max_error": 1.1049451391631493e-06
+        },
+        {
+          "layer": "/Conv_8",
+          "kernel": 1,
+          "depthwise": false,
+          "input_shape": [
+            4,
+            4,
+            128
+          ],
+          "output_shape": [
+            4,
+            4,
+            64
+          ],
+          "input_address": 269184,
+          "output_address": 279616,
+          "raw_address": 275456,
+          "parameters_address": 280704,
+          "weights": [
+            282048,
+            286208
+          ],
+          "input_scale": 0.023529411764705882,
+          "input_zero": 0,
+          "output_scale": 0.0250438240232453,
+          "output_zero": 128,
+          "float_roi_onnx_max_error": 1.2663257531464467e-06
+        }
+      ],
+      "add_address": 290368,
+      "add_params": 291456,
+      "input_address": 200704
+    }
+  ],
+  "scratch": [
+    458752,
+    466944,
+    475136
+  ],
+  "scratch_capacity": 8192,
+  "memory_size": 524288,
+  "quantization_scales": [
+    0.05726074669943984,
+    0.023529411764705882,
+    0.023529411764705882,
+    0.0250438240232453,
+    0.06271007633075662
+  ],
+  "quantization_source": "frame0 diagnostic scales frozen for both images; not accuracy calibrated",
+  "onnx_sha256": "28ee4f5fb6c4f0bc0a2a66c1ec7a0b6fed0593013c0a8f442d5dd4af08b0f8fe",
+  "source_sha256": "8116a2557fca08d9497888f6ab3cc4a9c1db3efa64dd718e4a5e3575617d3a4b",
+  "input_preloaded": true,
+  "full_network": false,
+  "uart": false,
+  "cpu": false,
+  "roi": "Conv_5 / Conv_6 [2:8,2:8]; Conv_7 / Conv_8 / Add [3:7,3:7]"
+}

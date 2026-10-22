@@ -22,3 +22,6 @@ mobilefacenet/.deps-py39/
 *.vvp
 
 .neureka_dual_build/
+
+.neureka_triple_build/
+.neureka_residual_build/

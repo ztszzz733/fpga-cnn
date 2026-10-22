@@ -1,0 +1,70 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_133125_mobilefacenet_residual",
+  "derived_signals": {
+    "join_skip_ready": [
+      "completed_mask",
+      1
+    ],
+    "join_main_ready": [
+      "completed_mask",
+      17
+    ],
+    "skip0_released": [
+      "released_mask",
+      0
+    ],
+    "skip0_release": [
+      "release_pulse",
+      0
+    ],
+    "skip0_live": [
+      "live_mask",
+      0
+    ]
+  },
+  "first_add_node": 21,
+  "first_add_write_ns": 962805,
+  "first_add_done_ns": 983105,
+  "first_bypass_release_ns": 1508575,
+  "views": {
+    "01_overview": [
+      "conv_node0",
+      "compute_active0",
+      "conv_node1",
+      "compute_active1",
+      "post_node",
+      "post_add",
+      "post_busy",
+      "post_write_fire",
+      "completed_mask",
+      "released_mask",
+      "live_mask",
+      "done",
+      "error"
+    ],
+    "02_add": [
+      "conv_node0",
+      "compute_active0",
+      "conv_node1",
+      "compute_active1",
+      "join_skip_ready",
+      "join_main_ready",
+      "post_node",
+      "post_add",
+      "post_start",
+      "post_busy",
+      "post_read_fire",
+      "post_write_fire",
+      "post_done"
+    ],
+    "03_release": [
+      "post_node",
+      "post_add",
+      "post_write_fire",
+      "post_done",
+      "skip0_live",
+      "skip0_release",
+      "skip0_released"
+    ]
+  }
+}

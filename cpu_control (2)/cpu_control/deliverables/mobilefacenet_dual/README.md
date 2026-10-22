@@ -1,5 +1,7 @@
 # 双 NEureka 自动派发：小区域 RTL 验证
 
+后续进展（2026-10-22）：第三临时槽已完成验证，双卷积与后处理可以同时处理不同条带，见 [三槽流水结果](../mobilefacenet_triple/README.md)。本页保留两槽阶段结果。
+
 本轮 **PASS**，原始记录 `D:\code\FPGA1\cpu_control (2)\cpu_control\build\runs\20261022_004229_mobilefacenet_dual`。当前 CNN 实验入口包含 **两个真实 NEureka 卷积实例＋一个量化/激活后处理单元＋两个临时缓冲槽**。生产 CPU/UART 和六模块顶层还没有接入本入口。
 
 ## 这次解决了什么
