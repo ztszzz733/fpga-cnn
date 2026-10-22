@@ -1,19 +1,22 @@
 `timescale 1ns/1ps
 module tb_datasram_banked;
-    parameter integer BANKS=4, ENABLE_OVERLAP=1;
+    parameter integer BANKS=4, ENABLE_OVERLAP=1, CLIENTS=11, SRAM_BYTES=1024;
     logic clk=0,rst_n=0;
     always #5 clk=~clk;
     logic [31:0] dmem_addr=0,dmem_wdata=0;logic [3:0] dmem_wstrb=15;
     logic dmem_re=0,dmem_we=0;wire [31:0] dmem_rdata;
-    logic [10:0] cnn_valid=0,cnn_write=0,cnn_byte=0;
-    logic [351:0] cnn_addr=0,cnn_wdata=0;wire [10:0] cnn_ready,cnn_response;wire [351:0] cnn_rdata;
+    logic [CLIENTS-1:0] cnn_valid=0,cnn_write=0,cnn_byte=0;
+    logic [CLIENTS*32-1:0] cnn_addr=0,cnn_wdata=0;
+    wire [CLIENTS-1:0] cnn_ready,cnn_response;
+    wire [CLIENTS*32-1:0] cnn_rdata;
     logic cnn_cancel=0;wire cnn_mem_fault;
     logic io_mem_req=0,io_mem_we=0;logic [31:0] io_mem_addr=0,io_mem_wdata=0;
     logic [3:0] io_mem_be=0;wire io_mem_gnt,io_mem_rvalid,io_mem_error;wire [31:0] io_mem_rdata;
-    datasram_banked #(.BANKS(BANKS),.SRAM_SIZE(256)) dut(.*);
-    reg [10:0] accepted,seen;
+    datasram_banked #(.BANKS(BANKS),.CLIENTS(CLIENTS),.SRAM_SIZE(SRAM_BYTES)) dut(.*);
+    reg [CLIENTS-1:0] accepted,seen;
     reg accepted_io,seen_io;
-    integer grants=0,hotspot_cycles=0,same_bank_parallel=0;
+    integer grants=0,hotspot_cycles=0,same_bank_parallel=0,tri_party_cycles=0;
+    integer cnn_accepts=0,io_accepts=0,cnn_wait_client_cycles=0,io_wait_cycles=0,cpu_access_cycles=0;
     task tick;begin @(posedge clk);#1;end endtask
     task cpu_write(input [31:0] addr,value);
         begin @(negedge clk);dmem_addr=addr;dmem_wdata=value;dmem_we=1;tick();@(negedge clk);dmem_we=0;end
@@ -29,17 +32,28 @@ module tb_datasram_banked;
             @(negedge clk);cnn_valid[client]=0;
         end
     endtask
+    always @(posedge clk) begin
+        if(rst_n) begin
+            cnn_accepts=cnn_accepts+$countones(cnn_valid & cnn_ready);
+            io_accepts=io_accepts+(io_mem_req && io_mem_gnt);
+            cnn_wait_client_cycles=cnn_wait_client_cycles+$countones(cnn_valid & ~cnn_ready);
+            io_wait_cycles=io_wait_cycles+(io_mem_req && !io_mem_gnt);
+            cpu_access_cycles=cpu_access_cycles+(dmem_re || dmem_we);
+        end
+    end
     initial begin
+        if(CLIENTS<2 || SRAM_BYTES<((CLIENTS+1)*16+4))
+            $fatal(1,"invalid parameterization for memory contract test");
         repeat(3) tick();@(negedge clk);rst_n=1;
-        for(integer i=0;i<16;i=i+1) cpu_write(i*4,32'h10203040+i);
-        // Eleven simultaneous clients, both same-bank and different-bank competition.
+        for(integer i=0;i<CLIENTS;i=i+1) cpu_write(i*4,32'h10203040+i);
+        // All CNN clients issue simultaneously across the four banks.
         @(negedge clk);cnn_valid='1;
-        for(integer i=0;i<11;i=i+1) cnn_addr[i*32+:32]=i*4;
+        for(integer i=0;i<CLIENTS;i=i+1) cnn_addr[i*32+:32]=i*4;
         seen=0;
         while(seen!='1) begin
             @(posedge clk);accepted=cnn_valid & cnn_ready;grants=grants+$countones(accepted);#1;
             if(cnn_response!==accepted) $fatal(1,"response routing");
-            for(integer i=0;i<11;i=i+1) if(accepted[i] && cnn_rdata[i*32+:32]!==32'h10203040+i)
+            for(integer i=0;i<CLIENTS;i=i+1) if(accepted[i] && cnn_rdata[i*32+:32]!==32'h10203040+i)
                 $fatal(1,"parallel read data");
             seen=seen|accepted;@(negedge clk);cnn_valid=cnn_valid & ~accepted;
         end
@@ -56,11 +70,23 @@ module tb_datasram_banked;
             dmem_rdata!==32'h10203040) $fatal(1,"same-bank dual-port access did not overlap");
         same_bank_parallel=same_bank_parallel+1;
         @(negedge clk);cnn_valid=0;dmem_re=0;
-        // All twelve port-B requesters target bank zero.  A fair tree-backed
+        // CPU, one CNN client and image IO all complete in the same cycle.
+        // CPU and CNN use different rows of bank zero; IO uses bank one.
+        @(negedge clk);cnn_valid='0;cnn_valid[0]=1;cnn_write='0;cnn_byte='0;
+        cnn_addr[0+:32]=16;dmem_addr=0;dmem_re=1;
+        io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=4;
+        tick();
+        if(!cnn_ready[0] || !cnn_response[0] || cnn_rdata[0+:32]!==32'h10203044 ||
+            !io_mem_gnt || !io_mem_rvalid || io_mem_error || io_mem_rdata!==32'h10203041 ||
+            dmem_rdata!==32'h10203040)
+            $fatal(1,"CPU/CNN/IO tri-party access failed");
+        tri_party_cycles=tri_party_cycles+1;
+        @(negedge clk);cnn_valid='0;dmem_re=0;io_mem_req=0;
+        // All CLIENTS plus image IO target bank zero.  A fair tree-backed
         // round robin must grant exactly one per cycle and serve all of them.
         cnn_valid='1;cnn_write=0;cnn_byte=0;
-        for(integer i=0;i<11;i=i+1) cnn_addr[i*32+:32]=i*16;
-        io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=176;
+        for(integer i=0;i<CLIENTS;i=i+1) cnn_addr[i*32+:32]=i*16;
+        io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=CLIENTS*16;
         seen=0;seen_io=0;hotspot_cycles=0;
         while(seen!='1 || !seen_io) begin
             @(posedge clk);accepted=cnn_valid & cnn_ready;accepted_io=io_mem_req && io_mem_gnt;
@@ -71,7 +97,7 @@ module tb_datasram_banked;
             seen=seen|accepted;seen_io=seen_io|accepted_io;
             @(negedge clk);cnn_valid=cnn_valid & ~accepted;if(accepted_io) io_mem_req=0;
         end
-        if(hotspot_cycles!=12) $fatal(1,"round-robin fairness bound");
+        if(hotspot_cycles!=CLIENTS+1) $fatal(1,"round-robin fairness bound");
         cnn_access(0,1,1,1,32'h80,0);
         cnn_access(1,0,0,0,0,32'h10208040);
         cnn_access(2,0,1,1,0,32'hffffff80);
@@ -90,7 +116,7 @@ module tb_datasram_banked;
         do begin @(posedge clk);end while(!io_mem_gnt);
         @(negedge clk);io_mem_req=0;
         cnn_access(0,0,0,0,0,32'hbbaa1140);
-        @(negedge clk);io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=256;
+        @(negedge clk);io_mem_req=1;io_mem_we=0;io_mem_be=0;io_mem_addr=SRAM_BYTES;
         do begin @(posedge clk);end while(!io_mem_gnt);
         #1;if(!io_mem_rvalid || !io_mem_error || io_mem_rdata!==0) $fatal(1,"IO range error lost");
         @(negedge clk);io_mem_req=0;
@@ -101,9 +127,11 @@ module tb_datasram_banked;
         if(!cnn_mem_fault) $fatal(1,"soft reset cleared system fault");
         @(negedge clk);cnn_valid=0;cnn_cancel=0;rst_n=0;tick();
         @(negedge clk);rst_n=1;cnn_access(0,0,0,0,0,32'hbbaa1140);
-        @(negedge clk);cnn_valid=1;cnn_addr[0+:32]=256;tick();
+        @(negedge clk);cnn_valid=1;cnn_addr[0+:32]=SRAM_BYTES;tick();
         if(!cnn_mem_fault || |cnn_ready) $fatal(1,"missing range fault");
-        $display("METRICS clients=%0d grants=%0d stalled_cycles=20 same_bank_parallel=%0d hotspot_cycles=%0d",11,grants,same_bank_parallel,hotspot_cycles);
+        $display("METRICS clients=%0d grants=%0d cnn_accepts=%0d io_accepts=%0d cnn_wait_client_cycles=%0d io_wait_cycles=%0d cpu_access_cycles=%0d stalled_cycles=20 same_bank_parallel=%0d tri_party_cycles=%0d hotspot_cycles=%0d",
+            CLIENTS,grants,cnn_accepts,io_accepts,cnn_wait_client_cycles,io_wait_cycles,
+            cpu_access_cycles,same_bank_parallel,tri_party_cycles,hotspot_cycles);
         $display("PASS tb_datasram_banked");$finish;
     end
     initial begin #100000;$fatal(1,"memory test timeout");end

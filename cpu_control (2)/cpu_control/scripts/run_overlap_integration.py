@@ -15,8 +15,8 @@ from run_tests import ROOT, tools, tool_env, execute
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--cases',nargs='+',choices=['original','serial','overlap','one_bank','memory','restart','observer_fault','uart_baseline'],
-                        default=['original','serial','overlap','one_bank','memory','restart'])
+    parser.add_argument('--cases',nargs='+',choices=['original','serial','overlap','one_bank','memory','memory21','restart','observer_fault','uart_baseline'],
+                        default=['original','serial','overlap','one_bank','memory','memory21','restart'])
     parser.add_argument('--seed',type=int,default=1)
     parser.add_argument('--simulator',choices=['auto','verilator','xsim'],default='auto')
     parser.add_argument('--waves',action='store_true')
@@ -43,7 +43,7 @@ def main():
             original=case=='original'
             filelist=ROOT/'rtl/filelists'/('system_autoload.f' if original else 'system_overlap.f')
             sources=[ROOT/x.strip() for x in filelist.read_text().splitlines() if x.strip()]
-            top={'memory':'tb_datasram_banked','restart':'tb_overlap_restart'}.get(case,'tb_soc_overlap')
+            top={'memory':'tb_datasram_banked','memory21':'tb_datasram_banked','restart':'tb_overlap_restart'}.get(case,'tb_soc_overlap')
             baud=12500000 if case=='uart_baseline' else args.uart_baud
             chunk=64 if case=='uart_baseline' else args.chunk_bytes
             sources.append(ROOT/f'tb/integration/{top}.sv')
@@ -63,6 +63,7 @@ def main():
                         dest=stage/f'{i:03}_{source.name}';shutil.copyfile(source,dest);staged.append(dest)
                     shutil.copyfile(folder/'overlap_vectors.svh',stage/'overlap_vectors.svh')
                     params=[] if original else [f'-GENABLE_OVERLAP={0 if case=="serial" else 1}',f'-GBANKS={1 if case=="one_bank" else 4}']
+                    if case=='memory21':params+=['-GCLIENTS=21']
                     if case=='observer_fault':params+=['-GOBSERVE_FAULT=1']
                     if top=='tb_soc_overlap':params += [f'-GUART_BAUD={baud}',f'-GUART_CHUNK_BYTES={chunk}']
                     make_python=Path(os.sys.executable).as_posix()
@@ -77,6 +78,7 @@ def main():
                 execute([found['xvlog'],'-sv','-i',folder,*(['-d','ORIGINAL_SOC'] if original else []),*sources],folder,env,folder/'compile.log',timeout=180)
                 params=[] if original else ['-generic_top',f'ENABLE_OVERLAP={0 if case=="serial" else 1}',
                                        '-generic_top',f'BANKS={1 if case=="one_bank" else 4}']
+                if case=='memory21':params+=['-generic_top','CLIENTS=21']
                 if case=='observer_fault':params+=['-generic_top','OBSERVE_FAULT=1']
                 if top=='tb_soc_overlap':params+=['-generic_top',f'UART_BAUD={baud}','-generic_top',f'UART_CHUNK_BYTES={chunk}']
                 execute([found['xelab'],top,'-s','overlap','-debug','typical','-mt','2',*params],folder,env,folder/'compile.log',timeout=300)
