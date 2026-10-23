@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "cases": {
+    "dual": {
+      "cycles": 297264,
+      "commands": 60,
+      "checked_bytes": 136704,
+      "dual_busy_cycles": 89425,
+      "conv_post_busy_cycles": 86957,
+      "restart": 0,
+      "assignments": [
+        21,
+        15,
+        24,
+        0,
+        0
+      ],
+      "allocations": 42,
+      "releases": 42,
+      "wait_buffer_cycles": 2,
+      "peak_live_buffers": 5,
+      "output_sha256": "8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998"
+    },
+    "only_engine1": {
+      "cycles": 364824,
+      "commands": 60,
+      "checked_bytes": 136704,
+      "dual_busy_cycles": 0,
+      "conv_post_busy_cycles": 111693,
+      "restart": 0,
+      "assignments": [
+        0,
+        36,
+        24,
+        0,
+        0
+      ],
+      "allocations": 42,
+      "releases": 42,
+      "wait_buffer_cycles": 2,
+      "peak_live_buffers": 5,
+      "output_sha256": "8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998"
+    },
+    "skew_stall": {
+      "cycles": 432601,
+      "commands": 60,
+      "checked_bytes": 136704,
+      "dual_busy_cycles": 129269,
+      "conv_post_busy_cycles": 106729,
+      "restart": 0,
+      "assignments": [
+        13,
+        23,
+        24,
+        0,
+        0
+      ],
+      "allocations": 42,
+      "releases": 42,
+      "wait_buffer_cycles": 0,
+      "peak_live_buffers": 5,
+      "output_sha256": "8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998"
+    },
+    "restart": {
+      "cycles": 338020,
+      "commands": 60,
+      "checked_bytes": 136704,
+      "dual_busy_cycles": 89425,
+      "conv_post_busy_cycles": 86957,
+      "restart": 1,
+      "assignments": [
+        21,
+        15,
+        24,
+        0,
+        0
+      ],
+      "allocations": 42,
+      "releases": 42,
+      "wait_buffer_cycles": 2,
+      "peak_live_buffers": 5,
+      "output_sha256": "8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998"
+    }
+  },
+  "timing_seconds": {
+    "compile": 0,
+    "dual": 0,
+    "only_engine1": 78.79898310600001,
+    "skew_stall": 134.896472068,
+    "restart": 105.673207308,
+    "total": 321.640353855
+  },
+  "scope": "six ROI frames with synthetic residual, constrained intermediate pool",
+  "build_inputs": {
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_dispatch_buffered.sv": "e09c130bc723bc0c378b60f1b2d6b032b74e6078770278812d999ccbbdba7fd5",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_buffer_leases.sv": "29c8c5d173d885baec37aed4424da27edba3afe39a6925c461835059168ae578",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_network_buffered.sv": "9091baba9a062e2ace9b523c089cf32d099a91c98ae81177c113d1ee31feab27",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/network_buffered_main.cpp": "5ae61dfd528b04a11a6d9d9941540b5124a6fff19e3ab2ad69ff85dbde806594",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/neureka_conv_engine.sv": "7e25ac602920b6d5b38092ba24a74559e9dbe2492eeaacaf7db7798f94798b26",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/libneureka_conv_engine.a": "3ca5ac242d81d6d2d2281e267ab15620a395ad3e1befc79d6d190684d87f27da",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/neureka_conv_engine.cpp": "a9e3547152efcb430449d2e60a2e39f12d5af7c117d538ba08002f94710b7c2d"
+  },
+  "data_hashes": {
+    "expected.bin": "8f4088ea503943548d6da496df9a1673252080bca4f4b40896ed0584f603aa88",
+    "expected_offsets.bin": "5c6c2aef561aefbd6c3d6d6be846cdf6c3b63dffb843312e4fd9391fa00f5f16",
+    "golden.bin": "0683e6962d2cb41ec4dd863a4bc040501ce65aafc4bb1e9c981713bd3598a324",
+    "jobs.bin": "99881ec828bd6c70614df6235e765a3eccb128fc728895affaf3d6d6e643bd00",
+    "leases.bin": "54e828b213d8b1bda55b6f70944db93eac05299f4ce384451a7675bd64b9530a",
+    "memory.bin": "0683e6962d2cb41ec4dd863a4bc040501ce65aafc4bb1e9c981713bd3598a324",
+    "mutable.bin": "4c4a1c3acda4982711ce2c11aff6935031018d16c375765e94de0c2ea0f8117b",
+    "workload.json": "57d1d31d89297965a2d5f387110358e1ad317907d3367c9149f3526458d8bde3"
+  },
+  "executable_sha256": "552aef34da093a3d1f61dc6348ee8f1f026a287a7f9062d1a3935b3c4e75039a",
+  "reused_cases": {
+    "dual": {
+      "run": "build/runs/20261022_221716_network_buffered",
+      "original_seconds": 165.650927173
+    }
+  }
+}

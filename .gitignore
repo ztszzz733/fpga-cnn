@@ -25,3 +25,11 @@ mobilefacenet/.deps-py39/
 
 .neureka_triple_build/
 .neureka_residual_build/
+.dw7_cached_build/
+.neureka_full_build/
+.neureka_full_hier_build/
+.network_parallel_build/
+
+.network_buffered_build/
+.network_output_build/
+.network_pair_build/

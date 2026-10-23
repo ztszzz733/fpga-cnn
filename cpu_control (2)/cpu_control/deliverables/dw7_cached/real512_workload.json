@@ -1,0 +1,66 @@
+{
+  "source": {
+    "layer": "/Conv_49",
+    "onnx_sha256": "28ee4f5fb6c4f0bc0a2a66c1ec7a0b6fed0593013c0a8f442d5dd4af08b0f8fe",
+    "float_max_error": 3.150582873701069e-06,
+    "images": [
+      {
+        "path": "D:/code/facemodel/person_1.jpg",
+        "sha256": "4802be78ad75b6d32815dfe11658ef00718d0a78e5b8a7bb23a8c5e6eb4e81a4"
+      },
+      {
+        "path": "D:/code/facemodel/person_2.jpg",
+        "sha256": "f64df39dca58cb3bd46775992a309e17db1005f8bdea07d1ce1080717f27215e"
+      }
+    ]
+  },
+  "jobs": [
+    [
+      35712,
+      256,
+      60864,
+      62976,
+      25408,
+      7,
+      7,
+      512,
+      512
+    ],
+    [
+      63552,
+      256,
+      88704,
+      90816,
+      25408,
+      7,
+      7,
+      512,
+      512
+    ]
+  ],
+  "input_shape": [
+    7,
+    7,
+    512
+  ],
+  "output_shape": [
+    1,
+    1,
+    512
+  ],
+  "quantization": {
+    "sx": 0.023529411764705882,
+    "zx": 0,
+    "sy": 0.028828084155291794,
+    "zy": 128,
+    "calibrated": false
+  },
+  "input_reads_per_frame": 6272,
+  "weight_reads_first_frame": 6272,
+  "weight_reads_second_frame": 0,
+  "naive_input_bytes": 25088,
+  "actual_input_bytes": 25088,
+  "weights_layout": "tap-major signed INT8, [ky][kx][channel]",
+  "full_network_rtl": false,
+  "source_script_sha256": "639bd59e50fb436ea8d55b7e2e5cf6adf37906a192d630bd72e17379da15863d"
+}

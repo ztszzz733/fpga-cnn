@@ -1,0 +1,9 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.network_parallel_build/dispatch_test/obj/Vtb_network_dispatch"]
+PASS capacity 746 commands, overlap=18556, assignments=292/292/126/2/34
+PASS two-input join
+PASS clear/restart, self-dependency rejection, memory fault
+- /mnt/d/code/FPGA1/.network_parallel_build/dispatch_test/tb_network_dispatch.sv:77: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 3us; walltime 0.131 s; speed 26.525 us/s
+- Verilator: cpu 0.112 s on 1 threads; alloced 185 MB

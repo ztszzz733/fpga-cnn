@@ -1,0 +1,34 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/dw7_cached/overlap16.vcd"
+@24
+[color] 2
+dw7.dut_block_c[31:0]
+@24
+[color] 2
+dw7.dut_oy[31:0]
+@24
+[color] 2
+dw7.dut_ox[31:0]
+@24
+[color] 2
+dw7.dut_load_y[31:0]
+@24
+[color] 2
+dw7.phase[3:0]
+@24
+[color] 2
+dw7.input_reads[31:0]
+@28
+[color] 2
+dw7.mac_fire
+@28
+[color] 2
+dw7.valid
+@28
+[color] 2
+dw7.ready
+@28
+[color] 2
+dw7.write
+@28
+[color] 2
+dw7.done

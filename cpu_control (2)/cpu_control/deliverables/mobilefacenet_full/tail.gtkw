@@ -1,0 +1,31 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/mobilefacenet_full/control.vcd"
+@24
+[color] 7
+network.layer_index[31:0]
+@24
+[color] 7
+network.command_kind[31:0]
+@28
+[color] 7
+network.operator_start
+@28
+[color] 4
+network.conv_busy
+@28
+[color] 3
+network.post_busy
+@28
+[color] 6
+network.dw7_busy
+@28
+[color] 2
+network.pad_busy
+@28
+[color] 7
+network.command_done
+@28
+[color] 7
+network.done
+@28
+[color] 7
+network.error

@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.network_buffered_build/lease_test/obj/Vtb_network_buffer_leases"]
+PASS live-slot backpressure, owner generation, out-of-order residual consumers, producer retention, reuse, cancel
+- /mnt/d/code/FPGA1/.network_buffered_build/lease_test/tb_network_buffer_leases.sv:30: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 140ns; walltime 0.002 s; speed 58.903 us/s
+- Verilator: cpu 0.002 s on 1 threads; alloced 185 MB

@@ -1,0 +1,39 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_172228_dw7_cached",
+  "views": {
+    "real512": {
+      "names": [
+        "frame",
+        "start",
+        "cache_hit",
+        "weights_cached",
+        "weight_reads",
+        "input_reads",
+        "mac_fire",
+        "done",
+        "post_start",
+        "pbusy",
+        "pdone"
+      ],
+      "left_ns": 0,
+      "right_ns": 884655.0
+    },
+    "overlap16": {
+      "names": [
+        "dut.block_c",
+        "dut.oy",
+        "dut.ox",
+        "dut.load_y",
+        "phase",
+        "input_reads",
+        "mac_fire",
+        "valid",
+        "ready",
+        "write",
+        "done"
+      ],
+      "left_ns": 10065.0,
+      "right_ns": 14565.0
+    }
+  }
+}

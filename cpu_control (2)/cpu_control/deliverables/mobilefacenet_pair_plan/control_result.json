@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "control only; no operator arithmetic",
+  "hashes": {
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_dispatch_buffered.sv": "e09c130bc723bc0c378b60f1b2d6b032b74e6078770278812d999ccbbdba7fd5",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_buffer_leases.sv": "009a62ca478c8e9b893651552fd8215c4892f1233752164b2d765056ddf3db05",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_result_handoff.sv": "5af62b8cc80404c684e66457e3d860363190277d6acaee0b50f39a7735d54210",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/tb_full_buffer_plan.sv": "ec90010f0aa77309bd45e7e9d4102e03c9369228abc76c4fe8f53ba7f73abd0f",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/mobilefacenet_pair_plan/commands.hex": "8689b1e056cd5efd6bb150dde4a52b5c190c8be15f5001b4d83318d1aec08a0d",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/mobilefacenet_pair_plan/leases.hex": "5b412e610d42e93bb954595eebd52a665e14dbd9904a23deac94a7d4ba5a4d58",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/mobilefacenet_pair_plan/results.hex": "00d7911302a743205acad9a95ab63403a9eb25efbfcb592c2be1825b7f1dd73c",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/mobilefacenet_pair_plan/jobs.bin": "0939ae1f56e83d040c394eebd6eddfa1277d8e18bc08cfdaa4ee3cc6d381b24d",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/mobilefacenet_pair_plan/memory.bin": "cfa905b359f06d221669153012091ebac3812e972221849bd7d082e5920444ca"
+  },
+  "static_validation": {
+    "status": "PASS",
+    "commands": 746,
+    "slots": 8,
+    "pool_bytes": 5620224,
+    "hashes": {
+      "jobs.bin": "0939ae1f56e83d040c394eebd6eddfa1277d8e18bc08cfdaa4ee3cc6d381b24d",
+      "leases.bin": "b881822a7f4f75df4ff05858b28d49e55cca3b405d0cbab4152633f27f46a125",
+      "mutable.bin": "747821828e72c09adc9a83bc001c7dc8727b8ea4d0beefff5bf663f7f615fd55",
+      "memory.bin": "cfa905b359f06d221669153012091ebac3812e972221849bd7d082e5920444ca"
+    }
+  },
+  "compile_seconds": 8.638136833,
+  "simulation_seconds": 0.26940231600000075,
+  "total_seconds": 8.90754377
+}

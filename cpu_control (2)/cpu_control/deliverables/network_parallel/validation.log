@@ -1,0 +1,2 @@
+PASS dual signals=15
+PASS skew_stall signals=15

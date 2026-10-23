@@ -1,0 +1,1 @@
+{"cycles":298832,"commands":26,"checked_bytes":48884,"dual_busy_cycles":46426,"conv_post_busy_cycles":28519,"assignments":[4,8,10,2,2],"allocations":20,"releases":20,"wait_buffer_cycles":1,"peak_live_buffers":3,"accepted_results":2,"reader_wait_cycles":180314,"completions_while_reader_waiting":11,"compute_finish_cycle":192767}

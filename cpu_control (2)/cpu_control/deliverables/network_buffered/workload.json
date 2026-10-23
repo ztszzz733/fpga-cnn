@@ -1,0 +1,39 @@
+{
+  "frames": 6,
+  "distinct_images": 2,
+  "commands": 60,
+  "buffer_bases": [
+    4194304,
+    4204608,
+    4208768,
+    4212928,
+    4214016,
+    4224320,
+    4228480,
+    4232640
+  ],
+  "buffer_sizes": [
+    10304,
+    4160,
+    4160,
+    1088,
+    10304,
+    4160,
+    4160,
+    1088
+  ],
+  "intermediate_pool_bytes": 39424,
+  "unreused_intermediate_bytes": 136704,
+  "final_nodes": [
+    9,
+    19,
+    29,
+    39,
+    49,
+    59
+  ],
+  "full_network": false,
+  "residual": "synthetic q1+q2 stress join after three learned layers",
+  "readonly_static_bytes": 4194304,
+  "admission": "two frames, next same arena waits final Add"
+}

@@ -1,0 +1,34 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/dw7_cached/real512.vcd"
+@24
+[color] 2
+dw7.frame[31:0]
+@28
+[color] 2
+dw7.start
+@28
+[color] 2
+dw7.cache_hit
+@28
+[color] 2
+dw7.weights_cached
+@24
+[color] 2
+dw7.weight_reads[31:0]
+@24
+[color] 2
+dw7.input_reads[31:0]
+@28
+[color] 2
+dw7.mac_fire
+@28
+[color] 2
+dw7.done
+@28
+[color] 2
+dw7.post_start
+@28
+[color] 2
+dw7.pbusy
+@28
+[color] 2
+dw7.pdone

@@ -1,0 +1,5 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.network_parallel_build/obj/Vquant_network_parallel", "26", "2"]
+RTL_EVAL_CACHE evaluated=283058 unchanged_skipped=716871
+RTL_EVAL_CACHE evaluated=142568 unchanged_skipped=725743
+PASS parallel small RTL checked=48884 cycles=192767

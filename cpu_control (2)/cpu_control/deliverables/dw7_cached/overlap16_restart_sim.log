@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.dw7_cached_build/obj/Vtb_dw7_cached", "+stall=1", "+restart"]
+PASS tb_dw7_cached checked=1920
+- /mnt/d/code/FPGA1/.dw7_cached_build/tb_dw7_cached.sv:109: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 143us; walltime 0.500 s; speed 1.629 ms/s
+- Verilator: cpu 0.088 s on 1 threads; alloced 186 MB

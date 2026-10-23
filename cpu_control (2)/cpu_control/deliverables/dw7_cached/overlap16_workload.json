@@ -1,0 +1,51 @@
+{
+  "source": {
+    "kind": "deterministic signed-edge and overlapping-window probe"
+  },
+  "jobs": [
+    [
+      1536,
+      256,
+      3072,
+      3904,
+      1152,
+      10,
+      9,
+      16,
+      192
+    ],
+    [
+      4160,
+      256,
+      5696,
+      6528,
+      1152,
+      10,
+      9,
+      16,
+      192
+    ]
+  ],
+  "input_shape": [
+    9,
+    10,
+    16
+  ],
+  "output_shape": [
+    3,
+    4,
+    16
+  ],
+  "quantization": {
+    "shift": 24,
+    "zy": 128
+  },
+  "input_reads_per_frame": 360,
+  "weight_reads_first_frame": 196,
+  "weight_reads_second_frame": 0,
+  "naive_input_bytes": 9408,
+  "actual_input_bytes": 1440,
+  "weights_layout": "tap-major signed INT8, [ky][kx][channel]",
+  "full_network_rtl": false,
+  "source_script_sha256": "639bd59e50fb436ea8d55b7e2e5cf6adf37906a192d630bd72e17379da15863d"
+}

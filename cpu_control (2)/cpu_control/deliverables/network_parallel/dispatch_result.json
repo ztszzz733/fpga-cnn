@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "scope": "746 commands, latency models only, no arithmetic",
+  "hashes": {
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_dispatch.sv": "cea56e588d1daa83f492f814fed102992976e0847b318595946aef0be988e6ae",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/tb_network_dispatch.sv": "abd2760528344796357c687fc388c3952cb2abb94392d68d60d0410c796e8930",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/network_parallel_data/full_plan/commands.hex": "3451f65823990c9e91a757d2ac76b086d331c81c8650fefbe4ca951c00362a18"
+  },
+  "compile_seconds": 13.959246225000015,
+  "simulation_seconds": 0.16835876400000416,
+  "total_seconds": 14.12760950500001
+}

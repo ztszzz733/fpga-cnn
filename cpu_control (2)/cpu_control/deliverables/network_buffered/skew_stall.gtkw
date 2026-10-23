@@ -1,0 +1,43 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/network_buffered/skew_stall.vcd"
+@28
+[color] 4
+buffers.slot0_live
+@28
+[color] 4
+buffers.slot1_live
+@28
+[color] 4
+buffers.slot2_live
+@28
+[color] 4
+buffers.slot3_live
+@28
+[color] 5
+buffers.slot4_live
+@28
+[color] 5
+buffers.slot5_live
+@28
+[color] 5
+buffers.slot6_live
+@28
+[color] 5
+buffers.slot7_live
+@24
+[color] 6
+buffers.buffer_release[7:0]
+@24
+[color] 6
+buffers.buffer_allocate[7:0]
+@28
+[color] 6
+buffers.wait_buffer
+@24
+[color] 6
+buffers.completed_count[10:0]
+@28
+[color] 6
+buffers.done
+@28
+[color] 6
+buffers.error

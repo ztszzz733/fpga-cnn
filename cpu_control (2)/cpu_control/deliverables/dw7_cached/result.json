@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "cases": {
+    "real512": {
+      "checked_bytes": 5120,
+      "conv_cycles": [
+        42370,
+        23554
+      ],
+      "chain_cycles": [
+        53635,
+        34819
+      ],
+      "input_word_reads": [
+        6272,
+        6272
+      ],
+      "weight_word_reads": [
+        6272,
+        0
+      ],
+      "output_sha256": "0e6e1910e8564ac0aebdc2a8475ae0d89c204ca88215b0f74df3dcfc6706b37f",
+      "workload": "real512"
+    },
+    "real512_stall": {
+      "checked_bytes": 5120,
+      "conv_cycles": [
+        68481,
+        37124
+      ],
+      "chain_cycles": [
+        87427,
+        55044
+      ],
+      "input_word_reads": [
+        6272,
+        6272
+      ],
+      "weight_word_reads": [
+        6272,
+        0
+      ],
+      "output_sha256": "0e6e1910e8564ac0aebdc2a8475ae0d89c204ca88215b0f74df3dcfc6706b37f",
+      "workload": "real512"
+    },
+    "overlap16": {
+      "checked_bytes": 1920,
+      "conv_cycles": [
+        3446,
+        2858
+      ],
+      "chain_cycles": [
+        5031,
+        4443
+      ],
+      "input_word_reads": [
+        360,
+        360
+      ],
+      "weight_word_reads": [
+        196,
+        0
+      ],
+      "output_sha256": "a38401d999b92424d00b9cd8f144c0d7334ff8bc6e1df2c4dd2fc7062925d0ea",
+      "workload": "overlap16"
+    },
+    "overlap16_stall": {
+      "checked_bytes": 1920,
+      "conv_cycles": [
+        4941,
+        3964
+      ],
+      "chain_cycles": [
+        7647,
+        6284
+      ],
+      "input_word_reads": [
+        360,
+        360
+      ],
+      "weight_word_reads": [
+        196,
+        0
+      ],
+      "output_sha256": "a38401d999b92424d00b9cd8f144c0d7334ff8bc6e1df2c4dd2fc7062925d0ea",
+      "workload": "overlap16"
+    },
+    "overlap16_restart": {
+      "checked_bytes": 1920,
+      "conv_cycles": [
+        4945,
+        3964
+      ],
+      "chain_cycles": [
+        7647,
+        6670
+      ],
+      "input_word_reads": [
+        360,
+        360
+      ],
+      "weight_word_reads": [
+        196,
+        0
+      ],
+      "output_sha256": "a38401d999b92424d00b9cd8f144c0d7334ff8bc6e1df2c4dd2fc7062925d0ea",
+      "workload": "overlap16"
+    }
+  },
+  "timing_seconds": {
+    "compile": 15.292650403,
+    "real512": 0.8470347820000015,
+    "real512_stall": 1.184098062000004,
+    "overlap16": 0.5224581550000025,
+    "overlap16_stall": 0.4781113310000009,
+    "overlap16_restart": 0.584699963999995,
+    "total": 20.508965012999997
+  },
+  "source_hashes": {
+    "rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+    "rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+    "tb/integration/tb_dw7_cached.sv": "d40b3a22410f14a5c5a19ade1bbe6d33c7967b2be85b811f5f7911e16ecd3a96"
+  },
+  "data_hashes": {
+    "overlap16/golden.bin": "f9cd0e5b6ca5fccc93374d5b3b911dbcbafb5cae13a1cfc677b37bf307598cc7",
+    "overlap16/jobs.hex": "c46cf2b9689dd57841ea25f1d398234a93ae8475881d775e693f602d568aed15",
+    "overlap16/memory.bin": "787d196fbf6b9a7ed213ae73d7ad564c402e678ee4309da2aee8a16cbf55da20",
+    "overlap16/workload.json": "2097eed502bda5b4b0c3f3b61a652f626c86363678388245ccce5279716ab8c9",
+    "real512/golden.bin": "cd989494688a9669fd645d50ecc1d616498b4150a137933936717ed1226f64b9",
+    "real512/jobs.hex": "de5c75159b16f90c89d4e70825e86c464fd2fdb33cc79bff8962e5249568e365",
+    "real512/memory.bin": "a220f4bb5d387dce4d3b221c7eb91a0131648357fd0449df48cb29c25b33e34f",
+    "real512/workload.json": "aa650fb8863470bbb8e5fae22de6d2b547cec84a9473d418e98091a163a77555"
+  }
+}

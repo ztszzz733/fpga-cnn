@@ -1,3 +1,63 @@
+## 2026-10-23 自研卷积替换需求交接：仅文档（最新范围）
+
+用户因板子资源不足决定后续用自写卷积替换NEureka，借鉴其数据复用，所有卷积和其他独立算子模块各两份，目标是两张图片的真实算术与自动分配并行验证。随后用户明确收窄为“你不用写代码，只写文档”，并要求给另一个agent交接。需求与历史证据、阅读地图、资源边界、接口、分阶段验收见 `docs/CNN自研双算子完成需求_v1.md`。本次仅更新文档；新替换方案未实现/未验证。不要因读到需求就启动开发、编译、仿真或定时检查，等待新的实施指令。MAC数量/缓存大小/通用卷积合并方案未定稿，不得当成用户已批准规格。旧两图全网仍为重启中断，不恢复旧NEureka长仿真。
+
+## 2026-10-23 用户重启后暂停（覆盖下方运行记录）
+
+用户明确告知仿真已停止、电脑已重启，要求先不要继续。不得启动仿真、编译或恢复定时检查，等待用户重新授权。mobilefacenet定时检查已删除。build/runs/20261023_000710_network_pair原RUNNING为重启残留，已标记INTERRUPTED_BY_REBOOT；末日志仅DONE 4/746，最后完成日志wall=1382.51秒，不等于实际总运行耗时，未取得完整PASS。代码、编译缓存和全部已有记录保留。没有运行时断点，恢复时可核对复用编译缓存，但本次完整仿真需从头执行；不自动重跑。
+
+## 2026-10-23 两图真实数值仿真已启动（最高优先）
+
+用户“继续下一步”，小数据地址重排实际RTL回归已PASS后，已通知用户并启动两张完整人脸长仿真。唯一活动run build/runs/20261023_000710_network_pair，会话20832；run_network_pair.py --data build/mobilefacenet_pair_plan --reuse --full --gate build/runs/20261023_000414_network_pair。复用同一个已验证程序compile=0，初始补边DONE 1/746(192990周期/0.591秒)仅代表首命令，不能称全网PASS。不重复启动/不编译。自动检查mobilefacenet ACTIVE每30分钟，正常安静、完成或错误通知；先读run/result.json和fast_reader/sim.log尾部，用户要求停时停进程及检查。
+
+新增通用tb/integration/network_pair_main.cpp，读取results.bin的帧号/地址/字节数、任意命令数<=1024，从lease推导分配数、按帧号保存外部结果；无6帧/10命令/1024字节硬编码。不读golden.bin进SRAM，完成逐命令expected.bin检查、释放覆写0xD7、外部读取确认、槽尾64字节写保护、每完成一命令sim.log记录周期和wall。scripts/run_network_pair.py对full设小回归同源码/库哈希门槛，full只跑fast_reader，timeout86400不是预计耗时；缓存.network_pair_build。完整输入两不同112×112图，746命令、262分配释放、两份128字节输出，SRAM预加载无CPU/UART、非条带流水。池5.36MiB/实验地址空间7.99MiB，量化共用单图诊断尺度，不宣称识别准确率。
+
+小回归build/runs/20261023_000414_network_pair两项PASS：26命令、48884检查字节，20分配/20释放，各2份90字节补边最终输出(不是人脸embedding)；前三层真实ROI+独立Add/DW7/pad探针，所有算子均真实RTL。fast周期156356、slow298832，分配6/6/10/2/2与4/8/10/2/2，双busy40572/46426，输出SHA7414a93ff2b26895e5d9ad1e830da396752aec5cefb2d84e2257a7843b160201。编译40.815秒、仿真28.183/47.942秒，总117.914秒。新gen_pair_relocation_small调用通用化plan_full_buffered(small=True)；plan_full默认完整373/帧约束不变，未覆盖现有full数据。小数据build/pair_relocation_small/plan、池23552字节。deliverables/network_pair_small两PNG已视检，GTKWave各16信号PASS。
+
+全网PASS后运行Windows Python scripts/prepare_network_pair.py run目录，交付deliverables/network_pair_full；核对源码数据和outputs SHA、256字节输出，视检两PNG，GTKWave隐藏窗口verify_*.tcl各16信号(必要时沙盒外避免DLL错误)。报告timing_seconds和cycles/100000毫秒@100MHz，更新说明及AGENTS，交付后暂停mobilefacenet。若报错先查直接原因并保留run，不能盲目重跑长仿真。当前仍在运行，不要把小回归或控制模型PASS当完整两图成功。
+
+## 2026-10-22 两张完整人脸的缓存计划已完成（最新）
+
+用户最终选择两张图可同时就绪，继续两图方案。当前仅完成完整计划和快速控制测试，没有启动长时间完整两图数值仿真、没有活动会话/自动检查。新数据build/mobilefacenet_face2_fixed来自person_2，冻结第一图逐层诊断尺度；第一图源build/mobilefacenet_full_data保持不变。gen_mobilefacenet_full.generate增加可选output_scales，CLI --scales-from；并非识别准确率校准。
+
+新scripts/plan_full_buffered.py从真实读写地址推导张量生命周期/通道分组写者/Add双输入，压缩只读跨度、保留64字节对齐及槽尾保护。build/mobilefacenet_pair_plan为两张不同图片共746命令、262中间张量，frame-interleaved，每帧内部顺序。8槽，实际每帧峰值3槽(第四槽64字节占位)，池5620224字节约5.36MiB，readonly2752512，总8372736字节约7.99MiB；不复用逻辑中间负载38674584字节。权重尚复制两份，未最优容量/未条带化，生产SRAM未改。results.bin每命令16字节flag/frame/addr/bytes，最终节点744/745，各128字节；不可使用旧network_output_main.cpp的六帧/10命令/1024字节硬编码直接跑。
+
+validate_buffer_plan扩展DW7/Pad，静态PASS。tb_full_buffer_plan + run_full_buffer_plan.py真实dispatch/lease/result控制RTL，算子仅延迟模型；部分执行clear重启后746完成、262分配262释放、两结果读取确认、双核分配292/292，post126/DW7 2/pad34，PASS。编译8.638秒/仿真0.269秒/总8.908秒，control_result.json+control_sim.log。缓存.network_output_build/full_plan_test。不能把此称完整网络算术PASS或推断真实硬件速度。旧第一张顺序入口数值PASS仍是历史证据；第二张仅软件参考。
+
+交付docs/mobilefacenet_pair_plan.md及deliverables/mobilefacenet_pair_plan。下一步通用数值测试入口读取此计划，先小数据地址重排回归，再安排完整两图真实算子长仿真；仍不要无提示自动开始大图。当前无活动仿真。
+
+## 2026-10-22 最终结果读取确认已通过（最新）
+
+新增隔离quant_network_output/network_result_handoff，输出预约即保留、写响应排空后发布帧号/地址/长度，result_ready=外部全部读取完成，握手后才能回收。compute_done=计算结束，done还需全部结果取走及槽释放；反压描述稳定，单描述轮转可乱序。result_error成功为0，故障走全局cancel；clear/cancel须系统取消旧读写和迟到确认，没有跨复位token。network_buffer_leases新增external_hold，旧顶层和TB接0、旧协议回归PASS。
+
+build/runs/20261022_230142_network_output两项fast_reader/slow_reader PASS，无活动仿真/自动检查。六帧小ROI前三层+人工残差60命令，136704字节检查，外部读取6144字节，输出SHA均8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998。周期298121/683846，42分配42释放；慢读每描述等待90000拍后每7拍读4字节，同时算子访存反压；等待外部期间39条其他命令完成、wait_buffer7129拍；compute_done556081拍。编译41.567秒，仿真83.896/127.938秒，总254.538秒。复用真实NEureka库，仅编新包装，缓存.network_output_build。独立result_handoff_test早ready/乱序完成/双待取/保持/clear/cancel/错误配置PASS(编译8.358秒/仿真0.021秒)，旧lease回归PASS(6.802/0.013秒)。
+
+deliverables/network_output两PNG已视检，GTKWave两会话各16信号PASS；沙盒内GTKWave DLL重定位错误，沙盒外隐藏窗口成功，不需重装。docs/network_output_handoff.md接口文档；run_network_output.py --data build/network_buffered_data，后续--reuse校验哈希；prepare_network_output.py制作交付。外部读取为TB直接访问SRAM，非生产总线带宽测试；未接CPU/UART，不是全网多图。下一步完整网络生命周期规划和小验证，再全网多算子入口。不要自动跑大图。当前用户授权的输出交接已完成。
+
+## 2026-10-22 缓冲区复用已通过（覆盖下面的进行中记录）
+
+最新build/runs/20261022_222606_network_buffered完整PASS，无活动仿真。六帧小ROI前三层+人工残差Add，60命令，每项136704检查字节，42分配/42释放，全部槽反复复用且释放后立即0xD7覆写，4场景输出SHA均8608f090b4ea85fbeb62ab79219cb89f9387ff27a4a922d8128f5d608627b998。双核/单核/限速/重启周期297264/364824/432601/338020，分配21/15、0/36、13/23、21/15；wait_buffer2/2/0/2，peak_live5。当前compile0，单核78.799秒、限速134.896秒、重启105.673秒，总321.640秒；双核从221716哈希验证复用（原165.651秒，原编译13.891秒）。旧221716单核240秒超时、221525越界、221452漏编译模块均保留，不能把当前总耗时当全部调试耗时。独立lease协议测试PASS（8.315秒编译/0.020秒仿真），plan离线检查PASS。交付deliverables/network_buffered，两PNG目视检查、GTKWave各14信号PASS，设计docs/network_buffered_design.md。原型为静态物理8槽+硬件运行时预约/代号/消费者完成释放，中间池39424字节（38.5KiB含尾保护）vs六帧不复用逻辑张量136704字节；不含只读输入/权重/命令、控制掩码表或输出持久存储，不宣称完整网络容量。最终结果由TB释放前捕获，生产外部输出握手仍待接入。下一步完整网络生命周期/输入条带/外部输出握手，勿自动跑大图。
+
+## 2026-10-22 缓冲区复用进行中（继续时先读此处）
+
+新增隔离network_dispatch_buffered/network_buffer_leases/quant_network_buffered，静态8物理槽+运行时占用/代号/消费者掩码，NEureka库复用。6帧（两不同人脸交替）真实ROI前三层+人工残差压力Add，60任务，42lease；不是全网。中间池39424字节含每槽64字节宽读取尾保护，只读输入/权重/命令不计。最新唯一运行build/runs/20261022_222606_network_buffered，会话71518，--reuse --reuse-passed 20261022_221716_network_buffered，双核旧PASS已按源/数据哈希复用，单核新PASS，限速/重启还在运行；不要重复启动。221716单核因240秒电脑超时停止，无数值失败；新版上限900秒。旧221452为编译列表漏模块，221525为尾部宽读越界已修。protocol build/buffer_leases_test/result.json PASS；plan_validation也PASS。待全部PASS运行scripts/prepare_network_buffered.py 活动目录，视检两PNG、GTKWave各14信号、更新结果文档/AGENTS后交付。不能将仍在运行说成四项通过；不启动大图或自动检查。设计docs/network_buffered_design.md，最终外部输出消费握手仍待接入，当前TB回收前捕获结果。新增生成器自动计划校验不会影响运行中数据；勿重新生成活动数据目录。
+
+## 2026-10-22 两图完整命令调度入口：小数据验证通过
+
+新增隔离network_dispatch/quant_network_parallel，1024条16字命令、最多两个早于本节点的前驱、每拍扫描一节点、双NEureka空闲轮换分配、一post/Add、一DW7(MAX_WIDTH=7)、一pad；23客户端。未替换旧residual/三槽release路径，当前每帧严格串行、跨帧重叠、保留全部中间数据。小数据20261022_215648_network_parallel四项dual/only_engine1/skew_stall/restart全部PASS：26命令、48,884字节，最终SHA 6ff442383686774c722775270e29240a91a28422b44a46fb9e8ac543c4a3d1bb。两张不同人脸ROI前三层+独立Add/DW7真实512通道特征/补边探针，不能称完整两图数值通过。周期156332/185010/192767/196988，正常分配6/6、限速4/8；正常双busy40572/卷积post busy8207（含访存等待）。主编译14.770秒，四仿真176.725秒，总192.885秒；复用哈希匹配.neureka_full_hier_build真实NEureka DPI库，两实例独立，不替算。新缓存.network_parallel_build。完整746条命令计划在build/network_parallel_data/full_plan，复制同一全图两份；dispatch_result PASS仅算子延迟模型调度，非算术验证。两输入汇合/清除重启/自依赖拒绝/fault取消PASS。交付deliverables/network_parallel，两图GTKWave15信号通过，设计docs/network_parallel_design.md。无活动仿真，无定时检查。下一步中间存储生命周期和容量，再全网两图数值/条带；不要盲目启动大图。
+
+## 2026-10-22 完整单图网络已通过（覆盖以下活动运行记录）
+
+20261022_201457_mobilefacenet_full 已PASS，无活动仿真。完整112×112 RGB经51卷积+12Add、373命令产生128维量化向量，与整数参考逐字节一致；检查19,337,292字节，34,835,459周期，100MHz对应348.35459ms。本次compile=0，simulation=5076.796秒，total=5078.458秒。prepare核对全部源码/头文件/数据/输出哈希。交付deliverables/mobilefacenet_full，三PNG及GTKWave视图每个10信号均验证PASS；done在最后采样点升高，以边界标注，不伪造延时。完整顺序入口通过不等于双NEureka全网并行、UART或识别准确率通过，仍用约20MiB实验内存和单图诊断量化。自动检查任务完成后删除，不再轮询。
+
+## 2026-10-22 20:15 用户恢复（覆盖以下暂停及旧运行记录）
+
+用户明确说继续，已复用编译缓存并启动唯一活动仿真 build/runs/20261022_201457_mobilefacenet_full，会话51466。源码哈希匹配，compile=0，首补边DONE 1/373，尚未全网PASS。运行超时上限86400秒不是预计耗时。每30分钟自动检查 neureka 已更新为本目录并恢复ACTIVE，不频繁轮询，不重复启动。完成或报错按自动检查提示处理；若用户再次停止须立即停止并暂停检查。旧184024仍为STOPPED_BY_USER，不能当作完成。
+
+## 2026-10-22 用户暂停（优先于以下运行记录）
+
+用户明确要求先停止，目前无时间继续跑。已停止 build/runs/20261022_184024_mobilefacenet_full 仿真并确认进程退出，result.json 标记 STOPPED_BY_USER；本次仿真耗时 673.967 秒，未取得全网络 PASS。代码、编译缓存和日志均保留；以后源码未变可复用编译程序，但未保存运行时断点，计算需从头开始。定时检查 neureka 保持 PAUSED。用户明确恢复前，不重启仿真、编译或自动检查。
+
 # 项目网络代理
 
 - 用户所说的网络连接是 Codex 网络代理，不是虚拟机 SSH 或开发板。
@@ -9,6 +69,14 @@
 - 不在项目中记录密码、令牌或私钥；不把代理参数持久化误称为保持跨对话连接，也不把 shell 代理配置描述为桌面客户端网络修复。
 
 # CPU_CONTROL 工程约定
+
+- 全网最新活动运行（2026-10-22 18:40）：182830分层编译385.114秒，补边仍18.4269秒，已主动停止其PID1217，保留FAIL记录。新增cache_neureka_eval.py仅优化生成DPI适配器：所有输入包括时钟/复位不变时跳过重复eval，RTL无延迟、算法未改；未修改程序保留为.neureka_full_hier_build/obj/Vquant_network_sequential.uncached。check_full_eval_cache.py对照PASS：原版21.412秒/缓存14.816秒，两者21792字节、70824周期、55524读/8736写、完整VCD相同，build/eval_cache_validation/result.json。当前唯一活动run：build/runs/20261022_184024_mobilefacenet_full，会话69154，--reuse不编RTL，eval_adapter0.098秒；首完整补边192271周期0.140418秒，正在实际卷积，尚未全网PASS。运行器已自动验证生成模型哈希并记录eval_cache源/程序哈希；不重复启动、不回到旧运行。prepare仅完整PASS后使用。
+
+- 全网运行续记（2026-10-22 18:28）：181742平坦编译成功416.439秒；全图第一步硬件补边仅记录DONE 1/373、192271周期、44.3264秒，单元测试另为220字节PASS，二者不可混淆。由于平坦仿真慢，已仅SIGTERM其模拟器PID621，runner保留FAIL退出记录；不是数值FAIL或全网PASS。改用Verilator配置hier_block -module neureka_conv_engine，未修改算子，独立缓存.neureka_full_hier_build；当前活动run为build/runs/20261022_182830_mobilefacenet_full，会话81694，编译/仿真中，优先检查此目录。不要再启动181742或175936。pad_hwc独立测试在build/pad_hwc_unit/result.json PASS，覆盖byte/word/反压/延迟/非法宽度/clear。
+
+- 2026-10-22 全网进行中：用户授权先试跑完整网络。新增隔离 quant_network_sequential（单真实NEureka/DW7/后处理/硬件补边，顺序命令表，非双核并行入口）、pad_hwc_engine、gen/run/prepare_mobilefacenet_full.py、C++存储测试台 mobilefacenet_full_main.cpp、docs/mobilefacenet_full_design.md。完整112×112 person_1图整数参考已生成：51卷积+12Add、373命令、233810432 MAC、128维输出，build/mobilefacenet_full_data；诊断尺度取本图浮点，余弦0.993880不等于准确率。约20MiB实验存储保留所有中间结果，非生产SRAM容量承诺。初次20261022_175936_mobilefacenet_full在恢复时无进程/无程序/无manifest，记INTERRUPTED，尚未运行RTL，原因未确认。当前20261022_181742_mobilefacenet_full正在编译，执行会话60545；改用Verilator-O1、C++-O2、-j2，缓存.neureka_full_build。先读此run/result.json及compile.log或sim.log末尾，禁止重复启动；只有完整PASS才运行prepare制图并交付，不把整数参考生成当RTL通过。不改旧并行入口/CPU/UART/生产DATASRAM。
+
+- 2026-10-22 独立7×7逐通道算子：新增 rtl/cnn_quant/dw7_cached_engine.sv，默认8路MAC、7行环形输入缓存、49×512字节权重缓存，UINT8输入/INT8权重/INT32输出，stride1、valid、multiplier1、通道为8倍数；未接quant_residual_scheduler或生产SoC。真实MobileFaceNet Conv_49为7×7×512→1×1×512，该形状没有相邻输出窗口；权重跨图复用与局部累加仍有效。gen_dw7_cached.py生成两张真实人脸的软件前缀特征和9×10×16重叠窗口例，接原quant_post_engine验证。最终 build/runs/20261022_172228_dw7_cached 五项real512/real512_stall/overlap16/overlap16_stall/overlap16_restart全部PASS，真实例5120字节、窗口例1920字节；第二帧权重读取6272→0，窗口输入9408→1440字节是相对无缓存逐窗口重读的访存比较，非NEureka性能对比。编译15.293秒、五仿真合计3.616秒、总20.509秒。缓存根目录.dw7_cached_build；run_dw7_cached.py --data build/dw7_cached_data --reuse校验源码哈希；prepare_dw7_cached.py生成deliverables/dw7_cached，两PNG目视检查且GTKWave各11信号通过。设计docs/dw7_cached_design.md。初次20261022_171724失败原因是TB漏采单周期error，修正TB后全测通过；保留失败记录。加载/计算/写回仍顺序，无DMA重叠；同址权重改写须强制重载，clear须取消旧存储事务；无综合/面积/时序验证，不宣称全网或既有调度器支持512通道。
 
 - 2026-10-22 对接总说明：docs/CNN当前能力与模块对接说明_v0.1.md 区分前三层量化图片ROI与残差中间特征两个入口，列出现有program/storage端口、输出SRAM/完成/释放语义、CNN与CPU/输入/存储分工、首次联调顺序和待确认项。比较暂不纳入CNN范围。该轮仅文档，无RTL修改或新仿真；两份输入/存储要求已加总览链接。
 

@@ -1,0 +1,46 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/network_parallel/dual.vcd"
+@28
+[color] 4
+network.conv0_busy
+@24
+[color] 4
+network.conv0_node[9:0]
+@28
+[color] 4
+network.conv0_frame
+@28
+[color] 2
+network.conv1_busy
+@24
+[color] 2
+network.conv1_node[9:0]
+@28
+[color] 2
+network.conv1_frame
+@28
+[color] 3
+network.post_busy
+@24
+[color] 3
+network.post_node[9:0]
+@28
+[color] 3
+network.post_frame
+@28
+[color] 6
+network.dw7_busy
+@28
+[color] 6
+network.pad_busy
+@24
+[color] 6
+network.completion_pulse[4:0]
+@24
+[color] 5
+network.completed_count[10:0]
+@28
+[color] 5
+network.done
+@28
+[color] 5
+network.error

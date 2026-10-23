@@ -1,0 +1,24 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261022_230142_network_output",
+  "protocols": {
+    "result_handoff_test": {
+      "status": "PASS",
+      "hashes": {
+        "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_buffer_leases.sv": "009a62ca478c8e9b893651552fd8215c4892f1233752164b2d765056ddf3db05",
+        "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_result_handoff.sv": "5af62b8cc80404c684e66457e3d860363190277d6acaee0b50f39a7735d54210",
+        "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/tb_network_result_handoff.sv": "a3ee277a111f10a17581fab41237b60b4dc3ba8c059ba51b565a966e49060b03"
+      },
+      "compile_seconds": 8.357770222,
+      "simulation_seconds": 0.021349915999991254
+    },
+    "buffer_leases_test": {
+      "status": "PASS",
+      "hashes": {
+        "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_buffer_leases.sv": "009a62ca478c8e9b893651552fd8215c4892f1233752164b2d765056ddf3db05",
+        "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/tb_network_buffer_leases.sv": "94c9bfcff846510ac0576eee8db53f63038b5042c975f1037cfe002426332619"
+      },
+      "compile_seconds": 6.802479867000017,
+      "simulation_seconds": 0.012768716000010727
+    }
+  }
+}

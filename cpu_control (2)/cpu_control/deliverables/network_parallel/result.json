@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "cases": {
+    "dual": {
+      "cycles": 156332,
+      "commands": 26,
+      "checked_bytes": 48884,
+      "dual_busy_cycles": 40572,
+      "conv_post_busy_cycles": 8207,
+      "restart": 0,
+      "assignments": [
+        6,
+        6,
+        10,
+        2,
+        2
+      ],
+      "output_sha256": "6ff442383686774c722775270e29240a91a28422b44a46fb9e8ac543c4a3d1bb"
+    },
+    "only_engine1": {
+      "cycles": 185010,
+      "commands": 26,
+      "checked_bytes": 48884,
+      "dual_busy_cycles": 0,
+      "conv_post_busy_cycles": 22438,
+      "restart": 0,
+      "assignments": [
+        0,
+        12,
+        10,
+        2,
+        2
+      ],
+      "output_sha256": "6ff442383686774c722775270e29240a91a28422b44a46fb9e8ac543c4a3d1bb"
+    },
+    "skew_stall": {
+      "cycles": 192767,
+      "commands": 26,
+      "checked_bytes": 48884,
+      "dual_busy_cycles": 46426,
+      "conv_post_busy_cycles": 28519,
+      "restart": 0,
+      "assignments": [
+        4,
+        8,
+        10,
+        2,
+        2
+      ],
+      "output_sha256": "6ff442383686774c722775270e29240a91a28422b44a46fb9e8ac543c4a3d1bb"
+    },
+    "restart": {
+      "cycles": 196988,
+      "commands": 26,
+      "checked_bytes": 48884,
+      "dual_busy_cycles": 40572,
+      "conv_post_busy_cycles": 8207,
+      "restart": 1,
+      "assignments": [
+        6,
+        6,
+        10,
+        2,
+        2
+      ],
+      "output_sha256": "6ff442383686774c722775270e29240a91a28422b44a46fb9e8ac543c4a3d1bb"
+    }
+  },
+  "timing_seconds": {
+    "compile": 14.769892099,
+    "dual": 29.842521331999997,
+    "only_engine1": 24.645545184999996,
+    "skew_stall": 58.27247606099999,
+    "restart": 63.96405781300001,
+    "total": 192.884911205
+  },
+  "scope": "small numeric two-frame test, not full parallel network",
+  "build_inputs": {
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_dispatch.sv": "cea56e588d1daa83f492f814fed102992976e0847b318595946aef0be988e6ae",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_network_parallel.sv": "4dd464ec70fc401987185647bd7fe3f5171e021c2b286d6549edd05fdefad871",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/network_parallel_main.cpp": "13dce62bd9caac92dd8a1ca5f78e2ecd66fc02b7fc4553d1a28ea7ecfe147480",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/neureka_conv_engine.sv": "7e25ac602920b6d5b38092ba24a74559e9dbe2492eeaacaf7db7798f94798b26",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/libneureka_conv_engine.a": "3ca5ac242d81d6d2d2281e267ab15620a395ad3e1befc79d6d190684d87f27da",
+    "/mnt/d/code/FPGA1/.neureka_full_hier_build/obj/Vneureka_conv_engine/neureka_conv_engine.cpp": "a9e3547152efcb430449d2e60a2e39f12d5af7c117d538ba08002f94710b7c2d"
+  },
+  "data_hashes": {
+    "golden.bin": "255ceedb2669f7cfa13c65888f66ecc1ec48570b48e2419bf7190ad9a9e177ca",
+    "jobs.bin": "f5f6f9571510419c3423e9f1b192e532dd419c9cffda2f86b8d61494ecb12c84",
+    "memory.bin": "1f3b26a6d9c6dc89ab1c6293de1f3009bc6ed209b6117b182bff13b22ff067a1",
+    "mutable.bin": "206eb3dcef38f7f1b48208a2365f5d817b56b3a4afc6da855892e25383880025",
+    "workload.json": "7a1848115e4898f20168226060de9e5ef5729f2a538392b2353bb941b1dc7cd4"
+  },
+  "executable_sha256": "a2fb6d8ddb5e012279546edaf9d110ae438d5e0c0a5a23308914dbed74abc0f4"
+}

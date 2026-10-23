@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "hashes": {
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/rtl/cnn_quant/network_buffer_leases.sv": "29c8c5d173d885baec37aed4424da27edba3afe39a6925c461835059168ae578",
+    "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/tb/integration/tb_network_buffer_leases.sv": "385d72749372998d43479d5a538d80448536b74044e4d839a928c59e7cee45b3"
+  },
+  "compile_seconds": 8.315374330999987,
+  "simulation_seconds": 0.01999203500000135
+}

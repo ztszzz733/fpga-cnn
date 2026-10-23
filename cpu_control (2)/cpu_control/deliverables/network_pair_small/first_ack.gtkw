@@ -1,0 +1,49 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/network_pair_small/handoff.vcd"
+@28
+[color] 4
+handoff.conv0_busy
+@28
+[color] 4
+handoff.conv1_busy
+@28
+[color] 4
+handoff.post_busy
+@28
+[color] 5
+handoff.result_valid
+@28
+[color] 5
+handoff.result_ready
+@28
+[color] 5
+handoff.result_accept
+@24
+[color] 5
+handoff.result_frame[31:0]
+@22
+[color] 5
+handoff.result_addr[31:0]
+@24
+[color] 5
+handoff.result_bytes[31:0]
+@22
+[color] 3
+handoff.external_hold[7:0]
+@22
+[color] 3
+handoff.buffer_release[7:0]
+@28
+[color] 3
+handoff.wait_buffer
+@24
+[color] 6
+handoff.completed_count[10:0]
+@28
+[color] 6
+handoff.compute_done
+@28
+[color] 6
+handoff.done
+@28
+[color] 6
+handoff.error

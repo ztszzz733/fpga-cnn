@@ -1,0 +1,7 @@
+
+COMMAND ["/mnt/d/code/FPGA1/.network_output_build/handoff_test/obj/Vtb_network_result_handoff"]
+PASS result handoff: early ready, out-of-order completion, stable stalled descriptor, intermediate release, two acknowledgements, clear/cancel, malformed configuration
+- /mnt/d/code/FPGA1/.network_output_build/handoff_test/tb_network_result_handoff.sv:55: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 400ns; walltime 0.002 s; speed 148.595 us/s
+- Verilator: cpu 0.003 s on 1 threads; alloced 185 MB
