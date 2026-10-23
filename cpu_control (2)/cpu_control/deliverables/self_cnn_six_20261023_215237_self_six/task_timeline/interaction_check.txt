@@ -1,0 +1,2 @@
+PASS syntax, six rows, 600ms, 162ms, full range
+DOM logic check; not a browser screenshot.

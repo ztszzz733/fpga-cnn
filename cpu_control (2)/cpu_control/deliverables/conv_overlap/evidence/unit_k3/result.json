@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "k3": true,
+  "sources": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "rtl/cnn_self/self_pw4_overlap_engine.sv": "7854052e332144f77ee3d9e91a4c728cf09467139cb49a3a9b3e0c8b70c7d02b",
+    "tb/self_optimized_unit_top.sv": "422a0afa52e468ddd821f1da694744a826833e095f1b55332b3b9e2e79d92c89",
+    "tb/integration/self_optimized_unit_main.cpp": "9b7851cc996cb6f014b835948c45671a318244c73ce40ce05bacedf914a8ccbf"
+  },
+  "compile_seconds": 9.815811616000005,
+  "exe_sha256": "d122168aeaa9f750f3dc646c96af4a5a67074ef949b8692387c91eb11d51b646",
+  "simulation_seconds": 0.8709889129999979
+}

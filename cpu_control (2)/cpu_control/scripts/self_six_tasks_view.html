@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>六图逐任务并行</title>
+<style>
+body{margin:24px;font:16px system-ui,"Microsoft YaHei";background:#101820;color:#ecf4fa}h1{font-size:24px}button,select,input{font:inherit}button,select{padding:7px;background:#203442;color:white;border:1px solid #607888}#legend{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0}.swatch{display:inline-block;width:15px;height:15px;margin-right:7px}svg{display:block;width:100%;height:540px;touch-action:none}table{width:100%;border-collapse:collapse;margin-top:15px}td,th{text-align:left;padding:10px;border-bottom:1px solid #3c505e}#slider{width:70%}.hint{color:#bccbd5;font-size:14px}text{font-family:system-ui,"Microsoft YaHei"}
+</style>
+<h1>六张图片：同一时刻各自正在执行什么</h1>
+<div><label>时间范围 <select id="range"><option value="early">前1000ms</option><option value="handoff">145–180ms：跨类交接</option><option value="full">完整网络</option><option value="custom">自定义</option></select></label> <label>起点 <input id="lo" type="number" value="0" style="width:100px"> ms</label> <label>终点 <input id="hi" type="number" value="1000" style="width:100px"> ms</label> <button id="apply">应用</button></div>
+<div id="legend"></div><svg id="plot" role="img" aria-label="每张图片单独一行的任务时间线"></svg>
+<div><label>同一时刻 <input id="slider" type="range" min="0" max="1000" value="600" step="0.001"></label> <span id="time"></span></div>
+<table><thead><tr><th>图片</th><th>当前任务 / 网络层</th><th>实例</th><th>任务起止 / ms</th></tr></thead><tbody id="detail"></tbody></table>
+<p class="hint">移动游标或在图中点击，六行共用同一时间。K3#0/1支持普通3×3和DW3；K1#0～3是四套1×1。色块表示真实任务发射至完成，包含访存等待；空隙表示没有已发射任务。当前每帧至多一项任务，多个图片之间并行。ms为假设100MHz的换算，不是电脑运行时间。</p>
+<script>
+const tasks=__TASK_DATA__,colors=__COLORS__,endMs=__END_MS__;
+const svg=document.getElementById('plot'),slider=document.getElementById('slider'),lo=document.getElementById('lo'),hi=document.getElementById('hi'),range=document.getElementById('range');
+let a=0,b=1000,t=600,W=1000;const ns='http://www.w3.org/2000/svg';
+function node(tag,attrs,text){const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.append(e);return e}
+function x(v){return 100+(v-a)/(b-a)*(W-125)}
+function draw(){W=Math.max(360,svg.clientWidth);svg.setAttribute('viewBox',`0 0 ${W} 540`);svg.replaceChildren();
+for(let i=0;i<=5;i++){const v=a+(b-a)*i/5;node('line',{x1:x(v),x2:x(v),y1:40,y2:490,stroke:'#364954'});node('text',{x:x(v),y:25,fill:'#c5d2dc','font-size':13,'text-anchor':i===0?'start':i===5?'end':'middle'},v.toFixed(b-a<100?1:0)+' ms')}
+for(let f=100;f<106;f++){const y=55+(f-100)*72;node('text',{x:5,y:y+29,fill:'white','font-size':17},'图片 '+(f-99));node('line',{x1:100,x2:W-25,y1:y+24,y2:y+24,stroke:'#61717c'});
+for(const j of tasks.filter(j=>j.frame===f&&j.end/1e5>a&&j.start/1e5<b)){const l=x(Math.max(a,j.start/1e5)),r=x(Math.min(b,j.end/1e5));const box=node('rect',{x:l,y,width:Math.max(.5,r-l),height:49,fill:colors[j.kind]});const title=document.createElementNS(ns,'title');title.textContent=j.label+' '+(j.start/1e5).toFixed(5)+'–'+(j.end/1e5).toFixed(5)+'ms';box.append(title);if(r-l>105){node('text',{x:l+5,y:y+20,fill:'#101820','font-size':14},(j.layer?'L'+j.layer+' ':'')+j.kind);node('text',{x:l+5,y:y+40,fill:'#101820','font-size':13},j.unit)}}}
+node('line',{id:'cursor',x1:x(t),x2:x(t),y1:38,y2:490,stroke:'white','stroke-width':2});update()}
+function update(){t=Number(slider.value);document.getElementById('time').textContent=t.toFixed(3)+' ms';const line=document.getElementById('cursor');if(line){line.setAttribute('x1',x(t));line.setAttribute('x2',x(t))}const body=document.getElementById('detail');body.replaceChildren();for(let f=100;f<106;f++){const j=tasks.find(j=>j.frame===f&&j.start<=t*1e5&&j.end>t*1e5);const tr=document.createElement('tr');for(const s of ['图片 '+(f-99),j?j.label:'无任务执行 / 等待',j?j.unit:'—',j?(j.start/1e5).toFixed(5)+' – '+(j.end/1e5).toFixed(5):'—']){const td=document.createElement('td');td.textContent=s;tr.append(td)}if(j)tr.style.color=colors[j.kind];body.append(tr)}}
+function apply(){const l=Number(lo.value),h=Number(hi.value);if(!Number.isFinite(l)||!Number.isFinite(h)||l<0||h<=l||h>endMs){alert('请输入有效范围：0至'+endMs.toFixed(5)+'ms');return}a=l;b=h;slider.min=a;slider.max=b;slider.value=Math.min(b,Math.max(a,t));draw()}
+for(const[k,c]of Object.entries(colors)){const item=document.createElement('span'),sw=document.createElement('i');sw.className='swatch';sw.style.background=c;item.append(sw,document.createTextNode(k));document.getElementById('legend').append(item)}
+range.onchange=()=>{if(range.value==='custom')return;const bounds=range.value==='full'?[0,endMs]:range.value==='handoff'?[145,180]:[0,1000];[lo.value,hi.value]=bounds;t=range.value==='handoff'?162:600;apply()};
+document.getElementById('apply').onclick=()=>{range.value='custom';apply()};slider.oninput=update;
+svg.onpointerdown=e=>{const bounds=svg.getBoundingClientRect();slider.value=Math.min(b,Math.max(a,a+(e.clientX-bounds.left-100)/(W-125)*(b-a)));update()};new ResizeObserver(draw).observe(svg);draw();
+</script></html>

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "frames": 10,
+  "cycles": 200628467,
+  "hardware_ms_at_100MHz": 2006.28467,
+  "simulation_seconds": 729.457,
+  "wall_seconds": 754.291590486,
+  "compile_seconds": 0,
+  "gate_compile_seconds": 43.918390097999996,
+  "output_sha256": "16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418",
+  "multi_frame_work_cycles": 131513249,
+  "cross_operator_work_cycles": 66023630
+}

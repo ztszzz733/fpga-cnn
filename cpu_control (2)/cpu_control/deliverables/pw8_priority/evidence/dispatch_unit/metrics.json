@@ -1,0 +1,1 @@
+{"status":"PASS","control_only":true,"cases":7,"mixed_order":[2,4,0,3,5,1],"coverage":["DW preference","bounded ordinary fairness","single-class fallback","blocked buffer fallback","dependency/input gating","clear restart","fault recovery"]}

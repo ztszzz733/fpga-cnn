@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "run_dir": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_003208_449556_self_cnn_synth",
+  "top": "self_conv_wide_engine",
+  "part": "xc7z020clg484-1",
+  "period_ns": 10.0,
+  "max_tasks": null,
+  "max_channels": 512,
+  "units": {
+    "convolution": 1
+  },
+  "stage": "out_of_context_synthesis",
+  "place_route_performed": false,
+  "sources_sha256": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+    "rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+    "rtl/cnn_self/self_dispatch.sv": "9fce2bffe92fb57a62e1f258f6779a3039cf104d91cdaacc268d1cc38eb3b9fb",
+    "rtl/cnn_self/self_buffer_leases.sv": "a0dd10e8326eaaebfd05b022971caa6269f3fb496001fdc4c233981e80b1e501",
+    "rtl/cnn_self/self_result_handoff.sv": "96a83af03e9c6ba04b008066bdfd321744a8026019448dfaef12af76c4b3549a",
+    "rtl/cnn_self/self_network_top.sv": "4213048e5b7ce30f82ad64468cb3de288c68aee3e510e1b85b951bf0ddf625f4",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+    "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+    "rtl/cnn_self/self_conv_wide_engine.sv": "b601b3c235285b62079973db09b7166318226c8a62d294821b04fa92eb261359",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "6cd9727add51b0b82f7a74c5e05b5c4e35a05f4ffc22f56911572ca7d914e198",
+    "rtl/filelists/cnn_self.f": "16f7ca7bb74269d14025feaf0b089459240f940f77bb270ad6c7b408ebe0831f",
+    "scripts/synth_self_cnn.py": "a12b552f211e841547d7ec777c2f794b98d3d4d09cb4b03a6c29d2aa7f72abfe",
+    "scripts/synth_self_cnn.tcl": "0b32beabbc3e9e741a895ad25f9f8033d32e4411f941ace5e5b9bcf1d0e08b7c"
+  },
+  "errors": [],
+  "max_kernel": 3,
+  "command": [
+    "C:\\Windows\\system32\\cmd.exe",
+    "/d",
+    "/c",
+    "D:\\vivado\\2025.2\\Vivado\\bin\\vivado.bat",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\code\\FPGA1\\.self_synth_launch\\20261024_003208_449556_self_cnn_synth\\vivado.log",
+    "-source",
+    "D:\\code\\FPGA1\\.self_synth_launch\\20261024_003208_449556_self_cnn_synth\\entry.tcl"
+  ],
+  "vivado": "D:\\vivado\\2025.2\\Vivado\\bin\\unwrapped\\win64.o\\vivado.exe",
+  "returncode": 0,
+  "utilization": {
+    "Slice LUTs": {
+      "used": 2033,
+      "available": 53200,
+      "utilization_percent": 3.82
+    },
+    "Slice Registers": {
+      "used": 1528,
+      "available": 106400,
+      "utilization_percent": 1.44
+    },
+    "Block RAM Tile": {
+      "used": 6,
+      "available": 140,
+      "utilization_percent": 4.29
+    },
+    "DSPs": {
+      "used": 0,
+      "available": 220,
+      "utilization_percent": 0.0
+    }
+  },
+  "primitive_counts": {
+    "LUT1": 24,
+    "LUT2": 794,
+    "LUT3": 576,
+    "LUT4": 482,
+    "LUT5": 321,
+    "LUT6": 436,
+    "LUT6_2": 0,
+    "FDRE": 1418,
+    "FDSE": 0,
+    "FDCE": 110,
+    "FDPE": 0,
+    "RAMB18E1": 0,
+    "RAMB36E1": 6,
+    "DSP48E1": 0
+  },
+  "worst_setup_slack_ns": 0.147,
+  "resource_fit": true,
+  "synthesis_setup_met": true,
+  "elapsed_seconds": 69.297
+}

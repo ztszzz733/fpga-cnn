@@ -2,6 +2,8 @@
 # top module, self_conv_engine MAX_KERNEL (only for standalone convolution).
 set root [file normalize [lindex $argv 0]]
 set out [file normalize [lindex $argv 1]]
+set requested_out $out
+set out [pwd]
 set part [lindex $argv 2]
 set period [lindex $argv 3]
 set top [lindex $argv 4]
@@ -16,7 +18,17 @@ foreach line [split [read $fp] "\n"] {
  lappend sources [file join $root $line]
 }
 close $fp
-read_verilog -sv $sources
+if {$top ne "self_network_top"} {
+ set sources [list [file join $root rtl cnn_self ${top}.sv]]
+}
+if {$top eq "quant_post_pipe_engine"} {
+ set sources [list [file join $root rtl cnn_quant ${top}.sv]]
+}
+foreach source $sources {
+ set local_source [file join [pwd] [file tail $source]]
+ file copy -force $source $local_source
+ read_verilog -sv $local_source
+}
 set xdc [file join $out clock.xdc]
 set fp [open $xdc w]
 puts $fp "create_clock -name clk -period $period \[get_ports clk\]"
@@ -24,6 +36,8 @@ close $fp
 read_xdc [list $xdc]
 if {$top eq "self_network_top"} {
  set generics {MAX_TASKS=64}
+} elseif {$top eq "self_pw4_engine" || $top eq "self_pw4_overlap_engine" || $top eq "quant_post_pipe_engine" || $top eq "self_pw8_engine"} {
+ set generics {MAX_CHANNELS=512}
 } else {
  set generics [list MAX_CHANNELS=512 MAX_KERNEL=$max_kernel TILE=2]
 }
@@ -40,5 +54,8 @@ foreach ref {LUT1 LUT2 LUT3 LUT4 LUT5 LUT6 LUT6_2 FDRE FDSE FDCE FDPE RAMB18E1 R
 set paths [get_timing_paths -delay_type max -max_paths 1]
 if {[llength $paths]} {puts $fp "worst_setup_slack_ns\t[get_property SLACK [lindex $paths 0]]"}
 close $fp
+foreach artifact [list utilization.rpt utilization_hierarchical.rpt timing_summary.rpt primitive_counts.tsv ${top}_synth.dcp clock.xdc] {
+ file copy -force [file join $out $artifact] [file join $requested_out $artifact]
+}
 puts SELF_CNN_SYNTH_COMPLETE
 exit 0

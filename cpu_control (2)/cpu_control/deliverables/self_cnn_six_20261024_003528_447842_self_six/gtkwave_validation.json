@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "tool": "GTKWave 3.3.100 actual Tcl validation",
+  "views": [
+    {
+      "view": "mac_detail",
+      "status": "PASS",
+      "exited": true,
+      "signals": 10,
+      "unique_signals": 10,
+      "session_sha256": "0cb157605db62171be1ea9760b61ca883559c93b71d8d37014d521a2b0be3e8f",
+      "vcd_sha256": "bc2bad5ae0430838aa00a1726c56d42b8a01af3052c54e539898a0b5b4140bdf",
+      "log": "SIGNALS=10 UNIQUE=10\r\nPASS"
+    },
+    {
+      "view": "pipeline_detail",
+      "status": "PASS",
+      "exited": true,
+      "signals": 10,
+      "unique_signals": 10,
+      "session_sha256": "72b232f818652f421264d4739ac930f9a6a6b65fa88af81e5ae1a96edfa0cdab",
+      "vcd_sha256": "e6c6cc23e1e26229f8c9166df7c5faa8740e527188ea61baedf61038045c2e86",
+      "log": "SIGNALS=10 UNIQUE=10\r\nPASS"
+    }
+  ]
+}

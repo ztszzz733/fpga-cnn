@@ -1,0 +1,62 @@
+{
+  "baseline": {
+    "run": "20261024_012743_310534_self_six",
+    "cycles": 239519,
+    "first_result": 194007,
+    "first_dw_start": 137882,
+    "first_dw_wait": 80837,
+    "scenario_cycles": {
+      "overlap": 239519,
+      "serial": 637967,
+      "preloaded": 229199,
+      "stress": 400488
+    },
+    "compile_seconds": 38.83673883800009,
+    "wall_seconds": 4.472925949
+  },
+  "priority": {
+    "run": "20261024_011944_108428_self_six",
+    "cycles": 258671,
+    "first_result": 148330,
+    "first_dw_start": 93770,
+    "first_dw_wait": 36721,
+    "scenario_cycles": {
+      "overlap": 258671,
+      "serial": 638255,
+      "preloaded": 252335,
+      "stress": 346890
+    },
+    "compile_seconds": 40.142870285,
+    "wall_seconds": 4.002827103000001
+  },
+  "pw8": {
+    "run": "20261024_012424_704291_self_six",
+    "cycles": 229583,
+    "first_result": 179152,
+    "first_dw_start": 137882,
+    "first_dw_wait": 80837,
+    "scenario_cycles": {
+      "overlap": 229583,
+      "serial": 586127,
+      "preloaded": 222863,
+      "stress": 389056
+    },
+    "compile_seconds": 40.62126751400001,
+    "wall_seconds": 4.110020328000019
+  },
+  "both": {
+    "run": "20261024_012601_237444_self_six",
+    "cycles": 249647,
+    "first_result": 134978,
+    "first_dw_start": 93770,
+    "first_dw_wait": 36721,
+    "scenario_cycles": {
+      "overlap": 249647,
+      "serial": 586415,
+      "preloaded": 243263,
+      "stress": 338547
+    },
+    "compile_seconds": 39.26576653800004,
+    "wall_seconds": 4.046540562000018
+  }
+}

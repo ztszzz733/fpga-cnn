@@ -1,0 +1,33 @@
+{
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_003528_447842_self_six",
+  "result_sha256": "0e69a9069caf1d1faf1450883d75f272562a6e402c2fcd1b8902b1fe39055951",
+  "reporter_sha256": "edb67560956a2099e0f3919d762b5df7d214f94714f49007692a56690c8ea567",
+  "files": {
+    "comparison.json": "651f7cfa75ecb74139f3e33c1034a5f5684faec66e61e64701ec10db893a0551",
+    "events.csv": "377855c4d143ffc7c29f23850d9f759523997cec920fde5de929dde129fbad16",
+    "frame_timeline.png": "e9262726c3683ae18d1526309b568c443403ee91edc80a48aab2bf7f738d787f",
+    "full_comparison.png": "47439377bb93d01318ed0cf279554816c6415cf10360b3565520a688a6ff03c3",
+    "gtkwave_validation.json": "123121e55a0acc70701bc587c25d4d1b125c639f39a88934eb6d6f5fa89460a5",
+    "gtk_mac_detail_stderr.log": "06ee1984a80adbfef44dd8a02daee82e2fbf216d1c891de9b671dd330e038436",
+    "gtk_mac_detail_stdout.log": "4a0ce9cdde47dfffd4fc20c63596264f10549e2fa83cf593ea49dbebedf62566",
+    "gtk_pipeline_detail_stderr.log": "8e0c5c1b9528459811a6516af51d35a936b1cc9f975eb312f6d88c269a62a490",
+    "gtk_pipeline_detail_stdout.log": "4a0ce9cdde47dfffd4fc20c63596264f10549e2fa83cf593ea49dbebedf62566",
+    "mac_detail.gtkw": "0cb157605db62171be1ea9760b61ca883559c93b71d8d37014d521a2b0be3e8f",
+    "mac_detail.png": "2d9f1f31812f084f5d6382e763b82e645635a5a57efee5133e09471ea1e9c70f",
+    "mac_detail.vcd": "bc2bad5ae0430838aa00a1726c56d42b8a01af3052c54e539898a0b5b4140bdf",
+    "metrics.json": "60cf8ddabf0cf4c51acd8deead9707aeacfee475f542dcb7faf4475a2b038521",
+    "outputs.bin": "9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf",
+    "pipeline_detail.gtkw": "72b232f818652f421264d4739ac930f9a6a6b65fa88af81e5ae1a96edfa0cdab",
+    "pipeline_detail.png": "e386b884b048a8a2919a26536d99dc13ab3d60039a240721f578aa770ca8f0b0",
+    "pipeline_detail.vcd": "e6c6cc23e1e26229f8c9166df7c5faa8740e527188ea61baedf61038045c2e86",
+    "README.md": "bd6a7dd4eae6faef7aa9e697a0ffd60532c76c12501c51b709b83f3694e35ead",
+    "result.json": "0e69a9069caf1d1faf1450883d75f272562a6e402c2fcd1b8902b1fe39055951",
+    "validate_gtkwave.ps1": "c6e4f430be6315563a973e037ac311236346ea63de72c40d40324b6898a89d12",
+    "validation_mac_detail.log": "6dba4af1a9decb340f4241cd74249eb8663ebb88cf1438665214c1695ffbc2cf",
+    "validation_pipeline_detail.log": "6dba4af1a9decb340f4241cd74249eb8663ebb88cf1438665214c1695ffbc2cf",
+    "verify_mac_detail.tcl": "3b73a6e14dfe2e54d4f090ec7e6a47673c73b8a8e8f668abe189637447b25276",
+    "verify_pipeline_detail.tcl": "caf96947c84bcdd20fb0f4bddc6c8c66b2d29cd69a0c054693296e419964d9d2",
+    "visual_qa.json": "e574ff974af5b1e1542b23ee4c97ea191905d86aa27af473cadecf389a5c60c3"
+  },
+  "extended_reporter_sha256": "5a243161b7900d5620a2f28d8ed540075bff40d203168d2c7d66fbab4b32abee"
+}

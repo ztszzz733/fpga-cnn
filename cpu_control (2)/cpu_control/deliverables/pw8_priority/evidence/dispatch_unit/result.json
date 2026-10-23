@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "sources": {
+    "rtl/cnn_stream/stream_dispatch.sv": "d4205ca686afcbca8fba8fb2498d11a23297b1a39ef2816b94d40792a78d078a",
+    "tb/integration/dispatch_priority_main.cpp": "e5bc54ee89433cd5363923780a29ad518a1c833c1f395713fd680008c30e8b00"
+  },
+  "compile_seconds": 7.003026108000029,
+  "exe_sha256": "65a5785ca1dc5685a6052b901d928f2a33b9b1e49b8ba22af7766b6dea43e809",
+  "simulation_seconds": 0.01883306799999218
+}

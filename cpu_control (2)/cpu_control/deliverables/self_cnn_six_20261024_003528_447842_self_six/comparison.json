@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "baseline_run": "20261023_215237_self_six",
+  "run": "20261024_003528_447842_self_six",
+  "baseline_cycles": 898010175,
+  "new_cycles": 153487331,
+  "cycles_reduction_percent": 82.90806326331436,
+  "same_frequency_speedup": 5.850712036943297,
+  "wall_seconds": 386.187886144,
+  "simulation_seconds": 374.345,
+  "compile_seconds": 0,
+  "gate_compile_seconds": 51.96980245099999,
+  "small": {
+    "overlap": {
+      "previous": 263887,
+      "new": 239519
+    },
+    "serial": {
+      "previous": 701935,
+      "new": 637967
+    },
+    "preloaded": {
+      "previous": 260719,
+      "new": 229199
+    },
+    "stress": {
+      "previous": 421489,
+      "new": 400488
+    }
+  },
+  "evidence": {
+    "k3_unit": {
+      "run": "20261024_002915_167020_wide_unit_k3",
+      "result_sha256": "42746c5a97e85865c54377f8b64d20ef02102288c156756ccbb0ea02b47526b9"
+    },
+    "post_unit": {
+      "run": "20261024_003247_912639_post_pipe_unit",
+      "result_sha256": "02846e25873c9d6b1bec6c828060389ec949c91ab7e8826cd96ad9df1de1e25d"
+    },
+    "k3_synth": {
+      "run": "20261024_003208_449556_self_cnn_synth",
+      "result_sha256": "fe0e50752db6eaddc54aa799c54fbc68dc8ef68e136c9fe70ed0fd88de29c5ff"
+    },
+    "post_synth": {
+      "run": "20261024_003338_786521_self_cnn_synth",
+      "result_sha256": "92704af24579e49036736c69544a96e6cbd693349a455341546f7d305da4be62"
+    }
+  },
+  "output_sha256": "9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf"
+}

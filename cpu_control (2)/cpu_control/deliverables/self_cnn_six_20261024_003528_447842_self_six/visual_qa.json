@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checked_images": [
+    "full_comparison.png",
+    "task_timeline/early_tasks.png",
+    "task_timeline/cross_operator.png",
+    "mac_detail.png",
+    "pipeline_detail.png"
+  ],
+  "method": "view_image visual inspection; real VCD work strobes; launch/done task reconstruction"
+}

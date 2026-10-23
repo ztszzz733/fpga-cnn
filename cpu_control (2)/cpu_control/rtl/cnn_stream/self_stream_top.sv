@@ -1,15 +1,17 @@
 // Actual bai-datasram SRAM plus configurable CNN operator pools. Four complete
 // image commits may arrive during computation. No arithmetic/memory TB model.
 module self_stream_top #(
- parameter MAX_TASKS=64,IW=$clog2(MAX_TASKS),SLOTS=16,SW=$clog2(SLOTS),
+ parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
+ parameter FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
+ parameter MAX_TASKS=64,IW=$clog2(MAX_TASKS),SLOTS=4*FRAME_CONTEXTS,SW=$clog2(SLOTS),
  parameter K3_UNITS=3,K1_UNITS=1,POST_UNITS=1,
  parameter UNITS=K3_UNITS+K1_UNITS+POST_UNITS+3,
  parameter SRAM_SIZE=262144
 )(
  input logic clk,rst_n,clear,start,
  input logic [UNITS-1:0] unit_enable,
- input logic frame_valid,input logic [1:0] frame_slot,input logic [31:0] frame_id,
- output wire frame_ready,output wire [3:0] frames_ready,
+ input logic frame_valid,input logic [FW-1:0] frame_slot,input logic [31:0] frame_id,
+ output wire frame_ready,output wire [FRAME_CONTEXTS-1:0] frames_ready,
  input logic program_valid,input logic [IW-1:0] program_index,
  input logic [511:0] program_command,input logic [1:0] program_dep_valid,
  input logic [IW-1:0] program_dep0,program_dep1,input logic [IW:0] task_count,
@@ -50,11 +52,52 @@ module self_stream_top #(
  assign done=compute_done && !outputs_pending && !(|buffer_live) && !cancel;
  stream_result_handoff #(.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW)) results(.*);
  stream_buffer_leases #(.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW)) leases(.*);
- stream_dispatch #(.MAX_TASKS(MAX_TASKS),.IW(IW),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS)) dispatch(
+ stream_dispatch #(.FRAME_PRIORITY(FRAME_PRIORITY),.DW_PRIORITY(DW_PRIORITY),.MAX_TASKS(MAX_TASKS),.IW(IW),.FRAME_CONTEXTS(FRAME_CONTEXTS),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS)) dispatch(
   .*,.busy(compute_busy),.done(compute_done),.memory_fault(memory_fault || configuration_error),
   .unit_busy(ub),.unit_done(ud),.unit_error(ue));
  for(genvar e=0;e<DW;e++)begin:engines
   localparam KERNEL=e<K3_UNITS?3:1;
+  if(PW8 && e>=K3_UNITS)begin:dual_channel_pointwise
+  self_pw8_engine #(.MAX_CHANNELS(512)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else if(CONV_OVERLAP && e>=K3_UNITS)begin:prefetch_pointwise
+  self_pw4_overlap_engine #(.MAX_CHANNELS(512)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else if(WIDE_PIPE && e<K3_UNITS)begin:wide_convolution
+  self_conv_wide_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else if(CONV_OVERLAP && e<K3_UNITS)begin:pipelined_convolution
+  self_conv_pipe_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else if(PW4 && e>=K3_UNITS)begin:parallel_pointwise
+  self_pw4_engine #(.MAX_CHANNELS(512)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else begin:serial_convolution
   self_conv_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2)) convolution(
    .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
    .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
@@ -62,6 +105,7 @@ module self_stream_top #(
    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
    .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end
  end
  dw7_cached_engine #(.MAX_WIDTH(7),.MAX_CHANNELS(512),.LANES(8)) dw7(
   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[DW]),.reuse_weights(1'b0),
@@ -70,10 +114,17 @@ module self_stream_top #(
   .addr(mem_addr[DW*32+:32]),.wdata(mem_wdata[DW*32+:32]),.ready(mem_ready[DW]),.response(mem_response[DW]),.rdata(mem_rdata[DW*32+:32]),
   .phase(),.mac_fire(operator_work[DW]),.weights_cached(),.cache_hit());
  for(genvar e=POST;e<=ADD;e++)begin:postprocessing
+  if(WIDE_PIPE)begin:packed_pipeline
+  quant_post_pipe_engine post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
+   .src_a(cmd[e][1]),.src_b(cmd[e][2]),.destination(cmd[e][3]),.parameter_base(cmd[e][4]),.count(cmd[e][5]),.channels(cmd[e][6]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]));
+  end else begin:legacy
   quant_post_engine post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
    .src_a(cmd[e][1]),.src_b(cmd[e][2]),.destination(cmd[e][3]),.parameter_base(cmd[e][4]),.count(cmd[e][5]),.channels(cmd[e][6]),
    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]));
+  end
   assign operator_work[e]=mem_valid[e] && mem_ready[e] && mem_write[e];
  end
  pad_hwc_engine padding(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[PAD]),

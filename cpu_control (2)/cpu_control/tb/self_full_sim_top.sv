@@ -2,16 +2,18 @@
 // Actual bai-datasram SRAM plus configurable CNN operator pools. Four complete
 // image commits may arrive during computation. No arithmetic/memory TB model.
 module self_full_sim_top #(
- parameter MAX_TASKS=1024,IW=$clog2(MAX_TASKS),SLOTS=16,SW=$clog2(SLOTS),
+ parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
+ parameter FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
+ parameter MAX_TASKS=1024,IW=$clog2(MAX_TASKS),SLOTS=4*FRAME_CONTEXTS,SW=$clog2(SLOTS),
  parameter K3_UNITS=4,K1_UNITS=2,POST_UNITS=1,
  parameter UNITS=K3_UNITS+K1_UNITS+POST_UNITS+3,
  parameter SRAM_SIZE=16777216
 )(
  input logic clk,rst_n,clear,start,
  input logic [UNITS-1:0] unit_enable,
- input logic frame_valid,input logic [1:0] frame_slot,input logic [31:0] frame_id,
- output wire frame_ready,output wire [3:0] frames_ready,
- input logic [2:0] image_count,
+ input logic frame_valid,input logic [FW-1:0] frame_slot,input logic [31:0] frame_id,
+ output wire frame_ready,output wire [FRAME_CONTEXTS-1:0] frames_ready,
+ input logic [FW:0] image_count,
  input logic template_valid,input logic [$clog2(MAX_TASKS/4)-1:0] template_index,
  input logic [511:0] template_command,input logic [3:0] template_source_modes,
  input logic [1:0] template_dep_valid,
@@ -21,7 +23,7 @@ module self_full_sim_top #(
  input logic [2:0] template_use_valid,input logic [5:0] template_use_slots,
  input logic [3*$clog2(MAX_TASKS/4)-1:0] template_use_owners,
  input logic template_result_valid,input logic [31:0] template_result_bytes,
- input logic address_valid,input logic [1:0] address_slot,
+ input logic address_valid,input logic [FW-1:0] address_slot,
  input logic [31:0] image_base,workspace_base,address_frame,
  output wire configuration_ready,
  input logic result_ready,
@@ -46,7 +48,7 @@ module self_full_sim_top #(
  output wire [IW-1:0] debug_program_index,
  output wire [511:0] debug_program_command
 );
- self_fixed_network_top #(.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) dut(.*);
+ self_fixed_network_top #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.PW4(PW4),.CONV_OVERLAP(CONV_OVERLAP),.WIDE_PIPE(WIDE_PIPE),.PW8(PW8),.DW_PRIORITY(DW_PRIORITY),.FRAME_PRIORITY(FRAME_PRIORITY),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) dut(.*);
  assign debug_program_valid=dut.program_valid;
  assign debug_program_ready=dut.program_ready;
  assign debug_program_index=dut.program_index;

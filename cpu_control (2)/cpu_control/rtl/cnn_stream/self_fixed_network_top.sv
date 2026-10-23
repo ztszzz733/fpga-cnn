@@ -1,16 +1,18 @@
 // Actual bai-datasram SRAM plus configurable CNN operator pools. Four complete
 // image commits may arrive during computation. No arithmetic/memory TB model.
 module self_fixed_network_top #(
- parameter MAX_TASKS=64,IW=$clog2(MAX_TASKS),SLOTS=16,SW=$clog2(SLOTS),
+ parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
+ parameter FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
+ parameter MAX_TASKS=64,IW=$clog2(MAX_TASKS),SLOTS=4*FRAME_CONTEXTS,SW=$clog2(SLOTS),
  parameter K3_UNITS=4,K1_UNITS=2,POST_UNITS=1,
  parameter UNITS=K3_UNITS+K1_UNITS+POST_UNITS+3,
  parameter SRAM_SIZE=262144
 )(
  input logic clk,rst_n,clear,start,
  input logic [UNITS-1:0] unit_enable,
- input logic frame_valid,input logic [1:0] frame_slot,input logic [31:0] frame_id,
- output wire frame_ready,output wire [3:0] frames_ready,
- input logic [2:0] image_count,
+ input logic frame_valid,input logic [FW-1:0] frame_slot,input logic [31:0] frame_id,
+ output wire frame_ready,output wire [FRAME_CONTEXTS-1:0] frames_ready,
+ input logic [FW:0] image_count,
  input logic template_valid,input logic [$clog2(MAX_TASKS/4)-1:0] template_index,
  input logic [511:0] template_command,input logic [3:0] template_source_modes,
  input logic [1:0] template_dep_valid,
@@ -20,7 +22,7 @@ module self_fixed_network_top #(
  input logic [2:0] template_use_valid,input logic [5:0] template_use_slots,
  input logic [3*$clog2(MAX_TASKS/4)-1:0] template_use_owners,
  input logic template_result_valid,input logic [31:0] template_result_bytes,
- input logic address_valid,input logic [1:0] address_slot,
+ input logic address_valid,input logic [FW-1:0] address_slot,
  input logic [31:0] image_base,workspace_base,address_frame,
  output wire configuration_ready,
  input logic result_ready,
@@ -46,14 +48,14 @@ module self_fixed_network_top #(
  wire program_valid,program_ready,program_allocate_valid,program_result_valid;
  wire [IW-1:0] program_index,program_dep0,program_dep1;
  wire [511:0] program_command;wire [1:0] program_dep_valid;
- wire [IW:0] task_count;wire [3:0] program_allocate_slot;
+ wire [IW:0] task_count;wire [SW-1:0] program_allocate_slot;
  wire [MAX_TASKS-1:0] program_hold_mask;wire [2:0] program_use_valid;
- wire [11:0] program_use_slots;wire [3*IW-1:0] program_use_owners;
+ wire [3*SW-1:0] program_use_slots;wire [3*IW-1:0] program_use_owners;
  wire [31:0] program_result_frame,program_result_addr,program_result_bytes;
  wire core_start,core_busy,core_error,expanding,configuration_error;
  assign busy=expanding || core_busy;
  assign error=configuration_error || core_error;
- stream_fixed_programmer #(.MAX_TASKS(MAX_TASKS),.IW(IW)) fixed_program(.*);
- self_stream_top #(.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) core(
+ stream_fixed_programmer #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.MAX_TASKS(MAX_TASKS),.IW(IW)) fixed_program(.*);
+ self_stream_top #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.PW4(PW4),.CONV_OVERLAP(CONV_OVERLAP),.WIDE_PIPE(WIDE_PIPE),.PW8(PW8),.DW_PRIORITY(DW_PRIORITY),.FRAME_PRIORITY(FRAME_PRIORITY),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) core(
   .*,.start(core_start),.clear(clear || configuration_error),.busy(core_busy),.error(core_error));
 endmodule

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "compile_seconds": 10.650638148999999,
+  "simulation_seconds": 0.2707224989999979,
+  "sources": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "tb/self_pw4_unit_top.sv": "a36ad67154a5d3dceab5692cec4314c74d2b9d6246e6d3ee9eee1890a8536fa1",
+    "tb/integration/self_pw4_unit_main.cpp": "8b49ad45d172f277958d2cc6e6100f5a9b374bd9c003837a0c51f4d249195844"
+  },
+  "exe_sha256": "acd7a3d1325bd711faa373facd8d92a7c774f0e2cdba07db4c7164999c1403e9"
+}

@@ -1,0 +1,37 @@
+{
+  "reporter_sha256": "824c25ee46703c34628d297eb02e035f84d93b1484fff5bab85a448a1b61c5fc",
+  "runs": {
+    "baseline": "20261024_012743_310534_self_six",
+    "priority": "20261024_011944_108428_self_six",
+    "pw8": "20261024_012424_704291_self_six",
+    "both": "20261024_012601_237444_self_six"
+  },
+  "other": {
+    "pw8_unit": "20261024_012638_214658_pw8_unit_k1",
+    "dispatch_unit": "20261024_012510_658248_dispatch_priority",
+    "pw8_synth": "20261024_012253_161051_self_cnn_synth"
+  },
+  "files": {
+    "comparison.json": "65012f595ce090a3f526fb11367dc6c236e4ff2ab023e0c09dd3fa9fd013f396",
+    "README.md": "ec0c75e5757b34c9179329c66bbad6e86aebf278232b7dddaaba63507c8badb7",
+    "small_task_comparison.png": "5a220e871e29ef698e7655f2cc38ec5cb709cb8bf00941a9090e73f9812bf4e3",
+    "evidence\\baseline\\events.csv": "edffe0975ac213bdfbeb0b2023f17ab5ab4527631a3851896356e8094dd04aed",
+    "evidence\\baseline\\result.json": "8404f788e879a636710d5b4429101569fe7680eb6ea514275fd9d5fba34675c2",
+    "evidence\\both\\events.csv": "ee8a0048ffb8ece382a90a95c36d07c52042ff168e79dc1c60b22c83a819e30e",
+    "evidence\\both\\result.json": "3711a2637bb09b6a09a4b3163d0210490710f948f7fbc32ff7f7e72049eed586",
+    "evidence\\dispatch_unit\\metrics.json": "344c7fe785fafd92b0234be910976f804692325baebaeccd949428a5283ec9c9",
+    "evidence\\dispatch_unit\\result.json": "23b7a432a56356b0fa61d3caa558697bf7c548707f14b891284119b25407ad7b",
+    "evidence\\dispatch_unit\\simulation.log": "854bba3ce692bb439938d6bb0d52c9f893e5af8e22d396c4bd82c3d53b613daa",
+    "evidence\\priority\\events.csv": "7074d5a9a060239ada9497891ae47e697e0611dffccb96936a0d66cab2167030",
+    "evidence\\priority\\result.json": "bdf63b7228fa707c70f2b5fe8b6cc98561d8efced6b50f32ebf27d7aa66bf72e",
+    "evidence\\pw8\\events.csv": "6835264976a14003b377040805bc5a4684d73dec0083232aeabd05be73cc44f8",
+    "evidence\\pw8\\result.json": "1a1ab6d4a633ffc8f82c63bd2e9f4a2f6ef72e647af8c47c8c04c01a8c3950bf",
+    "evidence\\pw8_synth\\primitive_counts.tsv": "f9c1ec14354ea1f1cdcbe11f3cd62fa7ecebb7797474e6a9b8bb4b1d68aefef3",
+    "evidence\\pw8_synth\\result.json": "76e210e93f6569223ccf5fd74d1af6d9fd9cea009bb71e8292ff675224b358e0",
+    "evidence\\pw8_synth\\timing_summary.rpt": "24347f35e9493fb884ef1c1af438eec914a5585fe5e1361617f7b0adc748c1f8",
+    "evidence\\pw8_synth\\utilization.rpt": "cd0c62044cdf72a0ca16c0870c00cdfaad668e5a40df60fc7943eaef7dfbea18",
+    "evidence\\pw8_unit\\metrics.json": "12878c4f8398399c1a7e2d21a7649cac43cac378d95df58607eab29fa2d50cdc",
+    "evidence\\pw8_unit\\result.json": "e8524dced73d4d167bd6f8dc7a6881963a225971320a8db9ab97c6926283d05a",
+    "evidence\\pw8_unit\\simulation.log": "bdcb30f8f1e5df2f90e46b140ff3609549b65347820acf0678a8ffd7170a1d30"
+  }
+}

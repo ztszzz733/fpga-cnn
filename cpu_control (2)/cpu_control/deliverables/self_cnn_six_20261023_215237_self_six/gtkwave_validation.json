@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "method": "actual GTKWave Tcl load; hidden window",
+  "views": [
+    {
+      "view": "mac_detail",
+      "status": "PASS",
+      "signals": 10,
+      "unique": 10,
+      "log": "SIGNALS=10 UNIQUE=10\nPASS\n",
+      "vcd_sha256": "80f6af393d97dde276aa7d5bce4a3f33a7644b9a174a09b8223da00ea1df2552",
+      "session_sha256": "3385ca62b1546079060180f67f93fed9665191c40a42dd5e0a516e468068c107"
+    },
+    {
+      "view": "pipeline_detail",
+      "status": "PASS",
+      "signals": 10,
+      "unique": 10,
+      "log": "SIGNALS=10 UNIQUE=10\nPASS\n",
+      "vcd_sha256": "4236eec61c6e18dbea97376c92264797207146c2ddbdc1807df0029647ed2374",
+      "session_sha256": "2258814b366d749bcbb13363c11d0b2e61c26a0f1332bf3c494ef587e3b303c3"
+    }
+  ]
+}

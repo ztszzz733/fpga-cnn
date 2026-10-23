@@ -1,0 +1,19 @@
+{
+  "events_sha256": "b63a59a1609952c9a3403b2af2df710b8f8c85a758e5aff20af50105b56fe35e",
+  "manifest_sha256": "8ad8acfe43b55566a573ed9abc3cb3a229afd338abeaea5286ae6f88d0ac5b55",
+  "result_sha256": "f05a350f794d780b5ac296da5eac077c5a6cea4de669c9e8611a7a16ac1c41be",
+  "generator_sha256": "6d50c355b29ce0a685a6766bc8fe49c37d75def6cd65a6da24713b81c783d35c",
+  "template_sha256": "082d822b4f84c689d29dff647ed651f4d6bdcc250d0fdac6822e78b611d2de3c",
+  "tasks": 786,
+  "inputs": 6,
+  "files": {
+    "first_1000ms.png": "f7e0b0f5789b5824c3a358721889fcdab14680847e19ee8493055dd4cc418e99",
+    "full_network.png": "886f596c31de17182d1994ed10b3643ed1599eb593babf80c3e3f2e9350d7054",
+    "handoff_145_180ms.png": "ac1a8fc15be61b31de1625a86dd9a72905724436228572ac6d44ebf918bdc238",
+    "index.html": "07c29ad5c985a2c92fd7524994c3e0b8663ec4fca1a4cddbda7195ce68257b40",
+    "interaction_check.txt": "b6421422fbc1386ddcc54014d9a2d10731ba99008bf681f86d8b4a5ac9e3cb87",
+    "README.md": "73e11f28fca56209c5a93ee896a6dbac46302495a2849e81892ff1a527ccdd41",
+    "tasks.csv": "f0de06f2e4a73eee7abe022bc84fb6ab6d6c6c29f7450e9f05c26013a6095ef8",
+    "tasks.json": "22623d6d10a4e9c926bc44d7984aecaa3fb3d1a46e3d8ef20f5f14b45b728a4f"
+  }
+}

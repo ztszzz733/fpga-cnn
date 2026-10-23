@@ -25,12 +25,24 @@
 #ifndef CNN_POST
 #define CNN_POST 1
 #endif
+#ifndef CNN_FRAMES
+#define CNN_FRAMES 4
+#endif
+#ifndef CNN_SRAM
+#define CNN_SRAM 16777216
+#endif
+#ifndef CNN_MAX_TASKS
+#define CNN_MAX_TASKS 1024
+#endif
 namespace fs=std::filesystem;
 constexpr unsigned K3=CNN_K3,K1=CNN_K1,POSTS=CNN_POST,DW=K3+K1,POST=DW+1,ADD=POST+POSTS,PAD=ADD+1,NU=PAD+1;
+constexpr unsigned TASKS=CNN_MAX_TASKS,IW=TASKS==2048?11:10,STEPS=TASKS/4,HOLD_WORDS=STEPS/32,META_WORDS=10+HOLD_WORDS;
+static_assert(TASKS==1024||TASKS==2048);
+static_assert(CNN_FRAMES<=16,"slot masks require at most 64 bits");
 using U64=uint64_t;using U32=uint32_t;using Bytes=std::vector<uint8_t>;
 std::vector<U32> hexwords(const fs::path& p){std::ifstream f(p);if(!f)throw std::runtime_error("open "+p.string());std::vector<U32> a;U32 v;while(f>>std::hex>>v)a.push_back(v);return a;}
 Bytes bytes(const fs::path& p){std::ifstream f(p,std::ios::binary|std::ios::ate);if(!f)throw std::runtime_error("open "+p.string());Bytes a(static_cast<size_t>(f.tellg()));f.seekg(0);f.read(reinterpret_cast<char*>(a.data()),a.size());return a;}
-unsigned pop(U32 x){unsigned n=0;while(x){x&=x-1;++n;}return n;}
+unsigned pop(U64 x){unsigned n=0;while(x){x&=x-1;++n;}return n;}
 struct Unit {U64 active=0,work=0,wait=0,read_bytes=0,write_bytes=0,tasks=0;};
 struct Pending {bool valid=false,write=false;U32 addr=0,n=0,data=0,expected=0;};
 struct Frame {U64 begin=UINT64_MAX,commit=UINT64_MAX,first=UINT64_MAX,result=UINT64_MAX;unsigned next=0;bool active=false,seen=false;};
@@ -39,12 +51,12 @@ struct Wave {
  void begin(const fs::path& p,U64 cycle,U64 length){f.open(p);open=true;origin=cycle;stop=cycle+length;
   f<<"$timescale 1ns $end\n$scope module cnn_full $end\n";
   const char* names[]={"unit_active","operator_work","mem_valid","mem_ready","mem_write","mem_response","frames_ready","result_valid","result_ready","completed_count"};
-  for(unsigned i=0;i<10;i++)f<<"$var wire "<<(i<6?NU:i==6?4:i<9?1:11)<<" "<<char('!'+i)<<" "<<names[i]<<" $end\n";
+  for(unsigned i=0;i<10;i++)f<<"$var wire "<<(i<6?NU:i==6?CNN_FRAMES:i<9?1:IW+1)<<" "<<char('!'+i)<<" "<<names[i]<<" $end\n";
   f<<"$upscope $end\n$enddefinitions $end\n";
  }
  void sample(U64 cycle,const Vself_full_sim_top& d){if(!open)return;if(cycle>stop){f.close();open=false;return;}
   f<<"#"<<(cycle-origin)*10<<"\n";U32 a[]={d.unit_active,d.operator_work,d.mem_valid,d.mem_ready,d.mem_write,d.mem_response,d.frames_ready,d.result_valid,d.result_ready,d.completed_count};
-  for(unsigned i=0;i<10;i++){f<<'b';unsigned w=i<6?NU:i==6?4:i<9?1:11;for(int b=int(w)-1;b>=0;b--)f<<((a[i]>>b)&1);f<<' '<<char('!'+i)<<'\n';}
+  for(unsigned i=0;i<10;i++){f<<'b';unsigned w=i<6?NU:i==6?CNN_FRAMES:i<9?1:IW+1;for(int b=int(w)-1;b>=0;b--)f<<((a[i]>>b)&1);f<<' '<<char('!'+i)<<'\n';}
  }
 };
 
@@ -56,9 +68,9 @@ public:
  std::vector<U32> info,im,cmd,tm,meta,node;
  Bytes memory,shadow,expected,images,written,outputs;
  std::vector<U64> writes_per_node,mac_per_node,launch_cycle,finish_cycle;
- std::array<Unit,NU> unit;std::array<Pending,NU> pending;
+ std::array<Unit,NU> unit;std::array<U32,K3+K1> previous_mac{};std::array<Pending,NU> pending;
  std::array<bool,NU> held{};std::array<std::array<U32,4>,NU> fields{};
- std::array<Frame,4> frame{};
+ std::array<Frame,CNN_FRAMES> frame{};
  std::array<U64,6> capacity_wait{},scan_wait{};
  unsigned nf=0,steps=0,nt=0,memsize=0,pace=80,send_frame=0,send_offset=0,send_wait=0;
  bool checking=false,commit_pending=false,reader_active=false,reader_pending=false,reader_done=false;
@@ -71,10 +83,10 @@ public:
  Bench(fs::path a,fs::path b,std::string m,unsigned p,U64 limit):data(a),out(b),mode(m),pace(p),maxcycles(limit){
   info=hexwords(data/"info.hex");im=hexwords(data/"image_info.hex");cmd=hexwords(data/"commands.hex");tm=hexwords(data/"template_commands.hex");meta=hexwords(data/"template_meta.hex");node=hexwords(data/"node_info.hex");
   memory=bytes(data/"memory.bin");shadow=memory;expected=bytes(data/"expected.bin");images=bytes(data/"images.bin");
-  need(info.size()==40,"info header + 16 guards");nf=info[0];steps=info[1];nt=info[2];memsize=info[3];
-  need(nf>=1&&nf<=4&&steps<=256&&nt==nf*steps&&nt<=1024,"fixture dimensions");
-  need(memsize<=16777216&&memory.size()==info[4]&&expected.size()==info[5]&&images.size()==info[7],"fixture sizes");
-  need(cmd.size()==nt*16&&node.size()==nt*4&&tm.size()==steps*16&&meta.size()==steps*18&&im.size()==nf*5,"fixture tables");
+  need(info.size()==8+8*CNN_FRAMES,"info header and per-context guards");nf=info[0];steps=info[1];nt=info[2];memsize=info[3];
+  need(nf>=1&&nf<=CNN_FRAMES&&steps<=STEPS&&nt==nf*steps&&nt<=TASKS,"fixture dimensions");
+  need(memsize<=CNN_SRAM&&memory.size()==info[4]&&expected.size()==info[5]&&images.size()==info[7],"fixture sizes");
+  need(cmd.size()==nt*16&&node.size()==nt*4&&tm.size()==steps*16&&meta.size()==steps*META_WORDS&&im.size()==nf*5,"fixture tables");
   shadow.resize(memsize,0xa5);written.resize(expected.size());writes_per_node.resize(nt);mac_per_node.resize(nt);launch_cycle.resize(nt,UINT64_MAX);finish_cycle.resize(nt,UINT64_MAX);
   size_t final_size=0;for(unsigned f=0;f<nf;f++)final_size+=node[((steps-1)*nf+f)*4+1];outputs.resize(final_size);
   fs::create_directories(out);events.open(out/"events.csv");events<<"cycle,event,unit,node,frame\n";
@@ -86,7 +98,7 @@ public:
  void need(bool c,const std::string& message){if(!c){std::ostringstream s;s<<message<<" at cycle="<<cycle<<" completed="<<completed;throw std::runtime_error(s.str());}}
  void need(bool c,const char* message){if(!c)need(false,std::string(message));}
  double seconds()const{return std::chrono::duration<double>(std::chrono::steady_clock::now()-begin_wall).count();}
- unsigned unit_node(unsigned k)const{constexpr unsigned IW=10;unsigned bit=k*IW;U64 v=d->unit_node[bit/32];if(bit%32+IW>32)v|=U64(d->unit_node[bit/32+1])<<32;return unsigned((v>>(bit%32))&1023);}
+ unsigned unit_node(unsigned k)const{unsigned bit=k*IW;U64 v=d->unit_node[bit/32];if(bit%32+IW>32)v|=U64(d->unit_node[bit/32+1])<<32;return unsigned((v>>(bit%32))&(TASKS-1));}
  U32 word(const Bytes& a,unsigned address,unsigned n)const{U32 v=0;for(unsigned b=0;b<n;b++)v|=U32(a[address+b])<<(b*8);return v;}
  unsigned kind(unsigned k)const{return k<K3?0:k<DW?5:k==DW?3:k<ADD?1:k==ADD?2:4;}
  void event(const char* e,int u,int n,unsigned f){events<<cycle<<','<<e<<','<<u<<','<<n<<','<<im[f*5+4]<<'\n';}
@@ -104,9 +116,9 @@ public:
   for(unsigned s=0;s<steps;s++){
    need(d->configuration_ready,"configuration unavailable");d->template_valid=1;d->template_index=s;
    for(unsigned w=0;w<16;w++)d->template_command[w]=tm[s*16+w];
-   const U32* a=&meta[s*18];d->template_source_modes=a[0];d->template_dep_valid=a[1];d->template_dep0=a[2];d->template_dep1=a[3];d->template_allocate_slot=a[4];
-   for(unsigned w=0;w<8;w++)d->template_hold_mask[w]=a[5+w];
-   d->template_use_valid=a[13];d->template_use_slots=a[14];d->template_use_owners=a[15];d->template_result_valid=a[16];d->template_result_bytes=a[17];tick();
+   const U32* a=&meta[s*META_WORDS];d->template_source_modes=a[0];d->template_dep_valid=a[1];d->template_dep0=a[2];d->template_dep1=a[3];d->template_allocate_slot=a[4];
+   for(unsigned w=0;w<HOLD_WORDS;w++)d->template_hold_mask[w]=a[5+w];
+   d->template_use_valid=a[5+HOLD_WORDS];d->template_use_slots=a[6+HOLD_WORDS];d->template_use_owners=a[7+HOLD_WORDS];d->template_result_valid=a[8+HOLD_WORDS];d->template_result_bytes=a[9+HOLD_WORDS];tick();
   }
   d->template_valid=0;
   for(unsigned f=0;f<nf;f++){d->address_valid=1;d->address_slot=f;d->image_base=im[f*5];d->workspace_base=im[f*5+3];d->address_frame=im[f*5+4];tick();}
@@ -116,7 +128,7 @@ public:
   d->dmem_we=0;d->dmem_re=0;d->dmem_wstrb=0;
   if(mode=="stress"&&cycle%11<5&&d->mem_valid){for(unsigned k=0;k<NU;k++)if((d->mem_valid>>k)&1){d->dmem_re=1;d->dmem_addr=d->mem_addr[k]&~3u;break;}}
   if(mode=="preloaded"&&send_frame<nf&&!commit_pending){commit_pending=true;frame[send_frame].begin=cycle;}
-  d->frame_valid=commit_pending&&send_frame<nf;d->frame_slot=send_frame&3;d->frame_id=send_frame<nf?im[send_frame*5+4]:0;
+  d->frame_valid=commit_pending&&send_frame<nf;d->frame_slot=send_frame;d->frame_id=send_frame<nf?im[send_frame*5+4]:0;
   d->result_ready=reader_active&&reader_done;
   bool read=reader_active&&!reader_pending&&!reader_done&&reader_wait==0;
   bool write=mode!="preloaded"&&send_frame<nf&&!commit_pending&&send_wait==0&&!reader_pending&&(mode!="serial"||send_frame==0||frame[send_frame-1].seen);
@@ -155,7 +167,7 @@ public:
   U32 active_frames=0,work_frames=0,work_kinds=0;unsigned k3work=0;
   for(unsigned k=0;k<NU;k++){
    unsigned n=unit_node(k);bool active=(d->unit_active>>k)&1,work=(d->operator_work>>k)&1,valid=(d->mem_valid>>k)&1,ready=(d->mem_ready>>k)&1,response=(d->mem_response>>k)&1,write=(d->mem_write>>k)&1,byte=(d->mem_byte>>k)&1;
-   if(active){need(n<nt,"active node bounds");active_frames|=1u<<(n%nf);}if(work){need(n<nt,"work node bounds");work_frames|=1u<<(n%nf);work_kinds|=1u<<kind(k);unit[k].work++;if(k<K3)k3work++;if(k<=DW)mac_per_node[n]+=k==DW?8:1;}
+   if(active){need(n<nt,"active node bounds");active_frames|=1u<<(n%nf);}if(work){need(n<nt,"work node bounds");work_frames|=1u<<(n%nf);work_kinds|=1u<<kind(k);unit[k].work++;if(k<K3)k3work++;if(k==DW)mac_per_node[n]+=8;}
    if((d->operator_busy>>k)&1)unit[k].active++;
    std::array<U32,4> now={U32(write),U32(byte),d->mem_addr[k],d->mem_wdata[k]};
    if(held[k])need(valid&&fields[k]==now,"stalled CNN request changed");held[k]=valid&&!ready;fields[k]=now;if(held[k])unit[k].wait++;
@@ -169,6 +181,7 @@ public:
      unit[k].write_bytes+=len;
     }else{U32 value=word(shadow,a,len);pending[k].expected=byte?U32(int32_t(int8_t(value))):value;unit[k].read_bytes+=len;}
    }
+   if(k<DW && active){if((d->unit_start>>k)&1)previous_mac[k]=0;else{U32 current=d->conv_mac_count[k];need(current>=previous_mac[k],"MAC counter regressed");mac_per_node[n]+=current-previous_mac[k];previous_mac[k]=current;}}
    if((d->unit_start>>k)&1){need(n<nt&&launch_cycle[n]==UINT64_MAX,"duplicate launch");need(cmd[n*16]==kind(k),"RTL/C++ pool configuration mismatch");unsigned f=n%nf;need(frame[f].commit!=UINT64_MAX&&n/nf==frame[f].next&&!frame[f].active,"frame dependency/order");frame[f].active=true;if(frame[f].first==UINT64_MAX)frame[f].first=cycle;launch_cycle[n]=cycle;unit[k].tasks++;event("launch",k,n,f);}
    if((d->completion_pulse>>k)&1){
     need(n<nt&&finish_cycle[n]==UINT64_MAX&&!pending[k].valid&&!valid,"completion before drained response");need(writes_per_node[n]==node[n*4+1],"incomplete output coverage");
@@ -199,7 +212,7 @@ public:
   double simulation=seconds();
   // Check actual SRAM readonly and tail guards through port A after timing ends.
   for(unsigned a=0;a<info[6];a+=4)verify_cpu_word(a,word(shadow,a,4));
-  for(unsigned s=0;s<16;s++){unsigned base=info[8+2*s],size=info[9+2*s];need(size>=64&&U64(base)+size<=memsize,"guard plan");for(unsigned a=base+size-64;a<base+size;a+=4)verify_cpu_word(a,0xa5a5a5a5u);}
+  for(unsigned s=0;s<4*CNN_FRAMES;s++){unsigned base=info[8+2*s],size=info[9+2*s];need(size>=64&&U64(base)+size<=memsize,"guard plan");for(unsigned a=base+size-64;a<base+size;a+=4)verify_cpu_word(a,0xa5a5a5a5u);}
   std::ofstream output(out/"outputs.bin",std::ios::binary);output.write(reinterpret_cast<const char*>(outputs.data()),outputs.size());output.close();
   std::ofstream m(out/"metrics.json");U64 macs=0;for(auto v:mac_per_node)macs+=v;
   m<<"{\"status\":\"PASS\",\"mode\":\""<<mode<<"\",\"cycles\":"<<cycle<<",\"compute_done_cycle\":"<<compute_cycle<<",\"commands\":"<<completed<<",\"expanded_commands\":"<<expanded<<",\"checked_bytes\":"<<checks<<",\"macs\":"<<macs<<",\"allocations\":"<<allocs<<",\"releases\":"<<releases<<",\"results\":"<<results<<",\"simulation_seconds\":"<<simulation<<",\"multi_frame_cycles\":"<<multi_frame<<",\"multi_frame_work_cycles\":"<<multi_work<<",\"cross_operator_work_cycles\":"<<cross_work<<",\"multi_k3_mac_cycles\":"<<multi_k3<<",\"peak_active_frames\":"<<peak_frames<<",\"peak_simultaneous_k3_mac\":"<<peak_mac<<",\"input_mac_cycles\":"<<input_mac<<",\"input_compute_cycles\":"<<input_work<<",\"input_write_compute_cycles\":"<<io_work<<",\"frames\":[";

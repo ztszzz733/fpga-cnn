@@ -1,3 +1,99 @@
+## 2026-10-24 十图完整MobileFaceNet PASS并交付（当前）
+
+build/runs/20261024_014153_249128_self_ten已完整PASS，exec23327退出0，无活动仿真/自动检查，不再重跑。PW8=1/WIDE_PIPE=1/CONV_OVERLAP=1/PW4=1，DW_PRIORITY=0，十上下文2048任务容量，仍K3×2/K1×4/DW7/Post/Add/Pad各1。1310任务/展开/分配/释放、2338104320MAC、193372920检查字节、10结果1280字节，SHA16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418；全部逐值匹配独立整数参考，前6张输出与上一轮完整六图逐字节一致。
+
+200628467硬件周期，假设100MHz为2006.28467ms/十图整批。电脑模拟器主体729.457秒，含初始化/收尾总754.291590486秒（约12分34秒）；本次compile0，十图小门槛编译43.918390098秒、四场景8.31035909秒另计。跨图实际work131513249拍、跨类66023630拍；最高8张图同时有已发射任务（active包含访存等待，不等于8图每拍都MAC）。不能用旧六图整批时间直接算本次加速比。
+
+交付deliverables/self_cnn_ten_20261024_014153_249128_self_ten/README.md、summary.json、task_timeline/index.html（默认完整网络十行）、full_network/early_tasks/cross_operator三个PNG、真实mac_detail/pipeline_detail PNG/VCD/GTKWave。五PNG已视检，源/数据/小门槛程序/逐任务依赖/输出哈希已核验，两个GTKWave会话实际载入各10唯一信号PASS（沙盒DLL重定位在沙盒外隐藏窗口验证解决）。交互HTML语法/十图1320条记录/默认全程静态检查PASS；浏览器工具禁止file协议，未做浏览器预览，未绕过限制。artifact_validation.json如实记录，最终provenance包含GTK验证和说明。图中任务块含内部等待，局部VCD仅窗口相对256拍，不能误当整网时间。
+
+32MiB仿真SRAM、初始化29694464字节（28.31885MiB），十张不同合成112×112 RGB、首图诊断量化，实际SRAM端口逐张输入、整图提交后算。非CPU/UART/同帧条带输入/人脸识别准确率/512KiB或整机资源时序适配。源改动仅参数化生成器、runner和TB位宽统计，算术RTL沿用。复现及范围见交付说明；本次未提交或推送Git。
+
+## 2026-10-24 十图完整MobileFaceNet运行记录（历史，已完成）
+
+用户明确“用十张图片跑完整MobileFaceNet试试”。采用PW8八空间位置1×1、原调度（DW_PRIORITY=0），仍K3×2/K1×4/DW7/Post/Add/Pad各1。十图同批上下文，不是分两批；MAX_TASKS从1024设2048、IW11、模板容量512、40工作槽。RTL本体沿用参数化实现，本轮改TB任务宽度/模板元数据/64位缓冲槽计数及VCD completed_count为12位，生成器支持十上下文与2048任务。原入口默认及算术不改。
+
+唯一活动全网run：build/runs/20261024_014153_249128_self_ten，exec会话23327；2026-10-24 01:41:53启动。命令run_self_six_wsl.py --frames 10 --pw8 --reuse --full --data build/self_ten_full --gate build/runs/20261024_013908_594118_self_ten。复用.self_ten_pw8_build，同源码/程序/配置小门槛四项PASS：overlap368926、serial977647、preloaded354527、stress604825。每项80任务、十图8×8 ROI前三层；小门槛不等于全网PASS。无新自动检查，当前线程处理；不要重启、重编或改活动RTL/TB。
+
+完整预期1310任务/分配/释放、2338104320MAC、193372920检查字节、10份128字节输出共1280；SHA16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418。输入仍十张不同合成112×112 RGB数值图：前六张沿用build/self_full_model/images，新增四张scripts/gen_self_ten.py按确定性整数模式生成；不声称真实人脸准确率。完整数据build/self_ten_full，小数据build/self_ten_small；32MiB仿真SRAM，初始化29694464字节。首图诊断量化固定复用，实际SRAM端口输入、整图提交后计算；无CPU/UART/层内条带或512KiB适配。
+
+完整PASS后本机Python运行scripts/prepare_self_ten.py 活动目录，验证源码/数据/输出/1310任务依赖和十帧时序，生成deliverables/self_cnn_ten_<run名>。交互图默认全程十行，三个逐任务PNG、两真实work PNG/VCD/GTKWave；视检full_network/early_tasks/cross_operator及work图，运行validate_gtkwave.ps1隐藏窗口实际验证各10唯一信号（必要时沙盒外）。PNG来自真实事件/VCD，不能交黑截图。报告电脑wall_seconds/模拟器主体/小门槛编译与100MHz条件cycles/1e8分别；本次compile0。输出尚未PASS，不能先宣称成功；若报错查直接原因，保留证据，不盲目重跑。不能直接用旧六图总时间算本次加速比（图数与K1均变）。用户叫停立即停止并保留记录。
+
+## 2026-10-24 八位置1×1及DW3有限优先：小回归PASS（上一轮）
+
+用户提出缩短普通3×3到DW3等待并继续优化1×1，本轮完成可选实现和小回归，未启动新的完整网络、无活动仿真或自动检查。上一轮完整六图153487331拍仍属于旧四位置配置，不可当作本轮全网结果。交付deliverables/pw8_priority/README.md、comparison.json、small_task_comparison.png（已视检）、evidence；设计docs/pw8_priority_design.md。prepare_pw8_priority.py已核验配置、实际选用源码、数据、输出和证据哈希。
+
+新增self_pw8_engine.sv：4×2输出位置、八输入RAM银行、同权重广播最多八MAC/拍，沿用双权重缓冲及八字输出FIFO，精确边界/stride1/2/非对齐。实例仍K3×2、K1×4，其余各1。PW8=0和DW_PRIORITY=0默认保留旧选择；--pw8自动启用前三轮优化，--dw-priority独立控制。它们是RTL例化/编译参数，未做CPU运行时寄存器。DW_PRIORITY启用时优先就绪DW3，连续两项后给普通3×3优先机会，整轮无可发射类别则回退；不抢占执行中的整层，其他池照常。
+
+最终PW8单测20261024_012638_214658_pw8_unit_k1：72数值/3clear/锁存/13非法/2同拍PASS；4×4 Ci=Co64周期22993→14350、读取17408→9216字节，7×7 Ci=Co128为311359→171717、268416→137344字节；1×1 Ci512/Co128仍70744拍，额外空间通道无效。早期四位置×双输入通道尝试20261024_011751_934434_pw8_unit_k1数值PASS但22993→23350更慢，已弃用；build/self_pw8_ic2_rejected.sv仅快照，不要恢复或当最终优化。最终调度控制测试20261024_012510_658248_dispatch_priority七组PASS，覆盖有限优先、单类/缓冲回退、依赖/输入、clear/fault；它使用延迟模型，算术以六图小回归为准。
+
+四配置各overlap/serial/preloaded/stress均PASS：基线20261024_012743_310534_self_six为239519/637967/229199/400488拍；仅优先20261024_011944_108428_self_six为258671/638255/252335/346890；仅PW8 20261024_012424_704291_self_six为229583/586127/222863/389056；两者20261024_012601_237444_self_six为249647/586415/243263/338547。每项六图8×8 ROI首三层、48任务614400MAC107784检查字节6144输出字节，SHA65502954a4aa8457be74b627da09f79194a0de30701285f6f2d64a60437606d7一致。仅优先运行元数据含未选中旧PW8快照，来源核验跳过禁用的PW8模块而非跳过其他代码。
+
+组合在overlap使图1 DW3等待80837→36721拍、首结果194007→134978拍，但整批239519→249647略慢；仅PW8整批229583拍（减少4.15%）。不能把首图响应改善等同吞吐提高，当前小回归建议PW8+原调度，优先策略保留选项。最终组合编译39.265767秒、四场景4.046541秒，不包括前期开发/单测/综合；不是新全网耗时。
+
+最终PW8 OOC 20261024_012253_161051_self_cnn_synth：Vivado2025.2/Z7020/10ns，LUT2700 FF1553 BRAM Tile5 DSP0 WNS+0.579ns，单核相对四位置+453LUT/+199FF/+2BRAM36等效，四核增加8块（约36KiB分配；实际新增输入8KiB）。不是整机P&R、板级100MHz或512KiB适配证明。独立缓存.pw8_unit_k1/.dispatch_priority_unit/.self_six_pw8_build/.self_six_pw8_build_priority/.self_six_wide_build_priority；全网若后续运行须同配置gate和源码/数据/程序哈希匹配，不自动启动。
+
+## 2026-10-24 三轮优化后的完整六图全网PASS并交付（上一轮）
+
+run build/runs/20261024_003528_447842_self_six于00:42:00完整PASS，无活动仿真，不重跑。786任务/分配/释放、1402862592MAC、116023752检查字节、6份128字节输出；SHA9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf，与原始六图与独立整数参考一致。153487331周期，假设100MHz为1.53487331秒/六图整批；原始六图898010175拍/8.98010175秒，周期累计减少82.9081%，同频批次速度5.85071倍。此为K1四位置并行、搬运重叠、K3流水及本轮宽读/Post的三轮累计收益，本轮单独只有小回归263887→239519拍的证据。
+
+电脑主体374.345秒，总386.187886秒（约6分26秒），本次compile0；小门槛编译51.969802秒，开发/单测/综合另计。跨图实际work重叠119334705拍，跨类47098777拍；Post/Add的work是接受写请求，可含四元素，不能与MAC事件逐个等同。池仍K3×2/K1×4/DW7/Post/Add/Pad各1。两张实际MAC/跨类窗口只有相对起点256拍，完整任务在events.csv。
+
+最终交付deliverables/self_cnn_six_20261024_003528_447842_self_six/README.md、comparison.json、full_comparison.png、task_timeline/index.html及三逐任务PNG、两个work PNG/VCD/GTKWave。源/数据/输出哈希核对通过，逐任务代表窗口与全网对比、真实work图均已视检。GTKWave隐藏窗口实际验证两个会话各10唯一信号PASS（gtkwave_validation.json）；沙盒DLL重定位问题沙盒外解决。prepare_wide_pipe.py只修报告器：本机无matplotlib，改用Pillow绘真实VCD阶梯；修UTF-8读取，未改RTL/数据/证据。mobilefacenet检查在交付后删除。32MiB仿真、合成112×112 RGB、诊断量化、整图输入提交的范围不变，不宣称512KiB/CPU/UART/层内条带/识别准确率或板级100MHz。
+
+## 2026-10-24 第三轮宽读取/后处理优化：小回归PASS，完整六图运行中（历史）
+
+用户最新“可以”授权K3宽读取、后处理流水与打包写回，单元/小回归通过后跑完整六图。新增self_conv_wide_engine（32位缓存字节使能写、通道组/权重对齐四字节读取、精确尾部，原2×2复用和MAC流水保留）、quant_post_pipe_engine（五同步参数RAM银行、七级整数流水、四元素组打包32位写、字节头尾，Post/Add共用）。旧引擎不改。三层top新增WIDE_PIPE=0；本轮使用PW4=1/CONV_OVERLAP=1/WIDE_PIPE=1，runner --wide-pipe自动设置，独立缓存.self_six_wide_build。算子数量仍K3×2/K1×4/DW7/Post/Add/Pad各1，无跨算子直接融合或同帧条带计算。
+
+单元PASS：20261024_002915_167020_wide_unit_k3（50数值/3clear/锁存/13非法/2同拍）；20261024_003247_912639_post_pipe_unit（40新旧+独立128bit参考/18同拍尾部/3clear/7非法/2锁存）。K3 ci64普通样例58164→26496拍，DW3 32372→20847；Post ci64 count199为3296→2769，Add4404→3676。早期K3步进转换笔误及Post读请求wdata稳定性失败均已修正，保留旧失败记录，勿作最终证据。新单测缓存.conv_wide_unit_k3/.post_pipe_unit；首次K3失败误用了.conv_overlap_unit_k3目录但原Vself_optimized_unit_top程序仍保留，不依赖该目录作本轮gate。
+
+最终小门槛build/runs/20261024_003435_837468_self_six四项PASS：overlap239519/serial637967/preloaded229199/stress400488；每项48任务614400MAC107784检查字节6144输出字节SHA65502954a4aa8457be74b627da09f79194a0de30701285f6f2d64a60437606d7。上一轮小overlap263887→239519（-9.23%）。编译52秒左右，精确compile_seconds见result；四场景wall_seconds4.693348。真实算子访存反压及输出检查已覆盖，不当作完整网络PASS。
+
+OOC Z7020 10ns：K3 run20261024_003208_449556_self_cnn_synth LUT2033/FF1528/BRAM6/DSP0/WNS+0.147；Post run20261024_003338_786521_self_cnn_synth 1092/848/2.5/8/+2.674。K3综合元数据含当时未用的旧Post快照，只验证实际selected源，不要求未选中模块hash相同。单模块结果不是整机P&R/板级频率。新Post修复自身同步RAM推断，旧DW7等整机问题尚不代表解决。
+
+**唯一活动全网run：build/runs/20261024_003528_447842_self_six，exec会话95147。** --wide-pipe --reuse --full --data build/self_six_full --gate build/runs/20261024_003435_837468_self_six；compile0，源码/可执行/数据锁定。六张不同合成112×112 RGB，同批交错完整MobileFaceNet；预期786任务、1402862592MAC、116023752检查字节、6结果768字节，SHA9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf。32MiB仿真SRAM，输入由TB经真实SRAM逐张写入，整图提交后算；非CPU/UART/层内条带/识别精度/512KiB适配。不要改活动RTL、重启或重复编译；用户允许30分钟低频检查，只在完成/报错时通知。
+
+完整PASS后本机Python执行scripts/prepare_wide_pipe.py 活动run，核验完整源数据输出哈希，调用prepare_self_six.py和已参数化prepare_self_six_tasks.py，生成deliverables/self_cnn_six_<run名>。新任务图动态从本次事件选区间，不使用旧固定600ms/162ms。视检full_comparison.png、task_timeline/early_tasks.png、cross_operator.png和实际work波形；运行输出目录validate_gtkwave.ps1，以隐藏GTKWave实际载入两个会话各10唯一信号。沙盒DLL问题可沙盒外重试，不能把黑色截图交付。报告器可修，不改RTL证据。报告全网原始六图898010175拍→当前的三轮累计收益，不能归因全部为本轮；本轮单独收益只在小回归测得。operator_work的Post/Add是接受写请求，一次可写四元素，不能把脉冲减少当少做算术。电脑wall_seconds和假设100MHz cycles/1e8分开。完成交付或直接错误报告后删除本检查；用户叫停立即停当前仿真并保存记录。设计docs/wide_pipe_design.md；当前尚未生成完整新交付。
+
+## 2026-10-23 第二轮卷积优化：预取/写回重叠与K3流水PASS（最新）
+
+用户明确“继续优化”。新增self_pw4_overlap_engine.sv（双权重银行、八字地址/结果FIFO、同一32位单未完成请求接口；本地MAC与预取/写回重叠）和self_conv_pipe_engine.sv（同步读/乘法/累加流水、结束标记排空，普通/DW3共用）。旧self_pw4_engine与self_conv_engine保持原样。self_stream_top/self_fixed_network_top/tb新增CONV_OVERLAP=0；设1选择两种新引擎，保持K3×2/K1×4及其他算子数量。runner --conv-overlap自动PW4=1，新缓存.self_six_overlap_build；未改原调度/存储/后处理算术。
+
+最终K1单层run20261023_234841_933549_overlap_unit_k1：68数值、3clear、锁存、13非法、2同拍响应PASS；4×4 ci/co64从上一版40667→22993拍，3330拍MAC与读响应同拍、460拍与写响应同拍，另压力用例队列满278拍无损。K3单层20261023_234030_346653_overlap_unit_k3：50数值及同组协议检查PASS，普通3×3 ci64样例73662→58164，DW3 ci64为36404→32372。K3 run元数据还含当时未选中K1源码，交付仅验证各配置实际选中的模块及共同TB哈希，不能要求未使用的旧K1快照等于当前K1。
+
+最终六图8×8 ROI首三层run20261023_235119_795821_self_six四项PASS：overlap263887/serial701935/preloaded260719/stress421489；48任务、614400MAC、107784检查字节、6144结果字节SHA65502954a4aa8457be74b627da09f79194a0de30701285f6f2d64a60437606d7。当前接口重跑上一版baseline20261023_234525_300860_self_six仍为381151/951631/366223/501316，正常周期再降30.77%。最终四场景电脑3.941秒、编译66.225秒，不包含前面开发/试验/综合耗时；100MHz条件小批次2.63887ms，不可推算全网。本轮未跑完整网络、未启用定时任务，无活动仿真。
+
+最终单模块Vivado2025.2 XC7Z020-CLG484-1 10ns OOC：K1 run234951_450814 LUT2247/FF1354/BRAM Tile3/DSP0/WNS+0.105；K3 run234300_042375 LUT1928/FF1523/BRAM6/DSP0/WNS+0.289。旧K1 run231332_289873为2036/1268/2.5/0/+0.717，旧K3 run234714_853631为1947/1505/6/0/+0.078。四K1共增加2个36Kb BRAM Tile；没有整机布局布线/板级频率或512KiB适配结论。早期共享字节计数路径WNS-2.322已修复，使用234951最终报告，不用早期失败时序。
+
+交付deliverables/conv_overlap/README.md、comparison.json、八组证据；docs/conv_overlap_design.md说明双缓冲、队列、phase与复现。prepare_conv_overlap.py已核验来源、源码、数据、输出和同配置对照。unit runner scripts/run_conv_overlap_unit_wsl.py（--k3），缓存.conv_overlap_unit_k1/.conv_overlap_unit_k3。如后续获准全网，可run_self_six_wsl.py --conv-overlap --reuse --full --data build/self_six_full --gate build/runs/20261023_235119_795821_self_six，必须源码/可执行/数据哈希匹配；本轮不自动启动。下一阶段尚未做卷积→后处理融合、K3宽加载或输入条带预取。
+
+## 2026-10-23 1×1四位置并行优化：小回归与单引擎综合PASS
+
+用户授权修改1×1并行度。新增rtl/cnn_self/self_pw4_engine.sv：2×2位置四路并行、同步RAM读/寄存乘法/INT32累加流水，输入跨输出通道复用、权重广播四位置，对齐32位读取，非对齐/尾部字节回退。每套单未完成访存，未做DMA与计算重叠。self_fixed_network_top/self_stream_top/tb入口PW4=1启用，默认0保留旧版；K3×2/K1×4/DW7/Post/Add/Pad各1配置与六帧调度不变。C++ MAC统计改用真实conv_mac_count增量，不能再将K1 work一拍计为一个MAC。
+
+最终单层build/runs/20261023_231259_pw4_unit：65数值、3clear重启、锁存、13非法、2同拍响应PASS。4×4 ci/co64样例208789→40667拍（约5.13倍），读写请求18432→5376、读取字节17408不变。最终六图8×8 ROI首三层小回归20261023_231454_585523_self_six四项PASS：overlap381151、serial951631、preloaded366223、stress501316；48任务/107784检查字节、6144输出字节；SHA65502954a4aa8457be74b627da09f79194a0de30701285f6f2d64a60437606d7。旧PW4=0对照20261023_225321_731419_self_six为570511/1793455/601903/692196，数据及其他算子一致，正常并行周期减少33.19%。本次最终小回归电脑执行5.547秒、编译78.820秒，不含先前调试和综合。原完整六图898010175拍仍是旧引擎结果，本轮未重跑完整网络，不得按比例宣称全网加速。
+
+最终Vivado2025.2 XC7Z020-CLG484-1 10ns OOC：20261023_231332_289873_self_cnn_synth新K1 LUT2036/FF1268/BRAM Tile2.5/DSP0/WNS+0.717ns；旧K1同机20261023_231141_973656_self_cnn_synth LUT1956/FF1492/BRAM2.5/DSP0/WNS+0.078ns。只有单引擎综合，没有整机P&R或上板频率验证，32MiB仿真SRAM未解决512KiB。初版动态位写缓存推断80BRAM、乘加同拍WNS负值的问题均已修复；早期测试报告不是当前最终RTL证据。
+
+交付deliverables/self_pw4/README.md、comparison.json、五组证据，设计docs/self_pw4_design.md；prepare_pw4.py已核验最终源码/数据/输出哈希及对照配置。runner脚本run_pw4_unit_wsl.py、run_self_six_wsl.py --data build/self_six_small --pw4；候选缓存.self_six_pw4_build、旧版对照.self_six_pw4_baseline_build、单测.pw4_unit_build，原.self_six_build保留。新全网如获准可--reuse --pw4 --full --data build/self_six_full --gate build/runs/20261023_231454_585523_self_six，必须哈希匹配；本轮没有活动仿真或定时检查，不自动启动全网。Vivado Windows启动器用.self_synth_launch无空格路径暂存以避免旧路径解析错误，结果保留在build/runs。
+
+## 2026-10-23 六帧逐任务图重绘
+
+用户要求看到每张图每段时间在做什么，而不是整帧长条。新增scripts/prepare_self_six_tasks.py和self_six_tasks_view.html，根据完整PASS的786 launch/done配对（另6输入区间）生成deliverables/self_cnn_six_20261023_215237_self_six/task_timeline：前1000ms、145–180ms、全程PNG及交互index.html、tasks.csv/json。每图一行，颜色运算类型、标签层号/实例，600ms四K1处理图1–4、两K3执行图5–6 DW3；162ms有卷积/Post/Pad跨类。任务块包含访存等待，非每拍MAC有效。未重跑仿真、未改RTL。PNG视检、交互DOM逻辑和JS语法校验PASS（不是浏览器截图）。新图入口已加入交付README。
+
+## 2026-10-23 六张完整图片同批全网PASS并交付（最新）
+
+完整run build/runs/20261023_215237_self_six于22:23:24完成PASS；786任务/分配/释放、116023752检查字节、1402862592MAC，6份128UINT8真实SRAM读出768字节SHA9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf，已核对源码/数据/逐输出golden。898010175周期，100MHz条件为8.98010175秒/六图；电脑主体1809.05秒、总1817.887634秒，compile0（小门槛首编65.270164秒）。峰值6帧在途，跨帧实际work482753085拍(53.76%)、跨类60362645拍、双K3 MAC5534342拍。没有全网serial对照，不宣称六倍加速。
+
+交付deliverables/self_cnn_six_20261023_215237_self_six，README、三PNG均视检；GTKWave两个会话真实Tcl验证各10唯一信号PASS，gtkwave_validation.json/provenance保存。prepare_self_six.py修复了会话总线范围与Tcl方法（初次错误会话未通过，最终通过）；未改算子或运行证据。输入6张不同合成112×112，首图诊断量化，非识别准确率；整帧写完提交后计算，可与后续帧输入重叠，非UART/CPU/层内条带。32MiB仿真存储未解决512KiB。仿真已结束，不重复运行；交付后删除mobilefacenet检查。
+
+## 2026-10-23 六帧同批全网复测进行中（最新）
+
+用户要求拉取zhang并重跑6张完整图片，随后明确选择扩展六张同批交错并行，不是4+2。已快进到origin/zhang 6b28122。新增FRAME_CONTEXTS参数（默认4），本次6上下文/24槽、786任务，K3×2/K1×4/Post/Add/DW7/Pad各1；算子算术源码未改。本机没有原环境MSVC，新增scripts/run_self_six_wsl.py用既有WSL Verilator构建，缓存根目录.self_six_build。小门槛build/runs/20261023_215125_self_six四项PASS：overlap570511/serial1793455/preloaded601903/stress692196拍，48任务，各107784检查字节；六帧峰值在途，跨帧真实work重叠，首次编译65.270秒、四项总11.681秒。
+
+唯一活动完整run build/runs/20261023_215237_self_six，会话52868；--data build/self_six_full --reuse --full --gate build/runs/20261023_215125_self_six。源/数据/工具/可执行hash在result.json，compile=0。输入沿用旧四图合成模式并扩为6张不同112×112 RGB；固定模型checkpoint hash已验证。完整131步/图，预期总786任务、1402862592 MAC、768字节输出SHA9e4b5e7edf785b32a7c60d12cee48ac038c7e74403129982d8047b4b7440fcdf。仿真SRAM32MiB/初始化18,302,464字节，未适配512KiB，不是CPU/UART或层内条带输入。不要重复启动或改已编译源码。仅完整PASS才交付。
+
+完毕用Windows Python执行scripts/prepare_self_six.py 活动run，输出deliverables/self_cnn_six_<run名>，核对哈希/786任务/6结果/768字节、视检frame_timeline.png，再用本地GTKWave隐藏窗口载入mac_detail.gtkw和pipeline_detail.gtkw并执行verify_*.tcl各10信号。仅生成会话不等于已GUI校验。脚本保留旧四图交付。报告电脑wall_seconds、cycles/100000毫秒@假设100MHz和真实work重叠；窗口256拍无全局原点，events.csv为全程。故障先查日志，不能盲目重跑。用户此前授权30分钟低频检查继续适用，正常保持安静，仅完成/报错通知。
+
 ## 2026-10-23 当前交付：算子数量优化、同一四图全网重跑 PASS
 
 后续约束：用户确认只有512 KB存储、没有DDR/Flash等其他存储。目前只完成容量分析与方案讨论，未实施512 KiB适配、模型裁剪、INT4或跨层分块。当前新CNN主数组声明合计17,128,048 B（16 MiB共享SRAM + 350,832 B内部缓存/表/运行命令），约16.335 MiB，另少量状态寄存器；不能当作板上已有容量。原INT8权重980,096 B已超512 KiB。旧face_soc_top仍接旧CNN，默认256 KiB数据SRAM+64 KiB指令ROM。用户随后明确要求将当前已修改项目代码提交并推送到origin/zhang；上传包含源码、复现说明和验证资料，不代表512 KiB或上板已完成。

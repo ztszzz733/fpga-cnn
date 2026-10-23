@@ -35,7 +35,7 @@ def utilization_rows(report: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--part', default='xc7z020clg484-1')
-    parser.add_argument('--top', choices=['self_network_top', 'self_conv_engine'], default='self_network_top')
+    parser.add_argument('--top', choices=['self_network_top', 'self_conv_engine', 'self_pw4_engine', 'self_conv_pipe_engine', 'self_pw4_overlap_engine', 'self_conv_wide_engine', 'quant_post_pipe_engine', 'self_pw8_engine'], default='self_network_top')
     parser.add_argument('--max-kernel', choices=[1, 3], type=int, default=3,
                         help='Only applies to --top self_conv_engine')
     parser.add_argument('--period-ns', type=float, default=10.0)
@@ -51,7 +51,7 @@ def main() -> int:
               'max_channels': 512, 'units': {'k3': 2, 'k1': 1, 'dw7': 1, 'post': 1, 'add': 1, 'pad': 1},
               'stage': 'out_of_context_synthesis', 'place_route_performed': False,
               'sources_sha256': {}, 'errors': []}
-    if args.top == 'self_conv_engine':
+    if args.top != 'self_network_top':
         result.update(max_tasks=None, max_kernel=args.max_kernel, units={'convolution': 1})
     output = run / 'result.json'
     def save():
@@ -63,6 +63,8 @@ def main() -> int:
         manifest = ROOT / 'rtl/filelists/cnn_self.f'
         sources = [ROOT / x.strip() for x in manifest.read_text().splitlines()
                    if x.strip() and not x.lstrip().startswith(('#', '//'))]
+        sources += [ROOT / ('rtl/cnn_self/'+name+'.sv') for name in ('self_pw4_engine','self_pw4_overlap_engine','self_conv_pipe_engine','self_conv_wide_engine','self_pw8_engine')]
+        sources += [ROOT/'rtl/cnn_quant/quant_post_pipe_engine.sv']
         sources += [manifest, Path(__file__).resolve(), ROOT / 'scripts/synth_self_cnn.tcl']
         result['sources_sha256'] = {str(p.relative_to(ROOT)).replace('\\', '/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
         found = tools()
@@ -75,6 +77,16 @@ def main() -> int:
             vivado = Path(candidate)
         command = [str(vivado), '-mode', 'batch', '-nojournal', '-log', str(run / 'vivado.log'),
                    '-source', str(ROOT / 'scripts/synth_self_cnn.tcl'), '-tclargs', str(ROOT), str(run), args.part, str(args.period_ns), args.top, str(args.max_kernel)]
+        if os.name == 'nt':
+            # Keep batch arguments space-free; pass project paths through Tcl.
+            launch_dir = ROOT.parents[1] / '.self_synth_launch' / run.name
+            launch_dir.mkdir(parents=True, exist_ok=True)
+            entry = launch_dir / 'entry.tcl'
+            values = [ROOT.as_posix(), run.as_posix(), args.part, str(args.period_ns), args.top, str(args.max_kernel)]
+            entry.write_text('set argv [list ' + ' '.join('{' + v + '}' for v in values) + ']\nsource {' + (ROOT / 'scripts/synth_self_cnn.tcl').as_posix() + '}\n')
+            command = [os.environ.get('COMSPEC', 'cmd.exe'), '/d', '/c',
+                       str(base / 'bin/vivado.bat'), '-mode', 'batch', '-nojournal',
+                       '-log', str(launch_dir / 'vivado.log'), '-source', str(entry)]
         result['command'] = command
         result['vivado'] = str(vivado)
         save()
@@ -91,9 +103,13 @@ def main() -> int:
         env['SYNTH_COMMON'] = env['RT_LIBPATH']
         # OOC synthesis needs no user Tcl Store. Keep automatic package/cache
         # updates out of the user's profile (also avoids non-ASCII path issues).
+        if os.name == 'nt':
+            env = os.environ.copy()
         env['XILINX_LOCAL_USER_DATA'] = 'no'
+        launch_dir = ROOT.parents[1] / '.self_synth_launch' / run.name
+        launch_dir.mkdir(parents=True, exist_ok=True)
         with (run / 'process.log').open('w', encoding='utf-8') as log:
-            completed = subprocess.run(command, cwd=run, env=env, stdout=log,
+            completed = subprocess.run(command, cwd=launch_dir, env=env, stdout=log,
                                        stderr=subprocess.STDOUT, timeout=args.timeout)
         log_text = (run / 'process.log').read_text(encoding='utf-8', errors='replace')
         result['returncode'] = completed.returncode

@@ -38,7 +38,7 @@ def rounded(v, shift=24):
     return np.sign(v) * ((np.abs(v) + (0 if shift == 0 else 1 << (shift - 1))) >> shift)
 
 
-def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, images=None):
+def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, images=None, contexts: int = 4, max_tasks: int = 1024):
     import numpy as np
     import onnx
     import onnxruntime as ort
@@ -47,7 +47,11 @@ def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, 
 
     began = time.perf_counter()
     model_path, out = Path(model_path).resolve(), Path(out).resolve()
-    assert 1 <= frames <= 4, "one to four finite frame contexts are supported"
+    assert 1 <= frames <= contexts <= 10, "one to ten finite contexts supported"
+    assert max_tasks in (1024, 2048)
+    MAX_TASKS, IW = max_tasks, max_tasks.bit_length() - 1
+    STEPS, LW = MAX_TASKS // 4, IW - 2
+    hold_words = STEPS // 32
     assert model_path.is_file(), f"missing ONNX: {model_path}"
     assert not out.exists() or not any(out.iterdir()), "preserve existing generated data; select an empty output directory"
     out.mkdir(parents=True, exist_ok=True)
@@ -307,10 +311,10 @@ def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, 
         image_addresses.append(base)
         ro_cursor = base + inputs[f].nbytes + GUARD
     readonly_end = align(ro_cursor, 4096)
-    # Reserve all four physical workspaces even in a one-image diagnostic run.
-    workspace_bases = [readonly_end + f * slot_cursor for f in range(4)]
+    # Reserve all configured workspaces even when fewer images are supplied.
+    workspace_bases = [readonly_end + f * slot_cursor for f in range(contexts)]
     init_bytes = workspace_bases[-1] + slot_cursor
-    sram_size = 262144 if small else 16 * 1024 * 1024
+    sram_size = 262144 if small else (32 if contexts > 4 else 16) * 1024 * 1024
     assert init_bytes <= sram_size, ("SRAM parameter too small", init_bytes, sram_size)
     memory = bytearray([POISON]) * init_bytes
     for r in ro:
@@ -356,9 +360,9 @@ def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, 
         use_owners = sum(owner << (LW * u) for u, (_, owner) in enumerate(uses))
         final = local == steps - 1
         meta = [source_mode, (1 << len(deps)) - 1, *(deps + [0, 0])[:2], t["slot"],
-                *[(hold >> (32 * word)) & 0xffffffff for word in range(8)],
+                *[(hold >> (32 * word)) & 0xffffffff for word in range(hold_words)],
                 (1 << len(uses)) - 1, use_slots, use_owners, int(final), t["bytes"] if final else 0]
-        assert len(meta) == 18
+        assert len(meta) == 10 + hold_words
         templates.extend(cmd)
         metas.extend(meta)
         for f in range(frames):
@@ -377,10 +381,10 @@ def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, 
                 slot=f * 4 + t["slot"], macs=j.get("macs", 0), result=final))
             commands.extend(row)
             expected.extend(blob)
-    slot_pairs = [(workspace_bases[f] + s["offset"], s["size"]) for f in range(4) for s in slots]
+    slot_pairs = [(workspace_bases[f] + s["offset"], s["size"]) for f in range(contexts) for s in slots]
     info = [frames, steps, steps * frames, sram_size, init_bytes, len(expected), readonly_end, len(image_payload)]
     info += [x for pair in slot_pairs for x in pair]
-    assert len(info) == 40 and len(commands) == steps * frames * 16
+    assert len(info) == 8 + contexts * 8 and len(commands) == steps * frames * 16
     assert memory[readonly_end:] == bytes([POISON]) * (init_bytes - readonly_end)
     for base, data in zip(image_addresses, inputs):
         assert memory[base:base + data.nbytes] == bytes([POISON]) * data.nbytes
@@ -393,8 +397,8 @@ def generate(model_path: Path, out: Path, frames: int = 4, small: bool = False, 
         hex_words(out / filename, values)
     finals = tensors[jobs[-1]["output"]]["payloads"]
     manifest = dict(status="GENERATED_NOT_RTL_PASS", format="self-fixed-full-v1", full_network=not small,
-        frames=frames, template_steps=steps, total_tasks=steps * frames, max_tasks=MAX_TASKS, iw=IW,
-        template_capacity=STEPS, lw=LW, input_shape=list(inputs[0].shape), input_sources=input_sources,
+        frame_contexts=contexts, frames=frames, template_steps=steps, total_tasks=steps * frames, max_tasks=MAX_TASKS, iw=IW,
+        template_capacity=STEPS, lw=LW, template_meta_words=10 + hold_words, input_shape=list(inputs[0].shape), input_sources=input_sources,
         model=str(model_path), model_sha256=sha(model_path.read_bytes()), generator_sha256=sha(Path(__file__).read_bytes()),
         model_provenance_manifest=str(model_provenance_path) if model_provenance else None,
         model_provenance_sha256=sha(model_provenance_path.read_bytes()) if model_provenance else None,
@@ -427,8 +431,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", type=Path, default=ROOT / "build/self_full_model/mobilefacenet.onnx")
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--contexts", type=int, default=4)
     parser.add_argument("--frames", type=int, default=4)
+    parser.add_argument("--max-tasks", type=int, choices=(1024, 2048), default=1024)
     parser.add_argument("--images", type=Path, nargs="+", help="112x112 RGB files; defaults to model-directory images/test_N.png")
     parser.add_argument("--small", action="store_true", help="pretrained first three Conv layers on 8x8 ROI")
     args = parser.parse_args()
-    generate(args.model, args.out, args.frames, args.small, args.images)
+    generate(args.model, args.out, args.frames, args.small, args.images, args.contexts, args.max_tasks)
