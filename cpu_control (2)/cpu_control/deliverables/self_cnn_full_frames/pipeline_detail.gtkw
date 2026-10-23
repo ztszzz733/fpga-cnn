@@ -1,0 +1,23 @@
+[dumpfile] "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/deliverables/self_cnn_full_frames/evidence/pipeline_detail.vcd"
+[size] 1800 1000
+[signals_width] 350
+@22
+cnn_full.unit_active[9:0]
+@22
+cnn_full.operator_work[9:0]
+@22
+cnn_full.mem_valid[9:0]
+@22
+cnn_full.mem_ready[9:0]
+@22
+cnn_full.mem_write[9:0]
+@22
+cnn_full.mem_response[9:0]
+@22
+cnn_full.frames_ready[3:0]
+@28
+cnn_full.result_valid
+@28
+cnn_full.result_ready
+@22
+cnn_full.completed_count[10:0]

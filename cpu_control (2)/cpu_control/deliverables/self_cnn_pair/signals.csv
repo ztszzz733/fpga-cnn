@@ -1,0 +1,27 @@
+group,physical_signal,width,gtk_color,source,destination,meaning,valid_when
+CONTROL,self_pair_tb.clk,1,1,clock/TB,CNN,Rising edge samples all synchronous handshakes,always
+CONTROL,self_pair_tb.clear,1,1,configuration host,CNN and memory fabric,Abort batch and discard all old responses and reader ACKs,assert through cancellation
+CONTROL,self_pair_tb.start,1,1,configuration host,dispatcher,One pulse starts the fully programmed batch,program_ready after last command
+CONTROL,self_pair_tb.engine_enable,2,1,configuration host,dispatcher,"Available K3 engines, latched at start",at start; at least one enabled
+CONTROL,self_pair_tb.error,1,1,dispatcher,external system,Sticky batch fault; all work cancelled,until clear
+SCHEDULER / OPERATORS,self_pair_tb.unit_start,7,4,dispatcher,seven operators,One launch pulse per selected unit,command/node locked on launch
+SCHEDULER / OPERATORS,self_pair_tb.unit_active,7,4,dispatcher,scheduler/debug,Task assigned until drained operator completion,while task is in flight
+SCHEDULER / OPERATORS,self_pair_tb.operator_busy,7,4,seven operators,dispatcher/debug,"Engine occupied, including memory waits",always; not proof of computation
+SCHEDULER / OPERATORS,self_pair_tb.operator_work,7,4,seven operators,debug,Bits0..3 actual MAC; bits4..6 accepted output write,one event per effective work cycle
+SCHEDULER / OPERATORS,self_pair_tb.completion_pulse,7,4,dispatcher,debug/checker,Operator completed after final write response,single cycle per completion
+SCHEDULER / OPERATORS,self_pair_tb.completed_count,7,4,dispatcher,status/debug,Number of completed tasks,current batch
+MEMORY PORTS,self_pair_tb.mem_valid,7,3,operators,memory fabric,Request offered; all fields stable until accepted,valid and ready at rising edge
+MEMORY PORTS,self_pair_tb.mem_write,7,3,operators,memory fabric,"1=write, 0=read",only while matching mem_valid bit is 1
+MEMORY PORTS,self_pair_tb.mem_ready,7,3,memory fabric,operators,Accept corresponding request,valid and ready at rising edge
+MEMORY PORTS,self_pair_tb.mem_response,7,3,memory fabric,operators,Accepted transaction completed; writes committed,"after acceptance, one outstanding per port"
+BUFFER LEASES,self_pair_tb.buffer_live,8,6,buffer leases,scheduler/debug,Physical slots currently leased,current batch
+BUFFER LEASES,self_pair_tb.buffer_release,8,6,buffer leases,storage/debug,All consumers completed and no external hold,reclaim notification before next reuse
+BUFFER LEASES,self_pair_tb.external_hold,8,6,result handoff,buffer leases,Protect result slot from launch until reader ACK,result may still be computing
+RESULT HANDOFF,self_pair_tb.result_valid,1,5,result handoff,external reader,Descriptor valid and all result writes complete,held until valid and ready
+RESULT HANDOFF,self_pair_tb.result_ready,1,5,external reader,result handoff,All result bytes already read and responses drained,ACK edge with valid; not readiness to start reading
+RESULT HANDOFF,self_pair_tb.result_accept,1,5,result handoff,debug/external system,Previous edge accepted result ACK,one cycle after handshake
+RESULT HANDOFF,self_pair_tb.result_frame,32,5,result handoff,external reader,Frame identifier; completion order may differ,only while result_valid
+RESULT HANDOFF,self_pair_tb.result_addr,32,5,result handoff,external reader,Byte address of final payload,only while result_valid; stable until ACK
+RESULT HANDOFF,self_pair_tb.result_bytes,32,5,result handoff,external reader,Nonzero final payload byte count,only while result_valid; stable until ACK
+RESULT HANDOFF,self_pair_tb.compute_done,1,5,dispatcher,external system,All compute tasks finished,results may still await reader ACK
+RESULT HANDOFF,self_pair_tb.done,1,5,CNN top,external system,"Compute complete, all results ACKed, all slots released",no cancellation active

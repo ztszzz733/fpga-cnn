@@ -1,0 +1,61 @@
+{
+  "rtl_sha256": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+  "variants": [
+    {
+      "name": "tile1_k3_c512",
+      "status": "PASS",
+      "tile": 1,
+      "max_kernel": 3,
+      "max_channels": 512,
+      "case_count": 14,
+      "checked_bytes": 1636,
+      "outputs_sha256": "dd0b897c688a8bfe89fd584c64cfb077e3907999b05ee4500b2473987cd7de12",
+      "seconds": 4.75
+    },
+    {
+      "name": "tile3_k3_c512",
+      "status": "PASS",
+      "tile": 3,
+      "max_kernel": 3,
+      "max_channels": 512,
+      "case_count": 14,
+      "checked_bytes": 1636,
+      "outputs_sha256": "dd0b897c688a8bfe89fd584c64cfb077e3907999b05ee4500b2473987cd7de12",
+      "seconds": 4.344000000000051
+    },
+    {
+      "name": "tile4_k3_c512",
+      "status": "PASS",
+      "tile": 4,
+      "max_kernel": 3,
+      "max_channels": 512,
+      "case_count": 14,
+      "checked_bytes": 1636,
+      "outputs_sha256": "dd0b897c688a8bfe89fd584c64cfb077e3907999b05ee4500b2473987cd7de12",
+      "seconds": 4.233999999999924
+    },
+    {
+      "name": "tile2_k1_c512",
+      "status": "PASS",
+      "tile": 2,
+      "max_kernel": 1,
+      "max_channels": 512,
+      "case_count": 4,
+      "checked_bytes": 564,
+      "outputs_sha256": "7c299ff8026505c9179863d40e85c92b4df48efcc71cfb27bd9c176f3834d67f",
+      "seconds": 4.016000000000076
+    },
+    {
+      "name": "tile4_k3_c1",
+      "status": "PASS",
+      "tile": 4,
+      "max_kernel": 3,
+      "max_channels": 1,
+      "case_count": 6,
+      "checked_bytes": 732,
+      "outputs_sha256": "7b992ca4501ff3fd7b280d3848e6cd60988e47ae7ad3d384d6cc24a80d61fc17",
+      "seconds": 4.375
+    }
+  ],
+  "status": "PASS"
+}

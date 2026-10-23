@@ -1,0 +1,165 @@
+{
+  "status": "READ_ONLY_EVIDENCE_REVIEW_COMPLETE",
+  "new_synthesis_run": false,
+  "new_simulation_run": false,
+  "resource_method": "Arithmetic sum of existing standalone OOC synthesized kernels; excludes all non-convolution units and integration/control/memory logic. Not a new whole-top resource measurement.",
+  "units": {
+    "k3": {
+      "status": "PASS",
+      "evidence_run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150913_240097_self_cnn_synth",
+      "report_sha256": {
+        "result.json": "773c841c95e28b86f1f3b9b8a482c3c210f8e856b514ee0bf4ac2111b85d23d2",
+        "utilization.rpt": "e6e9463dd2fa6f95d1ac1c219aa60bd07c9692b431addd240dd5c91a47cf95c4",
+        "timing_summary.rpt": "9154e6b5596d62a45a989a2a5a7abb94acb0e4c1e76a5996f0d0398383230445",
+        "clock.xdc": "574b9cce991b84fa5895dd73635eecb0418a2a40eedc732f08e23ad8acd9da37"
+      },
+      "source_sha256": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "part": "xc7z020clg484-1",
+      "period_ns": 10.0,
+      "frequency_constraint_mhz": 100,
+      "stage": "out_of_context_synthesis",
+      "place_route_performed": false,
+      "worst_setup_slack_ns": 0.078,
+      "parameters": {
+        "MAX_CHANNELS": 512,
+        "MAX_KERNEL": 3,
+        "TILE": 2
+      },
+      "lut": 1938,
+      "ff": 1505,
+      "bram36_equivalent": 6,
+      "ramb36e1": 6,
+      "ramb18e1": 0,
+      "dsp48e1": 0,
+      "logical_input_cache_bytes": 12800,
+      "logical_weight_cache_bytes": 4608,
+      "tile_sum_bytes": 16
+    },
+    "k1": {
+      "status": "PASS",
+      "evidence_run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_151108_866766_self_cnn_synth",
+      "report_sha256": {
+        "result.json": "08c5473aa7ac666352836fc83282d4057122f586366a418198f7fdffb2c1975e",
+        "utilization.rpt": "16464f5b895d39ea3c8bd33a86a73f9ab55e45411be4e220e92dcc79cd965b49",
+        "timing_summary.rpt": "fd1870829e37e935fb5523841cedaabdcb30a35923cd57c9a5e360c2e7ecc0fc",
+        "clock.xdc": "574b9cce991b84fa5895dd73635eecb0418a2a40eedc732f08e23ad8acd9da37"
+      },
+      "source_sha256": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "part": "xc7z020clg484-1",
+      "period_ns": 10.0,
+      "frequency_constraint_mhz": 100,
+      "stage": "out_of_context_synthesis",
+      "place_route_performed": false,
+      "worst_setup_slack_ns": 0.078,
+      "parameters": {
+        "MAX_CHANNELS": 512,
+        "MAX_KERNEL": 1,
+        "TILE": 2
+      },
+      "lut": 1951,
+      "ff": 1491,
+      "bram36_equivalent": 2.5,
+      "ramb36e1": 2,
+      "ramb18e1": 1,
+      "dsp48e1": 0,
+      "logical_input_cache_bytes": 4608,
+      "logical_weight_cache_bytes": 512,
+      "tile_sum_bytes": 16
+    }
+  },
+  "old_4k3_2k1": {
+    "pool": {
+      "k3": 4,
+      "k1": 2,
+      "dw7": 1,
+      "post": 1,
+      "add": 1,
+      "pad": 1
+    },
+    "estimated_convolution_only": true,
+    "lut": 11654,
+    "ff": 9002,
+    "bram36_equivalent": 29.0,
+    "ramb36e1": 28,
+    "ramb18e1": 2,
+    "dsp48e1": 0,
+    "logical_input_cache_bytes": 60416,
+    "logical_weight_cache_bytes": 19456,
+    "tile_sum_bytes": 96,
+    "logical_input_plus_weight_cache_bytes": 79872,
+    "convolution_lut_fraction_device_percent": 21.906015037593985,
+    "convolution_bram_fraction_device_percent": 20.714285714285715
+  },
+  "candidate_2k3_4k1": {
+    "pool": {
+      "k3": 2,
+      "k1": 4,
+      "dw7": 1,
+      "post": 1,
+      "add": 1,
+      "pad": 1
+    },
+    "estimated_convolution_only": true,
+    "lut": 11680,
+    "ff": 8974,
+    "bram36_equivalent": 22.0,
+    "ramb36e1": 20,
+    "ramb18e1": 4,
+    "dsp48e1": 0,
+    "logical_input_cache_bytes": 44032,
+    "logical_weight_cache_bytes": 11264,
+    "tile_sum_bytes": 96,
+    "logical_input_plus_weight_cache_bytes": 55296,
+    "convolution_lut_fraction_device_percent": 21.954887218045112,
+    "convolution_bram_fraction_device_percent": 15.714285714285714
+  },
+  "candidate_minus_old": {
+    "lut": 26,
+    "ff": -28,
+    "bram36_equivalent": -7.0,
+    "ramb36e1": -8,
+    "ramb18e1": 2,
+    "dsp48e1": 0,
+    "logical_input_cache_bytes": -16384,
+    "logical_weight_cache_bytes": -8192,
+    "tile_sum_bytes": 0,
+    "logical_input_plus_weight_cache_bytes": -24576
+  },
+  "logical_cache_reduction_percent": 30.76923076923077,
+  "bram_tile_reduction_percent": 24.137931034482758,
+  "cache_formula": {
+    "EDGE": "2*(TILE-1)+MAX_KERNEL",
+    "INPUT_BYTES": "EDGE*EDGE*MAX_CHANNELS",
+    "WEIGHT_BYTES": "MAX_KERNEL*MAX_KERNEL*MAX_CHANNELS",
+    "tile_sum": "TILE*TILE*4 bytes, implemented with registers in these OOC runs"
+  },
+  "whole_top_status": {
+    "validated": false,
+    "historical_attempt": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150436_706083_self_cnn_synth",
+    "historical_pool": {
+      "k3": 2,
+      "k1": 1,
+      "dw7": 1,
+      "post": 1,
+      "add": 1,
+      "pad": 1
+    },
+    "historical_status": "FAIL",
+    "error": "Vivado synthesis did not complete: ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'params_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (81920) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 81920}' to allow the memory to be dissolved into individual bits",
+    "dw7_warning": "Synth 8-11357: 3D weight_mem_reg potentially dissolved into 200704 register bits",
+    "current_sources_match_historical": {
+      "rtl/cnn_self/self_conv_engine.sv": true,
+      "rtl/cnn_quant/quant_post_engine.sv": true,
+      "rtl/cnn_quant/dw7_cached_engine.sv": true
+    },
+    "current_ten_unit_top_synthesis_pass_available": false,
+    "place_route_performed": false
+  },
+  "limitations": [
+    "Six convolution instances only; Post, Add, DW7, Pad, scheduler, leases, fixed programmer, result handoff, and SRAM/arbitration omitted from totals.",
+    "Standalone OOC sums can differ from integrated synthesis because of constant propagation, sharing and physical optimizations.",
+    "100 MHz is the standalone synthesis clock constraint; no routed full-top timing closure or board fit is established.",
+    "A successful full-network arithmetic simulation does not establish whole-top synthesis feasibility.",
+    "Declared local-cache capacity and synthesized BRAM allocation are distinct quantities. Shared feature-map SRAM allocation is not reduced by this local-cache estimate."
+  ]
+}

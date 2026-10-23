@@ -1,0 +1,3 @@
+﻿configuration,k3,k1,cycles,compute_done_cycle,conditional_ms_at_100MHz,conditional_frames_per_second_at_100MHz,multi_frame_work_cycles,cross_operator_work_cycles,input_mac_cycles,actual_macs,checked_bytes,simulation_seconds
+baseline,4,2,1138093351,1138093244,11380.93351,0.35146501791661905,82088133,24732963,1269827,935241728,77349168,2620.83
+candidate,2,4,653428459,653428352,6534.28459,0.6121557677670724,315946899,29131085,1208090,935241728,77349168,1421.11

@@ -3,7 +3,17 @@ build/
 .venv/
 __pycache__/
 .pytest_cache/
+.self_full_native/
 *.pyc
+# Reviewed waveform evidence; keep other generated traces ignored.
+!deliverables/self_cnn_pair/dual/control.vcd
+!deliverables/self_cnn_four_frames/overlap/control.vcd
+!deliverables/self_cnn_full_frames/evidence/mac_detail.vcd
+!deliverables/self_cnn_full_frames/evidence/pipeline_detail.vcd
+!deliverables/self_cnn_full_optimized/evidence/baseline/mac_detail.vcd
+!deliverables/self_cnn_full_optimized/evidence/baseline/pipeline_detail.vcd
+!deliverables/self_cnn_full_optimized/evidence/candidate/mac_detail.vcd
+!deliverables/self_cnn_full_optimized/evidence/candidate/pipeline_detail.vcd
 # Pinned external checkout; see docs/nvdla_small_integration.md.
 third_party/nvdla/
 third_party/vicuna2_tests/

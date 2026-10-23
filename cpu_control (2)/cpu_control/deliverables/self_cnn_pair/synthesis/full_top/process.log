@@ -1,0 +1,241 @@
+INFO: [Common 17-3922] A valid Vivado Design Suite BASIC license has been detected. Your current license is active and will expire on 08-aug-2027.
+
+****** Vivado v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 15:04:37 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'no'.
+source {D:\zhang\fpga-cnn\cpu_control (2)\cpu_control\scripts\synth_self_cnn.tcl}
+# set root [file normalize [lindex $argv 0]]
+# set out [file normalize [lindex $argv 1]]
+# set part [lindex $argv 2]
+# set period [lindex $argv 3]
+# set_param general.maxThreads 2
+# create_project -in_memory -part $part
+create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:10 . Memory (MB): peak = 595.012 ; gain = 268.625
+# set fp [open [file join $root rtl filelists cnn_self.f] r]
+# set sources {}
+# foreach line [split [read $fp] "\n"] {
+#  set line [string trim $line]
+#  if {$line eq "" || [string match {#*} $line] || [string match {//*} $line]} {continue}
+#  lappend sources [file join $root $line]
+# }
+# close $fp
+# read_verilog -sv $sources
+# set xdc [file join $out clock.xdc]
+# set fp [open $xdc w]
+# puts $fp "create_clock -name clk -period $period \[get_ports clk\]"
+# close $fp
+# read_xdc [list $xdc]
+# synth_design -top self_network_top -part $part -mode out_of_context -flatten_hierarchy rebuilt -generic MAX_TASKS=64
+Command: synth_design -top self_network_top -part xc7z020clg484-1 -mode out_of_context -flatten_hierarchy rebuilt -generic MAX_TASKS=64
+Starting synth_design
+Attempting to get a license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Vivado_Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Designutils 20-5008] Incremental synthesis strategy default
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 6996
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1400.129 ; gain = 578.078
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'self_network_top' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_network_top.sv:7]
+	Parameter MAX_TASKS bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'self_conv_engine' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:9]
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+	Parameter MAX_KERNEL bound to: 3 - type: integer 
+	Parameter TILE bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_conv_engine' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:9]
+INFO: [Synth 8-6157] synthesizing module 'self_conv_engine__parameterized0' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:9]
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+	Parameter MAX_KERNEL bound to: 1 - type: integer 
+	Parameter TILE bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_conv_engine__parameterized0' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:9]
+INFO: [Synth 8-6157] synthesizing module 'quant_post_engine' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_post_engine.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'quant_post_engine' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_post_engine.sv:6]
+INFO: [Synth 8-6157] synthesizing module 'self_result_handoff' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:3]
+	Parameter MAX_TASKS bound to: 64 - type: integer 
+	Parameter IW bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_result_handoff' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'self_buffer_leases' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:4]
+	Parameter MAX_TASKS bound to: 64 - type: integer 
+	Parameter IW bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_buffer_leases' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'self_dispatch' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:5]
+	Parameter MAX_TASKS bound to: 64 - type: integer 
+	Parameter IW bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_dispatch' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'dw7_cached_engine' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/dw7_cached_engine.sv:5]
+	Parameter MAX_WIDTH bound to: 7 - type: integer 
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+	Parameter LANES bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'dw7_cached_engine' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/dw7_cached_engine.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'pad_hwc_engine' [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/pad_hwc_engine.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'pad_hwc_engine' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/pad_hwc_engine.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'self_network_top' (0#1) [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_network_top.sv:7]
+WARNING: [Synth 8-6014] Unused sequential element w_reg was removed.  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:120]
+WARNING: [Synth 8-7137] Register ib_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:56]
+WARNING: [Synth 8-7137] Register wb_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:57]
+WARNING: [Synth 8-7137] Register ob_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:58]
+WARNING: [Synth 8-7137] Register h_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:120]
+WARNING: [Synth 8-7137] Register ci_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:71]
+WARNING: [Synth 8-7137] Register co_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:72]
+WARNING: [Synth 8-7137] Register k_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:121]
+WARNING: [Synth 8-7137] Register dw_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:121]
+WARNING: [Synth 8-7137] Register stride_two_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:71]
+WARNING: [Synth 8-7137] Register ow_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:122]
+WARNING: [Synth 8-7137] Register oh_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:123]
+WARNING: [Synth 8-7137] Register setup_step_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_bit_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_acc_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_lhs_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:125]
+WARNING: [Synth 8-7137] Register mul_rhs_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:125]
+WARNING: [Synth 8-7137] Register input_row_bytes_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:142]
+WARNING: [Synth 8-7137] Register input_extent_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:56]
+WARNING: [Synth 8-7137] Register weight_per_channel_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:144]
+WARNING: [Synth 8-7137] Register weight_extent_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:57]
+WARNING: [Synth 8-7137] Register output_row_bytes_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:146]
+WARNING: [Synth 8-7137] Register output_extent_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:58]
+WARNING: [Synth 8-7137] Register tile_x_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:159]
+WARNING: [Synth 8-7137] Register tile_y_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:159]
+WARNING: [Synth 8-7137] Register tile_input_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:160]
+WARNING: [Synth 8-7137] Register tile_input_row_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:160]
+WARNING: [Synth 8-7137] Register tile_output_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:161]
+WARNING: [Synth 8-7137] Register tile_output_row_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:161]
+WARNING: [Synth 8-7137] Register tile_w_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:166]
+WARNING: [Synth 8-7137] Register tile_h_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:167]
+WARNING: [Synth 8-7137] Register tile_iw_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:168]
+WARNING: [Synth 8-7137] Register tile_ih_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:169]
+WARNING: [Synth 8-7137] Register load_x_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_y_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_c_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:171]
+WARNING: [Synth 8-7137] Register load_row_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:171]
+WARNING: [Synth 8-7137] Register oc_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:172]
+WARNING: [Synth 8-7137] Register weight_channel_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:172]
+WARNING: [Synth 8-7137] Register weight_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:172]
+WARNING: [Synth 8-7137] Register weight_load_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:172]
+WARNING: [Synth 8-7137] Register output_channel_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:173]
+WARNING: [Synth 8-7137] Register cache_row_bytes_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:185]
+WARNING: [Synth 8-7137] Register pixel_x_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:201]
+WARNING: [Synth 8-7137] Register pixel_y_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:201]
+WARNING: [Synth 8-7137] Register pixel_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:201]
+WARNING: [Synth 8-7137] Register window_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:201]
+WARNING: [Synth 8-7137] Register window_row_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:201]
+WARNING: [Synth 8-7137] Register input_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:202]
+WARNING: [Synth 8-7137] Register kernel_row_base_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:202]
+WARNING: [Synth 8-7137] Register weight_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:203]
+WARNING: [Synth 8-7137] Register tap_x_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:203]
+WARNING: [Synth 8-7137] Register tap_y_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:203]
+WARNING: [Synth 8-7137] Register mac_c_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:203]
+WARNING: [Synth 8-7137] Register accumulator_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:203]
+WARNING: [Synth 8-7137] Register tile_sum_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-7137] Register store_index_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:235]
+WARNING: [Synth 8-7137] Register store_x_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:235]
+WARNING: [Synth 8-7137] Register store_y_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:235]
+WARNING: [Synth 8-7137] Register output_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:236]
+WARNING: [Synth 8-7137] Register output_pixel_row_addr_reg in module self_conv_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:236]
+WARNING: [Synth 8-4767] Trying to implement RAM 'tile_sum_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:221]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-6014] Unused sequential element w_reg was removed.  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:120]
+WARNING: [Synth 8-7137] Register ib_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:56]
+WARNING: [Synth 8-7137] Register wb_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:57]
+WARNING: [Synth 8-7137] Register ob_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:58]
+WARNING: [Synth 8-7137] Register h_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:120]
+WARNING: [Synth 8-7137] Register ci_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:71]
+WARNING: [Synth 8-7137] Register co_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:72]
+WARNING: [Synth 8-7137] Register k_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:121]
+WARNING: [Synth 8-7137] Register dw_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:121]
+WARNING: [Synth 8-7137] Register stride_two_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:71]
+WARNING: [Synth 8-7137] Register ow_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:122]
+WARNING: [Synth 8-7137] Register oh_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:123]
+WARNING: [Synth 8-7137] Register setup_step_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_bit_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_acc_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:124]
+WARNING: [Synth 8-7137] Register mul_lhs_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:125]
+WARNING: [Synth 8-7137] Register mul_rhs_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:125]
+WARNING: [Synth 8-7137] Register input_row_bytes_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:142]
+WARNING: [Synth 8-7137] Register input_extent_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:56]
+WARNING: [Synth 8-7137] Register weight_per_channel_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:144]
+WARNING: [Synth 8-7137] Register weight_extent_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:57]
+WARNING: [Synth 8-7137] Register output_row_bytes_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:146]
+WARNING: [Synth 8-7137] Register output_extent_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:58]
+WARNING: [Synth 8-7137] Register tile_x_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:159]
+WARNING: [Synth 8-7137] Register tile_y_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:159]
+WARNING: [Synth 8-7137] Register tile_input_base_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:160]
+WARNING: [Synth 8-7137] Register tile_input_row_base_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:160]
+WARNING: [Synth 8-7137] Register tile_output_base_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:161]
+WARNING: [Synth 8-7137] Register tile_output_row_base_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:161]
+WARNING: [Synth 8-7137] Register tile_w_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:166]
+WARNING: [Synth 8-7137] Register tile_h_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:167]
+WARNING: [Synth 8-7137] Register tile_iw_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:168]
+WARNING: [Synth 8-7137] Register tile_ih_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:169]
+WARNING: [Synth 8-7137] Register load_x_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_y_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_c_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_index_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:170]
+WARNING: [Synth 8-7137] Register load_addr_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:171]
+WARNING: [Synth 8-7137] Register load_row_addr_reg in module self_conv_engine__parameterized0 has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:171]
+INFO: [Common 17-14] Message 'Synth 8-7137' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-4767] Trying to implement RAM 'tile_sum_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_conv_engine.sv:221]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'params_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/quant_post_engine.sv:39]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'params_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (81920) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 81920}' to allow the memory to be dissolved into individual bits
+WARNING: [Synth 8-4767] Trying to implement RAM 'is_result_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:47]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'slots_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:47]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'frames_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:48]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'addresses_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:48]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'lengths_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_result_handoff.sv:48]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'alloc_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:44]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'slot_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:44]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'hold_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:46]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'uses_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:47]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'use_slots_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:47]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'use_owners_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_buffer_leases.sv:47]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'commands_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:74]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-13159] Potential Runtime issue for RAM 'commands_reg' since this is dissolved into (32768) registers bits. Consider modifying RTL as per supported RAM templates
+WARNING: [Synth 8-4767] Trying to implement RAM 'dv_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:74]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'd0_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:75]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-4767] Trying to implement RAM 'd1_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_self/self_dispatch.sv:75]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  weight_mem_reg with 200704 registers
+WARNING: [Synth 8-6014] Unused sequential element h_reg was removed.  [D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/rtl/cnn_quant/dw7_cached_engine.sv:46]

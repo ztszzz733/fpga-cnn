@@ -1,0 +1,83 @@
+{
+  "views": [
+    {
+      "view": "candidate_mac_detail",
+      "vcd": "evidence/candidate/mac_detail.vcd",
+      "vcd_sha256": "3802d1b574f1cd51039e06c36ff7472dfa4794fb6de338f3337cfde26c9a036d",
+      "signals": [
+        "cnn_full.unit_active",
+        "cnn_full.operator_work",
+        "cnn_full.mem_valid",
+        "cnn_full.mem_ready",
+        "cnn_full.mem_write",
+        "cnn_full.mem_response",
+        "cnn_full.frames_ready",
+        "cnn_full.result_valid",
+        "cnn_full.result_ready",
+        "cnn_full.completed_count"
+      ],
+      "signals_count": 10,
+      "start_ns": 0,
+      "end_ns": 2560,
+      "global_origin_recorded": false
+    },
+    {
+      "view": "candidate_pipeline_detail",
+      "vcd": "evidence/candidate/pipeline_detail.vcd",
+      "vcd_sha256": "5dd6fe329a3c168e26e70d5f1afd4cffcdf656da59e5451d40c62196ca0c91c6",
+      "signals": [
+        "cnn_full.unit_active",
+        "cnn_full.operator_work",
+        "cnn_full.mem_valid",
+        "cnn_full.mem_ready",
+        "cnn_full.mem_write",
+        "cnn_full.mem_response",
+        "cnn_full.frames_ready",
+        "cnn_full.result_valid",
+        "cnn_full.result_ready",
+        "cnn_full.completed_count"
+      ],
+      "signals_count": 10,
+      "start_ns": 0,
+      "end_ns": 2560,
+      "global_origin_recorded": false
+    }
+  ],
+  "work_bit_labels": [
+    "K3 (0) MAC",
+    "K3 (1) MAC",
+    "K1 (2) MAC",
+    "K1 (3) MAC",
+    "K1 (4) MAC",
+    "K1 (5) MAC",
+    "DW7 (6) MAC (8 lanes)",
+    "Post (7) accepted write",
+    "Add (8) accepted write",
+    "Pad (9) accepted write"
+  ],
+  "gtk_validation_status": "PASS",
+  "gtk_validation": {
+    "status": "PASS",
+    "evidence": "gtkwave_validation.json",
+    "evidence_sha256": "615912dc006ea6c30a0dda6266f049850c815aacc61372d67e417b5442ffbef5",
+    "tool": "GTKWave 3.3.100 actual Tcl validation",
+    "views": [
+      {
+        "view": "candidate_mac_detail",
+        "session_sha256": "96badc78e2e7547f06ed937470c07242b5333691257767a8031dafedd8f3683a",
+        "vcd_sha256": "3802d1b574f1cd51039e06c36ff7472dfa4794fb6de338f3337cfde26c9a036d",
+        "signals": 10,
+        "unique_signals": 10
+      },
+      {
+        "view": "candidate_pipeline_detail",
+        "session_sha256": "d7b8c09cc3744ba4f53c254ab02a7e65244a829d4c986c5523d90afb0e753c9b",
+        "vcd_sha256": "5dd6fe329a3c168e26e70d5f1afd4cffcdf656da59e5451d40c62196ca0c91c6",
+        "signals": 10,
+        "unique_signals": 10
+      }
+    ],
+    "note": "Previously executed GTKWave/Tcl validation; current session and VCD hashes rechecked."
+  },
+  "note": "Actual candidate samples only. Window-relative time is not network-cycle zero; full timing is in events.csv."
+}

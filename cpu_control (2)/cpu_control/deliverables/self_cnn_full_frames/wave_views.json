@@ -1,0 +1,10 @@
+{
+  "views": [
+    "mac_detail",
+    "pipeline_detail"
+  ],
+  "signals_per_view": 10,
+  "clocks_per_window": 257,
+  "global_origin_recorded": false,
+  "note": "Only two 256-cycle windows were captured; full task timing is in events.csv."
+}

@@ -1,0 +1,71 @@
+{
+  "trace_cycle_to_vcd_interval_ns_offset": 65.0,
+  "trace_sampling": "pre-edge trace matched to corresponding previous VCD interval by first unit_start",
+  "windows": [
+    {
+      "name": "overview",
+      "title": "Two-image computation and result handoff: full recorded run",
+      "trace_cycles": [
+        24,
+        92285
+      ],
+      "vcd_range_ps": [
+        305000,
+        922915000
+      ],
+      "physical_signal_count": 26
+    },
+    {
+      "name": "dual_mac",
+      "title": "Two K3 engines: actual simultaneous MAC activity",
+      "trace_cycles": [
+        3274,
+        3499
+      ],
+      "vcd_range_ps": [
+        32805000,
+        35055000
+      ],
+      "physical_signal_count": 26
+    },
+    {
+      "name": "conv_write",
+      "title": "First convolution writeback: request acceptance and response",
+      "trace_cycles": [
+        2037,
+        2252
+      ],
+      "vcd_range_ps": [
+        20435000,
+        22585000
+      ],
+      "physical_signal_count": 26
+    },
+    {
+      "name": "post_write",
+      "title": "First postprocessing writeback",
+      "trace_cycles": [
+        36499,
+        36714
+      ],
+      "vcd_range_ps": [
+        365055000,
+        367205000
+      ],
+      "physical_signal_count": 26
+    },
+    {
+      "name": "result_ack",
+      "title": "Final result read confirmation and buffer release",
+      "trace_cycles": [
+        92122,
+        92285
+      ],
+      "vcd_range_ps": [
+        921285000,
+        922915000
+      ],
+      "physical_signal_count": 26
+    }
+  ]
+}

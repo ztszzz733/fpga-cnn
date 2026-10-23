@@ -1,0 +1,257 @@
+{
+  "status": "FULL_RTL_COMPARISON_PASS",
+  "baseline": {
+    "run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_180539_292440_self_full",
+    "pool": {
+      "K3": 4,
+      "K1": 2,
+      "Post": 1,
+      "Add": 1,
+      "DW7": 1,
+      "Pad": 1
+    },
+    "exe_sha256": "683c83a06ec5c1ea895a98aa0d6672aece5b0eb50e2f89a3fc1e6f2214553434",
+    "cycles": 1138093351
+  },
+  "candidate": {
+    "run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_194836_645744_self_full",
+    "pool": {
+      "K3": 2,
+      "K1": 4,
+      "Post": 1,
+      "Add": 1,
+      "DW7": 1,
+      "Pad": 1
+    },
+    "exe_sha256": "5bdefad67639cfd8e1c9df12674fa3b05a1d2c1e24edb173235eba137053fa84",
+    "cycles": 653428459
+  },
+  "manifest_sha256": "5add2d08a16845ec1d058a5330880022fe62aa66a7f049db8cc2bd9310e4d1f1",
+  "input_pace": 80,
+  "sram_capacity": 16777216,
+  "actual_macs": 935241728,
+  "checked_bytes": 77349168,
+  "commands": 524,
+  "output_sha256": "80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f",
+  "output_elementwise_equal": true,
+  "protected_rtl_hashes": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_quant/dw7_cached_engine.sv": "12477096d4e3d3aae13f5e4d6188c19a8be1b122b69b20d2662d3698b0f68759",
+    "rtl/cnn_quant/quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+    "rtl/cnn_stream/bai/datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+    "rtl/cnn_stream/stream_dispatch.sv": "025effdb205f0b10dbdce7677b32f3bf3a6858de449b0b095b390aef09c7aa65",
+    "rtl/cnn_stream/stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+    "rtl/cnn_stream/stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+    "rtl/cnn_stream/stream_fixed_programmer.sv": "cf2463f1961a13a402608308042bccee2873c20ec2958a35cca11a2c676067fc",
+    "rtl/cnn_stream/self_stream_top.sv": "bec3a8db3dd4ea025a10e8dfbc66408ddc4590b69b61ef354917bc68a0321a26",
+    "rtl/cnn_stream/self_fixed_network_top.sv": "44da0ae3d19accbf2b9b53e3b2b3ee6e097aa44f50778c578b3682a44915e06d"
+  },
+  "allowed_changed_recorded_sources": [
+    {
+      "path": "scripts/bootstrap_verilator_native.py",
+      "baseline_sha256": "7ef06ffbcdc894ddb1b110185bd770b005fe35b5592286d5758e846ebb7d0a6d",
+      "candidate_sha256": "4272ac509abf9b8d3a724dab62fb91edecf4a7fa77af48f37d46096564452182",
+      "allowed_role": "native simulator build/tool flags"
+    },
+    {
+      "path": "tb/integration/self_full_main.cpp",
+      "baseline_sha256": "44428445b6729a126a5da16a68955d8dd35a571ffd921a509b22d9a7263fcc5d",
+      "candidate_sha256": "8704132a60fdf6dfe0f2f26d5e80ac150390a2dd4e237ec10bfd4b0167e1305a",
+      "allowed_role": "checker / profiling harness and matching operator-count constants"
+    }
+  ],
+  "tool_build_records": {
+    "baseline_flags": [
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500"
+    ],
+    "candidate_flags": [
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500",
+      "-GK3_UNITS=2",
+      "-GK1_UNITS=4",
+      "-GPOST_UNITS=1"
+    ],
+    "baseline_verilator_sha256": "fd38bd05be7ea1f70263451a2154f22782140fbc7e0f386dc10dced750fc892e",
+    "candidate_verilator_sha256": "fd38bd05be7ea1f70263451a2154f22782140fbc7e0f386dc10dced750fc892e",
+    "baseline_runner_sha256": "81037afcbdc7cfc18810abf68aae0ed5bacfaf049bc4f4160766a5a71f516fd7",
+    "candidate_runner_sha256": "221127a78c7d480c18c0ec2db1123357164a7b0eb3cae864c36995ca3a802acc"
+  },
+  "cycles_saved": 484664892,
+  "cycle_reduction_fraction": 0.4258568873758406,
+  "speedup": 1.741726022680013,
+  "conditional_clock_hz": 100000000,
+  "clock_implemented_verified": false,
+  "new_full_lut_measurement": false,
+  "existing_ooc_resource_estimate": {
+    "status": "READ_ONLY_EVIDENCE_REVIEW_COMPLETE",
+    "new_synthesis_run": false,
+    "new_simulation_run": false,
+    "resource_method": "Arithmetic sum of existing standalone OOC synthesized kernels; excludes all non-convolution units and integration/control/memory logic. Not a new whole-top resource measurement.",
+    "units": {
+      "k3": {
+        "status": "PASS",
+        "evidence_run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150913_240097_self_cnn_synth",
+        "report_sha256": {
+          "result.json": "773c841c95e28b86f1f3b9b8a482c3c210f8e856b514ee0bf4ac2111b85d23d2",
+          "utilization.rpt": "e6e9463dd2fa6f95d1ac1c219aa60bd07c9692b431addd240dd5c91a47cf95c4",
+          "timing_summary.rpt": "9154e6b5596d62a45a989a2a5a7abb94acb0e4c1e76a5996f0d0398383230445",
+          "clock.xdc": "574b9cce991b84fa5895dd73635eecb0418a2a40eedc732f08e23ad8acd9da37"
+        },
+        "source_sha256": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+        "part": "xc7z020clg484-1",
+        "period_ns": 10.0,
+        "frequency_constraint_mhz": 100,
+        "stage": "out_of_context_synthesis",
+        "place_route_performed": false,
+        "worst_setup_slack_ns": 0.078,
+        "parameters": {
+          "MAX_CHANNELS": 512,
+          "MAX_KERNEL": 3,
+          "TILE": 2
+        },
+        "lut": 1938,
+        "ff": 1505,
+        "bram36_equivalent": 6,
+        "ramb36e1": 6,
+        "ramb18e1": 0,
+        "dsp48e1": 0,
+        "logical_input_cache_bytes": 12800,
+        "logical_weight_cache_bytes": 4608,
+        "tile_sum_bytes": 16
+      },
+      "k1": {
+        "status": "PASS",
+        "evidence_run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_151108_866766_self_cnn_synth",
+        "report_sha256": {
+          "result.json": "08c5473aa7ac666352836fc83282d4057122f586366a418198f7fdffb2c1975e",
+          "utilization.rpt": "16464f5b895d39ea3c8bd33a86a73f9ab55e45411be4e220e92dcc79cd965b49",
+          "timing_summary.rpt": "fd1870829e37e935fb5523841cedaabdcb30a35923cd57c9a5e360c2e7ecc0fc",
+          "clock.xdc": "574b9cce991b84fa5895dd73635eecb0418a2a40eedc732f08e23ad8acd9da37"
+        },
+        "source_sha256": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+        "part": "xc7z020clg484-1",
+        "period_ns": 10.0,
+        "frequency_constraint_mhz": 100,
+        "stage": "out_of_context_synthesis",
+        "place_route_performed": false,
+        "worst_setup_slack_ns": 0.078,
+        "parameters": {
+          "MAX_CHANNELS": 512,
+          "MAX_KERNEL": 1,
+          "TILE": 2
+        },
+        "lut": 1951,
+        "ff": 1491,
+        "bram36_equivalent": 2.5,
+        "ramb36e1": 2,
+        "ramb18e1": 1,
+        "dsp48e1": 0,
+        "logical_input_cache_bytes": 4608,
+        "logical_weight_cache_bytes": 512,
+        "tile_sum_bytes": 16
+      }
+    },
+    "old_4k3_2k1": {
+      "pool": {
+        "k3": 4,
+        "k1": 2,
+        "dw7": 1,
+        "post": 1,
+        "add": 1,
+        "pad": 1
+      },
+      "estimated_convolution_only": true,
+      "lut": 11654,
+      "ff": 9002,
+      "bram36_equivalent": 29.0,
+      "ramb36e1": 28,
+      "ramb18e1": 2,
+      "dsp48e1": 0,
+      "logical_input_cache_bytes": 60416,
+      "logical_weight_cache_bytes": 19456,
+      "tile_sum_bytes": 96,
+      "logical_input_plus_weight_cache_bytes": 79872,
+      "convolution_lut_fraction_device_percent": 21.906015037593985,
+      "convolution_bram_fraction_device_percent": 20.714285714285715
+    },
+    "candidate_2k3_4k1": {
+      "pool": {
+        "k3": 2,
+        "k1": 4,
+        "dw7": 1,
+        "post": 1,
+        "add": 1,
+        "pad": 1
+      },
+      "estimated_convolution_only": true,
+      "lut": 11680,
+      "ff": 8974,
+      "bram36_equivalent": 22.0,
+      "ramb36e1": 20,
+      "ramb18e1": 4,
+      "dsp48e1": 0,
+      "logical_input_cache_bytes": 44032,
+      "logical_weight_cache_bytes": 11264,
+      "tile_sum_bytes": 96,
+      "logical_input_plus_weight_cache_bytes": 55296,
+      "convolution_lut_fraction_device_percent": 21.954887218045112,
+      "convolution_bram_fraction_device_percent": 15.714285714285714
+    },
+    "candidate_minus_old": {
+      "lut": 26,
+      "ff": -28,
+      "bram36_equivalent": -7.0,
+      "ramb36e1": -8,
+      "ramb18e1": 2,
+      "dsp48e1": 0,
+      "logical_input_cache_bytes": -16384,
+      "logical_weight_cache_bytes": -8192,
+      "tile_sum_bytes": 0,
+      "logical_input_plus_weight_cache_bytes": -24576
+    },
+    "logical_cache_reduction_percent": 30.76923076923077,
+    "bram_tile_reduction_percent": 24.137931034482758,
+    "cache_formula": {
+      "EDGE": "2*(TILE-1)+MAX_KERNEL",
+      "INPUT_BYTES": "EDGE*EDGE*MAX_CHANNELS",
+      "WEIGHT_BYTES": "MAX_KERNEL*MAX_KERNEL*MAX_CHANNELS",
+      "tile_sum": "TILE*TILE*4 bytes, implemented with registers in these OOC runs"
+    },
+    "whole_top_status": {
+      "validated": false,
+      "historical_attempt": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150436_706083_self_cnn_synth",
+      "historical_pool": {
+        "k3": 2,
+        "k1": 1,
+        "dw7": 1,
+        "post": 1,
+        "add": 1,
+        "pad": 1
+      },
+      "historical_status": "FAIL",
+      "error": "Vivado synthesis did not complete: ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'params_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (81920) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 81920}' to allow the memory to be dissolved into individual bits",
+      "dw7_warning": "Synth 8-11357: 3D weight_mem_reg potentially dissolved into 200704 register bits",
+      "current_sources_match_historical": {
+        "rtl/cnn_self/self_conv_engine.sv": true,
+        "rtl/cnn_quant/quant_post_engine.sv": true,
+        "rtl/cnn_quant/dw7_cached_engine.sv": true
+      },
+      "current_ten_unit_top_synthesis_pass_available": false,
+      "place_route_performed": false
+    },
+    "limitations": [
+      "Six convolution instances only; Post, Add, DW7, Pad, scheduler, leases, fixed programmer, result handoff, and SRAM/arbitration omitted from totals.",
+      "Standalone OOC sums can differ from integrated synthesis because of constant propagation, sharing and physical optimizations.",
+      "100 MHz is the standalone synthesis clock constraint; no routed full-top timing closure or board fit is established.",
+      "A successful full-network arithmetic simulation does not establish whole-top synthesis feasibility.",
+      "Declared local-cache capacity and synthesized BRAM allocation are distinct quantities. Shared feature-map SRAM allocation is not reduced by this local-cache estimate."
+    ]
+  },
+  "existing_ooc_resource_review_sha256": "3fa6c98facf4e82255a59f17226ac3025b2b06a779e50f9166a43aa012273f15"
+}

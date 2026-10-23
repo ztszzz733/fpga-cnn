@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "mode": 3,
+  "cycles": 129204,
+  "checked_bytes": 14406,
+  "dual_mac_cycles": 0,
+  "cross_work_cycles": 491,
+  "allocations": 22,
+  "releases": 22,
+  "results": 2,
+  "compute_done_cycle": 129123,
+  "wait_buffer_cycles": 0,
+  "units": [
+    {
+      "unit": 0,
+      "tasks": 0,
+      "read_bytes": 0,
+      "write_bytes": 0,
+      "work_cycles": 0
+    },
+    {
+      "unit": 1,
+      "tasks": 4,
+      "read_bytes": 14166,
+      "write_bytes": 6272,
+      "work_cycles": 28224
+    },
+    {
+      "unit": 2,
+      "tasks": 2,
+      "read_bytes": 2832,
+      "write_bytes": 3136,
+      "work_cycles": 6272
+    },
+    {
+      "unit": 3,
+      "tasks": 2,
+      "read_bytes": 1568,
+      "write_bytes": 64,
+      "work_cycles": 98
+    },
+    {
+      "unit": 4,
+      "tasks": 8,
+      "read_bytes": 10752,
+      "write_bytes": 2368,
+      "work_cycles": 2368
+    },
+    {
+      "unit": 5,
+      "tasks": 2,
+      "read_bytes": 1888,
+      "write_bytes": 784,
+      "work_cycles": 784
+    },
+    {
+      "unit": 6,
+      "tasks": 4,
+      "read_bytes": 1078,
+      "write_bytes": 1782,
+      "work_cycles": 810
+    }
+  ],
+  "conv_jobs": [
+    {
+      "node": 2,
+      "input_bytes": 675,
+      "weight_bytes": 3456,
+      "macs": 10584
+    },
+    {
+      "node": 3,
+      "input_bytes": 675,
+      "weight_bytes": 3456,
+      "macs": 10584
+    },
+    {
+      "node": 8,
+      "input_bytes": 1800,
+      "weight_bytes": 1152,
+      "macs": 3528
+    },
+    {
+      "node": 9,
+      "input_bytes": 1800,
+      "weight_bytes": 1152,
+      "macs": 3528
+    },
+    {
+      "node": 12,
+      "input_bytes": 392,
+      "weight_bytes": 1024,
+      "macs": 3136
+    },
+    {
+      "node": 13,
+      "input_bytes": 392,
+      "weight_bytes": 1024,
+      "macs": 3136
+    }
+  ],
+  "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+  "simulation_seconds": 3.361
+}

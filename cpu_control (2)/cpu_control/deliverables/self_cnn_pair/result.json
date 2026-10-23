@@ -1,0 +1,1463 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "rtl\\cnn_self\\self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl\\cnn_quant\\dw7_cached_engine.sv": "12477096d4e3d3aae13f5e4d6188c19a8be1b122b69b20d2662d3698b0f68759",
+    "rtl\\cnn_quant\\quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+    "rtl\\cnn_quant\\pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+    "rtl\\cnn_self\\self_dispatch.sv": "9fce2bffe92fb57a62e1f258f6779a3039cf104d91cdaacc268d1cc38eb3b9fb",
+    "rtl\\cnn_self\\self_buffer_leases.sv": "a0dd10e8326eaaebfd05b022971caa6269f3fb496001fdc4c233981e80b1e501",
+    "rtl\\cnn_self\\self_result_handoff.sv": "96a83af03e9c6ba04b008066bdfd321744a8026019448dfaef12af76c4b3549a",
+    "rtl\\cnn_self\\self_network_top.sv": "4213048e5b7ce30f82ad64468cb3de288c68aee3e510e1b85b951bf0ddf625f4",
+    "tb\\self_pair_tb.sv": "df0a3f1c0678e830fd63bc3ae807c955c7b2209434875fb480ecafdac42df7f2",
+    "scripts/gen_self_pair.py": "69fa95aa5351a32e897e9b975c81c11ea8848756d07b999af3ab4d9f2ab787c0"
+  },
+  "run_dir": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150822_041360_self_pair",
+  "scenarios": {
+    "dual": {
+      "status": "PASS",
+      "mode": 0,
+      "cycles": 92286,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2220,
+      "cross_work_cycles": 544,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 92207,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 6.549
+    },
+    "stalls_slow_reader": {
+      "status": "PASS",
+      "mode": 1,
+      "cycles": 211174,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2181,
+      "cross_work_cycles": 403,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.696
+    },
+    "only_conv3_0": {
+      "status": "PASS",
+      "mode": 2,
+      "cycles": 129204,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 0,
+      "cross_work_cycles": 498,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 129123,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 4,
+          "read_bytes": 14166,
+          "write_bytes": 6272,
+          "work_cycles": 28224
+        },
+        {
+          "unit": 1,
+          "tasks": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "work_cycles": 0
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.379
+    },
+    "only_conv3_1": {
+      "status": "PASS",
+      "mode": 3,
+      "cycles": 129204,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 0,
+      "cross_work_cycles": 491,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 129123,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "work_cycles": 0
+        },
+        {
+          "unit": 1,
+          "tasks": 4,
+          "read_bytes": 14166,
+          "write_bytes": 6272,
+          "work_cycles": 28224
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.361
+    },
+    "skew_conv3_0": {
+      "status": "PASS",
+      "mode": 4,
+      "cycles": 203698,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 1733,
+      "cross_work_cycles": 138,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 203614,
+      "wait_buffer_cycles": 1,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.988
+    },
+    "clear_restart": {
+      "status": "PASS",
+      "mode": 5,
+      "cycles": 127048,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2448,
+      "cross_work_cycles": 421,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.614
+    },
+    "memory_fault_restart": {
+      "status": "PASS",
+      "mode": 6,
+      "cycles": 127048,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2448,
+      "cross_work_cycles": 421,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.529
+    },
+    "illegal_opcode": {
+      "status": "PASS",
+      "mode": 7,
+      "cycles": 127048,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2448,
+      "cross_work_cycles": 421,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.515
+    },
+    "illegal_dependency": {
+      "status": "PASS",
+      "mode": 8,
+      "cycles": 127048,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2448,
+      "cross_work_cycles": 421,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.539
+    },
+    "illegal_result": {
+      "status": "PASS",
+      "mode": 9,
+      "cycles": 127048,
+      "checked_bytes": 14406,
+      "dual_mac_cycles": 2448,
+      "cross_work_cycles": 421,
+      "allocations": 22,
+      "releases": 22,
+      "results": 2,
+      "compute_done_cycle": 126964,
+      "wait_buffer_cycles": 0,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "work_cycles": 14112
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "work_cycles": 6272
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "read_bytes": 1568,
+          "write_bytes": 64,
+          "work_cycles": 98
+        },
+        {
+          "unit": 4,
+          "tasks": 8,
+          "read_bytes": 10752,
+          "write_bytes": 2368,
+          "work_cycles": 2368
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "read_bytes": 1888,
+          "write_bytes": 784,
+          "work_cycles": 784
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "read_bytes": 1078,
+          "write_bytes": 1782,
+          "work_cycles": 810
+        }
+      ],
+      "conv_jobs": [
+        {
+          "node": 2,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 3,
+          "input_bytes": 675,
+          "weight_bytes": 3456,
+          "macs": 10584
+        },
+        {
+          "node": 8,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 9,
+          "input_bytes": 1800,
+          "weight_bytes": 1152,
+          "macs": 3528
+        },
+        {
+          "node": 12,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        },
+        {
+          "node": 13,
+          "input_bytes": 392,
+          "weight_bytes": 1024,
+          "macs": 3136
+        }
+      ],
+      "output_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+      "simulation_seconds": 3.485
+    }
+  },
+  "scope": "small synthetic diagnostic two-image graph; all actual RTL operators; no NEureka",
+  "errors": [],
+  "fixture": {
+    "format": "self-cnn-command-v1",
+    "task_count": 22,
+    "memory_bytes": 65536,
+    "expected_bytes": 14406,
+    "slot_base": 32768,
+    "slot_pitch": 2112,
+    "slot_bytes": 2048,
+    "immutable": [
+      {
+        "name": "conv3_weights",
+        "address": 1024,
+        "bytes": 216,
+        "sha256": "32f5aeeb57ff5fa89f832994559a8b708ce07be9e2f5935bb46387f06dd38b86"
+      },
+      {
+        "name": "conv3_parameters",
+        "address": 1344,
+        "bytes": 160,
+        "sha256": "77dec7cdd58f22bf2d2081744f9a4e47060b20440ade184f035d5a53fc96ba4c"
+      },
+      {
+        "name": "dw3_weights",
+        "address": 1600,
+        "bytes": 72,
+        "sha256": "54066dd0ec2ce9fff8252928cb3cfbbd47b4e55f67fe326000ff2befb9bd17a7"
+      },
+      {
+        "name": "dw3_parameters",
+        "address": 1792,
+        "bytes": 160,
+        "sha256": "ba75b6d4b3efe1f6ddb17a7be0a13849c259cabe66a70c8f95ab245e07b04007"
+      },
+      {
+        "name": "conv1_weights",
+        "address": 2048,
+        "bytes": 64,
+        "sha256": "39fdbe615652f6cdec548c0424f56b581aaa141faded7eb31d484e38456fe476"
+      },
+      {
+        "name": "conv1_parameters",
+        "address": 2176,
+        "bytes": 160,
+        "sha256": "77cb8840678b1166cd3bc11ca3e426384eb697bc1fe544bc86c6c20f114d59d1"
+      },
+      {
+        "name": "dw7_weights",
+        "address": 2432,
+        "bytes": 392,
+        "sha256": "460f2fde487b2750010ea11d881a9980b3c5bb47440cf9c25079f81df020977e"
+      },
+      {
+        "name": "dw7_parameters",
+        "address": 2944,
+        "bytes": 160,
+        "sha256": "a57e4ab8d09d591a10ef60d0ecc514205bd47d9c28d53675b052123f2385967b"
+      },
+      {
+        "name": "add_parameters",
+        "address": 3200,
+        "bytes": 160,
+        "sha256": "98d5d3b8a4916b694b40e5766c46776ea4374fba6f1ea5486245978e2a91975c"
+      },
+      {
+        "name": "image0",
+        "address": 3456,
+        "bytes": 147,
+        "sha256": "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76"
+      },
+      {
+        "name": "image1",
+        "address": 3712,
+        "bytes": 147,
+        "sha256": "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769"
+      }
+    ],
+    "jobs": [
+      {
+        "index": 0,
+        "frame": 100,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 243,
+        "expected_offset": 0,
+        "result": false
+      },
+      {
+        "index": 1,
+        "frame": 101,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 243,
+        "expected_offset": 243,
+        "result": false
+      },
+      {
+        "index": 2,
+        "frame": 100,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          0
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 1568,
+        "expected_offset": 486,
+        "result": false
+      },
+      {
+        "index": 3,
+        "frame": 101,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          1
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 1568,
+        "expected_offset": 2054,
+        "result": false
+      },
+      {
+        "index": 4,
+        "frame": 100,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          2
+        ],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 392,
+        "expected_offset": 3622,
+        "result": false
+      },
+      {
+        "index": 5,
+        "frame": 101,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          3
+        ],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 392,
+        "expected_offset": 4014,
+        "result": false
+      },
+      {
+        "index": 6,
+        "frame": 100,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          4
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 648,
+        "expected_offset": 4406,
+        "result": false
+      },
+      {
+        "index": 7,
+        "frame": 101,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          5
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 648,
+        "expected_offset": 5054,
+        "result": false
+      },
+      {
+        "index": 8,
+        "frame": 100,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          6
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 1568,
+        "expected_offset": 5702,
+        "result": false
+      },
+      {
+        "index": 9,
+        "frame": 101,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          7
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 1568,
+        "expected_offset": 7270,
+        "result": false
+      },
+      {
+        "index": 10,
+        "frame": 100,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          8
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 392,
+        "expected_offset": 8838,
+        "result": false
+      },
+      {
+        "index": 11,
+        "frame": 101,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          9
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 392,
+        "expected_offset": 9230,
+        "result": false
+      },
+      {
+        "index": 12,
+        "frame": 100,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          10
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 1568,
+        "expected_offset": 9622,
+        "result": false
+      },
+      {
+        "index": 13,
+        "frame": 101,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          11
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 1568,
+        "expected_offset": 11190,
+        "result": false
+      },
+      {
+        "index": 14,
+        "frame": 100,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          12
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 392,
+        "expected_offset": 12758,
+        "result": false
+      },
+      {
+        "index": 15,
+        "frame": 101,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          13
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 392,
+        "expected_offset": 13150,
+        "result": false
+      },
+      {
+        "index": 16,
+        "frame": 100,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          14,
+          4
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 392,
+        "expected_offset": 13542,
+        "result": false
+      },
+      {
+        "index": 17,
+        "frame": 101,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          15,
+          5
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 392,
+        "expected_offset": 13934,
+        "result": false
+      },
+      {
+        "index": 18,
+        "frame": 100,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          16
+        ],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 32,
+        "expected_offset": 14326,
+        "result": false
+      },
+      {
+        "index": 19,
+        "frame": 101,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          17
+        ],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 32,
+        "expected_offset": 14358,
+        "result": false
+      },
+      {
+        "index": 20,
+        "frame": 100,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          18
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 8,
+        "expected_offset": 14390,
+        "result": true
+      },
+      {
+        "index": 21,
+        "frame": 101,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          19
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 8,
+        "expected_offset": 14398,
+        "result": true
+      }
+    ],
+    "input_sources": [
+      "deterministic synthetic RGB test image; not a face recognition fixture",
+      "deterministic synthetic RGB test image; not a face recognition fixture"
+    ],
+    "images_sha256": [
+      "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76",
+      "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769"
+    ],
+    "final_expected_sha256": "c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520",
+    "scope": "two small 7x7 RGB images, all operator types, synthetic diagnostic weights; not full MobileFaceNet",
+    "files_sha256": {
+      "memory.hex": "a19792516cc11516966407e1dc0b6e9534fec650a481e9ce257a5cea3417d01b",
+      "expected.hex": "32d03f4442292f9c51ff968cc0fa2f714136e7742de7d6330286e6d4ce3810a0",
+      "commands.hex": "f4b180101f5d66ca40a8721190683569b36ea93b0907d32a2ec79c6893d6fa02",
+      "metadata.hex": "c43a8d51da8993e45e63d1f0525afed76cfe171fe2696fd2a071732f9f264d2e"
+    }
+  },
+  "compile_seconds": 3.187,
+  "elapsed_seconds": 42.021
+}

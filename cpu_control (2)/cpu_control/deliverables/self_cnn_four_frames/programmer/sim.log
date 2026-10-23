@@ -1,0 +1,20 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "programmer", "-tclbatch", "run.tcl", "-onerror", "quit"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 16:11:57 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/programmer/xsim_script.tcl
+# xsim {programmer} -autoloadwcfg -tclbatch {run.tcl} -onerror quit
+Time resolution is 1 ps
+source run.tcl
+## run all
+PASS STREAM_PROGRAMMER 1..4 frames, 20 expanded commands, stalls, 4 invalid configurations
+$finish called at time : 970 ns : File "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/tb/stream_programmer_tb.sv" Line 73
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 16:12:02 2026...

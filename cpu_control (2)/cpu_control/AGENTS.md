@@ -1,4 +1,56 @@
-## 2026-10-23 自研卷积替换需求交接：仅文档（最新范围）
+## 2026-10-23 当前交付：算子数量优化、同一四图全网重跑 PASS
+
+后续约束：用户确认只有512 KB存储、没有DDR/Flash等其他存储。目前只完成容量分析与方案讨论，未实施512 KiB适配、模型裁剪、INT4或跨层分块。当前新CNN主数组声明合计17,128,048 B（16 MiB共享SRAM + 350,832 B内部缓存/表/运行命令），约16.335 MiB，另少量状态寄存器；不能当作板上已有容量。原INT8权重980,096 B已超512 KiB。旧face_soc_top仍接旧CNN，默认256 KiB数据SRAM+64 KiB指令ROM。用户随后明确要求将当前已修改项目代码提交并推送到origin/zhang；上传包含源码、复现说明和验证资料，不代表512 KiB或上板已完成。
+
+用户授权优化算子数量并重跑相同完整仿真。最终选择K3×2/K1×4，其余DW7/Post/Add/Pad各1，总10单元；算术与控制RTL、bai SRAM、四图片/权重/参数/输入pace80/16MiB容量均未改。runner新增--k3/--k1/--post，配置同时传Verilator参数和C++宏并写入缓存签名/metrics；候选缓存.self_full_native/k3_2_k1_4_post_1，旧基线未覆盖。RTL及runner默认仍为历史4/2，必须显式--k3 2 --k1 4 --post 1选择本次2/4，实际硬件集成例化K3_UNITS=2/K1_UNITS=4/POST_UNITS=1。
+
+完整run build/runs/20261023_194836_645744_self_full 已于20:12:24 PASS，exec session36186退出0，无活动仿真/定时任务。匹配gate194655四项PASS：overlap404271、serial1195599、preloaded400367、stress543978。完整重跑653428459拍，计算完成653428352拍；相对基线180539的1138093351拍减少484664892拍（42.5856887%），同频批次吞吐1.741726倍（+74.1726%）。按假设100MHz四图11.38093351→6.53428459秒，不是已验证板级频率。主机计算1421.11秒、总1428.251秒，不当作硬件加速。
+
+两轮各524任务/分配/释放、935241728 MAC、77349168检查字节、4份128UINT8外部读出全部PASS；512字节输出逐值等于基线与整数golden，SHA80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f。真实跨图工作82088133→315946899拍（批次占比7.21%→48.35%）；1×1同类资源排队2016986427→0帧·拍，K1平均busy97.807%→85.253%，K3平均busy4.514%→15.668%；K1仲裁等待只占active0.217%，不等于包含正常响应的全部访存成本。四帧每帧至多一当前job，继续加K1数量不能供给更多并行任务。
+
+交付deliverables/self_cnn_full_optimized/README.md、docs/self_cnn_full_optimized.md；真实前后同轴流水/周期/池占用/两MAC窗口共5PNG已目视检查；2个GTKWave会话实际PASS各10唯一物理信号，architecture.drawio保留16MiB仿真容量。scripts/compare_self_full.py仅接受已完整PASS/同manifest与数据hash/固定配置4/2→2/4/受保护RTLhash相同的对照，保存原始证据、输出、表格、资源来源与provenance，原self_cnn_full_frames交付未覆盖。复现full：run_self_full.py --reuse --k3 2 --k1 4 --post 1 --full --data build/self_full_data --gate build/runs/20261023_194655_786340_self_full --modes overlap。
+
+修改前16源码hash快照在build/self_full_baseline_source。C++仅配置宏/launch-kind断言/metrics pool变化，bootstrap支持cpp_defines；未改时序driver/算术checker。旧单核OOC相加仅六卷积核LUT11654→11680（+26）、FF9002→8974、BRAM36等效29→22、输入/权重局部缓存78→54KiB、DSP0。没有新的整机综合/布局布线，旧Post/DW7存储推断障碍及16MiB仿真容量边界仍存在；不能宣称整机面积或上板通过。调度估算在build/self_full_pool_review，最终收益以上述实际RTL数据为准。
+
+## 2026-10-23 当前交付：四张完整测试图 MobileFaceNet 真RTL全网 PASS
+
+用户明确授权完整神经网络多图仿真并在完成后分析性能，选择四张不同112×112完整测试图。此授权覆盖历史暂停/不要全网范围。完整run build/runs/20261023_180539_292440_self_full 已于18:49:29完成PASS，无活动仿真或定时任务；不要把旧RUNNING历史当仍在执行。
+
+真实新入口 tb/self_full_sim_top.sv + tb/integration/self_full_main.cpp，实际self_fixed_network_top、K3×4/K1×2/DW7/Post/Add/Pad各1、bai四bankSRAM，MAX_TASKS1024，模板容量256，SRAM仿真16MiB。CNN收到一份131步模板和4图片地址，内部展开524任务。全部51Conv/12Add/32Clip/2Relu覆盖；末尾Reshape无算术，原模型无L2归一化。预训练checkpoint SHA780e31e7c2639a0d5fdebe843f5df3ff81fda79a090164df0ff40514d172853a，来源/导出/4输入图见build/self_full_model。数据build/self_full_data初值12608512字节，中间和输入初值A5，gold只作checker。
+
+最终完整overlap：1138093351拍、计算完成1138093244拍、524任务/分配/释放、77349168检查字节、935241728MAC、4份128UINT8真实IO读出。输出512字节SHA80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f。主机计算2620.83秒，含初始化/收尾总2629.997秒。每次RTL写请求字节比较独立整数参考、实际读响应与shadow核对、最终输出及只读/尾保护真实SRAM回读；不是每个中间张量另作全量读回。
+
+性能：1×1占93.42%MAC，两实例平均busy97.807%，K3各约4.51%、Post6.08%。1×1内部MAC_READ/MAC_ACC每两拍一MAC，其累计active分解为78.49%MAC两拍流程、20.62%逐字节读、0.76%写、0.128%仲裁等待。主要优化方向是1×1MAC流水/并行度和宽读/缓存，不应按旧小图继续盲加K3/Post。仅完整overlap实测，无全网serial加速比。100MHz条件换算11.38093秒/四图、0.3515图/秒，不是已达成板级频率。四图跨图实际工作82088133拍、跨类24732963拍、峰值4图在途，输入全部提交3048416拍。
+
+运行器scripts/run_self_full.py，生成器gen_self_full.py，恢复restore_self_full_model.py，报告prepare_self_full.py。项目内Windows Verilator/MSVC使用第三方wheel5.48.0配套runtime5.49dev，来源hash已存.tools/verilator-native/SOURCE.json；真实卷积单测与历史XSim输出/所有周期一致。--output-split-cfuncs500仅主机提速约5.6x，硬件计数不变。匹配小gate180351四项PASS(overlap474575/serial1195599/preloaded470543/stress619789)，不可当full性能。
+
+交付deliverables/self_cnn_full_frames/README.md、docs/self_cnn_full_frames.md，输入/流水/全步骤/算子占用/两个真实MAC窗口PNG、512字节输出与量化/反量化CSV、原始events/metrics/result/来源hash、architecture.drawio。两个GTKWave会话实际验证PASS，每个10物理信号无重复；波形只记录相对起点256拍窗口，未存全局起始拍；全程任务时序用真实events。独立源码/数据/输出hash、事件依赖、量化覆盖均复核通过。
+
+边界：16MiB为仿真容量，不是Z7020片内存储已适配；未产生新的完整LUT/FF/BRAM/DSP/时序报告，旧Post/DW7综合问题仍在。输入为合成数值图；全图固定首图诊断量化尺度，FP32余弦0.9760～0.9897不代表识别精度。不是CPU/UART集成、无限连续帧或层内条带流水。
+
+## 2026-10-23 当前交付：地址驱动固定流程、bai SRAM、四图流水
+
+用户进一步授权接 bai 分支 SRAM、增加瓶颈算子、四图依次输入，并明确目标为 CNN 得到图片地址后自主按固定 MobileFaceNet 流程并行/流水；可先不跑全网。实际分支为 `bai-datasram`，原样导入 `rtl/overlap/datasram_banked.sv`（commit `0f7cc8d35e21e5e6458da15797512e9e6a4eddbd`）到 `rtl/cnn_stream/bai/`，来源 SHA 在 SOURCE.json。未 merge/切换旧工作分支。
+
+新入口 `rtl/cnn_stream/self_fixed_network_top.sv`、filelist `rtl/filelists/cnn_self_stream.f`。外部只写单图模板和 1～4 个输入/工作区/帧号地址描述，CNN 内部 `stream_fixed_programmer` 展开前驱/owner/消费者，`stream_dispatch` 按输入就绪及依赖轮转分配。默认 K3×4、K1×2，原 DW7/Post/Add/Pad 各1，共10实例。真实四bank256KiB SRAM，CPU A 与 CNN/图像 IO B 仲裁；图像写完后 frame_valid/ready 提交，结果必须真实读完后 result_ready。有限批次，默认16模板步骤/64总任务、16工作槽；非完整网络导出、非层内逐行流水、非CPU固件或UART集成。
+
+最终7项真实算术/协议回归 `build/runs/20261023_162331_369628_self_stream` PASS：overlap83201拍，serial276229（3.320×批次吞吐），CPU同字碰撞+慢读204480，clear重启83201，SRAM fault全局复位恢复83201，禁用K3#0为101153，预存图片80077。每项44任务/28812检查字节/44分配44释放/4结果；输出32字节SHA `d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0`。四张不同合成7×7 RGB，诊断权重，单图11步，非完整MobileFaceNet。真实跨图工作19642拍、跨类工作4604拍、双以上K3 MAC14528拍，峰值3套同拍MAC；4图在途不能当4套每拍全算。
+
+最终九组算子扫描 `20261023_162421_993076_self_stream` PASS：K3/K1/Post为2/1/1时131777，3/1/1=101109，4/1/1=100493，3/2/1=101153，3/1/2=100537，3/2/2=100317，4/2/1=83201，4/1/2=100493，4/2/2=83201。扫描复用最大实例池、禁用多余单元；候选另编实际10实例同样83201。独立 `20261023_161153_843242_stream_programmer` 覆盖1～4图地址展开、反压、4类非法配置PASS。旧空VCD调试运行不作波形证据；最终25物理信号，4个GTKWave会话实际验证PASS。
+
+交付 `deliverables/self_cnn_four_frames/README.md`、4张PNG、原始CSV/VCD、GTKWave启动器、架构drawio；接口 `docs/self_cnn_four_frames.md`。复现 scripts/run_self_stream.py / test_stream_programmer.py / prepare_self_stream.py。旧双图交付不变。无活动仿真/定时任务。旧 Post/DW7 RAM 推断综合障碍尚未修复，不宣称完整资源/时序或上板通过，不自动恢复历史全网长仿真。
+
+## 2026-10-23 前一阶段：自研卷积、3×3两套、其余各一套
+
+本次用户明确授权从GitHub的zhang分支实施，覆盖下方历史“仅文档/暂停”。随后强调已有多数算子，主要替换neureka大卷积。新隔离入口`rtl/cnn_self/self_network_top.sv`及`rtl/filelists/cnn_self.f`：自研K3×2（普通/DW3共享池）、K1×1，原DW7×1、Post×1、独立Add×1、Pad×1。旧算子算术源码、旧入口、CPU/生产存储不改；新入口无NEureka运行依赖。调度/租约/结果协议源于旧设计，任务表默认缩小为64，8槽。
+
+最终双图小数据回归`build/runs/20261023_150822_041360_self_pair`十项PASS：两张不同合成7×7 RGB图、诊断权重、22任务、每项14,406字节检查、22分配/22释放、两份8字节结果（不是128维特征）。正常92,286拍，双K3真实MAC同拍2,220，跨类有效推进544拍；只启用任一K3均129,204拍。慢读/反压/限速/clear/内存故障/非法opcode、依赖、结果配置恢复均PASS。最终SHA`c0010b6a6701a08cc613fa59c293971a623d6e33996d5cea9f07fc2dadc96520`。旧150248回归使用较早TB仲裁采样，最终已修正边沿竞态并重跑；不要用旧计数替换最新。
+
+独立卷积`20261023_145746_335613_self_conv_unit`14数值/18非法配置PASS，参数补充审查`20261023_150855_372167_self_conv_parameter_review`52数值/6204字节PASS。完整七实例综合`20261023_150436_706083_self_cnn_synth`FAIL：原Post参数RAM无法推断（Synth8-3391），旧DW7和新复制命令表也有寄存器展开警告。单K3独立综合通过不等于整体资源或上板通过。不要自动继续旧全网长仿真。没有活动定时任务。
+
+交付`deliverables/self_cnn_pair/README.md`及`verification_report.md`，接口`docs/self_cnn_interface.md`。复现`python scripts/test_self_conv.py`、`python scripts/run_self_pair.py`，已有Vivado XSim，无WSL依赖。本机历史模型/人脸路径不在本次克隆中；完整图导出、全网数值、流式输入、连续帧及生产接口仍待后续。新算子缓存同步读取，无整块复位；原其他算子资源组织未重写。源/数据/结果哈希见新报告。
+
+## 2026-10-23 自研卷积替换需求交接：仅文档（历史范围）
 
 用户因板子资源不足决定后续用自写卷积替换NEureka，借鉴其数据复用，所有卷积和其他独立算子模块各两份，目标是两张图片的真实算术与自动分配并行验证。随后用户明确收窄为“你不用写代码，只写文档”，并要求给另一个agent交接。需求与历史证据、阅读地图、资源边界、接口、分阶段验收见 `docs/CNN自研双算子完成需求_v1.md`。本次仅更新文档；新替换方案未实现/未验证。不要因读到需求就启动开发、编译、仿真或定时检查，等待新的实施指令。MAC数量/缓存大小/通用卷积合并方案未定稿，不得当成用户已批准规格。旧两图全网仍为重启中断，不恢复旧NEureka长仿真。
 

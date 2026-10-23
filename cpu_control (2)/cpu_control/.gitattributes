@@ -1,0 +1,33 @@
+# Preserve byte hashes of tested new sources and archived verification evidence.
+# In particular, do not rewrite these files through core.autocrlf on checkout.
+deliverables/self_cnn_pair/** -text
+deliverables/self_cnn_four_frames/** -text
+deliverables/self_cnn_full_frames/** -text
+deliverables/self_cnn_full_optimized/** -text
+docs/self_cnn_*.md -text
+rtl/cnn_self/** -text
+rtl/cnn_stream/** -text
+rtl/filelists/cnn_self.f -text
+rtl/filelists/cnn_self_stream.f -text
+scripts/bootstrap_verilator_native.py -text
+scripts/compare_self_full.py -text
+scripts/gen_self_full.py -text
+scripts/gen_self_pair.py -text
+scripts/gen_self_stream.py -text
+scripts/prepare_self_full.py -text
+scripts/prepare_self_pair.py -text
+scripts/prepare_self_stream.py -text
+scripts/restore_self_full_model.py -text
+scripts/run_self_full.py -text
+scripts/run_self_pair.py -text
+scripts/run_self_stream.py -text
+scripts/synth_self_cnn.py -text
+scripts/synth_self_cnn.tcl -text
+scripts/test_self_conv.py -text
+scripts/test_stream_programmer.py -text
+tb/integration/self_full_main.cpp -text
+tb/self_conv_unit.sv -text
+tb/self_full_sim_top.sv -text
+tb/self_pair_tb.sv -text
+tb/self_stream_tb.sv -text
+tb/stream_programmer_tb.sv -text

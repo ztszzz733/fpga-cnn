@@ -1,0 +1,12 @@
+{
+  "frames": 4,
+  "components": 128,
+  "dtype": "UINT8",
+  "scale": 0.02023447426882657,
+  "zero": 128,
+  "formula": "approximate_real_value = (uint8_code - zero) * scale",
+  "l2_normalized": false,
+  "quantized_reference_element_equal": true,
+  "floating_point_element_equal": false,
+  "output_sha256": "80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f"
+}

@@ -1,0 +1,34 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "self_conv_unit_sim", "-tclbatch", "run.tcl", "-onerror", "quit"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 14:57:54 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/self_conv_unit_sim/xsim_script.tcl
+# xsim {self_conv_unit_sim} -autoloadwcfg -tclbatch {run.tcl} -onerror quit
+Time resolution is 1 ps
+source run.tcl
+## run all
+PASS case=0 name=pw1_channel_tail cycles=1782 input_reads=45 weight_reads=90 macs=225
+PASS case=1 name=pw1_stride2 cycles=1764 input_reads=120 weight_reads=60 macs=180
+PASS case=2 name=conv3_stride1_tail cycles=6684 input_reads=147 weight_reads=540 macs=1215
+PASS case=3 name=conv3_stride2_tail cycles=7587 input_reads=320 weight_reads=540 macs=1215
+PASS case=4 name=conv3_one_output cycles=313 input_reads=9 weight_reads=9 macs=9
+PASS case=5 name=dw3_stride1_tail cycles=4956 input_reads=343 weight_reads=252 macs=567
+PASS case=6 name=dw3_stride2_tail cycles=4022 input_reads=320 weight_reads=180 macs=405
+PASS case=7 name=dw3_one_output cycles=561 input_reads=27 weight_reads=27 macs=27
+PASS case=8 name=pw1_max_channels cycles=14746 input_reads=512 weight_reads=1536 macs=1536
+PASS case=9 name=conv3_unsigned_extremes cycles=1977 input_reads=84 weight_reads=108 macs=324
+PASS case=10 name=dw3_negative_128 cycles=1383 input_reads=84 weight_reads=54 macs=162
+PASS case=11 name=pw1_clear_read_restart cycles=848 input_reads=27 weight_reads=36 macs=81
+PASS case=12 name=conv3_clear_write_restart cycles=4420 input_reads=147 weight_reads=324 macs=729
+PASS case=13 name=conv3_config_latched cycles=4429 input_reads=147 weight_reads=324 macs=729
+PASS tb_self_conv_unit cases=14 checked_bytes=1636 illegal=18
+$finish called at time : 577500 ns : File "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/tb/self_conv_unit.sv" Line 210
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 14:58:01 2026...

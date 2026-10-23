@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "tool": "GTKWave 3.3.100 actual Tcl validation",
+  "vcd_sha256": "51a3f8ae2319c9a38d3911f988f8ed55765219cb573d07f16531002dbc06593a",
+  "views": [
+    {
+      "view": "overview",
+      "status": "PASS",
+      "exited": true,
+      "signals": 26,
+      "unique_signals": 26,
+      "session_sha256": "6619f2afd73ec5af6f816c06936f07d0b696b84021dc4bdf06887df4a5d43421",
+      "log": "SIGNALS=26 UNIQUE=26\r\nPASS overview"
+    },
+    {
+      "view": "dual_mac",
+      "status": "PASS",
+      "exited": true,
+      "signals": 26,
+      "unique_signals": 26,
+      "session_sha256": "6619f2afd73ec5af6f816c06936f07d0b696b84021dc4bdf06887df4a5d43421",
+      "log": "SIGNALS=26 UNIQUE=26\r\nPASS dual_mac"
+    },
+    {
+      "view": "conv_write",
+      "status": "PASS",
+      "exited": true,
+      "signals": 26,
+      "unique_signals": 26,
+      "session_sha256": "6619f2afd73ec5af6f816c06936f07d0b696b84021dc4bdf06887df4a5d43421",
+      "log": "SIGNALS=26 UNIQUE=26\r\nPASS conv_write"
+    },
+    {
+      "view": "post_write",
+      "status": "PASS",
+      "exited": true,
+      "signals": 26,
+      "unique_signals": 26,
+      "session_sha256": "6619f2afd73ec5af6f816c06936f07d0b696b84021dc4bdf06887df4a5d43421",
+      "log": "SIGNALS=26 UNIQUE=26\r\nPASS post_write"
+    },
+    {
+      "view": "result_ack",
+      "status": "PASS",
+      "exited": true,
+      "signals": 26,
+      "unique_signals": 26,
+      "session_sha256": "6619f2afd73ec5af6f816c06936f07d0b696b84021dc4bdf06887df4a5d43421",
+      "log": "SIGNALS=26 UNIQUE=26\r\nPASS result_ack"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "stream_sweep", "-tclbatch", "../../20261023_162421_993076_self_stream/k3x3_overlap/run.tcl", "-onerror", "quit", "-testplusarg", "DATA=../../20261023_162421_993076_self_stream/data", "-testplusarg", "MODE=0", "-testplusarg", "ENABLE=1751"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 16:24:37 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/stream_sweep/xsim_script.tcl
+# xsim {stream_sweep} -testplusarg DATA=../../20261023_162421_993076_self_stream/data -testplusarg MODE=0 -testplusarg ENABLE=1751 -autoloadwcfg -tclbatch {../../20261023_162421_993076_self_stream/k3x3_overlap/run.tcl} -onerror quit
+Time resolution is 1 ps
+source ../../20261023_162421_993076_self_stream/k3x3_overlap/run.tcl
+## open_vcd {D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/build/runs/20261023_162421_993076_self_stream/k3x3_overlap/control.vcd}
+## set selected [get_objects {clk clear start unit_enable frame_valid frame_ready frame_slot frames_ready unit_start unit_active operator_work mem_valid mem_write mem_ready mem_response completed_count buffer_live external_hold result_valid result_ready result_accept result_frame compute_done done error}]
+## if {[llength $selected] != 25} {error "missing waveform signals"}
+## log_vcd $selected
+## run all
+PASS SELF_STREAM K3=4 K1=2 POST=2 mode=0 cycles=101109 overlap=84044
+$finish called at time : 1177710 ns : File "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/tb/self_stream_tb.sv" Line 283
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 268.832 ; gain = 0.000
+## close_vcd
+## quit
+INFO: xsimkernel Simulation Memory Usage: 59664 KB (Peak: 59664 KB), Simulation CPU Usage: 10265 ms
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 16:24:49 2026...

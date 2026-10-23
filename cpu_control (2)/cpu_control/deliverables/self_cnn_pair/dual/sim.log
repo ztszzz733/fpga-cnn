@@ -1,0 +1,23 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "self_pair_sim", "-tclbatch", "../dual/run.tcl", "-onerror", "quit", "-testplusarg", "DATA=../data", "-testplusarg", "MODE=0"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 15:08:25 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/self_pair_sim/xsim_script.tcl
+# xsim {self_pair_sim} -testplusarg DATA=../data -testplusarg MODE=0 -autoloadwcfg -tclbatch {../dual/run.tcl} -onerror quit
+Time resolution is 1 ps
+source ../dual/run.tcl
+## open_vcd {D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/build/runs/20261023_150822_041360_self_pair/dual/control.vcd}
+## log_vcd [get_objects {/self_pair_tb/clk /self_pair_tb/clear /self_pair_tb/start /self_pair_tb/engine_enable /self_pair_tb/unit_start /self_pair_tb/unit_active /self_pair_tb/operator_busy /self_pair_tb/operator_work /self_pair_tb/completion_pulse /self_pair_tb/completed_count /self_pair_tb/mem_valid /self_pair_tb/mem_write /self_pair_tb/mem_ready /self_pair_tb/mem_response /self_pair_tb/buffer_live /self_pair_tb/buffer_release /self_pair_tb/external_hold /self_pair_tb/result_valid /self_pair_tb/result_ready /self_pair_tb/result_accept /self_pair_tb/result_frame /self_pair_tb/result_addr /self_pair_tb/result_bytes /self_pair_tb/compute_done /self_pair_tb/done /self_pair_tb/error}]
+## run all
+PASS SELF_PAIR mode=0 cycles=92286 checked=14406 dual_mac=2220 cross=544
+$finish called at time : 922930 ns : File "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/tb/self_pair_tb.sv" Line 235
+## close_vcd
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 15:08:31 2026...

@@ -1,0 +1,1846 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "rtl\\cnn_self\\self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl\\cnn_quant\\dw7_cached_engine.sv": "12477096d4e3d3aae13f5e4d6188c19a8be1b122b69b20d2662d3698b0f68759",
+    "rtl\\cnn_quant\\quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+    "rtl\\cnn_quant\\pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+    "rtl\\cnn_stream\\bai\\datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+    "rtl\\cnn_stream\\stream_dispatch.sv": "025effdb205f0b10dbdce7677b32f3bf3a6858de449b0b095b390aef09c7aa65",
+    "rtl\\cnn_stream\\stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+    "rtl\\cnn_stream\\stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+    "rtl\\cnn_stream\\self_stream_top.sv": "bec3a8db3dd4ea025a10e8dfbc66408ddc4590b69b61ef354917bc68a0321a26",
+    "rtl\\cnn_stream\\stream_fixed_programmer.sv": "cf2463f1961a13a402608308042bccee2873c20ec2958a35cca11a2c676067fc",
+    "rtl\\cnn_stream\\self_fixed_network_top.sv": "44da0ae3d19accbf2b9b53e3b2b3ee6e097aa44f50778c578b3682a44915e06d",
+    "tb\\self_stream_tb.sv": "b01acf2c2a87e9432239d513628b6fbe44cf69510728efffd3c14d603c11e4e6",
+    "scripts/gen_self_stream.py": "aff4aec245e81db3666d27212e21c55cc09a571caad321f8059c68ded33debb4"
+  },
+  "runner_sha256": "60bac4cbfa90b76ca743e18d8ee5198949cb80625d42e965ee46ca316cdfb8f8",
+  "run_dir": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_162331_369628_self_stream",
+  "scenarios": {
+    "four_k1_overlap": {
+      "status": "PASS",
+      "mode": 0,
+      "cycles": 83201,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 73930,
+      "multi_k3_mac_cycles": 14528,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 3,
+      "input_compute_cycles": 5100,
+      "input_mac_cycles": 4645,
+      "input_write_compute_cycles": 60,
+      "cpu_reads": 4895,
+      "compute_done_cycle": 83152,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 69952
+        },
+        {
+          "frame": 101,
+          "input_begin": 3078,
+          "input_commit": 5995,
+          "first_launch": 6031,
+          "read_complete": 72943
+        },
+        {
+          "frame": 102,
+          "input_begin": 6076,
+          "input_commit": 8993,
+          "first_launch": 9024,
+          "read_complete": 80248
+        },
+        {
+          "frame": 103,
+          "input_begin": 9075,
+          "input_commit": 11994,
+          "first_launch": 12017,
+          "read_complete": 83197
+        }
+      ],
+      "multi_frame_work_cycles": 19642,
+      "cross_operator_work_cycles": 4604,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 44890,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 514
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 44933,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 557
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 44971,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 595
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 44916,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 540
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20540,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 346
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20480,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 286
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1838,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 6
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 25376,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 416
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11578,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 282
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6924,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 104
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 11.452
+    },
+    "four_k1_serial": {
+      "status": "PASS",
+      "mode": 1,
+      "cycles": 276229,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 0,
+      "multi_k3_mac_cycles": 0,
+      "peak_active_frames": 1,
+      "peak_simultaneous_k3_mac": 1,
+      "input_compute_cycles": 0,
+      "input_mac_cycles": 0,
+      "input_write_compute_cycles": 0,
+      "cpu_reads": 16249,
+      "compute_done_cycle": 276180,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 69114
+        },
+        {
+          "frame": 101,
+          "input_begin": 69115,
+          "input_commit": 72032,
+          "first_launch": 72075,
+          "read_complete": 138151
+        },
+        {
+          "frame": 102,
+          "input_begin": 138152,
+          "input_commit": 141069,
+          "first_launch": 141112,
+          "read_complete": 207188
+        },
+        {
+          "frame": 103,
+          "input_begin": 207189,
+          "input_commit": 210106,
+          "first_launch": 210149,
+          "read_complete": 276225
+        }
+      ],
+      "multi_frame_work_cycles": 0,
+      "cross_operator_work_cycles": 0,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 60850,
+          "work_cycles": 21168,
+          "read_bytes": 8262,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 4
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 27906,
+          "work_cycles": 7056,
+          "read_bytes": 5904,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 60850,
+          "work_cycles": 21168,
+          "read_bytes": 8262,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 4
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 27906,
+          "work_cycles": 7056,
+          "read_bytes": 5904,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20194,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20194,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1832,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 24960,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11296,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6820,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 0
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 9.751
+    },
+    "four_k1_cpu_collision_slow_reader": {
+      "status": "PASS",
+      "mode": 2,
+      "cycles": 204480,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 89275,
+      "multi_k3_mac_cycles": 14337,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 4,
+      "input_compute_cycles": 3907,
+      "input_mac_cycles": 3380,
+      "input_write_compute_cycles": 51,
+      "cpu_reads": 49202,
+      "compute_done_cycle": 102510,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 114455
+        },
+        {
+          "frame": 101,
+          "input_begin": 3078,
+          "input_commit": 5995,
+          "first_launch": 6031,
+          "read_complete": 144462
+        },
+        {
+          "frame": 102,
+          "input_begin": 6076,
+          "input_commit": 8994,
+          "first_launch": 9024,
+          "read_complete": 174469
+        },
+        {
+          "frame": 103,
+          "input_begin": 9075,
+          "input_commit": 11994,
+          "first_launch": 12017,
+          "read_complete": 204476
+        }
+      ],
+      "multi_frame_work_cycles": 17823,
+      "cross_operator_work_cycles": 2406,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 57686,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 13310
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 50478,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 6102
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 47661,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 3285
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 47722,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 3346
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 25599,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 5405
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 23373,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 3179
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 2635,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 803
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 29641,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 4681
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 13301,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 2005
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 8248,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 1428
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 8.798
+    },
+    "four_k1_clear_restart": {
+      "status": "PASS",
+      "mode": 3,
+      "cycles": 83201,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 73930,
+      "multi_k3_mac_cycles": 14528,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 3,
+      "input_compute_cycles": 5100,
+      "input_mac_cycles": 4645,
+      "input_write_compute_cycles": 60,
+      "cpu_reads": 4895,
+      "compute_done_cycle": 83152,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 69952
+        },
+        {
+          "frame": 101,
+          "input_begin": 3078,
+          "input_commit": 5995,
+          "first_launch": 6031,
+          "read_complete": 72943
+        },
+        {
+          "frame": 102,
+          "input_begin": 6076,
+          "input_commit": 8993,
+          "first_launch": 9024,
+          "read_complete": 80248
+        },
+        {
+          "frame": 103,
+          "input_begin": 9075,
+          "input_commit": 11994,
+          "first_launch": 12017,
+          "read_complete": 83197
+        }
+      ],
+      "multi_frame_work_cycles": 19642,
+      "cross_operator_work_cycles": 4604,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 44890,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 514
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 44933,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 557
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 44971,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 595
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 44916,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 540
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20540,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 346
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20480,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 286
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1838,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 6
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 25376,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 416
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11578,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 282
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6924,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 104
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 7.325
+    },
+    "four_k1_memory_fault_restart": {
+      "status": "PASS",
+      "mode": 4,
+      "cycles": 83201,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 73930,
+      "multi_k3_mac_cycles": 14528,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 3,
+      "input_compute_cycles": 5100,
+      "input_mac_cycles": 4645,
+      "input_write_compute_cycles": 60,
+      "cpu_reads": 4895,
+      "compute_done_cycle": 83152,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 69952
+        },
+        {
+          "frame": 101,
+          "input_begin": 3078,
+          "input_commit": 5995,
+          "first_launch": 6031,
+          "read_complete": 72943
+        },
+        {
+          "frame": 102,
+          "input_begin": 6076,
+          "input_commit": 8993,
+          "first_launch": 9024,
+          "read_complete": 80248
+        },
+        {
+          "frame": 103,
+          "input_begin": 9075,
+          "input_commit": 11994,
+          "first_launch": 12017,
+          "read_complete": 83197
+        }
+      ],
+      "multi_frame_work_cycles": 19642,
+      "cross_operator_work_cycles": 4604,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 44890,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 514
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 44933,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 557
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 44971,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 595
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 44916,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 540
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20540,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 346
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20480,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 286
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1838,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 6
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 25376,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 416
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11578,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 282
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6924,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 104
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 7.261
+    },
+    "four_k1_disable_k3_0": {
+      "status": "PASS",
+      "mode": 5,
+      "cycles": 101153,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 80166,
+      "multi_k3_mac_cycles": 10461,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 3,
+      "input_compute_cycles": 5100,
+      "input_mac_cycles": 4645,
+      "input_write_compute_cycles": 60,
+      "cpu_reads": 5951,
+      "compute_done_cycle": 101104,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 80,
+          "input_commit": 2997,
+          "first_launch": 3038,
+          "read_complete": 72812
+        },
+        {
+          "frame": 101,
+          "input_begin": 3078,
+          "input_commit": 5995,
+          "first_launch": 6031,
+          "read_complete": 76201
+        },
+        {
+          "frame": 102,
+          "input_begin": 6076,
+          "input_commit": 8993,
+          "first_launch": 9024,
+          "read_complete": 86496
+        },
+        {
+          "frame": 103,
+          "input_begin": 9075,
+          "input_commit": 11994,
+          "first_launch": 12017,
+          "read_complete": 101149
+        }
+      ],
+      "multi_frame_work_cycles": 16179,
+      "cross_operator_work_cycles": 6235,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 0,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0,
+          "arbitration_wait_cycles": 0
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 61368,
+          "work_cycles": 21168,
+          "read_bytes": 8262,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 522
+        },
+        {
+          "unit": 2,
+          "tasks": 3,
+          "active_cycles": 58940,
+          "work_cycles": 17640,
+          "read_bytes": 10035,
+          "write_bytes": 4704,
+          "arbitration_wait_cycles": 611
+        },
+        {
+          "unit": 3,
+          "tasks": 3,
+          "active_cycles": 58934,
+          "work_cycles": 17640,
+          "read_bytes": 10035,
+          "write_bytes": 4704,
+          "arbitration_wait_cycles": 605
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20471,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 277
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20390,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 196
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1840,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 8
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 25310,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 350
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11553,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 257
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6930,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 110
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 7.668
+    },
+    "four_k1_preloaded": {
+      "status": "PASS",
+      "mode": 6,
+      "cycles": 80077,
+      "checked_bytes": 28812,
+      "allocations": 44,
+      "releases": 44,
+      "results": 4,
+      "multi_frame_cycles": 74854,
+      "multi_k3_mac_cycles": 16041,
+      "peak_active_frames": 4,
+      "peak_simultaneous_k3_mac": 3,
+      "input_compute_cycles": 0,
+      "input_mac_cycles": 0,
+      "input_write_compute_cycles": 0,
+      "cpu_reads": 4711,
+      "compute_done_cycle": 80028,
+      "frames": [
+        {
+          "frame": 100,
+          "input_begin": 0,
+          "input_commit": 45,
+          "first_launch": 90,
+          "read_complete": 66916
+        },
+        {
+          "frame": 101,
+          "input_begin": 46,
+          "input_commit": 47,
+          "first_launch": 1147,
+          "read_complete": 69819
+        },
+        {
+          "frame": 102,
+          "input_begin": 48,
+          "input_commit": 49,
+          "first_launch": 2204,
+          "read_complete": 77168
+        },
+        {
+          "frame": 103,
+          "input_begin": 50,
+          "input_commit": 51,
+          "first_launch": 3261,
+          "read_complete": 80073
+        }
+      ],
+      "multi_frame_work_cycles": 20435,
+      "cross_operator_work_cycles": 3660,
+      "expanded_commands": 44,
+      "units": [
+        {
+          "unit": 0,
+          "tasks": 2,
+          "active_cycles": 44773,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 397
+        },
+        {
+          "unit": 1,
+          "tasks": 2,
+          "active_cycles": 44787,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 411
+        },
+        {
+          "unit": 2,
+          "tasks": 2,
+          "active_cycles": 44781,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 405
+        },
+        {
+          "unit": 3,
+          "tasks": 2,
+          "active_cycles": 44796,
+          "work_cycles": 14112,
+          "read_bytes": 7083,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 420
+        },
+        {
+          "unit": 4,
+          "tasks": 2,
+          "active_cycles": 20519,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 325
+        },
+        {
+          "unit": 5,
+          "tasks": 2,
+          "active_cycles": 20487,
+          "work_cycles": 6272,
+          "read_bytes": 2832,
+          "write_bytes": 3136,
+          "arbitration_wait_cycles": 293
+        },
+        {
+          "unit": 6,
+          "tasks": 4,
+          "active_cycles": 1836,
+          "work_cycles": 196,
+          "read_bytes": 3136,
+          "write_bytes": 128,
+          "arbitration_wait_cycles": 4
+        },
+        {
+          "unit": 7,
+          "tasks": 16,
+          "active_cycles": 25361,
+          "work_cycles": 4736,
+          "read_bytes": 21504,
+          "write_bytes": 4736,
+          "arbitration_wait_cycles": 401
+        },
+        {
+          "unit": 8,
+          "tasks": 4,
+          "active_cycles": 11580,
+          "work_cycles": 1568,
+          "read_bytes": 3776,
+          "write_bytes": 1568,
+          "arbitration_wait_cycles": 284
+        },
+        {
+          "unit": 9,
+          "tasks": 8,
+          "active_cycles": 6909,
+          "work_cycles": 1620,
+          "read_bytes": 2156,
+          "write_bytes": 3564,
+          "arbitration_wait_cycles": 89
+        }
+      ],
+      "config": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "physical_pools": {
+        "k3": 4,
+        "k1": 2,
+        "post": 1
+      },
+      "enabled_mask": 1023,
+      "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+      "simulation_seconds": 7.559
+    }
+  },
+  "errors": [],
+  "scope": "Four 7x7 RGB diagnostic graphs; actual arithmetic and bai SRAM; no full MobileFaceNet or board claim",
+  "fixture": {
+    "format": "self-cnn-command-v1",
+    "task_count": 44,
+    "memory_bytes": 262144,
+    "expected_bytes": 28812,
+    "slot_base": 32768,
+    "slot_pitch": 2112,
+    "slot_bytes": 2048,
+    "immutable": [
+      {
+        "name": "conv3_weights",
+        "address": 1024,
+        "bytes": 216,
+        "sha256": "32f5aeeb57ff5fa89f832994559a8b708ce07be9e2f5935bb46387f06dd38b86"
+      },
+      {
+        "name": "conv3_parameters",
+        "address": 1344,
+        "bytes": 160,
+        "sha256": "77dec7cdd58f22bf2d2081744f9a4e47060b20440ade184f035d5a53fc96ba4c"
+      },
+      {
+        "name": "dw3_weights",
+        "address": 1600,
+        "bytes": 72,
+        "sha256": "54066dd0ec2ce9fff8252928cb3cfbbd47b4e55f67fe326000ff2befb9bd17a7"
+      },
+      {
+        "name": "dw3_parameters",
+        "address": 1792,
+        "bytes": 160,
+        "sha256": "ba75b6d4b3efe1f6ddb17a7be0a13849c259cabe66a70c8f95ab245e07b04007"
+      },
+      {
+        "name": "conv1_weights",
+        "address": 2048,
+        "bytes": 64,
+        "sha256": "39fdbe615652f6cdec548c0424f56b581aaa141faded7eb31d484e38456fe476"
+      },
+      {
+        "name": "conv1_parameters",
+        "address": 2176,
+        "bytes": 160,
+        "sha256": "77cb8840678b1166cd3bc11ca3e426384eb697bc1fe544bc86c6c20f114d59d1"
+      },
+      {
+        "name": "dw7_weights",
+        "address": 2432,
+        "bytes": 392,
+        "sha256": "460f2fde487b2750010ea11d881a9980b3c5bb47440cf9c25079f81df020977e"
+      },
+      {
+        "name": "dw7_parameters",
+        "address": 2944,
+        "bytes": 160,
+        "sha256": "a57e4ab8d09d591a10ef60d0ecc514205bd47d9c28d53675b052123f2385967b"
+      },
+      {
+        "name": "add_parameters",
+        "address": 3200,
+        "bytes": 160,
+        "sha256": "98d5d3b8a4916b694b40e5766c46776ea4374fba6f1ea5486245978e2a91975c"
+      },
+      {
+        "name": "image0",
+        "address": 3456,
+        "bytes": 147,
+        "sha256": "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76"
+      },
+      {
+        "name": "image1",
+        "address": 3712,
+        "bytes": 147,
+        "sha256": "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769"
+      },
+      {
+        "name": "image2",
+        "address": 3968,
+        "bytes": 147,
+        "sha256": "ba0ab56d02c0146351997b15321a6138d95474e2bf22782de052c6cbc1bbf65e"
+      },
+      {
+        "name": "image3",
+        "address": 4224,
+        "bytes": 147,
+        "sha256": "3d7389b5e7a255bfb8a5c22567afc29b28f6a86b8fc5ef0210f901ec0f73b4cc"
+      }
+    ],
+    "jobs": [
+      {
+        "index": 0,
+        "frame": 100,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 243,
+        "expected_offset": 0,
+        "result": false
+      },
+      {
+        "index": 1,
+        "frame": 101,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 243,
+        "expected_offset": 243,
+        "result": false
+      },
+      {
+        "index": 2,
+        "frame": 102,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 8,
+        "address": 49664,
+        "bytes": 243,
+        "expected_offset": 486,
+        "result": false
+      },
+      {
+        "index": 3,
+        "frame": 103,
+        "name": "pad0",
+        "opcode": 4,
+        "dependencies": [],
+        "slot": 12,
+        "address": 58112,
+        "bytes": 243,
+        "expected_offset": 729,
+        "result": false
+      },
+      {
+        "index": 4,
+        "frame": 100,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          0
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 1568,
+        "expected_offset": 972,
+        "result": false
+      },
+      {
+        "index": 5,
+        "frame": 101,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          1
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 1568,
+        "expected_offset": 2540,
+        "result": false
+      },
+      {
+        "index": 6,
+        "frame": 102,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          2
+        ],
+        "slot": 9,
+        "address": 51776,
+        "bytes": 1568,
+        "expected_offset": 4108,
+        "result": false
+      },
+      {
+        "index": 7,
+        "frame": 103,
+        "name": "c3",
+        "opcode": 0,
+        "dependencies": [
+          3
+        ],
+        "slot": 13,
+        "address": 60224,
+        "bytes": 1568,
+        "expected_offset": 5676,
+        "result": false
+      },
+      {
+        "index": 8,
+        "frame": 100,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          4
+        ],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 392,
+        "expected_offset": 7244,
+        "result": false
+      },
+      {
+        "index": 9,
+        "frame": 101,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          5
+        ],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 392,
+        "expected_offset": 7636,
+        "result": false
+      },
+      {
+        "index": 10,
+        "frame": 102,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          6
+        ],
+        "slot": 8,
+        "address": 49664,
+        "bytes": 392,
+        "expected_offset": 8028,
+        "result": false
+      },
+      {
+        "index": 11,
+        "frame": 103,
+        "name": "c3_q",
+        "opcode": 1,
+        "dependencies": [
+          7
+        ],
+        "slot": 12,
+        "address": 58112,
+        "bytes": 392,
+        "expected_offset": 8420,
+        "result": false
+      },
+      {
+        "index": 12,
+        "frame": 100,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          8
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 648,
+        "expected_offset": 8812,
+        "result": false
+      },
+      {
+        "index": 13,
+        "frame": 101,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          9
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 648,
+        "expected_offset": 9460,
+        "result": false
+      },
+      {
+        "index": 14,
+        "frame": 102,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          10
+        ],
+        "slot": 9,
+        "address": 51776,
+        "bytes": 648,
+        "expected_offset": 10108,
+        "result": false
+      },
+      {
+        "index": 15,
+        "frame": 103,
+        "name": "pad1",
+        "opcode": 4,
+        "dependencies": [
+          11
+        ],
+        "slot": 13,
+        "address": 60224,
+        "bytes": 648,
+        "expected_offset": 10756,
+        "result": false
+      },
+      {
+        "index": 16,
+        "frame": 100,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          12
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 1568,
+        "expected_offset": 11404,
+        "result": false
+      },
+      {
+        "index": 17,
+        "frame": 101,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          13
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 1568,
+        "expected_offset": 12972,
+        "result": false
+      },
+      {
+        "index": 18,
+        "frame": 102,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          14
+        ],
+        "slot": 10,
+        "address": 53888,
+        "bytes": 1568,
+        "expected_offset": 14540,
+        "result": false
+      },
+      {
+        "index": 19,
+        "frame": 103,
+        "name": "d3",
+        "opcode": 0,
+        "dependencies": [
+          15
+        ],
+        "slot": 14,
+        "address": 62336,
+        "bytes": 1568,
+        "expected_offset": 16108,
+        "result": false
+      },
+      {
+        "index": 20,
+        "frame": 100,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          16
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 392,
+        "expected_offset": 17676,
+        "result": false
+      },
+      {
+        "index": 21,
+        "frame": 101,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          17
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 392,
+        "expected_offset": 18068,
+        "result": false
+      },
+      {
+        "index": 22,
+        "frame": 102,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          18
+        ],
+        "slot": 9,
+        "address": 51776,
+        "bytes": 392,
+        "expected_offset": 18460,
+        "result": false
+      },
+      {
+        "index": 23,
+        "frame": 103,
+        "name": "d3_q",
+        "opcode": 1,
+        "dependencies": [
+          19
+        ],
+        "slot": 13,
+        "address": 60224,
+        "bytes": 392,
+        "expected_offset": 18852,
+        "result": false
+      },
+      {
+        "index": 24,
+        "frame": 100,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          20
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 1568,
+        "expected_offset": 19244,
+        "result": false
+      },
+      {
+        "index": 25,
+        "frame": 101,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          21
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 1568,
+        "expected_offset": 20812,
+        "result": false
+      },
+      {
+        "index": 26,
+        "frame": 102,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          22
+        ],
+        "slot": 10,
+        "address": 53888,
+        "bytes": 1568,
+        "expected_offset": 22380,
+        "result": false
+      },
+      {
+        "index": 27,
+        "frame": 103,
+        "name": "c1",
+        "opcode": 5,
+        "dependencies": [
+          23
+        ],
+        "slot": 14,
+        "address": 62336,
+        "bytes": 1568,
+        "expected_offset": 23948,
+        "result": false
+      },
+      {
+        "index": 28,
+        "frame": 100,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          24
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 392,
+        "expected_offset": 25516,
+        "result": false
+      },
+      {
+        "index": 29,
+        "frame": 101,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          25
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 392,
+        "expected_offset": 25908,
+        "result": false
+      },
+      {
+        "index": 30,
+        "frame": 102,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          26
+        ],
+        "slot": 9,
+        "address": 51776,
+        "bytes": 392,
+        "expected_offset": 26300,
+        "result": false
+      },
+      {
+        "index": 31,
+        "frame": 103,
+        "name": "c1_q",
+        "opcode": 1,
+        "dependencies": [
+          27
+        ],
+        "slot": 13,
+        "address": 60224,
+        "bytes": 392,
+        "expected_offset": 26692,
+        "result": false
+      },
+      {
+        "index": 32,
+        "frame": 100,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          28,
+          8
+        ],
+        "slot": 2,
+        "address": 36992,
+        "bytes": 392,
+        "expected_offset": 27084,
+        "result": false
+      },
+      {
+        "index": 33,
+        "frame": 101,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          29,
+          9
+        ],
+        "slot": 6,
+        "address": 45440,
+        "bytes": 392,
+        "expected_offset": 27476,
+        "result": false
+      },
+      {
+        "index": 34,
+        "frame": 102,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          30,
+          10
+        ],
+        "slot": 10,
+        "address": 53888,
+        "bytes": 392,
+        "expected_offset": 27868,
+        "result": false
+      },
+      {
+        "index": 35,
+        "frame": 103,
+        "name": "residual",
+        "opcode": 2,
+        "dependencies": [
+          31,
+          11
+        ],
+        "slot": 14,
+        "address": 62336,
+        "bytes": 392,
+        "expected_offset": 28260,
+        "result": false
+      },
+      {
+        "index": 36,
+        "frame": 100,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          32
+        ],
+        "slot": 0,
+        "address": 32768,
+        "bytes": 32,
+        "expected_offset": 28652,
+        "result": false
+      },
+      {
+        "index": 37,
+        "frame": 101,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          33
+        ],
+        "slot": 4,
+        "address": 41216,
+        "bytes": 32,
+        "expected_offset": 28684,
+        "result": false
+      },
+      {
+        "index": 38,
+        "frame": 102,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          34
+        ],
+        "slot": 8,
+        "address": 49664,
+        "bytes": 32,
+        "expected_offset": 28716,
+        "result": false
+      },
+      {
+        "index": 39,
+        "frame": 103,
+        "name": "d7",
+        "opcode": 3,
+        "dependencies": [
+          35
+        ],
+        "slot": 12,
+        "address": 58112,
+        "bytes": 32,
+        "expected_offset": 28748,
+        "result": false
+      },
+      {
+        "index": 40,
+        "frame": 100,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          36
+        ],
+        "slot": 1,
+        "address": 34880,
+        "bytes": 8,
+        "expected_offset": 28780,
+        "result": true
+      },
+      {
+        "index": 41,
+        "frame": 101,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          37
+        ],
+        "slot": 5,
+        "address": 43328,
+        "bytes": 8,
+        "expected_offset": 28788,
+        "result": true
+      },
+      {
+        "index": 42,
+        "frame": 102,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          38
+        ],
+        "slot": 9,
+        "address": 51776,
+        "bytes": 8,
+        "expected_offset": 28796,
+        "result": true
+      },
+      {
+        "index": 43,
+        "frame": 103,
+        "name": "d7_q",
+        "opcode": 1,
+        "dependencies": [
+          39
+        ],
+        "slot": 13,
+        "address": 60224,
+        "bytes": 8,
+        "expected_offset": 28804,
+        "result": true
+      }
+    ],
+    "input_sources": [
+      "deterministic synthetic RGB test image; not a face recognition fixture",
+      "deterministic synthetic RGB test image; not a face recognition fixture",
+      "deterministic synthetic RGB test image; not a face recognition fixture",
+      "deterministic synthetic RGB test image; not a face recognition fixture"
+    ],
+    "images_sha256": [
+      "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76",
+      "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769",
+      "ba0ab56d02c0146351997b15321a6138d95474e2bf22782de052c6cbc1bbf65e",
+      "3d7389b5e7a255bfb8a5c22567afc29b28f6a86b8fc5ef0210f901ec0f73b4cc"
+    ],
+    "final_expected_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+    "scope": "four sequential 7x7 RGB images, all operator types, synthetic diagnostic weights; not full MobileFaceNet",
+    "template_steps": 11,
+    "files_sha256": {
+      "memory.hex": "faf37cf01ab60bece231f6062f2ecef4137d2e8f59535f719512aedccdb2de13",
+      "expected.hex": "816b1b2b26d15314ca67e752717e846c1c534275841a4577c6e9f191a7dc965e",
+      "commands.hex": "15faedf53841b9ba3091df952de69d735d1712c3bd0da6b5cf5b2d4e85cb6be0",
+      "metadata.hex": "065f27820dfc1ac20ca9235b3db38362cb7faf2e93fac91f63a0b3af867731c0",
+      "images.hex": "62dcfecc3bd480da3eb1b393eb0ff58a3beaafe1647a9096e25fa2c8f97d660c",
+      "image_info.hex": "4a5a418b5f34f64c13409620afca38b22160bd265aea29a45e8847230bfb27f5",
+      "template_commands.hex": "60d329d3e73cacd39e9b4406a96e56e25a0c3b44d9c21bb43f537f1e736d858e",
+      "template_meta.hex": "ba6666661d78c81a7bd856b8c93feaaca8052b8d20afb666caa6f64c4a314463"
+    }
+  },
+  "reused_build": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_161438_464979_self_stream\\compile",
+  "elapsed_seconds": 60.141
+}

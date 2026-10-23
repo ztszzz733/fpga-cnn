@@ -1,0 +1,55 @@
+{
+  "status": "FAIL",
+  "run_dir": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150436_706083_self_cnn_synth",
+  "top": "self_network_top",
+  "part": "xc7z020clg484-1",
+  "period_ns": 10.0,
+  "max_tasks": 64,
+  "max_channels": 512,
+  "units": {
+    "k3": 2,
+    "k1": 1,
+    "dw7": 1,
+    "post": 1,
+    "add": 1,
+    "pad": 1
+  },
+  "stage": "out_of_context_synthesis",
+  "place_route_performed": false,
+  "sources_sha256": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_quant/dw7_cached_engine.sv": "12477096d4e3d3aae13f5e4d6188c19a8be1b122b69b20d2662d3698b0f68759",
+    "rtl/cnn_quant/quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+    "rtl/cnn_self/self_dispatch.sv": "9fce2bffe92fb57a62e1f258f6779a3039cf104d91cdaacc268d1cc38eb3b9fb",
+    "rtl/cnn_self/self_buffer_leases.sv": "a0dd10e8326eaaebfd05b022971caa6269f3fb496001fdc4c233981e80b1e501",
+    "rtl/cnn_self/self_result_handoff.sv": "96a83af03e9c6ba04b008066bdfd321744a8026019448dfaef12af76c4b3549a",
+    "rtl/cnn_self/self_network_top.sv": "4213048e5b7ce30f82ad64468cb3de288c68aee3e510e1b85b951bf0ddf625f4",
+    "rtl/filelists/cnn_self.f": "16f7ca7bb74269d14025feaf0b089459240f940f77bb270ad6c7b408ebe0831f",
+    "scripts/synth_self_cnn.py": "6e20ca23fd947814523a3b6ea8cf468cbe332abf30dcae978cbee6cde2f34910",
+    "scripts/synth_self_cnn.tcl": "50ddce84f6c6f12367440546ccf2186a0e7487be934bb6e828ce385c034c0a51"
+  },
+  "errors": [
+    "Vivado synthesis did not complete: ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'params_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (81920) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 81920}' to allow the memory to be dissolved into individual bits"
+  ],
+  "command": [
+    "D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\vivado.exe",
+    "-mode",
+    "batch",
+    "-nojournal",
+    "-log",
+    "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150436_706083_self_cnn_synth\\vivado.log",
+    "-source",
+    "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\scripts\\synth_self_cnn.tcl",
+    "-tclargs",
+    "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control",
+    "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_150436_706083_self_cnn_synth",
+    "xc7z020clg484-1",
+    "10.0"
+  ],
+  "vivado": "D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\vivado.exe",
+  "returncode": 4294967295,
+  "elapsed_seconds": 223.437,
+  "terminated_after_fatal_error": true,
+  "termination_reason": "Stopped prolonged elaboration after existing quant_post_engine Synth 8-3391 RAM inference fatal error; did not raise memory dissolution limit or alter original operators."
+}

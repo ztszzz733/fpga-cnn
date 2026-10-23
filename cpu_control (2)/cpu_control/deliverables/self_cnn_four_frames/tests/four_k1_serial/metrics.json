@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "mode": 1,
+  "cycles": 276229,
+  "checked_bytes": 28812,
+  "allocations": 44,
+  "releases": 44,
+  "results": 4,
+  "multi_frame_cycles": 0,
+  "multi_k3_mac_cycles": 0,
+  "peak_active_frames": 1,
+  "peak_simultaneous_k3_mac": 1,
+  "input_compute_cycles": 0,
+  "input_mac_cycles": 0,
+  "input_write_compute_cycles": 0,
+  "cpu_reads": 16249,
+  "compute_done_cycle": 276180,
+  "frames": [
+    {
+      "frame": 100,
+      "input_begin": 80,
+      "input_commit": 2997,
+      "first_launch": 3038,
+      "read_complete": 69114
+    },
+    {
+      "frame": 101,
+      "input_begin": 69115,
+      "input_commit": 72032,
+      "first_launch": 72075,
+      "read_complete": 138151
+    },
+    {
+      "frame": 102,
+      "input_begin": 138152,
+      "input_commit": 141069,
+      "first_launch": 141112,
+      "read_complete": 207188
+    },
+    {
+      "frame": 103,
+      "input_begin": 207189,
+      "input_commit": 210106,
+      "first_launch": 210149,
+      "read_complete": 276225
+    }
+  ],
+  "multi_frame_work_cycles": 0,
+  "cross_operator_work_cycles": 0,
+  "expanded_commands": 44,
+  "units": [
+    {
+      "unit": 0,
+      "tasks": 2,
+      "active_cycles": 60850,
+      "work_cycles": 21168,
+      "read_bytes": 8262,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 4
+    },
+    {
+      "unit": 1,
+      "tasks": 2,
+      "active_cycles": 27906,
+      "work_cycles": 7056,
+      "read_bytes": 5904,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 2,
+      "tasks": 2,
+      "active_cycles": 60850,
+      "work_cycles": 21168,
+      "read_bytes": 8262,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 4
+    },
+    {
+      "unit": 3,
+      "tasks": 2,
+      "active_cycles": 27906,
+      "work_cycles": 7056,
+      "read_bytes": 5904,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 4,
+      "tasks": 2,
+      "active_cycles": 20194,
+      "work_cycles": 6272,
+      "read_bytes": 2832,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 5,
+      "tasks": 2,
+      "active_cycles": 20194,
+      "work_cycles": 6272,
+      "read_bytes": 2832,
+      "write_bytes": 3136,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 6,
+      "tasks": 4,
+      "active_cycles": 1832,
+      "work_cycles": 196,
+      "read_bytes": 3136,
+      "write_bytes": 128,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 7,
+      "tasks": 16,
+      "active_cycles": 24960,
+      "work_cycles": 4736,
+      "read_bytes": 21504,
+      "write_bytes": 4736,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 8,
+      "tasks": 4,
+      "active_cycles": 11296,
+      "work_cycles": 1568,
+      "read_bytes": 3776,
+      "write_bytes": 1568,
+      "arbitration_wait_cycles": 0
+    },
+    {
+      "unit": 9,
+      "tasks": 8,
+      "active_cycles": 6820,
+      "work_cycles": 1620,
+      "read_bytes": 2156,
+      "write_bytes": 3564,
+      "arbitration_wait_cycles": 0
+    }
+  ],
+  "config": {
+    "k3": 4,
+    "k1": 2,
+    "post": 1
+  },
+  "physical_pools": {
+    "k3": 4,
+    "k1": 2,
+    "post": 1
+  },
+  "enabled_mask": 1023,
+  "output_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+  "simulation_seconds": 9.751
+}

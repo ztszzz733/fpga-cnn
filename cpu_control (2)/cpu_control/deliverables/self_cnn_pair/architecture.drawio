@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram id="self-cnn-pair" name="CNN seven execution units">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" page="1" pageWidth="1654" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Self CNN: two K3 + one of every other operator&lt;br&gt;Two preloaded 7x7 RGB images; 22 real RTL tasks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e8f0;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="15" width="1000" height="70" />
+        </mxCell>
+        <mxCell id="host" value="External CPU / image bridge&lt;br&gt;Configuration and input preparation&lt;br&gt;Not instantiated in this isolated test" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;fontSize=15;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="130" width="280" height="120" />
+        </mxCell>
+        <mxCell id="scheduler" value="self_dispatch&lt;br&gt;64-entry command DAG&lt;br&gt;Choose any eligible free K3&lt;br&gt;unit_start/active/node" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="420" y="130" width="360" height="120" />
+        </mxCell>
+        <mxCell id="leases" value="self_buffer_leases&lt;br&gt;8 physical slots, owner generations&lt;br&gt;All declared consumers must finish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="900" y="130" width="330" height="120" />
+        </mxCell>
+        <mxCell id="results" value="self_result_handoff&lt;br&gt;frame / address / length: 32 bits each&lt;br&gt;ACK only after external reads finish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1260" y="130" width="350" height="120" />
+        </mxCell>
+        <mxCell id="cfg" value="program_valid/ready; command[511:0]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#475569;fontSize=13;" edge="1" parent="1" source="host" target="scheduler">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="allocation" value="reserve + node[5:0] / buffer_ready" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#7c3aed;fontSize=13;" edge="1" parent="1" source="scheduler" target="leases">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="hold" value="external_hold[7:0]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#7c3aed;fontSize=13;" edge="1" parent="1" source="results" target="leases">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="units" value="CNN INTERNAL EXECUTION UNITS — independent engines, shared external memory bandwidth&lt;br&gt;Per unit: command[511:0] + start[1] from dispatcher; busy/done/error[1 each] return to dispatcher" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e2e8f0;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="105" y="305" width="1440" height="70" />
+        </mxCell>
+        <mxCell id="u0" value="Port 0: K3 #0&lt;br&gt;NEW self_conv_engine&lt;br&gt;ordinary / DW3, 1 MAC&lt;br&gt;2x2 tile + cached halo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="35" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch0" value="unit_start[0]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u0">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u1" value="Port 1: K3 #1&lt;br&gt;NEW self_conv_engine&lt;br&gt;ordinary / DW3, 1 MAC&lt;br&gt;2x2 tile + cached halo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="263" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch1" value="unit_start[1]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u2" value="Port 2: K1&lt;br&gt;NEW self_conv_engine&lt;br&gt;ordinary 1x1, 1 MAC&lt;br&gt;2x2 tile cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="491" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch2" value="unit_start[2]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u3" value="Port 3: DW7&lt;br&gt;REUSED dw7_cached_engine&lt;br&gt;7x7 depthwise, 8 lanes&lt;br&gt;width=7, Cin multiple of 8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="719" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch3" value="unit_start[3]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u3">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u4" value="Port 4: Post&lt;br&gt;REUSED quant_post_engine&lt;br&gt;bias / scale / ties-away&lt;br&gt;ReLU / bounded clipping" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="947" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch4" value="unit_start[4]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u4">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u5" value="Port 5: Add&lt;br&gt;REUSED quant_post_engine&lt;br&gt;two input scales&lt;br&gt;one final rounding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1175" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch5" value="unit_start[5]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u5">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="u6" value="Port 6: Pad&lt;br&gt;REUSED pad_hwc_engine&lt;br&gt;HWC border +1 pixel&lt;br&gt;fill with input zero point" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1403" y="405" width="215" height="165" />
+        </mxCell>
+        <mxCell id="launch6" value="unit_start[6]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#2563eb;fontSize=13;" edge="1" parent="1" source="scheduler" target="u6">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="fabric" value="EXTERNAL MEMORY FABRIC / TB MODEL&lt;br&gt;7 one-outstanding ports, four-bank test arbitration&lt;br&gt;Per port: valid/write/byte/ready/response = 1 bit; addr/wdata/rdata = 32 bits&lt;br&gt;byte=1: low 8 bits; byte=0: aligned 32 bits; write response means committed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#475569;fontSize=15;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="220" y="700" width="1160" height="130" />
+        </mxCell>
+        <mxCell id="mem0" value="port 0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u0" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem1" value="port 1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u1" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem2" value="port 2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u2" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem3" value="port 3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u3" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem4" value="port 4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u4" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem5" value="port 5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u5" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="mem6" value="port 6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="u6" target="fabric">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="sram" value="SRAM TEST STORAGE&lt;br&gt;Immutable images / weights / parameters&lt;br&gt;8 x 2048-byte payload slots + 64-byte guards&lt;br&gt;Released payloads poisoned with 0xD7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#475569;fontSize=15;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="270" y="915" width="550" height="135" />
+        </mxCell>
+        <mxCell id="reader" value="EXTERNAL RESULT READER (TB)&lt;br&gt;Reads actual SRAM bytes, verifies frame ownership&lt;br&gt;Then result_ready = 1&lt;br&gt;Production reader and bus arbitration are external" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#475569;fontSize=15;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="990" y="915" width="550" height="135" />
+        </mxCell>
+        <mxCell id="store" value="request / delayed response" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="fabric" target="sram">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="desc" value="valid / frame / addr / bytes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#15803d;fontSize=13;" edge="1" parent="1" source="results" target="reader">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="ack" value="result_ready: all reads complete" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#15803d;fontSize=13;" edge="1" parent="1" source="reader" target="results">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="externalread" value="actual output bytes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#b45309;fontSize=13;" edge="1" parent="1" source="sram" target="reader">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

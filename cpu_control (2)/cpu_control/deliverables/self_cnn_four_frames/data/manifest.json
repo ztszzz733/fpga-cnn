@@ -1,0 +1,728 @@
+{
+  "format": "self-cnn-command-v1",
+  "task_count": 44,
+  "memory_bytes": 262144,
+  "expected_bytes": 28812,
+  "slot_base": 32768,
+  "slot_pitch": 2112,
+  "slot_bytes": 2048,
+  "immutable": [
+    {
+      "name": "conv3_weights",
+      "address": 1024,
+      "bytes": 216,
+      "sha256": "32f5aeeb57ff5fa89f832994559a8b708ce07be9e2f5935bb46387f06dd38b86"
+    },
+    {
+      "name": "conv3_parameters",
+      "address": 1344,
+      "bytes": 160,
+      "sha256": "77dec7cdd58f22bf2d2081744f9a4e47060b20440ade184f035d5a53fc96ba4c"
+    },
+    {
+      "name": "dw3_weights",
+      "address": 1600,
+      "bytes": 72,
+      "sha256": "54066dd0ec2ce9fff8252928cb3cfbbd47b4e55f67fe326000ff2befb9bd17a7"
+    },
+    {
+      "name": "dw3_parameters",
+      "address": 1792,
+      "bytes": 160,
+      "sha256": "ba75b6d4b3efe1f6ddb17a7be0a13849c259cabe66a70c8f95ab245e07b04007"
+    },
+    {
+      "name": "conv1_weights",
+      "address": 2048,
+      "bytes": 64,
+      "sha256": "39fdbe615652f6cdec548c0424f56b581aaa141faded7eb31d484e38456fe476"
+    },
+    {
+      "name": "conv1_parameters",
+      "address": 2176,
+      "bytes": 160,
+      "sha256": "77cb8840678b1166cd3bc11ca3e426384eb697bc1fe544bc86c6c20f114d59d1"
+    },
+    {
+      "name": "dw7_weights",
+      "address": 2432,
+      "bytes": 392,
+      "sha256": "460f2fde487b2750010ea11d881a9980b3c5bb47440cf9c25079f81df020977e"
+    },
+    {
+      "name": "dw7_parameters",
+      "address": 2944,
+      "bytes": 160,
+      "sha256": "a57e4ab8d09d591a10ef60d0ecc514205bd47d9c28d53675b052123f2385967b"
+    },
+    {
+      "name": "add_parameters",
+      "address": 3200,
+      "bytes": 160,
+      "sha256": "98d5d3b8a4916b694b40e5766c46776ea4374fba6f1ea5486245978e2a91975c"
+    },
+    {
+      "name": "image0",
+      "address": 3456,
+      "bytes": 147,
+      "sha256": "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76"
+    },
+    {
+      "name": "image1",
+      "address": 3712,
+      "bytes": 147,
+      "sha256": "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769"
+    },
+    {
+      "name": "image2",
+      "address": 3968,
+      "bytes": 147,
+      "sha256": "ba0ab56d02c0146351997b15321a6138d95474e2bf22782de052c6cbc1bbf65e"
+    },
+    {
+      "name": "image3",
+      "address": 4224,
+      "bytes": 147,
+      "sha256": "3d7389b5e7a255bfb8a5c22567afc29b28f6a86b8fc5ef0210f901ec0f73b4cc"
+    }
+  ],
+  "jobs": [
+    {
+      "index": 0,
+      "frame": 100,
+      "name": "pad0",
+      "opcode": 4,
+      "dependencies": [],
+      "slot": 0,
+      "address": 32768,
+      "bytes": 243,
+      "expected_offset": 0,
+      "result": false
+    },
+    {
+      "index": 1,
+      "frame": 101,
+      "name": "pad0",
+      "opcode": 4,
+      "dependencies": [],
+      "slot": 4,
+      "address": 41216,
+      "bytes": 243,
+      "expected_offset": 243,
+      "result": false
+    },
+    {
+      "index": 2,
+      "frame": 102,
+      "name": "pad0",
+      "opcode": 4,
+      "dependencies": [],
+      "slot": 8,
+      "address": 49664,
+      "bytes": 243,
+      "expected_offset": 486,
+      "result": false
+    },
+    {
+      "index": 3,
+      "frame": 103,
+      "name": "pad0",
+      "opcode": 4,
+      "dependencies": [],
+      "slot": 12,
+      "address": 58112,
+      "bytes": 243,
+      "expected_offset": 729,
+      "result": false
+    },
+    {
+      "index": 4,
+      "frame": 100,
+      "name": "c3",
+      "opcode": 0,
+      "dependencies": [
+        0
+      ],
+      "slot": 1,
+      "address": 34880,
+      "bytes": 1568,
+      "expected_offset": 972,
+      "result": false
+    },
+    {
+      "index": 5,
+      "frame": 101,
+      "name": "c3",
+      "opcode": 0,
+      "dependencies": [
+        1
+      ],
+      "slot": 5,
+      "address": 43328,
+      "bytes": 1568,
+      "expected_offset": 2540,
+      "result": false
+    },
+    {
+      "index": 6,
+      "frame": 102,
+      "name": "c3",
+      "opcode": 0,
+      "dependencies": [
+        2
+      ],
+      "slot": 9,
+      "address": 51776,
+      "bytes": 1568,
+      "expected_offset": 4108,
+      "result": false
+    },
+    {
+      "index": 7,
+      "frame": 103,
+      "name": "c3",
+      "opcode": 0,
+      "dependencies": [
+        3
+      ],
+      "slot": 13,
+      "address": 60224,
+      "bytes": 1568,
+      "expected_offset": 5676,
+      "result": false
+    },
+    {
+      "index": 8,
+      "frame": 100,
+      "name": "c3_q",
+      "opcode": 1,
+      "dependencies": [
+        4
+      ],
+      "slot": 0,
+      "address": 32768,
+      "bytes": 392,
+      "expected_offset": 7244,
+      "result": false
+    },
+    {
+      "index": 9,
+      "frame": 101,
+      "name": "c3_q",
+      "opcode": 1,
+      "dependencies": [
+        5
+      ],
+      "slot": 4,
+      "address": 41216,
+      "bytes": 392,
+      "expected_offset": 7636,
+      "result": false
+    },
+    {
+      "index": 10,
+      "frame": 102,
+      "name": "c3_q",
+      "opcode": 1,
+      "dependencies": [
+        6
+      ],
+      "slot": 8,
+      "address": 49664,
+      "bytes": 392,
+      "expected_offset": 8028,
+      "result": false
+    },
+    {
+      "index": 11,
+      "frame": 103,
+      "name": "c3_q",
+      "opcode": 1,
+      "dependencies": [
+        7
+      ],
+      "slot": 12,
+      "address": 58112,
+      "bytes": 392,
+      "expected_offset": 8420,
+      "result": false
+    },
+    {
+      "index": 12,
+      "frame": 100,
+      "name": "pad1",
+      "opcode": 4,
+      "dependencies": [
+        8
+      ],
+      "slot": 1,
+      "address": 34880,
+      "bytes": 648,
+      "expected_offset": 8812,
+      "result": false
+    },
+    {
+      "index": 13,
+      "frame": 101,
+      "name": "pad1",
+      "opcode": 4,
+      "dependencies": [
+        9
+      ],
+      "slot": 5,
+      "address": 43328,
+      "bytes": 648,
+      "expected_offset": 9460,
+      "result": false
+    },
+    {
+      "index": 14,
+      "frame": 102,
+      "name": "pad1",
+      "opcode": 4,
+      "dependencies": [
+        10
+      ],
+      "slot": 9,
+      "address": 51776,
+      "bytes": 648,
+      "expected_offset": 10108,
+      "result": false
+    },
+    {
+      "index": 15,
+      "frame": 103,
+      "name": "pad1",
+      "opcode": 4,
+      "dependencies": [
+        11
+      ],
+      "slot": 13,
+      "address": 60224,
+      "bytes": 648,
+      "expected_offset": 10756,
+      "result": false
+    },
+    {
+      "index": 16,
+      "frame": 100,
+      "name": "d3",
+      "opcode": 0,
+      "dependencies": [
+        12
+      ],
+      "slot": 2,
+      "address": 36992,
+      "bytes": 1568,
+      "expected_offset": 11404,
+      "result": false
+    },
+    {
+      "index": 17,
+      "frame": 101,
+      "name": "d3",
+      "opcode": 0,
+      "dependencies": [
+        13
+      ],
+      "slot": 6,
+      "address": 45440,
+      "bytes": 1568,
+      "expected_offset": 12972,
+      "result": false
+    },
+    {
+      "index": 18,
+      "frame": 102,
+      "name": "d3",
+      "opcode": 0,
+      "dependencies": [
+        14
+      ],
+      "slot": 10,
+      "address": 53888,
+      "bytes": 1568,
+      "expected_offset": 14540,
+      "result": false
+    },
+    {
+      "index": 19,
+      "frame": 103,
+      "name": "d3",
+      "opcode": 0,
+      "dependencies": [
+        15
+      ],
+      "slot": 14,
+      "address": 62336,
+      "bytes": 1568,
+      "expected_offset": 16108,
+      "result": false
+    },
+    {
+      "index": 20,
+      "frame": 100,
+      "name": "d3_q",
+      "opcode": 1,
+      "dependencies": [
+        16
+      ],
+      "slot": 1,
+      "address": 34880,
+      "bytes": 392,
+      "expected_offset": 17676,
+      "result": false
+    },
+    {
+      "index": 21,
+      "frame": 101,
+      "name": "d3_q",
+      "opcode": 1,
+      "dependencies": [
+        17
+      ],
+      "slot": 5,
+      "address": 43328,
+      "bytes": 392,
+      "expected_offset": 18068,
+      "result": false
+    },
+    {
+      "index": 22,
+      "frame": 102,
+      "name": "d3_q",
+      "opcode": 1,
+      "dependencies": [
+        18
+      ],
+      "slot": 9,
+      "address": 51776,
+      "bytes": 392,
+      "expected_offset": 18460,
+      "result": false
+    },
+    {
+      "index": 23,
+      "frame": 103,
+      "name": "d3_q",
+      "opcode": 1,
+      "dependencies": [
+        19
+      ],
+      "slot": 13,
+      "address": 60224,
+      "bytes": 392,
+      "expected_offset": 18852,
+      "result": false
+    },
+    {
+      "index": 24,
+      "frame": 100,
+      "name": "c1",
+      "opcode": 5,
+      "dependencies": [
+        20
+      ],
+      "slot": 2,
+      "address": 36992,
+      "bytes": 1568,
+      "expected_offset": 19244,
+      "result": false
+    },
+    {
+      "index": 25,
+      "frame": 101,
+      "name": "c1",
+      "opcode": 5,
+      "dependencies": [
+        21
+      ],
+      "slot": 6,
+      "address": 45440,
+      "bytes": 1568,
+      "expected_offset": 20812,
+      "result": false
+    },
+    {
+      "index": 26,
+      "frame": 102,
+      "name": "c1",
+      "opcode": 5,
+      "dependencies": [
+        22
+      ],
+      "slot": 10,
+      "address": 53888,
+      "bytes": 1568,
+      "expected_offset": 22380,
+      "result": false
+    },
+    {
+      "index": 27,
+      "frame": 103,
+      "name": "c1",
+      "opcode": 5,
+      "dependencies": [
+        23
+      ],
+      "slot": 14,
+      "address": 62336,
+      "bytes": 1568,
+      "expected_offset": 23948,
+      "result": false
+    },
+    {
+      "index": 28,
+      "frame": 100,
+      "name": "c1_q",
+      "opcode": 1,
+      "dependencies": [
+        24
+      ],
+      "slot": 1,
+      "address": 34880,
+      "bytes": 392,
+      "expected_offset": 25516,
+      "result": false
+    },
+    {
+      "index": 29,
+      "frame": 101,
+      "name": "c1_q",
+      "opcode": 1,
+      "dependencies": [
+        25
+      ],
+      "slot": 5,
+      "address": 43328,
+      "bytes": 392,
+      "expected_offset": 25908,
+      "result": false
+    },
+    {
+      "index": 30,
+      "frame": 102,
+      "name": "c1_q",
+      "opcode": 1,
+      "dependencies": [
+        26
+      ],
+      "slot": 9,
+      "address": 51776,
+      "bytes": 392,
+      "expected_offset": 26300,
+      "result": false
+    },
+    {
+      "index": 31,
+      "frame": 103,
+      "name": "c1_q",
+      "opcode": 1,
+      "dependencies": [
+        27
+      ],
+      "slot": 13,
+      "address": 60224,
+      "bytes": 392,
+      "expected_offset": 26692,
+      "result": false
+    },
+    {
+      "index": 32,
+      "frame": 100,
+      "name": "residual",
+      "opcode": 2,
+      "dependencies": [
+        28,
+        8
+      ],
+      "slot": 2,
+      "address": 36992,
+      "bytes": 392,
+      "expected_offset": 27084,
+      "result": false
+    },
+    {
+      "index": 33,
+      "frame": 101,
+      "name": "residual",
+      "opcode": 2,
+      "dependencies": [
+        29,
+        9
+      ],
+      "slot": 6,
+      "address": 45440,
+      "bytes": 392,
+      "expected_offset": 27476,
+      "result": false
+    },
+    {
+      "index": 34,
+      "frame": 102,
+      "name": "residual",
+      "opcode": 2,
+      "dependencies": [
+        30,
+        10
+      ],
+      "slot": 10,
+      "address": 53888,
+      "bytes": 392,
+      "expected_offset": 27868,
+      "result": false
+    },
+    {
+      "index": 35,
+      "frame": 103,
+      "name": "residual",
+      "opcode": 2,
+      "dependencies": [
+        31,
+        11
+      ],
+      "slot": 14,
+      "address": 62336,
+      "bytes": 392,
+      "expected_offset": 28260,
+      "result": false
+    },
+    {
+      "index": 36,
+      "frame": 100,
+      "name": "d7",
+      "opcode": 3,
+      "dependencies": [
+        32
+      ],
+      "slot": 0,
+      "address": 32768,
+      "bytes": 32,
+      "expected_offset": 28652,
+      "result": false
+    },
+    {
+      "index": 37,
+      "frame": 101,
+      "name": "d7",
+      "opcode": 3,
+      "dependencies": [
+        33
+      ],
+      "slot": 4,
+      "address": 41216,
+      "bytes": 32,
+      "expected_offset": 28684,
+      "result": false
+    },
+    {
+      "index": 38,
+      "frame": 102,
+      "name": "d7",
+      "opcode": 3,
+      "dependencies": [
+        34
+      ],
+      "slot": 8,
+      "address": 49664,
+      "bytes": 32,
+      "expected_offset": 28716,
+      "result": false
+    },
+    {
+      "index": 39,
+      "frame": 103,
+      "name": "d7",
+      "opcode": 3,
+      "dependencies": [
+        35
+      ],
+      "slot": 12,
+      "address": 58112,
+      "bytes": 32,
+      "expected_offset": 28748,
+      "result": false
+    },
+    {
+      "index": 40,
+      "frame": 100,
+      "name": "d7_q",
+      "opcode": 1,
+      "dependencies": [
+        36
+      ],
+      "slot": 1,
+      "address": 34880,
+      "bytes": 8,
+      "expected_offset": 28780,
+      "result": true
+    },
+    {
+      "index": 41,
+      "frame": 101,
+      "name": "d7_q",
+      "opcode": 1,
+      "dependencies": [
+        37
+      ],
+      "slot": 5,
+      "address": 43328,
+      "bytes": 8,
+      "expected_offset": 28788,
+      "result": true
+    },
+    {
+      "index": 42,
+      "frame": 102,
+      "name": "d7_q",
+      "opcode": 1,
+      "dependencies": [
+        38
+      ],
+      "slot": 9,
+      "address": 51776,
+      "bytes": 8,
+      "expected_offset": 28796,
+      "result": true
+    },
+    {
+      "index": 43,
+      "frame": 103,
+      "name": "d7_q",
+      "opcode": 1,
+      "dependencies": [
+        39
+      ],
+      "slot": 13,
+      "address": 60224,
+      "bytes": 8,
+      "expected_offset": 28804,
+      "result": true
+    }
+  ],
+  "input_sources": [
+    "deterministic synthetic RGB test image; not a face recognition fixture",
+    "deterministic synthetic RGB test image; not a face recognition fixture",
+    "deterministic synthetic RGB test image; not a face recognition fixture",
+    "deterministic synthetic RGB test image; not a face recognition fixture"
+  ],
+  "images_sha256": [
+    "758effa5a72b1a5618abd424931ab86ce90ce79e13fd5029c02c44ad770e8d76",
+    "bc98d3ef61920ef2ec63d2442954f7d25f81b584e51baaf81b6be870f4121769",
+    "ba0ab56d02c0146351997b15321a6138d95474e2bf22782de052c6cbc1bbf65e",
+    "3d7389b5e7a255bfb8a5c22567afc29b28f6a86b8fc5ef0210f901ec0f73b4cc"
+  ],
+  "final_expected_sha256": "d961e0eb6f303e1f4e49a9792e92778ba2d4f5b4ee6600976d3417ee6f9d08f0",
+  "scope": "four sequential 7x7 RGB images, all operator types, synthetic diagnostic weights; not full MobileFaceNet",
+  "template_steps": 11,
+  "files_sha256": {
+    "memory.hex": "faf37cf01ab60bece231f6062f2ecef4137d2e8f59535f719512aedccdb2de13",
+    "expected.hex": "816b1b2b26d15314ca67e752717e846c1c534275841a4577c6e9f191a7dc965e",
+    "commands.hex": "15faedf53841b9ba3091df952de69d735d1712c3bd0da6b5cf5b2d4e85cb6be0",
+    "metadata.hex": "065f27820dfc1ac20ca9235b3db38362cb7faf2e93fac91f63a0b3af867731c0",
+    "images.hex": "62dcfecc3bd480da3eb1b393eb0ff58a3beaafe1647a9096e25fa2c8f97d660c",
+    "image_info.hex": "4a5a418b5f34f64c13409620afca38b22160bd265aea29a45e8847230bfb27f5",
+    "template_commands.hex": "60d329d3e73cacd39e9b4406a96e56e25a0c3b44d9c21bb43f537f1e736d858e",
+    "template_meta.hex": "ba6666661d78c81a7bd856b8c93feaaca8052b8d20afb666caa6f64c4a314463"
+  }
+}

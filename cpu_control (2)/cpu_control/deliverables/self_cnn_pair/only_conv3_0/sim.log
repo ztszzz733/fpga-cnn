@@ -1,0 +1,20 @@
+
+COMMAND ["D:\\vivado\\2026.1\\Vivado\\bin\\unwrapped\\win64.o\\xsim.exe", "self_pair_sim", "-tclbatch", "../only_conv3_0/run.tcl", "-onerror", "quit", "-testplusarg", "DATA=../data", "-testplusarg", "MODE=2"]
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Fri Oct 23 15:08:35 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/self_pair_sim/xsim_script.tcl
+# xsim {self_pair_sim} -testplusarg DATA=../data -testplusarg MODE=2 -autoloadwcfg -tclbatch {../only_conv3_0/run.tcl} -onerror quit
+Time resolution is 1 ps
+source ../only_conv3_0/run.tcl
+## run all
+PASS SELF_PAIR mode=2 cycles=129204 checked=14406 dual_mac=0 cross=498
+$finish called at time : 1292110 ns : File "D:/zhang/fpga-cnn/cpu_control (2)/cpu_control/tb/self_pair_tb.sv" Line 235
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Oct 23 15:08:38 2026...

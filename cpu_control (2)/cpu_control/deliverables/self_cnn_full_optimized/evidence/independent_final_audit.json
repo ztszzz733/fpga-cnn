@@ -1,0 +1,292 @@
+{
+  "status": "PASS_INDEPENDENT_READ_ONLY_AUDIT",
+  "baseline": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_180539_292440_self_full",
+  "candidate": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_194836_645744_self_full",
+  "numerical": {
+    "output_bytes": 512,
+    "output_sha256": "80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f",
+    "candidate_equals_baseline_byte_for_byte": true,
+    "candidate_equals_expected_final_ranges_byte_for_byte": true,
+    "each_frame_equals_quantization_audit": true,
+    "frames": 4,
+    "bytes_per_frame": 128,
+    "checked_bytes": 77349168,
+    "total_macs": 935241728,
+    "task_count": 524,
+    "task_events_unique": true,
+    "all_dependency_and_frame_orders_verified": true,
+    "event_counts": {
+      "input_begin": 4,
+      "input_commit": 4,
+      "launch": 524,
+      "done": 524,
+      "result_ack": 4
+    }
+  },
+  "provenance": {
+    "same_fixture_manifest": true,
+    "fixture_manifest_sha256": "5add2d08a16845ec1d058a5330880022fe62aa66a7f049db8cc2bd9310e4d1f1",
+    "same_all_rtl_sources_and_sv_wrapper": true,
+    "current_source_hashes_verified": 15,
+    "data_hashes_verified": 13,
+    "exe_sha256": "5bdefad67639cfd8e1c9df12674fa3b05a1d2c1e24edb173235eba137053fa84",
+    "exe_and_cache_signature_verified": true,
+    "rtl_parameter_overrides": [
+      "-GK3_UNITS=2",
+      "-GK1_UNITS=4",
+      "-GPOST_UNITS=1"
+    ],
+    "cpp_defines": [
+      "CNN_K3=2",
+      "CNN_K1=4",
+      "CNN_POST=1"
+    ],
+    "gate": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_194655_786340_self_full",
+    "gate_matching_same_exe_and_pool": true,
+    "changed_support_sources": [
+      "tb/integration/self_full_main.cpp",
+      "scripts/bootstrap_verilator_native.py"
+    ],
+    "candidate_result_sha256": "d24b3210c5f630c5d7724488f6254a7f629a7e1a2708a0e6dafc8d97955131c9",
+    "baseline_result_sha256": "6baeeee8b65d343fe9186c187508020d063f5dda3b1bac3a3be94535ce686c76",
+    "events_sha256": "6a7e51e034e19b4d6cfae0a5e96e362b506c5027031aaf8e7a58cee6a5c0a1c0",
+    "metrics_sha256": "e8c985670456b89c950382ff379bdfd19f707651b89e1516056e673dab02d66b",
+    "quantization_audit_sha256": "25f1ed179f62beef645c2ff1766ab4bd00b1abb0c798b6dae1adac6e1489bbae"
+  },
+  "performance": {
+    "baseline_cycles": 1138093351,
+    "candidate_cycles": 653428459,
+    "cycles_saved": 484664892,
+    "measured_speed_ratio": 1.741726022680013,
+    "measured_elapsed_reduction_percent": 42.58568873758406,
+    "estimate_cycles": 653070043,
+    "actual_minus_estimate_cycles": 358416,
+    "actual_above_estimate_percent": 0.054881708913412375,
+    "input_pace_both": 80,
+    "input_commit_differences": [
+      0,
+      0,
+      0,
+      -2
+    ],
+    "baseline_multi_frame_work_cycles": 82088133,
+    "candidate_multi_frame_work_cycles": 315946899,
+    "baseline_multi_frame_work_pct": 7.212776783896702,
+    "candidate_multi_frame_work_pct": 48.35217913274267,
+    "baseline_multi_frame_active_pct": 99.8073305675608,
+    "candidate_multi_frame_active_pct": 99.42475462336726,
+    "candidate_cross_operator_work_pct": 4.458190426015712,
+    "event_reconstructed_peak_active_frames": 4,
+    "event_reconstructed_multi_frame_active_equals_metrics": true,
+    "event_active_frame_cycle_histogram": {
+      "0": 764179,
+      "1": 2994530,
+      "2": 31912575,
+      "3": 15163886,
+      "4": 602593181
+    },
+    "event_active_k1_cycle_histogram": {
+      "0": 36904315,
+      "1": 7479083,
+      "2": 38009098,
+      "3": 139371427,
+      "4": 431664428
+    },
+    "baseline_capacity_wait_sum": 2020481732,
+    "candidate_capacity_wait_sum": 67428567,
+    "baseline_scan_wait_sum": 162043,
+    "candidate_scan_wait_sum": 140030,
+    "baseline_arbitration_wait_sum": 5923647,
+    "candidate_arbitration_wait_sum": 7217254,
+    "hypothetical_100MHz_candidate_batch_seconds": 6.53428459,
+    "hypothetical_100MHz_candidate_batch_fps": 0.6121557677670724
+  },
+  "operators": {
+    "0": {
+      "baseline": {
+        "units": 4,
+        "tasks": 68,
+        "active_sum": 205516755,
+        "busy_pct_each": [
+          4.516828338802939,
+          4.512625168653674,
+          4.515739060846161,
+          4.512794926257328
+        ],
+        "work_cycles": 61415424,
+        "arbitration_wait_sum": 2093347,
+        "arbitration_wait_pct_of_active": 1.0185772931262953,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 19292
+      },
+      "candidate": {
+        "units": 2,
+        "tasks": 68,
+        "active_sum": 204753565,
+        "busy_pct_each": [
+          15.673402281365894,
+          15.661866665039149
+        ],
+        "work_cycles": 61415424,
+        "arbitration_wait_sum": 1330157,
+        "arbitration_wait_pct_of_active": 0.6496380172916647,
+        "capacity_wait_frame_cycles": 60854648,
+        "scan_wait_frame_cycles": 19650
+      }
+    },
+    "5": {
+      "baseline": {
+        "units": 2,
+        "tasks": 132,
+        "active_sum": 2226270780,
+        "busy_pct_each": [
+          97.83122667588627,
+          97.78284821910009
+        ],
+        "work_cycles": 873725952,
+        "arbitration_wait_sum": 2842460,
+        "arbitration_wait_pct_of_active": 0.12767808954488455,
+        "capacity_wait_frame_cycles": 2016986427,
+        "scan_wait_frame_cycles": 59730
+      },
+      "candidate": {
+        "units": 4,
+        "tasks": 132,
+        "active_sum": 2228269008,
+        "busy_pct_each": [
+          85.30094814863276,
+          85.90812632481317,
+          85.20916258408634,
+          84.59369428842095
+        ],
+        "work_cycles": 873725952,
+        "arbitration_wait_sum": 4840688,
+        "arbitration_wait_pct_of_active": 0.21723983875469313,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 36793
+      }
+    },
+    "3": {
+      "baseline": {
+        "units": 1,
+        "tasks": 4,
+        "active_sum": 117440,
+        "busy_pct_each": [
+          0.010319012926031936
+        ],
+        "work_cycles": 12544,
+        "arbitration_wait_sum": 192,
+        "arbitration_wait_pct_of_active": 0.16348773841961853,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 862
+      },
+      "candidate": {
+        "units": 1,
+        "tasks": 4,
+        "active_sum": 117413,
+        "busy_pct_each": [
+          0.01796876129020882
+        ],
+        "work_cycles": 12544,
+        "arbitration_wait_sum": 165,
+        "arbitration_wait_pct_of_active": 0.1405295836065853,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 738
+      }
+    },
+    "1": {
+      "baseline": {
+        "units": 1,
+        "tasks": 204,
+        "active_sum": 69231380,
+        "busy_pct_each": [
+          6.083102053023065
+        ],
+        "work_cycles": 13625344,
+        "arbitration_wait_sum": 710420,
+        "arbitration_wait_pct_of_active": 1.026153169270929,
+        "capacity_wait_frame_cycles": 3495305,
+        "scan_wait_frame_cycles": 53092
+      },
+      "candidate": {
+        "units": 1,
+        "tasks": 204,
+        "active_sum": 69259516,
+        "busy_pct_each": [
+          10.599403048038958
+        ],
+        "work_cycles": 13625344,
+        "arbitration_wait_sum": 738556,
+        "arbitration_wait_pct_of_active": 1.0663603251284632,
+        "capacity_wait_frame_cycles": 6573919,
+        "scan_wait_frame_cycles": 52511
+      }
+    },
+    "2": {
+      "baseline": {
+        "units": 1,
+        "tasks": 48,
+        "active_sum": 10329308,
+        "busy_pct_each": [
+          0.9075976053215691
+        ],
+        "work_cycles": 1455104,
+        "arbitration_wait_sum": 92380,
+        "arbitration_wait_pct_of_active": 0.894348391973596,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 11418
+      },
+      "candidate": {
+        "units": 1,
+        "tasks": 48,
+        "active_sum": 10371038,
+        "busy_pct_each": [
+          1.587172682357871
+        ],
+        "work_cycles": 1455104,
+        "arbitration_wait_sum": 134110,
+        "arbitration_wait_pct_of_active": 1.2931203221895435,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 12487
+      }
+    },
+    "4": {
+      "baseline": {
+        "units": 1,
+        "tasks": 68,
+        "active_sum": 9923744,
+        "busy_pct_each": [
+          0.8719622156899852
+        ],
+        "work_cycles": 2058800,
+        "arbitration_wait_sum": 184848,
+        "arbitration_wait_pct_of_active": 1.8626840837490366,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 17649
+      },
+      "candidate": {
+        "units": 1,
+        "tasks": 68,
+        "active_sum": 9912474,
+        "busy_pct_each": [
+          1.5169945329852859
+        ],
+        "work_cycles": 2058800,
+        "arbitration_wait_sum": 173578,
+        "arbitration_wait_pct_of_active": 1.7511067368247322,
+        "capacity_wait_frame_cycles": 0,
+        "scan_wait_frame_cycles": 17851
+      }
+    }
+  },
+  "scope": [
+    "Both measured runs execute the same full quantized MobileFaceNet graph on the same four synthetic 112x112 RGB inputs.",
+    "The comparison is 4K3/2K1 versus 2K3/4K1 with ten total operators, not parallel versus serial.",
+    "Runtime parameter counts and monitoring/build support changed; arithmetic RTL, SRAM protocol and fixture bytes are identical.",
+    "Per-op task/MAC/read/write totals and active cycles after subtracting arbitration waits agree exactly across configurations.",
+    "Capacity/scan/arbitration sums are cumulative frame/unit cycles; overlapping waits must not be treated as disjoint elapsed batch time.",
+    "The last input commit differs by minus two cycles due to actual arbitration, despite the same images/input pacing.",
+    "100MHz conversion is conditional; 16MiB SRAM is simulation capacity and no board-level fit/timing claim follows.",
+    "Final embeddings are affine UINT8 with diagnostic quantization, not normalized floating-point identity features."
+  ]
+}

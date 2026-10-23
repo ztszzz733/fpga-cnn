@@ -1,0 +1,326 @@
+{
+  "status": "PASS",
+  "full_network": true,
+  "frames": 4,
+  "run": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\runs\\20261023_180539_292440_self_full",
+  "data": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\self_full_data",
+  "manifest_sha256": "5add2d08a16845ec1d058a5330880022fe62aa66a7f049db8cc2bd9310e4d1f1",
+  "exe_sha256": "683c83a06ec5c1ea895a98aa0d6672aece5b0eb50e2f89a3fc1e6f2214553434",
+  "source_signature": {
+    "sources": {
+      "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "rtl/cnn_quant/dw7_cached_engine.sv": "12477096d4e3d3aae13f5e4d6188c19a8be1b122b69b20d2662d3698b0f68759",
+      "rtl/cnn_quant/quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+      "rtl/cnn_quant/pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+      "rtl/cnn_stream/bai/datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+      "rtl/cnn_stream/stream_dispatch.sv": "025effdb205f0b10dbdce7677b32f3bf3a6858de449b0b095b390aef09c7aa65",
+      "rtl/cnn_stream/stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+      "rtl/cnn_stream/stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+      "rtl/cnn_stream/self_stream_top.sv": "bec3a8db3dd4ea025a10e8dfbc66408ddc4590b69b61ef354917bc68a0321a26",
+      "rtl/cnn_stream/stream_fixed_programmer.sv": "cf2463f1961a13a402608308042bccee2873c20ec2958a35cca11a2c676067fc",
+      "rtl/cnn_stream/self_fixed_network_top.sv": "44da0ae3d19accbf2b9b53e3b2b3ee6e097aa44f50778c578b3682a44915e06d",
+      "tb/self_full_sim_top.sv": "33371c59bb3b22d084a4850524105207996c434f1daac46572e0359245ee9017",
+      "tb/integration/self_full_main.cpp": "44428445b6729a126a5da16a68955d8dd35a571ffd921a509b22d9a7263fcc5d",
+      "rtl/filelists/cnn_self_stream.f": "fdac37e62c08d3fa0013a50b3d283e2d0b9f538d70d00a91035ef41be3c0983a",
+      "scripts/bootstrap_verilator_native.py": "7ef06ffbcdc894ddb1b110185bd770b005fe35b5592286d5758e846ebb7d0a6d"
+    },
+    "verilator_sha256": "fd38bd05be7ea1f70263451a2154f22782140fbc7e0f386dc10dced750fc892e",
+    "flags": [
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500"
+    ],
+    "toolchain": {
+      "package": "verilator 5.48.0 (Windows wheel)",
+      "package_url": "https://pypi.org/project/verilator/5.48.0/",
+      "package_repository": "https://github.com/dau-dev/verilator-python",
+      "upstream_repository": "https://github.com/verilator/verilator",
+      "upstream_install_documentation": "https://verilator.org/guide/latest/install-cmake.html",
+      "download_url": "https://files.pythonhosted.org/packages/e1/83/af403e28686d4bdaffe517809fdd77b5c746f3b7953a5880acb60f12e716/verilator-5.48.0-py3-none-win_amd64.whl",
+      "sha256": "e03aad7e023bbe585f909276f3c03af66f7ede72155f8f75fdaf4f1ec8250e09",
+      "bytes": 5217421,
+      "binary_version": "rev vUNKNOWN-built20260516-4e853d8",
+      "runtime_version_header": "// -*- mode: C++; c-file-style: \"cc-mode\" -*-\n//*************************************************************************\n//\n// Code available from: https://verilator.org\n//\n// This program is free software; you can redistribute it and/or modify it\n// under the terms of either the GNU Lesser General Public License Version 3\n// or the Perl Artistic License Version 2.0.\n// SPDX-FileCopyrightText: 2003-2026 Wilson Snyder\n// SPDX-License-Identifier: LGPL-3.0-only OR Artistic-2.0\n//\n//*************************************************************************\n///\n/// \\file\n/// \\brief Verilator program version information header\n///\n//*************************************************************************\n\n/// Verilator product name, e.g. \"Verilator\"\n// Autoconf substitutes this with the strings from AC_INIT.\n#define VERILATOR_PRODUCT \"Verilator\"\n\n/// Verilator version name, e.g. \"1.002 2000-01-01\"\n// Autoconf substitutes this with the strings from AC_INIT.\n#define VERILATOR_VERSION \"5.49\"\n\n/// Verilator version number as integer\n/// As major * 100000 + minor * 1000, e.g. 1002000 == 1.002\n// Autoconf substitutes this with the strings from AC_INIT.\n#define VERILATOR_VERSION_INTEGER \n",
+      "binary_sha256": "fd38bd05be7ea1f70263451a2154f22782140fbc7e0f386dc10dced750fc892e",
+      "cmake": "D:\\visual studio2\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "ninja": "D:\\visual studio2\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe",
+      "vcvars": "D:\\visual studio2\\VC\\Auxiliary\\Build\\vcvars64.bat",
+      "notes": "Package says 5.48.0; bundled upstream header says 5.49 development. Matched binary/runtime used together. No global installation.",
+      "local_toolchain": {
+        "compiler": {
+          "path": "D:\\visual studio2\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+          "version": "MSVC 19.44.35215.0 (14.44.35207 directory)",
+          "sha256": "a9a3a13e4d019cfc0a9d823b3ee0cc383c6f3f86b00f861ac066032d869997e5"
+        },
+        "cmake": {
+          "path": "D:\\visual studio2\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+          "version": "cmake version 3.31.6-msvc6",
+          "sha256": "b540efece9172930877dff0c9fedda7a69b0dd82446e0e8bba13372aac6c8ac8"
+        },
+        "ninja": {
+          "path": "D:\\visual studio2\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe",
+          "version": "1.12.1",
+          "sha256": "5020138b3757035df9dca9a2243624d5810ffa6ae24444bd95f752cbd1b89123"
+        },
+        "origin": "Already installed Visual Studio; no compiler download or global modification"
+      },
+      "runtime_sha256": {
+        "include/fstcpp/.clang-format": "f7560b815d15019f9519478bdec88b17d22fffc48c527888186e7fd52ee6befc",
+        "include/fstcpp/fstcpp.h": "3de26e2c7211a76b6f2f1e6218399e382c5998f7cde5c9ec97b056399384a717",
+        "include/fstcpp/fstcpp_assertion.h": "9b284642fa28440557a651a55a37cfcf4c54aed54a1d010dcc20448f69f5818e",
+        "include/fstcpp/fstcpp_file.h": "3bc32150765cd122e74ba461db2a0498a88652af5b931e85c9524e8b22e479a7",
+        "include/fstcpp/fstcpp_stream_write_helper.h": "c0468a8483c6807edc664ca0b7ad5ce20498a115ce14c2acc1a48cbe7be2b738",
+        "include/fstcpp/fstcpp_variable_info.cpp": "34afc3f2f40ed0dcd73c813461761cae342ec3dd8a5ace2b5c486f3acd70b23f",
+        "include/fstcpp/fstcpp_variable_info.h": "50be4b11c018828c1f702cc3c79df766c01e4678ada67ed6768a6237a91e41b9",
+        "include/fstcpp/fstcpp_writer.cpp": "c4bddc8a8b2c887448c54b8b3d702fb627419820b9b2d1b69952585c73373010",
+        "include/fstcpp/fstcpp_writer.h": "062c038681c82213ccb4ae1089f84a033338096a325818bb112f8fd65222a14d",
+        "include/verilated.cpp": "119b3176ff6feee905a1bb7526e472fa362d7038b6ce06e9cd60506982fca14a",
+        "include/verilated.h": "0bc00de6cbf4331e0f56660e042fdf1e96d163d4d1871a49a7ff48401fa9f488",
+        "include/verilated.mk": "c78319e1198d608c7137ce1d1249d4aeb1d511c83f37b7217541e1db0393cafc",
+        "include/verilated.v": "df5a8688206f3a592a03d190a6f86ee856f490773c3057865c235a8e5ca1b722",
+        "include/verilated_config.h": "e0f4fb16c7e842c67627a6b95a27dd10991c1bfc213f6e754257b3bd9ac6c4cc",
+        "include/verilated_cov.cpp": "b80d2a51cb4b23719a5dddee1bf4cfb888a2240c69b34f69dbb95653bb95a41c",
+        "include/verilated_cov.h": "cc14840c2138802f5fda6e2e9c88968481c152727aa7b79263e4b107dc9471d6",
+        "include/verilated_cov_key.h": "3e235e9a8cf00b5f966cdb173fad8892d5fbe7c7c66c93d97b8c428fe8509135",
+        "include/verilated_dpi.cpp": "9189b35e48317695a150a5292ddd8615451238a4c34718999a28c121882de4fb",
+        "include/verilated_dpi.h": "7b90933b991bcac9ec1b9887e26b752a4c74464b76e2dabb787c50a30384a339",
+        "include/verilated_force.h": "cdfd545196cad5eb3a85173a596922c405343512272d42a9cbc6383993915ec1",
+        "include/verilated_fst_c.cpp": "32b601bd35cd265ef1f38d3373292937ae0657dd02583a93deb15147acb97c92",
+        "include/verilated_fst_c.h": "f4d857fdc156bcc05ae4eeddd93e3b4dbdf9450579b883ed39aa80b0b4878511",
+        "include/verilated_fst_sc.cpp": "4bc3e09d1567a89be077d3967cbe3e7a91e26d8a92d46b33008a96e960dbdc9d",
+        "include/verilated_fst_sc.h": "ac9ee8e797c3641bb6de1a27878566317a14da7f2acab8f47625f1dc9d4faa5b",
+        "include/verilated_funcs.h": "6603bd3d9bc82ca1ff7f997d8cb446b27fcf7b66a101a1bc78efd016b569a6dd",
+        "include/verilated_imp.h": "9d236f215686764876289d7eabe802693b5925a7d196702cdbca0643a13e61bb",
+        "include/verilated_intrinsics.h": "3c7b1b07ab3dc18aa9be2d463021f07eae91edff4c7bbbeb20543209fa9f273e",
+        "include/verilated_probdist.cpp": "8179e7ab6d5c7e8ac76b4441231e36db5beb06a447f95c64d692627c288ab5e8",
+        "include/verilated_profiler.cpp": "c1c70348e78dfe25e2d49083888da51966540a7d0afe84fb29ff9f68b56c0e8d",
+        "include/verilated_profiler.h": "4d66901919811e36a1e4d168a9d0e26b4317796ff03424aecb360052684fae7b",
+        "include/verilated_random.cpp": "d3120dbff0ea4c9df7f17605d7eee1c7f947159be42cb809dbf8a164f7e8cbf6",
+        "include/verilated_random.h": "ce5749cfc7e78e72c1cf19466eb9370faa1eec6822d83013199065f6591b83aa",
+        "include/verilated_saif_c.cpp": "f80efbc359e92043c07aba191a5c58524b8bdfccb43e7bd92d24f88479807798",
+        "include/verilated_saif_c.h": "a459303d2bb1f16d4b4729b39e36028978c38c8f1c150d0c6745ce1bc0c91dc2",
+        "include/verilated_saif_sc.h": "75be5cc3641a8cbd17a6b57d840f693645bb80e958f49dc5b9382ac3dbe8b380",
+        "include/verilated_save.cpp": "c820ea975c1f7b1dbb998abeab377ef33e39d7f65c0451c5b0e1d4b01421660d",
+        "include/verilated_save.h": "374356b3028f817ccc341c1584c3d27bb50b102325c34370a22a1953b8a47c1c",
+        "include/verilated_sc.h": "f43e93af1ee15083a2991bd0ffa0d488de8d511918d94644ad982580584cab87",
+        "include/verilated_sc_trace.h": "d3f16775a5f498698992c89c37d0bffcb9d61b92c6a2d4cd5dc3e6e84ac75113",
+        "include/verilated_std.sv": "54399ccd7e1cf71af2e1692ae5dc62ca850401e016caa33c67222d682461d9df",
+        "include/verilated_std_waiver.vlt": "d2ad1cd6879b38e3878fa8a9db892405d7a7921b9909f491ed6aedf282662cee",
+        "include/verilated_sym_props.h": "048dd52d96bccae7ec73dccbe56dfcfc6d3fe456f334acc23e8b90174e420a7c",
+        "include/verilated_syms.h": "9ea7b2cde5d99e56f1fa97a989cb3c16063d6bd688d4728e45b03dd35b77545a",
+        "include/verilated_threads.cpp": "5359454e5d02821923b4b9103c99b293f741a5a111206170e3a721a69845f7ed",
+        "include/verilated_threads.h": "603cb33e099292028a1afcdd9ecbb682ae92797378486965d3b1fe40586c8121",
+        "include/verilated_timing.cpp": "427bf6f1a6e33bab94ae7c69cddc8bf3182681ec9acf752904a4d62ffa07a249",
+        "include/verilated_timing.h": "1bc02be7be011ee64857a8d6c15ebda933d4266ff270c90b7bd2e9d39ef40357",
+        "include/verilated_trace.h": "2e360b898dab797fdde102582a0a4f6fd7dee45085d2a33d874c29867a2067e2",
+        "include/verilated_trace_imp.h": "61dcb23dac09ce66169f8b8b04618f6bcc2718d7f1c51fbc1426b4eaa6fcb86b",
+        "include/verilated_types.h": "f17af3fbbcdfe8e67d30a86dc432fdd896543a6689054e4afabba2cd5659948d",
+        "include/verilated_vcd_c.cpp": "b0a38254f3bc982868509e4af89d4c8390bbb2feb81a4038d7daf34df05e660c",
+        "include/verilated_vcd_c.h": "7f656e45b6db5806c0440a87c905fc0df4c4cdc36fe1051652c8fe55afb15dec",
+        "include/verilated_vcd_sc.cpp": "a803ebc27cf4d22c4a08199e95e9e583767accc00736381fa405e17a5c0fa9b8",
+        "include/verilated_vcd_sc.h": "e0157742e90aa626f702509fdcf4aafcb887a6d9b2ee93c339abbeaa053e1866",
+        "include/verilated_vpi.cpp": "a0cbadaf202b9845eb3d875d8d09d531f01392868dad0993daa0bcfabec6cdce",
+        "include/verilated_vpi.h": "50a399497c858eee10f4562affc1ff344fd7c45f251c75c46b8cb6f80690bd0f",
+        "include/verilatedos.h": "0674fcd1296a9dc9e218e4c243de3e7cb966b2bd01dfbed260b4f446f225209a",
+        "include/verilatedos_c.h": "94eb21a033b2d137d7dca0b6f2d36277584fc1d7ce7ac6d900ee589ee94acb7e",
+        "include/vltstd/sv_vpi_user.h": "e72e4229cbb8ff497e22e604a1db73653a006365488337b83f9f89102a98b69e",
+        "include/vltstd/svdpi.h": "8b80c6f2bc4fc74438391927daeb3bbd050408e9739bb515b83089260f31c860",
+        "include/vltstd/veriuser.h": "bf3c5f639f107f87cdab32960f8a5c152b84700271db03c82e5a673abe78596a",
+        "include/vltstd/vpi_user.h": "d70e329af43a50d2c447ebc1ae27ec005b2440eddcdffbeb91d33a819a664f00"
+      }
+    }
+  },
+  "compile_seconds": 0,
+  "pool": {
+    "K3": 4,
+    "K1": 2,
+    "Post": 1,
+    "Add": 1,
+    "DW7": 1,
+    "Pad": 1
+  },
+  "sram_capacity": 16777216,
+  "input_pace": 80,
+  "scenarios": {
+    "overlap": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "overlap",
+        "cycles": 1138093351,
+        "compute_done_cycle": 1138093244,
+        "commands": 524,
+        "expanded_commands": 524,
+        "checked_bytes": 77349168,
+        "macs": 935241728,
+        "allocations": 524,
+        "releases": 524,
+        "results": 4,
+        "simulation_seconds": 2620.83,
+        "multi_frame_cycles": 1135900593,
+        "multi_frame_work_cycles": 82088133,
+        "cross_operator_work_cycles": 24732963,
+        "multi_k3_mac_cycles": 10927938,
+        "peak_active_frames": 4,
+        "peak_simultaneous_k3_mac": 3,
+        "input_mac_cycles": 1269827,
+        "input_compute_cycles": 1347246,
+        "input_write_compute_cycles": 16469,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 762048,
+            "first_launch": 762422,
+            "read_complete": 1136923263
+          },
+          {
+            "frame": 101,
+            "input_begin": 762129,
+            "input_commit": 1524097,
+            "first_launch": 1524319,
+            "read_complete": 1137187359
+          },
+          {
+            "frame": 102,
+            "input_begin": 1524178,
+            "input_commit": 2286208,
+            "first_launch": 2286216,
+            "read_complete": 1137451453
+          },
+          {
+            "frame": 103,
+            "input_begin": 2286289,
+            "input_commit": 3048416,
+            "first_launch": 3048637,
+            "read_complete": 1138093349
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 17,
+            "active_cycles": 51405723,
+            "work_cycles": 15353856,
+            "read_bytes": 8766384,
+            "write_bytes": 5218304,
+            "arbitration_wait_cycles": 549871
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 17,
+            "active_cycles": 51357887,
+            "work_cycles": 15353856,
+            "read_bytes": 8766384,
+            "write_bytes": 5218304,
+            "arbitration_wait_cycles": 502035
+          },
+          {
+            "unit": 2,
+            "kind": 0,
+            "tasks": 17,
+            "active_cycles": 51393326,
+            "work_cycles": 15353856,
+            "read_bytes": 8766384,
+            "write_bytes": 5218304,
+            "arbitration_wait_cycles": 537474
+          },
+          {
+            "unit": 3,
+            "kind": 0,
+            "tasks": 17,
+            "active_cycles": 51359819,
+            "work_cycles": 15353856,
+            "read_bytes": 8766384,
+            "write_bytes": 5218304,
+            "arbitration_wait_cycles": 503967
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 67,
+            "active_cycles": 1113410686,
+            "work_cycles": 436928512,
+            "read_bytes": 114846976,
+            "write_bytes": 16810496,
+            "arbitration_wait_cycles": 1432908
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 65,
+            "active_cycles": 1112860094,
+            "work_cycles": 436797440,
+            "read_bytes": 114714880,
+            "write_bytes": 16809472,
+            "arbitration_wait_cycles": 1409552
+          },
+          {
+            "unit": 6,
+            "kind": 3,
+            "tasks": 4,
+            "active_cycles": 117440,
+            "work_cycles": 12544,
+            "read_bytes": 200704,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 192
+          },
+          {
+            "unit": 7,
+            "kind": 1,
+            "tasks": 204,
+            "active_cycles": 69231380,
+            "work_cycles": 13625344,
+            "read_bytes": 55289856,
+            "write_bytes": 13625344,
+            "arbitration_wait_cycles": 710420
+          },
+          {
+            "unit": 8,
+            "kind": 2,
+            "tasks": 48,
+            "active_cycles": 10329308,
+            "work_cycles": 1455104,
+            "read_bytes": 3012608,
+            "write_bytes": 1455104,
+            "arbitration_wait_cycles": 92380
+          },
+          {
+            "unit": 9,
+            "kind": 4,
+            "tasks": 68,
+            "active_cycles": 9923744,
+            "work_cycles": 2058800,
+            "read_bytes": 6673408,
+            "write_bytes": 7767344,
+            "arbitration_wait_cycles": 184848
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          0,
+          3495305,
+          0,
+          0,
+          0,
+          2016986427
+        ],
+        "scan_wait_by_opcode": [
+          19292,
+          53092,
+          11418,
+          862,
+          17649,
+          59730
+        ]
+      },
+      "outputs_sha256": "80351fb04be5c55bc45d6e6fcadaef6680b20d0532d15f7bb5bf5c661416a44f",
+      "wall_seconds": 2629.9954689999995
+    }
+  },
+  "started_at": "2026-10-23T18:05:39.293439",
+  "runner_sha256": "81037afcbdc7cfc18810abf68aae0ed5bacfaf049bc4f4160766a5a71f516fd7",
+  "wall_seconds": 2629.9973611999994,
+  "finished_at": "2026-10-23T18:49:29.292117"
+}

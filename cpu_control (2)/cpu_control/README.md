@@ -1,5 +1,17 @@
 # 项目从哪里开始
 
+## 2026-10-23 自研 CNN 四图完整网络与算子数量优化
+
+当前新增入口为 `rtl/cnn_stream/self_fixed_network_top.sv`，使用自研卷积和 `bai-datasram` 四 bank SRAM。相同四张 112×112 测试图的完整 MobileFaceNet RTL 仿真通过；K3×2 / K1×4 配置相对 K3×4 / K1×2 将总周期从 1,138,093,351 降至 653,428,459，减少 42.59%，输出逐字节一致。
+
+- [当前状态、入口和从新克隆开始复现](docs/self_cnn_repository.md)
+- [四图优化对比报告](deliverables/self_cnn_full_optimized/README.md)
+- [同一横轴的流水前后对比](deliverables/self_cnn_full_optimized/timeline_comparison.png)
+- [完整网络基线](deliverables/self_cnn_full_frames/README.md)
+- [小四图调度与接口](docs/self_cnn_four_frames.md)
+
+完整仿真使用 16 MiB 共享 SRAM。512 KiB 适配、模型裁剪和分块融合仍为待实施方案；新 CNN 尚未接入生产板级顶层，也没有整机综合、布局布线或上板通过结论。以下章节保留历史入口说明。
+
 ## NEureka 可编程卷积适配
 
 新增隔离入口 `face_soc_neureka_top`（`rtl/filelists/system_neureka.f`）：把官方 NEureka RTL 接入原 CPU 的任务队列和四 bank DATASRAM，原通用 CNN 与固定 Sobel 流式入口均保留。顶层仍为六模块；排布转换、配置和 HCI 桥接都在 CNN 内部。当前为 SRAM 任务模式，不能直接替代此前 UART 逐像素流式入口。

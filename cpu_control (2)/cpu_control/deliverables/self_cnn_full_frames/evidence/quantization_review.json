@@ -1,0 +1,243 @@
+{
+  "status": "AUDIT_PASS",
+  "graph_coverage": {
+    "conv": 51,
+    "add": 12,
+    "fused_clip": 32,
+    "fused_relu": 2,
+    "rtl_steps": 131,
+    "step_counts": {
+      "4": 17,
+      "0": 17,
+      "1": 51,
+      "5": 33,
+      "2": 12,
+      "3": 1
+    },
+    "unexecuted_runtime_arithmetic": [],
+    "remaining_compile_time_constants": 65,
+    "final_reshape": {
+      "name": "/Reshape",
+      "input": "/Conv_50_output_0",
+      "output": "embedding",
+      "shape": [
+        1,
+        -1
+      ],
+      "operation": "Metadata-only NCHW [1,128,1,1] to [1,128]; contiguous HWC [1,1,128] has identical channel order."
+    },
+    "l2_normalization_in_model": false,
+    "l2_normalization_in_rtl": false
+  },
+  "outputs": [
+    {
+      "frame": 100,
+      "shape": [
+        128
+      ],
+      "scale": 0.02023447426882657,
+      "zero": 128,
+      "final_sha256": "e9fba8f0df72a1c557b3591f5d7e84ec1d97552324007fc520ba8deb7dde0cd6",
+      "code_min": 11,
+      "code_max": 218,
+      "distinct_codes": 85,
+      "code_zero_count": 0,
+      "code_255_count": 0,
+      "real_zero_code_count": 0,
+      "endpoint_fraction": 0.0,
+      "all_bytes_zero": false,
+      "all_values_at_zero_point": false,
+      "dequantized_min": -2.3674334894527087,
+      "dequantized_max": 1.8211026841943914,
+      "dequantized_l2": 9.773984177473261,
+      "float_min": -2.225792407989502,
+      "float_max": 1.8570860624313354,
+      "float_l2": 9.593873233348841,
+      "dequant_vs_float_rmse": 0.12379104247338658,
+      "dequant_vs_float_max_abs": 0.31658602736212993,
+      "dequant_vs_float_cosine": 0.9897139118248933,
+      "ideal_float_affine_code_mismatch_count": 119,
+      "ideal_float_affine_code_max_abs": 16
+    },
+    {
+      "frame": 101,
+      "shape": [
+        128
+      ],
+      "scale": 0.02023447426882657,
+      "zero": 128,
+      "final_sha256": "e3f8ab9cf254fbe5430478b884b98dad64bc3dfb065c5688276e78c3f8f2bafc",
+      "code_min": 9,
+      "code_max": 230,
+      "distinct_codes": 79,
+      "code_zero_count": 0,
+      "code_255_count": 0,
+      "real_zero_code_count": 3,
+      "endpoint_fraction": 0.0,
+      "all_bytes_zero": false,
+      "all_values_at_zero_point": false,
+      "dequantized_min": -2.4079024379903617,
+      "dequantized_max": 2.0639163754203103,
+      "dequantized_l2": 8.56312814634401,
+      "float_min": -2.327514886856079,
+      "float_max": 1.996878743171692,
+      "float_l2": 8.782724179211684,
+      "dequant_vs_float_rmse": 0.16332249466285226,
+      "dequant_vs_float_max_abs": 0.5014951391653582,
+      "dequant_vs_float_cosine": 0.9776214087254377,
+      "ideal_float_affine_code_mismatch_count": 122,
+      "ideal_float_affine_code_max_abs": 25
+    },
+    {
+      "frame": 102,
+      "shape": [
+        128
+      ],
+      "scale": 0.02023447426882657,
+      "zero": 128,
+      "final_sha256": "84a0cd1cabf33ed991f164f5d58bb2a822c56e7aa1a42425dbc589d21a62a775",
+      "code_min": 33,
+      "code_max": 209,
+      "distinct_codes": 86,
+      "code_zero_count": 0,
+      "code_255_count": 0,
+      "real_zero_code_count": 1,
+      "endpoint_fraction": 0.0,
+      "all_bytes_zero": false,
+      "all_values_at_zero_point": false,
+      "dequantized_min": -1.9222750555385242,
+      "dequantized_max": 1.6389924157749522,
+      "dequantized_l2": 8.346248484803876,
+      "float_min": -1.9630781412124634,
+      "float_max": 1.7683985233306885,
+      "float_l2": 8.602083946691684,
+      "dequant_vs_float_rmse": 0.16559803843064042,
+      "dequant_vs_float_max_abs": 0.4106275786053051,
+      "dequant_vs_float_cosine": 0.9760105237371285,
+      "ideal_float_affine_code_mismatch_count": 123,
+      "ideal_float_affine_code_max_abs": 20
+    },
+    {
+      "frame": 103,
+      "shape": [
+        128
+      ],
+      "scale": 0.02023447426882657,
+      "zero": 128,
+      "final_sha256": "d98e64d3c82d881f0b94d7817715afd65afa90262bc6552820daaa33f2629b19",
+      "code_min": 9,
+      "code_max": 202,
+      "distinct_codes": 85,
+      "code_zero_count": 0,
+      "code_255_count": 0,
+      "real_zero_code_count": 4,
+      "endpoint_fraction": 0.0,
+      "all_bytes_zero": false,
+      "all_values_at_zero_point": false,
+      "dequantized_min": -2.4079024379903617,
+      "dequantized_max": 1.4973510958931662,
+      "dequantized_l2": 9.374132058830734,
+      "float_min": -2.2463715076446533,
+      "float_max": 1.4613831043243408,
+      "float_l2": 8.871220452362477,
+      "dequant_vs_float_rmse": 0.14851984770126145,
+      "dequant_vs_float_max_abs": 0.4247681682760063,
+      "dequant_vs_float_cosine": 0.9845447165545005,
+      "ideal_float_affine_code_mismatch_count": 123,
+      "ideal_float_affine_code_max_abs": 21
+    }
+  ],
+  "quantization": {
+    "scale_policy": "first_image_diagnostic_fixed_across_all_frames",
+    "calibrated_accuracy": false,
+    "input_scale": 0.023622047244094488,
+    "input_zero": 128,
+    "weight_type": "per_output_channel_INT8_symmetric",
+    "activation_type": "UINT8_affine",
+    "intermediate_type": "INT32_raw",
+    "shift": 24,
+    "rounding": "nearest_ties_away_from_zero",
+    "rounding_detail": {
+      "input_weight_bias_and_multiplier_preparation": "NumPy rint / Python round: nearest, ties-to-even",
+      "runtime_post_and_add_right_shift": "nearest, ties-away-from-zero",
+      "runtime_clamp": "unsigned UINT8 [0,255] after output zero-point addition",
+      "relu6_fusion": "output zero=0, scale=6/255, UINT8 clamp realizes [0,6]",
+      "unactivated_final_scale": "first image floating absolute max / 110, shared unchanged across all four frames"
+    }
+  },
+  "output_semantics": "128 UINT8 affine quantized raw embedding components, not IEEE float and not L2-normalized. Real approximation=(code-128)*final_scale. Four synthetic images and first-image diagnostic scales are numerical/performance verification, not recognition accuracy validation.",
+  "image_vectors_distinct": true,
+  "quantized_pair_cosines": [
+    [
+      1.0000000000000004,
+      0.7929418799861533,
+      0.7809831518892653,
+      0.7398602323762841
+    ],
+    [
+      0.7929418799861533,
+      1.0000000000000002,
+      0.8291510631378975,
+      0.7289965982240645
+    ],
+    [
+      0.7809831518892653,
+      0.8291510631378975,
+      0.9999999999999998,
+      0.8267611787611833
+    ],
+    [
+      0.7398602323762841,
+      0.7289965982240645,
+      0.8267611787611833,
+      1.0000000000000002
+    ]
+  ],
+  "float_pair_cosines": [
+    [
+      1.0000000000000002,
+      0.8024392225596875,
+      0.7740374465838165,
+      0.7271852668043927
+    ],
+    [
+      0.8024392225596875,
+      0.9999999999999997,
+      0.8556751888991938,
+      0.7363411468543443
+    ],
+    [
+      0.7740374465838165,
+      0.8556751888991938,
+      1.0,
+      0.852572065651823
+    ],
+    [
+      0.7271852668043927,
+      0.7363411468543443,
+      0.852572065651823,
+      1.0
+    ]
+  ],
+  "first_image_layer_rmse_max": {
+    "layer": 21,
+    "rmse": 0.15759018177223047
+  },
+  "provenance": {
+    "model": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\self_full_model\\mobilefacenet.onnx",
+    "model_sha256": "d8da67c4665b97106cb2d98ac569bb02c8a9c6c836c1a8b7b7e5ea5d02591a4f",
+    "generator_manifest": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\build\\self_full_data\\manifest.json",
+    "generator_manifest_sha256": "5add2d08a16845ec1d058a5330880022fe62aa66a7f049db8cc2bd9310e4d1f1",
+    "generator_file": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\scripts\\gen_self_full.py",
+    "generator_sha256": "1add13d7395864c93f2eed628b42d8020a3921d177ded90801471e45c77f8421",
+    "golden_source": "existing expected.bin output ranges read only",
+    "runtime_versions": {
+      "onnx": "1.17.0",
+      "onnxruntime": "1.20.1",
+      "numpy": "2.4.1"
+    },
+    "expected_sha256": "1a20cd2b890ef6d6f45591a554823fe98944bd537e4753cc738a7297a5d9fff6",
+    "expected_hash_verified_against_manifest": true
+  },
+  "limitation": "AUDIT_PASS means arithmetic coverage and finite/nondegenerate diagnostic outputs were verified. Floating-point equivalence was not claimed for the quantized graph; true face-recognition accuracy requires a representative calibration and validation dataset."
+}

@@ -1,0 +1,9 @@
+{
+  "source": "D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\deliverables\\self_cnn_full_frames\\architecture.drawio",
+  "source_sha256": "acf0bdc8ad3292d303e6c8b3b89b7b3633c5ee21c08d7d2426c5c189cf5d790c",
+  "changes": [
+    "K3 ×4 → K3 ×2",
+    "K1 ×2 → K1 ×4"
+  ],
+  "sram": "16 MiB simulation capacity"
+}
