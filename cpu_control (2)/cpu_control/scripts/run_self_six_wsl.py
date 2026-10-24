@@ -20,16 +20,19 @@ def save(p, v):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--data', type=Path, required=True)
-    ap.add_argument('--frames', type=int, choices=(6, 10), default=6)
+    ap.add_argument('--frames', type=int, choices=(6, 10, 30), default=6)
     ap.add_argument('--pw4', action='store_true')
     ap.add_argument('--conv-overlap', action='store_true')
     ap.add_argument('--wide-pipe', action='store_true')
     ap.add_argument('--pw8', action='store_true')
     ap.add_argument('--dw-priority', action='store_true')
+    ap.add_argument('--frame-priority', action='store_true')
     ap.add_argument('--reuse', action='store_true')
     ap.add_argument('--full', action='store_true')
     ap.add_argument('--gate', type=Path)
     args = ap.parse_args()
+    if args.dw_priority and args.frame_priority:
+        ap.error('select one scheduling policy: --dw-priority or --frame-priority')
     if args.pw8: args.wide_pipe = True
     if args.wide_pipe: args.conv_overlap = True
     if args.conv_overlap: args.pw4 = True
@@ -39,24 +42,29 @@ def main():
     if args.wide_pipe: CACHE = CACHE.with_name('.self_six_wide_build')
     if args.pw8: CACHE = CACHE.with_name('.self_six_pw8_build')
     if args.dw_priority: CACHE = CACHE.with_name(CACHE.name+'_priority')
-    max_tasks = 2048 if args.frames == 10 else 1024
-    label = 'self_ten' if args.frames == 10 else 'self_six'
-    if args.frames == 10: CACHE = CACHE.with_name(CACHE.name.replace('self_six', 'self_ten'))
+    if args.frame_priority: CACHE = CACHE.with_name(CACHE.name+'_frame_priority')
+    max_tasks = {6:1024,10:2048,30:4096}[args.frames]
+    capacity = (128 if args.frames==30 else 32)*1024*1024
+    label = {6:'self_six',10:'self_ten',30:'self_thirty'}[args.frames]
+    CACHE = CACHE.with_name(CACHE.name.replace('self_six', label))
     data=args.data.resolve()
     manifest=json.loads((data/'manifest.json').read_text())
     assert manifest['frames']==args.frames and manifest['frame_contexts']==args.frames and manifest['full_network']==args.full
     assert manifest['max_tasks']==max_tasks
-    assert manifest['init_bytes']<=33554432 and manifest['total_tasks']<=max_tasks
+    assert manifest['init_bytes']<=capacity and manifest['memory_bytes']<=capacity and manifest['total_tasks']<=max_tasks
     for name,digest in manifest['files_sha256'].items():
         assert sha(data/name)==digest, name
     files = [ROOT / s.strip() for s in (ROOT/'rtl/filelists/cnn_self_stream.f').read_text().splitlines() if s.strip() and not s.startswith('#')]
     files += [ROOT/'tb/self_full_sim_top.sv', ROOT/'tb/integration/self_full_main.cpp']
     flags = ['--cc','--exe','--build','--top-module','self_full_sim_top','--no-timing','-DSYNTHESIS','--output-split-cfuncs','500','-Wno-fatal','-O1','-j','2','-GFRAME_CONTEXTS=6','-GK3_UNITS=2','-GK1_UNITS=4','-GPOST_UNITS=1','-GSRAM_SIZE=33554432','-CFLAGS','-std=c++20 -DCNN_FRAMES=6 -DCNN_SRAM=33554432 -DCNN_K3=2 -DCNN_K1=4 -DCNN_POST=1','-MAKEFLAGS','CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3 OPT_FAST=-O2']
     flags += ['-GPW4='+str(int(args.pw4)), '-GCONV_OVERLAP='+str(int(args.conv_overlap)), '-GWIDE_PIPE='+str(int(args.wide_pipe)), '-GPW8='+str(int(args.pw8)), '-GDW_PRIORITY='+str(int(args.dw_priority))]
+    flags += ['-GFRAME_PRIORITY='+str(int(args.frame_priority))]
     flags[flags.index('-GFRAME_CONTEXTS=6')]='-GFRAME_CONTEXTS='+str(args.frames)
+    flags[flags.index('-GSRAM_SIZE=33554432')]='-GSRAM_SIZE='+str(capacity)
     flags += ['-GMAX_TASKS='+str(max_tasks)]
     cflag=flags.index('-CFLAGS')+1
     flags[cflag]=flags[cflag].replace('-DCNN_FRAMES=6','-DCNN_FRAMES='+str(args.frames))+' -DCNN_MAX_TASKS='+str(max_tasks)
+    flags[cflag]=flags[cflag].replace('-DCNN_SRAM=33554432','-DCNN_SRAM='+str(capacity))
     signature = dict(sources={str(p.relative_to(ROOT)):sha(p) for p in files}, flags=flags, verilator=sha(VR/'bin/verilator_bin'))
     CACHE.mkdir(exist_ok=True)
     exe = CACHE/'obj/Vself_full_sim_top'
@@ -85,10 +93,14 @@ def main():
         assert gate.get('conv_overlap',False)==args.conv_overlap
         assert gate.get('wide_pipe',False)==args.wide_pipe
         assert gate.get('pw8',False)==args.pw8 and gate.get('dw_priority',False)==args.dw_priority
+        assert gate.get('frame_priority',False)==args.frame_priority
+        assert gate['sram_capacity']==capacity
         assert set(gate['scenarios'])=={'overlap','serial','preloaded','stress'}
     out=ROOT/'build/runs'/(datetime.now().strftime('%Y%m%d_%H%M%S_%f')+'_'+label)
     out.mkdir()
     result=dict(status='RUNNING',frames=args.frames,max_tasks=max_tasks,full_network=args.full,data=str(data),manifest_sha256=sha(data/'manifest.json'),source_signature=signature,exe_sha256=sha(exe),pw4=args.pw4,conv_overlap=args.conv_overlap,wide_pipe=args.wide_pipe,pw8=args.pw8,dw_priority=args.dw_priority,compile_seconds=compile_seconds,pool=dict(K3=2,K1=4,Post=1,Add=1,DW7=1,Pad=1),sram_capacity=33554432,input_pace=80,scenarios={},runner_sha256=sha(__file__),started_at=datetime.now().isoformat(),gate=str(args.gate.resolve()) if args.gate else None)
+    result['frame_priority']=args.frame_priority
+    result['sram_capacity']=capacity
     save(out/'result.json',result)
     print('RUN '+str(out),flush=True)
     began=time.perf_counter()

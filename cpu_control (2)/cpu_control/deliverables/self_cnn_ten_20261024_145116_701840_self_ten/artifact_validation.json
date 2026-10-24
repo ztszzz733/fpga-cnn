@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "png_visual_review": [
+    "output_cadence",
+    "full_network",
+    "early_tasks",
+    "cross_operator",
+    "mac_detail",
+    "pipeline_detail"
+  ],
+  "javascript_syntax": "PASS",
+  "default_range": "full",
+  "task_rows": 1320,
+  "frames": 10,
+  "gtkwave_actual_load": "PASS",
+  "browser_preview": "Not performed: browser tool blocks local file protocol; no workaround attempted"
+}

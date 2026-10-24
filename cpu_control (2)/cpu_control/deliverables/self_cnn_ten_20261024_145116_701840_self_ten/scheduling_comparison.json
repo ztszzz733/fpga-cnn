@@ -1,0 +1,303 @@
+{
+  "status": "PASS",
+  "scope": "Finite ten-frame RTL batch, not a steady-state throughput guarantee",
+  "changed_sources": [
+    "rtl/cnn_stream/stream_dispatch.sv",
+    "rtl/cnn_stream/self_stream_top.sv",
+    "rtl/cnn_stream/self_fixed_network_top.sv",
+    "tb/self_full_sim_top.sv"
+  ],
+  "arithmetic_and_testbench_hashes_unchanged": true,
+  "baseline": {
+    "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_014153_249128_self_ten",
+    "result_sha256": "9ef0b084bb6c02ffaaab2720dfdb8c6dec87fbf028c69c9c004931ad07c2ac0b",
+    "cycles": 200628467,
+    "batch_ms": 2006.28467,
+    "first_output_ms": 2001.07124,
+    "first_compute_ms": 2001.07018,
+    "output_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "output_ms": [
+      2001.07124,
+      2001.0975,
+      2001.12345,
+      2001.5819,
+      2005.39393,
+      2005.42008,
+      2005.44634,
+      2005.98342,
+      2006.06194,
+      2006.28465
+    ],
+    "gaps_ms": [
+      0.026260000000092987,
+      0.025949999999966167,
+      0.458449999999857,
+      3.8120300000000498,
+      0.026150000000143336,
+      0.026259999999865613,
+      0.53708000000006,
+      0.0785200000000259,
+      0.2227100000000064
+    ],
+    "gap_min_ms": 0.025949999999966167,
+    "gap_max_ms": 3.8120300000000498,
+    "gap_mean_ms": 0.5792677777777853,
+    "batch_amortized_ms_per_image": 200.628467,
+    "frames": [
+      {
+        "image": 1,
+        "frame": 100,
+        "input_commit_ms": 7.62048,
+        "compute_complete_ms": 2001.07018,
+        "read_complete_ms": 2001.07124,
+        "input_to_read_ms": 1993.45076,
+        "l2_pad_to_dw3_wait_ms": 333.11204
+      },
+      {
+        "image": 2,
+        "frame": 101,
+        "input_commit_ms": 15.24097,
+        "compute_complete_ms": 2001.09641,
+        "read_complete_ms": 2001.0975,
+        "input_to_read_ms": 1985.85653,
+        "l2_pad_to_dw3_wait_ms": 331.76994
+      },
+      {
+        "image": 3,
+        "frame": 102,
+        "input_commit_ms": 22.86282,
+        "compute_complete_ms": 2001.12239,
+        "read_complete_ms": 2001.12345,
+        "input_to_read_ms": 1978.26063,
+        "l2_pad_to_dw3_wait_ms": 284.79909
+      },
+      {
+        "image": 4,
+        "frame": 103,
+        "input_commit_ms": 30.48471,
+        "compute_complete_ms": 2001.58083,
+        "read_complete_ms": 2001.5819,
+        "input_to_read_ms": 1971.09719,
+        "l2_pad_to_dw3_wait_ms": 283.47069
+      },
+      {
+        "image": 5,
+        "frame": 104,
+        "input_commit_ms": 38.10682,
+        "compute_complete_ms": 2005.39287,
+        "read_complete_ms": 2005.39393,
+        "input_to_read_ms": 1967.28711,
+        "l2_pad_to_dw3_wait_ms": 236.95635
+      },
+      {
+        "image": 6,
+        "frame": 105,
+        "input_commit_ms": 45.72871,
+        "compute_complete_ms": 2005.41902,
+        "read_complete_ms": 2005.42008,
+        "input_to_read_ms": 1959.69137,
+        "l2_pad_to_dw3_wait_ms": 235.735
+      },
+      {
+        "image": 7,
+        "frame": 106,
+        "input_commit_ms": 53.3514,
+        "compute_complete_ms": 2005.44528,
+        "read_complete_ms": 2005.44634,
+        "input_to_read_ms": 1952.09494,
+        "l2_pad_to_dw3_wait_ms": 190.14817
+      },
+      {
+        "image": 8,
+        "frame": 107,
+        "input_commit_ms": 60.97435,
+        "compute_complete_ms": 2005.98236,
+        "read_complete_ms": 2005.98342,
+        "input_to_read_ms": 1945.00907,
+        "l2_pad_to_dw3_wait_ms": 189.07325
+      },
+      {
+        "image": 9,
+        "frame": 108,
+        "input_commit_ms": 68.5965,
+        "compute_complete_ms": 2006.06088,
+        "read_complete_ms": 2006.06194,
+        "input_to_read_ms": 1937.46544,
+        "l2_pad_to_dw3_wait_ms": 143.18571
+      },
+      {
+        "image": 10,
+        "frame": 109,
+        "input_commit_ms": 76.21921,
+        "compute_complete_ms": 2006.28359,
+        "read_complete_ms": 2006.28465,
+        "input_to_read_ms": 1930.06544,
+        "l2_pad_to_dw3_wait_ms": 142.21125
+      }
+    ],
+    "multi_frame_work_cycles": 131513249,
+    "cross_operator_work_cycles": 66023630,
+    "simulation_seconds": 729.457,
+    "wall_seconds": 754.291590486,
+    "compile_seconds": 0
+  },
+  "frame_priority": {
+    "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_145116_701840_self_ten",
+    "result_sha256": "d3aa0b84e0b9a78dc9d5764d0080602c92858d2b88617b2eff42e547f638b1f2",
+    "cycles": 212507547,
+    "batch_ms": 2125.07547,
+    "first_output_ms": 1264.80501,
+    "first_compute_ms": 1264.80395,
+    "output_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "output_ms": [
+      1264.80501,
+      1315.73872,
+      1346.18339,
+      1423.73609,
+      1558.14325,
+      1663.20641,
+      1767.77127,
+      1890.49279,
+      1991.57295,
+      2125.07545
+    ],
+    "gaps_ms": [
+      50.93371000000002,
+      30.44466999999986,
+      77.55270000000019,
+      134.40715999999998,
+      105.06315999999993,
+      104.56485999999995,
+      122.72152000000006,
+      101.08015999999998,
+      133.50249999999983
+    ],
+    "gap_min_ms": 30.44466999999986,
+    "gap_max_ms": 134.40715999999998,
+    "gap_mean_ms": 95.58560444444441,
+    "batch_amortized_ms_per_image": 212.507547,
+    "frames": [
+      {
+        "image": 1,
+        "frame": 100,
+        "input_commit_ms": 7.62048,
+        "compute_complete_ms": 1264.80395,
+        "read_complete_ms": 1264.80501,
+        "input_to_read_ms": 1257.18453,
+        "l2_pad_to_dw3_wait_ms": 74.46173
+      },
+      {
+        "image": 2,
+        "frame": 101,
+        "input_commit_ms": 15.24097,
+        "compute_complete_ms": 1315.73764,
+        "read_complete_ms": 1315.73872,
+        "input_to_read_ms": 1300.49775,
+        "l2_pad_to_dw3_wait_ms": 73.06148
+      },
+      {
+        "image": 3,
+        "frame": 102,
+        "input_commit_ms": 22.86269,
+        "compute_complete_ms": 1346.18211,
+        "read_complete_ms": 1346.18339,
+        "input_to_read_ms": 1323.3207,
+        "l2_pad_to_dw3_wait_ms": 26.13685
+      },
+      {
+        "image": 4,
+        "frame": 103,
+        "input_commit_ms": 30.48545,
+        "compute_complete_ms": 1423.73502,
+        "read_complete_ms": 1423.73609,
+        "input_to_read_ms": 1393.25064,
+        "l2_pad_to_dw3_wait_ms": 24.73361
+      },
+      {
+        "image": 5,
+        "frame": 104,
+        "input_commit_ms": 38.10826,
+        "compute_complete_ms": 1558.14218,
+        "read_complete_ms": 1558.14325,
+        "input_to_read_ms": 1520.03499,
+        "l2_pad_to_dw3_wait_ms": 9.72536
+      },
+      {
+        "image": 6,
+        "frame": 105,
+        "input_commit_ms": 45.73067,
+        "compute_complete_ms": 1663.20535,
+        "read_complete_ms": 1663.20641,
+        "input_to_read_ms": 1617.47574,
+        "l2_pad_to_dw3_wait_ms": 42.91142
+      },
+      {
+        "image": 7,
+        "frame": 106,
+        "input_commit_ms": 53.35304,
+        "compute_complete_ms": 1767.7702,
+        "read_complete_ms": 1767.77127,
+        "input_to_read_ms": 1714.41823,
+        "l2_pad_to_dw3_wait_ms": 23.54199
+      },
+      {
+        "image": 8,
+        "frame": 107,
+        "input_commit_ms": 60.97553,
+        "compute_complete_ms": 1890.49173,
+        "read_complete_ms": 1890.49279,
+        "input_to_read_ms": 1829.51726,
+        "l2_pad_to_dw3_wait_ms": 42.84149
+      },
+      {
+        "image": 9,
+        "frame": 108,
+        "input_commit_ms": 68.59697,
+        "compute_complete_ms": 1991.57189,
+        "read_complete_ms": 1991.57295,
+        "input_to_read_ms": 1922.97598,
+        "l2_pad_to_dw3_wait_ms": 50.72885
+      },
+      {
+        "image": 10,
+        "frame": 109,
+        "input_commit_ms": 76.21949,
+        "compute_complete_ms": 2125.07439,
+        "read_complete_ms": 2125.07545,
+        "input_to_read_ms": 2048.85596,
+        "l2_pad_to_dw3_wait_ms": 0.01477
+      }
+    ],
+    "multi_frame_work_cycles": 140953916,
+    "cross_operator_work_cycles": 88168486,
+    "simulation_seconds": 1139.31,
+    "wall_seconds": 1184.083318338,
+    "compile_seconds": 0
+  },
+  "output_sha256": "16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418",
+  "same_outputs": true,
+  "first_output_change_percent": -36.79360410976672,
+  "batch_change_percent": 5.920934440475012
+}

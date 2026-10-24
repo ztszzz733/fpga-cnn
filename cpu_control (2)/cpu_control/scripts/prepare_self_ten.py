@@ -148,6 +148,8 @@ def main(run):
     assert r['status']=='PASS' and r['full_network'] and r['frames']==10 and r['max_tasks']==2048
     assert r['pw8'] and r['wide_pipe'] and r['conv_overlap']
     assert isinstance(r['dw_priority'], bool)
+    assert isinstance(r.get('frame_priority',False), bool)
+    assert not (r['dw_priority'] and r.get('frame_priority',False))
     for name,digest in r['source_signature']['sources'].items():assert sha(ROOT/name)==digest,name
     data=local(r['data']);m=read(data/'manifest.json');assert sha(data/'manifest.json')==r['manifest_sha256']
     for name,digest in m['files_sha256'].items():assert sha(data/name)==digest,name
@@ -155,6 +157,7 @@ def main(run):
     assert g['status']=='PASS' and g['frames']==10 and not g['full_network']
     assert g['source_signature']==r['source_signature'] and g['exe_sha256']==r['exe_sha256']
     assert all(g[key]==r[key] for key in ('pw4','conv_overlap','wide_pipe','pw8','dw_priority','pool','max_tasks','frames','sram_capacity','input_pace'))
+    assert g.get('frame_priority',False)==r.get('frame_priority',False)
     assert set(g['scenarios'])=={'overlap','serial','preloaded','stress'}
     b=r['scenarios']['overlap']['metrics'];assert read(run/'overlap/metrics.json')==b
     for key,value in dict(commands=1310,expanded_commands=1310,allocations=1310,releases=1310,results=10,macs=2338104320,checked_bytes=193372920).items():assert b[key]==value,key
@@ -179,6 +182,9 @@ def main(run):
         output_sha256=sha(out/'outputs.bin'),multi_frame_work_cycles=b['multi_frame_work_cycles'],cross_operator_work_cycles=b['cross_operator_work_cycles']))
     policy='DW3有限优先：连续两次DW3后给普通3×3优先机会；没有就绪任务时扫描回退，不抢占整层任务' if r['dw_priority'] else '原轮转调度，DW3优先关闭'
     policy_arg=' --dw-priority' if r['dw_priority'] else ''
+    if r.get('frame_priority',False):
+        policy='较早提交图片优先：每轮从可执行任务中选择提交顺序最早的图片，阻塞任务不占住空闲算子；整层任务不抢占'
+        policy_arg=' --frame-priority'
     report=f'''# 十张图片完整MobileFaceNet仿真
 
 完整RTL PASS：十张不同112×112 RGB合成测试图，同一批次交错执行；1,310任务、2,338,104,320 MAC、193,372,920个写出字节逐值核对。十份128字节输出合计1,280字节，与独立整数参考完全一致；前六张输出也与上一轮完整六图RTL输出逐字节相同。

@@ -53,3 +53,6 @@ mobilefacenet/.deps-py39/
 .dispatch_priority_unit/
 .self_ten_pw8_build/
 .self_ten_pw8_build_priority/
+.self_ten_pw8_build_frame_priority/
+.dispatch_frame_priority_unit/
+.self_thirty_pw8_build_frame_priority/

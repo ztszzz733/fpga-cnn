@@ -1,4 +1,38 @@
-## 2026-10-24 十图完整MobileFaceNet PASS并交付（当前）
+## 2026-10-24 18:46检查：30图仿真已中断（当前）
+
+本轮run build/runs/20261024_154316_886353_self_thirty进度停止在18:18:17，2939/3930任务、410835964周期、末尾模拟器累计8797.12秒。原会话91722已失效；沙盒外一次成功WSL进程检查exit0、匹配当前模拟器0个，确认当前未在运行。simulation.log末尾没有数值FAIL或退出原因，具体中断原因未知，不能推断电脑重启/崩溃。未获全网PASS，不制作完整结果或把部分任务当作30图成功。原result.json的RUNNING是未收尾状态，已原样保留；诊断写入同run/interruption_check.json。缓存、输入、事件、部分波形及日志保留，不盲目重跑。mobilefacenet-30将在本次错误报告时删除；后续若用户明确要求继续，先说明没有运行时检查点，复用编译缓存仍需从头计算。本轮未修改RTL/数据/旧运行证据。
+
+## 2026-10-24 30张完整MobileFaceNet运行中（当前）
+
+用户授权用现有十张输入复制成30张，观察图片多时的运行情况。保持FRAME_PRIORITY=1/PW8=1、K3×2/K1×4/DW7/Post/Add/Pad各1、pace80；30个独立有限上下文，顺序1～10重复三遍，非十上下文循环回收。参数改为MAX_TASKS4096/IW12、120槽，仿真SRAM128MiB（原32MiB），仅地址容量增大、端口与仲裁/响应协议不变；初始化86650368字节约82.636MiB。没有RTL算术/调度源码修改，C++补齐12位索引与120位分配/释放/外部占用检查，frame工作掩码30位；无CPU/UART/同图条带/识别准确率/512KiB或上板时序结论。
+
+scripts/gen_self_thirty.py校验原十图manifest及全部文件哈希，复制独立整数参考（不是旧RTL输出）并重建模板元数据、输入/工作地址、3930节点依赖；每张图在RTL里完整重算，SRAM只初始化权重参数与poison。数据build/self_thirty_full，预期3930任务/分配/释放、7014312960MAC（超过32位）、580118760检查字节、30结果3840字节，SHA b1add0828c2a8e521d95f1ccfb84af91b5bed00d9ce46b0315d181f613d557b2，应等于上一轮十图输出重复3遍。小数据build/self_thirty_small，30×8×8 ROI前三层，240任务/3072000MAC/538920检查字节/30720结果字节，SHA f94609a7c3ae1a8d98ae0db6d271b1fef5d5df0635d9773cc64c4141f492856d。
+
+30图小门槛build/runs/20261024_153737_708189_self_thirty四项PASS：overlap1014287、serial2991647、preloaded1009247、stress1278316；编译约49.09秒、四项156.194576338秒（同机期间还跑了十图兼容编译，电脑时间不可直接归因硬件变化）。新C++下十图小对照20261024_153855_011492_self_ten四项361567/980927/357967/493442，与上一轮逐周期相同。
+
+唯一活动完整run build/runs/20261024_154316_886353_self_thirty，exec91722，run_self_six_wsl.py --frames 30 --pw8 --frame-priority --reuse --full --data build/self_thirty_full --gate build/runs/20261024_153737_708189_self_thirty，缓存.self_thirty_pw8_build_frame_priority，compile0。禁止改活动RTL/TB/数据、重启或重复编译。初始化通过真实A口写约82.6MiB，在首个任务进度前可能有较长等待；不要因此重启。heartbeat实际ID为mobilefacenet-30，已设每30分钟检查result.json及overlap/progress.jsonl末尾，正常安静，长期不动最多查一次进程，出错先看直接日志，不能无根据重跑。
+
+PASS后本机Python C:/Users/windows/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe 运行scripts/prepare_self_thirty.py 活动run，核验源码/gate/数据/全部3930任务依赖/3840字节以及对照十图每帧输出，生成deliverables/self_cnn_thirty_<run>/README.md、summary.json、output_timing.csv、output_cadence.png、30行交互图及full_network、images_1_10、images_11_20、images_21_30、cross_operator五任务PNG和两真实work波形。八PNG视检，validate_gtkwave.ps1隐藏加载两会话各10唯一信号（DLL问题可沙盒外）；浏览器file协议被工具禁止，不绕过。视检/GTK通过后运行scripts/finalize_self_thirty.py 交付目录 --png-reviewed静态检查HTML/JS并封存哈希。报告首张、29个间隔与前中后分段、整批及100MHz条件硬件时间、电脑wall_seconds，图片数/上下文/扫描表/存储容量同时变化需明示，不能说稳定无限100ms输出。完成交付或错误报告后删除mobilefacenet-30检查；用户叫停立即停止运行和检查并保存证据。
+
+## 2026-10-24 较早提交图片优先：完整十图PASS并交付（上一轮）
+
+run build/runs/20261024_145116_701840_self_ten已PASS，exec46149退出0，heartbeat mobilefacenet已删除，无活动仿真/检查，不再重跑。1310任务、2338104320MAC、193372920检查字节、10份128字节结果，输出SHA16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418，与原十图及独立整数参考相同。所有源码/数据/gate/输出及逐任务依赖核验通过；只改变调度与参数传递，算术和C++测试台哈希不变。
+
+212507547周期，100MHz条件整批2125.07547ms，原2006.28467ms，整批增加5.92%；首个读完2001.07124→1264.80505ms，提前36.79%。顺序1至10返回，九个间隔约50.934/30.445/77.553/134.407/105.063/104.565/122.722/101.080/133.502ms，平均95.586ms，最小30.445、最大134.407。图片1 L2补边→DW3等待333.112→74.462ms。结果错开和首张改善已证实，吞吐没有提高；有限批次平均输出间隔不等于稳态100ms/张，仍无frame_slot循环回收/持续输入验证。
+
+电脑主体1139.310秒、含初始化收尾1184.083318338秒（19分44秒），本次compile0；小门槛编译42.607秒和四场景9.445秒另计。交付deliverables/self_cnn_ten_20261024_145116_701840_self_ten/SCHEDULING.md、output_cadence.png、task_timeline/index.html、三逐任务PNG、两真实work PNG/VCD/GTKWave。六PNG均视检，GTKWave实际载入两会话各10唯一信号PASS；HTML默认完整十图1320条及JS静态检查PASS，file协议限制未绕过。finalize_frame_priority.py已封存provenance/QA。仍十张合成112×112RGB、诊断量化、32MiB仿真SRAM；不包含CPU/UART/层内条带、准确率/512KiB/板级频率承诺。
+
+## 2026-10-24 较早提交图片优先：运行记录（历史，已完成）
+
+用户把目标明确为结果错开、稳定持续输出，100ms/张仅举例；允许其他策略。本轮选择FRAME_PRIORITY=1：按实际输入提交次序，在依赖/输入/buffer/空闲算子都就绪的候选中选较早图片，整表扫描后再次核验再发射，不抢占；阻塞旧图片不占住其他空闲池。默认0仍原模式，与runner --dw-priority互斥。算子保持PW8/K3×2/K1×4/DW7/Post/Add/Pad各1；未改算术/数据/CPU/UART，也未实现持续上下文回收。设计docs/frame_priority_design.md。离线analyze_self_ten_scheduling.py仅筛选，不是RTL证据。
+
+控制测试20261024_144639_864881_dispatch_frame_priority七组PASS（提交次序独立于slot/tag、依赖/迟到输入、buffer回退、跨池、不抢占、发射重查、clear/fault）；旧DW策略控制20261024_144648_019978_dispatch_priority七组PASS。新十图小门槛20261024_144744_060202_self_ten四项PASS：overlap361567、serial980927、preloaded357967、stress493442；每项80任务、1024000MAC、179640检查字节、10240输出字节，SHAe3db30ed8cde6e6cbe0589dcd9ba303c2e0203669019b4bac637a54fc44bcb65；编译42.607096921秒。当前源码FRAME_PRIORITY=0对照20261024_144913_190684_self_ten四项368926/977647/354527/604825，与旧小基线逐周期一致。此前DW优先小run021839也PASS，但不是本轮完整策略，未启动其全网。
+
+唯一活动完整run：build/runs/20261024_145116_701840_self_ten，exec46149；--frames 10 --pw8 --frame-priority --reuse --full --data build/self_ten_full --gate build/runs/20261024_144744_060202_self_ten。缓存.self_ten_pw8_build_frame_priority，compile0，同程序同源码小门槛锁定。禁止改活动RTL/TB、重复启动/编译。与原完整run20261024_014153_249128_self_ten比较，预期1310任务/2338104320MAC/193372920字节/1280结果字节，SHA16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418。heartbeat mobilefacenet已设每30分钟检查、正常安静，完成/报错才通知，交付或错误报告后删除；不另建重复检查。
+
+PASS后本机Python运行scripts/prepare_frame_priority.py 活动run，先核对源码/数据/输出/任务依赖，生成deliverables/self_cnn_ten_<run>/SCHEDULING.md、output_cadence.png、scheduling_comparison.json及完整逐图片任务图/真实work波形。视检六PNG，GTKWave隐藏验证两会话各10唯一信号；沙盒DLL问题可沙盒外。交互file页面此前工具禁止，不绕过，做静态JS/default/full/十图1320行检查。视检与GTK完成后运行scripts/finalize_frame_priority.py 交付目录 --png-reviewed封存最终哈希。报告首个计算完成/外部读完、九个相邻输出间隔及整批时间，首张更快不等于吞吐更高；不能将末尾集中输出的短间隔称稳定帧率。100MHz是换算，电脑wall_seconds另报。十图合成112×112 RGB、诊断量化、32MiB SRAM、整图提交，无无限连续/同帧条带/识别准确率/512KiB或板级频率保证。用户要求停止立即停运行与定时检查并保留证据。
+
+## 2026-10-24 十图完整MobileFaceNet PASS并交付（上一轮基线）
 
 build/runs/20261024_014153_249128_self_ten已完整PASS，exec23327退出0，无活动仿真/自动检查，不再重跑。PW8=1/WIDE_PIPE=1/CONV_OVERLAP=1/PW4=1，DW_PRIORITY=0，十上下文2048任务容量，仍K3×2/K1×4/DW7/Post/Add/Pad各1。1310任务/展开/分配/释放、2338104320MAC、193372920检查字节、10结果1280字节，SHA16e732433489075ec40e78a83ebdf85f4123a84dcb1acb7a4124b421c6ffa418；全部逐值匹配独立整数参考，前6张输出与上一轮完整六图逐字节一致。
 

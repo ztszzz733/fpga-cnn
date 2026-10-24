@@ -36,9 +36,9 @@
 #endif
 namespace fs=std::filesystem;
 constexpr unsigned K3=CNN_K3,K1=CNN_K1,POSTS=CNN_POST,DW=K3+K1,POST=DW+1,ADD=POST+POSTS,PAD=ADD+1,NU=PAD+1;
-constexpr unsigned TASKS=CNN_MAX_TASKS,IW=TASKS==2048?11:10,STEPS=TASKS/4,HOLD_WORDS=STEPS/32,META_WORDS=10+HOLD_WORDS;
-static_assert(TASKS==1024||TASKS==2048);
-static_assert(CNN_FRAMES<=16,"slot masks require at most 64 bits");
+constexpr unsigned TASKS=CNN_MAX_TASKS,IW=TASKS==4096?12:TASKS==2048?11:10,STEPS=TASKS/4,HOLD_WORDS=STEPS/32,META_WORDS=10+HOLD_WORDS;
+static_assert(TASKS==1024||TASKS==2048||TASKS==4096);
+static_assert(CNN_FRAMES<=32,"frame work masks require at most 32 bits");
 using U64=uint64_t;using U32=uint32_t;using Bytes=std::vector<uint8_t>;
 std::vector<U32> hexwords(const fs::path& p){std::ifstream f(p);if(!f)throw std::runtime_error("open "+p.string());std::vector<U32> a;U32 v;while(f>>std::hex>>v)a.push_back(v);return a;}
 Bytes bytes(const fs::path& p){std::ifstream f(p,std::ios::binary|std::ios::ate);if(!f)throw std::runtime_error("open "+p.string());Bytes a(static_cast<size_t>(f.tellg()));f.seekg(0);f.read(reinterpret_cast<char*>(a.data()),a.size());return a;}
@@ -196,7 +196,14 @@ public:
   peak_frames=std::max(peak_frames,pop(active_frames));peak_mac=std::max(peak_mac,k3work);
   if(send_frame>0&&send_frame<nf&&frame[send_frame].begin!=UINT64_MAX&&!commit_pending){if(d->operator_work)input_work++;if(d->operator_work&((1u<<(DW+1))-1))input_mac++;}
   for(unsigned f=0;f<nf;f++)if(frame[f].commit!=UINT64_MAX&&!frame[f].active&&frame[f].next<steps){unsigned op=cmd[(frame[f].next*nf+f)*16];bool free=false;for(unsigned k=0;k<NU;k++)if(kind(k)==op&&!((d->unit_active>>k)&1)&&!((d->operator_busy>>k)&1))free=true;(free?scan_wait:capacity_wait)[op]++;}
+#if CNN_FRAMES > 16
+  for(unsigned w=0;w<(4*CNN_FRAMES+31)/32;w++){
+   allocs+=pop(d->buffer_allocate[w]);releases+=pop(d->buffer_release[w]);
+   need((d->buffer_release[w]&d->external_hold[w])==0,"release before external ACK");
+  }
+#else
   allocs+=pop(d->buffer_allocate);releases+=pop(d->buffer_release);need((d->buffer_release&d->external_hold)==0,"release before external ACK");
+#endif
   if(d->compute_done&&!compute_cycle)compute_cycle=cycle;
   if(!captured_mac&&pop(work_frames)>1&&pop(d->operator_work&((1u<<(DW+1))-1))>1){macwave.begin(out/"mac_detail.vcd",cycle,256);captured_mac=true;}
   if(!captured_pipeline&&pop(work_kinds)>1&&pop(work_frames)>1){pipelinewave.begin(out/"pipeline_detail.vcd",cycle,256);captured_pipeline=true;}
