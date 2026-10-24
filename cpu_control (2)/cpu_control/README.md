@@ -10,7 +10,7 @@
 
 ## 2026-10-23 自研 CNN 四图完整网络与算子数量优化
 
-当前新增入口为 `rtl/cnn_stream/self_fixed_network_top.sv`，使用自研卷积和 `bai-datasram` 四 bank SRAM。相同四张 112×112 测试图的完整 MobileFaceNet RTL 仿真通过；K3×2 / K1×4 配置相对 K3×4 / K1×2 将总周期从 1,138,093,351 降至 653,428,459，减少 42.59%，输出逐字节一致。
+此历史阶段的入口为 `rtl/cnn_stream/self_fixed_network_top.sv`，使用自研卷积和 `bai-datasram` 四 bank SRAM。相同四张 112×112 测试图的完整 MobileFaceNet RTL 仿真通过；K3×2 / K1×4 配置相对 K3×4 / K1×2 将总周期从 1,138,093,351 降至 653,428,459，减少 42.59%，输出逐字节一致。
 
 - [当前状态、入口和从新克隆开始复现](docs/self_cnn_repository.md)
 - [四图优化对比报告](deliverables/self_cnn_full_optimized/README.md)
@@ -19,6 +19,20 @@
 - [小四图调度与接口](docs/self_cnn_four_frames.md)
 
 完整仿真使用 16 MiB 共享 SRAM。512 KiB 适配、模型裁剪和分块融合仍为待实施方案；新 CNN 尚未接入生产板级顶层，也没有整机综合、布局布线或上板通过结论。以下章节保留历史入口说明。
+
+moon 分支原有历史说明：[2026-10-22 修改说明](docs/2026-10-22修改说明.md)。源码压缩包位于仓库根目录 `releases/2026-10-22/`。
+
+## 2026-10-22 FX8 并行图像桥（代码与仿真）
+
+新增 `face_soc_neureka_fx8_top`：8 位 RX/TX、25 MHz 握手、跨时钟 FIFO、包/整帧 CRC 和 32 位 SRAM 打包写。保留六模块内部接口、原 UART 入口和已有帧/分块双缓冲。同一 CPU C 固件通过四帧功能回归；计算模型与真实内核限制见 [验证记录](docs/fx8_verification_20261022.md)。用户当前不考虑上板，板级文件仅为参考草案。
+
+- [实现与接口说明](docs/ees331_fx8_interface.md)
+- 回归：`python scripts/run_fx8.py`
+- 生产源码清单：`rtl/filelists/system_neureka_fx8.f`
+
+## 2026-10-22 Neureka 连续帧调度
+
+`face_soc_neureka_pipeline_top` 现通过 SRAM 描述符选择输入帧 A/B，保持六模块端口和连线。新增 CPU 协作式调度、独立输出 A/B 和 UART 连续四帧示例。主 CPU/桥/SRAM/调度 RTL 的并发回归通过，计算级行为模型不等于真实 Neureka/Vicuna 验收；真实核及上板限制见 [连续帧使用与验证说明](docs/neureka_continuous_frames.md)。
 
 ## NEureka 可编程卷积适配
 
