@@ -1,0 +1,916 @@
+{
+  "status": "PASS",
+  "signals": 128,
+  "peer_instances": {
+    "cpu": "u_cpu_core",
+    "imem": "u_imem",
+    "cnn": "u_cnn",
+    "ram": "u_datasram",
+    "bridge": "u_image_bridge",
+    "clock": "u_clock_unit",
+    "ps": "u_ps"
+  },
+  "top_sha256": "a604aab883eac3cc5f7e24be3b5e3988f56be302d1c0f822b0bdc6f9e9fc97f7",
+  "diagram_manifest_sha256": "191d9ad22e738a22e6385310b713214e1004d4a6b8f42aa0bc1b2e0623491ecd",
+  "signals_checked": [
+    {
+      "interface": "I",
+      "group": "address",
+      "name": "imem_addr",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "I",
+      "group": "data",
+      "name": "imem_rdata",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "I",
+      "group": "control",
+      "name": "imem_re",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "D",
+      "group": "address",
+      "name": "dmem_addr",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "D",
+      "group": "data",
+      "name": "dmem_wdata",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "D",
+      "group": "data",
+      "name": "dmem_rdata",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "D",
+      "group": "control",
+      "name": "dmem_re",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "D",
+      "group": "control",
+      "name": "dmem_we",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "D",
+      "group": "control",
+      "name": "dmem_wstrb",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M0",
+      "group": "address",
+      "name": "mmio_addr",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M0",
+      "group": "data",
+      "name": "mmio_wdata",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M0",
+      "group": "data",
+      "name": "mmio_rdata",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "M0",
+      "group": "control",
+      "name": "mmio_re",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M0",
+      "group": "control",
+      "name": "mmio_we",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M0",
+      "group": "control",
+      "name": "mmio_ready",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "M1",
+      "group": "address",
+      "name": "cnn_mmio_addr",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M1",
+      "group": "data",
+      "name": "cnn_mmio_wdata",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M1",
+      "group": "data",
+      "name": "cnn_mmio_rdata",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "M1",
+      "group": "control",
+      "name": "cnn_mmio_re",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M1",
+      "group": "control",
+      "name": "cnn_mmio_we",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "M1",
+      "group": "control",
+      "name": "cnn_mmio_ready",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "C",
+      "group": "address",
+      "name": "cnn_addr",
+      "width": 320,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "data",
+      "name": "cnn_wdata",
+      "width": 320,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "data",
+      "name": "cnn_rdata",
+      "width": 320,
+      "direction": "rev"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_valid",
+      "width": 10,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_write",
+      "width": 10,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_byte",
+      "width": 10,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_cancel",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_ready",
+      "width": 10,
+      "direction": "rev"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_response",
+      "width": 10,
+      "direction": "rev"
+    },
+    {
+      "interface": "C",
+      "group": "control",
+      "name": "cnn_mem_fault",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "F",
+      "group": "address",
+      "name": "cache_csr_addr",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "F",
+      "group": "data",
+      "name": "cache_csr_wdata",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "F",
+      "group": "data",
+      "name": "cache_csr_rdata",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "F",
+      "group": "control",
+      "name": "cache_csr_re",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "F",
+      "group": "control",
+      "name": "cache_csr_we",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "F",
+      "group": "control",
+      "name": "cache_csr_ready",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "address",
+      "name": "M_AXI_GP0_AWADDR",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "address",
+      "name": "M_AXI_GP0_ARADDR",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "data",
+      "name": "M_AXI_GP0_WDATA",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "data",
+      "name": "M_AXI_GP0_RDATA",
+      "width": 32,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWID",
+      "width": 12,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARID",
+      "width": 12,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_WID",
+      "width": 12,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWLEN",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARLEN",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWSIZE",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARSIZE",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWBURST",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARBURST",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWLOCK",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARLOCK",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWCACHE",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARCACHE",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWPROT",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARPROT",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWQOS",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARQOS",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_WSTRB",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_WVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_WLAST",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_BREADY",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_RREADY",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_BID",
+      "width": 12,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_RID",
+      "width": 12,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_BRESP",
+      "width": 2,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_RRESP",
+      "width": 2,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_AWREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_WREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_BVALID",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_ARREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_RVALID",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "G",
+      "group": "control",
+      "name": "M_AXI_GP0_RLAST",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "address",
+      "name": "S_AXI_HP0_AWADDR",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "address",
+      "name": "S_AXI_HP0_ARADDR",
+      "width": 32,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "data",
+      "name": "S_AXI_HP0_WDATA",
+      "width": 64,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "data",
+      "name": "S_AXI_HP0_RDATA",
+      "width": 64,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWID",
+      "width": 6,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARID",
+      "width": 6,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_WID",
+      "width": 6,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWLEN",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARLEN",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWSIZE",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARSIZE",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWBURST",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARBURST",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWLOCK",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARLOCK",
+      "width": 2,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWCACHE",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARCACHE",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWPROT",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARPROT",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWQOS",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARQOS",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_WSTRB",
+      "width": 8,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_WVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_WLAST",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_BREADY",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARVALID",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_RREADY",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_BID",
+      "width": 6,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_RID",
+      "width": 6,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_BRESP",
+      "width": 2,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_RRESP",
+      "width": 2,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_AWREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_WREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_BVALID",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_ARREADY",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_RVALID",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "H",
+      "group": "control",
+      "name": "S_AXI_HP0_RLAST",
+      "width": 1,
+      "direction": "rev"
+    },
+    {
+      "interface": "B",
+      "group": "address",
+      "name": "DDR_Addr",
+      "width": 15,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "address",
+      "name": "DDR_BankAddr",
+      "width": 3,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "data",
+      "name": "DDR_DM",
+      "width": 4,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "data",
+      "name": "DDR_DQ",
+      "width": 32,
+      "direction": "bidir"
+    },
+    {
+      "interface": "B",
+      "group": "data",
+      "name": "DDR_DQS",
+      "width": 4,
+      "direction": "bidir"
+    },
+    {
+      "interface": "B",
+      "group": "data",
+      "name": "DDR_DQS_n",
+      "width": 4,
+      "direction": "bidir"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_Clk",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_Clk_n",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_CKE",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_CS_n",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_RAS_n",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_CAS_n",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_WEB",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_ODT",
+      "width": 1,
+      "direction": "fwd"
+    },
+    {
+      "interface": "B",
+      "group": "control",
+      "name": "DDR_DRSTB",
+      "width": 1,
+      "direction": "fwd"
+    }
+  ],
+  "clock": "PS FCLK0 to shared clk; synchronous reset release",
+  "uart": "PS UART1 MIO48 TX / MIO49 RX; no PL UART pins",
+  "boundary": "Static names/widths/endpoint check plus separate actual top RTL simulation; not board validation"
+}

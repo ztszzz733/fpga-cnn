@@ -4,6 +4,10 @@ build/
 __pycache__/
 .pytest_cache/
 .self_full_native/
+.ees331_full_native/
+.Xil/
+retry_open_fs.log
+.$*.drawio.bkp
 *.pyc
 # Reviewed waveform evidence; keep other generated traces ignored.
 !deliverables/self_cnn_pair/dual/control.vcd

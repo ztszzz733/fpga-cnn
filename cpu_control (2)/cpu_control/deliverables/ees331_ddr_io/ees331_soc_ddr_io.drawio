@@ -1,0 +1,1618 @@
+<mxfile host="Electron" pages="7">
+  <diagram id="01_before" name="01 改前：当前六模块真实接线">
+    <mxGraphModel dx="3431" dy="2366" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="3200" background="#f8fafc" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="01_before_1" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" value="01 改前：当前六模块真实接线" vertex="1">
+          <mxGeometry height="65" width="3900" x="50" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_2" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="依据 face_soc_top.sv；当前仍接旧CNN，不混用新的10客户端接口。" vertex="1">
+          <mxGeometry height="55" width="3900" x="50" y="99" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_3" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="18" width="30" x="55" y="167" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_4" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="地址线" vertex="1">
+          <mxGeometry height="44" width="300" x="95" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_5" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="18" width="30" x="475" y="167" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_6" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="数据线" vertex="1">
+          <mxGeometry height="44" width="300" x="515" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_7" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="18" width="30" x="895" y="167" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_8" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="控制/信号线" vertex="1">
+          <mxGeometry height="44" width="300" x="935" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_9" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#f0f5fa;strokeColor=#a8bed2;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;dashed=1;dashPattern=8 5;" value="" vertex="1">
+          <mxGeometry height="2900" width="2600" x="40" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_10" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=27;rotation=0;" value="PL / FPGA可编程逻辑" vertex="1">
+          <mxGeometry height="40" width="600" x="70" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_11" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="850" width="650" x="160" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_12" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="① CPU_CORE" vertex="1">
+          <mxGeometry height="48" width="626" x="172" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_13" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="cpu_core" vertex="1">
+          <mxGeometry height="50" width="620" x="175" y="726" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_14" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="原Control + Datapath&#xa;取指 / 本地数据 / MMIO&#xa;&#xa;数据口不增加等待&#xa;保持固定一拍读" vertex="1">
+          <mxGeometry height="640" width="610" x="180" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_15" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="保留  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="175" y="1435" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_16" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="270" width="650" x="1800" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_17" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="④ IMEM / IEM" vertex="1">
+          <mxGeometry height="48" width="626" x="1812" y="281" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_18" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="imem_rom" vertex="1">
+          <mxGeometry height="50" width="620" x="1815" y="341" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_19" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="64 KiB指令ROM" vertex="1">
+          <mxGeometry height="60" width="610" x="1820" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_20" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="当前RTL  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="1815" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_21" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#fff8e7;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="1150" width="650" x="1800" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_22" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="③ DATASRAM" vertex="1">
+          <mxGeometry height="48" width="626" x="1812" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_23" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="datasram" vertex="1">
+          <mxGeometry height="50" width="620" x="1815" y="726" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_24" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="256 KiB共享SRAM&#xa;CPU A口固定一拍&#xa;CNN / image_bridge共用B口&#xa;仲裁在内部" vertex="1">
+          <mxGeometry height="940" width="610" x="1820" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_25" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="当前RTL  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="1815" y="1735" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_26" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#f2edff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="800" width="650" x="160" y="1850" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_27" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="⑤ IMAGE_BRIDGE" vertex="1">
+          <mxGeometry height="48" width="626" x="172" y="1866" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_28" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="image_bridge" vertex="1">
+          <mxGeometry height="50" width="620" x="175" y="1926" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_29" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="PL UART接收 / CRC32&#xa;IMIO分包&#xa;直接读写共享SRAM" vertex="1">
+          <mxGeometry height="590" width="610" x="180" y="1990" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_30" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="当前RTL  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="175" y="2585" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_31" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="400" width="650" x="1800" y="2250" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_32" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="② CNN" vertex="1">
+          <mxGeometry height="48" width="626" x="1812" y="2266" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_33" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="mobilefacenet_accelerator_top" vertex="1">
+          <mxGeometry height="50" width="620" x="1815" y="2326" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_34" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="旧CNN，单路mem_*接口" vertex="1">
+          <mxGeometry height="190" width="610" x="1820" y="2390" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_35" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="旧CNN接口  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="1815" y="2585" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_36" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="270" width="650" x="160" y="2790" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_37" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" value="⑥ CLOCK_UNIT" vertex="1">
+          <mxGeometry height="48" width="626" x="172" y="2806" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_38" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="clock_unit" vertex="1">
+          <mxGeometry height="50" width="620" x="175" y="2866" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_39" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" value="时钟直通 / 复位同步" vertex="1">
+          <mxGeometry height="60" width="610" x="180" y="2930" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_40" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="保留  |  clk /1，rst_n /1" vertex="1">
+          <mxGeometry height="48" width="620" x="175" y="2995" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_41" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.5230769230769231;exitY=0.0;exitPerimeter=0;entryX=0.23076923076923078;entryY=1.0;entryPerimeter=0;" target="01_before_16" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="570" />
+              <mxPoint x="1950" y="570" />
+            </Array>
+            <mxPoint x="500" y="650" as="sourcePoint" />
+            <mxPoint x="1950" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_42" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="→ imem_addr[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="42" width="850" x="850" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_43" edge="1" parent="1" source="01_before_16" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;exitX=0.36923076923076925;exitY=1.0;exitPerimeter=0;entryX=0.6615384615384615;entryY=0.0;entryPerimeter=0;" target="01_before_11" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2040" y="593" />
+              <mxPoint x="590" y="593" />
+            </Array>
+            <mxPoint x="2040" y="535" as="sourcePoint" />
+            <mxPoint x="590" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_44" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="← imem_rdata[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="42" width="850" x="850" y="532" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_45" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=0.8;exitY=0.0;exitPerimeter=0;entryX=0.5076923076923077;entryY=1.0;entryPerimeter=0;" target="01_before_16" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="616" />
+              <mxPoint x="2130" y="616" />
+            </Array>
+            <mxPoint x="680" y="650" as="sourcePoint" />
+            <mxPoint x="2130" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_46" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" value="→ imem_re / 1 bit" vertex="1">
+          <mxGeometry height="42" width="850" x="850" y="574" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_47" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.17647058823529413;exitPerimeter=0;entryX=0.0;entryY=0.13043478260869565;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="810" y="800" as="sourcePoint" />
+            <mxPoint x="1800" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_48" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="D · → dmem_addr[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="95" width="900" x="850" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_49" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.5176470588235295;exitPerimeter=0;entryX=0.0;entryY=0.3826086956521739;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="810" y="1090" as="sourcePoint" />
+            <mxPoint x="1800" y="1090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_50" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="D · → dmem_wdata[31:0] / 32 bit&#xa;← dmem_rdata[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="95" width="900" x="850" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_51" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.8588235294117647;exitPerimeter=0;entryX=0.0;entryY=0.6347826086956522;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="810" y="1380" as="sourcePoint" />
+            <mxPoint x="1800" y="1380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_52" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" value="D · → dmem_re / 1 bit&#xa;→ dmem_we / 1 bit&#xa;→ dmem_wstrb[3:0] / 4 bit" vertex="1">
+          <mxGeometry height="95" width="900" x="850" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_53" parent="1" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#adbdca;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" value="" vertex="1">
+          <mxGeometry height="1360" width="1100" x="2780" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_54" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=27;rotation=0;" value="当前板级IO（说明框，不是新增模块）&#xa;&#xa;输入：sys_clk /1 → clock_unit&#xa;输入：rst_n_in /1 → clock_unit&#xa;输入：uart_rx /1 → image_bridge&#xa;输出：uart_tx /1 ← image_bridge&#xa;&#xa;输出：led_ready /1&#xa;= bridge_ready &amp; !cnn_mem_fault&#xa;输出：led_busy /1 = bridge_busy&#xa;输出：led_error /1&#xa;= bridge_error | cnn_mem_fault&#xa;&#xa;cnn_mem_fault /1：DATASRAM → 顶层LED逻辑&#xa;旧CNN没有这个fault输入端口。&#xa;&#xa;clk /1、rst_n /1为六模块同名公共网。&#xa;新版DDR/J3的引脚分组见第07页。" vertex="1">
+          <mxGeometry height="1270" width="1040" x="2810" y="785" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_55" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.9411764705882353;exitPerimeter=0;entryX=0.0;entryY=0.225;entryPerimeter=0;" target="01_before_31" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="1450" />
+              <mxPoint x="930" y="2340" />
+            </Array>
+            <mxPoint x="810" y="1450" as="sourcePoint" />
+            <mxPoint x="1800" y="2340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_56" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=19;rotation=-90;" value="→ cnn_mmio_addr[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="600" width="80" x="892" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_57" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.8764705882352941;exitPerimeter=0;entryX=0.0;entryY=0.55;entryPerimeter=0;" target="01_before_31" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="1395" />
+              <mxPoint x="1150" y="2470" />
+            </Array>
+            <mxPoint x="810" y="1395" as="sourcePoint" />
+            <mxPoint x="1800" y="2470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_58" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=19;rotation=-90;" value="→ cnn_mmio_wdata[31:0] / 32 bit&#xa;← cnn_mmio_rdata[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="600" width="80" x="1110" y="1365" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_59" edge="1" parent="1" source="01_before_11" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.8117647058823529;exitPerimeter=0;entryX=0.0;entryY=0.875;entryPerimeter=0;" target="01_before_31" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="1340" />
+              <mxPoint x="1370" y="2600" />
+            </Array>
+            <mxPoint x="810" y="1340" as="sourcePoint" />
+            <mxPoint x="1800" y="2600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_60" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=19;rotation=-90;" value="→ cnn_mmio_re / 1 bit&#xa;→ cnn_mmio_we / 1 bit&#xa;← cnn_mmio_ready / 1 bit" vertex="1">
+          <mxGeometry height="600" width="80" x="1340" y="1190" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_61" edge="1" parent="1" source="01_before_26" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.125;exitPerimeter=0;entryX=0.0;entryY=0.7391304347826086;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1450" y="1950" />
+              <mxPoint x="1450" y="1500" />
+            </Array>
+            <mxPoint x="810" y="1950" as="sourcePoint" />
+            <mxPoint x="1800" y="1500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_62" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" value="J · → io_mem_addr[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="80" width="620" x="830" y="1880" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_63" edge="1" parent="1" source="01_before_26" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.25;exitPerimeter=0;entryX=0.0;entryY=0.8347826086956521;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1520" y="2050" />
+              <mxPoint x="1520" y="1610" />
+            </Array>
+            <mxPoint x="810" y="2050" as="sourcePoint" />
+            <mxPoint x="1800" y="1610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_64" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" value="J · → io_mem_wdata[31:0] / 32 bit&#xa;← io_mem_rdata[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="80" width="620" x="830" y="2020" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_65" edge="1" parent="1" source="01_before_26" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.375;exitPerimeter=0;entryX=0.0;entryY=0.9304347826086956;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="2150" />
+              <mxPoint x="1590" y="1720" />
+            </Array>
+            <mxPoint x="810" y="2150" as="sourcePoint" />
+            <mxPoint x="1800" y="1720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_66" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" value="J · req /1、we /1、be /4 →&#xa;gnt /1、rvalid /1、error /1 ←" vertex="1">
+          <mxGeometry height="80" width="620" x="1100" y="2110" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_67" edge="1" parent="1" source="01_before_31" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.15384615384615385;exitY=0.0;exitPerimeter=0;entryX=0.15384615384615385;entryY=1.0;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1900" y="2250" as="sourcePoint" />
+            <mxPoint x="1900" y="1800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_68" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" value="C · → mem_addr[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="410" width="83" x="1858" y="1820" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_69" edge="1" parent="1" source="01_before_31" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="2125" y="2250" as="sourcePoint" />
+            <mxPoint x="2125" y="1800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_70" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" value="C · → mem_wdata[31:0] / 32 bit&#xa;← mem_rdata[31:0] / 32 bit" vertex="1">
+          <mxGeometry height="410" width="83" x="2083" y="1820" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_71" edge="1" parent="1" source="01_before_31" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.8461538461538461;exitY=0.0;exitPerimeter=0;entryX=0.8461538461538461;entryY=1.0;entryPerimeter=0;" target="01_before_21" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="2350" y="2250" as="sourcePoint" />
+            <mxPoint x="2350" y="1800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="01_before_72" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" value="C · mem_read /1, mem_write /1 →&#xa;mem_ready /1 ←" vertex="1">
+          <mxGeometry height="410" width="83" x="2308" y="1820" as="geometry" />
+        </mxCell>
+        <mxCell id="01_before_73" parent="1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=24;rotation=0;" value="全局同名网：clk /1、rst_n /1 → 各PL模块（各模块底部已标注）&#xa;交叉无圆点 = 不连接；双向箭头表示两组相反方向的独立线，并非总线三态共驱。&#xa;改后容量/新模块为设计方案，尚未实施；详图逐根列出接口，不省略控制位宽。" vertex="1">
+          <mxGeometry height="180" width="2100" x="850" y="2860" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="02_after" name="02 改后：原六模块平级 + PS7 + 板外DDR3">
+    <mxGraphModel dx="4000" dy="3200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="3200" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="02_after_1" value="02 改后：原六模块平级 + PS7 + 板外DDR3" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3900" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_2" value="待实施方案：保留六个功能位置；①CPU与④IMEM仍平级；PS为同一芯片硬核，DDR在板外。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3900" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#f0f5fa;strokeColor=#a8bed2;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;dashed=1;dashPattern=8 5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="215" width="2600" height="2900" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_10" value="PL / FPGA可编程逻辑" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=27;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="220" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_11" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="160" y="650" width="650" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_12" value="① CPU_CORE" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="172" y="666" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_13" value="cpu_core" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="726" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_14" value="原Control + Datapath&#xa;取指 / 本地数据 / MMIO&#xa;&#xa;数据口不增加等待&#xa;保持固定一拍读" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="790" width="610" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_15" value="保留  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="1435" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_16" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="265" width="650" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_17" value="④ IMEM / IEM" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1812" y="281" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_18" value="imem_rom" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="341" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_19" value="建议8 KiB指令ROM" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="405" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_20" value="接口保留；拟缩容量  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="470" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_21" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#fff8e7;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="650" width="650" height="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_22" value="③ DATASRAM" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1812" y="666" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_23" value="datasram_ddr_subsystem（拟）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="726" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_24" value="A：CPU本地RAM 16 KiB&#xa;固定一拍，不经过cache&#xa;&#xa;B：CNN共享cache&#xa;首版128 KiB / 目标256 KiB&#xa;4 bank + tag / miss / 写回&#xa;&#xa;内部DDR突发主接口&#xa;接PS的HP0；不放MIG" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="790" width="610" height="940" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_25" value="保留存储位置，内部大改  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="1735" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_26" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#f2edff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="160" y="1850" width="650" height="800" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_27" value="⑤ IMAGE_BRIDGE" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="172" y="1866" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_28" value="image_control_bridge（拟）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="1926" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_29" value="原PL串口收图移至PS&#xa;本位置变为：&#xa;PS / CPU双侧邮箱&#xa;GP0 AXI3→AXI Lite转换&#xa;CPU零等待MMIO译码/转接&#xa;cache维护寄存器入口" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1990" width="610" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_30" value="职责调整；不是已存在RTL  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="2585" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_31" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="2250" width="650" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_32" value="② CNN" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1812" y="2266" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_33" value="新CNN子系统 + MMIO封装（拟）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="2326" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_34" value="2 K3 + 4 K1 + DW7/Post/Add/Pad&#xa;紧凑固定调度，4图重叠计算" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="2390" width="610" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_35" value="10客户端接口来自当前新CNN  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1815" y="2585" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_36" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="160" y="2790" width="650" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_37" value="⑥ CLOCK_UNIT" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="172" y="2806" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_38" value="clock_unit / reset同步（改）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="2866" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_39" value="PS FCLK作为统一PL时钟" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="2930" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_40" value="保留  |  clk /1，rst_n /1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="2995" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_41" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.5230769230769231;exitY=0.0;exitPerimeter=0;entryX=0.23076923076923078;entryY=1.0;entryPerimeter=0;" source="02_after_11" target="02_after_16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="650" as="sourcePoint" />
+            <mxPoint x="1950" y="535" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="500" y="570" />
+              <mxPoint x="1950" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_42" value="→ imem_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="490" width="850" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_43" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;exitX=0.36923076923076925;exitY=1.0;exitPerimeter=0;entryX=0.6615384615384615;entryY=0.0;entryPerimeter=0;" source="02_after_16" target="02_after_11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2040" y="535" as="sourcePoint" />
+            <mxPoint x="590" y="650" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2040" y="593" />
+              <mxPoint x="590" y="593" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_44" value="← imem_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="532" width="850" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_45" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=0.8;exitY=0.0;exitPerimeter=0;entryX=0.5076923076923077;entryY=1.0;entryPerimeter=0;" source="02_after_11" target="02_after_16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="650" as="sourcePoint" />
+            <mxPoint x="2130" y="535" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="680" y="616" />
+              <mxPoint x="2130" y="616" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_46" value="→ imem_re / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="574" width="850" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_47" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.17647058823529413;exitPerimeter=0;entryX=0.0;entryY=0.13043478260869565;entryPerimeter=0;" source="02_after_11" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="800" as="sourcePoint" />
+            <mxPoint x="1800" y="800" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_48" value="D · → dmem_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="700" width="900" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_49" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.5176470588235295;exitPerimeter=0;entryX=0.0;entryY=0.3826086956521739;entryPerimeter=0;" source="02_after_11" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="1090" as="sourcePoint" />
+            <mxPoint x="1800" y="1090" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_50" value="D · → dmem_wdata[31:0] / 32 bit&#xa;← dmem_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="990" width="900" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_51" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.8588235294117647;exitPerimeter=0;entryX=0.0;entryY=0.6347826086956522;entryPerimeter=0;" source="02_after_11" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="1380" as="sourcePoint" />
+            <mxPoint x="1800" y="1380" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_52" value="D · → dmem_re / 1 bit&#xa;→ dmem_we / 1 bit&#xa;→ dmem_wstrb[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="1280" width="900" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_53" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.15384615384615385;exitY=1.0;exitPerimeter=0;entryX=0.15384615384615385;entryY=0.0;entryPerimeter=0;" source="02_after_11" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="1500" as="sourcePoint" />
+            <mxPoint x="260" y="1850" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_54" value="M0 · → mmio_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=18;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="215" y="1515" width="90" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_55" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" source="02_after_11" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="485" y="1500" as="sourcePoint" />
+            <mxPoint x="485" y="1850" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_56" value="M0 · → mmio_wdata[31:0] / 32 bit&#xa;← mmio_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=18;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="440" y="1515" width="90" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_57" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.8461538461538461;exitY=1.0;exitPerimeter=0;entryX=0.8461538461538461;entryY=0.0;entryPerimeter=0;" source="02_after_11" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="1500" as="sourcePoint" />
+            <mxPoint x="710" y="1850" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_58" value="M0 · → mmio_re / 1 bit&#xa;→ mmio_we / 1 bit&#xa;← mmio_ready / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=18;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="665" y="1515" width="90" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_59" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.575;exitPerimeter=0;entryX=0.0;entryY=0.15;entryPerimeter=0;" source="02_after_26" target="02_after_31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="2310" as="sourcePoint" />
+            <mxPoint x="1800" y="2310" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_60" value="M1 · → cnn_mmio_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="2195" width="900" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_61" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.75;exitPerimeter=0;entryX=0.0;entryY=0.5;entryPerimeter=0;" source="02_after_26" target="02_after_31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="2450" as="sourcePoint" />
+            <mxPoint x="1800" y="2450" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_62" value="M1 · → cnn_mmio_wdata[31:0] / 32 bit&#xa;← cnn_mmio_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="2335" width="900" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_63" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.925;exitPerimeter=0;entryX=0.0;entryY=0.85;entryPerimeter=0;" source="02_after_26" target="02_after_31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="2590" as="sourcePoint" />
+            <mxPoint x="1800" y="2590" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_64" value="M1 · → cnn_mmio_re / 1 bit&#xa;→ cnn_mmio_we / 1 bit&#xa;← cnn_mmio_ready / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="2475" width="900" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_65" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.0625;exitPerimeter=0;entryX=0.0;entryY=0.7478260869565218;entryPerimeter=0;" source="02_after_26" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="1900" as="sourcePoint" />
+            <mxPoint x="1800" y="1510" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1150" y="1900" />
+              <mxPoint x="1150" y="1510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_66" value="F · 地址线 →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="1455" width="470" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_67" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.18125;exitPerimeter=0;entryX=0.0;entryY=0.8434782608695652;entryPerimeter=0;" source="02_after_26" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="1995" as="sourcePoint" />
+            <mxPoint x="1800" y="1620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1280" y="1995" />
+              <mxPoint x="1280" y="1620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_68" value="F · 数据线 →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="1565" width="470" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_69" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.3;exitPerimeter=0;entryX=0.0;entryY=0.9391304347826087;entryPerimeter=0;" source="02_after_26" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="2090" as="sourcePoint" />
+            <mxPoint x="1800" y="1730" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1410" y="2090" />
+              <mxPoint x="1410" y="1730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_70" value="F · 控制/信号线 →2 bit  ←1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=19;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="1675" width="470" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_71" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#e7f4f0;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="3100" y="650" width="650" height="1800" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_72" value="新增 PS7 / ARM + DDR控制器" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="3112" y="666" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_73" value="ZYNQ7 Processing System" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="726" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_74" value="双核ARM + UART1&#xa;PS收图程序 / CRC&#xa;模型加载 / 数据可见性&#xa;&#xa;M_AXI_GP0：控制PL邮箱&#xa;S_AXI_HP0：服务PL存储访问&#xa;&#xa;硬核DDR控制器 + PHY&#xa;DDR初始化由PS执行&#xa;&#xa;PS内上传数据到DDR&#xa;不经过PL UART/cache" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3120" y="790" width="610" height="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_75" value="新增使用PS硬核" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="2385" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_76" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#fff1e8;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="3100" y="240" width="650" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_77" value="板外 DDR3 / 1GB" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="3112" y="256" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_78" value="PS专用DDR物理引脚" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="316" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_79" value="完整模型 + 四图工作区" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3120" y="380" width="610" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_80" value="板载已有1GB；非PL BRAM" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="455" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_81" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#45637e;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="3100" y="2780" width="650" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_82" value="电脑 / J3" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=30;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="3112" y="2796" width="626" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_83" value="一根USB数据线 / J3" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="2856" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_84" value="板载桥接 → PS UART1" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3120" y="2920" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_85" value="USB供电能力按板卡验证" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3115" y="2985" width="620" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_86" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=1.0;exitY=0.14347826086956522;exitPerimeter=0;entryX=0.0;entryY=0.09166666666666666;entryPerimeter=0;" source="02_after_21" target="02_after_71">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2450" y="815" as="sourcePoint" />
+            <mxPoint x="3100" y="815" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_87" value="H · → S_AXI_HP0_AWADDR[31:0] / 32 bit&#xa;→ S_AXI_HP0_ARADDR[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2485" y="705" width="575" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_88" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.4391304347826087;exitPerimeter=0;entryX=0.0;entryY=0.28055555555555556;entryPerimeter=0;" source="02_after_21" target="02_after_71">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2450" y="1155" as="sourcePoint" />
+            <mxPoint x="3100" y="1155" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_89" value="H · → S_AXI_HP0_WDATA[63:0] / 64 bit&#xa;← S_AXI_HP0_RDATA[63:0] / 64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2485" y="1045" width="575" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_90" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=1.0;exitY=0.7347826086956522;exitPerimeter=0;entryX=0.0;entryY=0.46944444444444444;entryPerimeter=0;" source="02_after_21" target="02_after_71">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2450" y="1495" as="sourcePoint" />
+            <mxPoint x="3100" y="1495" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_91" value="H · 控制/信号线  →76 bit  ←22 bit&#xa;AWID[6] / ARID[6] / WID[6] …（详信号页）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2485" y="1385" width="575" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_92" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.0;exitY=0.7166666666666667;exitPerimeter=0;entryX=1.0;entryY=0.1125;entryPerimeter=0;" source="02_after_71" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3100" y="1940" as="sourcePoint" />
+            <mxPoint x="810" y="1940" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_93" value="G · 地址线 →64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2480" y="1877" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_94" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.0;exitY=0.7722222222222223;exitPerimeter=0;entryX=1.0;entryY=0.2375;entryPerimeter=0;" source="02_after_71" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3100" y="2040" as="sourcePoint" />
+            <mxPoint x="810" y="2040" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_95" value="G · 数据线 →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2480" y="1977" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_96" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.0;exitY=0.8277777777777777;exitPerimeter=0;entryX=1.0;entryY=0.3625;entryPerimeter=0;" source="02_after_71" target="02_after_26">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3100" y="2140" as="sourcePoint" />
+            <mxPoint x="810" y="2140" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_97" value="G · 控制/信号线 →90 bit  ←34 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2480" y="2077" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_98" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.16923076923076924;exitY=0.0;exitPerimeter=0;entryX=0.16923076923076924;entryY=1.0;entryPerimeter=0;" source="02_after_71" target="02_after_76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3210" y="650" as="sourcePoint" />
+            <mxPoint x="3210" y="520" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_99" value="B · DDR_Addr /15&#xa;DDR_BankAddr /3" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=16;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3110" y="530" width="205" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_100" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.5076923076923077;exitY=0.0;exitPerimeter=0;entryX=0.5076923076923077;entryY=1.0;entryPerimeter=0;" source="02_after_71" target="02_after_76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3430" y="650" as="sourcePoint" />
+            <mxPoint x="3430" y="520" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_101" value="B · DQ /32 &lt;-&gt;&#xa;DQS/DQS_n 各4 &lt;-&gt;&#xa;DDR_DM /4 →" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=16;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3330" y="530" width="205" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_102" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=0.8461538461538461;exitY=0.0;exitPerimeter=0;entryX=0.8461538461538461;entryY=1.0;entryPerimeter=0;" source="02_after_71" target="02_after_76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3650" y="650" as="sourcePoint" />
+            <mxPoint x="3650" y="520" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_103" value="B · DDR命令/时钟&#xa;9根信号，各1 bit →&#xa;逐根名称见第07页" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=16;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3550" y="530" width="205" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_104" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.4;exitY=1.0;exitPerimeter=0;entryX=0.4;entryY=0.0;entryPerimeter=0;" source="02_after_71" target="02_after_81">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3360" y="2450" as="sourcePoint" />
+            <mxPoint x="3360" y="2780" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_105" value="U · PS UART1&#xa;TX：MIO48 /1 → J3桥&#xa;RX：MIO49 /1 ← J3桥&#xa;J3 USB端口不直接连PL" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=20;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="3390" y="2480" width="540" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_106" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;exitX=0.0;exitY=0.9444444444444444;exitPerimeter=0;entryX=0.7076923076923077;entryY=0.0;entryPerimeter=0;" source="02_after_71" target="02_after_36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3100" y="2350" as="sourcePoint" />
+            <mxPoint x="620" y="2790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2860" y="2350" />
+              <mxPoint x="2860" y="2740" />
+              <mxPoint x="620" y="2740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_107" value="K · FCLK_CLK0 /1 → sys_clk；FCLK_RESET0_N /1 → rst_n_in" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="2690" width="1700" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_108" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;exitX=0.15384615384615385;exitY=0.0;exitPerimeter=0;entryX=0.15384615384615385;entryY=1.0;entryPerimeter=0;" source="02_after_31" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1900" y="2250" as="sourcePoint" />
+            <mxPoint x="1900" y="1800" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_109" value="C · → cnn_addr[319:0] / 320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="1858" y="1820" width="83" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_110" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.5;exitY=0.0;exitPerimeter=0;entryX=0.5;entryY=1.0;entryPerimeter=0;" source="02_after_31" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2125" y="2250" as="sourcePoint" />
+            <mxPoint x="2125" y="1800" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_111" value="C · → cnn_wdata[319:0] / 320 bit&#xa;← cnn_rdata[319:0] / 320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="2083" y="1820" width="83" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_112" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;exitX=0.8461538461538461;exitY=0.0;exitPerimeter=0;entryX=0.8461538461538461;entryY=1.0;entryPerimeter=0;" source="02_after_31" target="02_after_21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2350" y="2250" as="sourcePoint" />
+            <mxPoint x="2350" y="1800" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="02_after_113" value="C · valid/write/byte 各10 →&#xa;ready/response 各10 ←&#xa;cancel /1 →，fault /1 ←" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=#f8fafc;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=17;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="2308" y="1820" width="83" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="02_after_114" value="全局同名网：clk /1、rst_n /1 → 各PL模块（各模块底部已标注）&#xa;交叉无圆点 = 不连接；双向箭头表示两组相反方向的独立线，并非总线三态共驱。&#xa;改后容量/新模块为设计方案，尚未实施；详图逐根列出接口，不省略控制位宽。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=24;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="2860" width="2100" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="03_address" name="03 改后逐接口接线：地址线（蓝色）">
+    <mxGraphModel dx="3300" dy="1899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="1899" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="03_address_1" value="03 改后逐接口接线：地址线（蓝色）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_2" value="每行左右两框与总图同层级；→ 左框发往右框，← 右框返回左框，&lt;-&gt; 物理双向；/N 为该信号位宽。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="225" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_10" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_11" value="④ IMEM / IEM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_12" value="I · CPU取指   →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="233" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_13" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="348" as="sourcePoint" />
+            <mxPoint x="2835" y="348" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_14" value="→ imem_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="279" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_15" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_16" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="425" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_17" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="425" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_18" value="D · CPU本地数据口   →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="408" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_19" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="523" as="sourcePoint" />
+            <mxPoint x="2835" y="523" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_20" value="→ dmem_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="454" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_21" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="575" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_22" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="600" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_23" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="600" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_24" value="M0 · CPU控制/邮箱口   →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="583" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_25" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="698" as="sourcePoint" />
+            <mxPoint x="2835" y="698" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_26" value="→ mmio_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="629" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_27" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="750" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_28" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="775" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_29" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="775" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_30" value="M1 · CNN寄存器封装   →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="758" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_31" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="873" as="sourcePoint" />
+            <mxPoint x="2835" y="873" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_32" value="→ cnn_mmio_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="804" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_33" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="925" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_34" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="950" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_35" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="950" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_36" value="C · 10路新CNN访存   →320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="933" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_37" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1048" as="sourcePoint" />
+            <mxPoint x="2835" y="1048" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_38" value="→ cnn_addr[319:0] / 320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="979" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_39" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1100" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_40" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1125" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_41" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1125" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_42" value="F · cache维护寄存器   →32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1108" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_43" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1223" as="sourcePoint" />
+            <mxPoint x="2835" y="1223" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_44" value="→ cache_csr_addr[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1154" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_45" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1275" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_46" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1300" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_47" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1300" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_48" value="G · PS→PL控制：AXI3 GP0   →64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1283" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_49" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1416" as="sourcePoint" />
+            <mxPoint x="2835" y="1416" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_50" value="→ M_AXI_GP0_AWADDR[31:0] / 32 bit&#xa;→ M_AXI_GP0_ARADDR[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1329" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_51" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1468" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_52" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1493" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_53" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1493" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_54" value="H · PL→PS存储：AXI3 HP0   →64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1476" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_55" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1609" as="sourcePoint" />
+            <mxPoint x="2835" y="1609" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_56" value="→ S_AXI_HP0_AWADDR[31:0] / 32 bit&#xa;→ S_AXI_HP0_ARADDR[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1522" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_57" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1661" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_58" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1686" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_59" value="板外 DDR3 / 1GB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1686" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_60" value="B · PS专用DDR3引脚   →18 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1669" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="03_address_61" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1802" as="sourcePoint" />
+            <mxPoint x="2835" y="1802" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="03_address_62" value="→ DDR_Addr[14:0] / 15 bit&#xa;→ DDR_BankAddr[2:0] / 3 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1715" width="2300" height="68" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="04_data" name="04 改后逐接口接线：数据线（橙色）">
+    <mxGraphModel dx="3300" dy="2057" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2057" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="04_data_1" value="04 改后逐接口接线：数据线（橙色）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_2" value="每行左右两框与总图同层级；→ 左框发往右框，← 右框返回左框，&lt;-&gt; 物理双向；/N 为该信号位宽。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="225" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_10" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_11" value="④ IMEM / IEM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_12" value="I · CPU取指   ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="233" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_13" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2835" y="348" as="sourcePoint" />
+            <mxPoint x="465" y="348" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_14" value="← imem_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="279" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_15" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_16" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="425" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_17" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="425" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_18" value="D · CPU本地数据口   →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="408" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_19" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="541" as="sourcePoint" />
+            <mxPoint x="2835" y="541" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_20" value="→ dmem_wdata[31:0] / 32 bit&#xa;← dmem_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="454" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_21" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="593" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_22" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="618" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_23" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="618" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_24" value="M0 · CPU控制/邮箱口   →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="601" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_25" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="734" as="sourcePoint" />
+            <mxPoint x="2835" y="734" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_26" value="→ mmio_wdata[31:0] / 32 bit&#xa;← mmio_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="647" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_27" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="786" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_28" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="811" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_29" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="811" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_30" value="M1 · CNN寄存器封装   →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="794" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_31" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="927" as="sourcePoint" />
+            <mxPoint x="2835" y="927" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_32" value="→ cnn_mmio_wdata[31:0] / 32 bit&#xa;← cnn_mmio_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="840" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_33" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="979" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_34" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1004" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_35" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1004" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_36" value="C · 10路新CNN访存   →320 bit  ←320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="987" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_37" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1120" as="sourcePoint" />
+            <mxPoint x="2835" y="1120" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_38" value="→ cnn_wdata[319:0] / 320 bit&#xa;← cnn_rdata[319:0] / 320 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1033" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_39" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1172" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_40" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1197" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_41" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1197" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_42" value="F · cache维护寄存器   →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1180" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_43" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1313" as="sourcePoint" />
+            <mxPoint x="2835" y="1313" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_44" value="→ cache_csr_wdata[31:0] / 32 bit&#xa;← cache_csr_rdata[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1226" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_45" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1365" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_46" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1390" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_47" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1390" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_48" value="G · PS→PL控制：AXI3 GP0   →32 bit  ←32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1373" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_49" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1506" as="sourcePoint" />
+            <mxPoint x="2835" y="1506" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_50" value="→ M_AXI_GP0_WDATA[31:0] / 32 bit&#xa;← M_AXI_GP0_RDATA[31:0] / 32 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1419" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_51" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1558" width="3200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_52" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1583" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_53" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1583" width="390" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_54" value="H · PL→PS存储：AXI3 HP0   →64 bit  ←64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1566" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_55" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1699" as="sourcePoint" />
+            <mxPoint x="2835" y="1699" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_56" value="→ S_AXI_HP0_WDATA[63:0] / 64 bit&#xa;← S_AXI_HP0_RDATA[63:0] / 64 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1612" width="2300" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_57" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1751" width="3200" height="236" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_58" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1776" width="390" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_59" value="板外 DDR3 / 1GB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1776" width="390" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_60" value="B · PS专用DDR3引脚   →4 bit  &lt;-&gt;40 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1759" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="04_data_61" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1960" as="sourcePoint" />
+            <mxPoint x="2835" y="1960" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="04_data_62" value="→ DDR_DM[3:0] / 4 bit&#xa;&lt;-&gt; DDR_DQ[31:0] / 32 bit&#xa;&lt;-&gt; DDR_DQS[3:0] / 4 bit&#xa;&lt;-&gt; DDR_DQS_n[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1805" width="2300" height="136" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="05_local_control" name="05 改后逐接口接线：本地控制/信号线（绿色）">
+    <mxGraphModel dx="3300" dy="1716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="1716" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="05_local_control_1" value="05 改后逐接口接线：本地控制/信号线（绿色）" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_2" value="每行左右两框与总图同层级；→ 左框发往右框，← 右框返回左框，&lt;-&gt; 物理双向；/N 为该信号位宽。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="225" width="3200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_10" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_11" value="④ IMEM / IEM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="250" width="390" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_12" value="I · CPU取指   →1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="233" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_13" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="348" as="sourcePoint" />
+            <mxPoint x="2835" y="348" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_14" value="→ imem_re / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="279" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_15" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="3200" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_16" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="425" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_17" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="425" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_18" value="D · CPU本地数据口   →6 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="408" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_19" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="575" as="sourcePoint" />
+            <mxPoint x="2835" y="575" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_20" value="→ dmem_re / 1 bit&#xa;→ dmem_we / 1 bit&#xa;→ dmem_wstrb[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="454" width="2300" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_21" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="627" width="3200" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_22" value="① CPU_CORE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="652" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_23" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="652" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_24" value="M0 · CPU控制/邮箱口   →2 bit  ←1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="635" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_25" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="802" as="sourcePoint" />
+            <mxPoint x="2835" y="802" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_26" value="→ mmio_re / 1 bit&#xa;→ mmio_we / 1 bit&#xa;← mmio_ready / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="681" width="2300" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_27" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="854" width="3200" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_28" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="879" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_29" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="879" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_30" value="M1 · CNN寄存器封装   →2 bit  ←1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="862" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_31" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1029" as="sourcePoint" />
+            <mxPoint x="2835" y="1029" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_32" value="→ cnn_mmio_re / 1 bit&#xa;→ cnn_mmio_we / 1 bit&#xa;← cnn_mmio_ready / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="908" width="2300" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_33" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1081" width="3200" height="338" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_34" value="② CNN" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1106" width="390" height="288" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_35" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1106" width="390" height="288" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_36" value="C · 10路新CNN访存   →31 bit  ←21 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1089" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_37" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1392" as="sourcePoint" />
+            <mxPoint x="2835" y="1392" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_38" value="→ cnn_valid[9:0] / 10 bit&#xa;→ cnn_write[9:0] / 10 bit&#xa;→ cnn_byte[9:0] / 10 bit&#xa;→ cnn_cancel / 1 bit&#xa;← cnn_ready[9:0] / 10 bit&#xa;← cnn_response[9:0] / 10 bit&#xa;← cnn_mem_fault / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1135" width="2300" height="238" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_39" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1444" width="3200" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_40" value="⑤ IMAGE_BRIDGE" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1469" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_41" value="③ DATASRAM" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="2835" y="1469" width="390" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_42" value="F · cache维护寄存器   →2 bit  ←1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1452" width="2300" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="05_local_control_43" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1619" as="sourcePoint" />
+            <mxPoint x="2835" y="1619" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="05_local_control_44" value="→ cache_csr_re / 1 bit&#xa;→ cache_csr_we / 1 bit&#xa;← cache_csr_ready / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1498" width="2300" height="102" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="06_axi_control" name="06 AXI3控制信号：GP0与HP0逐根位宽">
+    <mxGraphModel dx="3700" dy="2450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3700" pageHeight="2450" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="06_axi_control_1" value="06 AXI3控制信号：GP0与HP0逐根位宽" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3600" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_2" value="地址/数据另见第03、04页；AXI ID、byte strobe、响应码归控制组；GP0转换在image_control_bridge内。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3600" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#b4c8bc;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="230" width="1760" height="2050" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_10" value="PS→PL控制：AXI3 GP0&#xa;新增 PS7 / ARM + DDR控制器 → ⑤ IMAGE_BRIDGE" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=26;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="75" y="245" width="1720" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_11" value="请求/属性 →  →90 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="390" width="1700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_12" value="→ M_AXI_GP0_AWID[11:0] / 12 bit&#xa;→ M_AXI_GP0_ARID[11:0] / 12 bit&#xa;→ M_AXI_GP0_WID[11:0] / 12 bit&#xa;→ M_AXI_GP0_AWLEN[3:0] / 4 bit&#xa;→ M_AXI_GP0_ARLEN[3:0] / 4 bit&#xa;→ M_AXI_GP0_AWSIZE[2:0] / 3 bit&#xa;→ M_AXI_GP0_ARSIZE[2:0] / 3 bit&#xa;→ M_AXI_GP0_AWBURST[1:0] / 2 bit&#xa;→ M_AXI_GP0_ARBURST[1:0] / 2 bit&#xa;→ M_AXI_GP0_AWLOCK[1:0] / 2 bit&#xa;→ M_AXI_GP0_ARLOCK[1:0] / 2 bit&#xa;→ M_AXI_GP0_AWCACHE[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="455" width="820" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_13" value="→ M_AXI_GP0_ARCACHE[3:0] / 4 bit&#xa;→ M_AXI_GP0_AWPROT[2:0] / 3 bit&#xa;→ M_AXI_GP0_ARPROT[2:0] / 3 bit&#xa;→ M_AXI_GP0_AWQOS[3:0] / 4 bit&#xa;→ M_AXI_GP0_ARQOS[3:0] / 4 bit&#xa;→ M_AXI_GP0_WSTRB[3:0] / 4 bit&#xa;→ M_AXI_GP0_AWVALID / 1 bit&#xa;→ M_AXI_GP0_WVALID / 1 bit&#xa;→ M_AXI_GP0_WLAST / 1 bit&#xa;→ M_AXI_GP0_BREADY / 1 bit&#xa;→ M_AXI_GP0_ARVALID / 1 bit&#xa;→ M_AXI_GP0_RREADY / 1 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="955" y="455" width="820" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_14" value="响应 ←  ←34 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="1450" width="1700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_15" value="← M_AXI_GP0_BID[11:0] / 12 bit&#xa;← M_AXI_GP0_RID[11:0] / 12 bit&#xa;← M_AXI_GP0_BRESP[1:0] / 2 bit&#xa;← M_AXI_GP0_RRESP[1:0] / 2 bit&#xa;← M_AXI_GP0_AWREADY / 1 bit&#xa;← M_AXI_GP0_WREADY / 1 bit&#xa;← M_AXI_GP0_BVALID / 1 bit&#xa;← M_AXI_GP0_ARREADY / 1 bit&#xa;← M_AXI_GP0_RVALID / 1 bit&#xa;← M_AXI_GP0_RLAST / 1 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1510" width="1670" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_16" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#b4c8bc;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1875" y="230" width="1760" height="2050" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_17" value="PL→PS存储：AXI3 HP0&#xa;③ DATASRAM → 新增 PS7 / ARM + DDR控制器" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=26;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1895" y="245" width="1720" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_18" value="请求/属性 →  →76 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1905" y="390" width="1700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_19" value="→ S_AXI_HP0_AWID[5:0] / 6 bit&#xa;→ S_AXI_HP0_ARID[5:0] / 6 bit&#xa;→ S_AXI_HP0_WID[5:0] / 6 bit&#xa;→ S_AXI_HP0_AWLEN[3:0] / 4 bit&#xa;→ S_AXI_HP0_ARLEN[3:0] / 4 bit&#xa;→ S_AXI_HP0_AWSIZE[2:0] / 3 bit&#xa;→ S_AXI_HP0_ARSIZE[2:0] / 3 bit&#xa;→ S_AXI_HP0_AWBURST[1:0] / 2 bit&#xa;→ S_AXI_HP0_ARBURST[1:0] / 2 bit&#xa;→ S_AXI_HP0_AWLOCK[1:0] / 2 bit&#xa;→ S_AXI_HP0_ARLOCK[1:0] / 2 bit&#xa;→ S_AXI_HP0_AWCACHE[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="455" width="820" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_20" value="→ S_AXI_HP0_ARCACHE[3:0] / 4 bit&#xa;→ S_AXI_HP0_AWPROT[2:0] / 3 bit&#xa;→ S_AXI_HP0_ARPROT[2:0] / 3 bit&#xa;→ S_AXI_HP0_AWQOS[3:0] / 4 bit&#xa;→ S_AXI_HP0_ARQOS[3:0] / 4 bit&#xa;→ S_AXI_HP0_WSTRB[7:0] / 8 bit&#xa;→ S_AXI_HP0_AWVALID / 1 bit&#xa;→ S_AXI_HP0_WVALID / 1 bit&#xa;→ S_AXI_HP0_WLAST / 1 bit&#xa;→ S_AXI_HP0_BREADY / 1 bit&#xa;→ S_AXI_HP0_ARVALID / 1 bit&#xa;→ S_AXI_HP0_RREADY / 1 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="2775" y="455" width="820" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_21" value="响应 ←  ←22 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1905" y="1450" width="1700" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_22" value="← S_AXI_HP0_BID[5:0] / 6 bit&#xa;← S_AXI_HP0_RID[5:0] / 6 bit&#xa;← S_AXI_HP0_BRESP[1:0] / 2 bit&#xa;← S_AXI_HP0_RRESP[1:0] / 2 bit&#xa;← S_AXI_HP0_AWREADY / 1 bit&#xa;← S_AXI_HP0_WREADY / 1 bit&#xa;← S_AXI_HP0_BVALID / 1 bit&#xa;← S_AXI_HP0_ARREADY / 1 bit&#xa;← S_AXI_HP0_RVALID / 1 bit&#xa;← S_AXI_HP0_RLAST / 1 bit" style="text;whiteSpace=wrap;html=0;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=22;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="1510" width="1670" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="06_axi_control_23" value="HP0设置64bit：WDATA/RDATA /64，WSTRB /8；GP0数据 /32，WSTRB /4。&#xa;HP0可选FIFO计数/issue-cap端口非数据事务握手，见第07页；AXI3突发LEN /4，不能直接接AXI4的LEN /8。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=24;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="2300" width="3550" height="115" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="07_board_clock" name="07 板级DDR / J3 / 时钟复位 / 新旧接口变化">
+    <mxGraphModel dx="3500" dy="2600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3500" pageHeight="2600" background="#f8fafc">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="07_board_clock_1" value="07 板级DDR / J3 / 时钟复位 / 新旧接口变化" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=42;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="26" width="3400" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_2" value="DDR接PS专用引脚；既有板上布线保持。图中名称来自Vivado PS7 IP；方向按电路功能，HDL部分DDR端口为inout。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="99" width="3400" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_3" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#2563b8;strokeColor=#2563b8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="55" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_4" value="地址线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_5" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#b96500;strokeColor=#b96500;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="475" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_6" value="数据线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="515" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_7" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#16805b;strokeColor=#16805b;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="167" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_8" value="控制/信号线" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="935" y="153" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_9" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="230" width="3400" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_10" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="255" width="390" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_11" value="板外 DDR3 / 1GB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="3035" y="255" width="390" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_12" value="B · PS专用DDR3引脚   →18 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="238" width="2500" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_13" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#2563b8;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="433" as="sourcePoint" />
+            <mxPoint x="3035" y="433" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="07_board_clock_14" value="→ DDR_Addr[14:0] / 15 bit&#xa;→ DDR_BankAddr[2:0] / 3 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#2563b8;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="284" width="2500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_15" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="485" width="3400" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_16" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="510" width="390" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_17" value="板外 DDR3 / 1GB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="3035" y="510" width="390" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_18" value="B · PS专用DDR3引脚   →4 bit  &lt;-&gt;40 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="493" width="2500" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_19" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#b96500;strokeWidth=3;endArrow=block;endFill=1;startArrow=block;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="788" as="sourcePoint" />
+            <mxPoint x="3035" y="788" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="07_board_clock_20" value="→ DDR_DM[3:0] / 4 bit&#xa;&lt;-&gt; DDR_DQ[31:0] / 32 bit&#xa;&lt;-&gt; DDR_DQS[3:0] / 4 bit&#xa;&lt;-&gt; DDR_DQS_n[3:0] / 4 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#b96500;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="539" width="2500" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_21" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#d5dfe8;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="840" width="3400" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_22" value="新增 PS7 / ARM + DDR控制器" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="75" y="865" width="390" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_23" value="板外 DDR3 / 1GB" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#edf3f9;strokeColor=#7890a9;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=25;" vertex="1" parent="1">
+          <mxGeometry x="3035" y="865" width="390" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_24" value="B · PS专用DDR3引脚   →9 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="848" width="2500" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_25" edge="1" parent="1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#16805b;strokeWidth=3;endArrow=block;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="1313" as="sourcePoint" />
+            <mxPoint x="3035" y="1313" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="07_board_clock_26" value="→ DDR_Clk / 1 bit&#xa;→ DDR_Clk_n / 1 bit&#xa;→ DDR_CKE / 1 bit&#xa;→ DDR_CS_n / 1 bit&#xa;→ DDR_RAS_n / 1 bit&#xa;→ DDR_CAS_n / 1 bit&#xa;→ DDR_WEB / 1 bit&#xa;→ DDR_ODT / 1 bit&#xa;→ DDR_DRSTB / 1 bit" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#16805b;fontFamily=Microsoft YaHei;fontSize=23;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="894" width="2500" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_27" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a9becf;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1365" width="3400" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_28" value="时钟与复位（所有信号 /1）&#xa;PS FCLK_CLK0 → clock_unit.sys_clk；PS FCLK_RESET0_N → clock_unit.rst_n_in&#xa;clock_unit.clk → CPU / CNN / DATASRAM / IMEM / IMAGE_CONTROL_BRIDGE&#xa;同一clk → PS S_AXI_HP0_ACLK、M_AXI_GP0_ACLK，以及桥内转换器/AXI逻辑&#xa;clock_unit.rst_n → 上述PL模块与AXI复位逻辑；PS DDR初始化完成通过邮箱状态通知CPU。&#xa;初版统一FCLK；外部M19 100MHz不再直接驱动同一根clk。PS_CLK F7仍是板上33.333333MHz输入。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=26;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1380" width="3340" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_29" value="" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#ffffff;strokeColor=#a9becf;strokeWidth=2;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1870" width="3400" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_30" value="PC与专用PS引脚&#xa;PC USB协议 &lt;-&gt; J3板载桥 &lt;-&gt; PS UART1_TX（MIO48）/1、UART1_RX（MIO49）/1；USB引脚不接PL。&#xa;PS7 FIXED_IO_MIO[53:0] /54、PS_CLK /1、PS_PORB /1、PS_SRSTB /1由PS专用固定IO封装导出；不是新增PL总线。&#xa;DDR_VRN /1、DDR_VRP /1接板上参考电阻，不接DDR芯片数据/地址口。DDR_DM[3:0]是写字节屏蔽，归数据组。&#xa;HP0辅助口：RCOUNT /8、WCOUNT /8、RACOUNT /3、WACOUNT /6（PS→PL，监控）；&#xa;RDISSUECAP1_EN /1、WRISSUECAP1_EN /1（PL→PS，默认按设计常量连接）。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#182a40;fontFamily=Microsoft YaHei;fontSize=24;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="85" y="1880" width="3330" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="07_board_clock_31" value="改线要点：旧PL image_bridge的UART/CRC功能移到PS程序；旧io_mem_*→datasram收图路径在J3方案中删除。&#xa;image_bridge这个平级位置改为PS/CPU邮箱与寄存器转接；CPU MMIO由直连CNN改为经该桥译码，零等待合同保留。&#xa;CNN从旧单路mem_*换成新10客户端cnn_*；DATASRAM中CPU本地RAM与CNN cache分开，新增HP0访存。&#xa;DDR与PS为板上现有硬件，本方案新增其工程配置/初始化/连接；未新增一组PL DDR引脚或MIG。" style="text;whiteSpace=wrap;html=0;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;fontColor=#536479;fontFamily=Microsoft YaHei;fontSize=25;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="65" y="2285" width="3370" height="230" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

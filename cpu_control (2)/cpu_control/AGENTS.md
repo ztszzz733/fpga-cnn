@@ -1,3 +1,29 @@
+## 2026-10-24 发布到 moon：本轮用户明确授权
+
+用户最新要求提供更新说明.md并将修改后的项目上传origin/moon。根目录更新说明.md为本次发布入口。保留moon原有连续帧/FX8/NEureka历史源码与记录，合入当前自研CNN、DDR/cache、CPU/PS固件、测试和交付文档；不能强推覆盖远端历史。下方“没有提交推送”等语句是此前实施阶段记录，不是当前禁止上传的限制。发布范围仍为代码与既有离线证据，不新增上板、整机综合或长全网仿真。验证原始源码hash包含既有CPU文件的工作区CRLF字节；新受测文件/证据由.gitattributes保留字节，不能因旧Git换行差异篡改历史记录。
+
+## 2026-10-24 DDR/cache与新CNN已实施：用户限定本轮先改代码、不上板
+
+用户授权按刚才七页图严格连线并更新旧CNN，随后明确“不需要上板，你先改我代码就行”，并继续。新代码入口rtl/soc/ees331/face_soc_ees331_top.sv、rtl/filelists/system_ees331.f，六个平级PL实例+PS7；不再引用旧FPGA1 CNN。原face_soc_top/system_cnn保留历史入口，勿混编。128根图示信号由scripts/check_ees331_wiring.py核对名称/位宽/两端连接PASS；PS wrapper107导出端口核对真实VivadoBD通过。CPU Control/Datapath/bai原文件未改。详见docs/ees331_code_integration.md。
+
+实现：cnn_ees331零等待MMIO；fixed_schedule_compact一份640×256模板20KiB、四PC、16owner+最多2消费者槽，无展开任务/消费者大表；2K3/4K1/DW7/Post/Add/Pad各1；非法owner/占用冲突报6并cleanup。新Post/DW7同步存储变体保留旧算术文件；DW7多1取权重拍，部分Post参数映射LUTRAM。datasram_ddr_subsystem分离CPU16KiB固定一拍RAM与128KiB/64Bline/2way/4bank cache，首版全局一笔请求在途，非4MSHR/多bank同拍命中。AXI3HP0数据64、ID6、8beat64B；逻辑16MiB加物理0x10000000；WBWA、区域clean/invalidate维护排队、模型保护、cancel排空。bridge GP0 AXI3数据32/ID12仅邮箱，CPU经索引数据控制CNN/cache，frame/epoch ACK。IMEM8KiB、新服务程序437RV32I/1748B。PS UART1/J3 server与host脚本已写；PS main未编ARM BSP/ELF，链接必须避开共享32MiB。未知CPU响应或cache维护超时后PSserver锁住后续写；热启动先CPU状态检查，自检用第二窗口0x11000000。RESET仅idle，不等于运行中abort；AXI不响应不能软件当已排空，故障恢复需整机复位。
+
+最新真实六模块gate build/runs/20261024_215712_328991_ees331_soc PASS，源hash未变：实际CPU/ROM/bridge/新CNN/cache+AXI PS/DDR模型，4张8×8 RGB ROI/每图8步/32任务/71856检查字节/4份1024B从DDR fence后读回。921718拍含CPU配置，跨图work146625/MAC144009拍，峰值4活跃帧；4096B SHA eecab63788e81b2076db269cf649de919bfdfec17c9a5f3d5ed2e5ab2ac6be32。内核cache四模式最终215719_084012_ees331_full PASS full_network=false：overlap864284、serial1736040、preloaded855818、stress909564；约2.01倍小图吞吐，非全网/板速。定向compact215557_216919、cache184132_914735(826项)、operators183642_006922、control184020_033055、PSserver220057_896748均PASS。完整131步四112×112上传包只准备校验，未跑DDR全网；历史653428459拍/512B哈希不能套用DDR版。不自动启动长全网、上板或继续硬件工程。
+
+仅独立OOC资源已过：cache+CPU RAM1785LUT2489FF37BRAM36eq0DSP；DW7 6757LUT4075FF8BRAMeq12DSP；独立Post3402LUT346FF1.5BRAMeq22DSP+LUTRAM。没有本轮整机资源/时序通过。PS BD生成成功D:/zhang/ees331_build/20261024_183937_108118_ees331_ps，参数手册1GB/32bit/533MHz、FCLK50MHz、MIO48/49，默认PCBdelay非实板验证。D:/ees331_ready只读核对，实际是旧JTAG-AXI PL工程无PS7/DDR配置，未混入新CNN。整机项目尝试遇到括号路径/loaderPATH，runner已改ASCII源快照和binPATH，用户限定代码后未继续综合/布线/bitstream。没有上板/下载/Git提交推送；历史6b28122推送仍是上一轮。
+
+## 2026-10-24 DDR加入六模块的draw.io接线方案
+
+用户要求原六模块同层级IO接线图，地址/数据/控制分组标名称与位宽。新增deliverables/ees331_ddr_io/ees331_soc_ddr_io.drawio（7原生可编辑页），改前/改后总图、地址、数据、本地控制、AXI3 GP0/HP0控制、DDR/J3/时钟页；同源SVG/PNG、README、io_connections.csv/io_manifest.json及图形校验。生成器scripts/draw_ees331_ddr_io.py。为保留六功能位置，方案明确将第五image_bridge位置改成拟image_control_bridge（GP协议转换+PS/CPU邮箱+CPU零等待MMIO译码转接）；PL UART收图移PS程序，CPU MMIO经第五模块转接到新CNN；datasram包含CPU本地固定一拍RAM及CNN cache，新增HP0到PS。新CNN MMIO封装/紧凑调度/cache CSR均拟实现接口，不要当现有RTL。旧页严格使用生产单路mem_*，旧cnn_mem_fault只参与顶层LED，不接旧CNN。PS端口名称/静态位宽核对本机Vivado2026.1 PS7 component.xml，HP0拟配64bit，GP0为32bit；DDR32DQ/4DQS/4DM/15Addr/3BA。仅绘图，未修改RTL/仿真/上板/推送。
+
+## 2026-10-24 cache/IMEM容量补充：仍仅分析
+
+用户询问现有资源可做多大cache及64KiB IMEM是否过大。核对建议先128KiB、压缩调度后以256KiB为目标；按32bit组织分别用32/64个BRAM36，板上共140块。现有2K3/4K1独立综合合计22块，512KiB cache的128块+22已超140，384KiB仅余22块供所有其余模块，不建议。未做新整机综合不能称已fit。IMEM已有autoload demo98指令392B、overlap67指令268B；两份program.mem均NOP补齐4KiB。历史hybrid CPU映像最大4180B。建议新固件先预算8KiB，超出再16KiB；64→8KiB按32bit组织释放14 BRAM36（56KiB有效数据）。全网仿真由C++驱动，没有对应新CPU固件，不要将demo长度当最终程序承诺。详见docs/ees331_ddr3_cache_pc_input_plan.md第11节；第5节预算改IMEM8KiB后128cache逻辑总量316KiB，256时444KiB，均需物理映射验收。仍未修改RTL/推送。
+
+## 2026-10-23 最新板卡信息与DDR方案：仅规划，尚未实施
+
+用户提供 `D:/参考文献EES331_UserManual_v1.0_1220.pdf` 并要求基于当前项目给出“DDR3保存图像、SRAM作cache、电脑一根数据线输入”的改动方案。手册确认EES331为xc7z020clg484-1，1GB DDR3挂PS；这覆盖此前“只有512 KB且无DDR”的硬件前提。J3为板载调试+PS UART1并支持供电，J8上口为PL CP2103串口、下口为PS UART0，J4为独立PS USB2 OTG。已完成本地方案 `docs/ees331_ddr3_cache_pc_input_plan.md`：建议PS裸机经J3收图写DDR、PL经HP0/128KiB cache访问，保留自研CPU本地存储/邮箱及2K3/4K1，压缩固定调度表，分阶段四图全网与上板验收；J4 Bulk为后续路线。以上均为拟定设计/容量预算，未改RTL、未重跑仿真、未上板、未提交或推送本次文档。历史代码上传已于提交6b281225047fbcd74553b79d86fbf8c1158d3a92成功推送origin/zhang；不要把先前上传请求当本轮实施授权。
+
 ## 2026-10-23 当前交付：算子数量优化、同一四图全网重跑 PASS
 
 后续约束：用户确认只有512 KB存储、没有DDR/Flash等其他存储。目前只完成容量分析与方案讨论，未实施512 KiB适配、模型裁剪、INT4或跨层分块。当前新CNN主数组声明合计17,128,048 B（16 MiB共享SRAM + 350,832 B内部缓存/表/运行命令），约16.335 MiB，另少量状态寄存器；不能当作板上已有容量。原INT8权重980,096 B已超512 KiB。旧face_soc_top仍接旧CNN，默认256 KiB数据SRAM+64 KiB指令ROM。用户随后明确要求将当前已修改项目代码提交并推送到origin/zhang；上传包含源码、复现说明和验证资料，不代表512 KiB或上板已完成。

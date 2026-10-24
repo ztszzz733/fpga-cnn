@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "compile_seconds": 14.10994589999973,
+  "simulation_seconds": 3.065990099999908,
+  "returncode": 0,
+  "cache_bytes": 1024,
+  "production_default_cache_bytes": 131072,
+  "clients": 10,
+  "sources_sha256": {
+    "rtl/cnn_ddr/cnn_cache.sv": "fc06dc365ca880bc611f3ed23dcc687d1ebc1a0d2005ac2223002150ee08075e",
+    "rtl/cnn_ddr/cnn_ddr_bridge.sv": "728bcc6f5048696b5544377ed543d18523861d1918b5bb776c15740fa29acd5a",
+    "rtl/cnn_ddr/datasram_ddr_subsystem.sv": "db968a6a8f2bd69c77b5b7ad36d36e89e8b1b4a505d99b3a13a6131c996d96b1",
+    "tb/integration/cnn_ddr_cache_main.cpp": "3f37e501e4aeb9abadf9637e850e2e65bb77820b98f551e01db7c6065bce24b3",
+    "scripts/test_cnn_ddr_cache.py": "5402a2805cba387662d88472c6f865e786595aeb9a2d14c3f313155bba2b3156",
+    "scripts/bootstrap_verilator_native.py": "4272ac509abf9b8d3a724dab62fb91edecf4a7fa77af48f37d46096564452182"
+  },
+  "sources_unchanged_during_run": true,
+  "executable_sha256": "79ad72d4ffb6786e3723ecd48fb4c831e6ed4d8784d1d67f0b1cbdb4e8021ac2",
+  "notes": "Reduced cache geometry forces conflicts. Same RTL, AXI3 eight-beat lines, random channel stalls; not board DDR timing."
+}

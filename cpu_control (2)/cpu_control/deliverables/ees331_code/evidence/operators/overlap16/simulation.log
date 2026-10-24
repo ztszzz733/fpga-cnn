@@ -1,0 +1,5 @@
+PASS tb_dw7_bram checked=1920
+- D:\zhang\fpga-cnn\cpu_control (2)\cpu_control\tb\integration\tb_dw7_bram.sv:110: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 118us; walltime 0.039 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 6 MB

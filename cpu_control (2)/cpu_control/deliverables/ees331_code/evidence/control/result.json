@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "seconds": 27.75176509999983,
+  "scope": "real unchanged CPU, generated ROM, bridge RTL; register-level CNN/cache responders"
+}

@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3500" height="2600" viewBox="0 0 3500 2600">
+<rect width="3500" height="2600" fill="#f8fafc"/>
+<text x="1750.0" y="58.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="42" fill="#182a40">
+<tspan x="1750.0" dy="0">07 板级DDR / J3 / 时钟复位 / 新旧接口变化</tspan>
+</text>
+<text x="1750.0" y="126.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#536479">
+<tspan x="1750.0" dy="0">DDR接PS专用引脚；既有板上布线保持。图中名称来自Vivado PS7 IP；方向按电路功能，HDL部分DDR端口为inout。</tspan>
+</text>
+<rect x="55" y="167" width="30" height="18" fill="#2563b8" stroke="#2563b8" stroke-width="2"/>
+<text x="245.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#2563b8">
+<tspan x="245.0" dy="0">地址线</tspan>
+</text>
+<rect x="475" y="167" width="30" height="18" fill="#b96500" stroke="#b96500" stroke-width="2"/>
+<text x="665.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#b96500">
+<tspan x="665.0" dy="0">数据线</tspan>
+</text>
+<rect x="895" y="167" width="30" height="18" fill="#16805b" stroke="#16805b" stroke-width="2"/>
+<text x="1085.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1085.0" dy="0">控制/信号线</tspan>
+</text>
+<rect x="50" y="230" width="3400" height="230" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="255" width="390" height="180" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="345.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">新增 PS7 / ARM + DDR控制器</tspan>
+</text>
+<rect x="3035" y="255" width="390" height="180" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3230.0" y="345.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3230.0" dy="0">板外 DDR3 / 1GB</tspan>
+</text>
+<text x="1750.0" y="259.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#2563b8">
+<tspan x="1750.0" dy="0">B · PS专用DDR3引脚   →18 bit</tspan>
+</text>
+<polyline points="465,433 3035,433" fill="none" stroke="#2563b8" stroke-width="3"/>
+<polygon points="3035,433 3019.0,426.0 3019.0,440.0" fill="#2563b8"/>
+<text x="1750.0" y="332.9" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#2563b8">
+<tspan x="1750.0" dy="0">→ DDR_Addr[14:0] / 15 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_BankAddr[2:0] / 3 bit</tspan>
+</text>
+<rect x="50" y="485" width="3400" height="330" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="510" width="390" height="280" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">新增 PS7 / ARM + DDR控制器</tspan>
+</text>
+<rect x="3035" y="510" width="390" height="280" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3230.0" y="650.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3230.0" dy="0">板外 DDR3 / 1GB</tspan>
+</text>
+<text x="1750.0" y="514.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#b96500">
+<tspan x="1750.0" dy="0">B · PS专用DDR3引脚   →4 bit  &lt;-&gt;40 bit</tspan>
+</text>
+<polyline points="465,788 3035,788" fill="none" stroke="#b96500" stroke-width="3"/>
+<polygon points="3035,788 3019.0,781.0 3019.0,795.0" fill="#b96500"/>
+<polygon points="465,788 481.0,795.0 481.0,781.0" fill="#b96500"/>
+<text x="1750.0" y="605.7" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#b96500">
+<tspan x="1750.0" dy="0">→ DDR_DM[3:0] / 4 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">&lt;-&gt; DDR_DQ[31:0] / 32 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">&lt;-&gt; DDR_DQS[3:0] / 4 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">&lt;-&gt; DDR_DQS_n[3:0] / 4 bit</tspan>
+</text>
+<rect x="50" y="840" width="3400" height="500" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="865" width="390" height="450" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="1090.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">新增 PS7 / ARM + DDR控制器</tspan>
+</text>
+<rect x="3035" y="865" width="390" height="450" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3230.0" y="1090.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3230.0" dy="0">板外 DDR3 / 1GB</tspan>
+</text>
+<text x="1750.0" y="869.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1750.0" dy="0">B · PS专用DDR3引脚   →9 bit</tspan>
+</text>
+<polyline points="465,1313 3035,1313" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="3035,1313 3019.0,1306.0 3019.0,1320.0" fill="#16805b"/>
+<text x="1750.0" y="965.2" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1750.0" dy="0">→ DDR_Clk / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_Clk_n / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_CKE / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_CS_n / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_RAS_n / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_CAS_n / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_WEB / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_ODT / 1 bit</tspan>
+<tspan x="1750.0" dy="32.199999999999996">→ DDR_DRSTB / 1 bit</tspan>
+</text>
+<rect x="50" y="1365" width="3400" height="480" fill="#ffffff" stroke="#a9becf" stroke-width="2"/>
+<text x="1750.0" y="1514.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="26" fill="#182a40">
+<tspan x="1750.0" dy="0">时钟与复位（所有信号 /1）</tspan>
+<tspan x="1750.0" dy="36.4">PS FCLK_CLK0 → clock_unit.sys_clk；PS FCLK_RESET0_N → clock_unit.rst_n_in</tspan>
+<tspan x="1750.0" dy="36.4">clock_unit.clk → CPU / CNN / DATASRAM / IMEM / IMAGE_CONTROL_BRIDGE</tspan>
+<tspan x="1750.0" dy="36.4">同一clk → PS S_AXI_HP0_ACLK、M_AXI_GP0_ACLK，以及桥内转换器/AXI逻辑</tspan>
+<tspan x="1750.0" dy="36.4">clock_unit.rst_n → 上述PL模块与AXI复位逻辑；PS DDR初始化完成通过邮箱状态通知CPU。</tspan>
+<tspan x="1750.0" dy="36.4">初版统一FCLK；外部M19 100MHz不再直接驱动同一根clk。PS_CLK F7仍是板上33.333333MHz输入。</tspan>
+</text>
+<rect x="50" y="1870" width="3400" height="390" fill="#ffffff" stroke="#a9becf" stroke-width="2"/>
+<text x="1750.0" y="1981.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="24" fill="#182a40">
+<tspan x="1750.0" dy="0">PC与专用PS引脚</tspan>
+<tspan x="1750.0" dy="33.599999999999994">PC USB协议 &lt;-&gt; J3板载桥 &lt;-&gt; PS UART1_TX（MIO48）/1、UART1_RX（MIO49）/1；USB引脚不接PL。</tspan>
+<tspan x="1750.0" dy="33.599999999999994">PS7 FIXED_IO_MIO[53:0] /54、PS_CLK /1、PS_PORB /1、PS_SRSTB /1由PS专用固定IO封装导出；不是新增PL总线。</tspan>
+<tspan x="1750.0" dy="33.599999999999994">DDR_VRN /1、DDR_VRP /1接板上参考电阻，不接DDR芯片数据/地址口。DDR_DM[3:0]是写字节屏蔽，归数据组。</tspan>
+<tspan x="1750.0" dy="33.599999999999994">HP0辅助口：RCOUNT /8、WCOUNT /8、RACOUNT /3、WACOUNT /6（PS→PL，监控）；</tspan>
+<tspan x="1750.0" dy="33.599999999999994">RDISSUECAP1_EN /1、WRISSUECAP1_EN /1（PL→PS，默认按设计常量连接）。</tspan>
+</text>
+<text x="1750.0" y="2347.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#536479">
+<tspan x="1750.0" dy="0">改线要点：旧PL image_bridge的UART/CRC功能移到PS程序；旧io_mem_*→datasram收图路径在J3方案中删除。</tspan>
+<tspan x="1750.0" dy="35.0">image_bridge这个平级位置改为PS/CPU邮箱与寄存器转接；CPU MMIO由直连CNN改为经该桥译码，零等待合同保留。</tspan>
+<tspan x="1750.0" dy="35.0">CNN从旧单路mem_*换成新10客户端cnn_*；DATASRAM中CPU本地RAM与CNN cache分开，新增HP0访存。</tspan>
+<tspan x="1750.0" dy="35.0">DDR与PS为板上现有硬件，本方案新增其工程配置/初始化/连接；未新增一组PL DDR引脚或MIG。</tspan>
+</text>
+</svg>

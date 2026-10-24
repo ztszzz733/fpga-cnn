@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3700" height="2450" viewBox="0 0 3700 2450">
+<rect width="3700" height="2450" fill="#f8fafc"/>
+<text x="1850.0" y="58.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="42" fill="#182a40">
+<tspan x="1850.0" dy="0">06 AXI3控制信号：GP0与HP0逐根位宽</tspan>
+</text>
+<text x="1850.0" y="126.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#536479">
+<tspan x="1850.0" dy="0">地址/数据另见第03、04页；AXI ID、byte strobe、响应码归控制组；GP0转换在image_control_bridge内。</tspan>
+</text>
+<rect x="55" y="167" width="30" height="18" fill="#2563b8" stroke="#2563b8" stroke-width="2"/>
+<text x="245.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#2563b8">
+<tspan x="245.0" dy="0">地址线</tspan>
+</text>
+<rect x="475" y="167" width="30" height="18" fill="#b96500" stroke="#b96500" stroke-width="2"/>
+<text x="665.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#b96500">
+<tspan x="665.0" dy="0">数据线</tspan>
+</text>
+<rect x="895" y="167" width="30" height="18" fill="#16805b" stroke="#16805b" stroke-width="2"/>
+<text x="1085.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1085.0" dy="0">控制/信号线</tspan>
+</text>
+<rect x="55" y="230" width="1760" height="2050" fill="#ffffff" stroke="#b4c8bc" stroke-width="2"/>
+<text x="935.0" y="281.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="26" fill="#182a40">
+<tspan x="935.0" dy="0">PS→PL控制：AXI3 GP0</tspan>
+<tspan x="935.0" dy="36.4">新增 PS7 / ARM + DDR控制器 → ⑤ IMAGE_BRIDGE</tspan>
+</text>
+<text x="935.0" y="412.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="935.0" dy="0">请求/属性 →  →90 bit</tspan>
+</text>
+<text x="105" y="745.6" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="105" dy="0">→ M_AXI_GP0_AWID[11:0] / 12 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_ARID[11:0] / 12 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_WID[11:0] / 12 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_AWLEN[3:0] / 4 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_ARLEN[3:0] / 4 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_AWSIZE[2:0] / 3 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_ARSIZE[2:0] / 3 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_AWBURST[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_ARBURST[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_AWLOCK[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_ARLOCK[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">→ M_AXI_GP0_AWCACHE[3:0] / 4 bit</tspan>
+</text>
+<text x="960" y="745.6" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="960" dy="0">→ M_AXI_GP0_ARCACHE[3:0] / 4 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_AWPROT[2:0] / 3 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_ARPROT[2:0] / 3 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_AWQOS[3:0] / 4 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_ARQOS[3:0] / 4 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_WSTRB[3:0] / 4 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_AWVALID / 1 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_WVALID / 1 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_WLAST / 1 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_BREADY / 1 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_ARVALID / 1 bit</tspan>
+<tspan x="960" dy="30.799999999999997">→ M_AXI_GP0_RREADY / 1 bit</tspan>
+</text>
+<text x="935.0" y="1472.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="935.0" dy="0">响应 ←  ←34 bit</tspan>
+</text>
+<text x="105" y="1681.4" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="105" dy="0">← M_AXI_GP0_BID[11:0] / 12 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_RID[11:0] / 12 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_BRESP[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_RRESP[1:0] / 2 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_AWREADY / 1 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_WREADY / 1 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_BVALID / 1 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_ARREADY / 1 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_RVALID / 1 bit</tspan>
+<tspan x="105" dy="30.799999999999997">← M_AXI_GP0_RLAST / 1 bit</tspan>
+</text>
+<rect x="1875" y="230" width="1760" height="2050" fill="#ffffff" stroke="#b4c8bc" stroke-width="2"/>
+<text x="2755.0" y="281.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="26" fill="#182a40">
+<tspan x="2755.0" dy="0">PL→PS存储：AXI3 HP0</tspan>
+<tspan x="2755.0" dy="36.4">③ DATASRAM → 新增 PS7 / ARM + DDR控制器</tspan>
+</text>
+<text x="2755.0" y="412.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="2755.0" dy="0">请求/属性 →  →76 bit</tspan>
+</text>
+<text x="1925" y="745.6" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="1925" dy="0">→ S_AXI_HP0_AWID[5:0] / 6 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_ARID[5:0] / 6 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_WID[5:0] / 6 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_AWLEN[3:0] / 4 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_ARLEN[3:0] / 4 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_AWSIZE[2:0] / 3 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_ARSIZE[2:0] / 3 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_AWBURST[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_ARBURST[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_AWLOCK[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_ARLOCK[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">→ S_AXI_HP0_AWCACHE[3:0] / 4 bit</tspan>
+</text>
+<text x="2780" y="745.6" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="2780" dy="0">→ S_AXI_HP0_ARCACHE[3:0] / 4 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_AWPROT[2:0] / 3 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_ARPROT[2:0] / 3 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_AWQOS[3:0] / 4 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_ARQOS[3:0] / 4 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_WSTRB[7:0] / 8 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_AWVALID / 1 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_WVALID / 1 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_WLAST / 1 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_BREADY / 1 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_ARVALID / 1 bit</tspan>
+<tspan x="2780" dy="30.799999999999997">→ S_AXI_HP0_RREADY / 1 bit</tspan>
+</text>
+<text x="2755.0" y="1472.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="2755.0" dy="0">响应 ←  ←22 bit</tspan>
+</text>
+<text x="1925" y="1681.4" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="22" fill="#16805b">
+<tspan x="1925" dy="0">← S_AXI_HP0_BID[5:0] / 6 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_RID[5:0] / 6 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_BRESP[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_RRESP[1:0] / 2 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_AWREADY / 1 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_WREADY / 1 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_BVALID / 1 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_ARREADY / 1 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_RVALID / 1 bit</tspan>
+<tspan x="1925" dy="30.799999999999997">← S_AXI_HP0_RLAST / 1 bit</tspan>
+</text>
+<text x="1845.0" y="2340.7" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="24" fill="#536479">
+<tspan x="1845.0" dy="0">HP0设置64bit：WDATA/RDATA /64，WSTRB /8；GP0数据 /32，WSTRB /4。</tspan>
+<tspan x="1845.0" dy="33.599999999999994">HP0可选FIFO计数/issue-cap端口非数据事务握手，见第07页；AXI3突发LEN /4，不能直接接AXI4的LEN /8。</tspan>
+</text>
+</svg>

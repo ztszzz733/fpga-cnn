@@ -1,0 +1,36 @@
+# EES331 production top: updated CNN and DDR/cache, six peers plus PS7.
+partners/datapath/delivery/rtl/common/cpu_control_pkg.sv
+rtl/cpu_control/main_decoder.sv
+rtl/cpu_control/alu_decoder.sv
+rtl/cpu_control/hazard_unit.sv
+rtl/cpu_control/branch_control.sv
+rtl/cpu_control/pipeline_control.sv
+rtl/cpu_control/cpu_control.sv
+partners/datapath/delivery/rtl/cpu_datapath/alu.sv
+partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv
+partners/datapath/delivery/rtl/cpu_datapath/pc.sv
+partners/datapath/delivery/rtl/cpu_datapath/regfile.sv
+partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv
+partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv
+partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv
+partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv
+partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv
+partners/datapath/delivery/rtl/cpu_datapath/lsu.sv
+partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv
+partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv
+partners/datapath/delivery/rtl/soc_memory/imem_rom.sv
+rtl/soc/cpu_core.sv
+# Production EES331 CNN/cache. No old FPGA1/NEureka, no full-size SRAM array.
+rtl/cnn_self/self_conv_engine.sv
+rtl/cnn_ddr/dw7_bram_engine.sv
+rtl/cnn_ddr/quant_post_bram_engine.sv
+rtl/cnn_quant/pad_hwc_engine.sv
+rtl/cnn_ddr/fixed_schedule_compact.sv
+rtl/cnn_ddr/cnn_ees331.sv
+rtl/cnn_ddr/cnn_cache.sv
+rtl/cnn_ddr/cnn_ddr_bridge.sv
+rtl/cnn_ddr/datasram_ddr_subsystem.sv
+rtl/soc/clock_unit.sv
+rtl/soc/ees331/image_control_bridge.sv
+rtl/soc/ees331/ees331_ps_wrapper.sv
+rtl/soc/ees331/face_soc_ees331_top.sv

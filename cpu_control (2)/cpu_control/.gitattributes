@@ -31,3 +31,21 @@ tb/self_full_sim_top.sv -text
 tb/self_pair_tb.sv -text
 tb/self_stream_tb.sv -text
 tb/stream_programmer_tb.sv -text
+
+# EES331 DDR/cache sources and frozen evidence retain their tested bytes.
+deliverables/ees331_code/** -text
+deliverables/ees331_ddr_io/** -text
+rtl/cnn_ddr/** -text
+rtl/soc/ees331/** -text
+rtl/filelists/*ees331.f -text
+firmware/ees331_cpu/** -text
+firmware/ps_image_server/** -text
+scripts/*ees331* -text
+scripts/*cnn_ddr_cache* -text
+scripts/test_compact_cnn.py -text
+scripts/send_cnn_images.py -text
+tb/compact_cnn_mmio_tb.sv -text
+tb/ees331* -text
+tb/integration/*ees331* -text
+tb/integration/cnn_ddr_cache_main.cpp -text
+tb/integration/tb_dw7_bram.sv -text

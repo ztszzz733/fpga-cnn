@@ -1,0 +1,1027 @@
+{
+  "status": "ARCHITECTURE_PROPOSAL_NOT_IMPLEMENTED",
+  "local_cnn_clients": 10,
+  "groups": {
+    "address": "#2563b8",
+    "data": "#b96500",
+    "control": "#16805b"
+  },
+  "before": [
+    {
+      "id": "I",
+      "source": "cpu",
+      "target": "imem",
+      "title": "CPU取指",
+      "state": "当前生产RTL",
+      "address": [
+        {
+          "name": "imem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "imem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "imem_re",
+          "width": 1,
+          "direction": "fwd"
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "source": "cpu",
+      "target": "ram",
+      "title": "CPU数据A口",
+      "state": "当前生产RTL",
+      "address": [
+        {
+          "name": "dmem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "dmem_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "dmem_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_wstrb",
+          "width": 4,
+          "direction": "fwd"
+        }
+      ]
+    },
+    {
+      "id": "M",
+      "source": "cpu",
+      "target": "cnn",
+      "title": "旧CNN MMIO",
+      "state": "当前生产RTL",
+      "address": [
+        {
+          "name": "cnn_mmio_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "cnn_mmio_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "cnn_mmio_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_ready",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "source": "cnn",
+      "target": "ram",
+      "title": "旧CNN存储B口",
+      "state": "当前生产RTL；cnn_mem_fault另接顶层LED，不接旧CNN端口",
+      "address": [
+        {
+          "name": "mem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "mem_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "mem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "mem_read",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "mem_write",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "mem_ready",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "J",
+      "source": "bridge",
+      "target": "ram",
+      "title": "旧图像桥B口",
+      "state": "当前生产RTL",
+      "address": [
+        {
+          "name": "io_mem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "io_mem_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "io_mem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "io_mem_req",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "io_mem_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "io_mem_be",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "io_mem_gnt",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "io_mem_rvalid",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "io_mem_error",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "id": "I",
+      "source": "cpu",
+      "target": "imem",
+      "title": "CPU取指",
+      "state": "保留接口；64→8 KiB为拟定容量",
+      "address": [
+        {
+          "name": "imem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "imem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "imem_re",
+          "width": 1,
+          "direction": "fwd"
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "source": "cpu",
+      "target": "ram",
+      "title": "CPU本地数据口",
+      "state": "保留端口；只访问本地RAM，固定一拍",
+      "address": [
+        {
+          "name": "dmem_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "dmem_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "dmem_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "dmem_wstrb",
+          "width": 4,
+          "direction": "fwd"
+        }
+      ]
+    },
+    {
+      "id": "M0",
+      "source": "cpu",
+      "target": "bridge",
+      "title": "CPU控制/邮箱口",
+      "state": "改接image_control_bridge；ready保持零等待",
+      "address": [
+        {
+          "name": "mmio_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "mmio_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "mmio_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "mmio_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "mmio_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "mmio_ready",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "M1",
+      "source": "bridge",
+      "target": "cnn",
+      "title": "CNN寄存器封装",
+      "state": "拟新增新CNN的零等待寄存器封装",
+      "address": [
+        {
+          "name": "cnn_mmio_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "cnn_mmio_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "cnn_mmio_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_mmio_ready",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "source": "cnn",
+      "target": "ram",
+      "title": "10路新CNN访存",
+      "state": "由新CNN真实10客户端端口引出；存储改接cache",
+      "address": [
+        {
+          "name": "cnn_addr",
+          "width": 320,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "cnn_wdata",
+          "width": 320,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_rdata",
+          "width": 320,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "cnn_valid",
+          "width": 10,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_write",
+          "width": 10,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_byte",
+          "width": 10,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_cancel",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cnn_ready",
+          "width": 10,
+          "direction": "rev"
+        },
+        {
+          "name": "cnn_response",
+          "width": 10,
+          "direction": "rev"
+        },
+        {
+          "name": "cnn_mem_fault",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "source": "bridge",
+      "target": "ram",
+      "title": "cache维护寄存器",
+      "state": "拟新增；发clean/invalidate/fence，轮询busy/error",
+      "address": [
+        {
+          "name": "cache_csr_addr",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "cache_csr_wdata",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "cache_csr_rdata",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "cache_csr_re",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cache_csr_we",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "cache_csr_ready",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "G",
+      "source": "ps",
+      "target": "bridge",
+      "title": "PS→PL控制：AXI3 GP0",
+      "state": "拟新增/改造",
+      "address": [
+        {
+          "name": "M_AXI_GP0_AWADDR",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARADDR",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "M_AXI_GP0_WDATA",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_RDATA",
+          "width": 32,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "M_AXI_GP0_AWID",
+          "width": 12,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARID",
+          "width": 12,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_WID",
+          "width": 12,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWLEN",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARLEN",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWSIZE",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARSIZE",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWBURST",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARBURST",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWLOCK",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARLOCK",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWCACHE",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARCACHE",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWPROT",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARPROT",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWQOS",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARQOS",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_WSTRB",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_AWVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_WVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_WLAST",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_BREADY",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_ARVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_RREADY",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "M_AXI_GP0_BID",
+          "width": 12,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_RID",
+          "width": 12,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_BRESP",
+          "width": 2,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_RRESP",
+          "width": 2,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_AWREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_WREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_BVALID",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_ARREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_RVALID",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "M_AXI_GP0_RLAST",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "H",
+      "source": "ram",
+      "target": "ps",
+      "title": "PL→PS存储：AXI3 HP0",
+      "state": "拟新增/改造",
+      "address": [
+        {
+          "name": "S_AXI_HP0_AWADDR",
+          "width": 32,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARADDR",
+          "width": 32,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "S_AXI_HP0_WDATA",
+          "width": 64,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_RDATA",
+          "width": 64,
+          "direction": "rev"
+        }
+      ],
+      "control": [
+        {
+          "name": "S_AXI_HP0_AWID",
+          "width": 6,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARID",
+          "width": 6,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_WID",
+          "width": 6,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWLEN",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARLEN",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWSIZE",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARSIZE",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWBURST",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARBURST",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWLOCK",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARLOCK",
+          "width": 2,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWCACHE",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARCACHE",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWPROT",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARPROT",
+          "width": 3,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWQOS",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARQOS",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_WSTRB",
+          "width": 8,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_AWVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_WVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_WLAST",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_BREADY",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_ARVALID",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_RREADY",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "S_AXI_HP0_BID",
+          "width": 6,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_RID",
+          "width": 6,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_BRESP",
+          "width": 2,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_RRESP",
+          "width": 2,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_AWREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_WREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_BVALID",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_ARREADY",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_RVALID",
+          "width": 1,
+          "direction": "rev"
+        },
+        {
+          "name": "S_AXI_HP0_RLAST",
+          "width": 1,
+          "direction": "rev"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "source": "ps",
+      "target": "ddr",
+      "title": "PS专用DDR3引脚",
+      "state": "板上已有物理布线；PS专用DDR IO，不经过PL",
+      "address": [
+        {
+          "name": "DDR_Addr",
+          "width": 15,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_BankAddr",
+          "width": 3,
+          "direction": "fwd"
+        }
+      ],
+      "data": [
+        {
+          "name": "DDR_DM",
+          "width": 4,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_DQ",
+          "width": 32,
+          "direction": "bidir"
+        },
+        {
+          "name": "DDR_DQS",
+          "width": 4,
+          "direction": "bidir"
+        },
+        {
+          "name": "DDR_DQS_n",
+          "width": 4,
+          "direction": "bidir"
+        }
+      ],
+      "control": [
+        {
+          "name": "DDR_Clk",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_Clk_n",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_CKE",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_CS_n",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_RAS_n",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_CAS_n",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_WEB",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_ODT",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "DDR_DRSTB",
+          "width": 1,
+          "direction": "fwd"
+        }
+      ]
+    },
+    {
+      "id": "U",
+      "source": "ps",
+      "target": "pc",
+      "title": "J3串口逻辑端",
+      "state": "PS MIO串口经J3板载桥接到PC；不新增PL UART端口",
+      "address": [],
+      "data": [
+        {
+          "name": "UART1_TX",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "UART1_RX",
+          "width": 1,
+          "direction": "rev"
+        }
+      ],
+      "control": []
+    },
+    {
+      "id": "K",
+      "source": "ps",
+      "target": "clock",
+      "title": "PS提供PL时钟/复位",
+      "state": "拟选用同一FCLK；不与M19外部时钟并驱",
+      "address": [],
+      "data": [],
+      "control": [
+        {
+          "name": "FCLK_CLK0_to_sys_clk",
+          "width": 1,
+          "direction": "fwd"
+        },
+        {
+          "name": "FCLK_RESET0_N_to_rst_n_in",
+          "width": 1,
+          "direction": "fwd"
+        }
+      ]
+    }
+  ]
+}

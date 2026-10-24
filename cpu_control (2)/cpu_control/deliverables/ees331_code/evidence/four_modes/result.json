@@ -1,0 +1,466 @@
+{
+  "status": "PASS",
+  "full_network": false,
+  "frames": 4,
+  "cache_bytes": 131072,
+  "misses_in_flight": 1,
+  "compile_seconds": 7.672000000002299,
+  "exe_sha256": "6166c6d7388c840b898bb0a81b37a09d2e2d67a70a63f0fbe6908c9bcaee84fb",
+  "signature": {
+    "sources": {
+      "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "rtl/cnn_ddr/dw7_bram_engine.sv": "c60a229139e97a0226be79f1c8e1f9ea8a72860e04b20ec1074fa52cc8ab5acf",
+      "rtl/cnn_ddr/quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+      "rtl/cnn_quant/pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+      "rtl/cnn_ddr/fixed_schedule_compact.sv": "f25d0bc2ca24a92f2886aa082be684c420e3d48748d2ad98081c0239a023b8cf",
+      "rtl/cnn_ddr/cnn_ees331.sv": "6a53095365f90d6bdbc5a33559579b174c2446568e1df343c89459a18fb14aef",
+      "rtl/cnn_ddr/cnn_cache.sv": "fc06dc365ca880bc611f3ed23dcc687d1ebc1a0d2005ac2223002150ee08075e",
+      "rtl/cnn_ddr/cnn_ddr_bridge.sv": "728bcc6f5048696b5544377ed543d18523861d1918b5bb776c15740fa29acd5a",
+      "rtl/cnn_ddr/datasram_ddr_subsystem.sv": "db968a6a8f2bd69c77b5b7ad36d36e89e8b1b4a505d99b3a13a6131c996d96b1",
+      "tb/ees331_cnn_ddr_sim_top.sv": "521504bb75a052e78c4c892c9c07ef7ef8fad62206b70e6483ec5bfcb3e1517e",
+      "tb/integration/ees331_cnn_ddr_main.cpp": "94c9110448f8d9545789f7dc2362edefc01cdd7edced05c36e60116b4d6dcbf3",
+      "tb/integration/ees331_axi_ddr_model.hpp": "3a6359026a8096adb3d03ecf658f6e9cf14d4c4195f3b7f0131d749c4716d752",
+      "scripts/bootstrap_verilator_native.py": "4272ac509abf9b8d3a724dab62fb91edecf4a7fa77af48f37d46096564452182"
+    },
+    "flags": [
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500",
+      "-GCACHE_BYTES=131072"
+    ],
+    "verilator_sha": "fd38bd05be7ea1f70263451a2154f22782140fbc7e0f386dc10dced750fc892e"
+  },
+  "data_manifest_sha256": "4c0c4d0cfbed42e9ad9b0e20d365be3b9f452baa58de4b7486feca7159392202",
+  "scenarios": {
+    "overlap": {
+      "status": "PASS",
+      "mode": "overlap",
+      "cycles": 864284,
+      "compute_done_cycle": 859803,
+      "commands": 32,
+      "checked_bytes": 71856,
+      "macs": 409600,
+      "allocations": 32,
+      "releases": 32,
+      "results": 4,
+      "simulation_seconds": 1.92998,
+      "multi_frame_cycles": 831364,
+      "multi_frame_work_cycles": 139055,
+      "cross_operator_work_cycles": 9284,
+      "peak_active_frames": 4,
+      "input_write_compute_cycles": 26,
+      "ddr_read_bursts": 684,
+      "ddr_write_bursts": 512,
+      "ddr_read_bytes": 43776,
+      "ddr_write_bytes": 32768,
+      "cache_hits": 169396,
+      "cache_misses": 684,
+      "units": [
+        {
+          "unit": 0,
+          "active_cycles": 468001,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 157437,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 1,
+          "active_cycles": 467869,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 158097,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 2,
+          "active_cycles": 343866,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 119029,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 3,
+          "active_cycles": 344456,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 121027,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 4,
+          "active_cycles": 327523,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 104094,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 5,
+          "active_cycles": 325187,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 101758,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 6,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 7,
+          "active_cycles": 275489,
+          "work_cycles": 12288,
+          "arbitration_wait_cycles": 118833,
+          "read_bytes": 64512,
+          "write_bytes": 12288
+        },
+        {
+          "unit": 8,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 9,
+          "active_cycles": 54920,
+          "work_cycles": 3504,
+          "arbitration_wait_cycles": 24232,
+          "read_bytes": 4864,
+          "write_bytes": 10416
+        }
+      ],
+      "outputs_sha256": "eecab63788e81b2076db269cf649de919bfdfec17c9a5f3d5ed2e5ab2ac6be32"
+    },
+    "serial": {
+      "status": "PASS",
+      "mode": "serial",
+      "cycles": 1736040,
+      "compute_done_cycle": 1731559,
+      "commands": 32,
+      "checked_bytes": 71856,
+      "macs": 409600,
+      "allocations": 32,
+      "releases": 32,
+      "results": 4,
+      "simulation_seconds": 3.51463,
+      "multi_frame_cycles": 0,
+      "multi_frame_work_cycles": 0,
+      "cross_operator_work_cycles": 0,
+      "peak_active_frames": 1,
+      "input_write_compute_cycles": 0,
+      "ddr_read_bursts": 684,
+      "ddr_write_bursts": 512,
+      "ddr_read_bytes": 43776,
+      "ddr_write_bytes": 32768,
+      "cache_hits": 169396,
+      "cache_misses": 684,
+      "units": [
+        {
+          "unit": 0,
+          "active_cycles": 392918,
+          "work_cycles": 110592,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 28848,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 1,
+          "active_cycles": 227418,
+          "work_cycles": 36864,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 25600,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 2,
+          "active_cycles": 224837,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 3,
+          "active_cycles": 223429,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 4,
+          "active_cycles": 223429,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 5,
+          "active_cycles": 223429,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 6,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 7,
+          "active_cycles": 156656,
+          "work_cycles": 12288,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 64512,
+          "write_bytes": 12288
+        },
+        {
+          "unit": 8,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 9,
+          "active_cycles": 30688,
+          "work_cycles": 3504,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 4864,
+          "write_bytes": 10416
+        }
+      ],
+      "outputs_sha256": "eecab63788e81b2076db269cf649de919bfdfec17c9a5f3d5ed2e5ab2ac6be32"
+    },
+    "preloaded": {
+      "status": "PASS",
+      "mode": "preloaded",
+      "cycles": 855818,
+      "compute_done_cycle": 851337,
+      "commands": 32,
+      "checked_bytes": 71856,
+      "macs": 409600,
+      "allocations": 32,
+      "releases": 32,
+      "results": 4,
+      "simulation_seconds": 2.12862,
+      "multi_frame_cycles": 828486,
+      "multi_frame_work_cycles": 137833,
+      "cross_operator_work_cycles": 9408,
+      "peak_active_frames": 4,
+      "input_write_compute_cycles": 0,
+      "ddr_read_bursts": 684,
+      "ddr_write_bursts": 512,
+      "ddr_read_bytes": 43776,
+      "ddr_write_bytes": 32768,
+      "cache_hits": 169396,
+      "cache_misses": 684,
+      "units": [
+        {
+          "unit": 0,
+          "active_cycles": 468509,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 157945,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 1,
+          "active_cycles": 467502,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 157730,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 2,
+          "active_cycles": 338021,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 113184,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 3,
+          "active_cycles": 338547,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 115118,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 4,
+          "active_cycles": 323719,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 100290,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 5,
+          "active_cycles": 320256,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 96827,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 6,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 7,
+          "active_cycles": 275707,
+          "work_cycles": 12288,
+          "arbitration_wait_cycles": 119051,
+          "read_bytes": 64512,
+          "write_bytes": 12288
+        },
+        {
+          "unit": 8,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 9,
+          "active_cycles": 54908,
+          "work_cycles": 3504,
+          "arbitration_wait_cycles": 24220,
+          "read_bytes": 4864,
+          "write_bytes": 10416
+        }
+      ],
+      "outputs_sha256": "eecab63788e81b2076db269cf649de919bfdfec17c9a5f3d5ed2e5ab2ac6be32"
+    },
+    "stress": {
+      "status": "PASS",
+      "mode": "stress",
+      "cycles": 909564,
+      "compute_done_cycle": 860509,
+      "commands": 32,
+      "checked_bytes": 71856,
+      "macs": 409600,
+      "allocations": 32,
+      "releases": 32,
+      "results": 4,
+      "simulation_seconds": 1.98542,
+      "multi_frame_cycles": 832864,
+      "multi_frame_work_cycles": 130288,
+      "cross_operator_work_cycles": 9367,
+      "peak_active_frames": 4,
+      "input_write_compute_cycles": 23,
+      "ddr_read_bursts": 684,
+      "ddr_write_bursts": 512,
+      "ddr_read_bytes": 43776,
+      "ddr_write_bytes": 32768,
+      "cache_hits": 169396,
+      "cache_misses": 684,
+      "units": [
+        {
+          "unit": 0,
+          "active_cycles": 478804,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 163580,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 1,
+          "active_cycles": 477514,
+          "work_cycles": 73728,
+          "arbitration_wait_cycles": 163802,
+          "read_bytes": 27224,
+          "write_bytes": 16384
+        },
+        {
+          "unit": 2,
+          "active_cycles": 340173,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 114226,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 3,
+          "active_cycles": 339870,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 116441,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 4,
+          "active_cycles": 318343,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 94914,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 5,
+          "active_cycles": 315422,
+          "work_cycles": 65536,
+          "arbitration_wait_cycles": 91993,
+          "read_bytes": 17408,
+          "write_bytes": 4096
+        },
+        {
+          "unit": 6,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 7,
+          "active_cycles": 280222,
+          "work_cycles": 12288,
+          "arbitration_wait_cycles": 121784,
+          "read_bytes": 64512,
+          "write_bytes": 12288
+        },
+        {
+          "unit": 8,
+          "active_cycles": 0,
+          "work_cycles": 0,
+          "arbitration_wait_cycles": 0,
+          "read_bytes": 0,
+          "write_bytes": 0
+        },
+        {
+          "unit": 9,
+          "active_cycles": 55858,
+          "work_cycles": 3504,
+          "arbitration_wait_cycles": 24624,
+          "read_bytes": 4864,
+          "write_bytes": 10416
+        }
+      ],
+      "outputs_sha256": "eecab63788e81b2076db269cf649de919bfdfec17c9a5f3d5ed2e5ab2ac6be32"
+    }
+  },
+  "sources_unchanged_during_run": true
+}

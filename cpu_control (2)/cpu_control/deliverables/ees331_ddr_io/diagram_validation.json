@@ -1,0 +1,45 @@
+{
+  "pages": [
+    {
+      "page": "01 改前：当前六模块真实接线",
+      "cells": 75,
+      "edges": 15
+    },
+    {
+      "page": "02 改后：原六模块平级 + PS7 + 板外DDR3",
+      "cells": 116,
+      "edges": 29
+    },
+    {
+      "page": "03 改后逐接口接线：地址线（蓝色）",
+      "cells": 64,
+      "edges": 9
+    },
+    {
+      "page": "04 改后逐接口接线：数据线（橙色）",
+      "cells": 64,
+      "edges": 9
+    },
+    {
+      "page": "05 改后逐接口接线：本地控制/信号线（绿色）",
+      "cells": 46,
+      "edges": 6
+    },
+    {
+      "page": "06 AXI3控制信号：GP0与HP0逐根位宽",
+      "cells": 25,
+      "edges": 0
+    },
+    {
+      "page": "07 板级DDR / J3 / 时钟复位 / 新旧接口变化",
+      "cells": 33,
+      "edges": 3
+    }
+  ],
+  "checks": [
+    "XML references valid",
+    "positive widths and defined directions",
+    "no text overflow at generated geometry"
+  ],
+  "drawio_sha256": "84343eca8e2cbb5bdae08098f94e75974aa93b9c587581b53e3667e455a12ddb"
+}

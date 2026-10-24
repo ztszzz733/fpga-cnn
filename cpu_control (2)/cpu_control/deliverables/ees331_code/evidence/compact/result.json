@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "compile_seconds": 20.41554779999933,
+  "total_seconds": 23.178957799998898,
+  "sources_sha256": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "310bec66e97a78dcd2b614614caa4b0a36a21b827b3fe8d78720172efeac8e99",
+    "rtl/cnn_ddr/quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+    "rtl/cnn_ddr/dw7_bram_engine.sv": "c60a229139e97a0226be79f1c8e1f9ea8a72860e04b20ec1074fa52cc8ab5acf",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "f25d0bc2ca24a92f2886aa082be684c420e3d48748d2ad98081c0239a023b8cf",
+    "rtl/cnn_ddr/cnn_ees331.sv": "6a53095365f90d6bdbc5a33559579b174c2446568e1df343c89459a18fb14aef",
+    "tb/compact_cnn_mmio_tb.sv": "a67e2d42f137e4967761d6abd7a2061f063bcde999c0e9108041e9e3a49248a4"
+  },
+  "log": "PASS compact_cnn_mmio_tb results=4 macs=4096 overlap_cycles=1487 epoch_errors_and_invalid_leases=PASS\n- D:\\zhang\\fpga-cnn\\cpu_control (2)\\cpu_control\\tb\\compact_cnn_mmio_tb.sv:132: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.49\n- Verilator: $finish at 225us; walltime 0.033 s; speed 0.000 s/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 5 MB\n"
+}

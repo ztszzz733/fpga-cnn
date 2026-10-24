@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "scope": "code and offline reduced-network validation; no board",
+  "runs": {
+    "soc": {
+      "run": "20261024_215712_328991_ees331_soc",
+      "status": "PASS",
+      "files": [
+        "metrics.json",
+        "outputs.bin",
+        "result.json",
+        "sim.log"
+      ]
+    },
+    "four_modes": {
+      "run": "20261024_215719_084012_ees331_full",
+      "status": "PASS",
+      "files": [
+        "result.json",
+        "overlap/events.csv",
+        "overlap/metrics.json",
+        "overlap/outputs.bin",
+        "overlap/simulation.log",
+        "preloaded/events.csv",
+        "preloaded/metrics.json",
+        "preloaded/outputs.bin",
+        "preloaded/simulation.log",
+        "serial/events.csv",
+        "serial/metrics.json",
+        "serial/outputs.bin",
+        "serial/simulation.log",
+        "stress/events.csv",
+        "stress/metrics.json",
+        "stress/outputs.bin",
+        "stress/simulation.log"
+      ]
+    },
+    "compact": {
+      "run": "20261024_215557_216919_compact_cnn",
+      "status": "PASS",
+      "files": [
+        "result.json",
+        "simulation.log"
+      ]
+    },
+    "cache": {
+      "run": "20261024_184132_914735_cnn_ddr_cache",
+      "status": "PASS",
+      "files": [
+        "metrics.json",
+        "result.json",
+        "simulation.log"
+      ]
+    },
+    "control": {
+      "run": "20261024_184020_033055_ees331_control",
+      "status": "PASS",
+      "files": [
+        "result.json",
+        "sim.log"
+      ]
+    },
+    "server": {
+      "run": "20261024_220057_896748_ees331_server",
+      "status": "PASS",
+      "files": [
+        "result.json"
+      ]
+    },
+    "operators": {
+      "run": "20261024_183642_006922_ees331_bram_operators",
+      "status": "PASS",
+      "files": [
+        "result.json",
+        "max512/metrics.json",
+        "max512/outputs.bin",
+        "max512/simulation.log",
+        "max512_stall/metrics.json",
+        "max512_stall/outputs.bin",
+        "max512_stall/simulation.log",
+        "overlap16/metrics.json",
+        "overlap16/outputs.bin",
+        "overlap16/simulation.log",
+        "overlap16_restart/metrics.json",
+        "overlap16_restart/outputs.bin",
+        "overlap16_restart/simulation.log"
+      ]
+    },
+    "cache_ooc": {
+      "run": "20261024_184639_782498_cnn_ddr_cache_synth",
+      "status": "PASS",
+      "files": [
+        "primitive_counts.tsv",
+        "result.json",
+        "utilization.rpt"
+      ]
+    }
+  }
+}

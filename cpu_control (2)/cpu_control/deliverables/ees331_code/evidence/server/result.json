@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "portable PS server C, mock CPU command callback; not ARM BSP/board execution",
+  "source_sha256": {
+    "firmware/ps_image_server/server.c": "e2a7ec7807685e926aa2c7dc64ea414498b4c224baf4a6c88560ac8a5180e8f9",
+    "firmware/ps_image_server/server.h": "0432b0b95d3789cbf37a5ac60fc5323f9faf3eb9f668194c40fd5db055f49b16",
+    "firmware/ps_image_server/test_server.c": "b28fe612fdb7240f25782e78458957dda3e8bd2b993a0b9036bba5c59f9dcf16"
+  },
+  "sources_unchanged": true,
+  "executable_sha256": "a2e0ec5e0746a24d05a2489f3d832c0b930853507c3febf66f0aedbbd4a72f02"
+}

@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3300" height="1716" viewBox="0 0 3300 1716">
+<rect width="3300" height="1716" fill="#f8fafc"/>
+<text x="1650.0" y="58.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="42" fill="#182a40">
+<tspan x="1650.0" dy="0">05 改后逐接口接线：本地控制/信号线（绿色）</tspan>
+</text>
+<text x="1650.0" y="126.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#536479">
+<tspan x="1650.0" dy="0">每行左右两框与总图同层级；→ 左框发往右框，← 右框返回左框，&lt;-&gt; 物理双向；/N 为该信号位宽。</tspan>
+</text>
+<rect x="55" y="167" width="30" height="18" fill="#2563b8" stroke="#2563b8" stroke-width="2"/>
+<text x="245.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#2563b8">
+<tspan x="245.0" dy="0">地址线</tspan>
+</text>
+<rect x="475" y="167" width="30" height="18" fill="#b96500" stroke="#b96500" stroke-width="2"/>
+<text x="665.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#b96500">
+<tspan x="665.0" dy="0">数据线</tspan>
+</text>
+<rect x="895" y="167" width="30" height="18" fill="#16805b" stroke="#16805b" stroke-width="2"/>
+<text x="1085.0" y="175.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1085.0" dy="0">控制/信号线</tspan>
+</text>
+<rect x="50" y="225" width="3200" height="150" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="250" width="390" height="100" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="300.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">① CPU_CORE</tspan>
+</text>
+<rect x="2835" y="250" width="390" height="100" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="300.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">④ IMEM / IEM</tspan>
+</text>
+<text x="1650.0" y="254.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">I · CPU取指   →1 bit</tspan>
+</text>
+<polyline points="465,348 2835,348" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,348 2819.0,341.0 2819.0,355.0" fill="#16805b"/>
+<text x="1650.0" y="304.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ imem_re / 1 bit</tspan>
+</text>
+<rect x="50" y="400" width="3200" height="202" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="425" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="501.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">① CPU_CORE</tspan>
+</text>
+<rect x="2835" y="425" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="501.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">③ DATASRAM</tspan>
+</text>
+<text x="1650.0" y="429.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">D · CPU本地数据口   →6 bit</tspan>
+</text>
+<polyline points="465,575 2835,575" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,575 2819.0,568.0 2819.0,582.0" fill="#16805b"/>
+<text x="1650.0" y="472.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ dmem_re / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ dmem_we / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ dmem_wstrb[3:0] / 4 bit</tspan>
+</text>
+<rect x="50" y="627" width="3200" height="202" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="652" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="728.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">① CPU_CORE</tspan>
+</text>
+<rect x="2835" y="652" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="728.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">⑤ IMAGE_BRIDGE</tspan>
+</text>
+<text x="1650.0" y="656.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">M0 · CPU控制/邮箱口   →2 bit  ←1 bit</tspan>
+</text>
+<polyline points="465,802 2835,802" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,802 2819.0,795.0 2819.0,809.0" fill="#16805b"/>
+<polygon points="465,802 481.0,809.0 481.0,795.0" fill="#16805b"/>
+<text x="1650.0" y="699.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ mmio_re / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ mmio_we / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← mmio_ready / 1 bit</tspan>
+</text>
+<rect x="50" y="854" width="3200" height="202" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="879" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="955.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">⑤ IMAGE_BRIDGE</tspan>
+</text>
+<rect x="2835" y="879" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="955.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">② CNN</tspan>
+</text>
+<text x="1650.0" y="883.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">M1 · CNN寄存器封装   →2 bit  ←1 bit</tspan>
+</text>
+<polyline points="465,1029 2835,1029" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,1029 2819.0,1022.0 2819.0,1036.0" fill="#16805b"/>
+<polygon points="465,1029 481.0,1036.0 481.0,1022.0" fill="#16805b"/>
+<text x="1650.0" y="926.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ cnn_mmio_re / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ cnn_mmio_we / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← cnn_mmio_ready / 1 bit</tspan>
+</text>
+<rect x="50" y="1081" width="3200" height="338" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="1106" width="390" height="288" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="1250.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">② CNN</tspan>
+</text>
+<rect x="2835" y="1106" width="390" height="288" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="1250.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">③ DATASRAM</tspan>
+</text>
+<text x="1650.0" y="1110.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">C · 10路新CNN访存   →31 bit  ←21 bit</tspan>
+</text>
+<polyline points="465,1392 2835,1392" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,1392 2819.0,1385.0 2819.0,1399.0" fill="#16805b"/>
+<polygon points="465,1392 481.0,1399.0 481.0,1385.0" fill="#16805b"/>
+<text x="1650.0" y="1157.4" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ cnn_valid[9:0] / 10 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ cnn_write[9:0] / 10 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ cnn_byte[9:0] / 10 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ cnn_cancel / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← cnn_ready[9:0] / 10 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← cnn_response[9:0] / 10 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← cnn_mem_fault / 1 bit</tspan>
+</text>
+<rect x="50" y="1444" width="3200" height="202" fill="#ffffff" stroke="#d5dfe8" stroke-width="2"/>
+<rect x="75" y="1469" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="270.0" y="1545.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="270.0" dy="0">⑤ IMAGE_BRIDGE</tspan>
+</text>
+<rect x="2835" y="1469" width="390" height="152" fill="#edf3f9" stroke="#7890a9" stroke-width="2"/>
+<text x="3030.0" y="1545.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#182a40">
+<tspan x="3030.0" dy="0">③ DATASRAM</tspan>
+</text>
+<text x="1650.0" y="1473.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="25" fill="#16805b">
+<tspan x="1650.0" dy="0">F · cache维护寄存器   →2 bit  ←1 bit</tspan>
+</text>
+<polyline points="465,1619 2835,1619" fill="none" stroke="#16805b" stroke-width="3"/>
+<polygon points="2835,1619 2819.0,1612.0 2819.0,1626.0" fill="#16805b"/>
+<polygon points="465,1619 481.0,1626.0 481.0,1612.0" fill="#16805b"/>
+<text x="1650.0" y="1516.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei,sans-serif" font-size="23" fill="#16805b">
+<tspan x="1650.0" dy="0">→ cache_csr_re / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">→ cache_csr_we / 1 bit</tspan>
+<tspan x="1650.0" dy="32.199999999999996">← cache_csr_ready / 1 bit</tspan>
+</text>
+</svg>

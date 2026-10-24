@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "part": "xc7z020clg484-1",
+  "period_ns": 20.0,
+  "cache_bytes": 131072,
+  "cpu_ram_bytes": 16384,
+  "sources_sha256": {
+    "rtl/cnn_ddr/cnn_cache.sv": "fc06dc365ca880bc611f3ed23dcc687d1ebc1a0d2005ac2223002150ee08075e",
+    "rtl/cnn_ddr/cnn_ddr_bridge.sv": "728bcc6f5048696b5544377ed543d18523861d1918b5bb776c15740fa29acd5a",
+    "rtl/cnn_ddr/datasram_ddr_subsystem.sv": "db968a6a8f2bd69c77b5b7ad36d36e89e8b1b4a505d99b3a13a6131c996d96b1",
+    "scripts/synth_cnn_ddr_cache.py": "1a25b477597b3b46a94e4dd6d260dd19be2e07c8439bed0439635cf3c2256a06",
+    "scripts/synth_cnn_ddr_cache.tcl": "4996231d2136417fcfe1bb327017131e745c482130ff818abd3f2c9d860eee23"
+  },
+  "place_route_performed": false,
+  "stage": "out_of_context_synthesis",
+  "timing_scope": "Clock-to-clock estimates only; no board/PS IO delay constraints.",
+  "returncode": 0,
+  "utilization": {
+    "Slice LUTs": {
+      "used": 1785,
+      "available": 53200,
+      "utilization_percent": 3.36
+    },
+    "Slice Registers": {
+      "used": 2489,
+      "available": 106400,
+      "utilization_percent": 2.34
+    },
+    "Block RAM Tile": {
+      "used": 37,
+      "available": 140,
+      "utilization_percent": 26.43
+    },
+    "DSPs": {
+      "used": 0,
+      "available": 220,
+      "utilization_percent": 0.0
+    }
+  },
+  "primitives": {
+    "LUT1": 36,
+    "LUT2": 164,
+    "LUT3": 398,
+    "LUT4": 354,
+    "LUT5": 243,
+    "LUT6": 922,
+    "LUT6_2": 0,
+    "FDRE": 2488,
+    "FDSE": 1,
+    "FDCE": 0,
+    "FDPE": 0,
+    "RAMB18E1": 2,
+    "RAMB36E1": 36,
+    "DSP48E1": 0
+  },
+  "worst_setup_slack_ns": 4.419,
+  "sources_unchanged_during_run": true,
+  "elapsed_seconds": 133.20571589999963
+}

@@ -1,0 +1,232 @@
+{
+  "status": "PASS",
+  "compile_seconds": 12.491784699999698,
+  "cases": {
+    "max512": {
+      "fixture": {
+        "shape": [
+          7,
+          7,
+          512
+        ],
+        "jobs": [
+          [
+            35712,
+            256,
+            60864,
+            62976,
+            25408,
+            7,
+            7,
+            512,
+            512
+          ],
+          [
+            63552,
+            256,
+            88704,
+            90816,
+            25408,
+            7,
+            7,
+            512,
+            512
+          ]
+        ],
+        "input_sha256": "2a7f8d23b3bea680ef6804a63fe6f7bf495d8fe3a97f1c69a3c3b7cf33e4a557",
+        "golden_sha256": "d081aa6fe9c3edcaa3b66ebd46f137bd2215db9da904b2824f7ded0dda6de9a8"
+      },
+      "metrics": {
+        "checked_bytes": 5120,
+        "conv_cycles": [
+          45506,
+          26690
+        ],
+        "chain_cycles": [
+          56771,
+          37955
+        ],
+        "input_word_reads": [
+          6272,
+          6272
+        ],
+        "weight_word_reads": [
+          6272,
+          0
+        ]
+      },
+      "output_sha256": "0d490e8a2c2cc95c62aa7cbf39065959aa4771efef19ccdd9eaeb95e93988291"
+    },
+    "max512_stall": {
+      "fixture": {
+        "shape": [
+          7,
+          7,
+          512
+        ],
+        "jobs": [
+          [
+            35712,
+            256,
+            60864,
+            62976,
+            25408,
+            7,
+            7,
+            512,
+            512
+          ],
+          [
+            63552,
+            256,
+            88704,
+            90816,
+            25408,
+            7,
+            7,
+            512,
+            512
+          ]
+        ],
+        "input_sha256": "2a7f8d23b3bea680ef6804a63fe6f7bf495d8fe3a97f1c69a3c3b7cf33e4a557",
+        "golden_sha256": "d081aa6fe9c3edcaa3b66ebd46f137bd2215db9da904b2824f7ded0dda6de9a8"
+      },
+      "metrics": {
+        "checked_bytes": 5120,
+        "conv_cycles": [
+          71681,
+          40324
+        ],
+        "chain_cycles": [
+          90627,
+          58244
+        ],
+        "input_word_reads": [
+          6272,
+          6272
+        ],
+        "weight_word_reads": [
+          6272,
+          0
+        ]
+      },
+      "output_sha256": "0d490e8a2c2cc95c62aa7cbf39065959aa4771efef19ccdd9eaeb95e93988291"
+    },
+    "overlap16": {
+      "fixture": {
+        "shape": [
+          9,
+          10,
+          16
+        ],
+        "jobs": [
+          [
+            1536,
+            256,
+            3072,
+            3904,
+            1152,
+            10,
+            9,
+            16,
+            192
+          ],
+          [
+            4160,
+            256,
+            5696,
+            6528,
+            1152,
+            10,
+            9,
+            16,
+            192
+          ]
+        ],
+        "input_sha256": "f229fcab55bf3d07e4e1821b49191e31ebe30b5610a4b777afb987a996bcd8fe",
+        "golden_sha256": "e97b896fd9146e9d1d7849be41453e5593f03cf836265f7e6f316ea5b92a7da0"
+      },
+      "metrics": {
+        "checked_bytes": 1920,
+        "conv_cycles": [
+          4622,
+          4034
+        ],
+        "chain_cycles": [
+          6207,
+          5619
+        ],
+        "input_word_reads": [
+          360,
+          360
+        ],
+        "weight_word_reads": [
+          196,
+          0
+        ]
+      },
+      "output_sha256": "f47af37288c4fd92a18037072fa94df9d12367785dacc3885de15472696d8fe1"
+    },
+    "overlap16_restart": {
+      "fixture": {
+        "shape": [
+          9,
+          10,
+          16
+        ],
+        "jobs": [
+          [
+            1536,
+            256,
+            3072,
+            3904,
+            1152,
+            10,
+            9,
+            16,
+            192
+          ],
+          [
+            4160,
+            256,
+            5696,
+            6528,
+            1152,
+            10,
+            9,
+            16,
+            192
+          ]
+        ],
+        "input_sha256": "f229fcab55bf3d07e4e1821b49191e31ebe30b5610a4b777afb987a996bcd8fe",
+        "golden_sha256": "e97b896fd9146e9d1d7849be41453e5593f03cf836265f7e6f316ea5b92a7da0"
+      },
+      "metrics": {
+        "checked_bytes": 1920,
+        "conv_cycles": [
+          6145,
+          5164
+        ],
+        "chain_cycles": [
+          8847,
+          7870
+        ],
+        "input_word_reads": [
+          360,
+          360
+        ],
+        "weight_word_reads": [
+          196,
+          0
+        ]
+      },
+      "output_sha256": "f47af37288c4fd92a18037072fa94df9d12367785dacc3885de15472696d8fe1"
+    }
+  },
+  "sources_sha256": {
+    "rtl/cnn_ddr/dw7_bram_engine.sv": "c60a229139e97a0226be79f1c8e1f9ea8a72860e04b20ec1074fa52cc8ab5acf",
+    "rtl/cnn_ddr/quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+    "tb/integration/tb_dw7_bram.sv": "4feab141d387c8e01ca9c9d3ff908c2f2155998b7b47fcf2c1c74736ef99dc89"
+  },
+  "total_seconds": 23.782343099999707
+}

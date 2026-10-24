@@ -1,0 +1,133 @@
+﻿interface,source,target,group,signal,width_bits,direction,status
+I,cpu,imem,address,imem_addr,32,fwd,保留接口；64→8 KiB为拟定容量
+I,cpu,imem,data,imem_rdata,32,rev,保留接口；64→8 KiB为拟定容量
+I,cpu,imem,control,imem_re,1,fwd,保留接口；64→8 KiB为拟定容量
+D,cpu,ram,address,dmem_addr,32,fwd,保留端口；只访问本地RAM，固定一拍
+D,cpu,ram,data,dmem_wdata,32,fwd,保留端口；只访问本地RAM，固定一拍
+D,cpu,ram,data,dmem_rdata,32,rev,保留端口；只访问本地RAM，固定一拍
+D,cpu,ram,control,dmem_re,1,fwd,保留端口；只访问本地RAM，固定一拍
+D,cpu,ram,control,dmem_we,1,fwd,保留端口；只访问本地RAM，固定一拍
+D,cpu,ram,control,dmem_wstrb,4,fwd,保留端口；只访问本地RAM，固定一拍
+M0,cpu,bridge,address,mmio_addr,32,fwd,改接image_control_bridge；ready保持零等待
+M0,cpu,bridge,data,mmio_wdata,32,fwd,改接image_control_bridge；ready保持零等待
+M0,cpu,bridge,data,mmio_rdata,32,rev,改接image_control_bridge；ready保持零等待
+M0,cpu,bridge,control,mmio_re,1,fwd,改接image_control_bridge；ready保持零等待
+M0,cpu,bridge,control,mmio_we,1,fwd,改接image_control_bridge；ready保持零等待
+M0,cpu,bridge,control,mmio_ready,1,rev,改接image_control_bridge；ready保持零等待
+M1,bridge,cnn,address,cnn_mmio_addr,32,fwd,拟新增新CNN的零等待寄存器封装
+M1,bridge,cnn,data,cnn_mmio_wdata,32,fwd,拟新增新CNN的零等待寄存器封装
+M1,bridge,cnn,data,cnn_mmio_rdata,32,rev,拟新增新CNN的零等待寄存器封装
+M1,bridge,cnn,control,cnn_mmio_re,1,fwd,拟新增新CNN的零等待寄存器封装
+M1,bridge,cnn,control,cnn_mmio_we,1,fwd,拟新增新CNN的零等待寄存器封装
+M1,bridge,cnn,control,cnn_mmio_ready,1,rev,拟新增新CNN的零等待寄存器封装
+C,cnn,ram,address,cnn_addr,320,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,data,cnn_wdata,320,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,data,cnn_rdata,320,rev,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_valid,10,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_write,10,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_byte,10,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_cancel,1,fwd,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_ready,10,rev,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_response,10,rev,由新CNN真实10客户端端口引出；存储改接cache
+C,cnn,ram,control,cnn_mem_fault,1,rev,由新CNN真实10客户端端口引出；存储改接cache
+F,bridge,ram,address,cache_csr_addr,32,fwd,拟新增；发clean/invalidate/fence，轮询busy/error
+F,bridge,ram,data,cache_csr_wdata,32,fwd,拟新增；发clean/invalidate/fence，轮询busy/error
+F,bridge,ram,data,cache_csr_rdata,32,rev,拟新增；发clean/invalidate/fence，轮询busy/error
+F,bridge,ram,control,cache_csr_re,1,fwd,拟新增；发clean/invalidate/fence，轮询busy/error
+F,bridge,ram,control,cache_csr_we,1,fwd,拟新增；发clean/invalidate/fence，轮询busy/error
+F,bridge,ram,control,cache_csr_ready,1,rev,拟新增；发clean/invalidate/fence，轮询busy/error
+G,ps,bridge,address,M_AXI_GP0_AWADDR,32,fwd,拟新增/改造
+G,ps,bridge,address,M_AXI_GP0_ARADDR,32,fwd,拟新增/改造
+G,ps,bridge,data,M_AXI_GP0_WDATA,32,fwd,拟新增/改造
+G,ps,bridge,data,M_AXI_GP0_RDATA,32,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWID,12,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARID,12,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_WID,12,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWLEN,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARLEN,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWSIZE,3,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARSIZE,3,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWBURST,2,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARBURST,2,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWLOCK,2,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARLOCK,2,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWCACHE,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARCACHE,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWPROT,3,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARPROT,3,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWQOS,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARQOS,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_WSTRB,4,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWVALID,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_WVALID,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_WLAST,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_BREADY,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARVALID,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_RREADY,1,fwd,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_BID,12,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_RID,12,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_BRESP,2,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_RRESP,2,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_AWREADY,1,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_WREADY,1,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_BVALID,1,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_ARREADY,1,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_RVALID,1,rev,拟新增/改造
+G,ps,bridge,control,M_AXI_GP0_RLAST,1,rev,拟新增/改造
+H,ram,ps,address,S_AXI_HP0_AWADDR,32,fwd,拟新增/改造
+H,ram,ps,address,S_AXI_HP0_ARADDR,32,fwd,拟新增/改造
+H,ram,ps,data,S_AXI_HP0_WDATA,64,fwd,拟新增/改造
+H,ram,ps,data,S_AXI_HP0_RDATA,64,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWID,6,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARID,6,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_WID,6,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWLEN,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARLEN,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWSIZE,3,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARSIZE,3,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWBURST,2,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARBURST,2,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWLOCK,2,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARLOCK,2,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWCACHE,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARCACHE,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWPROT,3,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARPROT,3,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWQOS,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARQOS,4,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_WSTRB,8,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWVALID,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_WVALID,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_WLAST,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_BREADY,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARVALID,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_RREADY,1,fwd,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_BID,6,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_RID,6,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_BRESP,2,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_RRESP,2,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_AWREADY,1,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_WREADY,1,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_BVALID,1,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_ARREADY,1,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_RVALID,1,rev,拟新增/改造
+H,ram,ps,control,S_AXI_HP0_RLAST,1,rev,拟新增/改造
+B,ps,ddr,address,DDR_Addr,15,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,address,DDR_BankAddr,3,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,data,DDR_DM,4,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,data,DDR_DQ,32,bidir,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,data,DDR_DQS,4,bidir,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,data,DDR_DQS_n,4,bidir,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_Clk,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_Clk_n,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_CKE,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_CS_n,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_RAS_n,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_CAS_n,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_WEB,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_ODT,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+B,ps,ddr,control,DDR_DRSTB,1,fwd,板上已有物理布线；PS专用DDR IO，不经过PL
+U,ps,pc,data,UART1_TX,1,fwd,PS MIO串口经J3板载桥接到PC；不新增PL UART端口
+U,ps,pc,data,UART1_RX,1,rev,PS MIO串口经J3板载桥接到PC；不新增PL UART端口
+K,ps,clock,control,FCLK_CLK0_to_sys_clk,1,fwd,拟选用同一FCLK；不与M19外部时钟并驱
+K,ps,clock,control,FCLK_RESET0_N_to_rst_n_in,1,fwd,拟选用同一FCLK；不与M19外部时钟并驱

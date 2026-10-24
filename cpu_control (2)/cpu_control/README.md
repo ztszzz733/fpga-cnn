@@ -1,5 +1,13 @@
 # 项目从哪里开始
 
+本次 `moon` 发布入口：[更新说明.md](../../更新说明.md)，包含代码变化、验证结果和新克隆复现步骤。
+
+## 2026-10-24 按接线图接入 DDR/cache 并更新 CNN
+
+本次代码入口：`rtl/soc/ees331/face_soc_ees331_top.sv`，编译清单 `rtl/filelists/system_ees331.f`。六个 PL 模块仍平级：原 CPU、更新的自研 CNN、128 KiB cache＋16 KiB CPU RAM、8 KiB IMEM、PS/CPU 控制桥、时钟复位；PS7 在同级连接 GP0/HP0。新入口不再引用旧 FPGA1 CNN。
+
+[代码改动、接线核对与验证结果](docs/ees331_code_integration.md)。128 根图示信号核对通过；真实 CPU＋控制桥＋CNN＋cache 四图小网络联合仿真通过。用户本轮只要求改代码：未上板、未生成新 bitstream，未重跑 DDR 版完整 MobileFaceNet。下面为历史 SRAM 版本及更早入口。
+
 ## 2026-10-23 自研 CNN 四图完整网络与算子数量优化
 
 当前新增入口为 `rtl/cnn_stream/self_fixed_network_top.sv`，使用自研卷积和 `bai-datasram` 四 bank SRAM。相同四张 112×112 测试图的完整 MobileFaceNet RTL 仿真通过；K3×2 / K1×4 配置相对 K3×4 / K1×2 将总周期从 1,138,093,351 降至 653,428,459，减少 42.59%，输出逐字节一致。
