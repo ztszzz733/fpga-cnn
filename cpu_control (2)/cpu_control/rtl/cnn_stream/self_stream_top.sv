@@ -1,7 +1,7 @@
 // Actual bai-datasram SRAM plus configurable CNN operator pools. Four complete
 // image commits may arrive during computation. No arithmetic/memory TB model.
 module self_stream_top #(
- parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
+ parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_CACHE=0, POST_GROUP=4, K3_PAR4=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
  parameter FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
  parameter MAX_TASKS=64,IW=$clog2(MAX_TASKS),SLOTS=4*FRAME_CONTEXTS,SW=$clog2(SLOTS),
  parameter K3_UNITS=3,K1_UNITS=1,POST_UNITS=1,
@@ -73,8 +73,16 @@ module self_stream_top #(
    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
    .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+  end else if(K3_PAR4 && e<K3_UNITS)begin:spatial_convolution
+  self_conv_spatial4_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2),.DW_CACHE(DW_CACHE)) convolution(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
+   .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+   .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+   .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+   .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
+   .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
   end else if(WIDE_PIPE && e<K3_UNITS)begin:wide_convolution
-  self_conv_wide_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2)) convolution(
+  self_conv_wide_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(KERNEL),.TILE(2),.DW_CACHE(DW_CACHE)) convolution(
    .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
    .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
    .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
@@ -115,7 +123,7 @@ module self_stream_top #(
   .phase(),.mac_fire(operator_work[DW]),.weights_cached(),.cache_hit());
  for(genvar e=POST;e<=ADD;e++)begin:postprocessing
   if(WIDE_PIPE)begin:packed_pipeline
-  quant_post_pipe_engine post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
+  quant_post_pipe_engine #(.GROUP_BYTES(POST_GROUP)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
    .src_a(cmd[e][1]),.src_b(cmd[e][2]),.destination(cmd[e][3]),.parameter_base(cmd[e][4]),.count(cmd[e][5]),.channels(cmd[e][6]),
    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]));

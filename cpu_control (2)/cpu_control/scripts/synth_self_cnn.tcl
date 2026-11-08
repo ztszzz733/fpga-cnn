@@ -8,6 +8,8 @@ set part [lindex $argv 2]
 set period [lindex $argv 3]
 set top [lindex $argv 4]
 set max_kernel [lindex $argv 5]
+set dw_cache [lindex $argv 6]
+if {$dw_cache eq ""} {set dw_cache 0}
 set_param general.maxThreads 2
 create_project -in_memory -part $part
 set fp [open [file join $root rtl filelists cnn_self.f] r]
@@ -41,6 +43,7 @@ if {$top eq "self_network_top"} {
 } else {
  set generics [list MAX_CHANNELS=512 MAX_KERNEL=$max_kernel TILE=2]
 }
+if {$top eq "self_conv_wide_engine" || $top eq "self_conv_spatial4_engine"} {lappend generics DW_CACHE=$dw_cache}
 synth_design -top $top -part $part -mode out_of_context -flatten_hierarchy rebuilt -generic $generics
 report_utilization -file [file join $out utilization.rpt]
 report_utilization -hierarchical -file [file join $out utilization_hierarchical.rpt]

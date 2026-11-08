@@ -1,0 +1,252 @@
+{
+  "created": "2026-10-25T18:04:11.760057",
+  "measurement": "Sequential OOC component synthesis; sum is NOT a whole-top synthesis result",
+  "part": "xc7z020clg484-1",
+  "full_synthesis_status": "MEMORY_GUARD",
+  "configuration": {
+    "PW4": 1,
+    "CONV_OVERLAP": 1,
+    "WIDE_PIPE": 1,
+    "PW8": 1,
+    "DW_CACHE": 1,
+    "POST_GROUP": 16,
+    "K3_PAR4": 1,
+    "DW_PRIORITY": 0,
+    "FRAME_PRIORITY": 1,
+    "FRAME_CONTEXTS": 15,
+    "MAX_TASKS": 2048,
+    "SLOTS": 60,
+    "K3_UNITS": 4,
+    "K1_UNITS": 12,
+    "POST_UNITS": 4,
+    "SRAM_SIZE": 67108864
+  },
+  "resources_order": [
+    "Slice LUTs",
+    "Slice Registers",
+    "Block RAM Tile",
+    "DSPs"
+  ],
+  "rows": [
+    {
+      "component": "k3",
+      "label": "3×3 / DW3卷积",
+      "instances": 4,
+      "status": "PASS",
+      "totals": [
+        9800,
+        6500,
+        40,
+        0
+      ],
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_155929_013040_self_cnn_synth",
+      "errors": []
+    },
+    {
+      "component": "k1",
+      "label": "1×1 PW8卷积",
+      "instances": 12,
+      "status": "PASS",
+      "totals": [
+        32400,
+        18636,
+        60,
+        0
+      ],
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_012253_161051_self_cnn_synth",
+      "errors": []
+    },
+    {
+      "component": "post",
+      "label": "后处理（GROUP_BYTES=16）",
+      "instances": 4,
+      "status": "PASS",
+      "totals": [
+        4996.0,
+        3808.0,
+        10.0,
+        32.0
+      ],
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174414_589056_pool_resources_post",
+      "errors": []
+    },
+    {
+      "component": "add",
+      "label": "残差Add（GROUP_BYTES=16）",
+      "instances": 1,
+      "status": "PASS",
+      "totals": [
+        1229.0,
+        944.0,
+        2.0,
+        8.0
+      ],
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174506_017163_pool_resources_add",
+      "errors": []
+    },
+    {
+      "component": "dw7",
+      "label": "DW7（8通道）",
+      "instances": 1,
+      "status": "TIMEOUT",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174624_483215_pool_resources_dw7",
+      "errors": []
+    },
+    {
+      "component": "pad",
+      "label": "补边Pad",
+      "instances": 1,
+      "status": "PASS",
+      "totals": [
+        444.0,
+        301.0,
+        0.0,
+        9.0
+      ],
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175428_174033_pool_resources_pad",
+      "errors": []
+    },
+    {
+      "component": "fabric",
+      "label": "4-bank / 23客户端存储仲裁",
+      "instances": 1,
+      "status": "MEMORY_GUARD",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175608_695778_pool_resources_fabric",
+      "errors": []
+    },
+    {
+      "component": "dispatch",
+      "label": "任务调度器（2048项）",
+      "instances": 1,
+      "status": "MEMORY_GUARD",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175659_663862_pool_resources_dispatch",
+      "errors": []
+    },
+    {
+      "component": "leases",
+      "label": "缓冲区生命周期管理（60槽）",
+      "instances": 1,
+      "status": "FAIL",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175800_617034_pool_resources_leases",
+      "errors": [
+        "ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'hold_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (4194304) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 4194304}' to allow the memory to be dissolved into individual bits",
+        "ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'use_owners_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (67584) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 67584}' to allow the memory to be dissolved into individual bits",
+        "ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details"
+      ]
+    },
+    {
+      "component": "results",
+      "label": "结果交接（60槽）",
+      "instances": 1,
+      "status": "MEMORY_GUARD",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175823_028191_pool_resources_results",
+      "errors": []
+    },
+    {
+      "component": "programmer",
+      "label": "固定网络模板展开（512步）",
+      "instances": 1,
+      "status": "MEMORY_GUARD",
+      "totals": null,
+      "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_180208_206018_pool_resources_programmer",
+      "errors": []
+    }
+  ],
+  "known_component_sum": [
+    48869.0,
+    30189.0,
+    112.0,
+    49.0
+  ],
+  "operator_pool_sum": [
+    48869.0,
+    30189.0,
+    112.0,
+    49.0
+  ],
+  "missing_components": [
+    "DW7（8通道）",
+    "4-bank / 23客户端存储仲裁",
+    "任务调度器（2048项）",
+    "缓冲区生命周期管理（60槽）",
+    "结果交接（60槽）",
+    "固定网络模板展开（512步）"
+  ],
+  "shared_sram_bytes": 67108864,
+  "shared_sram_included": false,
+  "cpu_imem_uart_included": false,
+  "place_route_performed": false,
+  "evidence": [
+    {
+      "component": "k3",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_155929_013040_self_cnn_synth\\result.json",
+      "result_sha256": "dfefef4f402e830ee0d16ebbed88e8a8909e6b9b97be56aa998f34a594b892e5",
+      "report_sha256": "5a33e459d70eba6c22ebbc3dc1b8d7e8791e39e10959e6a81625e33b398d9a2f"
+    },
+    {
+      "component": "k1",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261024_012253_161051_self_cnn_synth\\result.json",
+      "result_sha256": "76e210e93f6569223ccf5fd74d1af6d9fd9cea009bb71e8292ff675224b358e0",
+      "report_sha256": "cd0c62044cdf72a0ca16c0870c00cdfaad668e5a40df60fc7943eaef7dfbea18"
+    },
+    {
+      "component": "post",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174414_589056_pool_resources_post\\result.json",
+      "result_sha256": "7e34faa051bb9ab690716917777f1668c32f72cc592858ed5b779bc782657978",
+      "report_sha256": "189fc5191318aa70689f5f2febd1aba2d6ac78a628c4c32f59d45efa56204508"
+    },
+    {
+      "component": "add",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174506_017163_pool_resources_add\\result.json",
+      "result_sha256": "be895e2a5c6d530ff87234392b84ff47aebf14659adb090b9bafe3177d306eff",
+      "report_sha256": "03b653e13b8cfaf65ea98a88378ace533a7124ac3de578e49b5e7e76fdf355b9"
+    },
+    {
+      "component": "dw7",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_174624_483215_pool_resources_dw7\\result.json",
+      "result_sha256": "d7d987b2b9f8ac8156931e388afa7048712a9f206401d2f45ad39b1911020fb0",
+      "report_sha256": null
+    },
+    {
+      "component": "pad",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175428_174033_pool_resources_pad\\result.json",
+      "result_sha256": "b0b08de3845e6c1da184105703f37e0e0d2da7b5127c67bd5be48ec88d295117",
+      "report_sha256": "3984d55b62eac4f2fa73d3ef36ba72b858943a8c7010244fe395e99e70803b41"
+    },
+    {
+      "component": "fabric",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175608_695778_pool_resources_fabric\\result.json",
+      "result_sha256": "1c0f02353fc55ec8b777cdc37c1b9ce73ed1a9cba2e8d83874746fcec2349b9c",
+      "report_sha256": null
+    },
+    {
+      "component": "dispatch",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175659_663862_pool_resources_dispatch\\result.json",
+      "result_sha256": "6767fe355ca0f48691d2137f87c4bbfa7cc4a1354cc1e2d425d43e2b6b7820a5",
+      "report_sha256": null
+    },
+    {
+      "component": "leases",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175800_617034_pool_resources_leases\\result.json",
+      "result_sha256": "2cbee8a584422fe2b58bd21b6e6c618afc70878fcc06bb5e7e2f9d896a6b26d0",
+      "report_sha256": null
+    },
+    {
+      "component": "results",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_175823_028191_pool_resources_results\\result.json",
+      "result_sha256": "942c693bffc34e65f3a8d74789b4d45cbcd57a137908d66fa211b4466d0951de",
+      "report_sha256": null
+    },
+    {
+      "component": "programmer",
+      "result": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261025_180208_206018_pool_resources_programmer\\result.json",
+      "result_sha256": "add38c706cf86a861a26da804c3b81a884e916be809a42928b1b516e49c4762c",
+      "report_sha256": null
+    }
+  ]
+}

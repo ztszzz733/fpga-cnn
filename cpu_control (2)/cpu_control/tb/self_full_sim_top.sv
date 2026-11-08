@@ -2,7 +2,7 @@
 // Actual bai-datasram SRAM plus configurable CNN operator pools. Four complete
 // image commits may arrive during computation. No arithmetic/memory TB model.
 module self_full_sim_top #(
- parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
+ parameter PW4=0, CONV_OVERLAP=0, WIDE_PIPE=0, PW8=0, DW_CACHE=0, POST_GROUP=4, K3_PAR4=0, DW_PRIORITY=0, FRAME_PRIORITY=0,
  parameter FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
  parameter MAX_TASKS=1024,IW=$clog2(MAX_TASKS),SLOTS=4*FRAME_CONTEXTS,SW=$clog2(SLOTS),
  parameter K3_UNITS=4,K1_UNITS=2,POST_UNITS=1,
@@ -48,7 +48,7 @@ module self_full_sim_top #(
  output wire [IW-1:0] debug_program_index,
  output wire [511:0] debug_program_command
 );
- self_fixed_network_top #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.PW4(PW4),.CONV_OVERLAP(CONV_OVERLAP),.WIDE_PIPE(WIDE_PIPE),.PW8(PW8),.DW_PRIORITY(DW_PRIORITY),.FRAME_PRIORITY(FRAME_PRIORITY),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) dut(.*);
+ self_fixed_network_top #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.MAX_TASKS(MAX_TASKS),.IW(IW),.SLOTS(SLOTS),.SW(SW),.PW4(PW4),.CONV_OVERLAP(CONV_OVERLAP),.WIDE_PIPE(WIDE_PIPE),.PW8(PW8),.DW_CACHE(DW_CACHE),.POST_GROUP(POST_GROUP),.K3_PAR4(K3_PAR4),.DW_PRIORITY(DW_PRIORITY),.FRAME_PRIORITY(FRAME_PRIORITY),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.SRAM_SIZE(SRAM_SIZE)) dut(.*);
  assign debug_program_valid=dut.program_valid;
  assign debug_program_ready=dut.program_ready;
  assign debug_program_index=dut.program_index;

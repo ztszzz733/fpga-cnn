@@ -1,3 +1,101 @@
+## 2026-10-25 当前23算子资源审计：部分数值，非整机PASS
+
+用户要求统计全部资源，授权此次资源检查。未改功能RTL、未重跑全网。scripts/synth_pool_resources.py对当前23池/15上下文/2048任务/60槽进行OOC综合，64MiB SRAM只在临时副本中将datasram_tdp_bank黑盒化，保留真实仲裁与地址宽度，内部算子RAM仍计入。完整top20261025_174301_396810_pool_resources_full因可用物理内存<1.5GiB中止，不能声称整体PASS；随后逐模块顺序尝试，均已结束且无Vivado残留，无自动检查。
+
+源码哈希核对后复用旧K3单核2450LUT/1625FF/10BRAM/0DSP×4，PW8单核2700/1553/5/0×12。本次Post16固定mode_add0：1249/952/2.5/8×4（20261025_174414_589056）；Add固定mode_add1：1229/944/2/8×1（174506_017163）；Pad444/301/0/9（175428_174033）。已测22算子小计48869LUT、30189FF、112BRAM Tile、49DSP，约器件91.86%/28.37%/80%/22.27%。这是独立报告相加，不是整体映射值或严谨下限；不能继续称空间充足。
+
+未取得6项：DW7 MAX_WIDTH7/MAX_CHANNELS512/LANES8（174624_483215）480秒TIMEOUT；fabric（175608_695778）、dispatch（175659_663862）、results（175823_028191）、programmer（180208_206018）MEMORY_GUARD。leases（175800_617034）明确FAIL Synth8-3391：hold_reg4194304bits与use_owners_reg67584bits无法推断RAM、超拆位限制；未强行展开。所有新run后缀_pool_resources_<component>，失败证据不改。保护/超时不等于FPGA超限。保持表声明512KiB、pending60×2048=122880bit，不是实际映射FF数。64MiB共享SRAM未计入，CPU/IMEM/UART不在这个已验证CNN顶层，不能给全SoC总数。后续应先改善可综合任务表/稀疏依赖/循环窗口及存储规划，再衡量扩容，未实施这些功能修改。
+
+交付deliverables/cnn_pool23_resource_audit/README.md、summary.json含11类完整清单、成功资源、未知项/原因和全部原始报告链接；scripts/report_pool_resources.py可复核源哈希及生成基础报告。最终README补充了结论，validation.json记录文档/summary哈希与链接检查。此前仿真PASS不代表本配置可直接上板。未提交推送，保留已有改动。
+
+## 2026-10-25 pool_scale完整15图PASS并交付（最新）
+
+build/runs/20261025_165454_362193_pool_scale_fifteen于17:14:42完成PASS，无活动仿真，不重跑。K3×4/K1×12/Post×4，DW7/Add/Pad各1，共23。1965任务3507156480MAC290059380逐值检查字节，15份128字节共1920字节；SHA dc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7，与独立参考及旧15图完全一致。源码与上轮完全相同，仅实例参数改变；源/数据/程序/输出/逐任务依赖及实例映射检查通过。
+
+整批113903000周期，100MHz条件1139.030ms，旧1940.5535ms，周期减少41.30386%，同频批次速度1.70369倍。首张888.16603→788.63022ms，14间隔平均75.170532→25.028554ms，未达到平均<10ms目标。范围3.77282～72.92255ms，中位14.33482ms，15图按1到15返回。整批/15=75.93533ms/张，与相邻结果间隔不同，不证明无限稳态；全部输出时间见交付output_timing.csv。
+
+电脑模拟器主体1045.36秒，runner含初始化收尾1135.76587秒（18分56秒），compile0，小门槛编译70.790秒及四场景21.827秒另计。任务起止16:55:02.354～17:14:42.163约19分40秒，包括runner计时范围外开销。硬件周期加速不代表电脑仿真耗时同比缩短。
+
+交付deliverables/self_cnn_pool_scale_20261025_165454_362193_pool_scale_fifteen/README.md、task_timeline/index.html、输出节奏/时间表、五逐图片任务PNG、两真实work PNG/VCD/GTKWave。八PNG已视检（work图实际23行），隐藏GTKWave两会话各10唯一信号实际加载PASS，算子相关总线23位。finalize_pool_scale.py已通过15行1980记录、默认全程与JS语法静态核验并封存artifact_validation/provenance；file限制未绕过。自动检查ID15在本次交付时删除。
+
+读写总量仍1098521220字节，4bank32位100MHz理想1.6GB/s，对持续吞吐的下限45.7717ms/张，不是有限批次相邻间隔下限。仅增加算子没有达到10ms，后续优先考虑减少搬运或协商存储带宽，不自动继续无限增加/重跑。仍合成112×112RGB、诊断量化、64MiB实验SRAM、整图输入提交，无CPU/UART/同图条带/识别准确率/512KiB/无限稳态或上板时序资源保证。按用户要求没有新增资源测试。以下运行中条目是历史。
+
+## 2026-10-25 pool_scale多算子扩容：唯一当前15图全网运行
+
+用户授权多类算子同时增加，目标平均相邻结果间隔<10ms；暂不追加资源检查。配置K3×4（每核4空间MAC）、K1×12 PW8、Post×4，DW7/Add/Pad各1，共23；原2/4/1。RTL、C++、数据与上轮完全相同，仅已有参数例化数量变化；4bank/64MiB/15上下文/60槽/2048任务/FRAME_PRIORITY/input pace80不变。运行器新增三个数量参数、独立缓存后缀_pool4_12_4、门槛pool一致性与31单位掩码上限检查，默认旧配置保留。设计docs/pool_scale_10ms.md。
+
+小门槛build/runs/20261025_165341_068135_self_fifteen四PASS：172151/900191/162911/546432，原20261025_160707_701204为274751/900191/271511/544087。serial逐周期相同，normal改善约37.34%，stress略慢。120任务1536000MAC269460检查字节15360结果字节，旧新哈希4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64。全部20个扩容实例均执行任务。源码相同、仅池参数差异、四场景输出和波形23位检查PASS。小门槛编译70.78996秒、四场景21.82703秒。
+
+唯一活动run build/runs/20261025_165454_362193_pool_scale_fifteen，16:54:54后台启动，runner PID373，记录build/pool_scale_active.json及同名run.launcher.log；不是exec会话。复用.self_fifteen_pw8_build_frame_priority_dwcache_post16_k3par4_pool4_12_4，compile0。启动确认result RUNNING且进度到25/1965。禁止改活动RTL/TB/数据、重复编译/启动。不能抵御WSL关闭或电脑重启，无运行时检查点。
+
+完整PASS需1965任务3507156480MAC290059380检查字节15结果1920字节，SHAdc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7；与独立参考、上轮20261025_161109_552493_k3par4_fifteen相同。旧全网194055350拍，100MHz条件1940.5535ms、首张888.16603ms、14间隔均75.170532ms。目标判定需平均14间隔<10ms，同时报告首张、最大、全部间隔、整批/15，不能延迟读取/攒结果伪造达标，有限批次不是无限稳态。
+
+已经确认访存带宽约束：旧CNN读808461840B+写290059380B=1098521220B，四bank32位100MHz的CNN/IO理想B口总带宽1.6GB/s，持续吞吐下限45.7717ms/张，非有限批次相邻间隔下限。本轮不改存储架构，不能靠复制算子承诺持续10ms。若达不到如实报告，下一步需减少搬运或协商存储带宽，不无根据地再次扩大/重跑。
+
+heartbeat已创建，实际ID15（旧检查已删，此为新的扩容检查），每30分钟只读result及overlap/progress.jsonl末尾，正常安静，仅完成/错误通知；长期不动最多一次对应进程及launcher.log，不循环监督。完成交付/报错后删除ID15；用户叫停立即停对应runner/子进程和检查并保留记录。
+
+PASS后本机Python C:/Users/windows/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -B scripts/prepare_pool_scale.py 活动run。生成deliverables/self_cnn_pool_scale_<run>，核对源/数据/同程序小门槛/输出/逐任务依赖与实例身份。视检八PNG：output_cadence、task_timeline/full_network、images_1_5、images_6_10、images_11_15、cross_operator、mac_detail、pipeline_detail。work PNG应23行，GTKWave仍10唯一信号，前六总线23位；validate_gtkwave.ps1隐藏窗口实际加载两会话，DLL重定位可沙盒外隐藏重试，不交黑截图；file浏览器限制不绕过。scripts/finalize_pool_scale.py OUT --png-reviewed静态JS/15行1980记录/默认全程封存。仅修报告器，不改RTL/数据/证据或重仿真补图。报告电脑wall_seconds、主体与100MHz条件时间分开，小门槛编译另计。
+
+仍合成112×112RGB、诊断尺度、整图写完提交，非CPU/UART/同图条带/识别准确率/512KiB/无限连续或上板资源时序证明。资源未新增综合。未提交或推送；旧交付保留。以下条目均历史。
+
+## 2026-10-25 K3_PAR4完整15图PASS并交付（最新）
+
+run build/runs/20261025_161109_552493_k3par4_fifteen已于16:29:25完成PASS，无活动仿真，不再重跑。1965任务、3507156480MAC、290059380核验字节、15份128字节共1920字节；SHA dc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7，与独立整数参考及旧15图逐字节一致。源码/数据/同程序门槛/旧模式逐周期兼容/任务依赖全部核验通过。
+
+整批194055350周期，100MHz条件1940.55350ms，旧233671715周期/2336.71715ms，周期减少16.95386%，同频速度1.20415倍。首张1169.10160→888.16603ms；14间隔均83.401109→75.170532ms，本轮范围8.84268～151.28701ms，仍有限批次波动，不能宣称稳定无限75ms/张。输出顺序1到15；每次输出时间/14个间隔见交付output_timing.csv。跨图实际work152683126拍、跨类55718108拍；K3单脉冲现在最多4MAC，不直接拿脉冲数量下降当计算减少。
+
+电脑模拟器主体995.140秒，runner测量含初始化收尾1053.898秒（17分34秒），compile0；任务起止时间戳16:11:13.081～16:29:25.954（18分13秒，含runner计时范围外开销）。小门槛编译66.09秒另计。电脑执行时间不能等同硬件周期或硬件加速比。
+
+交付deliverables/self_cnn_k3par4_20261025_161109_552493_k3par4_fifteen/README.md、task_timeline/index.html、output_cadence.png、三组大字任务图/完整任务图/跨类窗口、两真实work PNG/VCD/GTKWave。八PNG已视检，隐藏GTKWave实际加载两会话各10唯一信号PASS；15行1980记录默认全程及JavaScript语法静态检查通过，finalize_k3par4.py已封存artifact_validation和provenance。浏览器file限制未绕过。仍15合成112×112RGB、诊断尺度、64MiB实验SRAM、整图写完提交；无CPU/UART/同图条带/识别准确率/无限稳态/整机100MHz保证。用户要求先不管资源，不增加新资源测试。自动检查ID15在此次交付时删除。以下“运行中”均历史。
+
+## 2026-10-25 K3_PAR4四位置卷积：唯一当前15图完整仿真
+
+用户授权继续优化；随后明确“可以先不管资源占用”，后续聚焦正确性与速度，不再追加资源检查。新增self_conv_spatial4_engine，K3×2各四空间MAC，stride1/2无冲突四输入RAM银行、单份输入存储和权重广播，边缘1/2/4有效MAC。保留DW_CACHE及POST_GROUP16、K1×4 PW8、DW7/Post/Add/Pad各1和FRAME_PRIORITY，参数K3_PAR4默认0。设计docs/k3par4_design.md。源/测试/数据已冻结，不能在活动全网期间修改、重编、重启。
+
+最终单元build/runs/20261025_160115_170570_k3par4_unit_k3：168数值旧新+独立参考、3clear、锁存、13非法及2同拍PASS，最大512通道覆盖；编译13.969秒、测试1.623秒。代表普通6×6Ci64Co8周期98533→42981，DW6×6C64为21595→12642，DW9×9C32为33349→21162，读取字节相同。早期通过报告不等于最终源码证据。
+
+最终小门槛build/runs/20261025_160707_701204_self_fifteen：四PASS，overlap274751/serial900191/preloaded271511/stress544087；编译66.09秒、四场景14.39秒。关闭新功能兼容回归20261025_160908_633790_self_fifteen：502151/1359191/498431/667821，与上一轮20261025_150333_123534逐周期一致。每场景120任务1536000MAC269460检查字节15360输出字节，SHA4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64。build/k3par4_small_validation.json核验当前源码/同数据/同参数仅K3_PAR4差异/输出。正常小回归周期减少45.285%，尚不能代表全网。
+
+最终单核综合20261025_155929_013040_self_cnn_synth：2450LUT1625FF10BRAM Tile0DSP，10ns WNS+0.057ns，非整机布局布线，裕量很小。旧DW_CACHE1单核20261025_154820_766371：2098LUT1541FF6BRAM0DSP，WNS-1.582ns；两套增704LUT168FF8BRAM。该旧综合与中间20261025_155046因并发内存压力导致监督300秒超时，但Vivado随后实际完成并exit0；原TIMEOUT保留，completion_verified.json核对阶段源码/完成标记/DCP/报告哈希后独立记录成功，elapsed_seconds=null，不编造耗时。没有存活残留。中间新核WNS-1.036/-0.629未达标，最终通过预计算权重末拍边界解除控制长链，无新增计算周期。今后重任务顺序执行，避免16GB电脑内存压力。
+
+唯一活动run build/runs/20261025_161109_552493_k3par4_fifteen，16:11:09启动。WSL独立后台runner PID446，由scripts/launch_k3par4_background.py启动，记录build/k3par4_active.json、同名run.launcher.log；不是exec会话。复用.self_fifteen_pw8_build_frame_priority_dwcache_post16_k3par4，compile0；旧缓存未覆盖，兼容回归独立后缀_k3par4_compat。不能抵御WSL关闭或电脑重启，无运行时检查点。
+
+完整15图预期1965任务3507156480MAC290059380检查字节15结果1920字节，SHAdc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7。与同数据旧15全网20261025_150610_730169_self_fifteen比较，旧233671715周期、100MHz条件2336.71715ms、首张1169.10160ms、14间隔均83.401109ms。完整PASS前不宣称全网加速。
+
+每30分钟heartbeat已创建，实际automation ID=15，正常安静，完成/报错通知。每次只读result及overlap/progress.jsonl末尾，长期不动最多查一次对应进程及launcher.log，不循环监督或重跑。完成/报错后删除ID15；用户停止则立即停对应runner/子进程和检查并留证据。
+
+完整PASS后本机Python C:/Users/windows/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -B scripts/prepare_k3par4.py build/runs/20261025_161109_552493_k3par4_fifteen --baseline-gate build/runs/20261025_160908_633790_self_fifteen --unit build/runs/20261025_160115_170570_k3par4_unit_k3 --synth-old build/runs/20261025_154820_766371_self_cnn_synth --synth-new build/runs/20261025_155929_013040_self_cnn_synth。报告器允许旧综合completion_verified且核对原TIMEOUT哈希。输出deliverables/self_cnn_k3par4_<run>，验证源/输入/输出/小门槛程序/任务依赖。视检八PNG：output_cadence、task_timeline/full_network、images_1_5、images_6_10、images_11_15、cross_operator、mac_detail、pipeline_detail。validate_gtkwave.ps1隐藏窗口实际加载两会话各10唯一信号，DLL问题沙盒外隐藏重试，不交黑截图。file浏览器限制不绕过；scripts/finalize_k3par4.py OUT --png-reviewed静态JS检查封存。仅修报告器、不改证据/RTL，不重新仿真为补图。
+
+报告同15图整批/首张/14间隔、电脑wall_seconds与simulation_seconds；100MHz仅条件换算。输入十张合成112×112RGB加前五张重复，15独立上下文、2048任务、60槽、64MiB实验SRAM、初始化43933440字节；整图真实A口写完提交，无CPU/UART/同图条带/识别准确率/512KiB适配或无限稳态吞吐结论。K3 work脉冲1/2/4MAC，K1最多8，Post/Add/Pad为接受写请求；任务条含等待。未提交/推送，原draw.io备份保留。
+
+## 2026-10-25 15图完整MobileFaceNet PASS并交付（最新）
+
+run build/runs/20261025_150610_730169_self_fifteen已于15:23:30完成PASS，无需重跑。1965任务、3507156480MAC、290059380检查字节、15份128字节输出，SHA dc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7；全部独立整数参考及旧十图输出加前五图逐字节一致，源/数据/同程序小门槛/逐任务依赖核验通过。
+
+233671715周期，100MHz条件整批2336.71715ms、首张1169.10160ms；14个相邻间隔平均83.401109ms，最小2.082920、最大203.517500ms，按图1到15返回。输出仍有波动，不能称稳定83ms无限吞吐。无优化前15图全网，不直接用旧十图算增速；小数据同15图overlap周期减少约6.98%属于小回归。
+
+电脑主体954.412秒，含初始化收尾1003.038秒（约16分43秒），本次compile0；新小门槛编译49.1565秒、四场景15.4225秒另计。跨图实际work 190120112拍，跨类 139476182拍。
+
+交付deliverables/self_cnn_fifteen_20261025_150610_730169_self_fifteen/README.md、task_timeline/index.html、output_cadence.png、三组大字图及完整图/跨类图、两真实work波形和GTKWave。八PNG已视检；GTKWave实际加载两个会话各10唯一信号PASS；15行1980记录、默认全程与JS语法静态检查PASS，finalize_self_fifteen.py已封存QA和文件哈希。未绕过浏览器file限制。保留64MiB实验SRAM/合成图/诊断量化/整图提交，无CPU/UART/层内条带/识别准确率/板级频率保证。mobilefacenet-15在交付时删除，无需继续检查；下面运行中条目是历史。
+
+## 2026-10-25 15图完整仿真进行中（唯一当前运行）
+
+用户明确要求依据上次结果优化并跑15张完整MobileFaceNet。已做可选DW_CACHE=1整层DW权重在原有RAM内复用、POST_GROUP=16减少Post/Add分组排空；K3×2/K1×4/DW7/Post/Add/Pad各1不变，PW8/FRAME_PRIORITY=1。另修复self_conv_wide_engine input_wide判断：当前像素剩余不足4通道禁止宽读；原5通道偏移1旧/新模式均失败，扩大5/6通道回归后通过，临时诊断已移除。设计docs/fifteen_dwcache_postgroup.md。默认优化关闭仍保留正确性修复。
+
+单元20261025_150027_298472_dwcache_unit_k3：68数值新旧对照、额外无中断/clear重启/锁存/非法/同拍PASS，每优化DW命令权重字节数断言恰好整层一次。9×9 Ci32 DW3 49170→33349拍，读11808→7488字节。Post20261025_145420_816110_post_group_unit：40新旧对照、30尾部同拍/3clear/7非法/2锁存PASS；199元素Ci64 2769→2517拍。失败过程日志保留，不作为最终结论。
+
+15图小门槛基线build/runs/20261025_150225_905513_self_fifteen：overlap539807/serial1476767/preloaded536207/stress687006；优化build/runs/20261025_150333_123534_self_fifteen：502151/1359191/498431/667821。四场景全部PASS且输出一致，120任务1536000MAC269460检查字节15360结果字节；SHA4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64。正常小图周期减少6.9758%，不代表全网。新编译49.1565秒四场景15.4225秒，旧编译55.5468秒四场景15.8035秒。
+
+唯一完整run build/runs/20261025_150610_730169_self_fifteen，2026-10-25 15:06:13启动，compile0，复用上述优化gate。WSL独立后台runner PID376，由scripts/launch_self_fifteen_background.py启动；启动记录build/self_fifteen_active.json，同名run.launcher.log在build/runs下。不是exec会话，不能用旧会话失效判断退出。脱离当前终端但不保证抵御WSL关闭/电脑重启，无运行时检查点。禁止改活动RTL/TB/数据、重启或重复编译。
+
+原10张112×112RGB合成图再重复前5张，15独立有限上下文/2048任务容量/60槽/64MiB仿真SRAM；真实A口初始化43933440字节。输入经实际SRAM端口整图写完提交，无CPU/UART/同图条带/准确率/512KiB适配/上板频率保证。预期1965任务、3507156480MAC、290059380检查字节、15结果1920字节，SHAdc0d1b681154fd549833869536855ad642a7db390c8a48b170c72300c3b3c9a7，等于旧十图输出加前五图。完整PASS前不宣称全网通过。
+
+heartbeat mobilefacenet-15已创建每30分钟检查，正常安静，完成/报错才通知；只读result及overlap/progress.jsonl末尾，长期不动最多查一次对应进程及launcher.log。不频繁监督，不盲目重跑。停止要求立即终止对应runner及子进程、删除检查并保留记录。
+
+完成后本机Python C:/Users/windows/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe -B scripts/prepare_self_fifteen.py 活动run --baseline-gate build/runs/20261025_150225_905513_self_fifteen。核对源/数据/程序/逐任务依赖及输出哈希；输出deliverables/self_cnn_fifteen_<run>。视检八PNG：output_cadence、task_timeline/full_network、images_1_5、images_6_10、images_11_15、cross_operator、mac_detail、pipeline_detail。validate_gtkwave.ps1隐藏加载两会话各10唯一信号，DLL重定位可沙盒外隐藏重试；file浏览器受限不绕过。scripts/finalize_self_fifteen.py OUT --png-reviewed静态JS检查封存。报告首张、14间隔、整批cycles/100MHz条件时间、电脑wall_seconds和真实work重叠。无旧15图全网对照，不直接用旧十图算全网加速比。报告器若错只修报告器，保留RTL和证据。交付/报错后更新本记录、删除mobilefacenet-15。
+
+上次30图已中断，无完整PASS，自动检查已删除，不恢复其旧“运行中”条目；本轮是新的15图运行。git原有未跟踪draw.io备份保留，未提交推送。
+
 ## 2026-10-24 18:46检查：30图仿真已中断（当前）
 
 本轮run build/runs/20261024_154316_886353_self_thirty进度停止在18:18:17，2939/3930任务、410835964周期、末尾模拟器累计8797.12秒。原会话91722已失效；沙盒外一次成功WSL进程检查exit0、匹配当前模拟器0个，确认当前未在运行。simulation.log末尾没有数值FAIL或退出原因，具体中断原因未知，不能推断电脑重启/崩溃。未获全网PASS，不制作完整结果或把部分任务当作30图成功。原result.json的RUNNING是未收尾状态，已原样保留；诊断写入同run/interruption_check.json。缓存、输入、事件、部分波形及日志保留，不盲目重跑。mobilefacenet-30将在本次错误报告时删除；后续若用户明确要求继续，先说明没有运行时检查点，复用编译缓存仍需从头计算。本轮未修改RTL/数据/旧运行证据。

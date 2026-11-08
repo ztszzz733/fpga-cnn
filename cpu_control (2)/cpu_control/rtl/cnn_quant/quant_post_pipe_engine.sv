@@ -3,7 +3,7 @@
 // Groups of four outputs use one aligned word write; heads/tails use bytes.
 // Only one external request is outstanding. Done follows the final response.
 // clear requires the fabric to cancel old requests and late responses too.
-module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
+module quant_post_pipe_engine #(parameter MAX_CHANNELS=512, GROUP_BYTES=4)(
  input logic clk,rst_n,clear,start,mode_add,
  input logic [31:0] src_a,src_b,destination,parameter_base,count,channels,
  output wire busy,done,error,
@@ -11,14 +11,17 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
  input wire ready,response,input wire [31:0] rdata
 );
  localparam CB=$clog2(MAX_CHANNELS+1);
+ localparam GB=$clog2(GROUP_BYTES+1);
+ localparam LB=$clog2(GROUP_BYTES);
  typedef enum logic [3:0] {IDLE,PR,PW,GROUP,AR,AW,BR,BW,DRAIN,WR,WW,FINISH,FAIL} state_t;
  state_t state;
  logic [31:0] pa,pb,pout,pp,n,index,group_start;
  logic [CB-1:0] nch,ch,param_ch;
- logic [2:0] param_word,group_len,loaded,produced;
+ logic [2:0] param_word;
+ logic [GB-1:0] group_len,loaded,produced,store_offset;
  logic add;
  logic signed [31:0] sample_a;
- logic [31:0] packed_word;
+ logic [8*GROUP_BYTES-1:0] packed_word;
  (* ram_style="block" *) logic [31:0] bias_mem[0:MAX_CHANNELS-1];
  (* ram_style="block" *) logic [31:0] ma_mem[0:MAX_CHANNELS-1];
  (* ram_style="block" *) logic [31:0] mb_mem[0:MAX_CHANNELS-1];
@@ -29,7 +32,7 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
  logic [6:0] pv;
  logic [5:0] sh[0:6];
  logic [7:0] zero[0:6],low[0:6],high[0:6];
- logic [1:0] lane[0:6];
+ logic [LB-1:0] lane[0:6];
  logic signed [32:0] ax1,bx1;
  logic signed [64:0] prod_a2,prod_b2;
  logic signed [65:0] sum3,rounded5,value6;
@@ -41,6 +44,7 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
  wire wr_response=response && (state==WW || (state==WR && ready));
  wire issue=!clear && ((!add && ar_response) || (add && br_response));
  wire [31:0] group_addr=pout+group_start;
+ wire [2:0] store_bytes=group_len==1?1:4;
  wire [65:0] absolute3=sum3[65] ? $unsigned(-sum3):$unsigned(sum3);
  wire [65:0] half3=sh[3]==0 ? 66'd0:(66'd1<<(sh[3]-1'b1));
  wire [65:0] shifted4=magnitude4>>sh[4];
@@ -53,12 +57,12 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
  assign write=state==WR;
  assign byte_access=(state==BR) || (state==AR && add) || (state==WR && group_len==1);
  always_comb begin
-  addr=0;wdata=state==WR?packed_word:32'd0;
+  addr=0;wdata=state==WR?(packed_word>>(store_offset*8)):32'd0;
   case(state)
    PR:addr=pp;
    AR:addr=pa+(add?index:(index<<2));
    BR:addr=pb+index;
-   WR:addr=group_addr;
+   WR:addr=group_addr+store_offset;
    default:;
   endcase
  end
@@ -77,7 +81,7 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
     bias0<=bias_mem[ch];ma0<=ma_mem[ch];mb0<=mb_mem[ch];cfg0<=cfg_mem[ch];
     low[0]<=clamp_mem[ch][7:0];high[0]<=clamp_mem[ch][15:8];
     a0<=add?sample_a:$signed(rdata);b0<=add?$signed({24'd0,rdata[7:0]}):32'sd0;
-    lane[0]<=loaded[1:0];
+    lane[0]<=loaded[LB-1:0];
    end
    if(pv[0])begin
     ax1<=add ? ($signed({a0[31],a0})-$signed({25'd0,cfg0[15:8]})) :
@@ -118,7 +122,7 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
     IDLE:if(start)begin
      pa<=src_a;pb<=src_b;pout<=destination;pp<=parameter_base;n<=count;
      nch<=channels;add<=mode_add;ch<=0;param_ch<=0;param_word<=0;index<=0;group_start<=0;
-     state<=channels==0 || channels>MAX_CHANNELS || count==0 || parameter_base[1:0]!=0 ||
+     state<=(GROUP_BYTES!=4 && GROUP_BYTES!=16) || channels==0 || channels>MAX_CHANNELS || count==0 || parameter_base[1:0]!=0 ||
              (!mode_add && src_a[1:0]!=0) ? FAIL:PR;
     end
     PR,PW:begin
@@ -133,8 +137,8 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
      end
     end
     GROUP:begin
-     group_len<=group_addr[1:0]==0 && n-group_start>=4?4:1;
-     loaded<=0;produced<=0;packed_word<=0;state<=AR;
+     group_len<=group_addr[1:0]==0 && n-group_start>=4?((n-group_start>=GROUP_BYTES)?GROUP_BYTES:((n-group_start)>>2)<<2):1;
+     loaded<=0;produced<=0;store_offset<=0;packed_word<=0;state<=AR;
     end
     AR,AW:begin
      if(state==AR && ready)state<=AW;
@@ -150,8 +154,12 @@ module quant_post_pipe_engine #(parameter MAX_CHANNELS=512)(
     WR,WW:begin
      if(state==WR && ready)state<=WW;
      if(wr_response)begin
-      group_start<=group_start+group_len;
-      state<=index==n?FINISH:GROUP;
+      if(store_offset+store_bytes<group_len)begin
+       store_offset<=store_offset+store_bytes;state<=WR;
+      end else begin
+       group_start<=group_start+group_len;
+       state<=index==n?FINISH:GROUP;
+      end
      end
     end
     DRAIN:;

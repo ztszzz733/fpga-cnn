@@ -8,7 +8,7 @@
 // clear aborts this master; the interconnect must also cancel its pending
 // transaction, as this interface has no transaction ID for a late response.
 module self_conv_wide_engine #(
- parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2
+ parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=0
 )(
  input logic clk,rst_n,clear,start,depthwise,
  input logic [31:0] input_base,weight_base,output_base,
@@ -73,6 +73,13 @@ module self_conv_wide_engine #(
  logic [IA_BITS-1:0] load_index,cache_row_bytes,input_index;
  logic [IA_BITS-1:0] window_base,window_row_base,kernel_row_base;
  logic [WA_BITS-1:0] weight_load_index,weight_index;
+ // A depthwise layer's complete weights fit in the existing ordinary-channel
+ // weight RAM. Reload on every command; reuse across all spatial tiles only.
+ logic dw_weights_valid;
+ logic [WA_BITS-1:0] dw_weight_base;
+ wire dw_cached=DW_CACHE && dw;
+ wire weight_hit=dw_cached && dw_weights_valid;
+ wire [31:0] weight_load_bytes=dw_cached?weight_extent[31:0]:weight_per_channel;
  wire [31:0] channel_stride_bytes=stride_two?({{(32-C_BITS){1'b0}},ci}<<1):ci;
  wire [31:0] output_pixel_bytes={{(32-C_BITS){1'b0}},co}<<2;
  wire input_response=response && (state==IWAIT || (state==IREQ && ready));
@@ -83,10 +90,10 @@ module self_conv_wide_engine #(
  assign busy=(state!=IDLE && state!=FINISH && state!=FAIL);
  assign done=(state==FINISH);
  assign error=(state==FAIL);
- assign valid=!clear && (state==IREQ || state==WREQ || state==OREQ);
+ assign valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
  assign write=(state==OREQ);
- wire input_wide=(load_addr[1:0]==0 && load_index[1:0]==0 && (load_c>>2)<(ci>>2));
- wire weight_wide=(weight_addr[1:0]==0 && weight_load_index[1:0]==0 && (weight_load_index>>2)<(weight_per_channel>>2));
+ wire input_wide=(load_addr[1:0]==0 && load_index[1:0]==0 && (load_c+32'd4<=ci));
+ wire weight_wide=(weight_addr[1:0]==0 && weight_load_index[1:0]==0 && (weight_load_index>>2)<(weight_load_bytes>>2));
  wire [2:0] input_step=input_wide?3'd4:3'd1;
  wire [2:0] weight_step=weight_wide?3'd4:3'd1;
  assign byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
@@ -137,11 +144,12 @@ module self_conv_wide_engine #(
 
  always_ff @(posedge clk or negedge rst_n)begin
   if(!rst_n)begin
-   state<=IDLE;input_reads<=0;weight_reads<=0;mac_count<=0;
+   state<=IDLE;input_reads<=0;weight_reads<=0;mac_count<=0;dw_weights_valid<=0;
   end else if(clear)begin
-   state<=IDLE;input_reads<=0;weight_reads<=0;mac_count<=0;
+   state<=IDLE;input_reads<=0;weight_reads<=0;mac_count<=0;dw_weights_valid<=0;
   end else case(state)
    IDLE:if(start)begin
+    dw_weights_valid<=0;
     input_reads<=0;weight_reads<=0;mac_count<=0;
     ib<=input_base;wb<=weight_base;ob<=output_base;
     w<=width[15:0];h<=height[15:0];ci<=in_channels[C_BITS-1:0];co<=out_channels[C_BITS-1:0];
@@ -196,7 +204,7 @@ module self_conv_wide_engine #(
     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
     load_x<=0;load_y<=0;load_c<=0;load_index<=0;
     load_addr<=tile_input_base;load_row_addr<=tile_input_base;
-    oc<=0;weight_channel_addr<=wb;weight_addr<=wb;weight_load_index<=0;
+    oc<=0;dw_weight_base<=0;weight_channel_addr<=wb;weight_addr<=wb;weight_load_index<=0;
     output_channel_addr<=tile_output_base;
     state<=IREQ;
    end
@@ -220,14 +228,15 @@ module self_conv_wide_engine #(
    end
    WREQ,WWAIT:begin
     if(state==WREQ && ready)state<=WWAIT;
-    if(weight_response)begin
-     weight_reads<=weight_reads+weight_step;
-     if(weight_load_index+weight_step<weight_per_channel)begin
+    if(weight_response || (state==WREQ && weight_hit))begin
+     if(weight_response)weight_reads<=weight_reads+weight_step;
+     if(!weight_hit && weight_load_index+weight_step<weight_load_bytes)begin
       weight_load_index<=weight_load_index+weight_step;weight_addr<=weight_addr+weight_step;state<=WREQ;
      end else begin
+      if(dw_cached)dw_weights_valid<=1;
       pixel_x<=0;pixel_y<=0;pixel_index<=0;window_base<=0;window_row_base<=0;
       input_index<=dw?oc:0;kernel_row_base<=dw?oc:0;
-      weight_index<=0;tap_x<=0;tap_y<=0;mac_c<=0;accumulator<=0;
+      weight_index<=dw_cached?dw_weight_base:0;tap_x<=0;tap_y<=0;mac_c<=0;accumulator<=0;
       state<=MAC_READ;
      end
     end
@@ -252,7 +261,7 @@ module self_conv_wide_engine #(
     if(product_valid && product_last)begin
      state<=MAC_READ;
      tile_sum[pixel_index]<=accumulated;
-     accumulator<=0;weight_index<=0;tap_x<=0;tap_y<=0;mac_c<=0;
+     accumulator<=0;weight_index<=dw_cached?dw_weight_base:0;tap_x<=0;tap_y<=0;mac_c<=0;
      if(pixel_x+1'b1<tile_w)begin
       pixel_x<=pixel_x+1'b1;pixel_index<=pixel_index+1'b1;
       window_base<=window_base+channel_stride_bytes;
@@ -281,7 +290,7 @@ module self_conv_wide_engine #(
       output_pixel_row_addr<=output_pixel_row_addr+output_row_bytes;
       output_addr<=output_pixel_row_addr+output_row_bytes;state<=OREQ;
      end else if(oc+1'b1<co)begin
-      oc<=oc+1'b1;weight_load_index<=0;
+      oc<=oc+1'b1;weight_load_index<=0;dw_weight_base<=dw_weight_base+weight_per_channel;
       weight_channel_addr<=weight_channel_addr+weight_per_channel;
       weight_addr<=weight_channel_addr+weight_per_channel;
       output_channel_addr<=output_channel_addr+4;state<=WREQ;

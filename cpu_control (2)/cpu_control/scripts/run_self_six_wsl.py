@@ -20,19 +20,32 @@ def save(p, v):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--data', type=Path, required=True)
-    ap.add_argument('--frames', type=int, choices=(6, 10, 30), default=6)
+    ap.add_argument('--frames', type=int, choices=(6, 10, 15, 30), default=6)
+    ap.add_argument('--k3-units',type=int,default=2)
+    ap.add_argument('--k1-units',type=int,default=4)
+    ap.add_argument('--post-units',type=int,default=1)
     ap.add_argument('--pw4', action='store_true')
     ap.add_argument('--conv-overlap', action='store_true')
     ap.add_argument('--wide-pipe', action='store_true')
     ap.add_argument('--pw8', action='store_true')
+    ap.add_argument('--dw-cache', action='store_true')
+    ap.add_argument('--k3-par4',action='store_true')
+    ap.add_argument('--post-group', type=int, choices=(4,16), default=4)
     ap.add_argument('--dw-priority', action='store_true')
     ap.add_argument('--frame-priority', action='store_true')
+    ap.add_argument('--cache-suffix',default='',help='Separate validation cache; letters, digits, underscore only')
     ap.add_argument('--reuse', action='store_true')
     ap.add_argument('--full', action='store_true')
     ap.add_argument('--gate', type=Path)
+    ap.add_argument('--run-dir',type=Path,help='New run directory under build/runs; never overwrite')
     args = ap.parse_args()
+    if args.cache_suffix and not args.cache_suffix.replace('_','').isalnum(): ap.error('invalid cache suffix')
+    if min(args.k3_units,args.k1_units,args.post_units)<1 or args.k3_units+args.k1_units+args.post_units+3>31:
+        ap.error('positive operator pools required; C++ masks support at most 31 total units')
+    pool=dict(K3=args.k3_units,K1=args.k1_units,Post=args.post_units,Add=1,DW7=1,Pad=1)
     if args.dw_priority and args.frame_priority:
         ap.error('select one scheduling policy: --dw-priority or --frame-priority')
+    if args.k3_par4 or args.dw_cache or args.post_group!=4: args.wide_pipe = True
     if args.pw8: args.wide_pipe = True
     if args.wide_pipe: args.conv_overlap = True
     if args.conv_overlap: args.pw4 = True
@@ -43,9 +56,14 @@ def main():
     if args.pw8: CACHE = CACHE.with_name('.self_six_pw8_build')
     if args.dw_priority: CACHE = CACHE.with_name(CACHE.name+'_priority')
     if args.frame_priority: CACHE = CACHE.with_name(CACHE.name+'_frame_priority')
-    max_tasks = {6:1024,10:2048,30:4096}[args.frames]
-    capacity = (128 if args.frames==30 else 32)*1024*1024
-    label = {6:'self_six',10:'self_ten',30:'self_thirty'}[args.frames]
+    if args.dw_cache: CACHE = CACHE.with_name(CACHE.name+'_dwcache')
+    if args.post_group!=4: CACHE = CACHE.with_name(CACHE.name+'_post16')
+    if args.k3_par4: CACHE=CACHE.with_name(CACHE.name+'_k3par4')
+    if (args.k3_units,args.k1_units,args.post_units)!=(2,4,1): CACHE=CACHE.with_name(CACHE.name+f'_pool{args.k3_units}_{args.k1_units}_{args.post_units}')
+    if args.cache_suffix: CACHE=CACHE.with_name(CACHE.name+'_'+args.cache_suffix)
+    max_tasks = {6:1024,10:2048,15:2048,30:4096}[args.frames]
+    capacity = (128 if args.frames==30 else 64 if args.frames==15 else 32)*1024*1024
+    label = {6:'self_six',10:'self_ten',15:'self_fifteen',30:'self_thirty'}[args.frames]
     CACHE = CACHE.with_name(CACHE.name.replace('self_six', label))
     data=args.data.resolve()
     manifest=json.loads((data/'manifest.json').read_text())
@@ -58,13 +76,16 @@ def main():
     files += [ROOT/'tb/self_full_sim_top.sv', ROOT/'tb/integration/self_full_main.cpp']
     flags = ['--cc','--exe','--build','--top-module','self_full_sim_top','--no-timing','-DSYNTHESIS','--output-split-cfuncs','500','-Wno-fatal','-O1','-j','2','-GFRAME_CONTEXTS=6','-GK3_UNITS=2','-GK1_UNITS=4','-GPOST_UNITS=1','-GSRAM_SIZE=33554432','-CFLAGS','-std=c++20 -DCNN_FRAMES=6 -DCNN_SRAM=33554432 -DCNN_K3=2 -DCNN_K1=4 -DCNN_POST=1','-MAKEFLAGS','CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3 OPT_FAST=-O2']
     flags += ['-GPW4='+str(int(args.pw4)), '-GCONV_OVERLAP='+str(int(args.conv_overlap)), '-GWIDE_PIPE='+str(int(args.wide_pipe)), '-GPW8='+str(int(args.pw8)), '-GDW_PRIORITY='+str(int(args.dw_priority))]
-    flags += ['-GFRAME_PRIORITY='+str(int(args.frame_priority))]
+    flags += ['-GFRAME_PRIORITY='+str(int(args.frame_priority)), '-GDW_CACHE='+str(int(args.dw_cache)), '-GPOST_GROUP='+str(args.post_group), '-GK3_PAR4='+str(int(args.k3_par4))]
     flags[flags.index('-GFRAME_CONTEXTS=6')]='-GFRAME_CONTEXTS='+str(args.frames)
     flags[flags.index('-GSRAM_SIZE=33554432')]='-GSRAM_SIZE='+str(capacity)
     flags += ['-GMAX_TASKS='+str(max_tasks)]
     cflag=flags.index('-CFLAGS')+1
     flags[cflag]=flags[cflag].replace('-DCNN_FRAMES=6','-DCNN_FRAMES='+str(args.frames))+' -DCNN_MAX_TASKS='+str(max_tasks)
     flags[cflag]=flags[cflag].replace('-DCNN_SRAM=33554432','-DCNN_SRAM='+str(capacity))
+    for key,old,new in [('K3',2,args.k3_units),('K1',4,args.k1_units),('POST',1,args.post_units)]:
+        flags[flags.index(f'-G{key}_UNITS={old}')]=f'-G{key}_UNITS={new}'
+        flags[cflag]=flags[cflag].replace(f'-DCNN_{key}={old}',f'-DCNN_{key}={new}')
     signature = dict(sources={str(p.relative_to(ROOT)):sha(p) for p in files}, flags=flags, verilator=sha(VR/'bin/verilator_bin'))
     CACHE.mkdir(exist_ok=True)
     exe = CACHE/'obj/Vself_full_sim_top'
@@ -94,12 +115,18 @@ def main():
         assert gate.get('wide_pipe',False)==args.wide_pipe
         assert gate.get('pw8',False)==args.pw8 and gate.get('dw_priority',False)==args.dw_priority
         assert gate.get('frame_priority',False)==args.frame_priority
+        assert gate.get('dw_cache',False)==args.dw_cache and gate.get('post_group',4)==args.post_group
+        assert gate.get('k3_par4',False)==args.k3_par4
+        assert gate['pool']==pool
         assert gate['sram_capacity']==capacity
         assert set(gate['scenarios'])=={'overlap','serial','preloaded','stress'}
-    out=ROOT/'build/runs'/(datetime.now().strftime('%Y%m%d_%H%M%S_%f')+'_'+label)
+    out=args.run_dir.resolve() if args.run_dir else ROOT/'build/runs'/(datetime.now().strftime('%Y%m%d_%H%M%S_%f')+'_'+label)
+    assert out.parent==(ROOT/'build/runs').resolve(), 'run-dir must be directly under build/runs'
     out.mkdir()
-    result=dict(status='RUNNING',frames=args.frames,max_tasks=max_tasks,full_network=args.full,data=str(data),manifest_sha256=sha(data/'manifest.json'),source_signature=signature,exe_sha256=sha(exe),pw4=args.pw4,conv_overlap=args.conv_overlap,wide_pipe=args.wide_pipe,pw8=args.pw8,dw_priority=args.dw_priority,compile_seconds=compile_seconds,pool=dict(K3=2,K1=4,Post=1,Add=1,DW7=1,Pad=1),sram_capacity=33554432,input_pace=80,scenarios={},runner_sha256=sha(__file__),started_at=datetime.now().isoformat(),gate=str(args.gate.resolve()) if args.gate else None)
+    result=dict(status='RUNNING',frames=args.frames,max_tasks=max_tasks,full_network=args.full,data=str(data),manifest_sha256=sha(data/'manifest.json'),source_signature=signature,exe_sha256=sha(exe),pw4=args.pw4,conv_overlap=args.conv_overlap,wide_pipe=args.wide_pipe,pw8=args.pw8,dw_priority=args.dw_priority,compile_seconds=compile_seconds,pool=pool,sram_capacity=33554432,input_pace=80,scenarios={},runner_sha256=sha(__file__),started_at=datetime.now().isoformat(),gate=str(args.gate.resolve()) if args.gate else None)
     result['frame_priority']=args.frame_priority
+    result['dw_cache']=args.dw_cache;result['post_group']=args.post_group
+    result['k3_par4']=args.k3_par4
     result['sram_capacity']=capacity
     save(out/'result.json',result)
     print('RUN '+str(out),flush=True)
@@ -112,6 +139,7 @@ def main():
             with (dest/'simulation.log').open('w') as log:
                 subprocess.run([str(exe),str(data),str(dest),mode,'80'],stdout=log,stderr=subprocess.STDOUT,check=True,timeout=86400)
             metrics=json.loads((dest/'metrics.json').read_text())
+            assert metrics['pool']==pool, 'RTL/testbench pool mismatch'
             assert metrics['status']=='PASS' and metrics['commands']==manifest['total_tasks'] and metrics['macs']==manifest['total_macs']
             assert len(metrics['frames'])==args.frames and len((dest/'outputs.bin').read_bytes())==args.frames*manifest['final_bytes_per_frame']
             assert sha(dest/'outputs.bin')==manifest['final_expected_sha256']

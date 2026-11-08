@@ -16,3 +16,4 @@ rtl/cnn_stream/self_fixed_network_top.sv
 rtl/cnn_self/self_conv_wide_engine.sv
 rtl/cnn_quant/quant_post_pipe_engine.sv
 rtl/cnn_self/self_pw8_engine.sv
+rtl/cnn_self/self_conv_spatial4_engine.sv

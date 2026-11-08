@@ -35,9 +35,10 @@ def utilization_rows(report: str) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--part', default='xc7z020clg484-1')
-    parser.add_argument('--top', choices=['self_network_top', 'self_conv_engine', 'self_pw4_engine', 'self_conv_pipe_engine', 'self_pw4_overlap_engine', 'self_conv_wide_engine', 'quant_post_pipe_engine', 'self_pw8_engine'], default='self_network_top')
+    parser.add_argument('--top', choices=['self_network_top', 'self_conv_engine', 'self_pw4_engine', 'self_conv_pipe_engine', 'self_pw4_overlap_engine', 'self_conv_wide_engine', 'quant_post_pipe_engine', 'self_pw8_engine', 'self_conv_spatial4_engine'], default='self_network_top')
     parser.add_argument('--max-kernel', choices=[1, 3], type=int, default=3,
                         help='Only applies to --top self_conv_engine')
+    parser.add_argument('--dw-cache',type=int,choices=[0,1],default=0)
     parser.add_argument('--period-ns', type=float, default=10.0)
     parser.add_argument('--timeout', type=float, default=300)
     parser.add_argument('--out-root', type=Path, default=ROOT / 'build/runs')
@@ -49,7 +50,7 @@ def main() -> int:
     result = {'status': 'RUNNING', 'run_dir': str(run), 'top': args.top,
               'part': args.part, 'period_ns': args.period_ns, 'max_tasks': 64,
               'max_channels': 512, 'units': {'k3': 2, 'k1': 1, 'dw7': 1, 'post': 1, 'add': 1, 'pad': 1},
-              'stage': 'out_of_context_synthesis', 'place_route_performed': False,
+              'dw_cache':args.dw_cache, 'stage': 'out_of_context_synthesis', 'place_route_performed': False,
               'sources_sha256': {}, 'errors': []}
     if args.top != 'self_network_top':
         result.update(max_tasks=None, max_kernel=args.max_kernel, units={'convolution': 1})
@@ -63,7 +64,7 @@ def main() -> int:
         manifest = ROOT / 'rtl/filelists/cnn_self.f'
         sources = [ROOT / x.strip() for x in manifest.read_text().splitlines()
                    if x.strip() and not x.lstrip().startswith(('#', '//'))]
-        sources += [ROOT / ('rtl/cnn_self/'+name+'.sv') for name in ('self_pw4_engine','self_pw4_overlap_engine','self_conv_pipe_engine','self_conv_wide_engine','self_pw8_engine')]
+        sources += [ROOT / ('rtl/cnn_self/'+name+'.sv') for name in ('self_pw4_engine','self_pw4_overlap_engine','self_conv_pipe_engine','self_conv_wide_engine','self_pw8_engine','self_conv_spatial4_engine')]
         sources += [ROOT/'rtl/cnn_quant/quant_post_pipe_engine.sv']
         sources += [manifest, Path(__file__).resolve(), ROOT / 'scripts/synth_self_cnn.tcl']
         result['sources_sha256'] = {str(p.relative_to(ROOT)).replace('\\', '/'): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
@@ -76,13 +77,13 @@ def main() -> int:
                 raise RuntimeError('Vivado executable not found; set XILINX_VIVADO')
             vivado = Path(candidate)
         command = [str(vivado), '-mode', 'batch', '-nojournal', '-log', str(run / 'vivado.log'),
-                   '-source', str(ROOT / 'scripts/synth_self_cnn.tcl'), '-tclargs', str(ROOT), str(run), args.part, str(args.period_ns), args.top, str(args.max_kernel)]
+                   '-source', str(ROOT / 'scripts/synth_self_cnn.tcl'), '-tclargs', str(ROOT), str(run), args.part, str(args.period_ns), args.top, str(args.max_kernel), str(args.dw_cache)]
         if os.name == 'nt':
             # Keep batch arguments space-free; pass project paths through Tcl.
             launch_dir = ROOT.parents[1] / '.self_synth_launch' / run.name
             launch_dir.mkdir(parents=True, exist_ok=True)
             entry = launch_dir / 'entry.tcl'
-            values = [ROOT.as_posix(), run.as_posix(), args.part, str(args.period_ns), args.top, str(args.max_kernel)]
+            values = [ROOT.as_posix(), run.as_posix(), args.part, str(args.period_ns), args.top, str(args.max_kernel), str(args.dw_cache)]
             entry.write_text('set argv [list ' + ' '.join('{' + v + '}' for v in values) + ']\nsource {' + (ROOT / 'scripts/synth_self_cnn.tcl').as_posix() + '}\n')
             command = [os.environ.get('COMSPEC', 'cmd.exe'), '/d', '/c',
                        str(base / 'bin/vivado.bat'), '-mode', 'batch', '-nojournal',

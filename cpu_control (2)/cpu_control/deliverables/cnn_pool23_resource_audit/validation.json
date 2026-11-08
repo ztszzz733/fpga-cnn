@@ -1,0 +1,11 @@
+{
+  "source_hashes_verified": true,
+  "all_document_links_exist": true,
+  "rows": 11,
+  "unknown_rows": 6,
+  "whole_top_resource_total_available": false,
+  "files": {
+    "README.md": "17900dc6fbb82aa775f35755c55bffa61591d3e4d1d8622ff9ecd9a669d3b335",
+    "summary.json": "6feccf53d52507c12cfd2aa2a4ecd973889bc8d4f3ea7e30b4db82b2260db6ba"
+  }
+}

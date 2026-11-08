@@ -112,8 +112,11 @@ def task_views(out, run, m, metric):
     (dest/'index.html').write_text(html,encoding='utf-8')
     save(dest/'view_ranges.json',dict(full=[0,total],early=[0,early],cross=[left,right],peak_ms=peak[0],cross_ms=cross[0]))
 
-def wave_views(out):
-    labels=['K3#0 MAC','K3#1 MAC',*[f'K1#{i} MAC (8 lanes)' for i in range(4)],'DW7 MAC (8 lanes)','Post accepted write','Add accepted write','Pad accepted write']
+def wave_views(out,k3_lanes=1,pool=None):
+    labels=[f'K3#0 MAC (up to {k3_lanes})',f'K3#1 MAC (up to {k3_lanes})',*[f'K1#{i} MAC (8 lanes)' for i in range(4)],'DW7 MAC (8 lanes)','Post accepted write','Add accepted write','Pad accepted write']
+    if pool is not None:
+        labels=[*[f'K3#{i} MAC (up to {k3_lanes})' for i in range(pool['K3'])],*[f'K1#{i} MAC (up to 8)' for i in range(pool['K1'])],'DW7 MAC (up to 8)',*[f'Post#{i} accepted write' for i in range(pool['Post'])],'Add accepted write','Pad accepted write']
+    count=len(labels);height=max(1000,240+76*count);mac_units=7 if pool is None else pool['K3']+pool['K1']+1
     for name in ('mac_detail','pipeline_detail'):
         names=[]
         for line in (out/(name+'.vcd')).read_text().splitlines():
@@ -125,19 +128,20 @@ def wave_views(out):
         (out/('verify_'+name+'.tcl')).write_text('set log [open validation_'+name+'.log w]\nset failure [catch {\nset shown [gtkwave::getDisplayedSignals]\nputs $log "SIGNALS=[llength $shown] UNIQUE=[llength [lsort -unique $shown]]"\nif {[llength $shown] != 10 || [llength [lsort -unique $shown]] != 10} {error "missing/duplicate signals"}\nputs $log "PASS"\n} message]\nif {$failure} {puts $log "FAIL $message"}\nclose $log\ngtkwave::/File/Quit\n')
         v=read_vcd(out/(name+'.vcd'));assert len(v.signals)==10
         events=v.signals['cnn_full.operator_work'].events
-        im=Image.new('RGB',(1900,1000),'#101820');d=ImageDraw.Draw(im)
+        assert len(events[0][1])==count,'wave/pool width mismatch'
+        im=Image.new('RGB',(1900,height),'#101820');d=ImageDraw.Draw(im)
         d.text((30,20),'真实MAC / 接受写请求：局部256拍窗口',font=font(27),fill='white')
         x0,x1,y0,dy=370,1840,110,76
         for c in range(0,257,32):
-            x=x0+(x1-x0)*c/256;d.line((x,y0-20,x,y0+10*dy),fill='#354957');d.text((x-15,y0-55),str(c),font=font(20),fill='#c6d5e1')
+            x=x0+(x1-x0)*c/256;d.line((x,y0-20,x,y0+count*dy),fill='#354957');d.text((x-15,y0-55),str(c),font=font(20),fill='#c6d5e1')
         ev=events+[(v.end_ns,events[-1][1])]
-        for bit in range(10):
+        for bit in range(count):
             y=y0+bit*dy;d.text((25,y+12),labels[bit],font=font(22),fill='white');points=[]
             for (t,value),(end,nxt) in zip(ev,ev[1:]):
                 level=(int(value,2)>>bit)&1;py=y+40*(1-level)
                 points.extend([(x0+(x1-x0)*t/v.end_ns,py),(x0+(x1-x0)*end/v.end_ns,py)])
-            d.line(points,fill='#63bbef' if bit<7 else '#64d9a2',width=2)
-        d.text((30,925),'横轴为窗口相对周期；高=本拍推进，低=未推进。Post/Add一次写入可含四个字节。全程见逐任务图。',font=font(23),fill='white')
+            d.line(points,fill='#63bbef' if bit<mac_units else '#64d9a2',width=2)
+        d.text((30,height-75),'横轴为窗口相对周期；高=本拍推进，低=未推进。Post/Add一次写入可含四个字节。全程见逐任务图。',font=font(23),fill='white')
         im.save(out/(name+'.png'))
     validator=(ROOT/'scripts/prepare_self_full.py').read_text(encoding='utf-8').split("(out / 'validate_gtkwave.ps1').write_text(r'''",1)[1].split("''', encoding='utf-8')",1)[0]
     validator=validator.replace("('evidence/'+$view+'.vcd')","($view+'.vcd')").replace("$contents.Contains('PASS '+$view)","$contents.Contains('PASS')")

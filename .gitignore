@@ -56,3 +56,9 @@ mobilefacenet/.deps-py39/
 .self_ten_pw8_build_frame_priority/
 .dispatch_frame_priority_unit/
 .self_thirty_pw8_build_frame_priority/
+
+# Fifteen-frame simulation and unit-test build caches
+/.dwcache_unit_k3/
+/.k3par4_unit_k3/
+/.post_group_unit/
+/.self_fifteen_pw8_build*/

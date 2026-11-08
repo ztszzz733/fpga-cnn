@@ -1,0 +1,1133 @@
+{
+  "status": "PASS",
+  "frames": 15,
+  "max_tasks": 2048,
+  "full_network": false,
+  "data": "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/self_fifteen_small",
+  "manifest_sha256": "d9d90827e0ee2959cee704c171881769cc162dd06623ac9903e0e8ca6b39f80d",
+  "source_signature": {
+    "sources": {
+      "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+      "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+      "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+      "rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+      "rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+      "rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+      "rtl/cnn_stream/bai/datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+      "rtl/cnn_stream/stream_dispatch.sv": "291f2d2a7d72934ad96f339a46fbe12abf0be8dbf552eb408c51835478a972ba",
+      "rtl/cnn_stream/stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+      "rtl/cnn_stream/stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+      "rtl/cnn_stream/self_stream_top.sv": "0563e386fbde5d993da55b0968e67874409986295f775e3380e1bd850342204f",
+      "rtl/cnn_stream/stream_fixed_programmer.sv": "0946469004750cb9b0829c22375fc7a573a88bfa07c0653c3f1f5b60b1f6c65f",
+      "rtl/cnn_stream/self_fixed_network_top.sv": "0b8cf766071caed15ef74ad50e9b1a0632fc901105f6279f2bdb9f2b05432278",
+      "rtl/cnn_self/self_conv_wide_engine.sv": "63ee110485773d4c01864cdbbee26fc9707d109b5bf5b23d75cdc486ce644b0d",
+      "rtl/cnn_quant/quant_post_pipe_engine.sv": "6c67e3f27c1a45fb4d4495240f8e8a93f667c55fc0586052d42e89dbcf9b9ce4",
+      "rtl/cnn_self/self_pw8_engine.sv": "c7dac43972bd29cb5ccf137bde8a8d4056493d09af3d132443a65e762378faf0",
+      "tb/self_full_sim_top.sv": "e4bc4e5e971760eb594bfa5b77ae46c007dad6f2499571998ec1826433cb83df",
+      "tb/integration/self_full_main.cpp": "6f14307f1e0fc5f0114744f1656964cbd858962331f0a6432a3402cefd35e46c"
+    },
+    "flags": [
+      "--cc",
+      "--exe",
+      "--build",
+      "--top-module",
+      "self_full_sim_top",
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500",
+      "-Wno-fatal",
+      "-O1",
+      "-j",
+      "2",
+      "-GFRAME_CONTEXTS=15",
+      "-GK3_UNITS=2",
+      "-GK1_UNITS=4",
+      "-GPOST_UNITS=1",
+      "-GSRAM_SIZE=67108864",
+      "-CFLAGS",
+      "-std=c++20 -DCNN_FRAMES=15 -DCNN_SRAM=67108864 -DCNN_K3=2 -DCNN_K1=4 -DCNN_POST=1 -DCNN_MAX_TASKS=2048",
+      "-MAKEFLAGS",
+      "CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3 OPT_FAST=-O2",
+      "-GPW4=1",
+      "-GCONV_OVERLAP=1",
+      "-GWIDE_PIPE=1",
+      "-GPW8=1",
+      "-GDW_PRIORITY=0",
+      "-GFRAME_PRIORITY=1",
+      "-GDW_CACHE=0",
+      "-GPOST_GROUP=4",
+      "-GMAX_TASKS=2048"
+    ],
+    "verilator": "301825f856c896c1423a056e69f3ce920cb5ed7695a122619145a03b374fe1cd"
+  },
+  "exe_sha256": "5a1fbd5c111e27775f0f399a3d639182597bcd117df3eeb06a7572ccf90ccb29",
+  "pw4": true,
+  "conv_overlap": true,
+  "wide_pipe": true,
+  "pw8": true,
+  "dw_priority": false,
+  "compile_seconds": 55.54681875099996,
+  "pool": {
+    "K3": 2,
+    "K1": 4,
+    "Post": 1,
+    "Add": 1,
+    "DW7": 1,
+    "Pad": 1
+  },
+  "sram_capacity": 67108864,
+  "input_pace": 80,
+  "scenarios": {
+    "overlap": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "overlap",
+        "cycles": 539807,
+        "compute_done_cycle": 539252,
+        "commands": 120,
+        "expanded_commands": 120,
+        "checked_bytes": 269460,
+        "macs": 1536000,
+        "allocations": 120,
+        "releases": 120,
+        "results": 15,
+        "simulation_seconds": 3.60077,
+        "multi_frame_cycles": 489579,
+        "multi_frame_work_cycles": 212534,
+        "cross_operator_work_cycles": 97862,
+        "multi_k3_mac_cycles": 145405,
+        "peak_active_frames": 4,
+        "peak_simultaneous_k3_mac": 2,
+        "input_mac_cycles": 46044,
+        "input_compute_cycles": 46848,
+        "input_write_compute_cycles": 589,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 4082,
+            "read_complete": 136093
+          },
+          {
+            "frame": 101,
+            "input_begin": 3969,
+            "input_commit": 7777,
+            "first_launch": 7924,
+            "read_complete": 146772
+          },
+          {
+            "frame": 102,
+            "input_begin": 7858,
+            "input_commit": 11666,
+            "first_launch": 11886,
+            "read_complete": 157568
+          },
+          {
+            "frame": 103,
+            "input_begin": 11747,
+            "input_commit": 15555,
+            "first_launch": 15727,
+            "read_complete": 168110
+          },
+          {
+            "frame": 104,
+            "input_begin": 15636,
+            "input_commit": 19445,
+            "first_launch": 19568,
+            "read_complete": 264887
+          },
+          {
+            "frame": 105,
+            "input_begin": 19526,
+            "input_commit": 23334,
+            "first_launch": 23529,
+            "read_complete": 275552
+          },
+          {
+            "frame": 106,
+            "input_begin": 23415,
+            "input_commit": 27224,
+            "first_launch": 27370,
+            "read_complete": 286358
+          },
+          {
+            "frame": 107,
+            "input_begin": 27305,
+            "input_commit": 31113,
+            "first_launch": 31331,
+            "read_complete": 296890
+          },
+          {
+            "frame": 108,
+            "input_begin": 31194,
+            "input_commit": 35002,
+            "first_launch": 35172,
+            "read_complete": 393548
+          },
+          {
+            "frame": 109,
+            "input_begin": 35083,
+            "input_commit": 38891,
+            "first_launch": 39013,
+            "read_complete": 404228
+          },
+          {
+            "frame": 110,
+            "input_begin": 38972,
+            "input_commit": 42780,
+            "first_launch": 42974,
+            "read_complete": 415022
+          },
+          {
+            "frame": 111,
+            "input_begin": 42861,
+            "input_commit": 46669,
+            "first_launch": 46815,
+            "read_complete": 425566
+          },
+          {
+            "frame": 112,
+            "input_begin": 46750,
+            "input_commit": 50559,
+            "first_launch": 50778,
+            "read_complete": 485921
+          },
+          {
+            "frame": 113,
+            "input_begin": 50640,
+            "input_commit": 54449,
+            "first_launch": 54620,
+            "read_complete": 507043
+          },
+          {
+            "frame": 114,
+            "input_begin": 54530,
+            "input_commit": 58344,
+            "first_launch": 58583,
+            "read_complete": 539805
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 492660,
+            "work_cycles": 285696,
+            "read_bytes": 102496,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 4393
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 467866,
+            "work_cycles": 267264,
+            "read_bytes": 101684,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 4263
+          },
+          {
+            "unit": 2,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41447,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 698
+          },
+          {
+            "unit": 3,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41476,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 720
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41442,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 588
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 3,
+            "active_cycles": 31077,
+            "work_cycles": 24576,
+            "read_bytes": 27648,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 281
+          },
+          {
+            "unit": 6,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 7,
+            "kind": 1,
+            "tasks": 45,
+            "active_cycles": 237739,
+            "work_cycles": 11520,
+            "read_bytes": 241920,
+            "write_bytes": 46080,
+            "arbitration_wait_cycles": 1579
+          },
+          {
+            "unit": 8,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 4,
+            "tasks": 30,
+            "active_cycles": 53837,
+            "work_cycles": 13140,
+            "read_bytes": 18240,
+            "write_bytes": 39060,
+            "arbitration_wait_cycles": 977
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          2899353,
+          76500,
+          0,
+          0,
+          616,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          31102,
+          6407,
+          0,
+          0,
+          4706,
+          1863
+        ],
+        "pool": {
+          "K3": 2,
+          "K1": 4,
+          "Post": 1,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 4.045735225000044,
+      "outputs_sha256": "4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64"
+    },
+    "serial": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "serial",
+        "cycles": 1476767,
+        "compute_done_cycle": 1476212,
+        "commands": 120,
+        "expanded_commands": 120,
+        "checked_bytes": 269460,
+        "macs": 1536000,
+        "allocations": 120,
+        "releases": 120,
+        "results": 15,
+        "simulation_seconds": 5.55979,
+        "multi_frame_cycles": 0,
+        "multi_frame_work_cycles": 0,
+        "cross_operator_work_cycles": 0,
+        "multi_k3_mac_cycles": 0,
+        "peak_active_frames": 1,
+        "peak_simultaneous_k3_mac": 1,
+        "input_mac_cycles": 0,
+        "input_compute_cycles": 0,
+        "input_write_compute_cycles": 0,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 4082,
+            "read_complete": 98693
+          },
+          {
+            "frame": 101,
+            "input_begin": 98694,
+            "input_commit": 102502,
+            "first_launch": 102730,
+            "read_complete": 197221
+          },
+          {
+            "frame": 102,
+            "input_begin": 197222,
+            "input_commit": 201030,
+            "first_launch": 201258,
+            "read_complete": 295749
+          },
+          {
+            "frame": 103,
+            "input_begin": 295750,
+            "input_commit": 299558,
+            "first_launch": 299786,
+            "read_complete": 394277
+          },
+          {
+            "frame": 104,
+            "input_begin": 394278,
+            "input_commit": 398086,
+            "first_launch": 398314,
+            "read_complete": 492805
+          },
+          {
+            "frame": 105,
+            "input_begin": 492806,
+            "input_commit": 496614,
+            "first_launch": 496842,
+            "read_complete": 591213
+          },
+          {
+            "frame": 106,
+            "input_begin": 591214,
+            "input_commit": 595022,
+            "first_launch": 595250,
+            "read_complete": 689621
+          },
+          {
+            "frame": 107,
+            "input_begin": 689622,
+            "input_commit": 693430,
+            "first_launch": 693658,
+            "read_complete": 788029
+          },
+          {
+            "frame": 108,
+            "input_begin": 788030,
+            "input_commit": 791838,
+            "first_launch": 792066,
+            "read_complete": 886437
+          },
+          {
+            "frame": 109,
+            "input_begin": 886438,
+            "input_commit": 890246,
+            "first_launch": 890474,
+            "read_complete": 984845
+          },
+          {
+            "frame": 110,
+            "input_begin": 984846,
+            "input_commit": 988654,
+            "first_launch": 988882,
+            "read_complete": 1083253
+          },
+          {
+            "frame": 111,
+            "input_begin": 1083254,
+            "input_commit": 1087062,
+            "first_launch": 1087290,
+            "read_complete": 1181661
+          },
+          {
+            "frame": 112,
+            "input_begin": 1181662,
+            "input_commit": 1185470,
+            "first_launch": 1185698,
+            "read_complete": 1280069
+          },
+          {
+            "frame": 113,
+            "input_begin": 1280070,
+            "input_commit": 1283878,
+            "first_launch": 1284106,
+            "read_complete": 1378477
+          },
+          {
+            "frame": 114,
+            "input_begin": 1378478,
+            "input_commit": 1382286,
+            "first_launch": 1382394,
+            "read_complete": 1476765
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 660915,
+            "work_cycles": 414720,
+            "read_bytes": 108180,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 290955,
+            "work_cycles": 138240,
+            "read_bytes": 96000,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 2,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41428,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 3,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41428,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41428,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 3,
+            "active_cycles": 31071,
+            "work_cycles": 24576,
+            "read_bytes": 27648,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 6,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 7,
+            "kind": 1,
+            "tasks": 45,
+            "active_cycles": 236160,
+            "work_cycles": 11520,
+            "read_bytes": 241920,
+            "write_bytes": 46080,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 8,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 4,
+            "tasks": 30,
+            "active_cycles": 52860,
+            "work_cycles": 13140,
+            "read_bytes": 18240,
+            "write_bytes": 39060,
+            "arbitration_wait_cycles": 0
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          4710,
+          3930,
+          0,
+          0,
+          5531,
+          585
+        ],
+        "pool": {
+          "K3": 2,
+          "K1": 4,
+          "Post": 1,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 5.994888817999993,
+      "outputs_sha256": "4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64"
+    },
+    "preloaded": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "preloaded",
+        "cycles": 536207,
+        "compute_done_cycle": 535652,
+        "commands": 120,
+        "expanded_commands": 120,
+        "checked_bytes": 269460,
+        "macs": 1536000,
+        "allocations": 120,
+        "releases": 120,
+        "results": 15,
+        "simulation_seconds": 2.16883,
+        "multi_frame_cycles": 492066,
+        "multi_frame_work_cycles": 222422,
+        "cross_operator_work_cycles": 97334,
+        "multi_k3_mac_cycles": 155818,
+        "peak_active_frames": 4,
+        "peak_simultaneous_k3_mac": 2,
+        "input_mac_cycles": 0,
+        "input_compute_cycles": 0,
+        "input_write_compute_cycles": 0,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 0,
+            "input_commit": 121,
+            "first_launch": 362,
+            "read_complete": 132388
+          },
+          {
+            "frame": 101,
+            "input_begin": 122,
+            "input_commit": 122,
+            "first_launch": 1924,
+            "read_complete": 143172
+          },
+          {
+            "frame": 102,
+            "input_begin": 123,
+            "input_commit": 123,
+            "first_launch": 3486,
+            "read_complete": 153975
+          },
+          {
+            "frame": 103,
+            "input_begin": 124,
+            "input_commit": 124,
+            "first_launch": 4927,
+            "read_complete": 164513
+          },
+          {
+            "frame": 104,
+            "input_begin": 125,
+            "input_commit": 125,
+            "first_launch": 6368,
+            "read_complete": 261399
+          },
+          {
+            "frame": 105,
+            "input_begin": 126,
+            "input_commit": 126,
+            "first_launch": 7809,
+            "read_complete": 272078
+          },
+          {
+            "frame": 106,
+            "input_begin": 127,
+            "input_commit": 127,
+            "first_launch": 9250,
+            "read_complete": 282881
+          },
+          {
+            "frame": 107,
+            "input_begin": 128,
+            "input_commit": 128,
+            "first_launch": 10691,
+            "read_complete": 293410
+          },
+          {
+            "frame": 108,
+            "input_begin": 129,
+            "input_commit": 129,
+            "first_launch": 12132,
+            "read_complete": 390188
+          },
+          {
+            "frame": 109,
+            "input_begin": 130,
+            "input_commit": 130,
+            "first_launch": 13573,
+            "read_complete": 400868
+          },
+          {
+            "frame": 110,
+            "input_begin": 131,
+            "input_commit": 131,
+            "first_launch": 15014,
+            "read_complete": 411668
+          },
+          {
+            "frame": 111,
+            "input_begin": 132,
+            "input_commit": 132,
+            "first_launch": 16455,
+            "read_complete": 422208
+          },
+          {
+            "frame": 112,
+            "input_begin": 133,
+            "input_commit": 133,
+            "first_launch": 17896,
+            "read_complete": 482321
+          },
+          {
+            "frame": 113,
+            "input_begin": 134,
+            "input_commit": 134,
+            "first_launch": 19337,
+            "read_complete": 503443
+          },
+          {
+            "frame": 114,
+            "input_begin": 135,
+            "input_commit": 135,
+            "first_launch": 20778,
+            "read_complete": 536205
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 492780,
+            "work_cycles": 285696,
+            "read_bytes": 102496,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 4513
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 15,
+            "active_cycles": 468249,
+            "work_cycles": 267264,
+            "read_bytes": 101684,
+            "write_bytes": 61440,
+            "arbitration_wait_cycles": 4646
+          },
+          {
+            "unit": 2,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41444,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 711
+          },
+          {
+            "unit": 3,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41470,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 659
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41452,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 551
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 3,
+            "active_cycles": 31083,
+            "work_cycles": 24576,
+            "read_bytes": 27648,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 332
+          },
+          {
+            "unit": 6,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 7,
+            "kind": 1,
+            "tasks": 45,
+            "active_cycles": 237793,
+            "work_cycles": 11520,
+            "read_bytes": 241920,
+            "write_bytes": 46080,
+            "arbitration_wait_cycles": 1633
+          },
+          {
+            "unit": 8,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 4,
+            "tasks": 30,
+            "active_cycles": 53832,
+            "work_cycles": 13140,
+            "read_bytes": 18240,
+            "write_bytes": 39060,
+            "arbitration_wait_cycles": 972
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          3125353,
+          102916,
+          0,
+          0,
+          136355,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          34562,
+          6961,
+          0,
+          0,
+          23867,
+          2104
+        ],
+        "pool": {
+          "K3": 2,
+          "K1": 4,
+          "Post": 1,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 2.530701143999977,
+      "outputs_sha256": "4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64"
+    },
+    "stress": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "stress",
+        "cycles": 687006,
+        "compute_done_cycle": 656491,
+        "commands": 120,
+        "expanded_commands": 120,
+        "checked_bytes": 269460,
+        "macs": 1536000,
+        "allocations": 120,
+        "releases": 120,
+        "results": 15,
+        "simulation_seconds": 2.77299,
+        "multi_frame_cycles": 582701,
+        "multi_frame_work_cycles": 177847,
+        "cross_operator_work_cycles": 100370,
+        "multi_k3_mac_cycles": 99030,
+        "peak_active_frames": 4,
+        "peak_simultaneous_k3_mac": 2,
+        "input_mac_cycles": 40948,
+        "input_compute_cycles": 42113,
+        "input_write_compute_cycles": 525,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 4082,
+            "read_complete": 186693
+          },
+          {
+            "frame": 101,
+            "input_begin": 3969,
+            "input_commit": 7777,
+            "first_launch": 7924,
+            "read_complete": 217278
+          },
+          {
+            "frame": 102,
+            "input_begin": 7858,
+            "input_commit": 11666,
+            "first_launch": 11886,
+            "read_complete": 247798
+          },
+          {
+            "frame": 103,
+            "input_begin": 11747,
+            "input_commit": 15556,
+            "first_launch": 15727,
+            "read_complete": 314812
+          },
+          {
+            "frame": 104,
+            "input_begin": 15637,
+            "input_commit": 19446,
+            "first_launch": 19568,
+            "read_complete": 345328
+          },
+          {
+            "frame": 105,
+            "input_begin": 19527,
+            "input_commit": 23335,
+            "first_launch": 23529,
+            "read_complete": 375857
+          },
+          {
+            "frame": 106,
+            "input_begin": 23416,
+            "input_commit": 27226,
+            "first_launch": 27370,
+            "read_complete": 429615
+          },
+          {
+            "frame": 107,
+            "input_begin": 27307,
+            "input_commit": 31115,
+            "first_launch": 31331,
+            "read_complete": 460134
+          },
+          {
+            "frame": 108,
+            "input_begin": 31196,
+            "input_commit": 35004,
+            "first_launch": 35172,
+            "read_complete": 490651
+          },
+          {
+            "frame": 109,
+            "input_begin": 35085,
+            "input_commit": 38894,
+            "first_launch": 39013,
+            "read_complete": 284293
+          },
+          {
+            "frame": 110,
+            "input_begin": 38975,
+            "input_commit": 42786,
+            "first_launch": 42974,
+            "read_complete": 550635
+          },
+          {
+            "frame": 111,
+            "input_begin": 42867,
+            "input_commit": 46676,
+            "first_launch": 46815,
+            "read_complete": 581157
+          },
+          {
+            "frame": 112,
+            "input_begin": 46757,
+            "input_commit": 50567,
+            "first_launch": 50776,
+            "read_complete": 611678
+          },
+          {
+            "frame": 113,
+            "input_begin": 50648,
+            "input_commit": 54457,
+            "first_launch": 54617,
+            "read_complete": 642197
+          },
+          {
+            "frame": 114,
+            "input_begin": 54538,
+            "input_commit": 58346,
+            "first_launch": 58458,
+            "read_complete": 687004
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 13,
+            "active_cycles": 610440,
+            "work_cycles": 285696,
+            "read_bytes": 90508,
+            "write_bytes": 53248,
+            "arbitration_wait_cycles": 136303
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 17,
+            "active_cycles": 554907,
+            "work_cycles": 267264,
+            "read_bytes": 113672,
+            "write_bytes": 69632,
+            "arbitration_wait_cycles": 77174
+          },
+          {
+            "unit": 2,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 41724,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 4270
+          },
+          {
+            "unit": 3,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 42380,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 5577
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 4,
+            "active_cycles": 44286,
+            "work_cycles": 32768,
+            "read_bytes": 36864,
+            "write_bytes": 16384,
+            "arbitration_wait_cycles": 8534
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 3,
+            "active_cycles": 31314,
+            "work_cycles": 24576,
+            "read_bytes": 27648,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 2973
+          },
+          {
+            "unit": 6,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 7,
+            "kind": 1,
+            "tasks": 45,
+            "active_cycles": 257911,
+            "work_cycles": 11520,
+            "read_bytes": 241920,
+            "write_bytes": 46080,
+            "arbitration_wait_cycles": 21751
+          },
+          {
+            "unit": 8,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 4,
+            "tasks": 30,
+            "active_cycles": 59594,
+            "work_cycles": 13140,
+            "read_bytes": 18240,
+            "write_bytes": 39060,
+            "arbitration_wait_cycles": 6734
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          3627334,
+          31902,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          32152,
+          5211,
+          0,
+          0,
+          4895,
+          1501
+        ],
+        "pool": {
+          "K3": 2,
+          "K1": 4,
+          "Post": 1,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 3.187479476999954,
+      "outputs_sha256": "4e0ffef4d0aa075811d848405222674c1ec7745c9f4c581945a29cf5a0c5ba64"
+    }
+  },
+  "runner_sha256": "977bededf89a52d96f072e25ce1a01b367637fde2053fc47128b34e80fa67df7",
+  "started_at": "2026-10-25T15:02:25.927126",
+  "gate": null,
+  "frame_priority": true,
+  "dw_cache": false,
+  "post_group": 4,
+  "active_mode": "stress",
+  "wall_seconds": 15.803471461000015,
+  "finished_at": "2026-10-25T15:02:42.721175"
+}
