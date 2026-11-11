@@ -51,6 +51,7 @@
 | CSR 加载器＋64 KiB IMEM＋16 KiB CPU RAM | 354 | 250 | 20 | 0 |
 
 上表不同配置有重叠模块，不能相加为整机资源；`tile_system` 中的 8 块就是其内部 tile RAM。首轮行控制器因组合乘法占 14 个 DSP，已改为先逐行预检查；最终报告为 0 DSP。
+这些 OOC 综合配置**都没有实例化 CPU Control／Datapath 或 CNN 运算单元**。`loader_system` 的 CPU 端口仅用于连接验证，资源数字不能当作 CPU＋CNN 整机占用。
 
 ## ZIP 实际补齐的信息
 
