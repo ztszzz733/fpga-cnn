@@ -1,0 +1,1 @@
+PASS cnn_ddr_cache checks=826 cycles=28405 read_bursts=769 write_bursts=389

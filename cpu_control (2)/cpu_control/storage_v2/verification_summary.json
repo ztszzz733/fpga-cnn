@@ -1,0 +1,58 @@
+{
+  "stage": "storage-v2-on-bai-datasram",
+  "date": "2026-11-11",
+  "full_four_image_network": "BLOCKED_MISSING_FROZEN_DATA",
+  "tests": {
+    "cache": "PASS",
+    "data_mover": "PASS",
+    "cpu_download": "PASS",
+    "ram_8192_0": "PASS",
+    "ram_16384_0": "PASS",
+    "ram_65536_0": "PASS",
+    "ram_16384_65536": "PASS",
+    "cache128_tiles": "PASS",
+    "tile_dma_system": "PASS",
+    "program_loader_top": "PASS"
+  },
+  "synth": "PASS_OOC_XC7Z020_LATEST_TILE_SYSTEM",
+  "incoming_zip_sha256": "a14030278feef125b76f381657e4ce1a137dbcf8fdedd95e9a62992f7146c872",
+  "resources": {
+    "ram8": {
+      "lut": 94.0,
+      "ff": 38.0,
+      "bram36_eq": 2.0
+    },
+    "ram16": {
+      "lut": 90.0,
+      "ff": 38.0,
+      "bram36_eq": 4.0
+    },
+    "ram64": {
+      "lut": 93.0,
+      "ff": 38.0,
+      "bram36_eq": 16.0
+    },
+    "data16": {
+      "lut": 135.0,
+      "ff": 71.0,
+      "bram36_eq": 4.0
+    },
+    "mover": {
+      "lut": 784.0,
+      "ff": 263.0,
+      "bram36_eq": 0.0
+    },
+    "tile_system": {
+      "lut": 1223,
+      "ff": 662,
+      "bram36_eq": 8,
+      "dsp": 0
+    },
+    "loader_system": {
+      "lut": 354,
+      "ff": 250,
+      "bram36_eq": 20,
+      "dsp": 0
+    }
+  }
+}

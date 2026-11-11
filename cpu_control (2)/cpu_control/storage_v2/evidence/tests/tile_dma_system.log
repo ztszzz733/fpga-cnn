@@ -1,0 +1,3 @@
+PASS tile_dma_system short_row_2x2x2 groups=6 rows=11
+PASS tile_dma_system tile_8x8x32 groups=6 rows=29
+PASS tile_dma_system total_groups=12 total_rows=40 read_beats=1989 write_beats=258 cycles=105893

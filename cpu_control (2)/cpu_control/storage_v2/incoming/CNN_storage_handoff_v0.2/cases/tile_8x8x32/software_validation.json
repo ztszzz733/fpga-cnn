@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "scope": "Software scalar oracle, file/layout and byte-copy contract model; not MOVER RTL",
+  "moves": 29,
+  "non_8_aligned_local_starts": 0,
+  "adjacent_ddr_bytes": "Entire DDR image compared, including padding and guards",
+  "golden_not_in_initial_output": true
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "cases": {
+    "short_row_2x2x2": {
+      "status": "PASS",
+      "scope": "Software scalar oracle, file/layout and byte-copy contract model; not MOVER RTL",
+      "moves": 11,
+      "non_8_aligned_local_starts": 2,
+      "adjacent_ddr_bytes": "Entire DDR image compared, including padding and guards",
+      "golden_not_in_initial_output": true
+    },
+    "tile_8x8x32": {
+      "status": "PASS",
+      "scope": "Software scalar oracle, file/layout and byte-copy contract model; not MOVER RTL",
+      "moves": 29,
+      "non_8_aligned_local_starts": 0,
+      "adjacent_ddr_bytes": "Entire DDR image compared, including padding and guards",
+      "golden_not_in_initial_output": true
+    }
+  },
+  "unaligned_vectors": 96,
+  "scope": "Software oracle/layout/byte-copy checks; no real MOVER verification"
+}

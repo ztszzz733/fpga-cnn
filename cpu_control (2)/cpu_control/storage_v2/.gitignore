@@ -1,0 +1,7 @@
+build/
+.Xil/
+__pycache__/
+*.pyc
+tb/diagnostic_ddr_main.cpp
+vivado*.log
+vivado*.jou
