@@ -1,0 +1,129 @@
+[*]
+[dumpfile] "mover23_top_raw.vcd"
+[size] 1600 1000
+[signals_width] 360
+[sst_width] 260
+@200
+-CLOCK RESET
+@28
+[color] 1
+TOP.ees331_soc_mover23_sim_top.dut.clk
+@28
+[color] 1
+TOP.ees331_soc_mover23_sim_top.dut.rst_n
+@200
+-CNN COMMAND
+@28
+[color] 2
+TOP.ees331_soc_mover23_sim_top.dut.cnn_mmio_we
+@28
+[color] 2
+TOP.ees331_soc_mover23_sim_top.dut.cnn_mmio_ready
+@22
+[color] 2
+TOP.ees331_soc_mover23_sim_top.dut.cnn_mmio_addr[31:0]
+@22
+[color] 2
+TOP.ees331_soc_mover23_sim_top.dut.cnn_mmio_wdata[31:0]
+@200
+-CNN TASK PROGRESS
+@22
+[color] 3
+TOP.ees331_soc_mover23_sim_top.debug_unit_start[22:0]
+@22
+[color] 3
+TOP.ees331_soc_mover23_sim_top.debug_unit_active[22:0]
+@22
+[color] 3
+TOP.ees331_soc_mover23_sim_top.debug_work[22:0]
+@22
+[color] 3
+TOP.ees331_soc_mover23_sim_top.debug_completion[22:0]
+@22
+[color] 3
+TOP.ees331_soc_mover23_sim_top.debug_completed[10:0]
+@200
+-CNN REQUEST AND RESPONSE
+@22
+[color] 4
+TOP.ees331_soc_mover23_sim_top.dut.cnn_valid[22:0]
+@22
+[color] 4
+TOP.ees331_soc_mover23_sim_top.dut.cnn_ready[22:0]
+@22
+[color] 4
+TOP.ees331_soc_mover23_sim_top.dut.cnn_response[22:0]
+@22
+[color] 4
+TOP.ees331_soc_mover23_sim_top.dut.cnn_write[22:0]
+@22
+[color] 4
+TOP.ees331_soc_mover23_sim_top.dut.cnn_byte[22:0]
+@200
+-MOVER PAGE PROGRESS
+@22
+[color] 5
+TOP.ees331_soc_mover23_sim_top.debug_page_misses[31:0]
+@22
+[color] 5
+TOP.ees331_soc_mover23_sim_top.debug_mover_read_bytes[31:0]
+@22
+[color] 5
+TOP.ees331_soc_mover23_sim_top.debug_mover_write_bytes[31:0]
+@200
+-DDR READ
+@28
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_ARVALID
+@28
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_ARREADY
+@22
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_ARADDR[31:0]
+@28
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_RVALID
+@28
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_RREADY
+@22
+[color] 6
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_RRESP[1:0]
+@200
+-DDR WRITE
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_AWVALID
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_AWREADY
+@22
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_AWADDR[31:0]
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_WVALID
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_WREADY
+@22
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_WSTRB[7:0]
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_BVALID
+@28
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_BREADY
+@22
+[color] 7
+TOP.ees331_soc_mover23_sim_top.dut.S_AXI_HP0_BRESP[1:0]
+@200
+-ERROR
+@28
+[color] 1
+TOP.ees331_soc_mover23_sim_top.debug_error
+@28
+[color] 1
+TOP.ees331_soc_mover23_sim_top.debug_fault

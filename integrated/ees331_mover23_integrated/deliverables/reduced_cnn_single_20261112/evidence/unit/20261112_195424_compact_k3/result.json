@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "which": "k3",
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_wide_engine.sv": "63ee110485773d4c01864cdbbee26fc9707d109b5bf5b23d75cdc486ce644b0d",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "7ec07b64dfdb4158127143c1ffd62b3101077f577ae890a32964d6a330f747b2",
+    "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+    "simulation/tb/self_k3par4_unit_top.sv": "cae8f37db349fe5f66fcdaf55af4fe518b94075af6e2d97bcd6c2524e6bf1759",
+    "simulation/tb/integration/self_k3par4_unit_main.cpp": "fb564abb88e0db04bee63b38139e9e2d3c608ec39ea97544783231f38dc4ae8b"
+  },
+  "compile_seconds": 6.751951040000002,
+  "simulation_seconds": 2.1558694900000006
+}

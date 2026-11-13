@@ -1,0 +1,31 @@
+[dumpfile] "D:/code/FPGA1/cpu_control (2)/cpu_control/deliverables/self_cnn_five_20261109_201316_587166_self_five/mac_detail.vcd"
+@22
+[color] 7
+cnn_full.unit_active[15:0]
+@22
+[color] 4
+cnn_full.operator_work[15:0]
+@22
+[color] 1
+cnn_full.mem_valid[15:0]
+@22
+[color] 1
+cnn_full.mem_ready[15:0]
+@22
+[color] 3
+cnn_full.mem_write[15:0]
+@22
+[color] 3
+cnn_full.mem_response[15:0]
+@22
+[color] 6
+cnn_full.frames_ready[4:0]
+@28
+[color] 5
+cnn_full.result_valid
+@28
+[color] 5
+cnn_full.result_ready
+@22
+[color] 2
+cnn_full.completed_count[10:0]

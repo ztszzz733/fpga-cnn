@@ -1,0 +1,1096 @@
+{
+  "status": "PASS",
+  "frames": 5,
+  "max_tasks": 1024,
+  "full_network": false,
+  "data": "/mnt/d/code/FPGA1/cpu_control (2)/cpu_control/build/self_five_small",
+  "manifest_sha256": "0d7713356242aee096e1fcd681b8a9b499818f26fb158e255b726189d954e5d9",
+  "source_signature": {
+    "sources": {
+      "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+      "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+      "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+      "rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+      "rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+      "rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+      "rtl/cnn_stream/bai/datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+      "rtl/cnn_stream/stream_dispatch.sv": "291f2d2a7d72934ad96f339a46fbe12abf0be8dbf552eb408c51835478a972ba",
+      "rtl/cnn_stream/stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+      "rtl/cnn_stream/stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+      "rtl/cnn_stream/self_stream_top.sv": "a35e6bb150db5f655c5e01134514a955cf30ad39cebb3a489509fb8cb7a5db3c",
+      "rtl/cnn_stream/stream_fixed_programmer.sv": "0946469004750cb9b0829c22375fc7a573a88bfa07c0653c3f1f5b60b1f6c65f",
+      "rtl/cnn_stream/self_fixed_network_top.sv": "766e8294bfd8dc99feded05f6e1b085365129bd2c54feeee59561059c9898262",
+      "rtl/cnn_self/self_conv_wide_engine.sv": "63ee110485773d4c01864cdbbee26fc9707d109b5bf5b23d75cdc486ce644b0d",
+      "rtl/cnn_quant/quant_post_pipe_engine.sv": "6c67e3f27c1a45fb4d4495240f8e8a93f667c55fc0586052d42e89dbcf9b9ce4",
+      "rtl/cnn_self/self_pw8_engine.sv": "c7dac43972bd29cb5ccf137bde8a8d4056493d09af3d132443a65e762378faf0",
+      "rtl/cnn_self/self_conv_spatial4_engine.sv": "e9d0b89c7446208d18eb2efc1a30b78aeec6e817297b187cca5d2483819113f4",
+      "tb/self_full_sim_top.sv": "0782dc8b46402a590106e935b2845b55e96377b426a6ba30231fe957df47835e",
+      "tb/integration/self_full_main.cpp": "6f14307f1e0fc5f0114744f1656964cbd858962331f0a6432a3402cefd35e46c"
+    },
+    "flags": [
+      "--cc",
+      "--exe",
+      "--build",
+      "--top-module",
+      "self_full_sim_top",
+      "--no-timing",
+      "-DSYNTHESIS",
+      "--output-split-cfuncs",
+      "500",
+      "-Wno-fatal",
+      "-O1",
+      "-j",
+      "2",
+      "-GFRAME_CONTEXTS=5",
+      "-GK3_UNITS=4",
+      "-GK1_UNITS=6",
+      "-GPOST_UNITS=3",
+      "-GSRAM_SIZE=33554432",
+      "-CFLAGS",
+      "-std=c++20 -DCNN_FRAMES=5 -DCNN_SRAM=33554432 -DCNN_K3=4 -DCNN_K1=6 -DCNN_POST=3 -DCNN_MAX_TASKS=1024",
+      "-MAKEFLAGS",
+      "CFG_CXXFLAGS_PCH_I=-include PYTHON3=python3 OPT_FAST=-O2",
+      "-GPW4=1",
+      "-GCONV_OVERLAP=1",
+      "-GWIDE_PIPE=1",
+      "-GPW8=1",
+      "-GDW_PRIORITY=0",
+      "-GFRAME_PRIORITY=1",
+      "-GDW_CACHE=1",
+      "-GPOST_GROUP=16",
+      "-GK3_PAR4=1",
+      "-GMAX_TASKS=1024"
+    ],
+    "verilator": "301825f856c896c1423a056e69f3ce920cb5ed7695a122619145a03b374fe1cd"
+  },
+  "exe_sha256": "d44f19e178311721f2e4345f333fdaf0555b2eb70d5880295d37283e7abab7de",
+  "pw4": true,
+  "conv_overlap": true,
+  "wide_pipe": true,
+  "pw8": true,
+  "dw_priority": false,
+  "compile_seconds": 53.164724764,
+  "pool": {
+    "K3": 4,
+    "K1": 6,
+    "Post": 3,
+    "Add": 1,
+    "DW7": 1,
+    "Pad": 1
+  },
+  "sram_capacity": 33554432,
+  "input_pace": 80,
+  "scenarios": {
+    "overlap": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "overlap",
+        "cycles": 84311,
+        "compute_done_cycle": 83756,
+        "commands": 40,
+        "expanded_commands": 40,
+        "checked_bytes": 89820,
+        "macs": 512000,
+        "allocations": 40,
+        "releases": 40,
+        "results": 5,
+        "simulation_seconds": 0.358014,
+        "multi_frame_cycles": 64339,
+        "multi_frame_work_cycles": 26881,
+        "cross_operator_work_cycles": 11065,
+        "multi_k3_mac_cycles": 10609,
+        "peak_active_frames": 5,
+        "peak_simultaneous_k3_mac": 4,
+        "input_mac_cycles": 7825,
+        "input_compute_cycles": 8527,
+        "input_write_compute_cycles": 102,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 3962,
+            "read_complete": 60693
+          },
+          {
+            "frame": 101,
+            "input_begin": 3969,
+            "input_commit": 7777,
+            "first_launch": 7844,
+            "read_complete": 64618
+          },
+          {
+            "frame": 102,
+            "input_begin": 7858,
+            "input_commit": 11667,
+            "first_launch": 11726,
+            "read_complete": 68649
+          },
+          {
+            "frame": 103,
+            "input_begin": 11748,
+            "input_commit": 15559,
+            "first_launch": 15608,
+            "read_complete": 72843
+          },
+          {
+            "frame": 104,
+            "input_begin": 15640,
+            "input_commit": 19450,
+            "first_launch": 19490,
+            "read_complete": 84309
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 46051,
+            "work_cycles": 13824,
+            "read_bytes": 14424,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 2473
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 38444,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 1351
+          },
+          {
+            "unit": 2,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 38615,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 1522
+          },
+          {
+            "unit": 3,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 30915,
+            "work_cycles": 9216,
+            "read_bytes": 11884,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 1474
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10390,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 515
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10381,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 712
+          },
+          {
+            "unit": 6,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10384,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 633
+          },
+          {
+            "unit": 7,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10373,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 395
+          },
+          {
+            "unit": 8,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 25
+          },
+          {
+            "unit": 9,
+            "kind": 5,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 10,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 11,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 19006,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 446
+          },
+          {
+            "unit": 12,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18948,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 388
+          },
+          {
+            "unit": 13,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18939,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 379
+          },
+          {
+            "unit": 14,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 15,
+            "kind": 4,
+            "tasks": 10,
+            "active_cycles": 18677,
+            "work_cycles": 4380,
+            "read_bytes": 6080,
+            "write_bytes": 13020,
+            "arbitration_wait_cycles": 1057
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          6789,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          492,
+          493,
+          0,
+          0,
+          512,
+          136
+        ],
+        "pool": {
+          "K3": 4,
+          "K1": 6,
+          "Post": 3,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 0.5769148610000059,
+      "outputs_sha256": "8d0f857ca0cf19046aefca8e60d9dd0292dbb8046cfc36f52a0e929ce34d3352"
+    },
+    "serial": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "serial",
+        "cycles": 295991,
+        "compute_done_cycle": 295436,
+        "commands": 40,
+        "expanded_commands": 40,
+        "checked_bytes": 89820,
+        "macs": 512000,
+        "allocations": 40,
+        "releases": 40,
+        "results": 5,
+        "simulation_seconds": 1.1554,
+        "multi_frame_cycles": 0,
+        "multi_frame_work_cycles": 0,
+        "cross_operator_work_cycles": 0,
+        "multi_k3_mac_cycles": 0,
+        "peak_active_frames": 1,
+        "peak_simultaneous_k3_mac": 1,
+        "input_mac_cycles": 0,
+        "input_compute_cycles": 0,
+        "input_write_compute_cycles": 0,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 3962,
+            "read_complete": 59317
+          },
+          {
+            "frame": 101,
+            "input_begin": 59318,
+            "input_commit": 63126,
+            "first_launch": 63170,
+            "read_complete": 118485
+          },
+          {
+            "frame": 102,
+            "input_begin": 118486,
+            "input_commit": 122294,
+            "first_launch": 122338,
+            "read_complete": 177653
+          },
+          {
+            "frame": 103,
+            "input_begin": 177654,
+            "input_commit": 181462,
+            "first_launch": 181506,
+            "read_complete": 236821
+          },
+          {
+            "frame": 104,
+            "input_begin": 236822,
+            "input_commit": 240630,
+            "first_launch": 240674,
+            "read_complete": 295989
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 65367,
+            "work_cycles": 20736,
+            "read_bytes": 21636,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 22956,
+            "work_cycles": 6912,
+            "read_bytes": 14016,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 2,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 43578,
+            "work_cycles": 13824,
+            "read_bytes": 14424,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 3,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 15304,
+            "work_cycles": 4608,
+            "read_bytes": 9344,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 6,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 7,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 8,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 5,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 10,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 11,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18560,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 12,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18560,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 13,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18560,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 14,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 15,
+            "kind": 4,
+            "tasks": 10,
+            "active_cycles": 17620,
+            "work_cycles": 4380,
+            "read_bytes": 6080,
+            "write_bytes": 13020,
+            "arbitration_wait_cycles": 0
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          410,
+          595,
+          0,
+          0,
+          485,
+          235
+        ],
+        "pool": {
+          "K3": 4,
+          "K1": 6,
+          "Post": 3,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 1.530254431000003,
+      "outputs_sha256": "8d0f857ca0cf19046aefca8e60d9dd0292dbb8046cfc36f52a0e929ce34d3352"
+    },
+    "preloaded": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "preloaded",
+        "cycles": 81071,
+        "compute_done_cycle": 80516,
+        "commands": 40,
+        "expanded_commands": 40,
+        "checked_bytes": 89820,
+        "macs": 512000,
+        "allocations": 40,
+        "releases": 40,
+        "results": 5,
+        "simulation_seconds": 0.376266,
+        "multi_frame_cycles": 63468,
+        "multi_frame_work_cycles": 26151,
+        "cross_operator_work_cycles": 8040,
+        "multi_k3_mac_cycles": 11332,
+        "peak_active_frames": 5,
+        "peak_simultaneous_k3_mac": 4,
+        "input_mac_cycles": 0,
+        "input_compute_cycles": 0,
+        "input_write_compute_cycles": 0,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 0,
+            "input_commit": 41,
+            "first_launch": 122,
+            "read_complete": 57541
+          },
+          {
+            "frame": 101,
+            "input_begin": 42,
+            "input_commit": 42,
+            "first_launch": 1524,
+            "read_complete": 59885
+          },
+          {
+            "frame": 102,
+            "input_begin": 43,
+            "input_commit": 43,
+            "first_launch": 2926,
+            "read_complete": 62379
+          },
+          {
+            "frame": 103,
+            "input_begin": 44,
+            "input_commit": 44,
+            "first_launch": 4328,
+            "read_complete": 65634
+          },
+          {
+            "frame": 104,
+            "input_begin": 45,
+            "input_commit": 45,
+            "first_launch": 5730,
+            "read_complete": 81069
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 46634,
+            "work_cycles": 13824,
+            "read_bytes": 14424,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 3056
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 39035,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 1942
+          },
+          {
+            "unit": 2,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 38936,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 1843
+          },
+          {
+            "unit": 3,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 31166,
+            "work_cycles": 9216,
+            "read_bytes": 11884,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 1725
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10374,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 676
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10379,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 775
+          },
+          {
+            "unit": 6,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10389,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 611
+          },
+          {
+            "unit": 7,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10388,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 577
+          },
+          {
+            "unit": 8,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10357,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 9,
+            "kind": 5,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 10,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 11,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 19061,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 501
+          },
+          {
+            "unit": 12,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18914,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 354
+          },
+          {
+            "unit": 13,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 18899,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 339
+          },
+          {
+            "unit": 14,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 15,
+            "kind": 4,
+            "tasks": 10,
+            "active_cycles": 18620,
+            "work_cycles": 4380,
+            "read_bytes": 6080,
+            "write_bytes": 13020,
+            "arbitration_wait_cycles": 1000
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          18007,
+          0,
+          0,
+          0,
+          19000,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          607,
+          578,
+          0,
+          0,
+          1906,
+          174
+        ],
+        "pool": {
+          "K3": 4,
+          "K1": 6,
+          "Post": 3,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 0.5773922570000138,
+      "outputs_sha256": "8d0f857ca0cf19046aefca8e60d9dd0292dbb8046cfc36f52a0e929ce34d3352"
+    },
+    "stress": {
+      "metrics": {
+        "status": "PASS",
+        "mode": "stress",
+        "cycles": 219697,
+        "compute_done_cycle": 105424,
+        "commands": 40,
+        "expanded_commands": 40,
+        "checked_bytes": 89820,
+        "macs": 512000,
+        "allocations": 40,
+        "releases": 40,
+        "results": 5,
+        "simulation_seconds": 0.886797,
+        "multi_frame_cycles": 68545,
+        "multi_frame_work_cycles": 25988,
+        "cross_operator_work_cycles": 8361,
+        "multi_k3_mac_cycles": 10501,
+        "peak_active_frames": 5,
+        "peak_simultaneous_k3_mac": 4,
+        "input_mac_cycles": 6173,
+        "input_compute_cycles": 7014,
+        "input_write_compute_cycles": 89,
+        "frames": [
+          {
+            "frame": 100,
+            "input_begin": 80,
+            "input_commit": 3888,
+            "first_launch": 3962,
+            "read_complete": 219695
+          },
+          {
+            "frame": 101,
+            "input_begin": 3969,
+            "input_commit": 7777,
+            "first_launch": 7844,
+            "read_complete": 97635
+          },
+          {
+            "frame": 102,
+            "input_begin": 7858,
+            "input_commit": 11667,
+            "first_launch": 11726,
+            "read_complete": 128150
+          },
+          {
+            "frame": 103,
+            "input_begin": 11748,
+            "input_commit": 15559,
+            "first_launch": 15608,
+            "read_complete": 158665
+          },
+          {
+            "frame": 104,
+            "input_begin": 15640,
+            "input_commit": 19455,
+            "first_launch": 19530,
+            "read_complete": 189180
+          }
+        ],
+        "units": [
+          {
+            "unit": 0,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 45633,
+            "work_cycles": 9216,
+            "read_bytes": 11884,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 16192
+          },
+          {
+            "unit": 1,
+            "kind": 0,
+            "tasks": 2,
+            "active_cycles": 53306,
+            "work_cycles": 13824,
+            "read_bytes": 14424,
+            "write_bytes": 8192,
+            "arbitration_wait_cycles": 9728
+          },
+          {
+            "unit": 2,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 39896,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 2803
+          },
+          {
+            "unit": 3,
+            "kind": 0,
+            "tasks": 3,
+            "active_cycles": 42467,
+            "work_cycles": 11520,
+            "read_bytes": 16556,
+            "write_bytes": 12288,
+            "arbitration_wait_cycles": 5374
+          },
+          {
+            "unit": 4,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10529,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 1332
+          },
+          {
+            "unit": 5,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10890,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 1608
+          },
+          {
+            "unit": 6,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 11305,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 2331
+          },
+          {
+            "unit": 7,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 10399,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 725
+          },
+          {
+            "unit": 8,
+            "kind": 5,
+            "tasks": 1,
+            "active_cycles": 12817,
+            "work_cycles": 8192,
+            "read_bytes": 9216,
+            "write_bytes": 4096,
+            "arbitration_wait_cycles": 5481
+          },
+          {
+            "unit": 9,
+            "kind": 5,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 10,
+            "kind": 3,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 11,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 19661,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 1101
+          },
+          {
+            "unit": 12,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 21509,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 2949
+          },
+          {
+            "unit": 13,
+            "kind": 1,
+            "tasks": 5,
+            "active_cycles": 21435,
+            "work_cycles": 1280,
+            "read_bytes": 26880,
+            "write_bytes": 5120,
+            "arbitration_wait_cycles": 2875
+          },
+          {
+            "unit": 14,
+            "kind": 2,
+            "tasks": 0,
+            "active_cycles": 0,
+            "work_cycles": 0,
+            "read_bytes": 0,
+            "write_bytes": 0,
+            "arbitration_wait_cycles": 0
+          },
+          {
+            "unit": 15,
+            "kind": 4,
+            "tasks": 10,
+            "active_cycles": 19455,
+            "work_cycles": 4380,
+            "read_bytes": 6080,
+            "write_bytes": 13020,
+            "arbitration_wait_cycles": 1835
+          }
+        ],
+        "capacity_wait_by_opcode": [
+          13056,
+          0,
+          0,
+          0,
+          2060,
+          0
+        ],
+        "scan_wait_by_opcode": [
+          563,
+          555,
+          0,
+          0,
+          542,
+          145
+        ],
+        "pool": {
+          "K3": 4,
+          "K1": 6,
+          "Post": 3,
+          "Add": 1,
+          "DW7": 1,
+          "Pad": 1
+        }
+      },
+      "wall_seconds": 1.0796607579999886,
+      "outputs_sha256": "8d0f857ca0cf19046aefca8e60d9dd0292dbb8046cfc36f52a0e929ce34d3352"
+    }
+  },
+  "runner_sha256": "ce6ab106ae1703acccf298f63d5b37678fca2572414689d56397c810d351671f",
+  "started_at": "2026-11-09T20:12:11.654556",
+  "gate": null,
+  "frame_priority": true,
+  "dw_cache": true,
+  "post_group": 16,
+  "k3_par4": true,
+  "active_mode": "stress",
+  "wall_seconds": 3.801949965999995,
+  "finished_at": "2026-11-09T20:12:15.458683"
+}

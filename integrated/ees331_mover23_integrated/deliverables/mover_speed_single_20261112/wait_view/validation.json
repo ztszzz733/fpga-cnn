@@ -1,0 +1,187 @@
+{
+  "signal_count": 43,
+  "unique_signals": true,
+  "signal_names_verified_in_existing_excerpt": true,
+  "simulation_rerun": false,
+  "original_fst_modified": false,
+  "excerpt_start_ps": 160500880000,
+  "excerpt_end_ps": 160502160000,
+  "example_rows": [
+    {
+      "time_ps": 160500880000,
+      "k1_state": "IDLE",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500885000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500895000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500935000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500945000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500955000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160500965000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501005000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501015000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501025000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501035000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501075000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501085000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501095000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501105000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501145000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501155000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    },
+    {
+      "time_ps": 160501165000,
+      "k1_state": "SETUP",
+      "active": "1",
+      "work": "0",
+      "memory": "IDLE",
+      "mover": "IDLE"
+    }
+  ],
+  "paging_busy_cycles": 22637084.0,
+  "paging_busy_ms_at_100MHz": 226.37084,
+  "paging_busy_percent": 20.2595349835997,
+  "note": "Paging occupancy is not pure CNN stall. WORK is MAC fire only for convolution; Post/Add/Pad work means accepted output writes. Read/write handshake and owner are not retained in exported FST.",
+  "actual_excerpt_gtk_verified": true,
+  "gtk_signal_count": 43,
+  "gtk_unique_count": 43,
+  "actual_excerpt": {
+    "unit": "K3_0",
+    "observed_fill_wait_start_ps": 9957585000,
+    "read_wait_exit_ps": 9963245000,
+    "observed_read_wait_ns": 5660.0,
+    "excerpt_start_ps": 9956955000,
+    "excerpt_end_ps": 9963565000,
+    "source": "full_states.fst",
+    "method": "Streaming extraction from existing recorded values; no simulation",
+    "matched_condition": "ACTIVE=1, WORK=0, INPUT_WAIT/WEIGHT_WAIT, MEMORY=PAGE_FILL_WAIT",
+    "full_read_handshake_available": false
+  },
+  "files": {
+    "actual_read_wait.gtkw": "f65ba56a66a9fbe4512bd26e84b1121f27890a6fa57a0edd96c7f659646a0552",
+    "actual_read_wait.json": "e07d1cfa8eb26d4fef6ff16f48c64851d4dc46f485102efa0590c28514df31a4",
+    "actual_read_wait.vcd": "1adfff499428a683b6a99d89045e43b66a38a4e57672f689e9d96fdfaf678f6e",
+    "gtk_validation.log": "fdc4eef28f180f87f27311c31c3be32fb0055ea9d648cd48e7e3aa762a2adec3",
+    "open_actual_read_wait.cmd": "25a1e6bb08e3051f0c17e941ed6047f4a76e3941c02752b547f5401d7ee38b2d",
+    "open_wait_detail.cmd": "92f9f1fd9a2ec8cbd40c66bb0132674f941c1c41bc0d718ff09abc9281dd5bcc",
+    "open_wait_full.cmd": "3c4ca825f5cca31c7c5c7c76bd8efa5a901f3a0b6b4b69cb33d44a705aae1345",
+    "README.md": "f9e5bf14fa0f600adcc348f47344c2331bafc4c28bbd420d266b0d6b2f84e344",
+    "verify_wait.tcl": "f7c98077817d3f9bdfacb017e9ee52882b76695a7fa304432cd8818690e622af",
+    "wait_detail.gtkw": "e40131b15d5fbeae7030edf4794c20580cfc69a31a0b987e647020799a56e79b",
+    "wait_full.gtkw": "fc557f77582f23316c433b04b57eded2526cba1900775775ef77899c0fb23a86"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "archive_sha256": "a14030278feef125b76f381657e4ce1a137dbcf8fdedd95e9a62992f7146c872",
+  "archive_bytes": 918248,
+  "portable_extracted_verification": "PASS",
+  "scope": "Package and recorded evidence verification; not new MOVER hardware validation"
+}

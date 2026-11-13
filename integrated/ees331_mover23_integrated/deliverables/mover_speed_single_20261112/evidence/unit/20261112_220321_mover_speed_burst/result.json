@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "sources": {
+    "storage_v2/rtl/data_mover.sv": "912cb80f7d2bb0e30408ecb223fbdad037a65c58b99f1471ade84ef8f0407c9e",
+    "simulation/tb/integration/mover_speed_unit.cpp": "39ba460b160cc0716bbbb0ecf4f220ebe7d96bb7221c39cbbcb1e0944ff03d90"
+  },
+  "mode": "burst",
+  "seconds": 7.696047536
+}

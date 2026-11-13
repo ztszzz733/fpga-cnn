@@ -1,0 +1,305 @@
+{
+  "status": "PASS",
+  "source_vcd": "D:\\cpu_control\\build\\runs\\20261008_230704_371733_autoload_integration\\power_on_success.vcd",
+  "source_vcd_sha256": "8ebf38ae27ee2f661706b90f8a14394a61d712f2d7120dfb184433f27deeff3c",
+  "historical_simulation": true,
+  "source_result": "D:\\cpu_control\\build\\runs\\20261008_230704_371733_autoload_integration\\result.json",
+  "connection_documents": [
+    "SoC六模块增线说明_CPU与图像桥三线直连.md",
+    "SoC顶层连线与总体IO说明_小白版.md",
+    "SoC三线自动加载RTL与上电全流程仿真说明_小白版.md"
+  ],
+  "allowlist": {
+    "外部IO": [
+      "sys_clk",
+      "rst_n_in",
+      "uart_rx",
+      "uart_tx",
+      "led_ready",
+      "led_busy",
+      "led_error"
+    ],
+    "公共时钟复位": [
+      "clk",
+      "rst_n"
+    ],
+    "CPU与IMEM": [
+      "imem_addr",
+      "imem_re",
+      "imem_rdata"
+    ],
+    "CPU与SRAM": [
+      "dmem_addr",
+      "dmem_wdata",
+      "dmem_re",
+      "dmem_we",
+      "dmem_wstrb",
+      "dmem_rdata"
+    ],
+    "CPU与CNN": [
+      "cnn_mmio_addr",
+      "cnn_mmio_wdata",
+      "cnn_mmio_re",
+      "cnn_mmio_we",
+      "cnn_mmio_rdata",
+      "cnn_mmio_ready"
+    ],
+    "CNN与SRAM": [
+      "mem_addr",
+      "mem_wdata",
+      "mem_read",
+      "mem_write",
+      "mem_rdata",
+      "mem_ready"
+    ],
+    "图像桥与SRAM": [
+      "io_mem_addr",
+      "io_mem_wdata",
+      "io_mem_req",
+      "io_mem_we",
+      "io_mem_be",
+      "io_mem_rdata",
+      "io_mem_gnt",
+      "io_mem_rvalid",
+      "io_mem_error"
+    ],
+    "新增三线": [
+      "load_req",
+      "load_complete",
+      "load_error"
+    ],
+    "原说明状态线": [
+      "cnn_mem_fault",
+      "bridge_ready",
+      "bridge_busy",
+      "bridge_error"
+    ]
+  },
+  "plotted_signals": [
+    "clk",
+    "cnn_mmio_addr",
+    "cnn_mmio_rdata",
+    "cnn_mmio_re",
+    "cnn_mmio_ready",
+    "cnn_mmio_wdata",
+    "cnn_mmio_we",
+    "dmem_addr",
+    "dmem_rdata",
+    "dmem_re",
+    "dmem_wdata",
+    "dmem_we",
+    "dmem_wstrb",
+    "imem_addr",
+    "imem_rdata",
+    "imem_re",
+    "io_mem_addr",
+    "io_mem_be",
+    "io_mem_error",
+    "io_mem_gnt",
+    "io_mem_req",
+    "io_mem_wdata",
+    "io_mem_we",
+    "load_complete",
+    "load_error",
+    "load_req",
+    "mem_addr",
+    "mem_rdata",
+    "mem_read",
+    "mem_ready",
+    "mem_wdata",
+    "mem_write",
+    "rst_n",
+    "rst_n_in",
+    "uart_rx",
+    "uart_tx"
+  ],
+  "figures": [
+    {
+      "file": "01_overview.png",
+      "signals": [
+        "rst_n",
+        "load_req",
+        "uart_tx",
+        "uart_rx",
+        "io_mem_req",
+        "load_complete",
+        "load_error",
+        "cnn_mmio_we",
+        "mem_read",
+        "mem_write",
+        "dmem_re",
+        "dmem_we"
+      ],
+      "start_ns": 0,
+      "end_ns": 315000
+    },
+    {
+      "file": "02_boot.png",
+      "signals": [
+        "clk",
+        "rst_n_in",
+        "rst_n",
+        "imem_re",
+        "imem_addr",
+        "imem_rdata",
+        "load_req"
+      ],
+      "start_ns": 0,
+      "end_ns": 280
+    },
+    {
+      "file": "03_uart.png",
+      "signals": [
+        "load_req",
+        "uart_tx",
+        "uart_rx",
+        "io_mem_req",
+        "load_complete",
+        "load_error"
+      ],
+      "start_ns": 0,
+      "end_ns": 78545.0
+    },
+    {
+      "file": "04_sram_input.png",
+      "signals": [
+        "clk",
+        "io_mem_req",
+        "io_mem_we",
+        "io_mem_gnt",
+        "io_mem_error",
+        "io_mem_addr",
+        "io_mem_be",
+        "io_mem_wdata",
+        "load_complete"
+      ],
+      "start_ns": 77520.0,
+      "end_ns": 77640.0
+    },
+    {
+      "file": "05_handoff_start.png",
+      "signals": [
+        "load_req",
+        "load_complete",
+        "load_error",
+        "io_mem_req",
+        "cnn_mmio_we",
+        "cnn_mmio_ready",
+        "cnn_mmio_addr",
+        "cnn_mmio_wdata"
+      ],
+      "start_ns": 311885.0,
+      "end_ns": 312500.0
+    },
+    {
+      "file": "05b_mmio_detail.png",
+      "signals": [
+        "clk",
+        "cnn_mmio_we",
+        "cnn_mmio_ready",
+        "cnn_mmio_addr",
+        "cnn_mmio_wdata",
+        "load_req",
+        "load_complete"
+      ],
+      "start_ns": 312370.0,
+      "end_ns": 312480.0
+    },
+    {
+      "file": "06_cnn_descriptor.png",
+      "signals": [
+        "clk",
+        "mem_read",
+        "mem_ready",
+        "mem_addr",
+        "mem_rdata",
+        "mem_write"
+      ],
+      "start_ns": 312490.0,
+      "end_ns": 312815.0
+    },
+    {
+      "file": "07_cnn_compute.png",
+      "signals": [
+        "mem_read",
+        "mem_write",
+        "mem_ready",
+        "mem_addr",
+        "mem_rdata",
+        "mem_wdata",
+        "cnn_mmio_re",
+        "cnn_mmio_rdata"
+      ],
+      "start_ns": 312850.0,
+      "end_ns": 313530.0
+    },
+    {
+      "file": "07b_cnn_input_detail.png",
+      "signals": [
+        "clk",
+        "mem_read",
+        "mem_ready",
+        "mem_addr",
+        "mem_rdata",
+        "mem_write"
+      ],
+      "start_ns": 312850.0,
+      "end_ns": 313020.0
+    },
+    {
+      "file": "08_cpu_result.png",
+      "signals": [
+        "cnn_mmio_re",
+        "cnn_mmio_ready",
+        "cnn_mmio_addr",
+        "cnn_mmio_rdata",
+        "dmem_re",
+        "dmem_we",
+        "dmem_wstrb",
+        "dmem_addr",
+        "dmem_rdata",
+        "dmem_wdata"
+      ],
+      "start_ns": 313550.0,
+      "end_ns": 313835.0
+    },
+    {
+      "file": "08b_cpu_read_detail.png",
+      "signals": [
+        "clk",
+        "dmem_re",
+        "dmem_we",
+        "dmem_wstrb",
+        "dmem_addr",
+        "dmem_rdata",
+        "dmem_wdata"
+      ],
+      "start_ns": 313660.0,
+      "end_ns": 313740.0
+    }
+  ],
+  "milestones": {
+    "rst_n_in_rise_ns": 60.0,
+    "rst_n_rise_ns": 85.0,
+    "load_req_rise_ns": 235.0,
+    "first_uart_tx_start_ns": 385.0,
+    "first_uart_rx_start_ns": 13535.0,
+    "first_sram_write_ns": 77545.0,
+    "last_sram_write_ns": 311965.0,
+    "load_complete_rise_ns": 311965.0,
+    "load_req_fall_ns": 312265.0,
+    "load_complete_fall_ns": 312275.0,
+    "cnn_start_sample_ns": 312455.0,
+    "first_cnn_read_ns": 312515.0,
+    "first_cnn_write_ns": 313305.0,
+    "last_cnn_write_ns": 313485.0,
+    "first_cpu_result_read_ns": 313685.0,
+    "cpu_finish_write_ns": 313805.0
+  },
+  "notes": [
+    "Only dut top-level wire/port values; no testbench counters or private module state.",
+    "MMIO names cnn_mmio_* are the documented top-level aliases for mmio_*.",
+    "Transaction controls sampled before rising edge; CPU SRAM read data recorded after edge.",
+    "Existing demo loads weights/descriptors over UART; image-only mode has not been implemented."
+  ]
+}

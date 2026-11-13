@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sources": {
+    "storage_v2\\rtl\\tile_local_ram.sv": "6b170808c6276afd67dc6716c99220b397f548c5f826777acc0e243c8237dd39",
+    "storage_v2\\rtl\\data_mover.sv": "4b3e386556e35876a85559da2209cf1893235931d7b1c796af6410d7f0955922",
+    "rtl\\cnn_ddr\\cnn_paged_mover.sv": "7514466c9d0cf07d25c555d4fe0d64b8c5a7b47f26749570d5e82179268162fc",
+    "simulation\\tb\\cnn_paged_mover_fault_main.cpp": "dc885dcb627634e6c04ff96c919eaf5be6c735244ea23f4fcc19d19875e5bf63"
+  },
+  "returncode": 0,
+  "wall_seconds": 4.223560200000065
+}

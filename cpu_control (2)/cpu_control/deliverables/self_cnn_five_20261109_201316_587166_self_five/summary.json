@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "frames": 5,
+  "pool": {
+    "K3": 4,
+    "K1": 6,
+    "Post": 3,
+    "Add": 1,
+    "DW7": 1,
+    "Pad": 1
+  },
+  "cycles": 67056745,
+  "timing": {
+    "first_ms": 625.57496,
+    "last_ms": 670.56743,
+    "batch_ms": 670.56745,
+    "output_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "output_ms": [
+      625.57496,
+      636.09447,
+      642.64457,
+      648.27763,
+      670.56743
+    ],
+    "gaps_ms": [
+      10.519509999999968,
+      6.550100000000043,
+      5.63306,
+      22.2897999999999
+    ],
+    "min_gap_ms": 5.63306,
+    "max_gap_ms": 22.2897999999999,
+    "mean_gap_ms": 11.248117499999978,
+    "median_gap_ms": 8.534805000000006,
+    "batch_ms_per_image": 134.11349,
+    "latencies_ms": [
+      617.95448,
+      620.8535,
+      619.77878,
+      617.78255,
+      632.44048
+    ]
+  },
+  "counters": {
+    "commands": 655,
+    "expanded_commands": 655,
+    "allocations": 655,
+    "releases": 655,
+    "results": 5,
+    "macs": 1169052160,
+    "checked_bytes": 96686460
+  },
+  "traffic_bytes": 366173740,
+  "simulation_seconds": 270.266,
+  "wall_seconds": 284.13436597399993,
+  "compile_seconds": 0,
+  "gate_compile_seconds": 53.164724764,
+  "gate_wall_seconds": 3.801949965999995,
+  "output_sha256": "08863d5da4d2febb5a6f60ee8abd41712a48c53ff0c997161e283a87a11fa709",
+  "matches_previous_first_five": true,
+  "same_five_image_performance_baseline": false
+}

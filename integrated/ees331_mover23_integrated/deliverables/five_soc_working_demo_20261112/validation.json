@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "active_simulations": [],
+  "views": {
+    "full_overlap_states": 43,
+    "full_overlap_states_detail": 158,
+    "small_complete_states": 43,
+    "full_start_states": 43
+  },
+  "text_state_lookup_verified": true,
+  "full_network_status": "STOPPED_BY_USER",
+  "small_soc_status": "PASS"
+}

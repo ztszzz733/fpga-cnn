@@ -1,0 +1,5596 @@
+{
+  "zip": "D:\\QQ\\face_recognition_soc_datapath_complete.zip",
+  "zip_sha256": "7dcad4fb247b2b12a172009b63fd2f8c5506dbd57f4107793c95a4eb77ecd91c",
+  "archive_verified_sources": [
+    "rtl/cpu_datapath/address_decoder.sv",
+    "rtl/cpu_datapath/alu.sv",
+    "rtl/cpu_datapath/cpu_datapath.sv",
+    "rtl/cpu_datapath/ex_mem_reg.sv",
+    "rtl/cpu_datapath/fetch_adapter.sv",
+    "rtl/cpu_datapath/id_ex_reg.sv",
+    "rtl/cpu_datapath/if_id_reg.sv",
+    "rtl/cpu_datapath/imm_gen.sv",
+    "rtl/cpu_datapath/lsu.sv",
+    "rtl/cpu_datapath/mem_wb_reg.sv",
+    "rtl/cpu_datapath/pc.sv",
+    "rtl/cpu_datapath/regfile.sv"
+  ],
+  "waveform": "D:\\cpu_control\\build\\runs\\20260917_212107_968626_real_datapath_review\\mixed\\waves\\real_control_datapath.vcd",
+  "waveform_sha256": "c8332d1ab4e2ae62c340dc764879884c05dd469aea0f2ae06bcaf2caeb8b5105",
+  "waveform_declarations_validated": [
+    "tb_cpu_datapath.dut.clk",
+    "tb_cpu_datapath.dut.rst_n",
+    "tb_cpu_datapath.dut.instr_d",
+    "tb_cpu_datapath.dut.rs1_d",
+    "tb_cpu_datapath.dut.rs2_d",
+    "tb_cpu_datapath.dut.rd_e",
+    "tb_cpu_datapath.dut.rd_m",
+    "tb_cpu_datapath.dut.rd_w",
+    "tb_cpu_datapath.dut.regwrite_m",
+    "tb_cpu_datapath.dut.regwrite_w",
+    "tb_cpu_datapath.dut.memread_e",
+    "tb_cpu_datapath.dut.cmp_eq_e",
+    "tb_cpu_datapath.dut.cmp_lt_e",
+    "tb_cpu_datapath.dut.cmp_ltu_e",
+    "tb_cpu_datapath.dut.mul_busy",
+    "tb_cpu_datapath.dut.valid_d",
+    "tb_cpu_datapath.dut.valid_e",
+    "tb_cpu_datapath.dut.valid_m",
+    "tb_cpu_datapath.dut.valid_w",
+    "tb_cpu_datapath.dut.rs1_e",
+    "tb_cpu_datapath.dut.rs2_e",
+    "tb_cpu_datapath.dut.uses_rs1_e",
+    "tb_cpu_datapath.dut.uses_rs2_e",
+    "tb_cpu_datapath.dut.branch_type_e",
+    "tb_cpu_datapath.dut.jump_e",
+    "tb_cpu_datapath.dut.memread_m",
+    "tb_cpu_datapath.dut.pc_sel",
+    "tb_cpu_datapath.dut.pc_en",
+    "tb_cpu_datapath.dut.if_id_en",
+    "tb_cpu_datapath.dut.if_id_flush",
+    "tb_cpu_datapath.dut.id_ex_flush",
+    "tb_cpu_datapath.dut.alu_ctrl",
+    "tb_cpu_datapath.dut.alu_src_a_sel",
+    "tb_cpu_datapath.dut.alu_src_b_sel",
+    "tb_cpu_datapath.dut.fwd_a",
+    "tb_cpu_datapath.dut.fwd_b",
+    "tb_cpu_datapath.dut.fwd_store",
+    "tb_cpu_datapath.dut.regwrite_d",
+    "tb_cpu_datapath.dut.memread_d",
+    "tb_cpu_datapath.dut.memwrite_d",
+    "tb_cpu_datapath.dut.load_type_d",
+    "tb_cpu_datapath.dut.store_type_d",
+    "tb_cpu_datapath.dut.wb_sel_d",
+    "tb_cpu_datapath.dut.branch_type_d",
+    "tb_cpu_datapath.dut.jump_d",
+    "tb_cpu_datapath.dut.imm_type_d",
+    "tb_cpu_datapath.dut.uses_rs1_d",
+    "tb_cpu_datapath.dut.uses_rs2_d",
+    "tb_cpu_datapath.dut.imem_addr",
+    "tb_cpu_datapath.dut.imem_re",
+    "tb_cpu_datapath.dut.imem_rdata",
+    "tb_cpu_datapath.dut.dmem_addr",
+    "tb_cpu_datapath.dut.dmem_wdata",
+    "tb_cpu_datapath.dut.dmem_wstrb",
+    "tb_cpu_datapath.dut.dmem_re",
+    "tb_cpu_datapath.dut.dmem_we",
+    "tb_cpu_datapath.dut.dmem_rdata",
+    "tb_cpu_datapath.dut.mmio_addr",
+    "tb_cpu_datapath.dut.mmio_wdata",
+    "tb_cpu_datapath.dut.mmio_re",
+    "tb_cpu_datapath.dut.mmio_we",
+    "tb_cpu_datapath.dut.mmio_rdata",
+    "tb_cpu_datapath.dut.mmio_ready",
+    "tb_cpu_datapath.dut.pc_q",
+    "tb_cpu_datapath.dut.next_pc",
+    "tb_cpu_datapath.dut.pc4_seq",
+    "tb_cpu_datapath.dut.branch_target",
+    "tb_cpu_datapath.dut.jalr_target",
+    "tb_cpu_datapath.dut.fetch_valid",
+    "tb_cpu_datapath.dut.fetch_instr",
+    "tb_cpu_datapath.dut.fetch_pc",
+    "tb_cpu_datapath.dut.fetch_pc4",
+    "tb_cpu_datapath.dut.pc_d",
+    "tb_cpu_datapath.dut.pc4_d",
+    "tb_cpu_datapath.dut.rd_d",
+    "tb_cpu_datapath.dut.rd1_d",
+    "tb_cpu_datapath.dut.rd2_d",
+    "tb_cpu_datapath.dut.imm_d",
+    "tb_cpu_datapath.dut.pc_e",
+    "tb_cpu_datapath.dut.pc4_e",
+    "tb_cpu_datapath.dut.rd1_e",
+    "tb_cpu_datapath.dut.rd2_e",
+    "tb_cpu_datapath.dut.imm_e",
+    "tb_cpu_datapath.dut.alu_ctrl_e",
+    "tb_cpu_datapath.dut.alu_src_a_sel_e",
+    "tb_cpu_datapath.dut.alu_src_b_sel_e",
+    "tb_cpu_datapath.dut.regwrite_e",
+    "tb_cpu_datapath.dut.memwrite_e",
+    "tb_cpu_datapath.dut.load_type_e",
+    "tb_cpu_datapath.dut.store_type_e",
+    "tb_cpu_datapath.dut.wb_sel_e",
+    "tb_cpu_datapath.dut.src1_fwd_e",
+    "tb_cpu_datapath.dut.src2_fwd_e",
+    "tb_cpu_datapath.dut.store_data_fwd_e",
+    "tb_cpu_datapath.dut.alu_a_e",
+    "tb_cpu_datapath.dut.alu_b_e",
+    "tb_cpu_datapath.dut.alu_result_e",
+    "tb_cpu_datapath.dut.alu_zero_e",
+    "tb_cpu_datapath.dut.write_data_m",
+    "tb_cpu_datapath.dut.pc4_m",
+    "tb_cpu_datapath.dut.memwrite_m",
+    "tb_cpu_datapath.dut.load_type_m",
+    "tb_cpu_datapath.dut.store_type_m",
+    "tb_cpu_datapath.dut.wb_sel_m",
+    "tb_cpu_datapath.dut.alu_result_m",
+    "tb_cpu_datapath.dut.mem_forward_m",
+    "tb_cpu_datapath.dut.read_data_m",
+    "tb_cpu_datapath.dut.read_data_w",
+    "tb_cpu_datapath.dut.alu_result_w",
+    "tb_cpu_datapath.dut.pc4_w",
+    "tb_cpu_datapath.dut.wb_data_w",
+    "tb_cpu_datapath.dut.wb_sel_w",
+    "tb_cpu_datapath.dut.rf_we",
+    "tb_cpu_datapath.dut.sram_hit_e",
+    "tb_cpu_datapath.dut.mmio_window_hit_e",
+    "tb_cpu_datapath.dut.mmio_reg_hit_e",
+    "tb_cpu_datapath.dut.unmapped_e",
+    "tb_cpu_datapath.dut.sram_hit_m",
+    "tb_cpu_datapath.dut.mmio_window_hit_m",
+    "tb_cpu_datapath.dut.mmio_reg_hit_m",
+    "tb_cpu_datapath.dut.unmapped_m",
+    "tb_cpu_datapath.dut.ignored_load_e",
+    "tb_cpu_datapath.dut.store_wdata_e",
+    "tb_cpu_datapath.dut.load_aligned_e",
+    "tb_cpu_datapath.dut.load_type_valid_e",
+    "tb_cpu_datapath.dut.store_aligned_e",
+    "tb_cpu_datapath.dut.store_type_valid_e",
+    "tb_cpu_datapath.dut.store_wstrb_e",
+    "tb_cpu_datapath.dut.sram_load_data_m",
+    "tb_cpu_datapath.dut.ignored_store_wdata_m",
+    "tb_cpu_datapath.dut.load_aligned_m",
+    "tb_cpu_datapath.dut.load_type_valid_m",
+    "tb_cpu_datapath.dut.ignored_store_aligned_m",
+    "tb_cpu_datapath.dut.ignored_store_type_valid_m",
+    "tb_cpu_datapath.dut.ignored_store_wstrb_m",
+    "tb_cpu_datapath.dut.legal_sram_load_m",
+    "tb_cpu_datapath.dut.legal_mmio_load_m",
+    "tb_cpu_datapath.u_control.clk",
+    "tb_cpu_datapath.u_control.rst_n",
+    "tb_cpu_datapath.u_control.instr_d",
+    "tb_cpu_datapath.u_control.rs1_d",
+    "tb_cpu_datapath.u_control.rs2_d",
+    "tb_cpu_datapath.u_control.rd_e",
+    "tb_cpu_datapath.u_control.rd_m",
+    "tb_cpu_datapath.u_control.rd_w",
+    "tb_cpu_datapath.u_control.regwrite_m",
+    "tb_cpu_datapath.u_control.regwrite_w",
+    "tb_cpu_datapath.u_control.memread_e",
+    "tb_cpu_datapath.u_control.cmp_eq_e",
+    "tb_cpu_datapath.u_control.cmp_lt_e",
+    "tb_cpu_datapath.u_control.cmp_ltu_e",
+    "tb_cpu_datapath.u_control.mul_busy",
+    "tb_cpu_datapath.u_control.valid_d",
+    "tb_cpu_datapath.u_control.valid_e",
+    "tb_cpu_datapath.u_control.valid_m",
+    "tb_cpu_datapath.u_control.valid_w",
+    "tb_cpu_datapath.u_control.rs1_e",
+    "tb_cpu_datapath.u_control.rs2_e",
+    "tb_cpu_datapath.u_control.uses_rs1_e",
+    "tb_cpu_datapath.u_control.uses_rs2_e",
+    "tb_cpu_datapath.u_control.branch_type_e",
+    "tb_cpu_datapath.u_control.jump_e",
+    "tb_cpu_datapath.u_control.memread_m",
+    "tb_cpu_datapath.u_control.pc_sel",
+    "tb_cpu_datapath.u_control.pc_en",
+    "tb_cpu_datapath.u_control.if_id_en",
+    "tb_cpu_datapath.u_control.if_id_flush",
+    "tb_cpu_datapath.u_control.id_ex_flush",
+    "tb_cpu_datapath.u_control.alu_ctrl",
+    "tb_cpu_datapath.u_control.alu_src_a_sel",
+    "tb_cpu_datapath.u_control.alu_src_b_sel",
+    "tb_cpu_datapath.u_control.fwd_a",
+    "tb_cpu_datapath.u_control.fwd_b",
+    "tb_cpu_datapath.u_control.fwd_store",
+    "tb_cpu_datapath.u_control.regwrite_d",
+    "tb_cpu_datapath.u_control.memread_d",
+    "tb_cpu_datapath.u_control.memwrite_d",
+    "tb_cpu_datapath.u_control.load_type_d",
+    "tb_cpu_datapath.u_control.store_type_d",
+    "tb_cpu_datapath.u_control.wb_sel_d",
+    "tb_cpu_datapath.u_control.branch_type_d",
+    "tb_cpu_datapath.u_control.jump_d",
+    "tb_cpu_datapath.u_control.imm_type_d",
+    "tb_cpu_datapath.u_control.uses_rs1_d",
+    "tb_cpu_datapath.u_control.uses_rs2_d",
+    "tb_cpu_datapath.u_control.decoded_main",
+    "tb_cpu_datapath.u_control.decoded_safe",
+    "tb_cpu_datapath.u_control.legal_main",
+    "tb_cpu_datapath.u_control.legal_alu",
+    "tb_cpu_datapath.u_control.illegal_d",
+    "tb_cpu_datapath.u_control.decoded_alu",
+    "tb_cpu_datapath.u_control.load_use",
+    "tb_cpu_datapath.u_control.redirect",
+    "tb_cpu_datapath.u_control.operand_unready",
+    "tb_cpu_datapath.u_control.raw_fwd_a",
+    "tb_cpu_datapath.u_control.raw_fwd_b",
+    "tb_cpu_datapath.u_control.raw_fwd_store",
+    "tb_cpu_datapath.u_control.redirect_sel",
+    "tb_cpu_datapath.dut.u_pc.clk",
+    "tb_cpu_datapath.dut.u_pc.rst_n",
+    "tb_cpu_datapath.dut.u_pc.pc_en",
+    "tb_cpu_datapath.dut.u_pc.next_pc",
+    "tb_cpu_datapath.dut.u_pc.pc_q",
+    "tb_cpu_datapath.dut.u_fetch.clk",
+    "tb_cpu_datapath.dut.u_fetch.rst_n",
+    "tb_cpu_datapath.dut.u_fetch.request_pc",
+    "tb_cpu_datapath.dut.u_fetch.pc_en",
+    "tb_cpu_datapath.dut.u_fetch.if_id_en",
+    "tb_cpu_datapath.dut.u_fetch.flush",
+    "tb_cpu_datapath.dut.u_fetch.imem_addr",
+    "tb_cpu_datapath.dut.u_fetch.imem_re",
+    "tb_cpu_datapath.dut.u_fetch.imem_rdata",
+    "tb_cpu_datapath.dut.u_fetch.fetch_valid",
+    "tb_cpu_datapath.dut.u_fetch.fetch_instr",
+    "tb_cpu_datapath.dut.u_fetch.fetch_pc",
+    "tb_cpu_datapath.dut.u_fetch.fetch_pc4",
+    "tb_cpu_datapath.dut.u_if_id.clk",
+    "tb_cpu_datapath.dut.u_if_id.rst_n",
+    "tb_cpu_datapath.dut.u_if_id.en",
+    "tb_cpu_datapath.dut.u_if_id.flush",
+    "tb_cpu_datapath.dut.u_if_id.valid_i",
+    "tb_cpu_datapath.dut.u_if_id.instr_i",
+    "tb_cpu_datapath.dut.u_if_id.pc_i",
+    "tb_cpu_datapath.dut.u_if_id.pc4_i",
+    "tb_cpu_datapath.dut.u_if_id.valid_o",
+    "tb_cpu_datapath.dut.u_if_id.instr_o",
+    "tb_cpu_datapath.dut.u_if_id.pc_o",
+    "tb_cpu_datapath.dut.u_if_id.pc4_o",
+    "tb_cpu_datapath.dut.u_regfile.clk",
+    "tb_cpu_datapath.dut.u_regfile.rst_n",
+    "tb_cpu_datapath.dut.u_regfile.rs1",
+    "tb_cpu_datapath.dut.u_regfile.rs2",
+    "tb_cpu_datapath.dut.u_regfile.rd1",
+    "tb_cpu_datapath.dut.u_regfile.rd2",
+    "tb_cpu_datapath.dut.u_regfile.we",
+    "tb_cpu_datapath.dut.u_regfile.waddr",
+    "tb_cpu_datapath.dut.u_regfile.wdata",
+    "tb_cpu_datapath.dut.u_imm_gen.instr",
+    "tb_cpu_datapath.dut.u_imm_gen.imm_type",
+    "tb_cpu_datapath.dut.u_imm_gen.imm_ext",
+    "tb_cpu_datapath.dut.u_id_ex.clk",
+    "tb_cpu_datapath.dut.u_id_ex.rst_n",
+    "tb_cpu_datapath.dut.u_id_ex.flush",
+    "tb_cpu_datapath.dut.u_id_ex.valid_d",
+    "tb_cpu_datapath.dut.u_id_ex.pc_d",
+    "tb_cpu_datapath.dut.u_id_ex.pc4_d",
+    "tb_cpu_datapath.dut.u_id_ex.rd1_d",
+    "tb_cpu_datapath.dut.u_id_ex.rd2_d",
+    "tb_cpu_datapath.dut.u_id_ex.imm_d",
+    "tb_cpu_datapath.dut.u_id_ex.rs1_d",
+    "tb_cpu_datapath.dut.u_id_ex.rs2_d",
+    "tb_cpu_datapath.dut.u_id_ex.rd_d",
+    "tb_cpu_datapath.dut.u_id_ex.uses_rs1_d",
+    "tb_cpu_datapath.dut.u_id_ex.uses_rs2_d",
+    "tb_cpu_datapath.dut.u_id_ex.alu_ctrl_d",
+    "tb_cpu_datapath.dut.u_id_ex.alu_src_a_sel_d",
+    "tb_cpu_datapath.dut.u_id_ex.alu_src_b_sel_d",
+    "tb_cpu_datapath.dut.u_id_ex.regwrite_d",
+    "tb_cpu_datapath.dut.u_id_ex.memread_d",
+    "tb_cpu_datapath.dut.u_id_ex.memwrite_d",
+    "tb_cpu_datapath.dut.u_id_ex.load_type_d",
+    "tb_cpu_datapath.dut.u_id_ex.store_type_d",
+    "tb_cpu_datapath.dut.u_id_ex.wb_sel_d",
+    "tb_cpu_datapath.dut.u_id_ex.branch_type_d",
+    "tb_cpu_datapath.dut.u_id_ex.jump_d",
+    "tb_cpu_datapath.dut.u_id_ex.valid_e",
+    "tb_cpu_datapath.dut.u_id_ex.pc_e",
+    "tb_cpu_datapath.dut.u_id_ex.pc4_e",
+    "tb_cpu_datapath.dut.u_id_ex.rd1_e",
+    "tb_cpu_datapath.dut.u_id_ex.rd2_e",
+    "tb_cpu_datapath.dut.u_id_ex.imm_e",
+    "tb_cpu_datapath.dut.u_id_ex.rs1_e",
+    "tb_cpu_datapath.dut.u_id_ex.rs2_e",
+    "tb_cpu_datapath.dut.u_id_ex.rd_e",
+    "tb_cpu_datapath.dut.u_id_ex.uses_rs1_e",
+    "tb_cpu_datapath.dut.u_id_ex.uses_rs2_e",
+    "tb_cpu_datapath.dut.u_id_ex.alu_ctrl_e",
+    "tb_cpu_datapath.dut.u_id_ex.alu_src_a_sel_e",
+    "tb_cpu_datapath.dut.u_id_ex.alu_src_b_sel_e",
+    "tb_cpu_datapath.dut.u_id_ex.regwrite_e",
+    "tb_cpu_datapath.dut.u_id_ex.memread_e",
+    "tb_cpu_datapath.dut.u_id_ex.memwrite_e",
+    "tb_cpu_datapath.dut.u_id_ex.load_type_e",
+    "tb_cpu_datapath.dut.u_id_ex.store_type_e",
+    "tb_cpu_datapath.dut.u_id_ex.wb_sel_e",
+    "tb_cpu_datapath.dut.u_id_ex.branch_type_e",
+    "tb_cpu_datapath.dut.u_id_ex.jump_e",
+    "tb_cpu_datapath.dut.u_alu.a",
+    "tb_cpu_datapath.dut.u_alu.b",
+    "tb_cpu_datapath.dut.u_alu.alu_ctrl",
+    "tb_cpu_datapath.dut.u_alu.result",
+    "tb_cpu_datapath.dut.u_alu.zero",
+    "tb_cpu_datapath.dut.u_addr_e.addr",
+    "tb_cpu_datapath.dut.u_addr_e.sram_hit",
+    "tb_cpu_datapath.dut.u_addr_e.mmio_window_hit",
+    "tb_cpu_datapath.dut.u_addr_e.mmio_reg_hit",
+    "tb_cpu_datapath.dut.u_addr_e.unmapped",
+    "tb_cpu_datapath.dut.u_lsu_e.addr",
+    "tb_cpu_datapath.dut.u_lsu_e.store_data",
+    "tb_cpu_datapath.dut.u_lsu_e.read_word",
+    "tb_cpu_datapath.dut.u_lsu_e.load_type",
+    "tb_cpu_datapath.dut.u_lsu_e.store_type",
+    "tb_cpu_datapath.dut.u_lsu_e.load_data",
+    "tb_cpu_datapath.dut.u_lsu_e.load_aligned",
+    "tb_cpu_datapath.dut.u_lsu_e.load_type_valid",
+    "tb_cpu_datapath.dut.u_lsu_e.store_wdata",
+    "tb_cpu_datapath.dut.u_lsu_e.store_wstrb",
+    "tb_cpu_datapath.dut.u_lsu_e.store_aligned",
+    "tb_cpu_datapath.dut.u_lsu_e.store_type_valid",
+    "tb_cpu_datapath.dut.u_ex_mem.clk",
+    "tb_cpu_datapath.dut.u_ex_mem.rst_n",
+    "tb_cpu_datapath.dut.u_ex_mem.valid_e",
+    "tb_cpu_datapath.dut.u_ex_mem.alu_result_e",
+    "tb_cpu_datapath.dut.u_ex_mem.write_data_e",
+    "tb_cpu_datapath.dut.u_ex_mem.pc4_e",
+    "tb_cpu_datapath.dut.u_ex_mem.rd_e",
+    "tb_cpu_datapath.dut.u_ex_mem.regwrite_e",
+    "tb_cpu_datapath.dut.u_ex_mem.memread_e",
+    "tb_cpu_datapath.dut.u_ex_mem.memwrite_e",
+    "tb_cpu_datapath.dut.u_ex_mem.load_type_e",
+    "tb_cpu_datapath.dut.u_ex_mem.store_type_e",
+    "tb_cpu_datapath.dut.u_ex_mem.wb_sel_e",
+    "tb_cpu_datapath.dut.u_ex_mem.valid_m",
+    "tb_cpu_datapath.dut.u_ex_mem.alu_result_m",
+    "tb_cpu_datapath.dut.u_ex_mem.write_data_m",
+    "tb_cpu_datapath.dut.u_ex_mem.pc4_m",
+    "tb_cpu_datapath.dut.u_ex_mem.rd_m",
+    "tb_cpu_datapath.dut.u_ex_mem.regwrite_m",
+    "tb_cpu_datapath.dut.u_ex_mem.memread_m",
+    "tb_cpu_datapath.dut.u_ex_mem.memwrite_m",
+    "tb_cpu_datapath.dut.u_ex_mem.load_type_m",
+    "tb_cpu_datapath.dut.u_ex_mem.store_type_m",
+    "tb_cpu_datapath.dut.u_ex_mem.wb_sel_m",
+    "tb_cpu_datapath.dut.u_addr_m.addr",
+    "tb_cpu_datapath.dut.u_addr_m.sram_hit",
+    "tb_cpu_datapath.dut.u_addr_m.mmio_window_hit",
+    "tb_cpu_datapath.dut.u_addr_m.mmio_reg_hit",
+    "tb_cpu_datapath.dut.u_addr_m.unmapped",
+    "tb_cpu_datapath.dut.u_lsu_m.addr",
+    "tb_cpu_datapath.dut.u_lsu_m.store_data",
+    "tb_cpu_datapath.dut.u_lsu_m.read_word",
+    "tb_cpu_datapath.dut.u_lsu_m.load_type",
+    "tb_cpu_datapath.dut.u_lsu_m.store_type",
+    "tb_cpu_datapath.dut.u_lsu_m.load_data",
+    "tb_cpu_datapath.dut.u_lsu_m.load_aligned",
+    "tb_cpu_datapath.dut.u_lsu_m.load_type_valid",
+    "tb_cpu_datapath.dut.u_lsu_m.store_wdata",
+    "tb_cpu_datapath.dut.u_lsu_m.store_wstrb",
+    "tb_cpu_datapath.dut.u_lsu_m.store_aligned",
+    "tb_cpu_datapath.dut.u_lsu_m.store_type_valid",
+    "tb_cpu_datapath.dut.u_mem_wb.clk",
+    "tb_cpu_datapath.dut.u_mem_wb.rst_n",
+    "tb_cpu_datapath.dut.u_mem_wb.valid_m",
+    "tb_cpu_datapath.dut.u_mem_wb.read_data_m",
+    "tb_cpu_datapath.dut.u_mem_wb.alu_result_m",
+    "tb_cpu_datapath.dut.u_mem_wb.pc4_m",
+    "tb_cpu_datapath.dut.u_mem_wb.rd_m",
+    "tb_cpu_datapath.dut.u_mem_wb.regwrite_m",
+    "tb_cpu_datapath.dut.u_mem_wb.wb_sel_m",
+    "tb_cpu_datapath.dut.u_mem_wb.valid_w",
+    "tb_cpu_datapath.dut.u_mem_wb.read_data_w",
+    "tb_cpu_datapath.dut.u_mem_wb.alu_result_w",
+    "tb_cpu_datapath.dut.u_mem_wb.pc4_w",
+    "tb_cpu_datapath.dut.u_mem_wb.rd_w",
+    "tb_cpu_datapath.dut.u_mem_wb.regwrite_w",
+    "tb_cpu_datapath.dut.u_mem_wb.wb_sel_w",
+    "tb_cpu_datapath.u_control.u_main_decoder.instr_d",
+    "tb_cpu_datapath.u_control.u_main_decoder.decoded",
+    "tb_cpu_datapath.u_control.u_main_decoder.legal_main",
+    "tb_cpu_datapath.u_control.u_alu_decoder.opcode",
+    "tb_cpu_datapath.u_control.u_alu_decoder.funct3",
+    "tb_cpu_datapath.u_control.u_alu_decoder.funct7",
+    "tb_cpu_datapath.u_control.u_alu_decoder.alu_decoded",
+    "tb_cpu_datapath.u_control.u_alu_decoder.legal_alu",
+    "tb_cpu_datapath.u_control.u_hazard_unit.valid_d",
+    "tb_cpu_datapath.u_control.u_hazard_unit.valid_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.valid_m",
+    "tb_cpu_datapath.u_control.u_hazard_unit.valid_w",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rs1_d",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rs2_d",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rs1_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rs2_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rd_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rd_m",
+    "tb_cpu_datapath.u_control.u_hazard_unit.rd_w",
+    "tb_cpu_datapath.u_control.u_hazard_unit.uses_rs1_d",
+    "tb_cpu_datapath.u_control.u_hazard_unit.uses_rs2_d",
+    "tb_cpu_datapath.u_control.u_hazard_unit.uses_rs1_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.uses_rs2_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.memread_e",
+    "tb_cpu_datapath.u_control.u_hazard_unit.memread_m",
+    "tb_cpu_datapath.u_control.u_hazard_unit.regwrite_m",
+    "tb_cpu_datapath.u_control.u_hazard_unit.regwrite_w",
+    "tb_cpu_datapath.u_control.u_hazard_unit.load_use",
+    "tb_cpu_datapath.u_control.u_hazard_unit.operand_unready",
+    "tb_cpu_datapath.u_control.u_hazard_unit.fwd_a",
+    "tb_cpu_datapath.u_control.u_hazard_unit.fwd_b",
+    "tb_cpu_datapath.u_control.u_hazard_unit.fwd_store",
+    "tb_cpu_datapath.u_control.u_branch_control.valid_e",
+    "tb_cpu_datapath.u_control.u_branch_control.branch_type_e",
+    "tb_cpu_datapath.u_control.u_branch_control.jump_e",
+    "tb_cpu_datapath.u_control.u_branch_control.cmp_eq_e",
+    "tb_cpu_datapath.u_control.u_branch_control.cmp_lt_e",
+    "tb_cpu_datapath.u_control.u_branch_control.cmp_ltu_e",
+    "tb_cpu_datapath.u_control.u_branch_control.redirect",
+    "tb_cpu_datapath.u_control.u_branch_control.redirect_sel",
+    "tb_cpu_datapath.u_control.u_pipeline_control.rst_n",
+    "tb_cpu_datapath.u_control.u_pipeline_control.redirect",
+    "tb_cpu_datapath.u_control.u_pipeline_control.load_use",
+    "tb_cpu_datapath.u_control.u_pipeline_control.redirect_sel",
+    "tb_cpu_datapath.u_control.u_pipeline_control.pc_en",
+    "tb_cpu_datapath.u_control.u_pipeline_control.if_id_en",
+    "tb_cpu_datapath.u_control.u_pipeline_control.if_id_flush",
+    "tb_cpu_datapath.u_control.u_pipeline_control.id_ex_flush",
+    "tb_cpu_datapath.u_control.u_pipeline_control.pc_sel",
+    "tb_cpu_datapath.u_imem.clk",
+    "tb_cpu_datapath.u_imem.re",
+    "tb_cpu_datapath.u_imem.addr",
+    "tb_cpu_datapath.u_imem.rdata",
+    "tb_cpu_datapath.u_dmem.clk",
+    "tb_cpu_datapath.u_dmem.re",
+    "tb_cpu_datapath.u_dmem.we",
+    "tb_cpu_datapath.u_dmem.wstrb",
+    "tb_cpu_datapath.u_dmem.addr",
+    "tb_cpu_datapath.u_dmem.wdata",
+    "tb_cpu_datapath.u_dmem.rdata",
+    "tb_cpu_datapath.u_mmio.clk",
+    "tb_cpu_datapath.u_mmio.rst_n",
+    "tb_cpu_datapath.u_mmio.addr",
+    "tb_cpu_datapath.u_mmio.wdata",
+    "tb_cpu_datapath.u_mmio.re",
+    "tb_cpu_datapath.u_mmio.we",
+    "tb_cpu_datapath.u_mmio.rdata",
+    "tb_cpu_datapath.u_mmio.ready",
+    "tb_cpu_datapath.dut.u_fetch.req_valid_q",
+    "tb_cpu_datapath.dut.u_fetch.req_pc_q",
+    "tb_cpu_datapath.dut.u_fetch.req_pc4_q",
+    "tb_cpu_datapath.dut.u_fetch.buffer_valid_q",
+    "tb_cpu_datapath.dut.u_fetch.buffer_instr_q",
+    "tb_cpu_datapath.dut.u_fetch.buffer_pc_q",
+    "tb_cpu_datapath.dut.u_fetch.buffer_pc4_q",
+    "tb_cpu_datapath.dut.u_addr_e.sram_offset",
+    "tb_cpu_datapath.dut.u_addr_e.mmio_offset",
+    "tb_cpu_datapath.dut.u_lsu_e.selected_byte",
+    "tb_cpu_datapath.dut.u_lsu_e.selected_half",
+    "tb_cpu_datapath.dut.u_addr_m.sram_offset",
+    "tb_cpu_datapath.dut.u_addr_m.mmio_offset",
+    "tb_cpu_datapath.dut.u_lsu_m.selected_byte",
+    "tb_cpu_datapath.dut.u_lsu_m.selected_half",
+    "tb_cpu_datapath.u_control.u_hazard_unit.match_ma",
+    "tb_cpu_datapath.u_control.u_hazard_unit.match_mb",
+    "tb_cpu_datapath.u_control.u_hazard_unit.match_wa",
+    "tb_cpu_datapath.u_control.u_hazard_unit.match_wb",
+    "tb_cpu_datapath.u_control.u_branch_control.taken"
+  ],
+  "instances": [
+    {
+      "id": "D.u_pc",
+      "type": "pc",
+      "scope": "D",
+      "name": "u_pc",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "pc_en",
+          "net": "pc_en",
+          "key": "G.pc_en",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "next_pc",
+          "net": "next_pc",
+          "key": "D.next_pc",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc_q",
+          "net": "pc_q",
+          "key": "D.pc_q",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": "(.RESET_PC(RESET_PC))"
+    },
+    {
+      "id": "D.u_fetch",
+      "type": "fetch_adapter",
+      "scope": "D",
+      "name": "u_fetch",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "request_pc",
+          "net": "pc_q",
+          "key": "D.pc_q",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc_en",
+          "net": "pc_en",
+          "key": "G.pc_en",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "if_id_en",
+          "net": "if_id_en",
+          "key": "G.if_id_en",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "flush",
+          "net": "if_id_flush",
+          "key": "G.if_id_flush",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "imem_addr",
+          "net": "imem_addr",
+          "key": "G.imem_addr",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "imem_re",
+          "net": "imem_re",
+          "key": "G.imem_re",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "imem_rdata",
+          "net": "imem_rdata",
+          "key": "G.imem_rdata",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "fetch_valid",
+          "net": "fetch_valid",
+          "key": "D.fetch_valid",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "fetch_instr",
+          "net": "fetch_instr",
+          "key": "D.fetch_instr",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "fetch_pc",
+          "net": "fetch_pc",
+          "key": "D.fetch_pc",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "fetch_pc4",
+          "net": "fetch_pc4",
+          "key": "D.fetch_pc4",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_if_id",
+      "type": "if_id_reg",
+      "scope": "D",
+      "name": "u_if_id",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "en",
+          "net": "if_id_en",
+          "key": "G.if_id_en",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "flush",
+          "net": "if_id_flush",
+          "key": "G.if_id_flush",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_i",
+          "net": "fetch_valid",
+          "key": "D.fetch_valid",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "instr_i",
+          "net": "fetch_instr",
+          "key": "D.fetch_instr",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc_i",
+          "net": "fetch_pc",
+          "key": "D.fetch_pc",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_i",
+          "net": "fetch_pc4",
+          "key": "D.fetch_pc4",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "valid_o",
+          "net": "valid_d",
+          "key": "G.valid_d",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "instr_o",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "pc_o",
+          "net": "pc_d",
+          "key": "D.pc_d",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "pc4_o",
+          "net": "pc4_d",
+          "key": "D.pc4_d",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_regfile",
+      "type": "regfile",
+      "scope": "D",
+      "name": "u_regfile",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rs1",
+          "net": "rs1_d",
+          "key": "G.rs1_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rs2",
+          "net": "rs2_d",
+          "key": "G.rs2_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rd1",
+          "net": "rd1_d",
+          "key": "D.rd1_d",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rd2",
+          "net": "rd2_d",
+          "key": "D.rd2_d",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "we",
+          "net": "rf_we",
+          "key": "D.rf_we",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "waddr",
+          "net": "rd_w",
+          "key": "G.rd_w",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "wdata",
+          "net": "wb_data_w",
+          "key": "D.wb_data_w",
+          "direction": "input",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_imm_gen",
+      "type": "imm_gen",
+      "scope": "D",
+      "name": "u_imm_gen",
+      "ports": [
+        {
+          "pin": "instr",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "imm_type",
+          "net": "imm_type_d",
+          "key": "G.imm_type_d",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "imm_ext",
+          "net": "imm_d",
+          "key": "D.imm_d",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_id_ex",
+      "type": "id_ex_reg",
+      "scope": "D",
+      "name": "u_id_ex",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "flush",
+          "net": "id_ex_flush",
+          "key": "G.id_ex_flush",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_d",
+          "net": "valid_d",
+          "key": "G.valid_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "pc_d",
+          "net": "pc_d",
+          "key": "D.pc_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_d",
+          "net": "pc4_d",
+          "key": "D.pc4_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rd1_d",
+          "net": "rd1_d",
+          "key": "D.rd1_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rd2_d",
+          "net": "rd2_d",
+          "key": "D.rd2_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "imm_d",
+          "net": "imm_d",
+          "key": "D.imm_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rs1_d",
+          "net": "rs1_d",
+          "key": "G.rs1_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rs2_d",
+          "net": "rs2_d",
+          "key": "G.rs2_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rd_d",
+          "net": "rd_d",
+          "key": "D.rd_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "uses_rs1_d",
+          "net": "uses_rs1_d",
+          "key": "G.uses_rs1_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "uses_rs2_d",
+          "net": "uses_rs2_d",
+          "key": "G.uses_rs2_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "alu_ctrl_d",
+          "net": "alu_ctrl",
+          "key": "G.alu_ctrl",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "pin": "alu_src_a_sel_d",
+          "net": "alu_src_a_sel",
+          "key": "G.alu_src_a_sel",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "alu_src_b_sel_d",
+          "net": "alu_src_b_sel",
+          "key": "G.alu_src_b_sel",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "regwrite_d",
+          "net": "regwrite_d",
+          "key": "G.regwrite_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_d",
+          "net": "memread_d",
+          "key": "G.memread_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_d",
+          "net": "memwrite_d",
+          "key": "G.memwrite_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_type_d",
+          "net": "load_type_d",
+          "key": "G.load_type_d",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "store_type_d",
+          "net": "store_type_d",
+          "key": "G.store_type_d",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "wb_sel_d",
+          "net": "wb_sel_d",
+          "key": "G.wb_sel_d",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "branch_type_d",
+          "net": "branch_type_d",
+          "key": "G.branch_type_d",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "jump_d",
+          "net": "jump_d",
+          "key": "G.jump_d",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "pc_e",
+          "net": "pc_e",
+          "key": "D.pc_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "pc4_e",
+          "net": "pc4_e",
+          "key": "D.pc4_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rd1_e",
+          "net": "rd1_e",
+          "key": "D.rd1_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rd2_e",
+          "net": "rd2_e",
+          "key": "D.rd2_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "imm_e",
+          "net": "imm_e",
+          "key": "D.imm_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rs1_e",
+          "net": "rs1_e",
+          "key": "G.rs1_e",
+          "direction": "output",
+          "width": 5
+        },
+        {
+          "pin": "rs2_e",
+          "net": "rs2_e",
+          "key": "G.rs2_e",
+          "direction": "output",
+          "width": 5
+        },
+        {
+          "pin": "rd_e",
+          "net": "rd_e",
+          "key": "G.rd_e",
+          "direction": "output",
+          "width": 5
+        },
+        {
+          "pin": "uses_rs1_e",
+          "net": "uses_rs1_e",
+          "key": "G.uses_rs1_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "uses_rs2_e",
+          "net": "uses_rs2_e",
+          "key": "G.uses_rs2_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "alu_ctrl_e",
+          "net": "alu_ctrl_e",
+          "key": "D.alu_ctrl_e",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "pin": "alu_src_a_sel_e",
+          "net": "alu_src_a_sel_e",
+          "key": "D.alu_src_a_sel_e",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "alu_src_b_sel_e",
+          "net": "alu_src_b_sel_e",
+          "key": "D.alu_src_b_sel_e",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "regwrite_e",
+          "net": "regwrite_e",
+          "key": "D.regwrite_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "memread_e",
+          "net": "memread_e",
+          "key": "G.memread_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_e",
+          "net": "memwrite_e",
+          "key": "D.memwrite_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "load_type_e",
+          "net": "load_type_e",
+          "key": "D.load_type_e",
+          "direction": "output",
+          "width": 3
+        },
+        {
+          "pin": "store_type_e",
+          "net": "store_type_e",
+          "key": "D.store_type_e",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "wb_sel_e",
+          "net": "wb_sel_e",
+          "key": "D.wb_sel_e",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "branch_type_e",
+          "net": "branch_type_e",
+          "key": "G.branch_type_e",
+          "direction": "output",
+          "width": 3
+        },
+        {
+          "pin": "jump_e",
+          "net": "jump_e",
+          "key": "G.jump_e",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_alu",
+      "type": "alu",
+      "scope": "D",
+      "name": "u_alu",
+      "ports": [
+        {
+          "pin": "a",
+          "net": "alu_a_e",
+          "key": "D.alu_a_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "b",
+          "net": "alu_b_e",
+          "key": "D.alu_b_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "alu_ctrl",
+          "net": "alu_ctrl_e",
+          "key": "D.alu_ctrl_e",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "pin": "result",
+          "net": "alu_result_e",
+          "key": "D.alu_result_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "zero",
+          "net": "alu_zero_e",
+          "key": "D.alu_zero_e",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_addr_e",
+      "type": "address_decoder",
+      "scope": "D",
+      "name": "u_addr_e",
+      "ports": [
+        {
+          "pin": "addr",
+          "net": "alu_result_e",
+          "key": "D.alu_result_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "sram_hit",
+          "net": "sram_hit_e",
+          "key": "D.sram_hit_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "mmio_window_hit",
+          "net": "mmio_window_hit_e",
+          "key": "D.mmio_window_hit_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "mmio_reg_hit",
+          "net": "mmio_reg_hit_e",
+          "key": "D.mmio_reg_hit_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "unmapped",
+          "net": "unmapped_e",
+          "key": "D.unmapped_e",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": "(.SRAM_BASE(SRAM_BASE), .SRAM_SIZE(SRAM_SIZE),\n        .CNN_MMIO_BASE(CNN_MMIO_BASE), .CNN_MMIO_SIZE(CNN_MMIO_SIZE))"
+    },
+    {
+      "id": "D.u_lsu_e",
+      "type": "lsu",
+      "scope": "D",
+      "name": "u_lsu_e",
+      "ports": [
+        {
+          "pin": "addr",
+          "net": "alu_result_e",
+          "key": "D.alu_result_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "store_data",
+          "net": "store_data_fwd_e",
+          "key": "D.store_data_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "read_word",
+          "net": "32'b0",
+          "key": null,
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "load_type",
+          "net": "load_type_e",
+          "key": "D.load_type_e",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "store_type",
+          "net": "store_type_e",
+          "key": "D.store_type_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "load_data",
+          "net": "ignored_load_e",
+          "key": "D.ignored_load_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "load_aligned",
+          "net": "load_aligned_e",
+          "key": "D.load_aligned_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "load_type_valid",
+          "net": "load_type_valid_e",
+          "key": "D.load_type_valid_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "store_wdata",
+          "net": "store_wdata_e",
+          "key": "D.store_wdata_e",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "store_wstrb",
+          "net": "store_wstrb_e",
+          "key": "D.store_wstrb_e",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "pin": "store_aligned",
+          "net": "store_aligned_e",
+          "key": "D.store_aligned_e",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "store_type_valid",
+          "net": "store_type_valid_e",
+          "key": "D.store_type_valid_e",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_ex_mem",
+      "type": "ex_mem_reg",
+      "scope": "D",
+      "name": "u_ex_mem",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "alu_result_e",
+          "net": "alu_result_e",
+          "key": "D.alu_result_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "write_data_e",
+          "net": "store_data_fwd_e",
+          "key": "D.store_data_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_e",
+          "net": "pc4_e",
+          "key": "D.pc4_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rd_e",
+          "net": "rd_e",
+          "key": "G.rd_e",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "regwrite_e",
+          "net": "regwrite_e",
+          "key": "D.regwrite_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_e",
+          "net": "memread_e",
+          "key": "G.memread_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_e",
+          "net": "memwrite_e",
+          "key": "D.memwrite_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_type_e",
+          "net": "load_type_e",
+          "key": "D.load_type_e",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "store_type_e",
+          "net": "store_type_e",
+          "key": "D.store_type_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "wb_sel_e",
+          "net": "wb_sel_e",
+          "key": "D.wb_sel_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "write_data_m",
+          "net": "write_data_m",
+          "key": "D.write_data_m",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "pc4_m",
+          "net": "pc4_m",
+          "key": "D.pc4_m",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rd_m",
+          "net": "rd_m",
+          "key": "G.rd_m",
+          "direction": "output",
+          "width": 5
+        },
+        {
+          "pin": "regwrite_m",
+          "net": "regwrite_m",
+          "key": "G.regwrite_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "memread_m",
+          "net": "memread_m",
+          "key": "G.memread_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_m",
+          "net": "memwrite_m",
+          "key": "D.memwrite_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "load_type_m",
+          "net": "load_type_m",
+          "key": "D.load_type_m",
+          "direction": "output",
+          "width": 3
+        },
+        {
+          "pin": "store_type_m",
+          "net": "store_type_m",
+          "key": "D.store_type_m",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "wb_sel_m",
+          "net": "wb_sel_m",
+          "key": "D.wb_sel_m",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_addr_m",
+      "type": "address_decoder",
+      "scope": "D",
+      "name": "u_addr_m",
+      "ports": [
+        {
+          "pin": "addr",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "sram_hit",
+          "net": "sram_hit_m",
+          "key": "D.sram_hit_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "mmio_window_hit",
+          "net": "mmio_window_hit_m",
+          "key": "D.mmio_window_hit_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "mmio_reg_hit",
+          "net": "mmio_reg_hit_m",
+          "key": "D.mmio_reg_hit_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "unmapped",
+          "net": "unmapped_m",
+          "key": "D.unmapped_m",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": "(.SRAM_BASE(SRAM_BASE), .SRAM_SIZE(SRAM_SIZE),\n        .CNN_MMIO_BASE(CNN_MMIO_BASE), .CNN_MMIO_SIZE(CNN_MMIO_SIZE))"
+    },
+    {
+      "id": "D.u_lsu_m",
+      "type": "lsu",
+      "scope": "D",
+      "name": "u_lsu_m",
+      "ports": [
+        {
+          "pin": "addr",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "store_data",
+          "net": "write_data_m",
+          "key": "D.write_data_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "read_word",
+          "net": "dmem_rdata",
+          "key": "G.dmem_rdata",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "load_type",
+          "net": "load_type_m",
+          "key": "D.load_type_m",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "store_type",
+          "net": "store_type_m",
+          "key": "D.store_type_m",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "load_data",
+          "net": "sram_load_data_m",
+          "key": "D.sram_load_data_m",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "load_aligned",
+          "net": "load_aligned_m",
+          "key": "D.load_aligned_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "load_type_valid",
+          "net": "load_type_valid_m",
+          "key": "D.load_type_valid_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "store_wdata",
+          "net": "ignored_store_wdata_m",
+          "key": "D.ignored_store_wdata_m",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "store_wstrb",
+          "net": "ignored_store_wstrb_m",
+          "key": "D.ignored_store_wstrb_m",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "pin": "store_aligned",
+          "net": "ignored_store_aligned_m",
+          "key": "D.ignored_store_aligned_m",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "store_type_valid",
+          "net": "ignored_store_type_valid_m",
+          "key": "D.ignored_store_type_valid_m",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "D.u_mem_wb",
+      "type": "mem_wb_reg",
+      "scope": "D",
+      "name": "u_mem_wb",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "read_data_m",
+          "net": "read_data_m",
+          "key": "D.read_data_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_m",
+          "net": "pc4_m",
+          "key": "D.pc4_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rd_m",
+          "net": "rd_m",
+          "key": "G.rd_m",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "regwrite_m",
+          "net": "regwrite_m",
+          "key": "G.regwrite_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "wb_sel_m",
+          "net": "wb_sel_m",
+          "key": "D.wb_sel_m",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "valid_w",
+          "net": "valid_w",
+          "key": "G.valid_w",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "read_data_w",
+          "net": "read_data_w",
+          "key": "D.read_data_w",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "alu_result_w",
+          "net": "alu_result_w",
+          "key": "D.alu_result_w",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "pc4_w",
+          "net": "pc4_w",
+          "key": "D.pc4_w",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "rd_w",
+          "net": "rd_w",
+          "key": "G.rd_w",
+          "direction": "output",
+          "width": 5
+        },
+        {
+          "pin": "regwrite_w",
+          "net": "regwrite_w",
+          "key": "G.regwrite_w",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "wb_sel_w",
+          "net": "wb_sel_w",
+          "key": "D.wb_sel_w",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "C.u_main_decoder",
+      "type": "main_decoder",
+      "scope": "C",
+      "name": "u_main_decoder",
+      "ports": [
+        {
+          "pin": "instr_d",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "decoded",
+          "net": "decoded_main",
+          "key": "C.decoded_main",
+          "direction": "output",
+          "width": 28
+        },
+        {
+          "pin": "legal_main",
+          "net": "legal_main",
+          "key": "C.legal_main",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "C.u_alu_decoder",
+      "type": "alu_decoder",
+      "scope": "C",
+      "name": "u_alu_decoder",
+      "ports": [
+        {
+          "pin": "opcode",
+          "net": "instr_d[6:0]",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 7
+        },
+        {
+          "pin": "funct3",
+          "net": "instr_d[14:12]",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "funct7",
+          "net": "instr_d[31:25]",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 7
+        },
+        {
+          "pin": "alu_decoded",
+          "net": "decoded_alu",
+          "key": "C.decoded_alu",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "pin": "legal_alu",
+          "net": "legal_alu",
+          "key": "C.legal_alu",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "C.u_hazard_unit",
+      "type": "hazard_unit",
+      "scope": "C",
+      "name": "u_hazard_unit",
+      "ports": [
+        {
+          "pin": "valid_d",
+          "net": "valid_d",
+          "key": "G.valid_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_w",
+          "net": "valid_w",
+          "key": "G.valid_w",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rs1_d",
+          "net": "rs1_d",
+          "key": "G.rs1_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rs2_d",
+          "net": "rs2_d",
+          "key": "G.rs2_d",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rs1_e",
+          "net": "rs1_e",
+          "key": "G.rs1_e",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rs2_e",
+          "net": "rs2_e",
+          "key": "G.rs2_e",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rd_e",
+          "net": "rd_e",
+          "key": "G.rd_e",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rd_m",
+          "net": "rd_m",
+          "key": "G.rd_m",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rd_w",
+          "net": "rd_w",
+          "key": "G.rd_w",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "uses_rs1_d",
+          "net": "uses_rs1_d",
+          "key": "G.uses_rs1_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "uses_rs2_d",
+          "net": "uses_rs2_d",
+          "key": "G.uses_rs2_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "uses_rs1_e",
+          "net": "uses_rs1_e",
+          "key": "G.uses_rs1_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "uses_rs2_e",
+          "net": "uses_rs2_e",
+          "key": "G.uses_rs2_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_e",
+          "net": "memread_e",
+          "key": "G.memread_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_m",
+          "net": "memread_m",
+          "key": "G.memread_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "regwrite_m",
+          "net": "regwrite_m",
+          "key": "G.regwrite_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "regwrite_w",
+          "net": "regwrite_w",
+          "key": "G.regwrite_w",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_use",
+          "net": "load_use",
+          "key": "C.load_use",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "operand_unready",
+          "net": "operand_unready",
+          "key": "C.operand_unready",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "fwd_a",
+          "net": "raw_fwd_a",
+          "key": "C.raw_fwd_a",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "fwd_b",
+          "net": "raw_fwd_b",
+          "key": "C.raw_fwd_b",
+          "direction": "output",
+          "width": 2
+        },
+        {
+          "pin": "fwd_store",
+          "net": "raw_fwd_store",
+          "key": "C.raw_fwd_store",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "C.u_branch_control",
+      "type": "branch_control",
+      "scope": "C",
+      "name": "u_branch_control",
+      "ports": [
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "branch_type_e",
+          "net": "branch_type_e",
+          "key": "G.branch_type_e",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "jump_e",
+          "net": "jump_e",
+          "key": "G.jump_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "cmp_eq_e",
+          "net": "cmp_eq_e",
+          "key": "G.cmp_eq_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "cmp_lt_e",
+          "net": "cmp_lt_e",
+          "key": "G.cmp_lt_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "cmp_ltu_e",
+          "net": "cmp_ltu_e",
+          "key": "G.cmp_ltu_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "redirect",
+          "net": "redirect",
+          "key": "C.redirect",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "redirect_sel",
+          "net": "redirect_sel",
+          "key": "C.redirect_sel",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "C.u_pipeline_control",
+      "type": "pipeline_control",
+      "scope": "C",
+      "name": "u_pipeline_control",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "redirect",
+          "net": "redirect",
+          "key": "C.redirect",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_use",
+          "net": "load_use",
+          "key": "C.load_use",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "redirect_sel",
+          "net": "redirect_sel",
+          "key": "C.redirect_sel",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "pc_en",
+          "net": "pc_en",
+          "key": "G.pc_en",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "if_id_en",
+          "net": "if_id_en",
+          "key": "G.if_id_en",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "if_id_flush",
+          "net": "if_id_flush",
+          "key": "G.if_id_flush",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "id_ex_flush",
+          "net": "id_ex_flush",
+          "key": "G.id_ex_flush",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "pin": "pc_sel",
+          "net": "pc_sel",
+          "key": "G.pc_sel",
+          "direction": "output",
+          "width": 2
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "T.u_imem",
+      "type": "imem_model",
+      "scope": "T",
+      "name": "u_imem",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "re",
+          "net": "imem_re",
+          "key": "G.imem_re",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "addr",
+          "net": "imem_addr",
+          "key": "G.imem_addr",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rdata",
+          "net": "imem_rdata",
+          "key": "G.imem_rdata",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "T.u_dmem",
+      "type": "dmem_model",
+      "scope": "T",
+      "name": "u_dmem",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "re",
+          "net": "dmem_re",
+          "key": "G.dmem_re",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "we",
+          "net": "dmem_we",
+          "key": "G.dmem_we",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "wstrb",
+          "net": "dmem_wstrb",
+          "key": "G.dmem_wstrb",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "pin": "addr",
+          "net": "dmem_addr",
+          "key": "G.dmem_addr",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wdata",
+          "net": "dmem_wdata",
+          "key": "G.dmem_wdata",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rdata",
+          "net": "dmem_rdata",
+          "key": "G.dmem_rdata",
+          "direction": "output",
+          "width": 32
+        }
+      ],
+      "params": ""
+    },
+    {
+      "id": "T.u_mmio",
+      "type": "cnn_mmio_stub",
+      "scope": "T",
+      "name": "u_mmio",
+      "ports": [
+        {
+          "pin": "clk",
+          "net": "clk",
+          "key": "G.clk",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "addr",
+          "net": "mmio_addr",
+          "key": "G.mmio_addr",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wdata",
+          "net": "mmio_wdata",
+          "key": "G.mmio_wdata",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "re",
+          "net": "mmio_re",
+          "key": "G.mmio_re",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "we",
+          "net": "mmio_we",
+          "key": "G.mmio_we",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rdata",
+          "net": "mmio_rdata",
+          "key": "G.mmio_rdata",
+          "direction": "output",
+          "width": 32
+        },
+        {
+          "pin": "ready",
+          "net": "mmio_ready",
+          "key": "G.mmio_ready",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "params": ""
+    }
+  ],
+  "combinational_blocks": [
+    {
+      "id": "D.assign_pc4_seq",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "pc_q + 32'd4",
+      "ports": [
+        {
+          "pin": "pc_q",
+          "net": "pc_q",
+          "key": "D.pc_q",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_seq",
+          "net": "pc4_seq",
+          "key": "D.pc4_seq",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_branch_target",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "pc_e + imm_e",
+      "ports": [
+        {
+          "pin": "pc_e",
+          "net": "pc_e",
+          "key": "D.pc_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "imm_e",
+          "net": "imm_e",
+          "key": "D.imm_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "branch_target",
+          "net": "branch_target",
+          "key": "D.branch_target",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_jalr_target",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "(src1_fwd_e + imm_e) & 32'hffff_fffe",
+      "ports": [
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "imm_e",
+          "net": "imm_e",
+          "key": "D.imm_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "jalr_target",
+          "net": "jalr_target",
+          "key": "D.jalr_target",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_rs1_d",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "instr_d[19:15]",
+      "ports": [
+        {
+          "pin": "instr_d",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rs1_d",
+          "net": "rs1_d",
+          "key": "G.rs1_d",
+          "direction": "output",
+          "width": 5
+        }
+      ]
+    },
+    {
+      "id": "D.assign_rs2_d",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "instr_d[24:20]",
+      "ports": [
+        {
+          "pin": "instr_d",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rs2_d",
+          "net": "rs2_d",
+          "key": "G.rs2_d",
+          "direction": "output",
+          "width": 5
+        }
+      ]
+    },
+    {
+      "id": "D.assign_rd_d",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "instr_d[11:7]",
+      "ports": [
+        {
+          "pin": "instr_d",
+          "net": "instr_d",
+          "key": "G.instr_d",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "rd_d",
+          "net": "rd_d",
+          "key": "D.rd_d",
+          "direction": "output",
+          "width": 5
+        }
+      ]
+    },
+    {
+      "id": "D.assign_rf_we",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "valid_w && regwrite_w && (rd_w != 5'b0)",
+      "ports": [
+        {
+          "pin": "valid_w",
+          "net": "valid_w",
+          "key": "G.valid_w",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "regwrite_w",
+          "net": "regwrite_w",
+          "key": "G.regwrite_w",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "rd_w",
+          "net": "rd_w",
+          "key": "G.rd_w",
+          "direction": "input",
+          "width": 5
+        },
+        {
+          "pin": "rf_we",
+          "net": "rf_we",
+          "key": "D.rf_we",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_cmp_eq_e",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "(src1_fwd_e == src2_fwd_e)",
+      "ports": [
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "src2_fwd_e",
+          "net": "src2_fwd_e",
+          "key": "D.src2_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "cmp_eq_e",
+          "net": "cmp_eq_e",
+          "key": "G.cmp_eq_e",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_cmp_lt_e",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "($signed(src1_fwd_e) < $signed(src2_fwd_e))",
+      "ports": [
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "src2_fwd_e",
+          "net": "src2_fwd_e",
+          "key": "D.src2_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "cmp_lt_e",
+          "net": "cmp_lt_e",
+          "key": "G.cmp_lt_e",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_cmp_ltu_e",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "(src1_fwd_e < src2_fwd_e)",
+      "ports": [
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "src2_fwd_e",
+          "net": "src2_fwd_e",
+          "key": "D.src2_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "cmp_ltu_e",
+          "net": "cmp_ltu_e",
+          "key": "G.cmp_ltu_e",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_mul_busy",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "1'b0",
+      "ports": [
+        {
+          "pin": "mul_busy",
+          "net": "mul_busy",
+          "key": "G.mul_busy",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_dmem_addr",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "alu_result_e",
+      "ports": [
+        {
+          "pin": "alu_result_e",
+          "net": "alu_result_e",
+          "key": "D.alu_result_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "dmem_addr",
+          "net": "dmem_addr",
+          "key": "G.dmem_addr",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_dmem_wdata",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "store_wdata_e",
+      "ports": [
+        {
+          "pin": "store_wdata_e",
+          "net": "store_wdata_e",
+          "key": "D.store_wdata_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "dmem_wdata",
+          "net": "dmem_wdata",
+          "key": "G.dmem_wdata",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_dmem_re",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n && valid_e && memread_e && sram_hit_e && load_type_valid_e && load_aligned_e",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_e",
+          "net": "memread_e",
+          "key": "G.memread_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "sram_hit_e",
+          "net": "sram_hit_e",
+          "key": "D.sram_hit_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_type_valid_e",
+          "net": "load_type_valid_e",
+          "key": "D.load_type_valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_aligned_e",
+          "net": "load_aligned_e",
+          "key": "D.load_aligned_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "dmem_re",
+          "net": "dmem_re",
+          "key": "G.dmem_re",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_dmem_we",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n && valid_e && memwrite_e && sram_hit_e && store_type_valid_e && store_aligned_e",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_e",
+          "net": "valid_e",
+          "key": "G.valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_e",
+          "net": "memwrite_e",
+          "key": "D.memwrite_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "sram_hit_e",
+          "net": "sram_hit_e",
+          "key": "D.sram_hit_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "store_type_valid_e",
+          "net": "store_type_valid_e",
+          "key": "D.store_type_valid_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "store_aligned_e",
+          "net": "store_aligned_e",
+          "key": "D.store_aligned_e",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "dmem_we",
+          "net": "dmem_we",
+          "key": "G.dmem_we",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_dmem_wstrb",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "dmem_we ? store_wstrb_e : 4'b0",
+      "ports": [
+        {
+          "pin": "dmem_we",
+          "net": "dmem_we",
+          "key": "G.dmem_we",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "store_wstrb_e",
+          "net": "store_wstrb_e",
+          "key": "D.store_wstrb_e",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "pin": "dmem_wstrb",
+          "net": "dmem_wstrb",
+          "key": "G.dmem_wstrb",
+          "direction": "output",
+          "width": 4
+        }
+      ]
+    },
+    {
+      "id": "D.assign_legal_sram_load_m",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "valid_m && memread_m && sram_hit_m && load_type_valid_m && load_aligned_m",
+      "ports": [
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_m",
+          "net": "memread_m",
+          "key": "G.memread_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "sram_hit_m",
+          "net": "sram_hit_m",
+          "key": "D.sram_hit_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_type_valid_m",
+          "net": "load_type_valid_m",
+          "key": "D.load_type_valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_aligned_m",
+          "net": "load_aligned_m",
+          "key": "D.load_aligned_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "legal_sram_load_m",
+          "net": "legal_sram_load_m",
+          "key": "D.legal_sram_load_m",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_legal_mmio_load_m",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "valid_m && memread_m && mmio_reg_hit_m && (load_type_m == LOAD_LW) && (alu_result_m[1:0] == 2'b00)",
+      "ports": [
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memread_m",
+          "net": "memread_m",
+          "key": "G.memread_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "mmio_reg_hit_m",
+          "net": "mmio_reg_hit_m",
+          "key": "D.mmio_reg_hit_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "load_type_m",
+          "net": "load_type_m",
+          "key": "D.load_type_m",
+          "direction": "input",
+          "width": 3
+        },
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "legal_mmio_load_m",
+          "net": "legal_mmio_load_m",
+          "key": "D.legal_mmio_load_m",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_mmio_addr",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "alu_result_m",
+      "ports": [
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mmio_addr",
+          "net": "mmio_addr",
+          "key": "G.mmio_addr",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_mmio_wdata",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "write_data_m",
+      "ports": [
+        {
+          "pin": "write_data_m",
+          "net": "write_data_m",
+          "key": "D.write_data_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mmio_wdata",
+          "net": "mmio_wdata",
+          "key": "G.mmio_wdata",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.assign_mmio_re",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n && legal_mmio_load_m",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "legal_mmio_load_m",
+          "net": "legal_mmio_load_m",
+          "key": "D.legal_mmio_load_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "mmio_re",
+          "net": "mmio_re",
+          "key": "G.mmio_re",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "D.assign_mmio_we",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n && valid_m && memwrite_m && mmio_reg_hit_m && (store_type_m == STORE_SW) && (alu_result_m[1:0] == 2'b00)",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_m",
+          "net": "valid_m",
+          "key": "G.valid_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "memwrite_m",
+          "net": "memwrite_m",
+          "key": "D.memwrite_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "mmio_reg_hit_m",
+          "net": "mmio_reg_hit_m",
+          "key": "D.mmio_reg_hit_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "store_type_m",
+          "net": "store_type_m",
+          "key": "D.store_type_m",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mmio_we",
+          "net": "mmio_we",
+          "key": "G.mmio_we",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_alu_ctrl",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.alu",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "alu_ctrl",
+          "net": "alu_ctrl",
+          "key": "G.alu_ctrl",
+          "direction": "output",
+          "width": 4
+        }
+      ]
+    },
+    {
+      "id": "C.assign_alu_src_a_sel",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.src_a",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "alu_src_a_sel",
+          "net": "alu_src_a_sel",
+          "key": "G.alu_src_a_sel",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_alu_src_b_sel",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.src_b",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "alu_src_b_sel",
+          "net": "alu_src_b_sel",
+          "key": "G.alu_src_b_sel",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_regwrite_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.regwrite",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "regwrite_d",
+          "net": "regwrite_d",
+          "key": "G.regwrite_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_memread_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.memread",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "memread_d",
+          "net": "memread_d",
+          "key": "G.memread_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_memwrite_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.memwrite",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "memwrite_d",
+          "net": "memwrite_d",
+          "key": "G.memwrite_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_load_type_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.load_type",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "load_type_d",
+          "net": "load_type_d",
+          "key": "G.load_type_d",
+          "direction": "output",
+          "width": 3
+        }
+      ]
+    },
+    {
+      "id": "C.assign_store_type_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.store_type",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "store_type_d",
+          "net": "store_type_d",
+          "key": "G.store_type_d",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_wb_sel_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.wb",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "wb_sel_d",
+          "net": "wb_sel_d",
+          "key": "G.wb_sel_d",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_branch_type_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.branch",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "branch_type_d",
+          "net": "branch_type_d",
+          "key": "G.branch_type_d",
+          "direction": "output",
+          "width": 3
+        }
+      ]
+    },
+    {
+      "id": "C.assign_jump_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.jump",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "jump_d",
+          "net": "jump_d",
+          "key": "G.jump_d",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_imm_type_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.imm",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "imm_type_d",
+          "net": "imm_type_d",
+          "key": "G.imm_type_d",
+          "direction": "output",
+          "width": 3
+        }
+      ]
+    },
+    {
+      "id": "C.assign_uses_rs1_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.use1",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "uses_rs1_d",
+          "net": "uses_rs1_d",
+          "key": "G.uses_rs1_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_uses_rs2_d",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "decoded_safe.use2",
+      "ports": [
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "uses_rs2_d",
+          "net": "uses_rs2_d",
+          "key": "G.uses_rs2_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    },
+    {
+      "id": "C.assign_fwd_a",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n ? raw_fwd_a : 2'b00",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "raw_fwd_a",
+          "net": "raw_fwd_a",
+          "key": "C.raw_fwd_a",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "fwd_a",
+          "net": "fwd_a",
+          "key": "G.fwd_a",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_fwd_b",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n ? raw_fwd_b : 2'b00",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "raw_fwd_b",
+          "net": "raw_fwd_b",
+          "key": "C.raw_fwd_b",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "fwd_b",
+          "net": "fwd_b",
+          "key": "G.fwd_b",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "C.assign_fwd_store",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n ? raw_fwd_store : 2'b00",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "raw_fwd_store",
+          "net": "raw_fwd_store",
+          "key": "C.raw_fwd_store",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "fwd_store",
+          "net": "fwd_store",
+          "key": "G.fwd_store",
+          "direction": "output",
+          "width": 2
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_PC",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "pc_sel: 0→PC+4; 1→PC+imm; 2→(rs1+imm)&~1",
+      "ports": [
+        {
+          "pin": "pc_sel",
+          "net": "pc_sel",
+          "key": "G.pc_sel",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "pc4_seq",
+          "net": "pc4_seq",
+          "key": "D.pc4_seq",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "branch_target",
+          "net": "branch_target",
+          "key": "D.branch_target",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "jalr_target",
+          "net": "jalr_target",
+          "key": "D.jalr_target",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "next_pc",
+          "net": "next_pc",
+          "key": "D.next_pc",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_MEM_FORWARD",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "wb_sel_m: 0→ALU; 2→PC+4; 其它→0；不前递 Load 地址",
+      "ports": [
+        {
+          "pin": "wb_sel_m",
+          "net": "wb_sel_m",
+          "key": "D.wb_sel_m",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "alu_result_m",
+          "net": "alu_result_m",
+          "key": "D.alu_result_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_m",
+          "net": "pc4_m",
+          "key": "D.pc4_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mem_forward_m",
+          "net": "mem_forward_m",
+          "key": "D.mem_forward_m",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_FWD_A",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "fwd_a: 0→寄存器; 1→WB; 2→MEM非Load",
+      "ports": [
+        {
+          "pin": "fwd_a",
+          "net": "fwd_a",
+          "key": "G.fwd_a",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "rd1_e",
+          "net": "rd1_e",
+          "key": "D.rd1_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wb_data_w",
+          "net": "wb_data_w",
+          "key": "D.wb_data_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mem_forward_m",
+          "net": "mem_forward_m",
+          "key": "D.mem_forward_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_FWD_B",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "fwd_b: 0→寄存器; 1→WB; 2→MEM非Load",
+      "ports": [
+        {
+          "pin": "fwd_b",
+          "net": "fwd_b",
+          "key": "G.fwd_b",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "rd2_e",
+          "net": "rd2_e",
+          "key": "D.rd2_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wb_data_w",
+          "net": "wb_data_w",
+          "key": "D.wb_data_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mem_forward_m",
+          "net": "mem_forward_m",
+          "key": "D.mem_forward_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "src2_fwd_e",
+          "net": "src2_fwd_e",
+          "key": "D.src2_fwd_e",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_FWD_STORE",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "fwd_store: 0→寄存器; 1→WB; 2→MEM非Load",
+      "ports": [
+        {
+          "pin": "fwd_store",
+          "net": "fwd_store",
+          "key": "G.fwd_store",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "rd2_e",
+          "net": "rd2_e",
+          "key": "D.rd2_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wb_data_w",
+          "net": "wb_data_w",
+          "key": "D.wb_data_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "mem_forward_m",
+          "net": "mem_forward_m",
+          "key": "D.mem_forward_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "store_data_fwd_e",
+          "net": "store_data_fwd_e",
+          "key": "D.store_data_fwd_e",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_ALU_A",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "0→前递rs1; 1→PC; 2→0",
+      "ports": [
+        {
+          "pin": "alu_src_a_sel_e",
+          "net": "alu_src_a_sel_e",
+          "key": "D.alu_src_a_sel_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "src1_fwd_e",
+          "net": "src1_fwd_e",
+          "key": "D.src1_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc_e",
+          "net": "pc_e",
+          "key": "D.pc_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "alu_a_e",
+          "net": "alu_a_e",
+          "key": "D.alu_a_e",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_ALU_B",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "0→前递rs2; 1→立即数",
+      "ports": [
+        {
+          "pin": "alu_src_b_sel_e",
+          "net": "alu_src_b_sel_e",
+          "key": "D.alu_src_b_sel_e",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "src2_fwd_e",
+          "net": "src2_fwd_e",
+          "key": "D.src2_fwd_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "imm_e",
+          "net": "imm_e",
+          "key": "D.imm_e",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "alu_b_e",
+          "net": "alu_b_e",
+          "key": "D.alu_b_e",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_LOAD",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "合法SRAM→LSU结果; 合法MMIO且ready→MMIO数据; 其它→0",
+      "ports": [
+        {
+          "pin": "legal_sram_load_m",
+          "net": "legal_sram_load_m",
+          "key": "D.legal_sram_load_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "sram_load_data_m",
+          "net": "sram_load_data_m",
+          "key": "D.sram_load_data_m",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "legal_mmio_load_m",
+          "net": "legal_mmio_load_m",
+          "key": "D.legal_mmio_load_m",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "mmio_ready",
+          "net": "mmio_ready",
+          "key": "G.mmio_ready",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "mmio_rdata",
+          "net": "mmio_rdata",
+          "key": "G.mmio_rdata",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "read_data_m",
+          "net": "read_data_m",
+          "key": "D.read_data_m",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "D.MUX_WB",
+      "scope": "D",
+      "type": "RTL组合逻辑",
+      "formula": "0→ALU; 1→Load; 2→PC+4",
+      "ports": [
+        {
+          "pin": "wb_sel_w",
+          "net": "wb_sel_w",
+          "key": "D.wb_sel_w",
+          "direction": "input",
+          "width": 2
+        },
+        {
+          "pin": "alu_result_w",
+          "net": "alu_result_w",
+          "key": "D.alu_result_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "read_data_w",
+          "net": "read_data_w",
+          "key": "D.read_data_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "pc4_w",
+          "net": "pc4_w",
+          "key": "D.pc4_w",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "pin": "wb_data_w",
+          "net": "wb_data_w",
+          "key": "D.wb_data_w",
+          "direction": "output",
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "C.SAFE_DECODE",
+      "scope": "C",
+      "type": "RTL组合逻辑",
+      "formula": "rst_n & valid_d & legal_main & legal_alu →控制字；否则全0",
+      "ports": [
+        {
+          "pin": "rst_n",
+          "net": "rst_n",
+          "key": "G.rst_n",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "valid_d",
+          "net": "valid_d",
+          "key": "G.valid_d",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "legal_main",
+          "net": "legal_main",
+          "key": "C.legal_main",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "legal_alu",
+          "net": "legal_alu",
+          "key": "C.legal_alu",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "pin": "decoded_main",
+          "net": "decoded_main",
+          "key": "C.decoded_main",
+          "direction": "input",
+          "width": 28
+        },
+        {
+          "pin": "decoded_alu",
+          "net": "decoded_alu",
+          "key": "C.decoded_alu",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "pin": "decoded_safe",
+          "net": "decoded_safe",
+          "key": "C.decoded_safe",
+          "direction": "output",
+          "width": 28
+        },
+        {
+          "pin": "illegal_d",
+          "net": "illegal_d",
+          "key": "C.illegal_d",
+          "direction": "output",
+          "width": 1
+        }
+      ]
+    }
+  ],
+  "networks": {
+    "G.clk": {
+      "id": "N093",
+      "width": 1,
+      "drivers": [
+        "TB时钟源（仿真）"
+      ],
+      "sinks": [
+        "D.u_pc.clk",
+        "D.u_fetch.clk",
+        "D.u_if_id.clk",
+        "D.u_regfile.clk",
+        "D.u_id_ex.clk",
+        "D.u_ex_mem.clk",
+        "D.u_mem_wb.clk",
+        "T.u_imem.clk",
+        "T.u_dmem.clk",
+        "T.u_mmio.clk"
+      ]
+    },
+    "G.rst_n": {
+      "id": "N140",
+      "width": 1,
+      "drivers": [
+        "TB复位源（仿真）"
+      ],
+      "sinks": [
+        "D.u_pc.rst_n",
+        "D.u_fetch.rst_n",
+        "D.u_if_id.rst_n",
+        "D.u_regfile.rst_n",
+        "D.u_id_ex.rst_n",
+        "D.u_ex_mem.rst_n",
+        "D.u_mem_wb.rst_n",
+        "C.u_pipeline_control.rst_n",
+        "D.assign_dmem_re.rst_n",
+        "D.assign_dmem_we.rst_n",
+        "D.assign_mmio_re.rst_n",
+        "D.assign_mmio_we.rst_n",
+        "C.assign_fwd_a.rst_n",
+        "C.assign_fwd_b.rst_n",
+        "C.assign_fwd_store.rst_n",
+        "C.SAFE_DECODE.rst_n",
+        "T.u_mmio.rst_n"
+      ]
+    },
+    "G.instr_d": {
+      "id": "N113",
+      "width": 32,
+      "drivers": [
+        "D.u_if_id.instr_o"
+      ],
+      "sinks": [
+        "D.u_imm_gen.instr",
+        "C.u_main_decoder.instr_d",
+        "C.u_alu_decoder.opcode ← [6:0]",
+        "C.u_alu_decoder.funct3 ← [14:12]",
+        "C.u_alu_decoder.funct7 ← [31:25]",
+        "D.assign_rs1_d.instr_d",
+        "D.assign_rs2_d.instr_d",
+        "D.assign_rd_d.instr_d"
+      ]
+    },
+    "G.rs1_d": {
+      "id": "N136",
+      "width": 5,
+      "drivers": [
+        "D.assign_rs1_d.rs1_d"
+      ],
+      "sinks": [
+        "D.u_regfile.rs1",
+        "D.u_id_ex.rs1_d",
+        "C.u_hazard_unit.rs1_d"
+      ]
+    },
+    "G.rs2_d": {
+      "id": "N138",
+      "width": 5,
+      "drivers": [
+        "D.assign_rs2_d.rs2_d"
+      ],
+      "sinks": [
+        "D.u_regfile.rs2",
+        "D.u_id_ex.rs2_d",
+        "C.u_hazard_unit.rs2_d"
+      ]
+    },
+    "G.rd_e": {
+      "id": "N130",
+      "width": 5,
+      "drivers": [
+        "D.u_id_ex.rd_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.rd_e",
+        "C.u_hazard_unit.rd_e"
+      ]
+    },
+    "G.rd_m": {
+      "id": "N131",
+      "width": 5,
+      "drivers": [
+        "D.u_ex_mem.rd_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.rd_m",
+        "C.u_hazard_unit.rd_m"
+      ]
+    },
+    "G.rd_w": {
+      "id": "N132",
+      "width": 5,
+      "drivers": [
+        "D.u_mem_wb.rd_w"
+      ],
+      "sinks": [
+        "D.u_regfile.waddr",
+        "C.u_hazard_unit.rd_w",
+        "D.assign_rf_we.rd_w"
+      ]
+    },
+    "G.regwrite_m": {
+      "id": "N134",
+      "width": 1,
+      "drivers": [
+        "D.u_ex_mem.regwrite_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.regwrite_m",
+        "C.u_hazard_unit.regwrite_m"
+      ]
+    },
+    "G.regwrite_w": {
+      "id": "N135",
+      "width": 1,
+      "drivers": [
+        "D.u_mem_wb.regwrite_w"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.regwrite_w",
+        "D.assign_rf_we.regwrite_w"
+      ]
+    },
+    "G.memread_e": {
+      "id": "N118",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.memread_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.memread_e",
+        "C.u_hazard_unit.memread_e",
+        "D.assign_dmem_re.memread_e"
+      ]
+    },
+    "G.cmp_eq_e": {
+      "id": "N094",
+      "width": 1,
+      "drivers": [
+        "D.assign_cmp_eq_e.cmp_eq_e"
+      ],
+      "sinks": [
+        "C.u_branch_control.cmp_eq_e"
+      ]
+    },
+    "G.cmp_lt_e": {
+      "id": "N095",
+      "width": 1,
+      "drivers": [
+        "D.assign_cmp_lt_e.cmp_lt_e"
+      ],
+      "sinks": [
+        "C.u_branch_control.cmp_lt_e"
+      ]
+    },
+    "G.cmp_ltu_e": {
+      "id": "N096",
+      "width": 1,
+      "drivers": [
+        "D.assign_cmp_ltu_e.cmp_ltu_e"
+      ],
+      "sinks": [
+        "C.u_branch_control.cmp_ltu_e"
+      ]
+    },
+    "G.mul_busy": {
+      "id": "N127",
+      "width": 1,
+      "drivers": [
+        "D.assign_mul_busy.mul_busy"
+      ],
+      "sinks": []
+    },
+    "G.valid_d": {
+      "id": "N146",
+      "width": 1,
+      "drivers": [
+        "D.u_if_id.valid_o"
+      ],
+      "sinks": [
+        "D.u_id_ex.valid_d",
+        "C.u_hazard_unit.valid_d",
+        "C.SAFE_DECODE.valid_d"
+      ]
+    },
+    "G.valid_e": {
+      "id": "N147",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.valid_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.valid_e",
+        "C.u_hazard_unit.valid_e",
+        "C.u_branch_control.valid_e",
+        "D.assign_dmem_re.valid_e",
+        "D.assign_dmem_we.valid_e"
+      ]
+    },
+    "G.valid_m": {
+      "id": "N148",
+      "width": 1,
+      "drivers": [
+        "D.u_ex_mem.valid_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.valid_m",
+        "C.u_hazard_unit.valid_m",
+        "D.assign_legal_sram_load_m.valid_m",
+        "D.assign_legal_mmio_load_m.valid_m",
+        "D.assign_mmio_we.valid_m"
+      ]
+    },
+    "G.valid_w": {
+      "id": "N149",
+      "width": 1,
+      "drivers": [
+        "D.u_mem_wb.valid_w"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.valid_w",
+        "D.assign_rf_we.valid_w"
+      ]
+    },
+    "G.rs1_e": {
+      "id": "N137",
+      "width": 5,
+      "drivers": [
+        "D.u_id_ex.rs1_e"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.rs1_e"
+      ]
+    },
+    "G.rs2_e": {
+      "id": "N139",
+      "width": 5,
+      "drivers": [
+        "D.u_id_ex.rs2_e"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.rs2_e"
+      ]
+    },
+    "G.uses_rs1_e": {
+      "id": "N143",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.uses_rs1_e"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.uses_rs1_e"
+      ]
+    },
+    "G.uses_rs2_e": {
+      "id": "N145",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.uses_rs2_e"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.uses_rs2_e"
+      ]
+    },
+    "G.branch_type_e": {
+      "id": "N092",
+      "width": 3,
+      "drivers": [
+        "D.u_id_ex.branch_type_e"
+      ],
+      "sinks": [
+        "C.u_branch_control.branch_type_e"
+      ]
+    },
+    "G.jump_e": {
+      "id": "N115",
+      "width": 2,
+      "drivers": [
+        "D.u_id_ex.jump_e"
+      ],
+      "sinks": [
+        "C.u_branch_control.jump_e"
+      ]
+    },
+    "G.memread_m": {
+      "id": "N119",
+      "width": 1,
+      "drivers": [
+        "D.u_ex_mem.memread_m"
+      ],
+      "sinks": [
+        "C.u_hazard_unit.memread_m",
+        "D.assign_legal_sram_load_m.memread_m",
+        "D.assign_legal_mmio_load_m.memread_m"
+      ]
+    },
+    "G.pc_sel": {
+      "id": "N129",
+      "width": 2,
+      "drivers": [
+        "C.u_pipeline_control.pc_sel"
+      ],
+      "sinks": [
+        "D.MUX_PC.pc_sel"
+      ]
+    },
+    "G.pc_en": {
+      "id": "N128",
+      "width": 1,
+      "drivers": [
+        "C.u_pipeline_control.pc_en"
+      ],
+      "sinks": [
+        "D.u_pc.pc_en",
+        "D.u_fetch.pc_en"
+      ]
+    },
+    "G.if_id_en": {
+      "id": "N107",
+      "width": 1,
+      "drivers": [
+        "C.u_pipeline_control.if_id_en"
+      ],
+      "sinks": [
+        "D.u_fetch.if_id_en",
+        "D.u_if_id.en"
+      ]
+    },
+    "G.if_id_flush": {
+      "id": "N108",
+      "width": 1,
+      "drivers": [
+        "C.u_pipeline_control.if_id_flush"
+      ],
+      "sinks": [
+        "D.u_fetch.flush",
+        "D.u_if_id.flush"
+      ]
+    },
+    "G.id_ex_flush": {
+      "id": "N106",
+      "width": 1,
+      "drivers": [
+        "C.u_pipeline_control.id_ex_flush"
+      ],
+      "sinks": [
+        "D.u_id_ex.flush"
+      ]
+    },
+    "G.alu_ctrl": {
+      "id": "N088",
+      "width": 4,
+      "drivers": [
+        "C.assign_alu_ctrl.alu_ctrl"
+      ],
+      "sinks": [
+        "D.u_id_ex.alu_ctrl_d"
+      ]
+    },
+    "G.alu_src_a_sel": {
+      "id": "N089",
+      "width": 2,
+      "drivers": [
+        "C.assign_alu_src_a_sel.alu_src_a_sel"
+      ],
+      "sinks": [
+        "D.u_id_ex.alu_src_a_sel_d"
+      ]
+    },
+    "G.alu_src_b_sel": {
+      "id": "N090",
+      "width": 2,
+      "drivers": [
+        "C.assign_alu_src_b_sel.alu_src_b_sel"
+      ],
+      "sinks": [
+        "D.u_id_ex.alu_src_b_sel_d"
+      ]
+    },
+    "G.fwd_a": {
+      "id": "N103",
+      "width": 2,
+      "drivers": [
+        "C.assign_fwd_a.fwd_a"
+      ],
+      "sinks": [
+        "D.MUX_FWD_A.fwd_a"
+      ]
+    },
+    "G.fwd_b": {
+      "id": "N104",
+      "width": 2,
+      "drivers": [
+        "C.assign_fwd_b.fwd_b"
+      ],
+      "sinks": [
+        "D.MUX_FWD_B.fwd_b"
+      ]
+    },
+    "G.fwd_store": {
+      "id": "N105",
+      "width": 2,
+      "drivers": [
+        "C.assign_fwd_store.fwd_store"
+      ],
+      "sinks": [
+        "D.MUX_FWD_STORE.fwd_store"
+      ]
+    },
+    "G.regwrite_d": {
+      "id": "N133",
+      "width": 1,
+      "drivers": [
+        "C.assign_regwrite_d.regwrite_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.regwrite_d"
+      ]
+    },
+    "G.memread_d": {
+      "id": "N117",
+      "width": 1,
+      "drivers": [
+        "C.assign_memread_d.memread_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.memread_d"
+      ]
+    },
+    "G.memwrite_d": {
+      "id": "N120",
+      "width": 1,
+      "drivers": [
+        "C.assign_memwrite_d.memwrite_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.memwrite_d"
+      ]
+    },
+    "G.load_type_d": {
+      "id": "N116",
+      "width": 3,
+      "drivers": [
+        "C.assign_load_type_d.load_type_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.load_type_d"
+      ]
+    },
+    "G.store_type_d": {
+      "id": "N141",
+      "width": 2,
+      "drivers": [
+        "C.assign_store_type_d.store_type_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.store_type_d"
+      ]
+    },
+    "G.wb_sel_d": {
+      "id": "N150",
+      "width": 2,
+      "drivers": [
+        "C.assign_wb_sel_d.wb_sel_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.wb_sel_d"
+      ]
+    },
+    "G.branch_type_d": {
+      "id": "N091",
+      "width": 3,
+      "drivers": [
+        "C.assign_branch_type_d.branch_type_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.branch_type_d"
+      ]
+    },
+    "G.jump_d": {
+      "id": "N114",
+      "width": 2,
+      "drivers": [
+        "C.assign_jump_d.jump_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.jump_d"
+      ]
+    },
+    "G.imm_type_d": {
+      "id": "N112",
+      "width": 3,
+      "drivers": [
+        "C.assign_imm_type_d.imm_type_d"
+      ],
+      "sinks": [
+        "D.u_imm_gen.imm_type"
+      ]
+    },
+    "G.uses_rs1_d": {
+      "id": "N142",
+      "width": 1,
+      "drivers": [
+        "C.assign_uses_rs1_d.uses_rs1_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.uses_rs1_d",
+        "C.u_hazard_unit.uses_rs1_d"
+      ]
+    },
+    "G.uses_rs2_d": {
+      "id": "N144",
+      "width": 1,
+      "drivers": [
+        "C.assign_uses_rs2_d.uses_rs2_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.uses_rs2_d",
+        "C.u_hazard_unit.uses_rs2_d"
+      ]
+    },
+    "G.imem_addr": {
+      "id": "N109",
+      "width": 32,
+      "drivers": [
+        "D.u_fetch.imem_addr"
+      ],
+      "sinks": [
+        "T.u_imem.addr"
+      ]
+    },
+    "G.imem_re": {
+      "id": "N111",
+      "width": 1,
+      "drivers": [
+        "D.u_fetch.imem_re"
+      ],
+      "sinks": [
+        "T.u_imem.re"
+      ]
+    },
+    "G.imem_rdata": {
+      "id": "N110",
+      "width": 32,
+      "drivers": [
+        "T.u_imem.rdata"
+      ],
+      "sinks": [
+        "D.u_fetch.imem_rdata"
+      ]
+    },
+    "G.dmem_addr": {
+      "id": "N097",
+      "width": 32,
+      "drivers": [
+        "D.assign_dmem_addr.dmem_addr"
+      ],
+      "sinks": [
+        "T.u_dmem.addr"
+      ]
+    },
+    "G.dmem_wdata": {
+      "id": "N100",
+      "width": 32,
+      "drivers": [
+        "D.assign_dmem_wdata.dmem_wdata"
+      ],
+      "sinks": [
+        "T.u_dmem.wdata"
+      ]
+    },
+    "G.dmem_wstrb": {
+      "id": "N102",
+      "width": 4,
+      "drivers": [
+        "D.assign_dmem_wstrb.dmem_wstrb"
+      ],
+      "sinks": [
+        "T.u_dmem.wstrb"
+      ]
+    },
+    "G.dmem_re": {
+      "id": "N099",
+      "width": 1,
+      "drivers": [
+        "D.assign_dmem_re.dmem_re"
+      ],
+      "sinks": [
+        "T.u_dmem.re"
+      ]
+    },
+    "G.dmem_we": {
+      "id": "N101",
+      "width": 1,
+      "drivers": [
+        "D.assign_dmem_we.dmem_we"
+      ],
+      "sinks": [
+        "D.assign_dmem_wstrb.dmem_we",
+        "T.u_dmem.we"
+      ]
+    },
+    "G.dmem_rdata": {
+      "id": "N098",
+      "width": 32,
+      "drivers": [
+        "T.u_dmem.rdata"
+      ],
+      "sinks": [
+        "D.u_lsu_m.read_word"
+      ]
+    },
+    "G.mmio_addr": {
+      "id": "N121",
+      "width": 32,
+      "drivers": [
+        "D.assign_mmio_addr.mmio_addr"
+      ],
+      "sinks": [
+        "T.u_mmio.addr"
+      ]
+    },
+    "G.mmio_wdata": {
+      "id": "N125",
+      "width": 32,
+      "drivers": [
+        "D.assign_mmio_wdata.mmio_wdata"
+      ],
+      "sinks": [
+        "T.u_mmio.wdata"
+      ]
+    },
+    "G.mmio_re": {
+      "id": "N123",
+      "width": 1,
+      "drivers": [
+        "D.assign_mmio_re.mmio_re"
+      ],
+      "sinks": [
+        "T.u_mmio.re"
+      ]
+    },
+    "G.mmio_we": {
+      "id": "N126",
+      "width": 1,
+      "drivers": [
+        "D.assign_mmio_we.mmio_we"
+      ],
+      "sinks": [
+        "T.u_mmio.we"
+      ]
+    },
+    "G.mmio_rdata": {
+      "id": "N122",
+      "width": 32,
+      "drivers": [
+        "T.u_mmio.rdata"
+      ],
+      "sinks": [
+        "D.MUX_LOAD.mmio_rdata"
+      ]
+    },
+    "G.mmio_ready": {
+      "id": "N124",
+      "width": 1,
+      "drivers": [
+        "T.u_mmio.ready"
+      ],
+      "sinks": [
+        "D.MUX_LOAD.mmio_ready"
+      ]
+    },
+    "D.pc_q": {
+      "id": "N059",
+      "width": 32,
+      "drivers": [
+        "D.u_pc.pc_q"
+      ],
+      "sinks": [
+        "D.u_fetch.request_pc",
+        "D.assign_pc4_seq.pc_q"
+      ]
+    },
+    "D.next_pc": {
+      "id": "N051",
+      "width": 32,
+      "drivers": [
+        "D.MUX_PC.next_pc"
+      ],
+      "sinks": [
+        "D.u_pc.next_pc"
+      ]
+    },
+    "D.pc4_seq": {
+      "id": "N055",
+      "width": 32,
+      "drivers": [
+        "D.assign_pc4_seq.pc4_seq"
+      ],
+      "sinks": [
+        "D.MUX_PC.pc4_seq"
+      ]
+    },
+    "D.branch_target": {
+      "id": "N023",
+      "width": 32,
+      "drivers": [
+        "D.assign_branch_target.branch_target"
+      ],
+      "sinks": [
+        "D.MUX_PC.branch_target"
+      ]
+    },
+    "D.jalr_target": {
+      "id": "N035",
+      "width": 32,
+      "drivers": [
+        "D.assign_jalr_target.jalr_target"
+      ],
+      "sinks": [
+        "D.MUX_PC.jalr_target"
+      ]
+    },
+    "D.fetch_valid": {
+      "id": "N027",
+      "width": 1,
+      "drivers": [
+        "D.u_fetch.fetch_valid"
+      ],
+      "sinks": [
+        "D.u_if_id.valid_i"
+      ]
+    },
+    "D.fetch_instr": {
+      "id": "N024",
+      "width": 32,
+      "drivers": [
+        "D.u_fetch.fetch_instr"
+      ],
+      "sinks": [
+        "D.u_if_id.instr_i"
+      ]
+    },
+    "D.fetch_pc": {
+      "id": "N025",
+      "width": 32,
+      "drivers": [
+        "D.u_fetch.fetch_pc"
+      ],
+      "sinks": [
+        "D.u_if_id.pc_i"
+      ]
+    },
+    "D.fetch_pc4": {
+      "id": "N026",
+      "width": 32,
+      "drivers": [
+        "D.u_fetch.fetch_pc4"
+      ],
+      "sinks": [
+        "D.u_if_id.pc4_i"
+      ]
+    },
+    "D.pc_d": {
+      "id": "N057",
+      "width": 32,
+      "drivers": [
+        "D.u_if_id.pc_o"
+      ],
+      "sinks": [
+        "D.u_id_ex.pc_d"
+      ]
+    },
+    "D.pc4_d": {
+      "id": "N052",
+      "width": 32,
+      "drivers": [
+        "D.u_if_id.pc4_o"
+      ],
+      "sinks": [
+        "D.u_id_ex.pc4_d"
+      ]
+    },
+    "D.rd_d": {
+      "id": "N064",
+      "width": 5,
+      "drivers": [
+        "D.assign_rd_d.rd_d"
+      ],
+      "sinks": [
+        "D.u_id_ex.rd_d"
+      ]
+    },
+    "D.rd1_d": {
+      "id": "N060",
+      "width": 32,
+      "drivers": [
+        "D.u_regfile.rd1"
+      ],
+      "sinks": [
+        "D.u_id_ex.rd1_d"
+      ]
+    },
+    "D.rd2_d": {
+      "id": "N062",
+      "width": 32,
+      "drivers": [
+        "D.u_regfile.rd2"
+      ],
+      "sinks": [
+        "D.u_id_ex.rd2_d"
+      ]
+    },
+    "D.imm_d": {
+      "id": "N033",
+      "width": 32,
+      "drivers": [
+        "D.u_imm_gen.imm_ext"
+      ],
+      "sinks": [
+        "D.u_id_ex.imm_d"
+      ]
+    },
+    "D.pc_e": {
+      "id": "N058",
+      "width": 32,
+      "drivers": [
+        "D.u_id_ex.pc_e"
+      ],
+      "sinks": [
+        "D.assign_branch_target.pc_e",
+        "D.MUX_ALU_A.pc_e"
+      ]
+    },
+    "D.pc4_e": {
+      "id": "N053",
+      "width": 32,
+      "drivers": [
+        "D.u_id_ex.pc4_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.pc4_e"
+      ]
+    },
+    "D.rd1_e": {
+      "id": "N061",
+      "width": 32,
+      "drivers": [
+        "D.u_id_ex.rd1_e"
+      ],
+      "sinks": [
+        "D.MUX_FWD_A.rd1_e"
+      ]
+    },
+    "D.rd2_e": {
+      "id": "N063",
+      "width": 32,
+      "drivers": [
+        "D.u_id_ex.rd2_e"
+      ],
+      "sinks": [
+        "D.MUX_FWD_B.rd2_e",
+        "D.MUX_FWD_STORE.rd2_e"
+      ]
+    },
+    "D.imm_e": {
+      "id": "N034",
+      "width": 32,
+      "drivers": [
+        "D.u_id_ex.imm_e"
+      ],
+      "sinks": [
+        "D.assign_branch_target.imm_e",
+        "D.assign_jalr_target.imm_e",
+        "D.MUX_ALU_B.imm_e"
+      ]
+    },
+    "D.alu_ctrl_e": {
+      "id": "N016",
+      "width": 4,
+      "drivers": [
+        "D.u_id_ex.alu_ctrl_e"
+      ],
+      "sinks": [
+        "D.u_alu.alu_ctrl"
+      ]
+    },
+    "D.alu_src_a_sel_e": {
+      "id": "N020",
+      "width": 2,
+      "drivers": [
+        "D.u_id_ex.alu_src_a_sel_e"
+      ],
+      "sinks": [
+        "D.MUX_ALU_A.alu_src_a_sel_e"
+      ]
+    },
+    "D.alu_src_b_sel_e": {
+      "id": "N021",
+      "width": 2,
+      "drivers": [
+        "D.u_id_ex.alu_src_b_sel_e"
+      ],
+      "sinks": [
+        "D.MUX_ALU_B.alu_src_b_sel_e"
+      ]
+    },
+    "D.regwrite_e": {
+      "id": "N067",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.regwrite_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.regwrite_e"
+      ]
+    },
+    "D.memwrite_e": {
+      "id": "N045",
+      "width": 1,
+      "drivers": [
+        "D.u_id_ex.memwrite_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.memwrite_e",
+        "D.assign_dmem_we.memwrite_e"
+      ]
+    },
+    "D.load_type_e": {
+      "id": "N040",
+      "width": 3,
+      "drivers": [
+        "D.u_id_ex.load_type_e"
+      ],
+      "sinks": [
+        "D.u_lsu_e.load_type",
+        "D.u_ex_mem.load_type_e"
+      ]
+    },
+    "D.store_type_e": {
+      "id": "N076",
+      "width": 2,
+      "drivers": [
+        "D.u_id_ex.store_type_e"
+      ],
+      "sinks": [
+        "D.u_lsu_e.store_type",
+        "D.u_ex_mem.store_type_e"
+      ]
+    },
+    "D.wb_sel_e": {
+      "id": "N084",
+      "width": 2,
+      "drivers": [
+        "D.u_id_ex.wb_sel_e"
+      ],
+      "sinks": [
+        "D.u_ex_mem.wb_sel_e"
+      ]
+    },
+    "D.src1_fwd_e": {
+      "id": "N072",
+      "width": 32,
+      "drivers": [
+        "D.MUX_FWD_A.src1_fwd_e"
+      ],
+      "sinks": [
+        "D.assign_jalr_target.src1_fwd_e",
+        "D.assign_cmp_eq_e.src1_fwd_e",
+        "D.assign_cmp_lt_e.src1_fwd_e",
+        "D.assign_cmp_ltu_e.src1_fwd_e",
+        "D.MUX_ALU_A.src1_fwd_e"
+      ]
+    },
+    "D.src2_fwd_e": {
+      "id": "N073",
+      "width": 32,
+      "drivers": [
+        "D.MUX_FWD_B.src2_fwd_e"
+      ],
+      "sinks": [
+        "D.assign_cmp_eq_e.src2_fwd_e",
+        "D.assign_cmp_lt_e.src2_fwd_e",
+        "D.assign_cmp_ltu_e.src2_fwd_e",
+        "D.MUX_ALU_B.src2_fwd_e"
+      ]
+    },
+    "D.store_data_fwd_e": {
+      "id": "N075",
+      "width": 32,
+      "drivers": [
+        "D.MUX_FWD_STORE.store_data_fwd_e"
+      ],
+      "sinks": [
+        "D.u_lsu_e.store_data",
+        "D.u_ex_mem.write_data_e"
+      ]
+    },
+    "D.alu_a_e": {
+      "id": "N014",
+      "width": 32,
+      "drivers": [
+        "D.MUX_ALU_A.alu_a_e"
+      ],
+      "sinks": [
+        "D.u_alu.a"
+      ]
+    },
+    "D.alu_b_e": {
+      "id": "N015",
+      "width": 32,
+      "drivers": [
+        "D.MUX_ALU_B.alu_b_e"
+      ],
+      "sinks": [
+        "D.u_alu.b"
+      ]
+    },
+    "D.alu_result_e": {
+      "id": "N017",
+      "width": 32,
+      "drivers": [
+        "D.u_alu.result"
+      ],
+      "sinks": [
+        "D.u_addr_e.addr",
+        "D.u_lsu_e.addr",
+        "D.u_ex_mem.alu_result_e",
+        "D.assign_dmem_addr.alu_result_e"
+      ]
+    },
+    "D.alu_zero_e": {
+      "id": "N022",
+      "width": 1,
+      "drivers": [
+        "D.u_alu.zero"
+      ],
+      "sinks": []
+    },
+    "D.write_data_m": {
+      "id": "N087",
+      "width": 32,
+      "drivers": [
+        "D.u_ex_mem.write_data_m"
+      ],
+      "sinks": [
+        "D.u_lsu_m.store_data",
+        "D.assign_mmio_wdata.write_data_m"
+      ]
+    },
+    "D.pc4_m": {
+      "id": "N054",
+      "width": 32,
+      "drivers": [
+        "D.u_ex_mem.pc4_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.pc4_m",
+        "D.MUX_MEM_FORWARD.pc4_m"
+      ]
+    },
+    "D.memwrite_m": {
+      "id": "N046",
+      "width": 1,
+      "drivers": [
+        "D.u_ex_mem.memwrite_m"
+      ],
+      "sinks": [
+        "D.assign_mmio_we.memwrite_m"
+      ]
+    },
+    "D.load_type_m": {
+      "id": "N041",
+      "width": 3,
+      "drivers": [
+        "D.u_ex_mem.load_type_m"
+      ],
+      "sinks": [
+        "D.u_lsu_m.load_type",
+        "D.assign_legal_mmio_load_m.load_type_m"
+      ]
+    },
+    "D.store_type_m": {
+      "id": "N077",
+      "width": 2,
+      "drivers": [
+        "D.u_ex_mem.store_type_m"
+      ],
+      "sinks": [
+        "D.u_lsu_m.store_type",
+        "D.assign_mmio_we.store_type_m"
+      ]
+    },
+    "D.wb_sel_m": {
+      "id": "N085",
+      "width": 2,
+      "drivers": [
+        "D.u_ex_mem.wb_sel_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.wb_sel_m",
+        "D.MUX_MEM_FORWARD.wb_sel_m"
+      ]
+    },
+    "D.alu_result_m": {
+      "id": "N018",
+      "width": 32,
+      "drivers": [
+        "D.u_ex_mem.alu_result_m"
+      ],
+      "sinks": [
+        "D.u_addr_m.addr",
+        "D.u_lsu_m.addr",
+        "D.u_mem_wb.alu_result_m",
+        "D.assign_legal_mmio_load_m.alu_result_m",
+        "D.assign_mmio_addr.alu_result_m",
+        "D.assign_mmio_we.alu_result_m",
+        "D.MUX_MEM_FORWARD.alu_result_m"
+      ]
+    },
+    "D.mem_forward_m": {
+      "id": "N044",
+      "width": 32,
+      "drivers": [
+        "D.MUX_MEM_FORWARD.mem_forward_m"
+      ],
+      "sinks": [
+        "D.MUX_FWD_A.mem_forward_m",
+        "D.MUX_FWD_B.mem_forward_m",
+        "D.MUX_FWD_STORE.mem_forward_m"
+      ]
+    },
+    "D.read_data_m": {
+      "id": "N065",
+      "width": 32,
+      "drivers": [
+        "D.MUX_LOAD.read_data_m"
+      ],
+      "sinks": [
+        "D.u_mem_wb.read_data_m"
+      ]
+    },
+    "D.read_data_w": {
+      "id": "N066",
+      "width": 32,
+      "drivers": [
+        "D.u_mem_wb.read_data_w"
+      ],
+      "sinks": [
+        "D.MUX_WB.read_data_w"
+      ]
+    },
+    "D.alu_result_w": {
+      "id": "N019",
+      "width": 32,
+      "drivers": [
+        "D.u_mem_wb.alu_result_w"
+      ],
+      "sinks": [
+        "D.MUX_WB.alu_result_w"
+      ]
+    },
+    "D.pc4_w": {
+      "id": "N056",
+      "width": 32,
+      "drivers": [
+        "D.u_mem_wb.pc4_w"
+      ],
+      "sinks": [
+        "D.MUX_WB.pc4_w"
+      ]
+    },
+    "D.wb_data_w": {
+      "id": "N083",
+      "width": 32,
+      "drivers": [
+        "D.MUX_WB.wb_data_w"
+      ],
+      "sinks": [
+        "D.u_regfile.wdata",
+        "D.MUX_FWD_A.wb_data_w",
+        "D.MUX_FWD_B.wb_data_w",
+        "D.MUX_FWD_STORE.wb_data_w"
+      ]
+    },
+    "D.wb_sel_w": {
+      "id": "N086",
+      "width": 2,
+      "drivers": [
+        "D.u_mem_wb.wb_sel_w"
+      ],
+      "sinks": [
+        "D.MUX_WB.wb_sel_w"
+      ]
+    },
+    "D.rf_we": {
+      "id": "N068",
+      "width": 1,
+      "drivers": [
+        "D.assign_rf_we.rf_we"
+      ],
+      "sinks": [
+        "D.u_regfile.we"
+      ]
+    },
+    "D.sram_hit_e": {
+      "id": "N069",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_e.sram_hit"
+      ],
+      "sinks": [
+        "D.assign_dmem_re.sram_hit_e",
+        "D.assign_dmem_we.sram_hit_e"
+      ]
+    },
+    "D.mmio_window_hit_e": {
+      "id": "N049",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_e.mmio_window_hit"
+      ],
+      "sinks": []
+    },
+    "D.mmio_reg_hit_e": {
+      "id": "N047",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_e.mmio_reg_hit"
+      ],
+      "sinks": []
+    },
+    "D.unmapped_e": {
+      "id": "N081",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_e.unmapped"
+      ],
+      "sinks": []
+    },
+    "D.sram_hit_m": {
+      "id": "N070",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_m.sram_hit"
+      ],
+      "sinks": [
+        "D.assign_legal_sram_load_m.sram_hit_m"
+      ]
+    },
+    "D.mmio_window_hit_m": {
+      "id": "N050",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_m.mmio_window_hit"
+      ],
+      "sinks": []
+    },
+    "D.mmio_reg_hit_m": {
+      "id": "N048",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_m.mmio_reg_hit"
+      ],
+      "sinks": [
+        "D.assign_legal_mmio_load_m.mmio_reg_hit_m",
+        "D.assign_mmio_we.mmio_reg_hit_m"
+      ]
+    },
+    "D.unmapped_m": {
+      "id": "N082",
+      "width": 1,
+      "drivers": [
+        "D.u_addr_m.unmapped"
+      ],
+      "sinks": []
+    },
+    "D.ignored_load_e": {
+      "id": "N028",
+      "width": 32,
+      "drivers": [
+        "D.u_lsu_e.load_data"
+      ],
+      "sinks": []
+    },
+    "D.store_wdata_e": {
+      "id": "N079",
+      "width": 32,
+      "drivers": [
+        "D.u_lsu_e.store_wdata"
+      ],
+      "sinks": [
+        "D.assign_dmem_wdata.store_wdata_e"
+      ]
+    },
+    "D.load_aligned_e": {
+      "id": "N038",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_e.load_aligned"
+      ],
+      "sinks": [
+        "D.assign_dmem_re.load_aligned_e"
+      ]
+    },
+    "D.load_type_valid_e": {
+      "id": "N042",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_e.load_type_valid"
+      ],
+      "sinks": [
+        "D.assign_dmem_re.load_type_valid_e"
+      ]
+    },
+    "D.store_aligned_e": {
+      "id": "N074",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_e.store_aligned"
+      ],
+      "sinks": [
+        "D.assign_dmem_we.store_aligned_e"
+      ]
+    },
+    "D.store_type_valid_e": {
+      "id": "N078",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_e.store_type_valid"
+      ],
+      "sinks": [
+        "D.assign_dmem_we.store_type_valid_e"
+      ]
+    },
+    "D.store_wstrb_e": {
+      "id": "N080",
+      "width": 4,
+      "drivers": [
+        "D.u_lsu_e.store_wstrb"
+      ],
+      "sinks": [
+        "D.assign_dmem_wstrb.store_wstrb_e"
+      ]
+    },
+    "D.sram_load_data_m": {
+      "id": "N071",
+      "width": 32,
+      "drivers": [
+        "D.u_lsu_m.load_data"
+      ],
+      "sinks": [
+        "D.MUX_LOAD.sram_load_data_m"
+      ]
+    },
+    "D.ignored_store_wdata_m": {
+      "id": "N031",
+      "width": 32,
+      "drivers": [
+        "D.u_lsu_m.store_wdata"
+      ],
+      "sinks": []
+    },
+    "D.load_aligned_m": {
+      "id": "N039",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_m.load_aligned"
+      ],
+      "sinks": [
+        "D.assign_legal_sram_load_m.load_aligned_m"
+      ]
+    },
+    "D.load_type_valid_m": {
+      "id": "N043",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_m.load_type_valid"
+      ],
+      "sinks": [
+        "D.assign_legal_sram_load_m.load_type_valid_m"
+      ]
+    },
+    "D.ignored_store_aligned_m": {
+      "id": "N029",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_m.store_aligned"
+      ],
+      "sinks": []
+    },
+    "D.ignored_store_type_valid_m": {
+      "id": "N030",
+      "width": 1,
+      "drivers": [
+        "D.u_lsu_m.store_type_valid"
+      ],
+      "sinks": []
+    },
+    "D.ignored_store_wstrb_m": {
+      "id": "N032",
+      "width": 4,
+      "drivers": [
+        "D.u_lsu_m.store_wstrb"
+      ],
+      "sinks": []
+    },
+    "D.legal_sram_load_m": {
+      "id": "N037",
+      "width": 1,
+      "drivers": [
+        "D.assign_legal_sram_load_m.legal_sram_load_m"
+      ],
+      "sinks": [
+        "D.MUX_LOAD.legal_sram_load_m"
+      ]
+    },
+    "D.legal_mmio_load_m": {
+      "id": "N036",
+      "width": 1,
+      "drivers": [
+        "D.assign_legal_mmio_load_m.legal_mmio_load_m"
+      ],
+      "sinks": [
+        "D.assign_mmio_re.legal_mmio_load_m",
+        "D.MUX_LOAD.legal_mmio_load_m"
+      ]
+    },
+    "C.decoded_main": {
+      "id": "N002",
+      "width": 28,
+      "drivers": [
+        "C.u_main_decoder.decoded"
+      ],
+      "sinks": [
+        "C.SAFE_DECODE.decoded_main"
+      ]
+    },
+    "C.decoded_safe": {
+      "id": "N003",
+      "width": 28,
+      "drivers": [
+        "C.SAFE_DECODE.decoded_safe"
+      ],
+      "sinks": [
+        "C.assign_alu_ctrl.decoded_safe",
+        "C.assign_alu_src_a_sel.decoded_safe",
+        "C.assign_alu_src_b_sel.decoded_safe",
+        "C.assign_regwrite_d.decoded_safe",
+        "C.assign_memread_d.decoded_safe",
+        "C.assign_memwrite_d.decoded_safe",
+        "C.assign_load_type_d.decoded_safe",
+        "C.assign_store_type_d.decoded_safe",
+        "C.assign_wb_sel_d.decoded_safe",
+        "C.assign_branch_type_d.decoded_safe",
+        "C.assign_jump_d.decoded_safe",
+        "C.assign_imm_type_d.decoded_safe",
+        "C.assign_uses_rs1_d.decoded_safe",
+        "C.assign_uses_rs2_d.decoded_safe"
+      ]
+    },
+    "C.legal_main": {
+      "id": "N006",
+      "width": 1,
+      "drivers": [
+        "C.u_main_decoder.legal_main"
+      ],
+      "sinks": [
+        "C.SAFE_DECODE.legal_main"
+      ]
+    },
+    "C.legal_alu": {
+      "id": "N005",
+      "width": 1,
+      "drivers": [
+        "C.u_alu_decoder.legal_alu"
+      ],
+      "sinks": [
+        "C.SAFE_DECODE.legal_alu"
+      ]
+    },
+    "C.illegal_d": {
+      "id": "N004",
+      "width": 1,
+      "drivers": [
+        "C.SAFE_DECODE.illegal_d"
+      ],
+      "sinks": []
+    },
+    "C.decoded_alu": {
+      "id": "N001",
+      "width": 4,
+      "drivers": [
+        "C.u_alu_decoder.alu_decoded"
+      ],
+      "sinks": [
+        "C.SAFE_DECODE.decoded_alu"
+      ]
+    },
+    "C.load_use": {
+      "id": "N007",
+      "width": 1,
+      "drivers": [
+        "C.u_hazard_unit.load_use"
+      ],
+      "sinks": [
+        "C.u_pipeline_control.load_use"
+      ]
+    },
+    "C.redirect": {
+      "id": "N012",
+      "width": 1,
+      "drivers": [
+        "C.u_branch_control.redirect"
+      ],
+      "sinks": [
+        "C.u_pipeline_control.redirect"
+      ]
+    },
+    "C.operand_unready": {
+      "id": "N008",
+      "width": 1,
+      "drivers": [
+        "C.u_hazard_unit.operand_unready"
+      ],
+      "sinks": []
+    },
+    "C.raw_fwd_a": {
+      "id": "N009",
+      "width": 2,
+      "drivers": [
+        "C.u_hazard_unit.fwd_a"
+      ],
+      "sinks": [
+        "C.assign_fwd_a.raw_fwd_a"
+      ]
+    },
+    "C.raw_fwd_b": {
+      "id": "N010",
+      "width": 2,
+      "drivers": [
+        "C.u_hazard_unit.fwd_b"
+      ],
+      "sinks": [
+        "C.assign_fwd_b.raw_fwd_b"
+      ]
+    },
+    "C.raw_fwd_store": {
+      "id": "N011",
+      "width": 2,
+      "drivers": [
+        "C.u_hazard_unit.fwd_store"
+      ],
+      "sinks": [
+        "C.assign_fwd_store.raw_fwd_store"
+      ]
+    },
+    "C.redirect_sel": {
+      "id": "N013",
+      "width": 2,
+      "drivers": [
+        "C.u_branch_control.redirect_sel"
+      ],
+      "sinks": [
+        "C.u_pipeline_control.redirect_sel"
+      ]
+    }
+  },
+  "internal_nodes": [
+    {
+      "instance": "D.u_fetch",
+      "nodes": [
+        [
+          "req_valid_q",
+          "1 bit"
+        ],
+        [
+          "req_pc_q",
+          "32 bit"
+        ],
+        [
+          "req_pc4_q",
+          "32 bit"
+        ],
+        [
+          "buffer_valid_q",
+          "1 bit"
+        ],
+        [
+          "buffer_instr_q",
+          "32 bit"
+        ],
+        [
+          "buffer_pc_q",
+          "32 bit"
+        ],
+        [
+          "buffer_pc4_q",
+          "32 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "D.u_regfile",
+      "nodes": [
+        [
+          "regs",
+          "32 × 32 bit（已实现，VCD未展开）"
+        ]
+      ]
+    },
+    {
+      "instance": "D.u_addr_e",
+      "nodes": [
+        [
+          "sram_offset",
+          "33 bit"
+        ],
+        [
+          "mmio_offset",
+          "33 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "D.u_lsu_e",
+      "nodes": [
+        [
+          "selected_byte",
+          "8 bit"
+        ],
+        [
+          "selected_half",
+          "16 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "D.u_addr_m",
+      "nodes": [
+        [
+          "sram_offset",
+          "33 bit"
+        ],
+        [
+          "mmio_offset",
+          "33 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "D.u_lsu_m",
+      "nodes": [
+        [
+          "selected_byte",
+          "8 bit"
+        ],
+        [
+          "selected_half",
+          "16 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "C.u_hazard_unit",
+      "nodes": [
+        [
+          "match_ma",
+          "1 bit"
+        ],
+        [
+          "match_mb",
+          "1 bit"
+        ],
+        [
+          "match_wa",
+          "1 bit"
+        ],
+        [
+          "match_wb",
+          "1 bit"
+        ]
+      ]
+    },
+    {
+      "instance": "C.u_branch_control",
+      "nodes": [
+        [
+          "taken",
+          "1 bit"
+        ]
+      ]
+    }
+  ],
+  "production_sources": {
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\address_decoder.sv": "7a63df425ef204dae560d6d6ef4fa9696f5f72e1e58929e403183e0d40efdd94",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\alu.sv": "602a6ff749d916d985344f884e9d4c6c18f90d8a22ed6c1ca90b48a3857a50a3",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\cpu_datapath.sv": "4fff76d6b44dc62958ebe2b102676aa60ff9ddc8da03dfcc362697fb2fd3c684",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\ex_mem_reg.sv": "7ad530588ce49599b955c1ff00cc14e29d9a13c36b473f5a0774d34f58763c57",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\fetch_adapter.sv": "2fc45b281b72e852981e4d15a6dc67843847e5b390b99a7400d3a096ca03441f",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\id_ex_reg.sv": "b777688682be769e2172cfcfc838ad6008c576eadd86a29866aa403d5ec4d601",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\if_id_reg.sv": "370347441a2d58c0a30fa35296baddb5dbc70edbff56f7ee2c71e1c1b672120f",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\imm_gen.sv": "3ebb51aa769c260de69fbb0e45918455f98f9f934016756fd41414d4fc9f5e01",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\lsu.sv": "a0ae3844103d21210b55294ee020c3cdbc190d762be49f4a5f94e4384207f940",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\mem_wb_reg.sv": "f3c95b769ac9aecc9d1b722d028593fee94617ca022b985bb60a7ef5e5dd8e54",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\pc.sv": "79722a65ade0afb49bcfbd16b52cd24d3ad7cd7b0a4285f4d806d323c9d656e5",
+    "D:\\cpu_control\\build\\datapath_review\\20260917_211827\\rtl\\cpu_datapath\\regfile.sv": "15099db84ded5437f0adb01c2278c9b0be2cae65fac943140add0f7185264458",
+    "D:\\cpu_control\\rtl\\cpu_control\\alu_decoder.sv": "beea8edcc3412fe65e371df58f2d98085d2daedf403b6a0e0170b8e990809ac4",
+    "D:\\cpu_control\\rtl\\cpu_control\\branch_control.sv": "7b43244500b6086f40e9ea64b6a0282c5cc5bfff97dc5b86516bcd74a7e18b25",
+    "D:\\cpu_control\\rtl\\cpu_control\\cpu_control.sv": "d1e049875d1309ef7d50c327dcf4dbecb2187d129cadcbc5b373557aa3ace239",
+    "D:\\cpu_control\\rtl\\cpu_control\\hazard_unit.sv": "4c0fe06689d714157e7cb81c31ca908964bc6c6d3357544c7f3087514a0115bb",
+    "D:\\cpu_control\\rtl\\cpu_control\\main_decoder.sv": "5e5edb5e585ea0e1d791d71a1ef407d98625b1b227cdfe25fa15c0f448e89a3f",
+    "D:\\cpu_control\\rtl\\cpu_control\\pipeline_control.sv": "0daab293938302a8abe16496af84ae74e376328829f6ddd682f7c4320b624968"
+  },
+  "full_image_size": [
+    4800,
+    23113
+  ],
+  "excluded_production_wave_nodes": {
+    "tb_cpu_datapath.dut.u_regfile.i": "for循环integer，仿真展开变量，不是寄存器堆硬件连线"
+  },
+  "production_wave_nodes_covered": 435
+}

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1700" viewBox="0 0 2400 1700">
+<rect width="100%" height="100%" fill="white"/>
+<text x="60" y="65" font-family="Microsoft YaHei, sans-serif" font-size="40" fill="#202b36">SoC 六模块连接图：CPU + 存储器 → 内部连线 → I/O</text>
+<text x="60" y="109" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#617080">当前板级顶层 face_soc_top  |  六个实线模块均有 RTL  |  双向箭头代表两组单向请求 / 返回线</text>
+<rect x="40" y="150" width="1770" height="1080" fill="#fbfcfe"/>
+<polyline points="40,150 1810,150 1810,1230 40,1230 40,150" fill="none" stroke="#95a6b5" stroke-width="3"/>
+<text x="60" y="185" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#617080">SoC / FPGA 芯片内部</text>
+<polyline points="1850,150 1850,1220" fill="none" stroke="#c64646" stroke-width="4" stroke-dasharray="10 8"/>
+<text x="1870" y="187" font-family="Microsoft YaHei, sans-serif" font-size="27" fill="#c64646">封装外部</text>
+<rect x="100" y="225" width="420" height="110" fill="#f2f4f6"/>
+<polyline points="100,225 520,225 520,335 100,335 100,225" fill="none" stroke="#617080" stroke-width="3"/>
+<text x="239.5" y="270" font-family="Microsoft YaHei, sans-serif" font-size="30" fill="#202b36">clock_unit</text>
+<text x="178.0" y="309" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#617080">时钟直通；复位同步释放</text>
+<polyline points="2020,265 520,265" fill="none" stroke="#617080" stroke-width="3"/>
+<polygon points="520,265 534.0,272.0 534.0,258.0" fill="#617080"/>
+<text x="950" y="248" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#617080">sys_clk / rst_n_in：外部 → 时钟模块，各 1 位</text>
+<text x="2020" y="256" font-family="Microsoft YaHei, sans-serif" font-size="26" fill="#202b36">晶振 + 复位按钮</text>
+<text x="650" y="324" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#617080">clk / rst_n：clock_unit → 其余五模块，各 1 位（公共线不重复展开）</text>
+<text x="100" y="399" font-family="Microsoft YaHei, sans-serif" font-size="29" fill="#2169ab">CPU + MEM</text>
+<text x="1270" y="399" font-family="Microsoft YaHei, sans-serif" font-size="29" fill="#21805a">I/O + CNN</text>
+<rect x="100" y="425" width="420" height="170" fill="#fcebed"/>
+<polyline points="100,425 520,425 520,595 100,595 100,425" fill="none" stroke="#c64646" stroke-width="3"/>
+<text x="242.0" y="475" font-family="Microsoft YaHei, sans-serif" font-size="32" fill="#202b36">cpu_core</text>
+<text x="202.0" y="516" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">内部：cpu_control</text>
+<text x="216.0" y="556" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">+ cpu_datapath</text>
+<rect x="100" y="705" width="420" height="115" fill="#e8f1fa"/>
+<polyline points="100,705 520,705 520,820 100,820 100,705" fill="none" stroke="#2169ab" stroke-width="3"/>
+<text x="176.5" y="748" font-family="Microsoft YaHei, sans-serif" font-size="30" fill="#202b36">IEM（imem_rom）</text>
+<text x="218.5" y="787" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#2169ab">只保存 CPU 程序</text>
+<rect x="100" y="965" width="420" height="200" fill="#e8f1fa"/>
+<polyline points="100,965 520,965 520,1165 100,1165 100,965" fill="none" stroke="#2169ab" stroke-width="3"/>
+<text x="238.5" y="1012" font-family="Microsoft YaHei, sans-serif" font-size="32" fill="#202b36">datasram</text>
+<text x="227.5" y="1054" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">共享数据 RAM</text>
+<text x="165.5" y="1092" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#2169ab">A：CPU   B：CNN / 图像桥</text>
+<text x="156.5" y="1133" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#2169ab">仲裁 + 完成时序逻辑均在内部</text>
+<rect x="1270" y="425" width="460" height="180" fill="#e9f6ef"/>
+<polyline points="1270,425 1730,425 1730,605 1270,605 1270,425" fill="none" stroke="#21805a" stroke-width="3"/>
+<text x="1472.0" y="472" font-family="Microsoft YaHei, sans-serif" font-size="32" fill="#202b36">cnn</text>
+<text x="1345.0" y="507" font-family="Microsoft YaHei, sans-serif" font-size="21" fill="#202b36">mobilefacenet_accelerator_top</text>
+<text x="1359.5" y="548" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#202b36">CPU 口：accelerator_regs</text>
+<text x="1346.5" y="588" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#202b36">存储口：accelerator_mem_if</text>
+<rect x="1270" y="965" width="460" height="200" fill="#e9f6ef"/>
+<polyline points="1270,965 1730,965 1730,1165 1270,1165 1270,965" fill="none" stroke="#21805a" stroke-width="3"/>
+<text x="1396.0" y="1012" font-family="Microsoft YaHei, sans-serif" font-size="32" fill="#202b36">image_bridge</text>
+<text x="1363.015625" y="1054" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">UART RX / TX + CRC32</text>
+<text x="1343.5" y="1093" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#202b36">收完整包并校验，再写入 RAM</text>
+<text x="1356.5" y="1133" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#202b36">支持 SRAM 读回和错误回包</text>
+<polyline points="310,595 310,705" fill="none" stroke="#2169ab" stroke-width="3"/>
+<polygon points="310,595 303.0,609.0 317.0,609.0" fill="#2169ab"/>
+<polygon points="310,705 317.0,691.0 303.0,691.0" fill="#2169ab"/>
+<text x="345" y="634" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#2169ab">① 取指</text>
+<text x="345" y="672" font-family="Microsoft YaHei, sans-serif" font-size="22" fill="#2169ab">33 / 32 位</text>
+<text x="125" y="881" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#2169ab">② CPU 数据口：70 / 32 位</text>
+<polyline points="520,560 575,560 575,990 520,990" fill="none" stroke="#2169ab" stroke-width="3"/>
+<polygon points="520,560 534.0,567.0 534.0,553.0" fill="#2169ab"/>
+<polygon points="520,990 534.0,997.0 534.0,983.0" fill="#2169ab"/>
+<polyline points="520,470 1270,470" fill="none" stroke="#21805a" stroke-width="4"/>
+<polygon points="520,470 534.0,477.0 534.0,463.0" fill="#21805a"/>
+<polygon points="1270,470 1256.0,463.0 1256.0,477.0" fill="#21805a"/>
+<text x="680.5" y="448" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#21805a">③ CPU 与 CNN：MMIO 66 / 33 位</text>
+<polyline points="1270,570 1090,570 1090,1000 520,1000" fill="none" stroke="#21805a" stroke-width="4"/>
+<polygon points="1270,570 1256.0,563.0 1256.0,577.0" fill="#21805a"/>
+<polygon points="520,1000 534.0,1007.0 534.0,993.0" fill="#21805a"/>
+<text x="705" y="690" font-family="Microsoft YaHei, sans-serif" font-size="26" fill="#21805a">④ CNN 与 datasram</text>
+<text x="705" y="735" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#21805a">原生 mem_*：66 / 33 位</text>
+<text x="705" y="784" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#21805a">不经过 CPU；无独立适配器</text>
+<polyline points="520,1090 1270,1090" fill="none" stroke="#2169ab" stroke-width="4"/>
+<polygon points="520,1090 534.0,1097.0 534.0,1083.0" fill="#2169ab"/>
+<polygon points="1270,1090 1256.0,1083.0 1256.0,1097.0" fill="#2169ab"/>
+<text x="713.5" y="1062" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#2169ab">⑤ 图像桥与 datasram：70 / 35 位</text>
+<polyline points="1730,1015 2010,1015" fill="none" stroke="#21805a" stroke-width="3"/>
+<polygon points="1730,1015 1744.0,1022.0 1744.0,1008.0" fill="#21805a"/>
+<polygon points="2010,1015 1996.0,1008.0 1996.0,1022.0" fill="#21805a"/>
+<text x="1805.4765625" y="959" font-family="Microsoft YaHei, sans-serif" font-size="21" fill="#21805a">uart_rx / uart_tx</text>
+<text x="1852.0" y="993" font-family="Microsoft YaHei, sans-serif" font-size="21" fill="#21805a">各 1 位</text>
+<text x="2020" y="1025" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">电脑 / USB-UART</text>
+<polyline points="1730,1138 2010,1138" fill="none" stroke="#617080" stroke-width="3"/>
+<polygon points="2010,1138 1996.0,1131.0 1996.0,1145.0" fill="#617080"/>
+<text x="1810.0" y="1191" font-family="Microsoft YaHei, sans-serif" font-size="21" fill="#617080">状态输出共 3 位</text>
+<text x="2020" y="1135" font-family="Microsoft YaHei, sans-serif" font-size="25" fill="#202b36">板载 LED</text>
+<text x="2020" y="1177" font-family="Microsoft YaHei, sans-serif" font-size="22" fill="#617080">ready / busy / error</text>
+<text x="720" y="1208" font-family="Microsoft YaHei, sans-serif" font-size="23" fill="#c64646">cnn_mem_fault：datasram → 顶层错误灯组合逻辑，1 位</text>
+<text x="60" y="1297" font-family="Microsoft YaHei, sans-serif" font-size="27" fill="#202b36">每条编号接口都分成地址线、数据线、信号线；不是一根双向总线，也不另加总线模块。</text>
+<text x="60" y="1349" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#202b36">① 地址 imem_addr[31:0]；数据 imem_rdata[31:0]；信号 imem_re（1）</text>
+<text x="60" y="1394" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#202b36">② 地址 dmem_addr[31:0]；数据 wdata / rdata 各 32；信号 re / we 各 1、wstrb[3:0]</text>
+<text x="60" y="1439" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#202b36">③ 地址 mmio_addr[31:0]；数据 wdata / rdata 各 32；信号 re / we / ready 各 1</text>
+<text x="60" y="1484" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#202b36">④ 地址 mem_addr[31:0]；数据 wdata / rdata 各 32；信号 read / write / ready 各 1</text>
+<text x="60" y="1529" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#202b36">⑤ 地址 io_mem_addr[31:0]；数据 wdata / rdata 各 32；信号 req / we / gnt / rvalid / error 各 1、be[3:0]</text>
+<text x="60" y="1594" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#617080">封装顶层共 7 根数字 I/O（不含电源 / 地 / 下载专用脚）。LED busy 表示 UART 传输忙，不是 CNN busy。</text>
+<text x="60" y="1644" font-family="Microsoft YaHei, sans-serif" font-size="24" fill="#617080">精确方向、时序、软件所有权和验证边界：见顶层《SoC顶层连线与总体IO说明_小白版.md》。</text>
+</svg>

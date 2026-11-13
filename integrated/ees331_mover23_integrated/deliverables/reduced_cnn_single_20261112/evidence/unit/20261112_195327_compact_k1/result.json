@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "which": "k1",
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+    "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "rtl/cnn_self/self_pw8_engine.sv": "29856f79ed98c76cf7644056264bfeae5287644f4913cc6081aeadfc71e01999",
+    "simulation/tb/self_pw8_unit_top.sv": "048ffeaf71f238bdc5e573a42de053e769deb35a7bcd7c15c08db38bc69851ea",
+    "simulation/tb/integration/self_pw8_unit_main.cpp": "af645fe644e5963603a4375a810c2161080e730bd83a1a04b3679242b12701c6"
+  },
+  "compile_seconds": 6.311693384,
+  "simulation_seconds": 0.5694211879999997
+}

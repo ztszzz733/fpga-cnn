@@ -1,0 +1,134 @@
+{
+  "format": "cnn-storage-tile-v0.2",
+  "name": "tile_8x8x32",
+  "status": "GENERATED_NOT_MOVER_RTL_PASS",
+  "fixture_kind": "deterministic synthetic arithmetic/transport diagnostic, not trained-model accuracy evidence",
+  "shape": {
+    "input_h": 10,
+    "input_w": 10,
+    "in_channels": 32,
+    "out_channels": 32,
+    "output_h": 8,
+    "output_w": 8,
+    "kernel": 3,
+    "stride": 1,
+    "padding": 0
+  },
+  "payload_bytes": 28032,
+  "local_bytes": 32768,
+  "local_guarded_used_end": 30592,
+  "macs": 589824,
+  "checked_output_bytes": 12288,
+  "final_bytes": 2048,
+  "expected_final_sha256": "417a1df6c5da411555beee4608154c57901187d8e6e8d2be9984ca8bc28b491e",
+  "proposed_flags": "bit0: 0 DDR_TO_LOCAL, 1 LOCAL_TO_DDR; bits31:1 zero; awaiting storage ACK",
+  "native_check": {
+    "configured_frame_contexts": 10,
+    "active_frames": 1,
+    "pool": {
+      "K3": 4,
+      "K1": 6,
+      "Post": 3,
+      "Add": 1,
+      "DW7": 1,
+      "Pad": 1
+    },
+    "native_sram_parameter_bytes": 33554432,
+    "checker_address_limit_bytes": 32768,
+    "scope": "Existing real CNN/SRAM RTL only; native preload bypasses DDR/MOVER; NOT new32KiB RAM synthesis or MOVER validation"
+  },
+  "files": {
+    "add_params.bin": {
+      "bytes": 640,
+      "sha256": "693b2271e504d2efea9535a4dc7eb8b86ac77a0d722ae3fff37942ee9f90c181"
+    },
+    "ddr_expected.bin": {
+      "bytes": 65536,
+      "sha256": "424256d687bb317f8cee9b3d2632e2afe7f2d41905f0224418a8cd244ce076b7"
+    },
+    "ddr_initial.bin": {
+      "bytes": 65536,
+      "sha256": "c5516c39d3f00763384ca2bbca24d4080f31a9b3fc74b9ff22279292eb47d99c"
+    },
+    "golden_add_uint8.bin": {
+      "bytes": 2048,
+      "sha256": "417a1df6c5da411555beee4608154c57901187d8e6e8d2be9984ca8bc28b491e"
+    },
+    "golden_conv_int32.bin": {
+      "bytes": 8192,
+      "sha256": "176dd7fd1eea97829e18d327053eae67592570457ec157ca1c1dc0607f470b57"
+    },
+    "golden_post_uint8.bin": {
+      "bytes": 2048,
+      "sha256": "143b705f5878d2447c68f6ad3bdb055abc389263fea44eeb507a65df2b0bd711"
+    },
+    "input_with_halo.bin": {
+      "bytes": 3200,
+      "sha256": "4305d44114f6d67746a34c8b8288b3edbe3838f4026ab5da6d8c4e3359e163f9"
+    },
+    "layout.json": {
+      "bytes": 2610,
+      "sha256": "163336a196b39c9a09017c60b5351f2264d730824064d138155aa139aefd6100"
+    },
+    "local_initial.bin": {
+      "bytes": 32768,
+      "sha256": "e755c415eba1d77c6a3b6de6b486ae16f1a2270d794fc12a1773e18e1ff94b94"
+    },
+    "moves.csv": {
+      "bytes": 1606,
+      "sha256": "395d50ee12b9d1aec0ffcfc07f6ccf6d42f9f11ae52467a4b0589545884c1390"
+    },
+    "native_fixture\\commands.hex": {
+      "bytes": 480,
+      "sha256": "089d1e55b7bc8828531daa65077d56b390900820bf4c09f179b5cd9e497177e6"
+    },
+    "native_fixture\\expected.bin": {
+      "bytes": 12288,
+      "sha256": "5da3249bdaeef8e47605f7e1d4c71542169c4a1d24564b7117694f5ce397daa2"
+    },
+    "native_fixture\\image_info.hex": {
+      "bytes": 50,
+      "sha256": "f61fe1890a0e3c3cd97d0da6a80b8df327621b1d20ef32c75986d90037ce4b90"
+    },
+    "native_fixture\\images.bin": {
+      "bytes": 3200,
+      "sha256": "4305d44114f6d67746a34c8b8288b3edbe3838f4026ab5da6d8c4e3359e163f9"
+    },
+    "native_fixture\\info.hex": {
+      "bytes": 880,
+      "sha256": "86a7d6127e2825023f27fa1856e153ecb405b130b0f0eb8d817cee42d7a38089"
+    },
+    "native_fixture\\memory.bin": {
+      "bytes": 32768,
+      "sha256": "789ed4f734b1328122567045a7f081dcd2bc8de5a85bd47fb5f8ab0aa74db1cc"
+    },
+    "native_fixture\\node_info.hex": {
+      "bytes": 120,
+      "sha256": "31a7c07bfa396e636955a9f4e00c58f5a36aba6f49c018639d3d2fe774730206"
+    },
+    "native_fixture\\template_commands.hex": {
+      "bytes": 480,
+      "sha256": "5ab196985ab4a31daa66b8b3d0914cbd555d73a8bde3fc089895a4790655f5c7"
+    },
+    "native_fixture\\template_meta.hex": {
+      "bytes": 780,
+      "sha256": "b526f74142d0b382aeec03543a2c8318cd65e210b922439874492ce75f234273"
+    },
+    "post_params.bin": {
+      "bytes": 640,
+      "sha256": "069023a5f42635a2349acc918229f435b61fe082768e8f4ee00c0cfcaa92323a"
+    },
+    "residual.bin": {
+      "bytes": 2048,
+      "sha256": "170a8ff8cd3333b8f77af20931c30a42c45b34dc0e7d073b2dfd4b38cfecaff0"
+    },
+    "tasks.json": {
+      "bytes": 1622,
+      "sha256": "df0586ce3f3a4b0822668d2ddb38bf46251c63fc3e5524de46cfbbe1c3fa1ae6"
+    },
+    "weights.bin": {
+      "bytes": 9216,
+      "sha256": "fc9f9f487ad2f646f1e98daea4d5af8a41928e349c744f76a4b2e5b68f59cc6a"
+    }
+  }
+}

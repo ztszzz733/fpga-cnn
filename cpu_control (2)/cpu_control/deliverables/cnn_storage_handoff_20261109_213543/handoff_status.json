@@ -1,0 +1,13 @@
+{
+  "status": "SEALED",
+  "generated_at": "2026-11-09T21:35:43.637275",
+  "mover_non_aligned_owner": "Storage side; CNN-side selection pending storage ACK",
+  "software": "PASS",
+  "mover_rtl": "NOT_SUPPLIED_NOT_TESTED",
+  "cnn_mover_adapter": "NOT_IMPLEMENTED",
+  "ps_ddr": "NOT_TESTED",
+  "same_top_resources": "NOT_AVAILABLE",
+  "historical_ten_image_report": "COPIED_WITH_SOURCE_HASHES",
+  "tile_core_rtl": "PASS_6_SCENARIOS",
+  "sealed_at": "2026-11-09T21:39:46.730453"
+}

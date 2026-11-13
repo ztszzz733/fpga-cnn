@@ -1,0 +1,468 @@
+# Real RV32I mailbox service. Bytes shown exclude NOP padding to 8KiB.
+0000  400000b7  lui x1, hi(0x40000000)
+0004  00008093  addi x1, x1, lo(0x40000000)
+0008  00000937  lui x18, hi(0x0)
+000c  00090913  addi x18, x18, lo(0x0)
+0010  435052b7  lui x5, hi(0x43505532)
+0014  53228293  addi x5, x5, lo(0x43505532)
+0018  00000237  lui x4, hi(0x64)
+001c  06420213  addi x4, x4, lo(0x64)
+0020  0040a423  sw x4, 8(x1)
+0024  0050a623  sw x5, 12(x1)
+poll:
+0028  0100a103  lw x2, 16(x1)
+002c  0140a283  lw x5, 20(x1)
+0030  fe510ce3  beq x2, x5, poll
+0034  00000237  lui x4, hi(0x10)
+0038  01020213  addi x4, x4, lo(0x10)
+003c  0040a423  sw x4, 8(x1)
+0040  00c0a183  lw x3, 12(x1)
+0044  00000237  lui x4, hi(0x14)
+0048  01420213  addi x4, x4, lo(0x14)
+004c  0040a423  sw x4, 8(x1)
+0050  00c0a303  lw x6, 12(x1)
+0054  00000237  lui x4, hi(0x18)
+0058  01820213  addi x4, x4, lo(0x18)
+005c  0040a423  sw x4, 8(x1)
+0060  00c0a383  lw x7, 12(x1)
+0064  00000237  lui x4, hi(0x1c)
+0068  01c20213  addi x4, x4, lo(0x1c)
+006c  0040a423  sw x4, 8(x1)
+0070  00c0a403  lw x8, 12(x1)
+0074  00000237  lui x4, hi(0x20)
+0078  02020213  addi x4, x4, lo(0x20)
+007c  0040a423  sw x4, 8(x1)
+0080  00c0a483  lw x9, 12(x1)
+0084  00000637  lui x12, hi(0x0)
+0088  00060613  addi x12, x12, lo(0x0)
+008c  000006b7  lui x13, hi(0x0)
+0090  00068693  addi x13, x13, lo(0x0)
+0094  00000737  lui x14, hi(0x0)
+0098  00070713  addi x14, x14, lo(0x0)
+009c  000007b7  lui x15, hi(0x0)
+00a0  00078793  addi x15, x15, lo(0x0)
+00a4  00000837  lui x16, hi(0x0)
+00a8  00080813  addi x16, x16, lo(0x0)
+00ac  000002b7  lui x5, hi(0x1)
+00b0  00128293  addi x5, x5, lo(0x1)
+00b4  08518063  beq x3, x5, ddr_ready
+00b8  000002b7  lui x5, hi(0x2)
+00bc  00228293  addi x5, x5, lo(0x2)
+00c0  0c518263  beq x3, x5, cfg_write
+00c4  000002b7  lui x5, hi(0x3)
+00c8  00328293  addi x5, x5, lo(0x3)
+00cc  14518e63  beq x3, x5, cfg_commit
+00d0  000002b7  lui x5, hi(0x4)
+00d4  00428293  addi x5, x5, lo(0x4)
+00d8  18518c63  beq x3, x5, start
+00dc  000002b7  lui x5, hi(0x5)
+00e0  00528293  addi x5, x5, lo(0x5)
+00e4  1c518e63  beq x3, x5, frame
+00e8  000002b7  lui x5, hi(0x6)
+00ec  00628293  addi x5, x5, lo(0x6)
+00f0  22518a63  beq x3, x5, result
+00f4  000002b7  lui x5, hi(0x7)
+00f8  00728293  addi x5, x5, lo(0x7)
+00fc  2e518e63  beq x3, x5, ack
+0100  000002b7  lui x5, hi(0x8)
+0104  00828293  addi x5, x5, lo(0x8)
+0108  36518863  beq x3, x5, reset
+010c  000002b7  lui x5, hi(0x9)
+0110  00928293  addi x5, x5, lo(0x9)
+0114  42518463  beq x3, x5, cache_cfg
+0118  000002b7  lui x5, hi(0xa)
+011c  00a28293  addi x5, x5, lo(0xa)
+0120  46518463  beq x3, x5, status
+0124  000002b7  lui x5, hi(0xb)
+0128  00b28293  addi x5, x5, lo(0xb)
+012c  4a518063  beq x3, x5, cache_read
+0130  4e000663  beq x0, x0, bad_command
+ddr_ready:
+0134  00001237  lui x4, hi(0x1004)
+0138  00420213  addi x4, x4, lo(0x1004)
+013c  0040a423  sw x4, 8(x1)
+0140  00c0a503  lw x10, 12(x1)
+0144  00257293  andi x5, x10, 2
+0148  4e029663  bne x5, x0, busy
+014c  445242b7  lui x5, hi(0x44524459)
+0150  45928293  addi x5, x5, lo(0x44524459)
+0154  4c531463  bne x6, x5, bad_command
+0158  00002237  lui x4, hi(0x2000)
+015c  00020213  addi x4, x4, lo(0x2000)
+0160  0040a423  sw x4, 8(x1)
+0164  00c0a503  lw x10, 12(x1)
+0168  00157293  andi x5, x10, 1
+016c  4c028a63  beq x5, x0, not_ready
+0170  01e57293  andi x5, x10, 30
+0174  4e029263  bne x5, x0, memory_error
+0178  00000937  lui x18, hi(0x1)
+017c  00190913  addi x18, x18, lo(0x1)
+0180  48000863  beq x0, x0, success
+cfg_write:
+0184  4a090e63  beq x18, x0, not_ready
+0188  00001237  lui x4, hi(0x1004)
+018c  00420213  addi x4, x4, lo(0x1004)
+0190  0040a423  sw x4, 8(x1)
+0194  00c0a503  lw x10, 12(x1)
+0198  00257293  andi x5, x10, 2
+019c  48029c63  bne x5, x0, busy
+01a0  000002b7  lui x5, hi(0xc)
+01a4  00c28293  addi x5, x5, lo(0xc)
+01a8  06530463  beq x6, x5, cfg_allowed
+01ac  000002b7  lui x5, hi(0x10)
+01b0  01028293  addi x5, x5, lo(0x10)
+01b4  04530e63  beq x6, x5, cfg_allowed
+01b8  000002b7  lui x5, hi(0x14)
+01bc  01428293  addi x5, x5, lo(0x14)
+01c0  04530863  beq x6, x5, cfg_allowed
+01c4  000002b7  lui x5, hi(0x18)
+01c8  01828293  addi x5, x5, lo(0x18)
+01cc  04530263  beq x6, x5, cfg_allowed
+01d0  000002b7  lui x5, hi(0x1c)
+01d4  01c28293  addi x5, x5, lo(0x1c)
+01d8  02530c63  beq x6, x5, cfg_allowed
+01dc  000002b7  lui x5, hi(0x20)
+01e0  02028293  addi x5, x5, lo(0x20)
+01e4  02530663  beq x6, x5, cfg_allowed
+01e8  000002b7  lui x5, hi(0x24)
+01ec  02428293  addi x5, x5, lo(0x24)
+01f0  02530063  beq x6, x5, cfg_allowed
+01f4  000002b7  lui x5, hi(0x28)
+01f8  02828293  addi x5, x5, lo(0x28)
+01fc  00530a63  beq x6, x5, cfg_allowed
+0200  000002b7  lui x5, hi(0x2c)
+0204  02c28293  addi x5, x5, lo(0x2c)
+0208  00530463  beq x6, x5, cfg_allowed
+020c  40000863  beq x0, x0, bad_command
+cfg_allowed:
+0210  00001237  lui x4, hi(0x1000)
+0214  00020213  addi x4, x4, lo(0x1000)
+0218  00620233  add x4, x4, x6
+021c  0040a423  sw x4, 8(x1)
+0220  0070a623  sw x7, 12(x1)
+0224  3e000663  beq x0, x0, success
+cfg_commit:
+0228  40090c63  beq x18, x0, not_ready
+022c  00001237  lui x4, hi(0x1004)
+0230  00420213  addi x4, x4, lo(0x1004)
+0234  0040a423  sw x4, 8(x1)
+0238  00c0a503  lw x10, 12(x1)
+023c  00257293  andi x5, x10, 2
+0240  3e029a63  bne x5, x0, busy
+0244  000002b7  lui x5, hi(0x4)
+0248  00428293  addi x5, x5, lo(0x4)
+024c  00530863  beq x6, x5, commit_allowed
+0250  000002b7  lui x5, hi(0x8)
+0254  00828293  addi x5, x5, lo(0x8)
+0258  3c531263  bne x6, x5, bad_command
+commit_allowed:
+025c  00001237  lui x4, hi(0x1008)
+0260  00820213  addi x4, x4, lo(0x1008)
+0264  0040a423  sw x4, 8(x1)
+0268  0060a623  sw x6, 12(x1)
+026c  38000663  beq x0, x0, check_cnn
+start:
+0270  3c090863  beq x18, x0, not_ready
+0274  00001237  lui x4, hi(0x1004)
+0278  00420213  addi x4, x4, lo(0x1004)
+027c  0040a423  sw x4, 8(x1)
+0280  00c0a503  lw x10, 12(x1)
+0284  00257293  andi x5, x10, 2
+0288  3a029663  bne x5, x0, busy
+028c  00001237  lui x4, hi(0x1004)
+0290  00420213  addi x4, x4, lo(0x1004)
+0294  0040a423  sw x4, 8(x1)
+0298  00c0a503  lw x10, 12(x1)
+029c  00157293  andi x5, x10, 1
+02a0  3a028063  beq x5, x0, not_ready
+02a4  000002b7  lui x5, hi(0x2)
+02a8  00228293  addi x5, x5, lo(0x2)
+02ac  00001237  lui x4, hi(0x1008)
+02b0  00820213  addi x4, x4, lo(0x1008)
+02b4  0040a423  sw x4, 8(x1)
+02b8  0050a623  sw x5, 12(x1)
+02bc  32000e63  beq x0, x0, check_cnn
+frame:
+02c0  38090063  beq x18, x0, not_ready
+02c4  000002b7  lui x5, hi(0x4)
+02c8  00428293  addi x5, x5, lo(0x4)
+02cc  34537863  bne x6, x5, bad_command
+02d0  00001237  lui x4, hi(0x1020)
+02d4  02020213  addi x4, x4, lo(0x1020)
+02d8  0040a423  sw x4, 8(x1)
+02dc  0060a623  sw x6, 12(x1)
+02e0  00001237  lui x4, hi(0x102c)
+02e4  02c20213  addi x4, x4, lo(0x102c)
+02e8  0040a423  sw x4, 8(x1)
+02ec  0070a623  sw x7, 12(x1)
+02f0  00001237  lui x4, hi(0x1004)
+02f4  00420213  addi x4, x4, lo(0x1004)
+02f8  0040a423  sw x4, 8(x1)
+02fc  00c0a503  lw x10, 12(x1)
+0300  01057293  andi x5, x10, 16
+0304  32028863  beq x5, x0, busy
+0308  000002b7  lui x5, hi(0x10)
+030c  01028293  addi x5, x5, lo(0x10)
+0310  00001237  lui x4, hi(0x1008)
+0314  00820213  addi x4, x4, lo(0x1008)
+0318  0040a423  sw x4, 8(x1)
+031c  0050a623  sw x5, 12(x1)
+0320  2c000c63  beq x0, x0, check_cnn
+result:
+0324  30090e63  beq x18, x0, not_ready
+0328  00001237  lui x4, hi(0x1004)
+032c  00420213  addi x4, x4, lo(0x1004)
+0330  0040a423  sw x4, 8(x1)
+0334  00c0a503  lw x10, 12(x1)
+0338  00857293  andi x5, x10, 8
+033c  30029863  bne x5, x0, cnn_error
+0340  02057293  andi x5, x10, 32
+0344  2e028263  beq x5, x0, again
+0348  00001237  lui x4, hi(0x1030)
+034c  03020213  addi x4, x4, lo(0x1030)
+0350  0040a423  sw x4, 8(x1)
+0354  00c0a683  lw x13, 12(x1)
+0358  00001237  lui x4, hi(0x1034)
+035c  03420213  addi x4, x4, lo(0x1034)
+0360  0040a423  sw x4, 8(x1)
+0364  00c0a703  lw x14, 12(x1)
+0368  00001237  lui x4, hi(0x1038)
+036c  03820213  addi x4, x4, lo(0x1038)
+0370  0040a423  sw x4, 8(x1)
+0374  00c0a783  lw x15, 12(x1)
+0378  00001237  lui x4, hi(0x1054)
+037c  05420213  addi x4, x4, lo(0x1054)
+0380  0040a423  sw x4, 8(x1)
+0384  00c0a803  lw x16, 12(x1)
+0388  00002237  lui x4, hi(0x2008)
+038c  00820213  addi x4, x4, lo(0x2008)
+0390  0040a423  sw x4, 8(x1)
+0394  00e0a623  sw x14, 12(x1)
+0398  00002237  lui x4, hi(0x200c)
+039c  00c20213  addi x4, x4, lo(0x200c)
+03a0  0040a423  sw x4, 8(x1)
+03a4  00f0a623  sw x15, 12(x1)
+03a8  000002b7  lui x5, hi(0x1)
+03ac  00128293  addi x5, x5, lo(0x1)
+03b0  00002237  lui x4, hi(0x2004)
+03b4  00420213  addi x4, x4, lo(0x2004)
+03b8  0040a423  sw x4, 8(x1)
+03bc  0050a623  sw x5, 12(x1)
+03c0  013138b7  lui x17, hi(0x1312d00)
+03c4  d0088893  addi x17, x17, lo(0x1312d00)
+result_fence:
+03c8  00002237  lui x4, hi(0x2000)
+03cc  00020213  addi x4, x4, lo(0x2000)
+03d0  0040a423  sw x4, 8(x1)
+03d4  00c0a503  lw x10, 12(x1)
+03d8  00c57293  andi x5, x10, 12
+03dc  26029e63  bne x5, x0, memory_error
+03e0  01257293  andi x5, x10, 18
+03e4  00028863  beq x5, x0, result_fence_done
+03e8  fff88893  addi x17, x17, -1
+03ec  fc089ee3  bne x17, x0, result_fence
+03f0  26000a63  beq x0, x0, timeout
+result_fence_done:
+03f4  20000e63  beq x0, x0, success
+ack:
+03f8  24090463  beq x18, x0, not_ready
+03fc  00001237  lui x4, hi(0x1004)
+0400  00420213  addi x4, x4, lo(0x1004)
+0404  0040a423  sw x4, 8(x1)
+0408  00c0a503  lw x10, 12(x1)
+040c  02057293  andi x5, x10, 32
+0410  20028c63  beq x5, x0, again
+0414  00001237  lui x4, hi(0x1030)
+0418  03020213  addi x4, x4, lo(0x1030)
+041c  0040a423  sw x4, 8(x1)
+0420  00c0a283  lw x5, 12(x1)
+0424  24629663  bne x5, x6, bad_token
+0428  00001237  lui x4, hi(0x1054)
+042c  05420213  addi x4, x4, lo(0x1054)
+0430  0040a423  sw x4, 8(x1)
+0434  00c0a283  lw x5, 12(x1)
+0438  22729c63  bne x5, x7, bad_token
+043c  00001237  lui x4, hi(0x104c)
+0440  04c20213  addi x4, x4, lo(0x104c)
+0444  0040a423  sw x4, 8(x1)
+0448  0060a623  sw x6, 12(x1)
+044c  00001237  lui x4, hi(0x1050)
+0450  05020213  addi x4, x4, lo(0x1050)
+0454  0040a423  sw x4, 8(x1)
+0458  0070a623  sw x7, 12(x1)
+045c  000002b7  lui x5, hi(0x20)
+0460  02028293  addi x5, x5, lo(0x20)
+0464  00001237  lui x4, hi(0x1008)
+0468  00820213  addi x4, x4, lo(0x1008)
+046c  0040a423  sw x4, 8(x1)
+0470  0050a623  sw x5, 12(x1)
+0474  18000263  beq x0, x0, check_cnn
+reset:
+0478  1c090463  beq x18, x0, not_ready
+047c  00001237  lui x4, hi(0x1004)
+0480  00420213  addi x4, x4, lo(0x1004)
+0484  0040a423  sw x4, 8(x1)
+0488  00c0a503  lw x10, 12(x1)
+048c  00257293  andi x5, x10, 2
+0490  1a029263  bne x5, x0, busy
+0494  00000737  lui x14, hi(0x0)
+0498  00070713  addi x14, x14, lo(0x0)
+049c  010007b7  lui x15, hi(0x1000000)
+04a0  00078793  addi x15, x15, lo(0x1000000)
+04a4  00002237  lui x4, hi(0x2008)
+04a8  00820213  addi x4, x4, lo(0x2008)
+04ac  0040a423  sw x4, 8(x1)
+04b0  00e0a623  sw x14, 12(x1)
+04b4  00002237  lui x4, hi(0x200c)
+04b8  00c20213  addi x4, x4, lo(0x200c)
+04bc  0040a423  sw x4, 8(x1)
+04c0  00f0a623  sw x15, 12(x1)
+04c4  000002b7  lui x5, hi(0x2)
+04c8  00228293  addi x5, x5, lo(0x2)
+04cc  00002237  lui x4, hi(0x2004)
+04d0  00420213  addi x4, x4, lo(0x2004)
+04d4  0040a423  sw x4, 8(x1)
+04d8  0050a623  sw x5, 12(x1)
+04dc  013138b7  lui x17, hi(0x1312d00)
+04e0  d0088893  addi x17, x17, lo(0x1312d00)
+reset_fence:
+04e4  00002237  lui x4, hi(0x2000)
+04e8  00020213  addi x4, x4, lo(0x2000)
+04ec  0040a423  sw x4, 8(x1)
+04f0  00c0a503  lw x10, 12(x1)
+04f4  00c57293  andi x5, x10, 12
+04f8  16029063  bne x5, x0, memory_error
+04fc  01257293  andi x5, x10, 18
+0500  00028863  beq x5, x0, reset_fence_done
+0504  fff88893  addi x17, x17, -1
+0508  fc089ee3  bne x17, x0, reset_fence
+050c  14000c63  beq x0, x0, timeout
+reset_fence_done:
+0510  000002b7  lui x5, hi(0x1)
+0514  00128293  addi x5, x5, lo(0x1)
+0518  00001237  lui x4, hi(0x1008)
+051c  00820213  addi x4, x4, lo(0x1008)
+0520  0040a423  sw x4, 8(x1)
+0524  0050a623  sw x5, 12(x1)
+0528  00001237  lui x4, hi(0x1054)
+052c  05420213  addi x4, x4, lo(0x1054)
+0530  0040a423  sw x4, 8(x1)
+0534  00c0a683  lw x13, 12(x1)
+0538  0c000c63  beq x0, x0, success
+cache_cfg:
+053c  10090263  beq x18, x0, not_ready
+0540  00001237  lui x4, hi(0x1004)
+0544  00420213  addi x4, x4, lo(0x1004)
+0548  0040a423  sw x4, 8(x1)
+054c  00c0a503  lw x10, 12(x1)
+0550  00257293  andi x5, x10, 2
+0554  0e029063  bne x5, x0, busy
+0558  000002b7  lui x5, hi(0x10)
+055c  01028293  addi x5, x5, lo(0x10)
+0560  00530863  beq x6, x5, cache_allowed
+0564  000002b7  lui x5, hi(0x14)
+0568  01428293  addi x5, x5, lo(0x14)
+056c  0a531863  bne x6, x5, bad_command
+cache_allowed:
+0570  00002237  lui x4, hi(0x2000)
+0574  00020213  addi x4, x4, lo(0x2000)
+0578  00620233  add x4, x4, x6
+057c  0040a423  sw x4, 8(x1)
+0580  0070a623  sw x7, 12(x1)
+0584  08000663  beq x0, x0, success
+status:
+0588  00001237  lui x4, hi(0x1004)
+058c  00420213  addi x4, x4, lo(0x1004)
+0590  0040a423  sw x4, 8(x1)
+0594  00c0a683  lw x13, 12(x1)
+0598  00001237  lui x4, hi(0x1040)
+059c  04020213  addi x4, x4, lo(0x1040)
+05a0  0040a423  sw x4, 8(x1)
+05a4  00c0a703  lw x14, 12(x1)
+05a8  00002237  lui x4, hi(0x2000)
+05ac  00020213  addi x4, x4, lo(0x2000)
+05b0  0040a423  sw x4, 8(x1)
+05b4  00c0a783  lw x15, 12(x1)
+05b8  00001237  lui x4, hi(0x1054)
+05bc  05420213  addi x4, x4, lo(0x1054)
+05c0  0040a423  sw x4, 8(x1)
+05c4  00c0a803  lw x16, 12(x1)
+05c8  04000463  beq x0, x0, success
+cache_read:
+05cc  00337293  andi x5, x6, 3
+05d0  04029663  bne x5, x0, bad_command
+05d4  000002b7  lui x5, hi(0x3c)
+05d8  03c28293  addi x5, x5, lo(0x3c)
+05dc  04537063  bne x6, x5, bad_command
+05e0  00002237  lui x4, hi(0x2000)
+05e4  00020213  addi x4, x4, lo(0x2000)
+05e8  00620233  add x4, x4, x6
+05ec  0040a423  sw x4, 8(x1)
+05f0  00c0a683  lw x13, 12(x1)
+05f4  00000e63  beq x0, x0, success
+check_cnn:
+05f8  00001237  lui x4, hi(0x1004)
+05fc  00420213  addi x4, x4, lo(0x1004)
+0600  0040a423  sw x4, 8(x1)
+0604  00c0a503  lw x10, 12(x1)
+0608  00857293  andi x5, x10, 8
+060c  04029063  bne x5, x0, cnn_error
+success:
+0610  00000637  lui x12, hi(0x0)
+0614  00060613  addi x12, x12, lo(0x0)
+0618  06000263  beq x0, x0, reply
+bad_command:
+061c  00000637  lui x12, hi(0x1)
+0620  00160613  addi x12, x12, lo(0x1)
+0624  04000c63  beq x0, x0, reply
+again:
+0628  00000637  lui x12, hi(0x2)
+062c  00260613  addi x12, x12, lo(0x2)
+0630  04000663  beq x0, x0, reply
+busy:
+0634  00000637  lui x12, hi(0x3)
+0638  00360613  addi x12, x12, lo(0x3)
+063c  04000063  beq x0, x0, reply
+not_ready:
+0640  00000637  lui x12, hi(0x4)
+0644  00460613  addi x12, x12, lo(0x4)
+0648  02000a63  beq x0, x0, reply
+cnn_error:
+064c  00000637  lui x12, hi(0x5)
+0650  00560613  addi x12, x12, lo(0x5)
+0654  02000463  beq x0, x0, reply
+memory_error:
+0658  00000637  lui x12, hi(0x6)
+065c  00660613  addi x12, x12, lo(0x6)
+0660  00000e63  beq x0, x0, reply
+timeout:
+0664  00000637  lui x12, hi(0x7)
+0668  00760613  addi x12, x12, lo(0x7)
+066c  00000863  beq x0, x0, reply
+bad_token:
+0670  00000637  lui x12, hi(0x8)
+0674  00860613  addi x12, x12, lo(0x8)
+0678  00000263  beq x0, x0, reply
+reply:
+067c  00000237  lui x4, hi(0x50)
+0680  05020213  addi x4, x4, lo(0x50)
+0684  0040a423  sw x4, 8(x1)
+0688  00c0a623  sw x12, 12(x1)
+068c  00000237  lui x4, hi(0x54)
+0690  05420213  addi x4, x4, lo(0x54)
+0694  0040a423  sw x4, 8(x1)
+0698  00d0a623  sw x13, 12(x1)
+069c  00000237  lui x4, hi(0x58)
+06a0  05820213  addi x4, x4, lo(0x58)
+06a4  0040a423  sw x4, 8(x1)
+06a8  00e0a623  sw x14, 12(x1)
+06ac  00000237  lui x4, hi(0x5c)
+06b0  05c20213  addi x4, x4, lo(0x5c)
+06b4  0040a423  sw x4, 8(x1)
+06b8  00f0a623  sw x15, 12(x1)
+06bc  00000237  lui x4, hi(0x60)
+06c0  06020213  addi x4, x4, lo(0x60)
+06c4  0040a423  sw x4, 8(x1)
+06c8  0100a623  sw x16, 12(x1)
+06cc  0020aa23  sw x2, 20(x1)
+06d0  94000ce3  beq x0, x0, poll

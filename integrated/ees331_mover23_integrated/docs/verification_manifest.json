@@ -1,0 +1,129 @@
+{
+  "date": "2026-09-14",
+  "interface": "CPU-CD-IF-C1 / Control v1.0 / CPU-CTRL-ACK-P1",
+  "primary_runs": [
+    "build/runs/20260914_155026_886660_all_seed1/result.json"
+  ],
+  "result": {
+    "cases": 1244,
+    "checks": 30463,
+    "failures": 0,
+    "seed": 1,
+    "random_actual": 1000,
+    "decode_directed": 55,
+    "cycles": 1383,
+    "hazard_random_actual": 128,
+    "forward_counts": {
+      "A_MEM": 4,
+      "A_WB": 4,
+      "B_MEM": 3,
+      "B_WB": 5,
+      "Store_MEM": 3,
+      "Store_WB": 5
+    },
+    "load_use_hits": 7,
+    "unready_detected": 2,
+    "branches": [
+      {
+        "type": 1,
+        "taken": 1,
+        "not_taken": 1
+      },
+      {
+        "type": 2,
+        "taken": 1,
+        "not_taken": 1
+      },
+      {
+        "type": 3,
+        "taken": 1,
+        "not_taken": 1
+      },
+      {
+        "type": 4,
+        "taken": 1,
+        "not_taken": 1
+      },
+      {
+        "type": 5,
+        "taken": 1,
+        "not_taken": 1
+      },
+      {
+        "type": 6,
+        "taken": 1,
+        "not_taken": 1
+      }
+    ]
+  },
+  "versions": {
+    "xvlog": "Vivado Simulator v2026.1",
+    "python": "3.11.9",
+    "matplotlib": "3.10.8"
+  },
+  "real_datapath": "NOT_RUN: not provided",
+  "lint": "NOT_RUN",
+  "parser_tests": "NOT_RERUN on 2026-09-14; see historical_baseline",
+  "c_syntax": "NOT_RERUN on 2026-09-14; source unchanged",
+  "sha256": {
+    "rtl/common/cpu_control_pkg.sv": "fc0f6cf155299a43b2d44b527d087d726bf4a3f974377a1d7301492cefed0a3c",
+    "rtl/cpu_control/alu_decoder.sv": "beea8edcc3412fe65e371df58f2d98085d2daedf403b6a0e0170b8e990809ac4",
+    "rtl/cpu_control/branch_control.sv": "7b43244500b6086f40e9ea64b6a0282c5cc5bfff97dc5b86516bcd74a7e18b25",
+    "rtl/cpu_control/cpu_control.sv": "d1e049875d1309ef7d50c327dcf4dbecb2187d129cadcbc5b373557aa3ace239",
+    "rtl/cpu_control/hazard_unit.sv": "4c0fe06689d714157e7cb81c31ca908964bc6c6d3357544c7f3087514a0115bb",
+    "rtl/cpu_control/main_decoder.sv": "5e5edb5e585ea0e1d791d71a1ef407d98625b1b227cdfe25fa15c0f448e89a3f",
+    "rtl/cpu_control/pipeline_control.sv": "0daab293938302a8abe16496af84ae74e376328829f6ddd682f7c4320b624968",
+    "rtl/filelists/cpu_control.f": "b385fd3897d689e8ff65cd018249b485487c87945234b90c5f4e92c8af6f83b1",
+    "tb/integration/cpu_control_link_example.sv": "c341535046a5c8134ca6aa44b55be334a9c2cf7c1de935b7f5d07e6a5403ffd2",
+    "tb/models/control_datapath_stub.sv": "6dcdb03f3e1f40a024d58cb4dabbfc0f0d455515fe788a1a7dd2740db61f62a9",
+    "tb/unit/tb_cpu_control.sv": "0df8b25cf8332b8b109530fe99ca8e288b63303768d8a66275b8e1e97ff0f9fc",
+    "tb/config/tb_config.svh": "b7d463b16d8378b4569baf69cc45dc3cc8337bd56a0ee9e98dbd5970d1062598",
+    "tb/vectors/decode_cases.csv": "08f8f280fc49f6429b568b91adc30bce806d43635de457cd299918fee382baf8",
+    "tb/filelists/cpu_control.f": "02128745b6d30e39e775b0068d5d0e6f05854a78c6ba22b4fbbfcd4dea17651b",
+    "scripts/plot_waveforms.py": "6a5155f4443ac8a0f5d6c478490b6422153e376cb7bd6e5ad5664e837511d481",
+    "scripts/run_tests.py": "f8a68c1962421e828eb537489f2e5cc83919d927f58f73df27d94c62406a2950",
+    "scripts/wave_signals.json": "c68046dfde3b0e0c4fe915c157b7431c9aea8145e38f6f1123a4c782c36cbe2a",
+    "scripts/requirements.txt": "723e828e31a1e2eadd22176871e333a7b8e24bf66fd997fa3dd1255215ed262b",
+    "sw/drivers/cnn_driver_example.c": "16405eb00d818fa0141a5e58af352190ca155dba24d44be0ffd598f9e802076e"
+  },
+  "d1_source_sha256": "907492c9028893e4b4741c0a62a84f8d3937134e63db47ecf60e188ec51e0f78",
+  "historical_baseline": {
+    "date": "2026-09-13",
+    "python": "3.11.9",
+    "pytest": "9.1.1",
+    "parser_tests": "12 passed; executed with python -m pytest -q tests/test_plot_waveforms.py",
+    "c_syntax": "GCC 9.5.0 -std=c11 -Wall -Wextra -Werror -fsyntax-only; exit 0",
+    "primary_runs": [
+      "build/runs/20260913_111134_231003_all_seed1/result.json",
+      "build/runs/20260913_111347_519716_all_seed2026/result.json"
+    ],
+    "sha256": {
+      "rtl/common/cpu_control_pkg.sv": "b812fb9f14823a637d9e9c616c942fd822789c8600f8839e102e8ac4ab99ca78",
+      "rtl/cpu_control/alu_decoder.sv": "beea8edcc3412fe65e371df58f2d98085d2daedf403b6a0e0170b8e990809ac4",
+      "rtl/cpu_control/branch_control.sv": "7b43244500b6086f40e9ea64b6a0282c5cc5bfff97dc5b86516bcd74a7e18b25",
+      "rtl/cpu_control/cpu_control.sv": "d1e049875d1309ef7d50c327dcf4dbecb2187d129cadcbc5b373557aa3ace239",
+      "rtl/cpu_control/hazard_unit.sv": "4c0fe06689d714157e7cb81c31ca908964bc6c6d3357544c7f3087514a0115bb",
+      "rtl/cpu_control/main_decoder.sv": "5e5edb5e585ea0e1d791d71a1ef407d98625b1b227cdfe25fa15c0f448e89a3f",
+      "rtl/cpu_control/pipeline_control.sv": "0daab293938302a8abe16496af84ae74e376328829f6ddd682f7c4320b624968",
+      "tb/config/tb_config.svh": "b7d463b16d8378b4569baf69cc45dc3cc8337bd56a0ee9e98dbd5970d1062598",
+      "tb/filelists/cpu_control.f": "02128745b6d30e39e775b0068d5d0e6f05854a78c6ba22b4fbbfcd4dea17651b",
+      "tb/integration/cpu_control_link_example.sv": "0888a86baec0b2eb79611bf5f816f3cb6bdacd742a17516c3ae7f45cea08fe76",
+      "tb/models/control_datapath_stub.sv": "26b5bfc14fc63632695be9e717f91454dc05015235347fd8e11af06423f906a3",
+      "tb/unit/tb_cpu_control.sv": "90230f0936ab8a85a7820527eddabb8cbaa428f8c25c2d992c809fdf88b93133",
+      "tb/vectors/decode_cases.csv": "08f8f280fc49f6429b568b91adc30bce806d43635de457cd299918fee382baf8",
+      "scripts/plot_waveforms.py": "6a5155f4443ac8a0f5d6c478490b6422153e376cb7bd6e5ad5664e837511d481",
+      "scripts/requirements.txt": "723e828e31a1e2eadd22176871e333a7b8e24bf66fd997fa3dd1255215ed262b",
+      "scripts/run_tests.ps1": "1250800635ba0fcb8c1ea151c2b128dae6f7c79fae8d85ffff4436902468c04b",
+      "scripts/run_tests.py": "f8a68c1962421e828eb537489f2e5cc83919d927f58f73df27d94c62406a2950",
+      "scripts/run_tests.sh": "7006d9e23a23e7de7898d0635b187fa0564041812dc0b813b63081f95ad28c79",
+      "scripts/wave_signals.json": "c68046dfde3b0e0c4fe915c157b7431c9aea8145e38f6f1123a4c782c36cbe2a",
+      "sw/drivers/cnn_driver_example.c": "16405eb00d818fa0141a5e58af352190ca155dba24d44be0ffd598f9e802076e",
+      "tests/test_plot_waveforms.py": "c16dd455bb8c4c5af8f2e8d09b6bcb0564c52f9c41039bc2f628fc0d16a6be54"
+    }
+  },
+  "previous_primary_runs": [
+    "build/runs/20260914_124846_374213_all_seed1/result.json"
+  ],
+  "p1_source_sha256": "970c9c548526b560ee9d0717174ee01a00cccf9f3ae5861475ee202b16d5e70b",
+  "control_confirmation": "M formally accepts C1 v1.0 development baseline; system joint freeze pending"
+}

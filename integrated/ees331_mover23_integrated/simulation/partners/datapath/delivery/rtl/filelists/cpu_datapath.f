@@ -1,0 +1,13 @@
+rtl/common/cpu_control_pkg.sv
+rtl/cpu_datapath/alu.sv
+rtl/cpu_datapath/imm_gen.sv
+rtl/cpu_datapath/pc.sv
+rtl/cpu_datapath/regfile.sv
+rtl/cpu_datapath/if_id_reg.sv
+rtl/cpu_datapath/id_ex_reg.sv
+rtl/cpu_datapath/ex_mem_reg.sv
+rtl/cpu_datapath/mem_wb_reg.sv
+rtl/cpu_datapath/address_decoder.sv
+rtl/cpu_datapath/lsu.sv
+rtl/cpu_datapath/fetch_adapter.sv
+rtl/cpu_datapath/cpu_datapath.sv

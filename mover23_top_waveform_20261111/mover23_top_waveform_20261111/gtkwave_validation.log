@@ -1,0 +1,3 @@
+DUMP=D:\FPGA\fpga-cnn-integrated\deliverables\mover23_top_waveform_20261111\mover23_top_raw.vcd
+DISPLAYED=78
+PASS top CPU/CNN/storage/GP0/HP0 signals visible

@@ -1,0 +1,346 @@
+{
+  "date": "2026-09-14",
+  "baseline_preference": "build/backups/before_docs_simplify_20260914_125744",
+  "pre_reorganization_backup": "build/backups/before_guide_reorg_20260914_131950",
+  "mapping": [
+    {
+      "source": "README.md",
+      "beginner": "README.md",
+      "topic": "项目从哪里开始"
+    },
+    {
+      "source": "docs/README_TEST.md",
+      "beginner": "test.md",
+      "topic": "第一次运行测试"
+    },
+    {
+      "source": "docs/TEST_REFERENCE.md",
+      "beginner": "测试设置说明.md",
+      "topic": "需要时怎样调整测试"
+    },
+    {
+      "source": "docs/module_map.md",
+      "beginner": "代码阅读说明.md",
+      "topic": "各个代码文件做什么"
+    },
+    {
+      "source": "docs/cpu_control_interface.md",
+      "beginner": "接口接线说明.md",
+      "topic": "两个模块怎样连接"
+    },
+    {
+      "source": "docs/hazard_forward_table.md",
+      "beginner": "等待与跳转说明.md",
+      "topic": "什么时候等、什么时候继续"
+    },
+    {
+      "source": "docs/memory_timing_contract.md",
+      "beginner": "存储器时序说明.md",
+      "topic": "数据必须什么时候到达"
+    },
+    {
+      "source": "docs/datapath_connection_checklist.md",
+      "beginner": "真实模块接入清单.md",
+      "topic": "收到对方代码后怎么做"
+    },
+    {
+      "source": "docs/control_reply_to_D1.md",
+      "beginner": "本次对接说明.md",
+      "topic": "项目按回复改了什么"
+    },
+    {
+      "source": "docs/inputs/CPU-DP-IF-D1.md",
+      "beginner": "对方回复说明.md",
+      "topic": "对方接受了什么、保留了什么"
+    },
+    {
+      "source": "docs/interface_audit.md",
+      "beginner": "接口问题说明.md",
+      "topic": "为什么补充这些接口"
+    },
+    {
+      "source": "docs/interface_change_log.md",
+      "beginner": "项目改动记录.md",
+      "topic": "各次改动及其原因"
+    },
+    {
+      "source": "docs/verification_report.md",
+      "beginner": "测试结果说明.md",
+      "topic": "已通过什么、未验证什么"
+    },
+    {
+      "source": "docs/decode_table.csv",
+      "beginner": "指令表阅读说明.md",
+      "topic": "怎样查指令和预期输出"
+    },
+    {
+      "source": "docs/verification_manifest.json",
+      "beginner": "验证记录文件说明.md",
+      "topic": "怎样核对结果对应的代码"
+    },
+    {
+      "source": "docs/figures/provenance.json",
+      "beginner": "波形来源说明.md",
+      "topic": "怎样确认图片来自哪次测试"
+    },
+    {
+      "source": "face_recognition_soc_spec_v0.1.md",
+      "beginner": "整个系统说明.md",
+      "topic": "CPU 与 CNN 怎样合作"
+    },
+    {
+      "source": "CPU_CONTROL_Codex_代码生成提示词.md",
+      "beginner": "Control开发任务说明.md",
+      "topic": "你的开发范围和交付内容"
+    },
+    {
+      "source": "network/README.md",
+      "beginner": "联网说明.md",
+      "topic": "什么时候需要管代理"
+    },
+    {
+      "source": "AGENTS.md",
+      "beginner": "项目约定说明.md",
+      "topic": "协作时遵守哪些约定"
+    },
+    {
+      "source": "docs/README.md",
+      "beginner": "资料查阅说明.md",
+      "topic": "按问题找文档"
+    }
+  ],
+  "original_files": [
+    {
+      "source": "AGENTS.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/AGENTS.md",
+      "source_sha256": "090f46681c2566cacae1a0e725876d2fd4dedd9c47328b93141d00e8e35e98e6",
+      "archive": "说明文档/原版/AGENTS.md",
+      "archive_sha256": "090f46681c2566cacae1a0e725876d2fd4dedd9c47328b93141d00e8e35e98e6",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "CPU_CONTROL_Codex_代码生成提示词.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/CPU_CONTROL_Codex_代码生成提示词.md",
+      "source_sha256": "5a9acd62808bc2ac29e0afede048b75c7692b115bd70f98d25a15b8512716b37",
+      "archive": "说明文档/原版/CPU_CONTROL_Codex_代码生成提示词.md",
+      "archive_sha256": "5a9acd62808bc2ac29e0afede048b75c7692b115bd70f98d25a15b8512716b37",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "README.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/README.md",
+      "source_sha256": "a6d392e9a8fd1716f9a5a2aa4802bd8b22b8bf8866cb621c3240af208be06764",
+      "archive": "说明文档/原版/README.md",
+      "archive_sha256": "4e1e1c38f4e640517a283e364c68f9c94a804608ff9c713a28f7d00d415d347c",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/README.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/docs/README.md",
+      "source_sha256": "1c43bc37a2293571da83ea70a263c50fdfb9e782166b93a9ff060b9f586caff8",
+      "archive": "说明文档/原版/docs/README.md",
+      "archive_sha256": "1c43bc37a2293571da83ea70a263c50fdfb9e782166b93a9ff060b9f586caff8",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/README_TEST.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/README_TEST.md",
+      "source_sha256": "8c2cab8cf2e07c53bc11fcd62aa950730c03351f9b6765fa605dfe40b3590cea",
+      "archive": "说明文档/原版/docs/README_TEST.md",
+      "archive_sha256": "8c2cab8cf2e07c53bc11fcd62aa950730c03351f9b6765fa605dfe40b3590cea",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/TEST_REFERENCE.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/docs/TEST_REFERENCE.md",
+      "source_sha256": "09e972d18eb05979c08796d6f4b90addc4d7175d7a30b632e366b82dd3b730a4",
+      "archive": "说明文档/原版/docs/TEST_REFERENCE.md",
+      "archive_sha256": "09e972d18eb05979c08796d6f4b90addc4d7175d7a30b632e366b82dd3b730a4",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/control_reply_to_D1.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/control_reply_to_D1.md",
+      "source_sha256": "fcadff68a222f9858c715b7948f0b38c2cec22e811420be57836e7c0ece984e4",
+      "archive": "说明文档/原版/docs/control_reply_to_D1.md",
+      "archive_sha256": "fcadff68a222f9858c715b7948f0b38c2cec22e811420be57836e7c0ece984e4",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/cpu_control_interface.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/cpu_control_interface.md",
+      "source_sha256": "c211bf5d35a3d236217d100a359335c6b62e8ea68bdb5cbc2c89858d2be1dca1",
+      "archive": "说明文档/原版/docs/cpu_control_interface.md",
+      "archive_sha256": "c211bf5d35a3d236217d100a359335c6b62e8ea68bdb5cbc2c89858d2be1dca1",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/datapath_connection_checklist.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/datapath_connection_checklist.md",
+      "source_sha256": "c64c79db75e0eb422214866cb7d4555cf0cf22feefbf853f93723634d3d02924",
+      "archive": "说明文档/原版/docs/datapath_connection_checklist.md",
+      "archive_sha256": "c64c79db75e0eb422214866cb7d4555cf0cf22feefbf853f93723634d3d02924",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/decode_table.csv",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/decode_table.csv",
+      "source_sha256": "08f8f280fc49f6429b568b91adc30bce806d43635de457cd299918fee382baf8",
+      "archive": "说明文档/原版/docs/decode_table.csv",
+      "archive_sha256": "08f8f280fc49f6429b568b91adc30bce806d43635de457cd299918fee382baf8",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/branch_flush.png",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/branch_flush.png",
+      "source_sha256": "818635faf4b6fc2a8508100acc757f65e21c6695923042cf262a5e3982dcb338",
+      "archive": "说明文档/原版/docs/figures/branch_flush.png",
+      "archive_sha256": "818635faf4b6fc2a8508100acc757f65e21c6695923042cf262a5e3982dcb338",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/branch_flush.svg",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/branch_flush.svg",
+      "source_sha256": "ab3a10288d9864f7fa0066626dc6738621bf3e4803bcb8231ce5a6d61aaab09c",
+      "archive": "说明文档/原版/docs/figures/branch_flush.svg",
+      "archive_sha256": "ab3a10288d9864f7fa0066626dc6738621bf3e4803bcb8231ce5a6d61aaab09c",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/decode.png",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/decode.png",
+      "source_sha256": "066b2467028b85af7e11882b3db0f49cea1fb4298619349e2064ba0b69d9d91e",
+      "archive": "说明文档/原版/docs/figures/decode.png",
+      "archive_sha256": "066b2467028b85af7e11882b3db0f49cea1fb4298619349e2064ba0b69d9d91e",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/decode.svg",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/decode.svg",
+      "source_sha256": "9ef28fa2e4dcfc899110e399aadeeba3af65f157d1398777e6baad317f6e2836",
+      "archive": "说明文档/原版/docs/figures/decode.svg",
+      "archive_sha256": "9ef28fa2e4dcfc899110e399aadeeba3af65f157d1398777e6baad317f6e2836",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/forwarding.png",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/forwarding.png",
+      "source_sha256": "7d212b70d60a166ccb464ba421be2a894c5ef9117a23768267c709818c6db26a",
+      "archive": "说明文档/原版/docs/figures/forwarding.png",
+      "archive_sha256": "7d212b70d60a166ccb464ba421be2a894c5ef9117a23768267c709818c6db26a",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/forwarding.svg",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/forwarding.svg",
+      "source_sha256": "90504eba6cad712dac5ee249fdcf41bb23a7a0b7f3a5375b562bada8105e5fdb",
+      "archive": "说明文档/原版/docs/figures/forwarding.svg",
+      "archive_sha256": "90504eba6cad712dac5ee249fdcf41bb23a7a0b7f3a5375b562bada8105e5fdb",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/load_use.png",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/load_use.png",
+      "source_sha256": "5f5ad2b4927c2687d600bc74f6d39dbd365dd4705cb04a94a10bdea95ac06365",
+      "archive": "说明文档/原版/docs/figures/load_use.png",
+      "archive_sha256": "5f5ad2b4927c2687d600bc74f6d39dbd365dd4705cb04a94a10bdea95ac06365",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/load_use.svg",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/load_use.svg",
+      "source_sha256": "a38e4c44d3f6fb62290ba9b35e8f9d7f9d09076f35c72ebb70d679a7872bad38",
+      "archive": "说明文档/原版/docs/figures/load_use.svg",
+      "archive_sha256": "a38e4c44d3f6fb62290ba9b35e8f9d7f9d09076f35c72ebb70d679a7872bad38",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/figures/provenance.json",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/figures/provenance.json",
+      "source_sha256": "0ba3f0fec6b734383340ab8e22c3cc5a6f63686dc1cd41bbdb2bc5fe69b2e2bc",
+      "archive": "说明文档/原版/docs/figures/provenance.json",
+      "archive_sha256": "0ba3f0fec6b734383340ab8e22c3cc5a6f63686dc1cd41bbdb2bc5fe69b2e2bc",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/hazard_forward_table.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/hazard_forward_table.md",
+      "source_sha256": "882b7b947bcd2fdf4bae3cb9f6708522b1b6ee6e18738dd3b42f6a12ce257889",
+      "archive": "说明文档/原版/docs/hazard_forward_table.md",
+      "archive_sha256": "882b7b947bcd2fdf4bae3cb9f6708522b1b6ee6e18738dd3b42f6a12ce257889",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/inputs/CPU-DP-IF-D1.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/inputs/CPU-DP-IF-D1.md",
+      "source_sha256": "907492c9028893e4b4741c0a62a84f8d3937134e63db47ecf60e188ec51e0f78",
+      "archive": "说明文档/原版/docs/inputs/CPU-DP-IF-D1.md",
+      "archive_sha256": "907492c9028893e4b4741c0a62a84f8d3937134e63db47ecf60e188ec51e0f78",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/interface_audit.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/interface_audit.md",
+      "source_sha256": "7493402866477aa43fc7ab3ccb48ab6f6aa1bbe27a0a9aad17e5e36ae67e853b",
+      "archive": "说明文档/原版/docs/interface_audit.md",
+      "archive_sha256": "7493402866477aa43fc7ab3ccb48ab6f6aa1bbe27a0a9aad17e5e36ae67e853b",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/interface_change_log.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/interface_change_log.md",
+      "source_sha256": "371023b7c5b8ad316bef2380f2b62f63a53ea3037be13577f7aae706d253f36b",
+      "archive": "说明文档/原版/docs/interface_change_log.md",
+      "archive_sha256": "371023b7c5b8ad316bef2380f2b62f63a53ea3037be13577f7aae706d253f36b",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/memory_timing_contract.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/memory_timing_contract.md",
+      "source_sha256": "e46bdd40cab3fe495cb752d2eed0cb01ec424e75bea4bac14a0744632f6f79bb",
+      "archive": "说明文档/原版/docs/memory_timing_contract.md",
+      "archive_sha256": "e46bdd40cab3fe495cb752d2eed0cb01ec424e75bea4bac14a0744632f6f79bb",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/module_map.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/module_map.md",
+      "source_sha256": "f62d0075b8ce88874c5ace276be807277c235b0421e10985bc3f95f791a976e0",
+      "archive": "说明文档/原版/docs/module_map.md",
+      "archive_sha256": "f62d0075b8ce88874c5ace276be807277c235b0421e10985bc3f95f791a976e0",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "docs/verification_manifest.json",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/verification_manifest.json",
+      "source_sha256": "9cba1aab34c6a94192e475064d86cf0d8056bf7d429fe0e3e31b52944b9e12f3",
+      "archive": "说明文档/原版/docs/verification_manifest.json",
+      "archive_sha256": "9cba1aab34c6a94192e475064d86cf0d8056bf7d429fe0e3e31b52944b9e12f3",
+      "changes": "byte-identical copy"
+    },
+    {
+      "source": "docs/verification_report.md",
+      "baseline": "build/backups/before_docs_simplify_20260914_125744/docs/verification_report.md",
+      "source_sha256": "03d16b514e2abdff1adec51f727ddb4624d23b41a21f49026c1fa353ca1c58ab",
+      "archive": "说明文档/原版/docs/verification_report.md",
+      "archive_sha256": "08a876237a452f6fbb3a62f95c1ae1fe54291f9a6e0020b8c1d775d693a2a403",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "face_recognition_soc_spec_v0.1.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/face_recognition_soc_spec_v0.1.md",
+      "source_sha256": "4b3503b09bdb427649fe8ffc3dfc424f5bd0580f8e3884a85ad4fa81208e5f24",
+      "archive": "说明文档/原版/face_recognition_soc_spec_v0.1.md",
+      "archive_sha256": "4b3503b09bdb427649fe8ffc3dfc424f5bd0580f8e3884a85ad4fa81208e5f24",
+      "changes": "Markdown link relocation only"
+    },
+    {
+      "source": "network/README.md",
+      "baseline": "build/backups/before_guide_reorg_20260914_131950/network/README.md",
+      "source_sha256": "6469af563de9b6f13fe491f749fa2fae0ec5ca6c1f54d4659c5b5e5380ecd17c",
+      "archive": "说明文档/原版/network/README.md",
+      "archive_sha256": "6469af563de9b6f13fe491f749fa2fae0ec5ca6c1f54d4659c5b5e5380ecd17c",
+      "changes": "Markdown link relocation only"
+    }
+  ]
+}

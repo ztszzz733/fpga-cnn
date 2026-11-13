@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "which": "post",
+  "sources": {
+    "rtl/cnn_quant/quant_post_engine.sv": "f46fa7b0775f396de66923e17e24fdbe1c6df3f07b7e330fbca3211f02cfef7f",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "5ecc598d674dbda3797705f6559654f3f3f95841984ca2e08f910cacae00ebec",
+    "simulation/tb/post_group_unit_top.sv": "362f7df44e325f8b1bfd17e8d10f5cbfd297e41d7a4d42b4366c7f78ef2c7658",
+    "simulation/tb/integration/post_group_unit_main.cpp": "2befbbc529dc4cafe5354b550f9ec2c3f4cf148102dd60137178df1c638b5ce6"
+  },
+  "compile_seconds": 6.456814582999996,
+  "simulation_seconds": 0.16798157700000615
+}

@@ -1,0 +1,17 @@
+{
+  "status": "STOPPED_BY_USER",
+  "reason": "Existing results suffice to explain operation; user requested stopping the long full-network run.",
+  "progress": {
+    "cycles": 914000000,
+    "started": 59,
+    "finished": 54,
+    "checked_bytes": 28831992,
+    "page_misses": 149094,
+    "ddr_read_bytes": 152671480,
+    "ddr_write_bytes": 80370688
+  },
+  "pids": [
+    550
+  ],
+  "stopped_at": "2026-11-12T17:50:34.827305"
+}

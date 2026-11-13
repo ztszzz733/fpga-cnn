@@ -1,0 +1,122 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Nov 12 16:09:19 2026
+[*]
+[dumpfile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\mover_speed_single_20261112\mac_view\mac_example.fst"
+[dumpfile_mtime] "Thu Nov 12 16:08:41 2026"
+[dumpfile_size] 10086
+[savefile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\mover_speed_single_20261112\mac_view\mac_example.gtkw"
+[timestart] 9962565000
+[size] 1800 1050
+[pos] -1 -1
+*-18.692621 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 470
+[sst_expanded] 1
+[sst_vpaned_height] 311
+@200
+-MEMORY AND CNN
+@28
+[color] 5
+SOC.CNN_RUNNING
+SOC.CNN_COMPUTE_DONE
+@22
+SOC.MEMORY_STATE_TEXT
+SOC.MOVER_STATE_TEXT
+@28
+SOC.DDR_RETURNING_DATA
+SOC.DDR_SENDING_DATA
+@200
+-K3_0 COMPUTE
+@22
+[color] 3
+SOC.K3_0.STATE_TEXT
+@28
+SOC.K3_0.ACTIVE
+[color] 3
+SOC.K3_0.MAC_READ
+[color] 3
+SOC.K3_0.MAC_ACC
+[color] 4
+SOC.K3_0.MAC_FIRE
+@200
+-K3_1 COMPUTE
+@22
+[color] 4
+SOC.K3_1.STATE_TEXT
+@28
+SOC.K3_1.ACTIVE
+[color] 3
+SOC.K3_1.MAC_READ
+[color] 3
+SOC.K3_1.MAC_ACC
+[color] 4
+SOC.K3_1.MAC_FIRE
+@200
+-K1_0 COMPUTE
+@22
+[color] 5
+SOC.K1_0.STATE_TEXT
+@28
+SOC.K1_0.ACTIVE
+[color] 3
+SOC.K1_0.MAC_RUN
+[color] 4
+SOC.K1_0.MAC_FIRE
+@200
+-K1_1 COMPUTE
+@22
+[color] 6
+SOC.K1_1.STATE_TEXT
+@28
+SOC.K1_1.ACTIVE
+[color] 3
+SOC.K1_1.MAC_RUN
+[color] 4
+SOC.K1_1.MAC_FIRE
+@200
+-K1_2 COMPUTE
+@22
+[color] 3
+SOC.K1_2.STATE_TEXT
+@28
+SOC.K1_2.ACTIVE
+[color] 3
+SOC.K1_2.MAC_RUN
+[color] 4
+SOC.K1_2.MAC_FIRE
+@200
+-K1_3 COMPUTE
+@22
+[color] 4
+SOC.K1_3.STATE_TEXT
+@28
+SOC.K1_3.ACTIVE
+[color] 3
+SOC.K1_3.MAC_RUN
+[color] 4
+SOC.K1_3.MAC_FIRE
+@200
+-K1_4 COMPUTE
+@22
+[color] 5
+SOC.K1_4.STATE_TEXT
+@28
+SOC.K1_4.ACTIVE
+[color] 3
+SOC.K1_4.MAC_RUN
+[color] 4
+SOC.K1_4.MAC_FIRE
+@200
+-K1_5 COMPUTE
+@22
+[color] 6
+SOC.K1_5.STATE_TEXT
+@28
+SOC.K1_5.ACTIVE
+[color] 3
+SOC.K1_5.MAC_RUN
+[color] 4
+SOC.K1_5.MAC_FIRE
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,12 @@
+{
+  "unit": "K3_0",
+  "observed_fill_wait_start_ps": 9957585000,
+  "read_wait_exit_ps": 9963245000,
+  "observed_read_wait_ns": 5660.0,
+  "excerpt_start_ps": 9956955000,
+  "excerpt_end_ps": 9963565000,
+  "source": "full_states.fst",
+  "method": "Streaming extraction from existing recorded values; no simulation",
+  "matched_condition": "ACTIVE=1, WORK=0, INPUT_WAIT/WEIGHT_WAIT, MEMORY=PAGE_FILL_WAIT",
+  "full_read_handshake_available": false
+}

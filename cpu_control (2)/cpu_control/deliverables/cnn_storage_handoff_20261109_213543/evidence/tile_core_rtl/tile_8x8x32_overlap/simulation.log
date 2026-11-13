@@ -1,0 +1,4 @@
+DONE 1/3 node=0 op=0 cycle=295416 wall=1.01505s
+DONE 2/3 node=1 op=1 cycle=301885 wall=1.0385s
+DONE 3/3 node=2 op=2 cycle=312450 wall=1.07652s
+PASS SELF_FULL frames=1 tasks=3 cycles=313518 checked=12288 macs=589824 simulation=1.0808s

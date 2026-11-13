@@ -1,0 +1,532 @@
+--- a/rtl/cnn_self/self_pw8_engine.sv
++++ b/rtl/cnn_self/self_pw8_engine.sv
+@@ -33,7 +33,8 @@
+  logic [31:0] load_addr,weight_addr,weight_channel_addr,output_addr;
+  logic [C_BITS-1:0] load_c,weight_c,issue_c,retire_c;
+  logic pipe_valid,product_valid;logic [1:0] pipe_offset;
+- logic [31:0] input_q[8],weight_q[2];
++ logic [63:0] pixel_q;logic [31:0] weight_word_q;
++ logic [31:0] input_fill_word;logic [2:0] input_fill_left,input_fill_lane;logic [C_BITS-1:0] input_fill_c;
+  logic signed [31:0] sums[8];
+  logic signed [16:0] products[8];
+  logic signed [16:0] product_q[8];
+@@ -87,30 +88,35 @@
+   for(integer p=0;p<8;p++)begin
+    lane_mask[p]=(p%4<tile_w && p/4<tile_h);
+    live_lanes=live_lanes+{2'b0,lane_mask[p]};
+-   products[p]=$signed({1'b0,input_q[p][pipe_offset*8+:8]}) * $signed(weight_q[compute_bank][pipe_offset*8+:8]);
+-  end
+- end
+- // Independent banks give eight synchronous pixel reads without a 8-port RAM.
++   products[p]=$signed({1'b0,pixel_q[p*8+:8]}) * $signed(weight_word_q[pipe_offset*8+:8]);
++  end
++ end
++ // Packed channel rows supply all eight pixel bytes with one 64-bit read.
++ // Incoming 32-bit words are committed over at most four local cycles.
+  for(genvar p=0;p<8;p++)begin:pixel_banks
+-  (* ram_style="block" *) logic [31:0] pixels[WORDS];
+-  always_ff @(posedge clk)if(!clear)begin
+-   if(input_response && load_lane==p)begin
+-    // Constant byte slices infer a byte-enable RAM, not 32 one-bit RAMs.
+-    for(integer b=0;b<4;b++)if(in_wide || load_c[1:0]==b)
+-     pixels[load_c>>2][b*8+:8]<=in_wide?rdata[b*8+:8]:rdata[7:0];
+-   end
+-   if(state==MAC_RUN && issue_c<ci && lane_mask[p])input_q[p]<=pixels[issue_c>>2];
+-  end
+- end
+- for(genvar bank=0;bank<2;bank++)begin:weight_banks
+-  (* ram_style="block" *) logic [31:0] weights[WORDS];
+-  always_ff @(posedge clk)if(!clear)begin
+-   if(weight_response && fill_bank==bank)
+-    for(integer b=0;b<4;b++)if(weight_wide || weight_c[1:0]==b)
+-     weights[weight_c>>2][b*8+:8]<=weight_wide?rdata[b*8+:8]:rdata[7:0];
+-   if(state==MAC_RUN && issue_c<ci && compute_bank==bank)weight_q[bank]<=weights[issue_c>>2];
+-  end
+- end
++  // Kept only as a constant byte-enable selector, not a separate RAM.
++ end
++ (* ram_style="block" *) logic [63:0] pixels[0:MAX_CHANNELS-1];
++ always @(posedge clk)if(!clear)begin
++  for(integer p=0;p<8;p++)if(input_fill_left!=0 && input_fill_lane==p)
++   pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
++  if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[issue_c];
++ end
++ always_ff @(posedge clk or negedge rst_n)begin
++  if(!rst_n)begin input_fill_left<=0;input_fill_word<=0;input_fill_c<=0;input_fill_lane<=0;end
++  else if(clear)input_fill_left<=0;
++  else if(input_response)begin
++   input_fill_word<=rdata;input_fill_left<=in_count;input_fill_c<=load_c;input_fill_lane<=load_lane;
++  end else if(input_fill_left!=0)begin
++   input_fill_word<=input_fill_word>>8;input_fill_left<=input_fill_left-1'b1;input_fill_c<=input_fill_c+1'b1;
++  end
++ end
++ wire [3:0] weight_mask=weight_wide?4'hf:(4'b1<<weight_c[1:0]);
++ compact_word_ram #(.DEPTH(2*WORDS)) weights(
++  .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_RUN && issue_c<ci && !clear),
++  .wr_addr($clog2(2*WORDS)'((fill_bank?WORDS:0)+(weight_c>>2))),
++  .rd_addr($clog2(2*WORDS)'((compute_bank?WORDS:0)+(issue_c>>2))),
++  .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),.wr_mask(weight_mask),.rd_data(weight_word_q));
+  // Entries include absolute addresses. Keep the head until the write response,
+  // so done cannot precede an acknowledged SRAM write.
+  always_ff @(posedge clk)if(push)begin
+@@ -133,7 +139,7 @@
+  // Keep the accepted metadata through its response, including byte enables.
+  always_comb begin
+   offer_valid=0;offer_kind=INPUT_READ;offer_addr=0;offer_data=0;offer_byte=0;
+-  if(state==IREQ)begin
++  if(state==IREQ && input_fill_left==0)begin
+    offer_valid=1;offer_kind=INPUT_READ;offer_addr=load_addr;offer_byte=!in_wide;
+   end else if(q_count!=0 && (q_count>=4 || !fill_active || prefer_write))begin
+    offer_valid=1;offer_kind=OUTPUT_WRITE;offer_addr=out_addr[q_read];offer_data=out_data[q_read];
+@@ -217,7 +223,7 @@
+      fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;state<=WREQ;
+     end
+    end
+-   WREQ:if(weight_loaded[compute_bank])begin
++   WREQ:if(weight_loaded[compute_bank] && input_fill_left==0)begin
+     weight_loaded[compute_bank]<=0;
+     if(oc+1'b1<co)begin
+      fill_active<=1;fill_bank<=!compute_bank;weight_c<=0;weight_addr<=weight_channel_addr+ci;
+--- a/rtl/cnn_self/self_conv_spatial4_engine.sv
++++ b/rtl/cnn_self/self_conv_spatial4_engine.sv
+@@ -37,7 +37,7 @@
+  state_t state;
+  localparam integer BANK_BYTES=9*MAX_CHANNELS;
+  localparam integer BA_BITS=$clog2(BANK_BYTES+1);
+- (* ram_style="block" *) logic [31:0] weight_mem[0:(WEIGHT_BYTES+3)/4-1];
++ // Weight and input caches use compact synchronous RAM below.
+  logic signed [31:0] tile_sum[0:TILE*TILE-1];
+  logic [31:0] input_word_q[0:3],weight_word_q;
+  logic [1:0] input_lane_q,weight_lane_q,bank_select_q[0:3];
+@@ -145,10 +145,11 @@
+  endfunction
+  function automatic [BA_BITS-1:0] bank_offset(input logic [2:0] x,y,
+                                             input logic [C_BITS-1:0] ch,input logic s2);
+-  logic [1:0] bx,by;
++  logic [1:0] bx,by,bank;
+   begin
+    bx=s2?{x[2],x[0]}:x[2:1];by=s2?{y[2],y[0]}:y[2:1];
+-   bank_offset=(by*3+bx)*MAX_CHANNELS+ch;
++   bank=spatial_bank(x,y,s2);
++   bank_offset=(by*(bank[0]?2:3)+bx)*MAX_CHANNELS+ch;
+   end
+  endfunction
+  wire [3:0] active_mask={tile_w>1 && tile_h>1,tile_h>1,tile_w>1,1'b1};
+@@ -171,25 +172,24 @@
+   for(integer l=0;l<4;l=l+1)bank_read_index[lane_bank[l]]=lane_index[l];
+  end
+  for(genvar b=0;b<4;b=b+1)begin:input_banks
+-  (* ram_style="block" *) logic [31:0] mem[0:(BANK_BYTES+3)/4-1];
+-  always_ff @(posedge clk)begin
+-   if(!clear)begin
+-    for(integer byte_lane=0;byte_lane<4;byte_lane=byte_lane+1)
+-     if(input_response && load_bank==b && (input_wide || load_bank_index[1:0]==byte_lane))
+-      mem[load_bank_index>>2][byte_lane*8+:8]<=input_wide?rdata[byte_lane*8+:8]:rdata[7:0];
+-    if(state==MAC_READ)input_word_q[b]<=mem[bank_read_index[b]>>2];
+-   end
+-  end
+- end
++  localparam integer BANK_DEPTH=((b%2?2:3)*(b/2?2:3)*MAX_CHANNELS+3)/4;
++  compact_word_ram #(.DEPTH(BANK_DEPTH)) mem(
++   .clk(clk),.wr_en(input_response && load_bank==b && !clear),.rd_en(state==MAC_READ && !clear),
++   .wr_addr($clog2(BANK_DEPTH)'(load_bank_index>>2)),.rd_addr($clog2(BANK_DEPTH)'(bank_read_index[b]>>2)),
++   .wr_data(input_wide?rdata:{4{rdata[7:0]}}),
++   .wr_mask(input_wide?4'hf:(4'b1<<load_bank_index[1:0])),.rd_data(input_word_q[b]));
++ end
++ compact_word_ram #(.DEPTH((WEIGHT_BYTES+3)/4)) weights(
++  .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_READ && !clear),
++  .wr_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_load_index>>2)),.rd_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_index>>2)),
++  .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),
++  .wr_mask(weight_wide?4'hf:(4'b1<<weight_load_index[1:0])),.rd_data(weight_word_q));
+  always_ff @(posedge clk)begin
+   if(!clear)begin
+-   for(integer lane=0;lane<4;lane=lane+1)
+-    if(weight_response && (weight_wide || weight_load_index[1:0]==lane))
+-     weight_mem[weight_load_index>>2][lane*8+:8]<=weight_wide?rdata[lane*8+:8]:rdata[7:0];
+    if(state==MAC_READ)begin
+     input_lane_q<=channel_index[1:0];
+     for(integer l=0;l<4;l=l+1)bank_select_q[l]<=lane_bank[l];
+-    weight_word_q<=weight_mem[weight_index>>2];weight_lane_q<=weight_index[1:0];
++    weight_lane_q<=weight_index[1:0];
+    end
+   end
+  end
+--- a/rtl/cnn_quant/quant_post_pipe_engine.sv
++++ b/rtl/cnn_quant/quant_post_pipe_engine.sv
+@@ -22,11 +22,8 @@
+  logic add;
+  logic signed [31:0] sample_a;
+  logic [8*GROUP_BYTES-1:0] packed_word;
+- (* ram_style="block" *) logic [31:0] bias_mem[0:MAX_CHANNELS-1];
+- (* ram_style="block" *) logic [31:0] ma_mem[0:MAX_CHANNELS-1];
+- (* ram_style="block" *) logic [31:0] mb_mem[0:MAX_CHANNELS-1];
+- (* ram_style="block" *) logic [31:0] cfg_mem[0:MAX_CHANNELS-1];
+- (* ram_style="block" *) logic [15:0] clamp_mem[0:MAX_CHANNELS-1];
++ (* ram_style="block" *) logic [143:0] parameter_mem[0:MAX_CHANNELS-1];
++ logic [127:0] parameter_staging;
+  logic signed [31:0] bias0,ma0,mb0,a0,b0,ma1,mb1;
+  logic [31:0] cfg0;
+  logic [6:0] pv;
+@@ -70,16 +67,15 @@
+  always_ff @(posedge clk)begin
+   if(!clear)begin
+    if(pr_response)case(param_word)
+-    0:bias_mem[param_ch]<=rdata;
+-    1:ma_mem[param_ch]<=rdata;
+-    2:mb_mem[param_ch]<=rdata;
+-    3:cfg_mem[param_ch]<=rdata;
+-    4:clamp_mem[param_ch]<=rdata[15:0];
++    0:parameter_staging[0+:32]<=rdata;
++    1:parameter_staging[32+:32]<=rdata;
++    2:parameter_staging[64+:32]<=rdata;
++    3:parameter_staging[96+:32]<=rdata;
++    4:parameter_mem[param_ch]<={rdata[15:0],parameter_staging};
+     default:;
+    endcase
+    if(issue)begin
+-    bias0<=bias_mem[ch];ma0<=ma_mem[ch];mb0<=mb_mem[ch];cfg0<=cfg_mem[ch];
+-    low[0]<=clamp_mem[ch][7:0];high[0]<=clamp_mem[ch][15:8];
++    {high[0],low[0],cfg0,mb0,ma0,bias0}<=parameter_mem[ch];
+     a0<=add?sample_a:$signed(rdata);b0<=add?$signed({24'd0,rdata[7:0]}):32'sd0;
+     lane[0]<=loaded[LB-1:0];
+    end
+--- a/rtl/cnn_ddr/fixed_schedule_compact.sv
++++ b/rtl/cnn_ddr/fixed_schedule_compact.sv
+@@ -5,8 +5,8 @@
+  parameter integer FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),SLOTS=4*FRAME_CONTEXTS,SW=FW+2,
+  parameter integer STEPS=256,LW=$clog2(STEPS),IW=LW+FW,
+  parameter integer K3_UNITS=2,K1_UNITS=4,POST_UNITS=1,
+- parameter bit LATEST_OPERATORS=0,
+- parameter integer UNITS=K3_UNITS+K1_UNITS+POST_UNITS+3
++ parameter bit LATEST_OPERATORS=0,ENABLE_DW7=1,
++ parameter integer UNITS=K3_UNITS+K1_UNITS+POST_UNITS+2+ENABLE_DW7
+ )(
+  input logic clk,rst_n,clear,start,
+  input logic [UNITS-1:0] unit_enable,
+@@ -43,7 +43,7 @@
+  output wire [FRAME_CONTEXTS*STEPS-1:0] completed_mask,
+  output wire [K3_UNITS+K1_UNITS-1:0][31:0] conv_input_reads,conv_weight_reads,conv_mac_count
+ );
+- localparam integer DW=K3_UNITS+K1_UNITS,POST=DW+1,ADD=POST+POST_UNITS,PAD=ADD+1;
++ localparam integer DW=K3_UNITS+K1_UNITS,POST=DW+ENABLE_DW7,ADD=POST+POST_UNITS,PAD=ADD+1;
+  // The on-board format is fixed to 8-bit template IDs (up to 256 steps).
+  localparam integer ROW_BITS=640;
+  (* ram_style="block" *) logic [ROW_BITS-1:0] template_ram[STEPS];
+@@ -106,7 +106,7 @@
+    8'(template_use_owners[0+:LW]),8'(template_dep1)};
+   input_row[576+:32]={14'b0,template_consumer_count,8'(template_consumer1),8'(template_consumer0)};
+   input_row[608+:32]=template_result_bytes;
+-  valid_template=loaded_steps<STEPS && {1'b0,template_index}==loaded_steps && template_command[31:0]<=5 &&
++  valid_template=loaded_steps<STEPS && {1'b0,template_index}==loaded_steps && template_command[31:0]<=5 && (ENABLE_DW7 || template_command[31:0]!=3) &&
+    template_source_modes[1:0]!=3 && template_source_modes[3:2]!=3 && template_consumer_count<=2 &&
+    (!template_dep_valid[0] || template_dep0<template_index) &&
+    (!template_dep_valid[1] || template_dep1<template_index) &&
+@@ -157,7 +157,7 @@
+     if(selected<0 && enabled[u] && !unit_active[u] && !ub[u])selected=u;
+    end
+    2:if(enabled[ADD] && !unit_active[ADD] && !ub[ADD])selected=ADD;
+-   3:if(enabled[DW] && !unit_active[DW] && !ub[DW])selected=DW;
++   3:if(ENABLE_DW7 && enabled[DW] && !unit_active[DW] && !ub[DW])selected=DW;
+    4:if(enabled[PAD] && !unit_active[PAD] && !ub[PAD])selected=PAD;
+    default:;
+   endcase
+@@ -212,7 +212,7 @@
+        (addresses_loaded & (((FRAME_CONTEXTS+1)'(1)<<image_count)-1))!=(((FRAME_CONTEXTS+1)'(1)<<image_count)-1) ||
+        max_consumer>=loaded_steps || result_entries!=1 || !last_is_result ||
+        !(|unit_enable[0+:K3_UNITS]) || !(|unit_enable[K3_UNITS+:K1_UNITS]) ||
+-       !(|unit_enable[POST+:POST_UNITS]) || !unit_enable[DW] || !unit_enable[ADD] || !unit_enable[PAD])begin failed<=1;error_code<=3;end
++       !(|unit_enable[POST+:POST_UNITS]) || (ENABLE_DW7 && !unit_enable[DW]) || !unit_enable[ADD] || !unit_enable[PAD])begin failed<=1;error_code<=3;end
+       else begin running<=1;frames<=image_count;enabled<=unit_enable;end
+      end
+     end
+@@ -299,12 +299,14 @@
+    .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
+   end
+  end
++ if(ENABLE_DW7)begin:with_dw7
+  dw7_bram_engine #(.MAX_WIDTH(7),.MAX_CHANNELS(512),.LANES(8)) dw7(
+   .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[DW]),.reuse_weights(1'b0),
+   .input_base(cmd[DW][1]),.weight_base(cmd[DW][2]),.output_base(cmd[DW][3]),.width(cmd[DW][7]),.height(cmd[DW][8]),.channels(cmd[DW][6]),
+   .busy(ub[DW]),.done(ud[DW]),.error(ue[DW]),.valid(mem_valid[DW]),.write(mem_write[DW]),.byte_access(mem_byte[DW]),.cancel(),
+   .addr(mem_addr[DW*32+:32]),.wdata(mem_wdata[DW*32+:32]),.ready(mem_ready[DW]),.response(mem_response[DW]),.rdata(mem_rdata[DW*32+:32]),
+   .phase(),.mac_fire(operator_work[DW]),.weights_cached(),.cache_hit());
++ end
+  for(genvar e=POST;e<=ADD;e++)begin:postprocessing
+   if (LATEST_OPERATORS) begin:latest_post
+    quant_post_pipe_engine #(.MAX_CHANNELS(512),.GROUP_BYTES(16)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
+--- a/rtl/cnn_ddr/cnn_ees331.sv
++++ b/rtl/cnn_ddr/cnn_ees331.sv
+@@ -4,8 +4,8 @@
+  parameter integer FRAME_CONTEXTS=4,FW=$clog2(FRAME_CONTEXTS),
+  parameter integer STEPS=256,LW=$clog2(STEPS),IW=LW+FW,
+  parameter integer K3_UNITS=2,K1_UNITS=4,POST_UNITS=1,
+- parameter bit LATEST_OPERATORS=0,
+- parameter integer UNITS=K3_UNITS+K1_UNITS+POST_UNITS+3
++ parameter bit LATEST_OPERATORS=0,ENABLE_DW7=1,
++ parameter integer UNITS=K3_UNITS+K1_UNITS+POST_UNITS+2+ENABLE_DW7
+ )(
+  input logic clk,rst_n,
+  input logic [31:0] cnn_mmio_addr,cnn_mmio_wdata,
+@@ -96,7 +96,7 @@
+    end
+   end
+  end
+- fixed_schedule_compact #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.STEPS(STEPS),.LW(LW),.IW(IW),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.LATEST_OPERATORS(LATEST_OPERATORS)) core(
++ fixed_schedule_compact #(.FRAME_CONTEXTS(FRAME_CONTEXTS),.STEPS(STEPS),.LW(LW),.IW(IW),.K3_UNITS(K3_UNITS),.K1_UNITS(K1_UNITS),.POST_UNITS(POST_UNITS),.LATEST_OPERATORS(LATEST_OPERATORS),.ENABLE_DW7(ENABLE_DW7)) core(
+   .clk(clk),.rst_n(rst_n),.clear(clear),.start(start),.unit_enable(unit_enable),.image_count(image_count),
+   .template_valid(template_valid),.template_index(template_index),.template_command(template_command),
+   .template_source_modes(staging[16][3:0]),.template_allocate_slot(staging[16][5:4]),
+--- a/rtl/soc/ees331/face_soc_ees331_mover_top.sv
++++ b/rtl/soc/ees331/face_soc_ees331_mover_top.sv
+@@ -1,7 +1,10 @@
+-// 23-client DATA MOVER variant of the EES331 six-peer/PS7 top.
++// Reduced 12-client DATA MOVER variant of the EES331 six-peer/PS7 top.
+ // Original cache-based top remains in face_soc_ees331_top.sv for comparison.
+ module face_soc_ees331_mover_top #(
+- parameter integer LOCAL_BYTES=32768,
++ // 32 KiB original tile RAM + 360 KiB reclaimed from the operator pool/RAMs.
++ parameter integer LOCAL_BYTES=401408,
++ parameter integer K3_UNITS=2,K1_UNITS=6,POST_UNITS=2,
++ parameter bit ENABLE_DW7=0,
+  parameter integer CNN_FRAMES=4,
+  parameter bit POOL23=1,
+  parameter string IMEM_INIT_FILE="firmware/ees331_cpu/program.mem"
+@@ -111,10 +114,10 @@
+ );
+  wire clk, rst_n;
+  wire sys_clk, rst_n_in;
+- localparam integer CNN_K3=POOL23 ? 4 : 2;
+- localparam integer CNN_K1=POOL23 ? 12 : 4;
+- localparam integer CNN_POST=POOL23 ? 4 : 1;
+- localparam integer CNN_CLIENTS=CNN_K3+CNN_K1+CNN_POST+3;
++ localparam integer CNN_K3=K3_UNITS;
++ localparam integer CNN_K1=K1_UNITS;
++ localparam integer CNN_POST=POST_UNITS;
++ localparam integer CNN_CLIENTS=CNN_K3+CNN_K1+CNN_POST+2+ENABLE_DW7;
+  // I: CPU取指
+  wire [31:0] imem_addr;
+  wire [31:0] imem_rdata;
+@@ -269,7 +272,7 @@
+   .imem_rdata(imem_rdata),
+   .imem_re(imem_re)
+  );
+- cnn_ees331 #(.FRAME_CONTEXTS(CNN_FRAMES),.K3_UNITS(CNN_K3),.K1_UNITS(CNN_K1),.POST_UNITS(CNN_POST),.LATEST_OPERATORS(POOL23)) u_cnn (
++ cnn_ees331 #(.FRAME_CONTEXTS(CNN_FRAMES),.ENABLE_DW7(ENABLE_DW7),.K3_UNITS(CNN_K3),.K1_UNITS(CNN_K1),.POST_UNITS(CNN_POST),.LATEST_OPERATORS(POOL23)) u_cnn (
+   .clk(clk),
+   .rst_n(rst_n),
+   .cnn_mmio_addr(cnn_mmio_addr),
+--- a/storage_v2/rtl/tile_local_ram.sv
++++ b/storage_v2/rtl/tile_local_ram.sv
+@@ -24,27 +24,61 @@
+ );
+  localparam integer WORDS = BYTES/4;
+  localparam integer AW = $clog2(WORDS);
+- (* ram_style="block" *) logic [31:0] mem [0:WORDS-1];
+  wire comp_ok = comp_addr[1:0]==0 && {1'b0,comp_addr}+33'd4<=33'(BYTES);
+  wire dma_ok = dma_addr[1:0]==0 && {1'b0,dma_addr}+33'd4<=33'(BYTES);
+  wire conflict = comp_req && comp_ok && dma_ok && comp_addr==dma_addr;
+  assign dma_ready = rst_n && !conflict;
+  wire dma_take = dma_valid && dma_ready;
+ 
+- // Separate RAM ports permit block-RAM inference. Collision suppression is
+- // applied before the DMA port reaches the array.
+- always @(posedge clk) begin
+-  if(comp_req && comp_ok) begin
+-   if(!comp_we) comp_rdata <= mem[comp_addr[2+:AW]];
+-   else for(integer k=0;k<4;k++)
+-    if(comp_wstrb[k]) mem[comp_addr[2+:AW]][8*k+:8] <= comp_wdata[8*k+:8];
++ // Explicit power-of-two chunks prevent Vivado from rounding the entire
++ // 392 KiB array up to 512 KiB. Its three chunks are 256+128+8 KiB.
++ // The registered bank selection preserves the original one-cycle read.
++ wire [AW-1:0] comp_word=comp_addr[2+:AW],dma_word=dma_addr[2+:AW];
++ wire [AW:0][31:0] comp_bank_data,dma_bank_data;
++ for(genvar g=0;g<=AW;g++)begin:banks
++  if((WORDS & (2**g))!=0)begin:present
++   localparam integer DEPTH=2**g,BASE_WORD=(WORDS/(2*DEPTH))*(2*DEPTH);
++   localparam integer BAW=(g==0)?1:g;
++   (* ram_style="block" *) logic [31:0] mem[0:DEPTH-1];
++   logic [31:0] comp_q,dma_q;
++   logic comp_selected,dma_selected;
++   wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
++   wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
++   wire [BAW-1:0] comp_index=BAW'(comp_word-BASE_WORD);
++   wire [BAW-1:0] dma_index=BAW'(dma_word-BASE_WORD);
++   always @(posedge clk)begin
++    if(comp_req && comp_ok && comp_hit)begin
++     if(!comp_we)comp_q<=mem[comp_index];
++     else for(integer k=0;k<4;k++)
++      if(comp_wstrb[k])mem[comp_index][8*k+:8]<=comp_wdata[8*k+:8];
++    end
++   end
++   always @(posedge clk)begin
++    if(dma_take && dma_ok && dma_hit)begin
++     if(!dma_write)dma_q<=mem[dma_index];
++     else for(integer k=0;k<4;k++)
++      if(dma_wstrb[k])mem[dma_index][8*k+:8]<=dma_wdata[8*k+:8];
++    end
++   end
++   always @(posedge clk)begin
++    if(!rst_n)begin comp_selected<=0;dma_selected<=0;end
++    else begin
++     if(comp_req && comp_ok && !comp_we)comp_selected<=comp_hit;
++     if(dma_take && dma_ok && !dma_write)dma_selected<=dma_hit;
++    end
++   end
++   assign comp_bank_data[g]=comp_selected?comp_q:32'b0;
++   assign dma_bank_data[g]=dma_selected?dma_q:32'b0;
++  end else begin:absent
++   assign comp_bank_data[g]=32'b0;
++   assign dma_bank_data[g]=32'b0;
+   end
+  end
+- always @(posedge clk) begin
+-  if(dma_take && dma_ok) begin
+-   if(!dma_write) dma_rdata <= mem[dma_addr[2+:AW]];
+-   else for(integer k=0;k<4;k++)
+-    if(dma_wstrb[k]) mem[dma_addr[2+:AW]][8*k+:8] <= dma_wdata[8*k+:8];
++ always_comb begin
++  comp_rdata=0;dma_rdata=0;
++  for(integer g=0;g<=AW;g++)begin
++   comp_rdata=comp_rdata|comp_bank_data[g];
++   dma_rdata=dma_rdata|dma_bank_data[g];
+   end
+  end
+  always_ff @(posedge clk) begin
+@@ -59,7 +93,7 @@
+   end
+  end
+ `ifndef SYNTHESIS
+- initial assert(BYTES>=8 && BYTES%4==0 && (BYTES&(BYTES-1))==0)
++ initial assert(BYTES>=8 && BYTES%4==0)
+   else $fatal(1,"tile RAM geometry");
+ `endif
+ endmodule
+--- a/rtl/cnn_ddr/cnn_paged_mover.sv
++++ b/rtl/cnn_ddr/cnn_paged_mover.sv
+@@ -1,5 +1,5 @@
+-// 23-client CNN memory backed by the storage_v2 DATA MOVER and tile BRAM.
+-// 32 KiB local RAM is divided into 32 fully associative 1 KiB pages. Exactly one
++// CNN memory backed by the storage_v2 DATA MOVER and tile BRAM.
++// Parameterized local RAM is divided into fully associative 1 KiB pages. Exactly one
+ // CNN request or DDR page transfer is active; this correctness-first policy
+ // preserves the existing CNN ready/response protocol without task rewrites.
+ module cnn_paged_mover #(
+@@ -238,7 +238,7 @@
+        misses<=misses+1;
+        request_slot<=free_found ? free_slot : victim_turn;
+        wb_slot<=free_found ? free_slot : victim_turn;
+-       victim_turn<=victim_turn+1'b1;
++       victim_turn<=victim_turn==SB'(SLOTS-1)?'0:victim_turn+1'b1;
+        wb_for_scan<=0;
+        state<=!free_found && dirty_page[victim_turn] ? WB_REQ : FILL_REQ;
+       end
+@@ -295,8 +295,8 @@
+  end
+ `ifndef SYNTHESIS
+  initial begin
+-  assert(CLIENTS==23)else $fatal(1,"23 CNN clients required");
+-  assert(LOCAL_BYTES==32768 && PAGE_BYTES==1024 && SLOTS==32)
++  assert(CLIENTS>=1)else $fatal(1,"at least one CNN client required");
++  assert(LOCAL_BYTES>=PAGE_BYTES*2 && LOCAL_BYTES%PAGE_BYTES==0 && PAGE_BYTES>=4 && (PAGE_BYTES&(PAGE_BYTES-1))==0)
+    else $fatal(1,"paged mover geometry");
+   assert(LOGICAL_BYTES[PB-1:0]==0 && DDR_BASE[2:0]==0 &&
+     {1'b0,DDR_BASE}+{1'b0,LOGICAL_BYTES}<=33'h100000000)
+--- a/rtl/filelists/system_ees331_mover23.f
++++ b/rtl/filelists/system_ees331_mover23.f
+@@ -21,6 +21,7 @@
+ partners/datapath/delivery/rtl/soc_memory/imem_rom.sv
+ rtl/soc/cpu_core.sv
+ # Production EES331 CNN/cache. No old FPGA1/NEureka, no full-size SRAM array.
++rtl/cnn_self/compact_word_ram.sv
+ rtl/cnn_self/self_conv_engine.sv
+ rtl/cnn_self/self_conv_spatial4_engine.sv
+ rtl/cnn_self/self_pw8_engine.sv
+--- a/rtl/filelists/cnn_ees331.f
++++ b/rtl/filelists/cnn_ees331.f
+@@ -1,4 +1,5 @@
+ # Production EES331 CNN/cache. No old FPGA1/NEureka, no full-size SRAM array.
++rtl/cnn_self/compact_word_ram.sv
+ rtl/cnn_self/self_conv_engine.sv
+ rtl/cnn_ddr/dw7_bram_engine.sv
+ rtl/cnn_ddr/quant_post_bram_engine.sv
+--- /dev/null
++++ b/rtl/cnn_self/compact_word_ram.sv
+@@ -0,0 +1,34 @@
++// One synchronous read, one byte-enabled write. Split the short tail so a
++// 1152-word cache does not require two complete 36-Kbit blocks.
++module compact_word_ram #(parameter integer DEPTH=128, AW=$clog2(DEPTH))(
++ input wire clk,wr_en,rd_en,
++ input wire [AW-1:0] wr_addr,rd_addr,
++ input wire [31:0] wr_data,input wire [3:0] wr_mask,
++ output wire [31:0] rd_data
++);
++ generate if(DEPTH>1024 && DEPTH<=1536)begin:split
++  (* ram_style="block" *) logic [31:0] main_mem[0:1023];
++  (* ram_style="block" *) logic [31:0] tail_mem[0:DEPTH-1025];
++  logic [31:0] main_q,tail_q;logic tail_select;
++  always @(posedge clk)begin
++   for(integer b=0;b<4;b++)if(wr_en && wr_mask[b])begin
++    if(wr_addr<1024)main_mem[wr_addr[9:0]][b*8+:8]<=wr_data[b*8+:8];
++    else tail_mem[wr_addr-1024][b*8+:8]<=wr_data[b*8+:8];
++   end
++   if(rd_en)begin
++    tail_select<=rd_addr>=1024;
++    if(rd_addr<1024)main_q<=main_mem[rd_addr[9:0]];
++    else tail_q<=tail_mem[rd_addr-1024];
++   end
++  end
++  assign rd_data=tail_select?tail_q:main_q;
++ end else begin:single
++  (* ram_style="block" *) logic [31:0] mem[0:DEPTH-1];
++  logic [31:0] value;
++  always @(posedge clk)begin
++   for(integer b=0;b<4;b++)if(wr_en && wr_mask[b])mem[wr_addr][b*8+:8]<=wr_data[b*8+:8];
++   if(rd_en)value<=mem[rd_addr];
++  end
++  assign rd_data=value;
++ end endgenerate
++endmodule
+--- /dev/null
++++ b/rtl/filelists/system_ees331_reduced.f
+@@ -0,0 +1,41 @@
++# EES331 23-client DATA MOVER/tile RAM top, six peers plus PS7.
++partners/datapath/delivery/rtl/common/cpu_control_pkg.sv
++rtl/cpu_control/main_decoder.sv
++rtl/cpu_control/alu_decoder.sv
++rtl/cpu_control/hazard_unit.sv
++rtl/cpu_control/branch_control.sv
++rtl/cpu_control/pipeline_control.sv
++rtl/cpu_control/cpu_control.sv
++partners/datapath/delivery/rtl/cpu_datapath/alu.sv
++partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv
++partners/datapath/delivery/rtl/cpu_datapath/pc.sv
++partners/datapath/delivery/rtl/cpu_datapath/regfile.sv
++partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv
++partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv
++partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv
++partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv
++partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv
++partners/datapath/delivery/rtl/cpu_datapath/lsu.sv
++partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv
++partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv
++partners/datapath/delivery/rtl/soc_memory/imem_rom.sv
++rtl/soc/cpu_core.sv
++# Production EES331 CNN/cache. No old FPGA1/NEureka, no full-size SRAM array.
++rtl/cnn_self/compact_word_ram.sv
++rtl/cnn_self/self_conv_engine.sv
++rtl/cnn_self/self_conv_spatial4_engine.sv
++rtl/cnn_self/self_pw8_engine.sv
++rtl/cnn_ddr/quant_post_bram_engine.sv
++rtl/cnn_quant/quant_post_pipe_engine.sv
++rtl/cnn_quant/pad_hwc_engine.sv
++rtl/cnn_ddr/fixed_schedule_compact.sv
++rtl/cnn_ddr/cnn_ees331.sv
++storage_v2/rtl/download_ram.sv
++storage_v2/rtl/tile_local_ram.sv
++storage_v2/rtl/data_mover.sv
++rtl/cnn_ddr/cnn_paged_mover.sv
++rtl/cnn_ddr/datasram_mover_subsystem.sv
++rtl/soc/clock_unit.sv
++rtl/soc/ees331/image_control_bridge.sv
++rtl/soc/ees331/ees331_ps_wrapper.sv
++rtl/soc/ees331/face_soc_ees331_mover_top.sv

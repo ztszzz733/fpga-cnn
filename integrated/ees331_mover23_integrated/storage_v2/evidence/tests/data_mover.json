@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "sources": {
+    "rtl\\data_mover.sv": "4b3e386556e35876a85559da2209cf1893235931d7b1c796af6410d7f0955922",
+    "tb\\data_mover.cpp": "4db6bacebca657b39d9aa68d8f4e54b67ea1d299e5b0c1c0b65e23a3b7409adc"
+  },
+  "flags": [],
+  "cpp_defines": [],
+  "verilator": "C:\\msys64\\ucrt64\\bin\\verilator_bin.exe",
+  "verilator_sha256": "8987e8fbc4c0e884e4df18bc716c4bfced2973f84ff124ba63f1a747e8191c10",
+  "compile_seconds": 9.67983879998792,
+  "returncode": 0,
+  "exe_sha256": "36e1451c081d0e931da6bef1dfd49c5edd4151a82f2a90d736aa64b37867e466",
+  "total_seconds": 9.80913380003767
+}

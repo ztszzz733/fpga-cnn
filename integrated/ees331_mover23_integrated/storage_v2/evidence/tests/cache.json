@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "sources": {
+    "baseline\\rtl\\cnn_ddr\\cnn_cache.sv": "fc06dc365ca880bc611f3ed23dcc687d1ebc1a0d2005ac2223002150ee08075e",
+    "baseline\\rtl\\cnn_ddr\\cnn_ddr_bridge.sv": "728bcc6f5048696b5544377ed543d18523861d1918b5bb776c15740fa29acd5a",
+    "baseline\\rtl\\cnn_ddr\\datasram_ddr_subsystem.sv": "db968a6a8f2bd69c77b5b7ad36d36e89e8b1b4a505d99b3a13a6131c996d96b1",
+    "baseline\\tb\\integration\\cnn_ddr_cache_main.cpp": "3f37e501e4aeb9abadf9637e850e2e65bb77820b98f551e01db7c6065bce24b3"
+  },
+  "flags": [
+    "-GCACHE_BYTES=1024",
+    "-GCPU_RAM_BYTES=1024",
+    "-GLOGICAL_BYTES=65536"
+  ],
+  "cpp_defines": [],
+  "verilator": "C:\\msys64\\ucrt64\\bin\\verilator_bin.exe",
+  "verilator_sha256": "8987e8fbc4c0e884e4df18bc716c4bfced2973f84ff124ba63f1a747e8191c10",
+  "compile_seconds": 8.885893500002567,
+  "returncode": 0,
+  "exe_sha256": "cf0a14c42341545c3440c652ff213cad27fa3745a0320248e222f950dc45e665",
+  "total_seconds": 8.971704800031148
+}

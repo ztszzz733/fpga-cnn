@@ -1,0 +1,9 @@
+{
+  "instructions": 437,
+  "used_bytes": 1748,
+  "rom_bytes": 8192,
+  "entry": 0,
+  "stack_bytes": 0,
+  "uses_dmem": false,
+  "cpu_control_datapath_modified": false
+}

@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Nov 12 14:55:26 2026
+[*]
+[dumpfile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\cnn_read_demo_20261112\cnn_reads.fst"
+[dumpfile_mtime] "Thu Nov 12 14:51:01 2026"
+[dumpfile_size] 2220
+[savefile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\cnn_read_demo_20261112\cnn_reads.gtkw"
+[timestart] 160507815000
+[size] 1711 1000
+[pos] -1 -1
+*-17.412195 160507915000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 430
+[sst_expanded] 1
+[sst_vpaned_height] 294
+@28
+[color] 3
+CNN_READ.CLK
+@22
+[color] 3
+CNN_READ.K1_0_STATE
+@28
+[color] 3
+CNN_READ.K1_0_READ_REQUEST
+[color] 3
+CNN_READ.K1_0_READ_ACCEPTED
+[color] 3
+CNN_READ.K1_0_READ_DATA_VALID
+@22
+[color] 2
+CNN_READ.K1_0_READ_ADDR[31:0]
+[color] 2
+CNN_READ.K1_0_READ_DATA[31:0]
+[color] 2
+CNN_READ.K1_0_READ_BYTES[2:0]
+[color] 5
+CNN_READ.MEMORY_STATE
+[color] 5
+CNN_READ.MOVER_STATE
+@28
+[color] 5
+CNN_READ.DDR_DATA_VALID
+[color] 5
+CNN_READ.DDR_DATA_ACCEPTED
+[color] 4
+CNN_READ.RAW_CNN_VALID
+[color] 4
+CNN_READ.RAW_CNN_READY
+[color] 4
+CNN_READ.RAW_CNN_WRITE
+[color] 4
+CNN_READ.RAW_CNN_RESPONSE
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,12 @@
+sequence,phase,direction,src,dst,bytes,flags_proposed,region,row
+0,load,DDR_TO_LOCAL,4096,0,8,0,input_with_halo,0
+1,load,DDR_TO_LOCAL,4112,8,8,0,input_with_halo,1
+2,load,DDR_TO_LOCAL,4128,16,8,0,input_with_halo,2
+3,load,DDR_TO_LOCAL,4144,24,8,0,input_with_halo,3
+4,load,DDR_TO_LOCAL,4224,64,36,0,weights,0
+5,load,DDR_TO_LOCAL,4352,128,40,0,post_params,0
+6,load,DDR_TO_LOCAL,4480,192,40,0,add_params,0
+7,load,DDR_TO_LOCAL,4608,256,4,0,residual,0
+8,load,DDR_TO_LOCAL,4624,260,4,0,residual,1
+9,store,LOCAL_TO_DDR,576,32768,4,1,add_output,0
+10,store,LOCAL_TO_DDR,580,32776,4,1,add_output,1

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "software": "PASS",
+  "real_cnn_sram_rtl_scenarios": 6,
+  "mover_rtl": "NOT_TESTED",
+  "ps_ddr": "NOT_TESTED",
+  "new_adapter": "NOT_IMPLEMENTED",
+  "source_hashes": "PASS",
+  "portable_entry_links": "PASS"
+}

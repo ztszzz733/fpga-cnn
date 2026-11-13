@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4800" height="1947" viewBox="0 0 4800 1947">
+<title>Control + Datapath 全部已实现RTL硬件与波形连线</title>
+<desc>主通路、全部实例端口、全部顶层组合逻辑、逐网驱动与扇出、模块内部波形状态。位宽按RTL与VCD核实。</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="65" y="88" font-family="Microsoft YaHei,Arial,sans-serif" font-size="56" font-weight="700" fill="#152b42">Control + Datapath｜全部已实现硬件与波形连线</text>
+<text x="65" y="139" font-family="Microsoft YaHei,Arial,sans-serif" font-size="27" font-weight="400" fill="#526578">依据：实际 Datapath ZIP + 本方 Control RTL + 2026-09-17 真实连接 mixed VCD；绘图日期 2026-09-18</text>
+<text x="65" y="185" font-family="Microsoft YaHei,Arial,sans-serif" font-size="27" font-weight="400" fill="#526578">层级：RTL模块 / 流水寄存器 / 寄存器堆 / 组合运算与MUX；本图不是综合后的门级网表。所有箭头按信号流向。</text>
+<text x="65" y="233" font-family="Microsoft YaHei,Arial,sans-serif" font-size="27" font-weight="400" fill="#526578">蓝色 D = Datapath；绿色 C = Control；橙色 T = 仿真边界。相同 N编号 = 同一根网络，分布端点电气相连。</text>
+<text x="65" y="281" font-family="Microsoft YaHei,Arial,sans-serif" font-size="27" font-weight="700" fill="#152b42">核对：150 根顶层网络；18 个生产子模块实例；49 组顶层组合逻辑；454 项波形声明。</text>
+<rect x="50" y="320" width="4700" height="105" rx="10" fill="#eaf0f6" stroke="none" stroke-width="2"/>
+<text x="80" y="368" font-family="Microsoft YaHei,Arial,sans-serif" font-size="36" font-weight="700" fill="#152b42">01  主通路与硬件布局</text>
+<text x="80" y="408" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#526578">主通路图用于定位；下面的端子图与逐网展开图完整列出每根信号，不用省略号代替接线。</text>
+<text x="80" y="485" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" font-weight="700" fill="#152b42">IF 取指</text>
+<text x="1020" y="485" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" font-weight="700" fill="#152b42">ID 译码</text>
+<text x="1960" y="485" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" font-weight="700" fill="#152b42">EX 执行</text>
+<text x="2900" y="485" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" font-weight="700" fill="#152b42">MEM 访存</text>
+<text x="3840" y="485" font-family="Microsoft YaHei,Arial,sans-serif" font-size="35" font-weight="700" fill="#152b42">WB 写回</text>
+<rect x="80" y="512" width="840" height="260" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="98" y="552" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_pc + PC选择网络</text>
+<text x="98" y="594" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">pc_q / next_pc [32]</text>
+<text x="98" y="628" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">PC+4 / PC+imm / JALR目标 [32]</text>
+<text x="98" y="662" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">pc_en [1]，pc_sel [2]</text>
+<text x="98" y="696" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">JALR目标最低位强制清0</text>
+<rect x="80" y="827" width="840" height="300" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="98" y="867" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_fetch : fetch_adapter</text>
+<text x="98" y="909" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">同步请求配对 + 暂停响应缓存</text>
+<text x="98" y="943" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">request_pc / imem_addr [32]</text>
+<text x="98" y="977" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">imem_re / fetch_valid [1]</text>
+<text x="98" y="1011" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">fetch_instr / fetch_pc / fetch_pc4 [32]</text>
+<text x="98" y="1045" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">req / buffer 状态见05</text>
+<rect x="1020" y="512" width="840" height="200" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1038" y="552" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_if_id : IF/ID寄存器</text>
+<text x="1038" y="594" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">instr_d / pc_d / pc4_d [32]</text>
+<text x="1038" y="628" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">valid_d / en / flush [1]</text>
+<rect x="1020" y="767" width="840" height="230" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1038" y="807" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_regfile + u_imm_gen</text>
+<text x="1038" y="849" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">32×32 寄存器，x0读为0</text>
+<text x="1038" y="883" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">rs1_d / rs2_d / rd_d [5]</text>
+<text x="1038" y="917" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">rd1_d / rd2_d / imm_d [32]</text>
+<text x="1038" y="951" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">WB→ID 写回旁路</text>
+<rect x="1020" y="1052" width="840" height="200" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1038" y="1092" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_id_ex : ID/EX寄存器</text>
+<text x="1038" y="1134" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">数据 [32] / 寄存器号 [5]</text>
+<text x="1038" y="1168" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">译码控制字跨级保存</text>
+<text x="1038" y="1202" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">flush 插入气泡；完整字段见02</text>
+<rect x="1960" y="512" width="840" height="220" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1978" y="552" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">前递MUX + ALU源MUX</text>
+<text x="1978" y="594" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">A / B / Store 三路前递 [32]</text>
+<text x="1978" y="628" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">fwd_a / fwd_b / fwd_store [2]</text>
+<text x="1978" y="662" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">ALU源选择 alu_src_*_sel_e [2]</text>
+<rect x="1960" y="787" width="840" height="235" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1978" y="827" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_alu + 三种比较器</text>
+<text x="1978" y="869" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">alu_a_e / alu_b_e / result [32]</text>
+<text x="1978" y="903" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">alu_ctrl_e [4]；10种ALU运算</text>
+<text x="1978" y="937" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">cmp_eq_e / lt_e / ltu_e [1]</text>
+<text x="1978" y="971" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">比较使用前递后的rs1/rs2</text>
+<rect x="1960" y="1077" width="840" height="230" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="1978" y="1117" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_addr_e + u_lsu_e</text>
+<text x="1978" y="1159" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">地址译码 / 写数据移位 / 对齐</text>
+<text x="1978" y="1193" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">dmem_addr / wdata [32]，wstrb [4]</text>
+<text x="1978" y="1227" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">re / we / 对齐合法性 [1]</text>
+<text x="1978" y="1261" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">SRAM请求在 EX→MEM 边沿接受</text>
+<rect x="2900" y="512" width="840" height="220" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="2918" y="552" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_ex_mem : EX/MEM寄存器</text>
+<text x="2918" y="594" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">alu_result_m / write_data_m [32]</text>
+<text x="2918" y="628" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">pc4_m [32]，rd_m [5]</text>
+<text x="2918" y="662" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">valid / 读写使能 [1] + 类型控制</text>
+<rect x="2900" y="787" width="840" height="270" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="2918" y="827" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_addr_m + u_lsu_m</text>
+<text x="2918" y="869" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">SRAM字节/半字选择 + 符号扩展</text>
+<text x="2918" y="903" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">MMIO 仅合法对齐 LW / SW</text>
+<text x="2918" y="937" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">地址 / 数据 [32]，re / we [1]</text>
+<text x="2918" y="971" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">load返回选择MUX [32]</text>
+<text x="2918" y="1005" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">MEM前递MUX [32]（非Load）</text>
+<rect x="2900" y="1112" width="840" height="195" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="2918" y="1152" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">u_mem_wb : MEM/WB寄存器</text>
+<text x="2918" y="1194" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">Load / ALU / PC+4 三候选 [32]</text>
+<text x="2918" y="1228" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">rd_w [5]，wb_sel_w [2]</text>
+<text x="2918" y="1262" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">valid_w / regwrite_w [1]</text>
+<rect x="3840" y="512" width="840" height="250" rx="12" fill="#f5f9fc" stroke="#1769aa" stroke-width="2"/>
+<text x="3858" y="552" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#1769aa">写回MUX + 寄存器写使能</text>
+<text x="3858" y="594" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">wb_sel_w [2] → wb_data_w [32]</text>
+<text x="3858" y="628" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">0=ALU；1=Load；2=PC+4</text>
+<text x="3858" y="662" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">rf_we=valid_w &amp; regwrite_w</text>
+<text x="3858" y="696" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">         &amp; (rd_w != 0)</text>
+<text x="3858" y="730" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">waddr [5] → u_regfile</text>
+<polyline points="920,977 970,977 970,612 1020,612" fill="none" stroke="#1769aa" stroke-width="4"/>
+<polygon points="1020,612 1007.0,606.0 1007.0,618.0" fill="#1769aa"/>
+<text x="978" y="650" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" font-weight="400" fill="#1769aa">[32]</text>
+<polyline points="1860,1152 1910,1152 1910,612 1960,612" fill="none" stroke="#1769aa" stroke-width="4"/>
+<polygon points="1960,612 1947.0,606.0 1947.0,618.0" fill="#1769aa"/>
+<text x="1918" y="650" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" font-weight="400" fill="#1769aa">[32]</text>
+<polyline points="2800,902 2850,902 2850,612 2900,612" fill="none" stroke="#1769aa" stroke-width="4"/>
+<polygon points="2900,612 2887.0,606.0 2887.0,618.0" fill="#1769aa"/>
+<text x="2858" y="650" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" font-weight="400" fill="#1769aa">[32]</text>
+<polyline points="3740,1212 3790,1212 3790,632 3840,632" fill="none" stroke="#1769aa" stroke-width="4"/>
+<polygon points="3840,632 3827.0,626.0 3827.0,638.0" fill="#1769aa"/>
+<text x="3798" y="670" font-family="Microsoft YaHei,Arial,sans-serif" font-size="20" font-weight="400" fill="#1769aa">[32]</text>
+<polyline points="500.0,772 500.0,827" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="500.0,827 506.0,814.0 494.0,814.0" fill="#1769aa"/>
+<polyline points="1440.0,712 1440.0,767" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="1440.0,767 1446.0,754.0 1434.0,754.0" fill="#1769aa"/>
+<polyline points="1440.0,997 1440.0,1052" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="1440.0,1052 1446.0,1039.0 1434.0,1039.0" fill="#1769aa"/>
+<polyline points="2380.0,732 2380.0,787" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="2380.0,787 2386.0,774.0 2374.0,774.0" fill="#1769aa"/>
+<polyline points="2380.0,1022 2380.0,1077" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="2380.0,1077 2386.0,1064.0 2374.0,1064.0" fill="#1769aa"/>
+<polyline points="3320.0,732 3320.0,787" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="3320.0,787 3326.0,774.0 3314.0,774.0" fill="#1769aa"/>
+<polyline points="3320.0,1057 3320.0,1112" fill="none" stroke="#1769aa" stroke-width="3"/>
+<polygon points="3320.0,1112 3326.0,1099.0 3314.0,1099.0" fill="#1769aa"/>
+<rect x="3840" y="822" width="840" height="190" rx="12" fill="#f5f9fc" stroke="#b26b16" stroke-width="2"/>
+<text x="3858" y="862" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#b26b16">T.u_imem｜同步指令存储器模型</text>
+<text x="3858" y="904" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">imem_addr / rdata [32]</text>
+<text x="3858" y="938" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">imem_re / clk [1]</text>
+<rect x="3840" y="1062" width="840" height="190" rx="12" fill="#f5f9fc" stroke="#b26b16" stroke-width="2"/>
+<text x="3858" y="1102" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#b26b16">T.u_dmem｜同步数据存储器模型</text>
+<text x="3858" y="1144" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">dmem_addr / wdata / rdata [32]</text>
+<text x="3858" y="1178" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">dmem_wstrb [4]；re / we / clk [1]</text>
+<rect x="3840" y="1302" width="840" height="190" rx="12" fill="#f5f9fc" stroke="#b26b16" stroke-width="2"/>
+<text x="3858" y="1342" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#b26b16">T.u_mmio｜CNN MMIO stub</text>
+<text x="3858" y="1384" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">mmio_addr / wdata / rdata [32]</text>
+<text x="3858" y="1418" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">re / we / ready / rst_n / clk [1]</text>
+<polyline points="4260.0,762 4260.0,792 4750,792 4750,1517 1905,1517 1905,877 1860,877" fill="none" stroke="#7850a2" stroke-width="3"/>
+<polygon points="1860,877 1873.0,883.0 1873.0,871.0" fill="#7850a2"/>
+<text x="1950" y="1545" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#7850a2">WB→ID：wb_data_w [32] + rd_w [5] + rf_we [1]；WB数据同时进入EX三路前递MUX</text>
+<rect x="80" y="1557" width="1440" height="245" rx="12" fill="#f5f9fc" stroke="#16784b" stroke-width="2"/>
+<text x="98" y="1597" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#16784b">C.u_main_decoder + C.u_alu_decoder</text>
+<text x="98" y="1639" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">instr_d [32]；opcode [7] / funct3 [3] / funct7 [7]</text>
+<text x="98" y="1673" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">decoded_main [28] + decoded_alu [4] + legal [1]</text>
+<text x="98" y="1707" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">SAFE_DECODE → ID控制字段；经ID/EX进入执行级</text>
+<text x="98" y="1741" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">Control无跨拍状态；clk只保留接口</text>
+<rect x="1620" y="1557" width="1440" height="245" rx="12" fill="#f5f9fc" stroke="#16784b" stroke-width="2"/>
+<text x="1638" y="1597" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#16784b">C.u_hazard_unit</text>
+<text x="1638" y="1639" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">D/E/M/W valid [1] + rs/rd [5] + 源使用 [1]</text>
+<text x="1638" y="1673" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">Load-use → load_use [1]；M优先W前递</text>
+<text x="1638" y="1707" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">raw_fwd_a / b / store [2] →复位限定→ fwd_* [2]</text>
+<text x="1638" y="1741" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">operand_unready [1] 为诊断输出，不参与暂停</text>
+<rect x="3160" y="1557" width="1440" height="245" rx="12" fill="#f5f9fc" stroke="#16784b" stroke-width="2"/>
+<text x="3178" y="1597" font-family="Microsoft YaHei,Arial,sans-serif" font-size="28" font-weight="700" fill="#16784b">C.u_branch_control + C.u_pipeline_control</text>
+<text x="3178" y="1639" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">EX分支类型 [3] / jump [2] / 三比较标志 [1]</text>
+<text x="3178" y="1673" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">redirect [1] / redirect_sel [2] → pc_sel [2]</text>
+<text x="3178" y="1707" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">pc_en / if_id_en / if_id_flush / id_ex_flush [1]</text>
+<text x="3178" y="1741" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#152b42">reset &gt; redirect &gt; load-use &gt; 正常</text>
+<polyline points="500,1557 500,1522 1440,1522 1440,1252" fill="none" stroke="#16784b" stroke-width="3"/>
+<polygon points="1440,1252 1434.0,1265.0 1446.0,1265.0" fill="#16784b"/>
+<text x="530" y="1508" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#16784b">ID控制字段 → ID/EX（每字段位宽见02）</text>
+<polyline points="2390,1557 2390,732" fill="none" stroke="#16784b" stroke-width="3"/>
+<polygon points="2390,732 2384.0,745.0 2396.0,745.0" fill="#16784b"/>
+<text x="2410" y="1390" font-family="Microsoft YaHei,Arial,sans-serif" font-size="23" font-weight="400" fill="#16784b">fwd_a/b/store [2]</text>
+<text x="80" y="1864" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" font-weight="400" fill="#526578">公共连线：clk [1] / rst_n [1]；所有有状态生产模块使用上升沿、同步低有效复位。Control的rst_n为组合安全限定。</text>
+<text x="80" y="1910" font-family="Microsoft YaHei,Arial,sans-serif" font-size="25" font-weight="400" fill="#b26b16">未在生产RTL实现：CNN计算核心、DMA、双口共享SRAM、九寄存器正式硬件桥。mul_busy [1] 实际绑0，无乘法器。</text>
+</svg>

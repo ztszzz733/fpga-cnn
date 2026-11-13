@@ -1,0 +1,8 @@
+{
+  "interval_minutes": 15.0,
+  "records": [],
+  "finished_before_first_checkpoint": true,
+  "elapsed_wall_seconds": 416.59741965800004,
+  "finished_at": "2026-11-09T20:36:42.603560",
+  "scope": "Progress observations, not resumable simulator state"
+}

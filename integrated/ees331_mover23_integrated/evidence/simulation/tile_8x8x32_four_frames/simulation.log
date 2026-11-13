@@ -1,0 +1,2 @@
+PASS EES331 realCPU/23-CNN/tile-RAM/DATA-MOVER/DDR jobs=12 checked=49152 cycles=1181772 overlap=177415 misses=85 mover_read_bytes=87040 mover_write_bytes=53248
+UNIT_STARTS 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 4 0

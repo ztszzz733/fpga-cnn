@@ -1,0 +1,95 @@
+{
+  "tasks": [
+    {
+      "node": 0,
+      "operation": "K3",
+      "dependencies": [],
+      "native_command_words": [
+        0,
+        0,
+        64,
+        320,
+        0,
+        0,
+        2,
+        4,
+        4,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "output_region": "conv_raw",
+      "required_loaded_regions": [
+        "input_with_halo",
+        "weights"
+      ]
+    },
+    {
+      "node": 1,
+      "operation": "Post",
+      "dependencies": [
+        0
+      ],
+      "native_command_words": [
+        1,
+        320,
+        0,
+        448,
+        128,
+        8,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "output_region": "post_output",
+      "required_loaded_regions": [
+        "post_params"
+      ]
+    },
+    {
+      "node": 2,
+      "operation": "Add",
+      "dependencies": [
+        1
+      ],
+      "native_command_words": [
+        2,
+        448,
+        256,
+        576,
+        192,
+        8,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "output_region": "add_output",
+      "required_loaded_regions": [
+        "add_params",
+        "residual"
+      ]
+    }
+  ],
+  "store_after_node": 2,
+  "mover_command_limit": 1,
+  "active_tile_limit": 1,
+  "note": "Native 512-bit CNN commands plus a proposed MOVER plan; no new mover adapter RTL is supplied"
+}

@@ -1,0 +1,78 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Thu Nov 12 20:11:59 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file D:/code/FPGA1/integrated/ees331_mover23_integrated/simulation/build/runs/20261112_200153_reduced_synth_32768/hierarchy.rpt
+| Design       : face_soc_ees331_mover_top
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                  Instance                  |                Module               | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++--------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| face_soc_ees331_mover_top                  |                               (top) |      35326 |      34970 |     356 |    0 | 25830 |     41 |     12 |         33 |
+|   (face_soc_ees331_mover_top)              |                               (top) |          0 |          0 |       0 |    0 |    66 |      0 |      0 |          0 |
+|   u_cnn                                    |                          cnn_ees331 |      30115 |      29759 |     356 |    0 | 21107 |     27 |     12 |         33 |
+|     (u_cnn)                                |                          cnn_ees331 |        219 |        219 |       0 |    0 |   873 |      0 |      0 |          0 |
+|     core                                   |              fixed_schedule_compact |      29896 |      29540 |     356 |    0 | 20234 |     27 |     12 |         33 |
+|       (core)                               |              fixed_schedule_compact |       3851 |       3759 |      92 |    0 |  4570 |      7 |      0 |          0 |
+|       engines[0].latest_k3.convolution     |           self_conv_spatial4_engine |       2529 |       2529 |       0 |    0 |  1532 |      4 |      3 |          0 |
+|         (engines[0].latest_k3.convolution) |           self_conv_spatial4_engine |       2158 |       2158 |       0 |    0 |  1530 |      0 |      0 |          0 |
+|         input_banks[1].mem                 | compact_word_ram__parameterized0_16 |        297 |        297 |       0 |    0 |     0 |      1 |      0 |          0 |
+|         weights                            |                 compact_word_ram_19 |         55 |         55 |       0 |    0 |     1 |      1 |      1 |          0 |
+|       engines[1].latest_k3.convolution     |         self_conv_spatial4_engine_0 |       2583 |       2583 |       0 |    0 |  1526 |      4 |      3 |          0 |
+|         (engines[1].latest_k3.convolution) |         self_conv_spatial4_engine_0 |       2212 |       2212 |       0 |    0 |  1524 |      0 |      0 |          0 |
+|         input_banks[1].mem                 |    compact_word_ram__parameterized0 |        297 |        297 |       0 |    0 |     0 |      1 |      0 |          0 |
+|         weights                            |                 compact_word_ram_14 |         55 |         55 |       0 |    0 |     1 |      1 |      1 |          0 |
+|       engines[2].latest_k1.convolution     |                     self_pw8_engine |       2485 |       2441 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[2].latest_k1.convolution) |                     self_pw8_engine |       2292 |       2248 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            | compact_word_ram__parameterized2_12 |        249 |        249 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       engines[3].latest_k1.convolution     |                   self_pw8_engine_1 |       2485 |       2441 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[3].latest_k1.convolution) |                   self_pw8_engine_1 |       2293 |       2249 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            | compact_word_ram__parameterized2_11 |        248 |        248 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       engines[4].latest_k1.convolution     |                   self_pw8_engine_2 |       2648 |       2604 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[4].latest_k1.convolution) |                   self_pw8_engine_2 |       2455 |       2411 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            | compact_word_ram__parameterized2_10 |        249 |        249 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       engines[5].latest_k1.convolution     |                   self_pw8_engine_3 |       2503 |       2459 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[5].latest_k1.convolution) |                   self_pw8_engine_3 |       2310 |       2266 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            |  compact_word_ram__parameterized2_9 |        249 |        249 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       engines[6].latest_k1.convolution     |                   self_pw8_engine_4 |       2485 |       2441 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[6].latest_k1.convolution) |                   self_pw8_engine_4 |       2293 |       2249 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            |  compact_word_ram__parameterized2_8 |        248 |        248 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       engines[7].latest_k1.convolution     |                   self_pw8_engine_5 |       2503 |       2459 |      44 |    0 |  1500 |      1 |      1 |          0 |
+|         (engines[7].latest_k1.convolution) |                   self_pw8_engine_5 |       2310 |       2266 |      44 |    0 |  1500 |      1 |      0 |          0 |
+|         weights                            |    compact_word_ram__parameterized2 |        249 |        249 |       0 |    0 |     0 |      0 |      1 |          0 |
+|       padding                              |                      pad_hwc_engine |       1266 |       1266 |       0 |    0 |   301 |      0 |      0 |          9 |
+|       postprocessing[10].latest_post.post  |              quant_post_pipe_engine |       1946 |       1946 |       0 |    0 |  1113 |      2 |      0 |          8 |
+|       postprocessing[8].latest_post.post   |            quant_post_pipe_engine_6 |       1295 |       1295 |       0 |    0 |  1096 |      2 |      0 |          8 |
+|       postprocessing[9].latest_post.post   |            quant_post_pipe_engine_7 |       1317 |       1317 |       0 |    0 |  1096 |      2 |      0 |          8 |
+|   u_cpu_core                               |                            cpu_core |       1967 |       1967 |       0 |    0 |  1741 |      0 |      0 |          0 |
+|     u_datapath                             |                        cpu_datapath |       1967 |       1967 |       0 |    0 |  1741 |      0 |      0 |          0 |
+|       u_regfile                            |                             regfile |        576 |        576 |       0 |    0 |  1024 |      0 |      0 |          0 |
+|       u_ex_mem                             |                          ex_mem_reg |        308 |        308 |       0 |    0 |   111 |      0 |      0 |          0 |
+|       u_fetch                              |                       fetch_adapter |        106 |        106 |       0 |    0 |   162 |      0 |      0 |          0 |
+|       u_id_ex                              |                           id_ex_reg |        712 |        712 |       0 |    0 |   201 |      0 |      0 |          0 |
+|       u_if_id                              |                           if_id_reg |         95 |         95 |       0 |    0 |   106 |      0 |      0 |          0 |
+|       u_mem_wb                             |                          mem_wb_reg |        151 |        151 |       0 |    0 |   105 |      0 |      0 |          0 |
+|   u_datasram                               |            datasram_mover_subsystem |       2100 |       2100 |       0 |    0 |  1935 |     12 |      0 |          0 |
+|     cache                                  |                     cnn_paged_mover |       2050 |       2050 |       0 |    0 |  1901 |      8 |      0 |          0 |
+|       (cache)                              |                     cnn_paged_mover |        924 |        924 |       0 |    0 |  1690 |      0 |      0 |          0 |
+|       local_ram                            |                      tile_local_ram |        183 |        183 |       0 |    0 |     3 |      8 |      0 |          0 |
+|       mover                                |                          data_mover |        943 |        943 |       0 |    0 |   208 |      0 |      0 |          0 |
+|     cpu_ram                                |                        download_ram |         50 |         50 |       0 |    0 |    34 |      4 |      0 |          0 |
+|   u_image_bridge                           |                image_control_bridge |       1154 |       1154 |       0 |    0 |   978 |      0 |      0 |          0 |
++--------------------------------------------+-------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

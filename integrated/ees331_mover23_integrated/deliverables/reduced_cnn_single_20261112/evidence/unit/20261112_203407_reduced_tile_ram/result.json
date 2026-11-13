@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "capacity": 401408,
+  "words": 100352,
+  "sources": {
+    "storage_v2/rtl/tile_local_ram.sv": "3c4562d153b80e95c585579b94efe04a85cdcf629bbca1be67ed0917a130255a",
+    "simulation/tb/integration/reduced_tile_ram_main.cpp": "615ff012cae10fc22a63b4e223902444c5680888f38de94247c76cc1f53a8caa"
+  }
+}

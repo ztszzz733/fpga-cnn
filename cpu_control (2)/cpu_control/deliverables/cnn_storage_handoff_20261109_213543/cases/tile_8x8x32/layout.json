@@ -1,0 +1,102 @@
+{
+  "address_unit": "byte",
+  "local_bytes": 32768,
+  "ddr_test_region_bytes": 65536,
+  "ddr_base": "Configured by storage/PS, not assigned here",
+  "local_unaligned_requirement": "arbitrary byte start, including offsets 1..7 modulo8",
+  "ddr_start_alignment_in_this_case": 8,
+  "features": "HWC_UINT8",
+  "weights": "INT8_O_KY_KX_I",
+  "raw": "little_endian_INT32_HWC",
+  "input_zero": 128,
+  "output_zero": 128,
+  "parameter_words": [
+    "signed bias",
+    "signed multiplierA",
+    "signed multiplierB",
+    "outputZero[31:24],inputBZero[23:16],inputAZero[15:8],shift[7:0]",
+    "clampHigh[15:8],clampLow[7:0]"
+  ],
+  "shift_range": "0..63 for current Post pipeline",
+  "shape": {
+    "input_h": 10,
+    "input_w": 10,
+    "in_channels": 32,
+    "out_channels": 32,
+    "output_h": 8,
+    "output_w": 8,
+    "kernel": 3,
+    "stride": 1,
+    "padding": 0
+  },
+  "regions": {
+    "input_with_halo": {
+      "local_address": 0,
+      "bytes": 3200,
+      "role": "input",
+      "ddr_offset": 4096,
+      "ddr_row_stride": 328,
+      "rows": 10,
+      "row_bytes": 320
+    },
+    "weights": {
+      "local_address": 3200,
+      "bytes": 9216,
+      "role": "input",
+      "ddr_offset": 7488,
+      "ddr_row_stride": 9216,
+      "rows": 1,
+      "row_bytes": 9216
+    },
+    "post_params": {
+      "local_address": 12416,
+      "bytes": 640,
+      "role": "input",
+      "ddr_offset": 16768,
+      "ddr_row_stride": 640,
+      "rows": 1,
+      "row_bytes": 640
+    },
+    "add_params": {
+      "local_address": 13056,
+      "bytes": 640,
+      "role": "input",
+      "ddr_offset": 17472,
+      "ddr_row_stride": 640,
+      "rows": 1,
+      "row_bytes": 640
+    },
+    "residual": {
+      "local_address": 13696,
+      "bytes": 2048,
+      "role": "input",
+      "ddr_offset": 18176,
+      "ddr_row_stride": 264,
+      "rows": 8,
+      "row_bytes": 256
+    },
+    "conv_raw": {
+      "local_address": 15744,
+      "bytes": 8192,
+      "role": "output",
+      "slot_bytes": 8256
+    },
+    "post_output": {
+      "local_address": 24000,
+      "bytes": 2048,
+      "role": "output",
+      "slot_bytes": 2112
+    },
+    "add_output": {
+      "local_address": 26112,
+      "bytes": 2048,
+      "role": "output",
+      "slot_bytes": 2112,
+      "ddr_offset": 32768,
+      "ddr_row_stride": 264,
+      "rows": 8,
+      "row_bytes": 256
+    }
+  },
+  "guards_note": "Three real output slots plus 37 unused context slots have poison tails for the unchanged 10-context RTL harness; this is not the new local RAM RTL"
+}

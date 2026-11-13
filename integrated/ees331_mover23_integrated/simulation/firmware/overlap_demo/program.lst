@@ -1,0 +1,67 @@
+0000 400000b7 lui x1, hi(0x40000000)
+0004 00008093 addi x1, x1, lo(0x40000000)
+0008 00000137 lui x2, hi(0x40)
+000c 04010113 addi x2, x2, lo(0x40)
+0010 000001b7 lui x3, hi(0x80)
+0014 08018193 addi x3, x3, lo(0x80)
+0018 0001a423 sw x0, 8(x3)
+001c 0001a823 sw x0, 16(x3)
+0020 00000237 lui x4, hi(0x1)
+0024 00120213 addi x4, x4, lo(0x1)
+0028 00412023 sw x4, 0(x2)
+002c 003d1337 lui x6, hi(0x3d0900)
+0030 90030313 addi x6, x6, lo(0x3d0900)
+0034 00412203 lw x4, 4(x2)
+0038 00127293 load complete
+003c 00029863 bne x5, x0, load_done
+0040 fff30313 timeout count
+0044 fe0318e3 bne x6, x0, load_poll
+0048 0a000a63 beq x0, x0, fail
+004c 00227393 load error
+0050 00012023 sw x0, 0(x2)
+0054 0a039463 bne x7, x0, fail
+0058 00412203 lw x4, 4(x2)
+005c fe021ee3 bne x4, x0, ack_poll
+0060 00000237 lui x4, hi(0x100)
+0064 10020213 addi x4, x4, lo(0x100)
+0068 0040a423 sw x4, 8(x1)
+006c 00000237 lui x4, hi(0x13)
+0070 01320213 addi x4, x4, lo(0x13)
+0074 0040ac23 sw x4, 24(x1)
+0078 00000237 lui x4, hi(0x3d)
+007c 03d20213 addi x4, x4, lo(0x3d)
+0080 0040a023 sw x4, 0(x1)
+0084 003d1337 lui x6, hi(0x3d0900)
+0088 90030313 addi x6, x6, lo(0x3d0900)
+008c 0101a403 lw x8, 16(x3)
+0090 0040a203 lw x4, 4(x1)
+0094 00427293 CNN error
+0098 06029263 bne x5, x0, fail
+009c 00227293 CNN done
+00a0 00029863 bne x5, x0, verify
+00a4 fff30313 timeout count
+00a8 fe0312e3 bne x6, x0, cnn_poll
+00ac 04000863 beq x0, x0, fail
+00b0 00000537 lui x10, hi(0x100)
+00b4 10050513 addi x10, x10, lo(0x100)
+00b8 000015b7 lui x11, hi(0x800)
+00bc 80058593 addi x11, x11, lo(0x800)
+00c0 00000637 lui x12, hi(0x0)
+00c4 00060613 addi x12, x12, lo(0x0)
+00c8 00052683 lw x13, 0(x10)
+00cc 00d60633 add x12,x12,x13
+00d0 00450513 next word
+00d4 fff58593 count
+00d8 fe0598e3 bne x11, x0, checksum
+00dc a28dc737 lui x14, hi(0xa28dc4dc)
+00e0 4dc70713 addi x14, x14, lo(0xa28dc4dc)
+00e4 00e61c63 bne x12, x14, fail
+00e8 00c1a023 sw x12, 0(x3)
+00ec 00006237 lui x4, hi(0x600d)
+00f0 00d20213 addi x4, x4, lo(0x600d)
+00f4 0041a423 sw x4, 8(x3)
+00f8 00000863 beq x0, x0, halt
+00fc dead0237 lui x4, hi(0xdead0001)
+0100 00120213 addi x4, x4, lo(0xdead0001)
+0104 0041a423 sw x4, 8(x3)
+0108 0000006f halt

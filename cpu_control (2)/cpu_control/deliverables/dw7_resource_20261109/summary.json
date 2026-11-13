@@ -1,0 +1,22 @@
+{
+  "status": "MEMORY_GUARD",
+  "scope": "DW7 only; actual RTL with MAX_WIDTH=7 MAX_CHANNELS=512 LANES=8 reuse_weights=0; independent OOC, hierarchy none, single thread",
+  "parameters": {
+    "MAX_WIDTH": 7,
+    "MAX_CHANNELS": 512,
+    "LANES": 8,
+    "reuse_weights": 0
+  },
+  "resources": null,
+  "seconds": 536.297,
+  "run": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\build\\runs\\20261109_195054_407075_missing_resources",
+  "source_sha256": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+  "logical_storage": {
+    "weight_bytes": 25088,
+    "row_bytes": 392,
+    "accumulator_bits": 256
+  },
+  "errors": [],
+  "place_route_performed": false,
+  "result_sha256": "7a7a019baedd71d1bb8260f639a4ee8e261030fc160e4193c7a057e6a6b26305"
+}
