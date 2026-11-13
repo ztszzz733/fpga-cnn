@@ -1,0 +1,5 @@
+PROGRESS cycle=1000000 jobs=1/129 read=82944 write=0
+PROGRESS cycle=2000000 jobs=1/129 read=365568 write=0
+PROGRESS cycle=3000000 jobs=1/129 read=631808 write=189440
+PROGRESS cycle=4000000 jobs=1/129 read=889856 write=442368
+PASS first padding + first convolution only; checked=841804

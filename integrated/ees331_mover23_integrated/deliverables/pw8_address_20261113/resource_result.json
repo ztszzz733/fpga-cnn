@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "part": "xc7z020clg484-1",
+  "period_ns": 10,
+  "threads": 1,
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_pw8_engine.sv": "99e94b10cf431ad3a11094fab6983923fdd1218576ffef199cbb9b31de429685"
+  },
+  "baseline_report": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_final_20261113_165324\\1\\utilization.rpt",
+  "baseline_timing": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_final_20261113_165324\\1\\timing.rpt",
+  "runs": {
+    "0": {
+      "seconds": 95.0470000000023,
+      "utilization": {
+        "Slice LUTs": 3073.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1722.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 0.0
+      }
+    },
+    "1": {
+      "utilization": {
+        "Slice LUTs": 3005.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1849.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 0.0
+      }
+    }
+  },
+  "failed_attempt_preserved": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_addr_20261113_202721",
+  "place_route_completed": true,
+  "full_image_run": false,
+  "available_before_synth_gib": 5.053779602050781,
+  "launcher_pid": 14064,
+  "synth_seconds": 83.32799999999997,
+  "synthesis_timing": {
+    "wns_ns": 0.226,
+    "whs_ns": 0.189,
+    "wpws_ns": 3.75,
+    "setup_failing": 0,
+    "hold_failing": 0,
+    "pulse_failing": 0
+  },
+  "wns_before_synthesis": -1.087,
+  "delta_per_pw8": {
+    "Slice LUTs": -68.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 127.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "estimated_delta_six_pw8": {
+    "Slice LUTs": -408.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 762.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "available_before_route_gib": 5.013477325439453,
+  "route_seconds": 118.17200000000003,
+  "implementation_timing": {
+    "wns_ns": 0.025,
+    "whs_ns": 0.028,
+    "wpws_ns": 3.75,
+    "setup_failing": 0,
+    "hold_failing": 0,
+    "pulse_failing": 0
+  },
+  "implemented_utilization": {
+    "Slice LUTs": 2973.0,
+    "LUT as Memory": 44.0,
+    "Slice Registers": 1849.0,
+    "Block RAM Tile": 1.5,
+    "DSPs": 0.0
+  },
+  "ooc_10ns_met": true
+}

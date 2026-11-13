@@ -1,0 +1,20 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Nov 13 19:59:42 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/dsp_netlist/xsim_script.tcl
+# xsim {dsp_netlist} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+DSP_NETLIST_CASE_PASS case=1 bytes=72 macs=486
+DSP_NETLIST_CASE_PASS case=2 bytes=108 macs=243
+DSP_NETLIST_CASE_PASS case=3 bytes=48 macs=540
+CONV_DSP_NETLIST_PASS cases=3
+$finish called at time : 22420 ns : File "C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_conv_dsp_fixed_20261113_195332/k3/netlist_sim/tb.sv" Line 88
+exit
+INFO: [Common 17-206] Exiting xsim at Fri Nov 13 19:59:44 2026...

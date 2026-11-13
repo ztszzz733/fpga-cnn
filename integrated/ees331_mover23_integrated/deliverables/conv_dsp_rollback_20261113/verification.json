@@ -1,0 +1,24 @@
+{
+  "status": "ROLLED_BACK_TO_VERIFIED_SOURCES",
+  "before_dsp_sources": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "e5c2b5000ccd5e97af86eefb1d27eb5d5d5c61729f99023e86abc261fb19ab09",
+    "rtl/cnn_self/self_pw8_engine.sv": "dae3a740f5f945f725b52eac76cd4735f19df6d7848e909e50c5d4874c30b28e"
+  },
+  "restored_sources": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39",
+    "rtl/cnn_self/self_pw8_engine.sv": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b"
+  },
+  "prior_pass_runs": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "20261113_152308_reuse_unit",
+    "rtl/cnn_self/self_pw8_engine.sv": "20261113_165112_remaining_pw8_panel"
+  },
+  "preserved_sources": {
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "48b7275d3552857e7c0091141426f14443e4ccf3ec860ec29a05f7a15251e48b",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "80b9c62cc504c177d5f14cc67a454ce8dcdc1572c4454f1fde84666ba9e753ed"
+  },
+  "new_simulation_run": false,
+  "new_synthesis_run": false,
+  "clock_configuration_changed": false,
+  "scope": "rollback convolution DSP attributes and PW8 DSP-specific RAM boundary only; retain all earlier reuse and other operators"
+}

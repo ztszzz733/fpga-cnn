@@ -309,7 +309,7 @@ module fixed_schedule_compact #(
  end
  for(genvar e=POST;e<=ADD;e++)begin:postprocessing
   if (LATEST_OPERATORS) begin:latest_post
-   quant_post_pipe_engine #(.MAX_CHANNELS(512),.GROUP_BYTES(16)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
+   quant_post_pipe_engine #(.MAX_CHANNELS(512),.GROUP_BYTES(e==ADD?32:16)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
    .src_a(cmd[e][1]),.src_b(cmd[e][2]),.destination(cmd[e][3]),.parameter_base(cmd[e][4]),.count(cmd[e][5]),.channels(cmd[e][6]),
    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]));

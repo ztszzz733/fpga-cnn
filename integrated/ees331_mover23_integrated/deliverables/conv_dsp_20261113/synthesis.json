@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "part": "xc7z020clg484-1",
+  "period_ns": 10,
+  "threads": 1,
+  "place_route": false,
+  "full_image_run": false,
+  "modules": {
+    "k3": {
+      "status": "PASS",
+      "before": {
+        "Slice LUTs": 3125.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": 1794.0,
+        "Block RAM Tile": 5.5,
+        "DSPs": 0.0
+      },
+      "after": {
+        "Slice LUTs": 2739.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": 1726.0,
+        "Block RAM Tile": 5.5,
+        "DSPs": 4.0
+      },
+      "delta_per_instance": {
+        "Slice LUTs": -386.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": -68.0,
+        "Block RAM Tile": 0.0,
+        "DSPs": 4.0
+      },
+      "instances": 2,
+      "baseline_result": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_k3_reuse_20261113_153959\\result.json",
+      "baseline_record_sha256": "5abbd5edc1e068dfc40a54d8ef49603dcb030a811b5d45ecc4f799ee30da46d6",
+      "baseline_utilization": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_k3_reuse_20261113_153959\\1\\utilization.rpt",
+      "seconds": 74.43799999999999,
+      "wns_ns": -1.719,
+      "netlist_sha256": "fc254130d39c0d458e27be8a48bcf9a87389bd4b6e2059edd96ef6113b770676",
+      "dsp_count": 4
+    },
+    "pw8": {
+      "status": "PASS",
+      "before": {
+        "Slice LUTs": 3073.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1722.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 0.0
+      },
+      "after": {
+        "Slice LUTs": 2593.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1588.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 8.0
+      },
+      "delta_per_instance": {
+        "Slice LUTs": -480.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": -134.0,
+        "Block RAM Tile": 0.0,
+        "DSPs": 8.0
+      },
+      "instances": 6,
+      "baseline_result": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_final_20261113_165324\\result.json",
+      "baseline_record_sha256": "fd0e406195afa73bbea22b193e4d3e2af0443cba92181a3afbcc8ea08674c5eb",
+      "baseline_utilization": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_final_20261113_165324\\1\\utilization.rpt",
+      "seconds": 85.65699999999993,
+      "wns_ns": -1.502,
+      "netlist_sha256": "caf80ded2245743e9108136b6c23388af56d1b5278e25b239eb78e58368589fe",
+      "dsp_count": 8
+    }
+  },
+  "sources": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "e5c2b5000ccd5e97af86eefb1d27eb5d5d5c61729f99023e86abc261fb19ab09",
+    "rtl/cnn_self/self_pw8_engine.sv": "dae3a740f5f945f725b52eac76cd4735f19df6d7848e909e50c5d4874c30b28e"
+  },
+  "preserved_sources": {
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "48b7275d3552857e7c0091141426f14443e4ccf3ec860ec29a05f7a15251e48b",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "80b9c62cc504c177d5f14cc67a454ce8dcdc1572c4454f1fde84666ba9e753ed"
+  },
+  "reused_k3_synthesis": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_conv_dsp_20261113_194810",
+  "active": "pw8",
+  "launcher_pid": 6968,
+  "estimated_pool_delta": {
+    "Slice LUTs": -3652.0,
+    "Slice Registers": -940.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 56.0,
+    "LUT as Memory": 0.0
+  }
+}

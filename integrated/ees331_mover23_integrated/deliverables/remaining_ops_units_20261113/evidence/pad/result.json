@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "kind": "pad",
+  "sources": {
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "simulation/tb/baseline_pad_hwc_engine_remaining.sv": "c356593373637f5dbbbf0dad71b996d7ca16b0f7431a2d38238ecdf0b1c98878",
+    "simulation/tb/remaining_pad_top.sv": "d857e5042b4f7088b2a912030cfb8a7d4016512738a1bb8371e2ec75adbeef4c",
+    "simulation/tb/integration/remaining_pad_main.cpp": "bc984867b72d13aa99d27850e2cfcce6836985460b2a015745dadfed520efcd9"
+  },
+  "full_network": false,
+  "compile_seconds": 23.248204729,
+  "simulation_seconds": 0.32423517299999816,
+  "sources_unchanged": true
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "kind": "pw8_addr",
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_pw8_engine.sv": "99e94b10cf431ad3a11094fab6983923fdd1218576ffef199cbb9b31de429685",
+    "simulation/tb/baseline_pw8_addr.sv": "cf9e830df2bad13b7cec80d1509749b5e6b610759a7b62733f5f7aa3cc65a78e",
+    "simulation/tb/pw8_addr_top.sv": "bd8a3f97b13f7824fb697fe998c168916be32da22279119613b12c400351c0df",
+    "simulation/tb/integration/pw8_addr_main.cpp": "818a75b3cdb0bbabc6cd39ffacf7acddb2603ff3399627024fa9da51e2431d69"
+  },
+  "full_network": false,
+  "compile_seconds": 19.525695135,
+  "simulation_seconds": 10.830280969,
+  "sources_unchanged": true
+}

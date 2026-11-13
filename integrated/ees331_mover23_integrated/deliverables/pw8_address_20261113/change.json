@@ -1,0 +1,13 @@
+{
+  "before": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b",
+  "after": "99e94b10cf431ad3a11094fab6983923fdd1218576ffef199cbb9b31de429685",
+  "preserved_sources": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "48b7275d3552857e7c0091141426f14443e4ccf3ec860ec29a05f7a15251e48b",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "80b9c62cc504c177d5f14cc67a454ce8dcdc1572c4454f1fde84666ba9e753ed"
+  },
+  "dsp_enabled": false,
+  "new_pipeline_stages": 0,
+  "parameter": "ADDR_REGS=1; set0 for exact original address formulas"
+}

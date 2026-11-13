@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "sources_sha256": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "e5c2b5000ccd5e97af86eefb1d27eb5d5d5c61729f99023e86abc261fb19ab09",
+    "simulation/tb/self_reuse_unit_top.sv": "286bf1014dfddeb984966f32433d080fa1e536c30db52bca9e6012564978389b",
+    "simulation/tb/integration/self_reuse_unit_main.cpp": "fb2228d99439001a201179dd8b127e76e9462efecddf889d9bf17475546cb17f"
+  },
+  "unit": "K3 halo/full-layer weight reuse off versus on; READ_WORD_BUFFER=1 on both; four ablation variants",
+  "full_network": false,
+  "compile_seconds": 55.080515338,
+  "test_seconds": 13.444921843000003,
+  "sources_unchanged": true
+}

@@ -10,7 +10,7 @@
 // clear aborts this master; the interconnect must also cancel its pending
 // transaction, as this interface has no transaction ID for a late response.
 module self_conv_spatial4_engine #(
- parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1
+ parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1, INPUT_HALO_REUSE=1, WEIGHT_LAYER_REUSE=1
 )(
  input logic clk,rst_n,clear,start,depthwise,
  input logic [31:0] input_base,weight_base,output_base,
@@ -23,6 +23,9 @@ module self_conv_spatial4_engine #(
  output wire [3:0] phase,
  output logic [31:0] input_reads,weight_reads,mac_count
 );
+ logic core_valid,core_write,core_byte_access,core_ready,core_response;
+ logic [31:0] core_addr,core_wdata,core_rdata;
+
  localparam integer EDGE=2*(TILE-1)+MAX_KERNEL;
  localparam integer INPUT_BYTES=EDGE*EDGE*MAX_CHANNELS;
  localparam integer WEIGHT_BYTES=MAX_KERNEL*MAX_KERNEL*MAX_CHANNELS;
@@ -75,43 +78,45 @@ module self_conv_spatial4_engine #(
  logic [IA_BITS-1:0] load_index,cache_row_bytes,input_index;
  logic [IA_BITS-1:0] window_base,window_row_base,kernel_row_base;
  logic [WA_BITS-1:0] weight_load_index,weight_index;
- // A depthwise layer's complete weights fit in the existing ordinary-channel
- // weight RAM. Reload on every command; reuse across all spatial tiles only.
+ // Reuse full depthwise weights and ordinary layers that fit the existing
+ // weight RAM. No extra array; larger ordinary layers keep channel loading.
  logic dw_weights_valid;
  logic [WA_BITS-1:0] dw_weight_base;
  wire dw_cached=DW_CACHE && dw;
- wire weight_hit=dw_cached && dw_weights_valid;
+ // A single tile cannot reuse weights across tiles; keep its original path.
+ wire layer_cached=dw_cached || (WEIGHT_LAYER_REUSE && !dw && (ow>TILE || oh>TILE) && weight_extent<=WEIGHT_BYTES);
+ wire weight_hit=layer_cached && dw_weights_valid;
  // Valid descriptors bound this count to WEIGHT_BYTES; avoid 32-bit control carry chains.
- wire [WA_BITS-1:0] weight_load_bytes=dw_cached?weight_extent[WA_BITS-1:0]:weight_per_channel[WA_BITS-1:0];
+ wire [WA_BITS-1:0] weight_load_bytes=layer_cached?weight_extent[WA_BITS-1:0]:weight_per_channel[WA_BITS-1:0];
  // Precompute command limits before any request. Last-beat detection uses
  // equality, not a width-select -> adder -> comparator -> accumulator-reset chain.
  logic [WA_BITS-1:0] weight_last_byte,weight_last_word;
  logic [WA_BITS-3:0] weight_full_words;
  wire [31:0] channel_stride_bytes=stride_two?({{(32-C_BITS){1'b0}},ci}<<1):ci;
  wire [31:0] output_pixel_bytes={{(32-C_BITS){1'b0}},co}<<2;
- wire input_response=response && (state==IWAIT || (state==IREQ && ready));
- wire weight_response=response && (state==WWAIT || (state==WREQ && ready));
- wire output_response=response && (state==OWAIT || (state==OREQ && ready));
+ wire input_response=core_response && (state==IWAIT || (state==IREQ && core_ready));
+ wire weight_response=core_response && (state==WWAIT || (state==WREQ && core_ready));
+ wire output_response=core_response && (state==OWAIT || (state==OREQ && core_ready));
 
  assign phase=state;
  assign busy=(state!=IDLE && state!=FINISH && state!=FAIL);
  assign done=(state==FINISH);
  assign error=(state==FAIL);
- assign valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
- assign write=(state==OREQ);
+ assign core_valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
+ assign core_write=(state==OREQ);
  wire input_wide=(load_addr[1:0]==0 && load_c[1:0]==0 && (load_c+32'd4<=ci));
  wire weight_wide=(weight_addr[1:0]==0 && weight_load_index[1:0]==0 && (weight_load_index>>2)<weight_full_words);
  wire [2:0] input_step=input_wide?3'd4:3'd1;
  wire [2:0] weight_step=weight_wide?3'd4:3'd1;
- assign byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
+ assign core_byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
  wire last_issue=(dw || mac_c+1'b1>=ci) && tap_x+1'b1>=k && tap_y+1'b1>=k;
  assign mac_fire=!clear && product_valid;
  always_comb begin
-  addr=0;wdata=0;
+  core_addr=0;core_wdata=0;
   case(state)
-   IREQ:addr=load_addr;
-   WREQ:addr=weight_addr;
-   OREQ:begin addr=output_addr;wdata=tile_sum[{store_y[0],store_x[0]}];end
+   IREQ:core_addr=load_addr;
+   WREQ:core_addr=weight_addr;
+   OREQ:begin core_addr=output_addr;core_wdata=tile_sum[{store_y[0],store_x[0]}];end
    default:;
   endcase
   mul_value=mul_acc+(mul_rhs[0]?mul_lhs:64'd0);
@@ -144,19 +149,29 @@ module self_conv_spatial4_engine #(
   spatial_bank=s2?{y[1],x[1]}:{y[0],x[0]};
  endfunction
  function automatic [BA_BITS-1:0] bank_offset(input logic [2:0] x,y,
-                                            input logic [C_BITS-1:0] ch,input logic s2);
+                                            input logic [C_BITS-1:0] ch,input logic s2,input logic x_phase);
   logic [1:0] bx,by,bank;
   begin
    bx=s2?{x[2],x[0]}:x[2:1];by=s2?{y[2],y[0]}:y[2:1];
+   if(!s2)bx[0]=bx[0]^x_phase;
    bank=spatial_bank(x,y,s2);
    bank_offset=(by*(bank[0]?2:3)+bx)*MAX_CHANNELS+ch;
   end
  endfunction
+ // For stride-one 3x3, a full input window is four columns wide.
+ // Advancing two output pixels rotates its two bank offsets: retained
+ // right-hand columns become the next tile's left-hand columns in place.
+ // Each new tile row starts by loading all columns, so no vertical tag is needed.
+ wire halo_enabled=INPUT_HALO_REUSE && !stride_two && k==3;
+ wire input_x_phase=halo_enabled && tile_x[1];
+ wire reuse_left=halo_enabled && tile_x!=0;
+ wire [7:0] first_load_x=reuse_left?8'd2:8'd0;
+ wire [31:0] first_load_offset=reuse_left?(channel_stride_bytes<<1):32'd0;
  wire [3:0] active_mask={tile_w>1 && tile_h>1,tile_h>1,tile_w>1,1'b1};
  wire [2:0] active_lanes=(tile_w>1)?((tile_h>1)?3'd4:3'd2):((tile_h>1)?3'd2:3'd1);
  wire [C_BITS-1:0] channel_index=dw?oc:mac_c;
  wire [1:0] load_bank=spatial_bank(load_x[2:0],load_y[2:0],stride_two);
- wire [BA_BITS-1:0] load_bank_index=bank_offset(load_x[2:0],load_y[2:0],load_c,stride_two);
+ wire [BA_BITS-1:0] load_bank_index=bank_offset(load_x[2:0],load_y[2:0],load_c,stride_two,input_x_phase);
  wire [2:0] lane_x[0:3],lane_y[0:3];
  wire [1:0] lane_bank[0:3];
  wire [BA_BITS-1:0] lane_index[0:3];
@@ -165,7 +180,7 @@ module self_conv_spatial4_engine #(
   assign lane_x[l]=tap_x+((l%2)?(stride_two?3'd2:3'd1):3'd0);
   assign lane_y[l]=tap_y+((l/2)?(stride_two?3'd2:3'd1):3'd0);
   assign lane_bank[l]=spatial_bank(lane_x[l],lane_y[l],stride_two);
-  assign lane_index[l]=bank_offset(lane_x[l],lane_y[l],channel_index,stride_two);
+  assign lane_index[l]=bank_offset(lane_x[l],lane_y[l],channel_index,stride_two,input_x_phase);
  end
  always_comb begin
   for(integer b=0;b<4;b=b+1)bank_read_index[b]=0;
@@ -176,13 +191,13 @@ module self_conv_spatial4_engine #(
   compact_word_ram #(.DEPTH(BANK_DEPTH)) mem(
    .clk(clk),.wr_en(input_response && load_bank==b && !clear),.rd_en(state==MAC_READ && !clear),
    .wr_addr($clog2(BANK_DEPTH)'(load_bank_index>>2)),.rd_addr($clog2(BANK_DEPTH)'(bank_read_index[b]>>2)),
-   .wr_data(input_wide?rdata:{4{rdata[7:0]}}),
+   .wr_data(input_wide?core_rdata:{4{core_rdata[7:0]}}),
    .wr_mask(input_wide?4'hf:(4'b1<<load_bank_index[1:0])),.rd_data(input_word_q[b]));
  end
  compact_word_ram #(.DEPTH((WEIGHT_BYTES+3)/4)) weights(
   .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_READ && !clear),
   .wr_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_load_index>>2)),.rd_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_index>>2)),
-  .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),
+  .wr_data(weight_wide?core_rdata:{4{core_rdata[7:0]}}),
   .wr_mask(weight_wide?4'hf:(4'b1<<weight_load_index[1:0])),.rd_data(weight_word_q));
  always_ff @(posedge clk)begin
   if(!clear)begin
@@ -257,14 +272,14 @@ module self_conv_spatial4_engine #(
     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
-    load_x<=0;load_y<=0;load_c<=0;load_index<=0;
-    load_addr<=tile_input_base;load_row_addr<=tile_input_base;
+    load_x<=first_load_x;load_y<=0;load_c<=0;load_index<=0;
+    load_addr<=tile_input_base+first_load_offset;load_row_addr<=tile_input_base;
     oc<=0;dw_weight_base<=0;weight_channel_addr<=wb;weight_addr<=wb;weight_load_index<=0;
     output_channel_addr<=tile_output_base;
     state<=IREQ;
    end
    IREQ,IWAIT:begin
-    if(state==IREQ && ready)state<=IWAIT;
+    if(state==IREQ && core_ready)state<=IWAIT;
     if(input_response)begin
      input_reads<=input_reads+input_step;load_index<=load_index+input_step;
      if(load_c+input_step<ci)begin
@@ -273,25 +288,25 @@ module self_conv_spatial4_engine #(
       load_c<=0;load_x<=load_x+1'b1;load_addr<=load_addr+input_step;state<=IREQ;
      end else begin
       if(load_y==0)cache_row_bytes<=load_index+input_step;
-      load_c<=0;load_x<=0;
+      load_c<=0;load_x<=first_load_x;
       if(load_y+1'b1<tile_ih)begin
        load_y<=load_y+1'b1;load_row_addr<=load_row_addr+input_row_bytes;
-       load_addr<=load_row_addr+input_row_bytes;state<=IREQ;
+       load_addr<=load_row_addr+input_row_bytes+first_load_offset;state<=IREQ;
       end else state<=WREQ;
      end
     end
    end
    WREQ,WWAIT:begin
-    if(state==WREQ && ready)state<=WWAIT;
+    if(state==WREQ && core_ready)state<=WWAIT;
     if(weight_response || (state==WREQ && weight_hit))begin
      if(weight_response)weight_reads<=weight_reads+weight_step;
      if(!weight_hit && (weight_wide?(weight_load_index!=weight_last_word):(weight_load_index!=weight_last_byte)))begin
       weight_load_index<=weight_load_index+weight_step;weight_addr<=weight_addr+weight_step;state<=WREQ;
      end else begin
-      if(dw_cached)dw_weights_valid<=1;
+      if(layer_cached)dw_weights_valid<=1;
       pixel_x<=0;pixel_y<=0;pixel_index<=0;window_base<=0;window_row_base<=0;
       input_index<=dw?oc:0;kernel_row_base<=dw?oc:0;
-      weight_index<=dw_cached?dw_weight_base:0;tap_x<=0;tap_y<=0;mac_c<=0;
+      weight_index<=layer_cached?dw_weight_base:0;tap_x<=0;tap_y<=0;mac_c<=0;
       for(integer l=0;l<4;l=l+1)accumulator[l]<=0;
       state<=MAC_READ;
      end
@@ -319,7 +334,7 @@ module self_conv_spatial4_engine #(
     end
    end
    OREQ,OWAIT:begin
-    if(state==OREQ && ready)state<=OWAIT;
+    if(state==OREQ && core_ready)state<=OWAIT;
     if(output_response)begin
      if(store_x+1'b1<tile_w)begin
       store_x<=store_x+1'b1;store_index<=store_index+1'b1;
@@ -350,4 +365,61 @@ module self_conv_spatial4_engine #(
    default:state<=FAIL;
   endcase
  end
+
+ generate if(READ_WORD_BUFFER)begin:read_word_buffers
+  logic [1:0] cached_valid;
+  logic [29:0] cached_tag[0:1];
+  logic [31:0] cached_data[0:1];
+  logic pending,pending_widen,pending_fill,pending_region;
+  logic [1:0] pending_lane;
+  logic [29:0] pending_tag;
+  wire region=(state==WREQ || state==WWAIT);
+  wire [31:0] base=region?wb:ib;
+  wire [63:0] limit=region?weight_end:input_end;
+  wire [31:0] aligned={core_addr[31:2],2'b00};
+  wire hit=!pending && core_valid && !core_write && cached_valid[region] &&
+           cached_tag[region]==core_addr[31:2];
+  // No widening past either end of the declared read-only tensor.
+  wire widen=core_valid && !core_write && core_byte_access &&
+             {32'd0,aligned}>={32'd0,base} && {32'd0,aligned}+64'd4<=limit;
+  wire accepted=valid && ready;
+  wire returned=response && (pending || accepted);
+  wire fill=pending?pending_fill:(!core_write && !byte_access);
+  wire fill_region=pending?pending_region:region;
+  wire [29:0] fill_tag=pending?pending_tag:core_addr[31:2];
+  wire [1:0] lane=pending?pending_lane:core_addr[1:0];
+  wire [7:0] returned_byte=rdata[lane*8+:8];
+  wire [7:0] cached_byte=cached_data[region][core_addr[1:0]*8+:8];
+  assign valid=core_valid && !hit;
+  assign write=core_write;
+  assign byte_access=widen?1'b0:core_byte_access;
+  assign addr=widen?aligned:core_addr;
+  assign wdata=core_wdata;
+  assign core_ready=!pending && (hit || ready);
+  assign core_response=hit || returned;
+  assign core_rdata=hit ? (core_byte_access?{{24{cached_byte[7]}},cached_byte}:cached_data[region]) :
+                    ((pending?pending_widen:widen)?{{24{returned_byte[7]}},returned_byte}:rdata);
+  always_ff @(posedge clk or negedge rst_n)begin
+   if(!rst_n)begin cached_valid<=0;pending<=0;pending_widen<=0;pending_fill<=0;
+    pending_region<=0;pending_lane<=0;pending_tag<=0;end
+   else if(clear || (state==IDLE && start))begin cached_valid<=0;pending<=0;end
+   else begin
+    if(accepted)begin
+     pending<=!response;pending_widen<=widen;
+     pending_fill<=!core_write && !byte_access;pending_region<=region;
+     pending_lane<=core_addr[1:0];pending_tag<=core_addr[31:2];
+     if(core_write)for(integer b=0;b<2;b++)
+      if(cached_tag[b]==core_addr[31:2])cached_valid[b]<=0;
+    end else if(returned)pending<=0;
+    if(returned && fill)begin
+     cached_valid[fill_region]<=1;
+     cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=rdata;
+    end
+   end
+  end
+ end else begin:no_read_word_buffers
+  assign valid=core_valid;assign write=core_write;assign byte_access=core_byte_access;
+  assign addr=core_addr;assign wdata=core_wdata;
+  assign core_ready=ready;assign core_response=response;assign core_rdata=rdata;
+ end endgenerate
 endmodule
