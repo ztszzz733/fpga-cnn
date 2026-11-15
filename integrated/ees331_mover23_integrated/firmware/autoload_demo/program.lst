@@ -1,0 +1,110 @@
+# Generated RV32I listing: byte address, machine word, instruction; not C runtime.
+0000  400000b7  lui x1, hi(0x40000000)
+0004  00008093  addi x1, x1, lo(0x40000000)
+0008  00000137  lui x2, hi(0x40)
+000c  04010113  addi x2, x2, lo(0x40)
+0010  000001b7  lui x3, hi(0x80)
+0014  08018193  addi x3, x3, lo(0x80)
+0018  0001a023  sw x0, 0(x3)
+001c  0001a223  sw x0, 4(x3)
+0020  0001a423  sw x0, 8(x3)
+0024  00000237  lui x4, hi(0x1)
+0028  00120213  addi x4, x4, lo(0x1)
+002c  00412023  sw x4, 0(x2)
+0030  00012023  sw x0, 0(x2)
+0034  00412023  sw x4, 0(x2)
+0038  00031337  lui x6, hi(0x30d40)
+003c  d4030313  addi x6, x6, lo(0x30d40)
+wait_load:
+0040  00412203  lw x4, 4(x2)
+0044  00127293  andi x5, x4, 1
+0048  00029863  bne x5, x0, load_finished
+004c  fff30313  addi x6, x6, -1
+0050  fe0318e3  bne x6, x0, wait_load
+0054  10000863  beq x0, x0, timeout
+load_finished:
+0058  00227393  andi x7, x4, 2 # save load error before acknowledgement
+005c  00010023  sb x0, 0(x2)
+0060  00011023  sh x0, 0(x2)
+0064  00012403  lw x8, 0(x2)
+0068  000004b7  lui x9, hi(0x1)
+006c  00148493  addi x9, x9, lo(0x1)
+0070  10941263  bne x8, x9, result_error
+0074  00000013  nop # exercise held completion
+0078  00000013  nop # exercise held completion
+007c  00000013  nop # exercise held completion
+0080  00000013  nop # exercise held completion
+0084  00000013  nop # exercise held completion
+0088  00000013  nop # exercise held completion
+008c  00000013  nop # exercise held completion
+0090  00000013  nop # exercise held completion
+0094  00012023  sw x0, 0(x2)
+0098  00005337  lui x6, hi(0x4e20)
+009c  e2030313  addi x6, x6, lo(0x4e20)
+wait_ack:
+00a0  00412203  lw x4, 4(x2)
+00a4  00020863  beq x4, x0, acknowledged
+00a8  fff30313  addi x6, x6, -1
+00ac  fe031ae3  bne x6, x0, wait_ack
+00b0  0a000a63  beq x0, x0, timeout
+acknowledged:
+00b4  08039863  bne x7, x0, load_error
+00b8  00000237  lui x4, hi(0x1e0)
+00bc  1e020213  addi x4, x4, lo(0x1e0)
+00c0  0040a423  sw x4, 8(x1)
+00c4  00000237  lui x4, hi(0x1)
+00c8  00120213  addi x4, x4, lo(0x1)
+00cc  0040ac23  sw x4, 24(x1)
+00d0  00000237  lui x4, hi(0x3d)
+00d4  03d20213  addi x4, x4, lo(0x3d)
+00d8  0040a023  sw x4, 0(x1)
+00dc  00005337  lui x6, hi(0x4e20)
+00e0  e2030313  addi x6, x6, lo(0x4e20)
+wait_cnn:
+00e4  0040a203  lw x4, 4(x1)
+00e8  00427293  andi x5, x4, 4 # CNN ERROR
+00ec  06029463  bne x5, x0, cnn_error
+00f0  00227293  andi x5, x4, 2 # CNN DONE
+00f4  00029863  bne x5, x0, cnn_finished
+00f8  fff30313  addi x6, x6, -1
+00fc  fe0314e3  bne x6, x0, wait_cnn
+0100  06000263  beq x0, x0, timeout
+cnn_finished:
+0104  00000137  lui x2, hi(0x140)
+0108  14010113  addi x2, x2, lo(0x140)
+010c  00012203  lw x4, 0(x2)
+0110  00412283  lw x5, 4(x2)
+0114  0041a023  sw x4, 0(x3)
+0118  0051a223  sw x5, 4(x3)
+011c  09ff0437  lui x8, hi(0x9ff05a5)
+0120  5a540413  addi x8, x8, lo(0x9ff05a5)
+0124  04821863  bne x4, x8, result_error
+0128  a5a5a437  lui x8, hi(0xa5a5a50b)
+012c  50b40413  addi x8, x8, lo(0xa5a5a50b)
+0130  04829263  bne x5, x8, result_error
+0134  00006237  lui x4, hi(0x600d)
+0138  00d20213  addi x4, x4, lo(0x600d)
+013c  0041a423  sw x4, 8(x3)
+0140  04000263  beq x0, x0, halt
+load_error:
+0144  dead0237  lui x4, hi(0xdead0001)
+0148  00120213  addi x4, x4, lo(0xdead0001)
+014c  0041a423  sw x4, 8(x3)
+0150  02000a63  beq x0, x0, halt
+cnn_error:
+0154  dead0237  lui x4, hi(0xdead0002)
+0158  00220213  addi x4, x4, lo(0xdead0002)
+015c  0041a423  sw x4, 8(x3)
+0160  02000263  beq x0, x0, halt
+timeout:
+0164  dead0237  lui x4, hi(0xdead0003)
+0168  00320213  addi x4, x4, lo(0xdead0003)
+016c  0041a423  sw x4, 8(x3)
+0170  00000a63  beq x0, x0, halt
+result_error:
+0174  dead0237  lui x4, hi(0xdead0004)
+0178  00420213  addi x4, x4, lo(0xdead0004)
+017c  0041a423  sw x4, 8(x3)
+0180  00000263  beq x0, x0, halt
+halt:
+0184  0000006f  jal x0, 0

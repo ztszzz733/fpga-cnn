@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "kind": "pw8_panel",
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_pw8_engine.sv": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b",
+    "simulation/tb/baseline_pw8_panel.sv": "7307e7c7f71e6d30d428ff840e99baadc95632a3442f0d1caee17bc75001e8f6",
+    "simulation/tb/pw8_panel_top.sv": "b3d514f8df92fb543a64c87e969c1abfea3736a0acafd71ed31d3d8cc20e158e",
+    "simulation/tb/integration/pw8_panel_main.cpp": "b0eb339321d2450cf2e8e3396f61c8a2a71f05e34fcb14e53f760f84e5cf809c"
+  },
+  "full_network": false,
+  "compile_seconds": 25.246164224000005,
+  "simulation_seconds": 9.878379407000004,
+  "sources_unchanged": true
+}

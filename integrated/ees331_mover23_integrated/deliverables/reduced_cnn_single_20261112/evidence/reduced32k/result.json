@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "capacity": 32768,
+  "part": "xc7z020clg484-1",
+  "out": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261112_200153_reduced_synth_32768",
+  "pid": 3876,
+  "seconds": 607.1720000000023,
+  "resources": {
+    "Slice LUTs": 35326.0,
+    "Slice Registers": 25830.0,
+    "Block RAM Tile": 47.0,
+    "DSPs": 33.0
+  }
+}

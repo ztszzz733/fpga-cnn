@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/ztszzz733/fpga-cnn",
+  "branch": "bai-datasram",
+  "commit": "0f7cc8d35e21e5e6458da15797512e9e6a4eddbd",
+  "path": "cpu_control (2)/cpu_control/rtl/overlap/datasram_banked.sv",
+  "sha256": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+  "changes": "none; exact Git blob"
+}

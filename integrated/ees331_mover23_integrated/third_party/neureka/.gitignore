@@ -1,0 +1,6 @@
+.bender
+.bender/*
+Bender.lock
+sim/*
+build/*
+venv/*

@@ -1,0 +1,1 @@
+{"status":"PASS","cycles":235705,"jobs":8,"checked_output_bytes":17964,"results":1,"real_multiframe_work_cycles":0,"real_multiframe_mac_cycles":0,"peak_active_frames":1,"gp_reads":15342,"gp_writes":2058,"cpu_ram_reads":1,"cpu_ram_writes":1,"ddr_read_bytes":20480,"ddr_write_bytes":9216,"unit_starts":[1,1,1,0,0,0,0,0,2,1,0,2]}

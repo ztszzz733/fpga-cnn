@@ -1,0 +1,320 @@
+<div id="cpu-six-module-reference">
+  <style>
+    #cpu-six-module-reference {
+      color: var(--foreground);
+      font-family: inherit;
+      width: 100%;
+    }
+    #cpu-six-module-reference .diagram-title {
+      margin: 0 0 8px;
+      font-weight: 500;
+    }
+    #cpu-six-module-reference .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 0 0 8px;
+      color: var(--muted-foreground);
+    }
+    #cpu-six-module-reference .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #cpu-six-module-reference .legend-line {
+      display: inline-block;
+      width: 34px;
+      height: 0;
+      border-top: 2px solid var(--border);
+    }
+    #cpu-six-module-reference .legend-line.data {
+      border-top-width: 6px;
+      border-color: var(--viz-series-1);
+    }
+    #cpu-six-module-reference .legend-line.control {
+      border-color: var(--viz-series-2);
+    }
+    #cpu-six-module-reference .legend-line.status {
+      border-style: dashed;
+      border-color: var(--muted-foreground);
+    }
+    #cpu-six-module-reference svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      color: var(--foreground);
+    }
+    #cpu-six-module-reference .cpu-boundary {
+      fill: color-mix(in srgb, var(--card) 92%, transparent);
+      stroke: var(--foreground);
+      stroke-width: 2;
+    }
+    #cpu-six-module-reference .module {
+      fill: color-mix(in srgb, var(--viz-series-1) 10%, var(--card));
+      stroke: var(--border);
+      stroke-width: 2;
+    }
+    #cpu-six-module-reference .control-module {
+      fill: color-mix(in srgb, var(--viz-series-2) 10%, var(--card));
+      stroke: var(--border);
+      stroke-width: 2;
+    }
+    #cpu-six-module-reference .external {
+      fill: color-mix(in srgb, var(--viz-series-3) 12%, var(--card));
+      stroke: var(--border);
+      stroke-width: 2;
+    }
+    #cpu-six-module-reference .data-line {
+      fill: none;
+      stroke: var(--viz-series-1);
+      stroke-width: 6;
+      marker-end: url(#arrow-data);
+    }
+    #cpu-six-module-reference .control-line {
+      fill: none;
+      stroke: var(--viz-series-2);
+      stroke-width: 2;
+      marker-end: url(#arrow-control);
+    }
+    #cpu-six-module-reference .status-line {
+      fill: none;
+      stroke: var(--muted-foreground);
+      stroke-width: 2;
+      stroke-dasharray: 7 5;
+      marker-end: url(#arrow-status);
+    }
+    #cpu-six-module-reference .module-title {
+      fill: var(--foreground);
+      font-size: 15px;
+      font-weight: 500;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .module-subtitle {
+      fill: var(--muted-foreground);
+      font-size: 12px;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .label {
+      fill: var(--foreground);
+      font-size: 11px;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .data-label {
+      fill: var(--viz-series-1);
+      font-size: 11px;
+      font-weight: 500;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .control-label {
+      fill: var(--viz-series-2);
+      font-size: 11px;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .status-label {
+      fill: var(--muted-foreground);
+      font-size: 11px;
+      text-anchor: middle;
+    }
+    #cpu-six-module-reference .boundary-label {
+      fill: var(--foreground);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    #cpu-six-module-reference .note {
+      fill: var(--muted-foreground);
+      font-size: 11px;
+    }
+  </style>
+
+  <h3 class="diagram-title">CPU 六模块与外部存储硬件参考图</h3>
+  <div class="legend" aria-hidden="true">
+    <span class="legend-item"><span class="legend-line data"></span>多位数据线合并成数据束</span>
+    <span class="legend-item"><span class="legend-line control"></span>控制信号逐项列出</span>
+    <span class="legend-item"><span class="legend-line status"></span>状态监视与反馈</span>
+  </div>
+
+  <svg viewBox="0 0 1200 900" role="img" aria-labelledby="cpu-six-title cpu-six-desc">
+    <title id="cpu-six-title">六模块 CPU 与同步指令存储器、Data SRAM、CNN MMIO 的硬件连接</title>
+    <desc id="cpu-six-desc">取指、译码发射、执行、访存、写回沿主数据流横向连接，流水控制单元位于下方。粗线是合并的数据束，细线是逐项列出的控制信号，虚线是状态反馈。</desc>
+    <defs>
+      <marker id="arrow-data" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--viz-series-1)"></path>
+      </marker>
+      <marker id="arrow-control" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--viz-series-2)"></path>
+      </marker>
+      <marker id="arrow-status" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 Z" fill="var(--muted-foreground)"></path>
+      </marker>
+    </defs>
+
+    <!-- External hardware -->
+    <rect class="external" x="60" y="28" width="190" height="82" rx="4"></rect>
+    <text class="module-title" x="155" y="58">同步指令存储器</text>
+    <text class="module-subtitle" x="155" y="79">imem_rom</text>
+    <text class="module-subtitle" x="155" y="97">CPU 外部</text>
+
+    <rect class="external" x="666" y="28" width="210" height="82" rx="4"></rect>
+    <text class="module-title" x="771" y="58">双口 Data SRAM</text>
+    <text class="module-subtitle" x="771" y="79">CPU 使用 A 口</text>
+    <text class="module-subtitle" x="771" y="97">B口仲裁在 CPU 外部</text>
+
+    <rect class="external" x="925" y="28" width="210" height="82" rx="4"></rect>
+    <text class="module-title" x="1030" y="58">CNN MMIO</text>
+    <text class="module-subtitle" x="1030" y="79">FPGA1 internal regs</text>
+    <text class="module-subtitle" x="1030" y="97">寄存器从接口</text>
+
+    <!-- CPU shell -->
+    <rect class="cpu-boundary" x="28" y="172" width="1144" height="690" rx="6"></rect>
+    <text class="boundary-label" x="48" y="198">cpu_core（仅实例化、参数和接线）</text>
+    <text class="note" x="1148" y="198" text-anchor="end">RV32I 五级流水 · 六个功能模块</text>
+
+    <!-- Six modules -->
+    <rect class="module" x="58" y="300" width="170" height="176" rx="5"></rect>
+    <text class="module-title" x="143" y="330">1. fetch_unit</text>
+    <text class="module-subtitle" x="143" y="352">取指单元</text>
+    <text class="label" x="143" y="382">PC / Next-PC MUX</text>
+    <text class="label" x="143" y="402">Fetch Adapter</text>
+    <text class="label" x="143" y="422">IF/ID 流水寄存器</text>
+    <text class="label" x="143" y="449">保存：PC、IF/ID</text>
+
+    <rect class="module" x="270" y="300" width="190" height="176" rx="5"></rect>
+    <text class="module-title" x="365" y="330">2. decode_issue_unit</text>
+    <text class="module-subtitle" x="365" y="352">译码、寄存器堆与发射</text>
+    <text class="label" x="365" y="382">Main / ALU Decoder</text>
+    <text class="label" x="365" y="402">Register File / ImmGen</text>
+    <text class="label" x="365" y="422">ID/EX 流水寄存器</text>
+    <text class="label" x="365" y="449">保存：寄存器堆、ID/EX</text>
+
+    <rect class="module" x="505" y="300" width="176" height="176" rx="5"></rect>
+    <text class="module-title" x="593" y="330">3. execute_unit</text>
+    <text class="module-subtitle" x="593" y="352">执行、比较与跳转</text>
+    <text class="label" x="593" y="382">Forward MUX / ALU</text>
+    <text class="label" x="593" y="402">比较器 / Branch Control</text>
+    <text class="label" x="593" y="422">Branch/JALR 目标计算</text>
+    <text class="label" x="593" y="449">纯组合逻辑</text>
+
+    <rect class="module" x="726" y="300" width="190" height="176" rx="5"></rect>
+    <text class="module-title" x="821" y="330">4. memory_access_unit</text>
+    <text class="module-subtitle" x="821" y="352">SRAM / MMIO 访存</text>
+    <text class="label" x="821" y="382">EX/MEM / Address Decoder</text>
+    <text class="label" x="821" y="402">LSU / SRAM Request</text>
+    <text class="label" x="821" y="422">MMIO Route</text>
+    <text class="label" x="821" y="449">保存：EX/MEM</text>
+
+    <rect class="module" x="960" y="300" width="176" height="176" rx="5"></rect>
+    <text class="module-title" x="1048" y="330">5. writeback_unit</text>
+    <text class="module-subtitle" x="1048" y="352">写回单元</text>
+    <text class="label" x="1048" y="382">MEM/WB 流水寄存器</text>
+    <text class="label" x="1048" y="402">WB Result MUX</text>
+    <text class="label" x="1048" y="422">RF 写使能限定</text>
+    <text class="label" x="1048" y="449">保存：MEM/WB</text>
+
+    <rect class="control-module" x="322" y="655" width="570" height="167" rx="5"></rect>
+    <text class="module-title" x="607" y="685">6. pipeline_control_unit　流水控制单元（纯组合）</text>
+    <text class="label" x="607" y="711">Hazard Unit · Load-use Stall · Redirect Flush · Forward Select</text>
+    <text class="status-label" x="607" y="742">监视：valid_d/e/m/w，rs1_d，rs2_d，rs1_e，rs2_e，rd_e/m/w</text>
+    <text class="status-label" x="607" y="764">uses_rs1_d/e，uses_rs2_d/e，memread_e/m，regwrite_m/w</text>
+    <text class="status-label" x="607" y="786">执行反馈：redirect，redirect_sel[1:0]</text>
+    <text class="control-label" x="607" y="808">输出在连线上逐项标注，不形成共享控制总线</text>
+
+    <!-- Main stage-to-stage data bundles -->
+    <path class="data-line" d="M228 355 L270 355"></path>
+    <text class="data-label" x="249" y="246">D级数据束</text>
+    <text class="data-label" x="249" y="262">instr_d[31:0]</text>
+    <text class="data-label" x="249" y="278">pc_d[31:0], pc4_d[31:0]</text>
+    <path class="control-line" d="M228 443 L270 443"></path>
+    <text class="control-label" x="249" y="493">valid_d</text>
+
+    <path class="data-line" d="M460 355 L505 355"></path>
+    <text class="data-label" x="483" y="226">E级数据束</text>
+    <text class="data-label" x="483" y="242">pc_e, pc4_e, rd1_e, rd2_e, imm_e [31:0]</text>
+    <text class="data-label" x="483" y="258">rs1_e, rs2_e, rd_e [4:0]</text>
+    <path class="control-line" d="M460 443 L505 443"></path>
+    <text class="control-label" x="483" y="493">valid_e · uses_rs1_e · uses_rs2_e</text>
+    <text class="control-label" x="483" y="509">alu_ctrl_e[3:0] · alu_src_a/b_sel_e[1:0]</text>
+    <text class="control-label" x="483" y="525">regwrite_e · memread_e · memwrite_e</text>
+    <text class="control-label" x="483" y="541">load_type_e[2:0] · store_type_e[1:0]</text>
+    <text class="control-label" x="483" y="557">wb_sel_e[1:0] · branch_type_e[2:0] · jump_e[1:0]</text>
+
+    <path class="data-line" d="M681 355 L726 355"></path>
+    <text class="data-label" x="704" y="226">M级输入数据束</text>
+    <text class="data-label" x="704" y="242">alu_result_e[31:0]</text>
+    <text class="data-label" x="704" y="258">store_data_e[31:0], pc4_e[31:0], rd_e[4:0]</text>
+    <path class="control-line" d="M681 443 L726 443"></path>
+    <text class="control-label" x="704" y="493">valid_e · regwrite_e</text>
+    <text class="control-label" x="704" y="509">memread_e · memwrite_e</text>
+    <text class="control-label" x="704" y="525">load_type_e[2:0] · store_type_e[1:0]</text>
+    <text class="control-label" x="704" y="541">wb_sel_e[1:0]</text>
+
+    <path class="data-line" d="M916 355 L960 355"></path>
+    <text class="data-label" x="938" y="226">W级候选数据束</text>
+    <text class="data-label" x="938" y="242">read_data_m[31:0]</text>
+    <text class="data-label" x="938" y="258">alu_result_m[31:0], pc4_m[31:0], rd_m[4:0]</text>
+    <path class="control-line" d="M916 443 L960 443"></path>
+    <text class="control-label" x="938" y="493">valid_m · regwrite_m</text>
+    <text class="control-label" x="938" y="509">wb_sel_m[1:0]</text>
+
+    <!-- IMEM interface: data bundled, control separate -->
+    <path class="data-line" d="M114 300 L114 122 L116 122"></path>
+    <text class="data-label" x="78" y="145">imem_addr[31:0]</text>
+    <path class="data-line" d="M194 110 L194 288"></path>
+    <text class="data-label" x="229" y="145">imem_rdata[31:0]</text>
+    <path class="control-line" d="M143 300 L143 120"></path>
+    <text class="control-label" x="153" y="158">imem_re</text>
+
+    <!-- SRAM interface -->
+    <path class="data-line" d="M775 300 L775 121"></path>
+    <text class="data-label" x="714" y="139">dmem_addr[31:0]</text>
+    <text class="data-label" x="714" y="155">dmem_wdata[31:0]</text>
+    <path class="data-line" d="M832 110 L832 288"></path>
+    <text class="data-label" x="875" y="139">dmem_rdata[31:0]</text>
+    <path class="control-line" d="M797 300 L797 121"></path>
+    <text class="control-label" x="810" y="174">dmem_wstrb[3:0]</text>
+    <text class="control-label" x="810" y="190">dmem_re · dmem_we</text>
+
+    <!-- MMIO interface -->
+    <path class="data-line" d="M855 300 L855 211 L985 211 L985 121"></path>
+    <text class="data-label" x="942" y="228">mmio_addr[31:0] · mmio_wdata[31:0]</text>
+    <path class="data-line" d="M1069 110 L1069 272 L884 272 L884 288"></path>
+    <text class="data-label" x="1025" y="288">mmio_rdata[31:0]</text>
+    <path class="control-line" d="M873 300 L873 244 L1015 244 L1015 121"></path>
+    <text class="control-label" x="950" y="238">mmio_re · mmio_we</text>
+    <path class="control-line" d="M1040 110 L1040 254 L895 254 L895 288"></path>
+    <text class="control-label" x="974" y="267">mmio_ready</text>
+
+    <!-- Writeback and forwarding data -->
+    <path class="data-line" d="M1048 476 L1048 590 L365 590 L365 488"></path>
+    <text class="data-label" x="715" y="583">wb_data_w[31:0]（寄存器写回，同时用于 WB→EX 前递）</text>
+    <path class="control-line" d="M1025 476 L1025 612 L388 612 L388 488"></path>
+    <text class="control-label" x="718" y="630">rd_w[4:0] · rf_we_w</text>
+
+    <path class="data-line" d="M790 476 L790 568 L623 568 L623 488"></path>
+    <text class="data-label" x="706" y="560">mem_forward_m[31:0]</text>
+
+    <!-- Redirect target data back to fetch -->
+    <path class="data-line" d="M550 300 L550 280 L177 280 L177 288"></path>
+    <text class="data-label" x="366" y="272">branch_target_e[31:0] · jalr_target_e[31:0]</text>
+
+    <!-- Control-unit outputs -->
+    <path class="control-line" d="M425 655 L425 635 L90 635 L90 488"></path>
+    <text class="control-label" x="235" y="649">pc_sel[1:0] · pc_en · if_id_en · if_id_flush</text>
+    <path class="control-line" d="M510 655 L510 620 L330 620 L330 488"></path>
+    <text class="control-label" x="406" y="613">id_ex_flush</text>
+    <path class="control-line" d="M688 655 L688 640 L655 640 L655 488"></path>
+    <text class="control-label" x="741" y="648">fwd_a[1:0] · fwd_b[1:0] · fwd_store[1:0]</text>
+
+    <!-- Control-unit status inputs -->
+    <path class="status-line" d="M202 476 L202 728 L310 728"></path>
+    <path class="status-line" d="M408 476 L408 643"></path>
+    <path class="status-line" d="M593 476 L593 643"></path>
+    <path class="status-line" d="M850 476 L850 643"></path>
+    <path class="status-line" d="M1088 476 L1088 728 L904 728"></path>
+
+    <!-- Common system signals -->
+    <path class="control-line" d="M45 838 L1148 838"></path>
+    <text class="control-label" x="596" y="852">公共系统线：clk、rst_n（按各模块是否含时序状态/安全门控分别连接）</text>
+
+    <text class="note" x="48" y="884">边界说明：此图是现有 Control + Datapath 的目标等价六模块划分；当前生产 RTL 尚未重构为这六个顶层文件。</text>
+  </svg>
+</div>

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "unit": "20261113_152308_reuse_unit",
+  "soc": "20261113_153421_k3_reuse_small_soc",
+  "resource_run": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_k3_reuse_20261113_153959",
+  "sources_verified": true,
+  "fixture_verified": true,
+  "output_sha256": "fda5934ce9d3327db59192cde49f419cf4250a1494f350f5c0d0ff47af10eee8",
+  "previous_168_baseline_reproduced": true,
+  "cases": 216,
+  "faster": 129,
+  "unchanged": 87,
+  "slower": 0,
+  "increased_read_bytes": 0,
+  "source_sha256": {
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39",
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "simulation/tb/self_reuse_unit_top.sv": "286bf1014dfddeb984966f32433d080fa1e536c30db52bca9e6012564978389b",
+    "simulation/tb/integration/self_reuse_unit_main.cpp": "fb2228d99439001a201179dd8b127e76e9462efecddf889d9bf17475546cb17f",
+    "simulation/scripts/run_k3_reuse_units.py": "8df60bc893fb3e74a6d522d5753592de0d01eb9a2578cadc431938bc6bdd356e",
+    "simulation/scripts/run_k3_reuse_small_soc.py": "cdc156b3a4580a57b2ad708e1cbb715dd8880c814fb5abdedfea92ed05e40d41"
+  },
+  "full_network": false,
+  "place_route": false
+}

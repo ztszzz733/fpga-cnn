@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "sources": {
+    "rtl\\download_ram.sv": "742c52233ef875614d79847b3de2498cfc264fe7069fa5ff07e21486ae3812bd",
+    "rtl\\program_loader_csr.sv": "cede5a509d464e0fe32da2f5f393e6f20919cefc2227d7fd48a559c954a94bed",
+    "tb\\program_loader_top.sv": "8e518baeffb94b9a5a59f6637b83f0146d28289aa7426c7a2d01938142b5c1b4",
+    "tb\\program_loader_top.cpp": "68eb3ef2817d406c365259cf933e3d36fb185c415bcb095084c1897c16e7203f"
+  },
+  "flags": [],
+  "cpp_defines": [],
+  "verilator": "C:\\msys64\\ucrt64\\bin\\verilator_bin.exe",
+  "verilator_sha256": "8987e8fbc4c0e884e4df18bc716c4bfced2973f84ff124ba63f1a747e8191c10",
+  "compile_seconds": 9.283368500007782,
+  "returncode": 0,
+  "exe_sha256": "0d27ff8b30e1e33cb2a9315e567706e3a24bbed7ac95c5fa77215b85ea7a556a",
+  "total_seconds": 9.384711600025184
+}

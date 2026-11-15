@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "scope": "Real K3/Post/Add and existing SRAM RTL only; no new MOVER/DDR/local-RAM adapter RTL",
+  "compile_seconds": 0,
+  "exe_sha256": "1f9bbe27af31b4789e49cf2a94a53e76182db13d0a3da0f3bdcb6b5cd5080265",
+  "sources": {
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_self/self_pw4_engine.sv": "f48ed4088567e3a9ec2c6e471a4da4ec7f1a7fe1d2cd1ca270a04f18f59498e6",
+    "rtl/cnn_self/self_pw4_overlap_engine.sv": "dfcf1277010fddd1c75402773300de5d73ec8fe1884b188a85a7e49be9b0669f",
+    "rtl/cnn_self/self_conv_pipe_engine.sv": "7a3c4ae86728a92aa59d672633241eac6236304b7bebf796b7b2abe21970b095",
+    "rtl/cnn_quant/dw7_cached_engine.sv": "7367df568f97f5f2ba0102af5f1f29bf5fe657e687b4a38164c3337670a612a3",
+    "rtl/cnn_quant/quant_post_engine.sv": "9f5650a66f1f67aa28517c8cfe568ed4c2aed5d72d33713d93a470d3ef189673",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "ea7d2751065207fc21e295dcaea9a558044ca9fe8f79f496db0f5aaeef0df52f",
+    "rtl/cnn_stream/bai/datasram_banked.sv": "116bc8cf8eb15a1c7d54e3a9aa3424b9b32e2bc90225ba398941264990a5d176",
+    "rtl/cnn_stream/stream_dispatch.sv": "291f2d2a7d72934ad96f339a46fbe12abf0be8dbf552eb408c51835478a972ba",
+    "rtl/cnn_stream/stream_buffer_leases.sv": "9b7bdf4c40588879e46e0dcdc4273c288e3b8524fc11ddceeefe9fb752637527",
+    "rtl/cnn_stream/stream_result_handoff.sv": "b0b19ed18e49ad75bdd2d340b0eef7c3f1feccb63b36ac99f4b29f4bfa1ae5cc",
+    "rtl/cnn_stream/self_stream_top.sv": "a35e6bb150db5f655c5e01134514a955cf30ad39cebb3a489509fb8cb7a5db3c",
+    "rtl/cnn_stream/stream_fixed_programmer.sv": "0946469004750cb9b0829c22375fc7a573a88bfa07c0653c3f1f5b60b1f6c65f",
+    "rtl/cnn_stream/self_fixed_network_top.sv": "766e8294bfd8dc99feded05f6e1b085365129bd2c54feeee59561059c9898262",
+    "rtl/cnn_self/self_conv_wide_engine.sv": "63ee110485773d4c01864cdbbee26fc9707d109b5bf5b23d75cdc486ce644b0d",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "6c67e3f27c1a45fb4d4495240f8e8a93f667c55fc0586052d42e89dbcf9b9ce4",
+    "rtl/cnn_self/self_pw8_engine.sv": "c7dac43972bd29cb5ccf137bde8a8d4056493d09af3d132443a65e762378faf0",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "e9d0b89c7446208d18eb2efc1a30b78aeec6e817297b187cca5d2483819113f4",
+    "tb/self_full_sim_top.sv": "0782dc8b46402a590106e935b2845b55e96377b426a6ba30231fe957df47835e",
+    "tb/integration/self_full_main.cpp": "6f14307f1e0fc5f0114744f1656964cbd858962331f0a6432a3402cefd35e46c"
+  },
+  "scenarios": {
+    "short_row_2x2x2_overlap": {
+      "status": "PASS",
+      "cycles": 1186,
+      "wall_seconds": 0.12322270800000013,
+      "checked_bytes": 48,
+      "macs": 144,
+      "output_sha256": "b11f7e9591998dd3273780519d35bb085761f74a908bbcf9575ddbe4c3dcbf48"
+    },
+    "short_row_2x2x2_preloaded": {
+      "status": "PASS",
+      "cycles": 544,
+      "wall_seconds": 0.12322314399999978,
+      "checked_bytes": 48,
+      "macs": 144,
+      "output_sha256": "b11f7e9591998dd3273780519d35bb085761f74a908bbcf9575ddbe4c3dcbf48"
+    },
+    "short_row_2x2x2_stress": {
+      "status": "PASS",
+      "cycles": 31316,
+      "wall_seconds": 0.22265209200000013,
+      "checked_bytes": 48,
+      "macs": 144,
+      "output_sha256": "b11f7e9591998dd3273780519d35bb085761f74a908bbcf9575ddbe4c3dcbf48"
+    },
+    "tile_8x8x32_overlap": {
+      "status": "PASS",
+      "cycles": 313518,
+      "wall_seconds": 1.2258958710000005,
+      "checked_bytes": 12288,
+      "macs": 589824,
+      "output_sha256": "417a1df6c5da411555beee4608154c57901187d8e6e8d2be9984ca8bc28b491e"
+    },
+    "tile_8x8x32_preloaded": {
+      "status": "PASS",
+      "cycles": 248724,
+      "wall_seconds": 1.026648358,
+      "checked_bytes": 12288,
+      "macs": 589824,
+      "output_sha256": "417a1df6c5da411555beee4608154c57901187d8e6e8d2be9984ca8bc28b491e"
+    },
+    "tile_8x8x32_stress": {
+      "status": "PASS",
+      "cycles": 424935,
+      "wall_seconds": 1.5763018209999995,
+      "checked_bytes": 12288,
+      "macs": 589824,
+      "output_sha256": "417a1df6c5da411555beee4608154c57901187d8e6e8d2be9984ca8bc28b491e"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "part": "xc7z020clg484-1",
+  "scope": "one PW8 OOC: prior prefetch/1KiB-cache version vs input-panel reuse; kernel=1, other ports retained",
+  "production_rtl_edited": false,
+  "place_route": false,
+  "threads": 1,
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_pw8_engine.sv": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b"
+  },
+  "runs": {
+    "0": {
+      "seconds": 90.40599999999904,
+      "utilization": {
+        "Slice LUTs": 2671.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1656.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 0.0
+      }
+    },
+    "1": {
+      "seconds": 95.0470000000023,
+      "utilization": {
+        "Slice LUTs": 3073.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 1722.0,
+        "Block RAM Tile": 1.5,
+        "DSPs": 0.0
+      }
+    }
+  },
+  "staged_hashes": {
+    "0": {
+      "self_pw8_engine.sv": "f01370b8d3c182163374c8e6082101801b05f895f4346fe6201488fb726799af",
+      "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+      "resource_pw8.sv": "27ff8b3823b01ac9de660d6e4dd68294bcd6113ba0685e24d4c51e23b8cccfd8"
+    },
+    "1": {
+      "self_pw8_engine.sv": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b",
+      "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+      "resource_pw8.sv": "27ff8b3823b01ac9de660d6e4dd68294bcd6113ba0685e24d4c51e23b8cccfd8"
+    }
+  },
+  "baseline_report": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_20261113_164459\\0\\utilization.rpt",
+  "baseline_timing": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_panel_20261113_164459\\0\\timing.rpt",
+  "baseline_record_sha256": "84c012d629feb13bd36e42312d37a41efe46f50028218b771626966f7468b98c",
+  "active_pid": 19444,
+  "mode": 1,
+  "delta_per_pw8": {
+    "Slice LUTs": 402.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 66.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "estimated_delta_six_pw8": {
+    "Slice LUTs": 2412.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 396.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "sources_unchanged": true
+}

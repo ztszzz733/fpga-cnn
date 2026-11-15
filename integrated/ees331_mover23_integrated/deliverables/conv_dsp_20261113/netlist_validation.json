@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "source_resource_run": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_conv_dsp_fixed_20261113_195332",
+  "tests": {
+    "pw8": {
+      "status": "PASS",
+      "cases": 3,
+      "seconds": 31.89099999999985
+    },
+    "k3": {
+      "status": "PASS",
+      "cases": 3,
+      "seconds": 29.7650000000001
+    }
+  }
+}

@@ -1,0 +1,85 @@
+"""Single source of truth for the six-module waveform and interface guide."""
+UNITS=['CPU CORE','CNN','DATASRAM','IMEM','IMAGE_BRIDGE','CLOCK']
+COLORS=[4,1,3,5,6,2]  # GTKWave: blue, red, yellow, indigo, violet, orange
+STATES=['cpu_state','cnn_state','sram_state','imem_state','bridge_state','clock_state']
+SIGNALS={}
+def add(name,width,source,target,description,valid):
+    SIGNALS[name]=dict(width=width,source=source,target=target,description=description,valid=valid)
+
+add('sys_clk',1,'外部','CLOCK','外部输入时钟；本次仿真周期 10 ns。','连续时钟')
+add('rst_n_in',1,'外部','CLOCK','外部低有效复位。','0=复位')
+add('clk',1,'CLOCK',','.join(UNITS[:-1]),'内部工作时钟，当前为 sys_clk 直通。','所有同步事务在上升沿采样')
+add('rst_n',1,'CLOCK',','.join(UNITS[:-1]),'异步置复位、三拍同步释放后的内部低有效复位。','0=复位')
+add('imem_addr',32,'CPU CORE','IMEM','取指字节地址，程序计数器对应的访问地址。','imem_re=1 且地址有效')
+add('imem_re',1,'CPU CORE','IMEM','取指读取使能。','上升沿为 1 时读取')
+add('imem_rdata',32,'IMEM','CPU CORE','同步返回的 32 位指令；复位/非法地址返回 NOP。','imem_re 被采样后的数据')
+for name,width,desc,valid in [
+    ('dmem_addr',32,'CPU 数据访问字节地址。','dmem_re 或 dmem_we'),
+    ('dmem_wdata',32,'CPU 写入的数据。','dmem_we'),
+    ('dmem_wstrb',4,'字节写掩码；bit i 控制数据位 [8i+7:8i]。','dmem_we'),
+    ('dmem_re',1,'CPU 数据读取使能，固定一拍响应。','上升沿采样'),
+    ('dmem_we',1,'CPU 数据写入使能。','上升沿采样')]:
+    add(name,width,'CPU CORE','DATASRAM',desc,valid)
+add('dmem_rdata',32,'DATASRAM','CPU CORE','CPU 固定一拍读返回值；没有单独 ready/rvalid。','dmem_re 被采样后有效')
+for name,width,desc,valid in [
+    ('cnn_mmio_addr',32,'CNN 寄存器字节地址，基址 0x40000000。','cnn_mmio_re 或 cnn_mmio_we'),
+    ('cnn_mmio_wdata',32,'寄存器写数据；CONTROL=0x3D 启动队列，bit1 软复位。','cnn_mmio_we && cnn_mmio_ready'),
+    ('cnn_mmio_re',1,'CNN 寄存器读使能。','cnn_mmio_ready=1 时完成'),
+    ('cnn_mmio_we',1,'CNN 寄存器写使能。','cnn_mmio_ready=1 时接受')]:
+    add(name,width,'CPU CORE','CNN',desc,valid)
+add('cnn_mmio_rdata',32,'CNN','CPU CORE','寄存器读返回值；STATUS bit0 busy、bit1 done、bit2 error。','cnn_mmio_re && cnn_mmio_ready')
+add('cnn_mmio_ready',1,'CNN','CPU CORE','地址选中且有 MMIO 请求时的组合就绪信号。','与 re/we 同周期')
+add('load_req',1,'CPU CORE','IMAGE_BRIDGE','CPU 请求加载一批资料；完成后 CPU 拉低确认。','四阶段握手中的请求电平')
+add('load_complete',1,'IMAGE_BRIDGE','CPU CORE','本批加载已经结束，成功和失败都会结束；必须同时检查 load_error。','保持到 CPU 撤销 load_req')
+add('load_error',1,'IMAGE_BRIDGE','CPU CORE','加载失败标记，如 CRC、超时、内存错误。','load_complete=1 时判断结果')
+for name,width,desc,valid in [
+    ('cnn_valid',11,'11 个客户端的独立请求有效位。','valid[i] && ready[i] 在上升沿接受'),
+    ('cnn_write',11,'对应通道为 1 写、为 0 读。','对应通道 valid=1'),
+    ('cnn_byte',11,'对应通道为 1 表示字节访问，0 表示对齐的 32 位字访问。','对应通道 valid=1'),
+    ('cnn_addr',352,'11×32 位字节地址；通道 i 使用 [32i+31:32i]。','对应通道 valid=1，未接受前保持'),
+    ('cnn_wdata',352,'11×32 位写数据；字节写使用该通道最低 8 位。','对应通道 valid && write'),
+    ('cnn_cancel',1,'CNN 软复位取消请求/未消费响应；不回滚已经写入的 SRAM。','高有效')]:
+    add(name,width,'CNN','DATASRAM',desc,valid)
+add('cnn_ready',11,'DATASRAM','CNN','每个通道获得对应存储体服务的就绪位。','与 valid 同周期为 1 才接受')
+add('cnn_response',11,'DATASRAM','CNN','逐通道完成响应，读和写都有响应。','请求接受后的寄存完成周期')
+add('cnn_rdata',352,'DATASRAM','CNN','11×32 位读返回值；字节读取符号扩展。','response[i]=1 且对应事务是读')
+add('cnn_mem_fault',1,'DATASRAM','顶层','CNN 非法地址/非对齐字访问故障锁存；送状态监测和 LED 组合逻辑。','保持到系统复位；软复位不清除')
+for name,width,desc,valid in [
+    ('io_mem_req',1,'图像桥存储请求。','req && gnt 在上升沿接受'),
+    ('io_mem_we',1,'1=写入 SRAM，0=读取；当前主动加载流程主要写。','io_mem_req'),
+    ('io_mem_addr',32,'对齐的 32 位字访问地址。','io_mem_req'),
+    ('io_mem_wdata',32,'桥写入 SRAM 的字数据，配合 be 选择目标字节。','req && we'),
+    ('io_mem_be',4,'写字节使能；读请求要求为 0。','req && we 时不得全零')]:
+    add(name,width,'IMAGE_BRIDGE','DATASRAM',desc,valid)
+add('io_mem_gnt',1,'DATASRAM','IMAGE_BRIDGE','桥访问已被接受；当前写操作在该接受边沿完成。','与 io_mem_req 同周期')
+add('io_mem_rvalid',1,'DATASRAM','IMAGE_BRIDGE','桥的读返回有效；写操作不用该信号。','对应已接受的读请求')
+add('io_mem_rdata',32,'DATASRAM','IMAGE_BRIDGE','桥读回的 32 位数据。','io_mem_rvalid=1 且 error=0')
+add('io_mem_error',1,'DATASRAM','IMAGE_BRIDGE','桥访问错误；写错误与 gnt 同期，读错误与 rvalid 同期。','写 gnt 或读 rvalid 有效期')
+add('uart_rx',1,'外部','IMAGE_BRIDGE','外部设备向 SoC 发送串口回复。','UART 空闲为高，8N1')
+add('uart_tx',1,'IMAGE_BRIDGE','外部','SoC 向外部设备发送 IMIO 请求。','UART 空闲为高，8N1')
+add('bridge_ready',1,'IMAGE_BRIDGE','顶层','桥的就绪状态，用于顶层 led_ready。','实际 ready 输出')
+add('bridge_busy',1,'IMAGE_BRIDGE','顶层','桥正在执行加载事务。','实际 busy 输出')
+add('bridge_error',1,'IMAGE_BRIDGE','顶层','桥失败锁存状态，用于监测和 led_error。','系统复位恢复')
+add('cnn_status_busy',1,'CNN','顶层','新增观测输出，队列、执行单元或访存排空仍忙。','高=存在未完成工作，不等于 PE 每周期乘加')
+add('cnn_status_done',1,'CNN','顶层','新增观测输出，队列完成脉冲。','不是 MMIO 中的 sticky done')
+add('cnn_status_error',1,'CNN','顶层','新增观测输出，队列错误脉冲。','顶层 cnn_state 保持 FAULT 至软/硬复位')
+add('led_ready',1,'顶层','外部','bridge_ready && !cnn_mem_fault。','高有效；不是 CNN 完成标志')
+add('led_busy',1,'顶层','外部','等于 bridge_busy。','不代表 CNN busy')
+add('led_error',1,'顶层','外部','bridge_error || cnn_mem_fault。','未包含 CNN 描述符错误')
+for unit,name in zip(UNITS,STATES):
+    add(name,2,'顶层监测逻辑','波形观察',f'{unit} 的寄存观测状态：0 RESET、1 IDLE、2 WORK、3 FAULT。','每个上升沿采样后更新；不控制功能模块')
+add('soc_module_state',12,'顶层监测逻辑','波形观察','每模块两位，低到高：CPU、CNN、DATASRAM、IMEM、IMAGE_BRIDGE、CLOCK。','六路并行状态打包')
+add('soc_active',6,'顶层监测逻辑','波形观察','bit0～5 对应上述顺序，状态为 WORK 的位为 1。','可同时多位为 1')
+add('soc_fault',6,'顶层监测逻辑','波形观察','bit0～5 对应上述顺序，状态为 FAULT 的位为 1。','CPU/IMEM/CLOCK 当前没有故障检测源')
+
+def groups():
+    result=[('TOP STATES',0,STATES+['soc_module_state','soc_active','soc_fault']),
+            ('EXTERNAL INPUTS',0,['sys_clk','rst_n_in','uart_rx'])]
+    # A net belongs to its source module, not to both endpoints.
+    for unit,color in zip(UNITS,COLORS):
+        names=[n for n,s in SIGNALS.items() if s['source']==unit]
+        result.append((unit,color,names))
+    result.append(('TOP OUTPUTS',0,['led_ready','led_busy','led_error']))
+    names=[n for _,_,members in result for n in members]
+    assert len(names)==len(set(names)) and set(names)==set(SIGNALS)
+    return result

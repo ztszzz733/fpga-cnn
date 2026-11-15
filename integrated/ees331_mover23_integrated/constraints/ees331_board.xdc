@@ -1,0 +1,17 @@
+# Manual printed pp6,28,29. LED0/1/2 active high; S1 has 4.7k pull-up, active low.
+set_property PACKAGE_PIN M19 [get_ports {sys_clk}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sys_clk}]
+set_property PACKAGE_PIN L18 [get_ports {rst_n_in}]
+set_property IOSTANDARD LVCMOS33 [get_ports {rst_n_in}]
+set_property PACKAGE_PIN V4 [get_ports {led_ready}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_ready}]
+set_property PACKAGE_PIN U6 [get_ports {led_busy}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_busy}]
+set_property PACKAGE_PIN U5 [get_ports {led_error}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_error}]
+create_clock -name sys_clk -period 10.000 [get_ports sys_clk]
+set_property SLEW SLOW [get_ports {led_ready led_busy led_error}]
+set_property DRIVE 8 [get_ports {led_ready led_busy led_error}]
+# Asynchronous user reset and human-visible LEDs have no synchronous board timing.
+set_false_path -from [get_ports rst_n_in]
+set_false_path -to [get_ports {led_ready led_busy led_error}]

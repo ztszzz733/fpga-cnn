@@ -1,0 +1,497 @@
+--- a/rtl/cnn_self/self_pw8_engine.sv
++++ b/rtl/cnn_self/self_pw8_engine.sv
+@@ -4,7 +4,7 @@
+ // Aligned groups use 32-bit reads; unaligned starts/tails use exact byte reads.
+ // Double-buffered weights and an eight-word write FIFO overlap local MACs.
+ // One outstanding external transaction; clear requires fabric cancellation too.
+-module self_pw8_engine #(parameter MAX_CHANNELS=512)(
++module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1)(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,width,height,
+  input logic [31:0] in_channels,out_channels,kernel,stride,
+@@ -31,10 +31,21 @@
+  logic [31:0] tile_x,tile_y,tile_input_base,tile_input_row_base,tile_output_base,tile_output_row_base;
+  logic [2:0] tile_w,load_lane,store_lane;logic [1:0] tile_h;
+  logic [31:0] load_addr,weight_addr,weight_channel_addr,output_addr;
+- logic [C_BITS-1:0] load_c,weight_c,issue_c,retire_c;
++ localparam WBITS=$clog2(8*WORDS+1);
++ logic [C_BITS-1:0] load_c,issue_c,retire_c;
++ logic [WBITS-1:0] weight_c,cache_channel;
++ logic layer_valid;
++ wire layer_cached=WEIGHT_LAYER_REUSE && (ow>4 || oh>2) && weight_extent<=8*WORDS;
++ wire [WBITS-1:0] weight_target=layer_cached?weight_extent[WBITS-1:0]:WBITS'(ci);
++ wire [WBITS-1:0] read_weight_index=(layer_cached?cache_channel:WBITS'(compute_bank?4*WORDS:0))+WBITS'(issue_c);
+  logic pipe_valid,product_valid;logic [1:0] pipe_offset;
+  logic [63:0] pixel_q;logic [31:0] weight_word_q;
+  logic [31:0] input_fill_word;logic [2:0] input_fill_left,input_fill_lane;logic [C_BITS-1:0] input_fill_c;
++ logic prefetch_valid;
++ logic [31:0] prefetch_word;
++ logic [2:0] prefetch_count,prefetch_lane;
++ logic [C_BITS-1:0] prefetch_c;
++ wire promote_prefetch=prefetch_valid && input_fill_left<=1;
+  logic signed [31:0] sums[8];
+  logic signed [16:0] products[8];
+  logic signed [16:0] product_q[8];
+@@ -66,7 +77,7 @@
+  // Each loader retains its address/counter until its own response, so its
+  // count need not pass through the shared arbitration/held-request mux.
+  wire in_wide=load_addr[1:0]==0 && load_c[1:0]==0 && (load_c>>2)<(ci>>2);
+- wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<(ci>>2);
++ wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<(weight_target>>2);
+  wire [2:0] in_count=in_wide?3'd4:3'd1,weight_count=weight_wide?3'd4:3'd1;
+  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+  wire [31:0] row_input_step=stride_two?(input_row_bytes<<1):input_row_bytes;
+@@ -102,20 +113,32 @@
+    pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
+   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[issue_c];
+  end
+- always_ff @(posedge clk or negedge rst_n)begin
+-  if(!rst_n)begin input_fill_left<=0;input_fill_word<=0;input_fill_c<=0;input_fill_lane<=0;end
+-  else if(clear)input_fill_left<=0;
+-  else if(input_response)begin
+-   input_fill_word<=rdata;input_fill_left<=in_count;input_fill_c<=load_c;input_fill_lane<=load_lane;
+-  end else if(input_fill_left!=0)begin
+-   input_fill_word<=input_fill_word>>8;input_fill_left<=input_fill_left-1'b1;input_fill_c<=input_fill_c+1'b1;
++ // One skid word lets external reads proceed while bytes drain into pixel RAM.
++ always_ff @(posedge clk or negedge rst_n)begin
++  if(!rst_n)begin input_fill_left<=0;input_fill_word<=0;input_fill_c<=0;input_fill_lane<=0;
++   prefetch_valid<=0;prefetch_word<=0;prefetch_count<=0;prefetch_lane<=0;prefetch_c<=0;end
++  else if(clear || (state==IDLE && start))begin input_fill_left<=0;prefetch_valid<=0;end
++  else begin
++   if(input_fill_left!=0)begin
++    input_fill_word<=input_fill_word>>8;input_fill_left<=input_fill_left-1'b1;input_fill_c<=input_fill_c+1'b1;
++   end
++   if(promote_prefetch)begin
++    input_fill_word<=prefetch_word;input_fill_left<=prefetch_count;input_fill_c<=prefetch_c;input_fill_lane<=prefetch_lane;prefetch_valid<=0;
++   end
++   if(input_response)begin
++    if(input_fill_left<=1 && !prefetch_valid)begin
++     input_fill_word<=rdata;input_fill_left<=in_count;input_fill_c<=load_c;input_fill_lane<=load_lane;
++    end else begin
++     prefetch_valid<=1;prefetch_word<=rdata;prefetch_count<=in_count;prefetch_c<=load_c;prefetch_lane<=load_lane;
++    end
++   end
+   end
+  end
+  wire [3:0] weight_mask=weight_wide?4'hf:(4'b1<<weight_c[1:0]);
+  compact_word_ram #(.DEPTH(2*WORDS)) weights(
+   .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_RUN && issue_c<ci && !clear),
+-  .wr_addr($clog2(2*WORDS)'((fill_bank?WORDS:0)+(weight_c>>2))),
+-  .rd_addr($clog2(2*WORDS)'((compute_bank?WORDS:0)+(issue_c>>2))),
++  .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
++  .rd_addr($clog2(2*WORDS)'(read_weight_index>>2)),
+   .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),.wr_mask(weight_mask),.rd_data(weight_word_q));
+  // Entries include absolute addresses. Keep the head until the write response,
+  // so done cannot precede an acknowledged SRAM write.
+@@ -139,7 +162,7 @@
+  // Keep the accepted metadata through its response, including byte enables.
+  always_comb begin
+   offer_valid=0;offer_kind=INPUT_READ;offer_addr=0;offer_data=0;offer_byte=0;
+-  if(state==IREQ && input_fill_left==0)begin
++  if(state==IREQ && (INPUT_PREFETCH?(!prefetch_valid || promote_prefetch):(input_fill_left==0)))begin
+    offer_valid=1;offer_kind=INPUT_READ;offer_addr=load_addr;offer_byte=!in_wide;
+   end else if(q_count!=0 && (q_count>=4 || !fill_active || prefer_write))begin
+    offer_valid=1;offer_kind=OUTPUT_WRITE;offer_addr=out_addr[q_read];offer_data=out_data[q_read];
+@@ -165,19 +188,19 @@
+   end
+  end
+  always_ff @(posedge clk or negedge rst_n)begin
+-  if(!rst_n)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+-  else if(clear)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  if(!rst_n)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  else if(clear)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+   else begin
+    if(weight_response)begin
+     weight_reads<=weight_reads+weight_count;
+-    if(weight_c+weight_count<ci)begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+-    else begin fill_active<=0;weight_loaded[fill_bank]<=1;end
++    if(weight_c+weight_count<weight_target)begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
++    else begin fill_active<=0;if(layer_cached)layer_valid<=1;else weight_loaded[fill_bank]<=1;end
+    end
+    case(state)
+    IDLE:if(start)begin
+     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+-    input_reads<=0;weight_reads<=0;mac_count<=0;pipe_valid<=0;product_valid<=0;
++    layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;pipe_valid<=0;product_valid<=0;
+     setup_step<=0;mul_bit<=0;mul_acc<=0;mul_lhs<={32'd0,width};mul_rhs<=in_channels;
+     if(MAX_CHANNELS<1 || MAX_CHANNELS>65535 || depthwise || kernel!=1 ||
+        width==0 || height==0 || width>65535 || height>65535 ||
+@@ -211,7 +234,7 @@
+    TILE_BEGIN:begin
+     tile_w<=ow-tile_x<4?ow-tile_x:4;tile_h<=oh-tile_y<2?1:2;
+     load_lane<=0;load_c<=0;load_addr<=tile_input_base;
+-    oc<=0;compute_bank<=0;weight_loaded<=0;weight_channel_addr<=wb;state<=IREQ;
++    oc<=0;cache_channel<=0;compute_bank<=0;weight_loaded<=0;weight_channel_addr<=wb;state<=IREQ;
+    end
+    IREQ:if(input_response)begin
+     input_reads<=input_reads+in_count;
+@@ -220,12 +243,13 @@
+      load_lane<=next_load;load_c<=0;
+      load_addr<=tile_input_base+(next_load[2]?row_input_step:0)+(next_load[1:0]*pixel_input_step);
+     end else begin
+-     fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;state<=WREQ;
+-    end
+-   end
+-   WREQ:if(weight_loaded[compute_bank] && input_fill_left==0)begin
++     if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;end
++     state<=WREQ;
++    end
++   end
++   WREQ:if((layer_cached?layer_valid:weight_loaded[compute_bank]) && input_fill_left==0 && !prefetch_valid)begin
+     weight_loaded[compute_bank]<=0;
+-    if(oc+1'b1<co)begin
++    if(!layer_cached && oc+1'b1<co)begin
+      fill_active<=1;fill_bank<=!compute_bank;weight_c<=0;weight_addr<=weight_channel_addr+ci;
+     end
+     for(integer p=0;p<8;p++)sums[p]<=0;
+@@ -234,7 +258,7 @@
+    MAC_RUN:begin
+     pipe_valid<=issue_c<ci;
+     product_valid<=pipe_valid;
+-    if(issue_c<ci)begin issue_c<=issue_c+1'b1;pipe_offset<=issue_c[1:0];end
++    if(issue_c<ci)begin issue_c<=issue_c+1'b1;pipe_offset<=read_weight_index[1:0];end
+     // Registered multiply separates RAM/multiply delay from the INT32 adder.
+     // Once filled, all live lanes still retire one channel every cycle.
+     if(pipe_valid)for(integer p=0;p<8;p++)product_q[p]<=products[p];
+@@ -251,7 +275,7 @@
+      store_lane<=next_store;
+      output_addr<=tile_output_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step);
+     end else if(oc+1'b1<co)begin
+-     oc<=oc+1'b1;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
++     oc<=oc+1'b1;cache_channel<=cache_channel+ci;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
+     end else state<=OWAIT;
+    end
+    OWAIT:begin
+--- a/rtl/cnn_quant/quant_post_pipe_engine.sv
++++ b/rtl/cnn_quant/quant_post_pipe_engine.sv
+@@ -3,13 +3,15 @@
+ // Groups of four outputs use one aligned word write; heads/tails use bytes.
+ // Only one external request is outstanding. Done follows the final response.
+ // clear requires the fabric to cancel old requests and late responses too.
+-module quant_post_pipe_engine #(parameter MAX_CHANNELS=512, GROUP_BYTES=4)(
++module quant_post_pipe_engine #(parameter MAX_CHANNELS=512, GROUP_BYTES=4, READ_WORD_BUFFER=1)(
+  input logic clk,rst_n,clear,start,mode_add,
+  input logic [31:0] src_a,src_b,destination,parameter_base,count,channels,
+  output wire busy,done,error,
+  output wire valid,write,byte_access,output logic [31:0] addr,wdata,
+  input wire ready,response,input wire [31:0] rdata
+ );
++ logic core_valid,core_write,core_byte,core_ready,core_response;
++ logic [31:0] core_addr,core_wdata,core_rdata;
+  localparam CB=$clog2(MAX_CHANNELS+1);
+  localparam GB=$clog2(GROUP_BYTES+1);
+  localparam LB=$clog2(GROUP_BYTES);
+@@ -35,10 +37,16 @@
+  logic signed [65:0] sum3,rounded5,value6;
+  logic [65:0] magnitude4;
+  logic negative4;
+- wire pr_response=response && (state==PW || (state==PR && ready));
+- wire ar_response=response && (state==AW || (state==AR && ready));
+- wire br_response=response && (state==BW || (state==BR && ready));
+- wire wr_response=response && (state==WW || (state==WR && ready));
++ wire [32:0] a_end={1'b0,pa}+({1'b0,n}<<(add?0:2));
++ wire [32:0] b_end={1'b0,pb}+{1'b0,n};
++ wire [32:0] out_end={1'b0,pout}+{1'b0,n};
++ wire separate_output=(out_end<={1'b0,pa} || a_end<={1'b0,pout}) &&
++                      (!add || out_end<={1'b0,pb} || b_end<={1'b0,pout});
++ wire [GB-1:0] effective_group=(GROUP_BYTES==32 && !separate_output)?GB'(16):GB'(GROUP_BYTES);
++ wire pr_response=core_response && (state==PW || (state==PR && core_ready));
++ wire ar_response=core_response && (state==AW || (state==AR && core_ready));
++ wire br_response=core_response && (state==BW || (state==BR && core_ready));
++ wire wr_response=core_response && (state==WW || (state==WR && core_ready));
+  wire issue=!clear && ((!add && ar_response) || (add && br_response));
+  wire [31:0] group_addr=pout+group_start;
+  wire [2:0] store_bytes=group_len==1?1:4;
+@@ -50,16 +58,16 @@
+  assign busy=state!=IDLE && state!=FINISH && state!=FAIL;
+  assign done=state==FINISH;
+  assign error=state==FAIL;
+- assign valid=!clear && (state==PR || state==AR || state==BR || state==WR);
+- assign write=state==WR;
+- assign byte_access=(state==BR) || (state==AR && add) || (state==WR && group_len==1);
++ assign core_valid=!clear && (state==PR || state==AR || state==BR || state==WR);
++ assign core_write=state==WR;
++ assign core_byte=(state==BR) || (state==AR && add) || (state==WR && group_len==1);
+  always_comb begin
+-  addr=0;wdata=state==WR?(packed_word>>(store_offset*8)):32'd0;
++  core_addr=0;core_wdata=state==WR?(packed_word>>(store_offset*8)):32'd0;
+   case(state)
+-   PR:addr=pp;
+-   AR:addr=pa+(add?index:(index<<2));
+-   BR:addr=pb+index;
+-   WR:addr=group_addr+store_offset;
++   PR:core_addr=pp;
++   AR:core_addr=pa+(add?index:(index<<2));
++   BR:core_addr=pb+index;
++   WR:core_addr=group_addr+store_offset;
+    default:;
+   endcase
+  end
+@@ -67,16 +75,16 @@
+  always_ff @(posedge clk)begin
+   if(!clear)begin
+    if(pr_response)case(param_word)
+-    0:parameter_staging[0+:32]<=rdata;
+-    1:parameter_staging[32+:32]<=rdata;
+-    2:parameter_staging[64+:32]<=rdata;
+-    3:parameter_staging[96+:32]<=rdata;
+-    4:parameter_mem[param_ch]<={rdata[15:0],parameter_staging};
++    0:parameter_staging[0+:32]<=core_rdata;
++    1:parameter_staging[32+:32]<=core_rdata;
++    2:parameter_staging[64+:32]<=core_rdata;
++    3:parameter_staging[96+:32]<=core_rdata;
++    4:parameter_mem[param_ch]<={core_rdata[15:0],parameter_staging};
+     default:;
+    endcase
+    if(issue)begin
+     {high[0],low[0],cfg0,mb0,ma0,bias0}<=parameter_mem[ch];
+-    a0<=add?sample_a:$signed(rdata);b0<=add?$signed({24'd0,rdata[7:0]}):32'sd0;
++    a0<=add?sample_a:$signed(core_rdata);b0<=add?$signed({24'd0,core_rdata[7:0]}):32'sd0;
+     lane[0]<=loaded[LB-1:0];
+    end
+    if(pv[0])begin
+@@ -118,14 +126,14 @@
+     IDLE:if(start)begin
+      pa<=src_a;pb<=src_b;pout<=destination;pp<=parameter_base;n<=count;
+      nch<=channels;add<=mode_add;ch<=0;param_ch<=0;param_word<=0;index<=0;group_start<=0;
+-     state<=(GROUP_BYTES!=4 && GROUP_BYTES!=16) || channels==0 || channels>MAX_CHANNELS || count==0 || parameter_base[1:0]!=0 ||
++     state<=(GROUP_BYTES!=4 && GROUP_BYTES!=16 && GROUP_BYTES!=32) || channels==0 || channels>MAX_CHANNELS || count==0 || parameter_base[1:0]!=0 ||
+              (!mode_add && src_a[1:0]!=0) ? FAIL:PR;
+     end
+     PR,PW:begin
+-     if(state==PR && ready)state<=PW;
++     if(state==PR && core_ready)state<=PW;
+      if(pr_response)begin
+       pp<=pp+4;
+-      if((param_word==3 && rdata[7:0]>63) || (param_word==4 && rdata[7:0]>rdata[15:8]))state<=FAIL;
++      if((param_word==3 && core_rdata[7:0]>63) || (param_word==4 && core_rdata[7:0]>core_rdata[15:8]))state<=FAIL;
+       else if(param_word==4)begin
+        param_word<=0;param_ch<=param_ch+1'b1;
+        state<=param_ch+1'b1==nch?GROUP:PR;
+@@ -133,22 +141,22 @@
+      end
+     end
+     GROUP:begin
+-     group_len<=group_addr[1:0]==0 && n-group_start>=4?((n-group_start>=GROUP_BYTES)?GROUP_BYTES:((n-group_start)>>2)<<2):1;
++     group_len<=group_addr[1:0]==0 && n-group_start>=4?((n-group_start>=effective_group)?effective_group:((n-group_start)>>2)<<2):1;
+      loaded<=0;produced<=0;store_offset<=0;packed_word<=0;state<=AR;
+     end
+     AR,AW:begin
+-     if(state==AR && ready)state<=AW;
++     if(state==AR && core_ready)state<=AW;
+      if(ar_response)begin
+-      sample_a<=$signed({24'd0,rdata[7:0]});
++      sample_a<=$signed({24'd0,core_rdata[7:0]});
+       state<=add?BR:(loaded+1'b1==group_len?DRAIN:AR);
+      end
+     end
+     BR,BW:begin
+-     if(state==BR && ready)state<=BW;
++     if(state==BR && core_ready)state<=BW;
+      if(br_response)state<=loaded+1'b1==group_len?DRAIN:AR;
+     end
+     WR,WW:begin
+-     if(state==WR && ready)state<=WW;
++     if(state==WR && core_ready)state<=WW;
+      if(wr_response)begin
+       if(store_offset+store_bytes<group_len)begin
+        store_offset<=store_offset+store_bytes;state<=WR;
+@@ -164,4 +172,44 @@
+    endcase
+   end
+  end
++
++ generate if(READ_WORD_BUFFER)begin:add_word_buffers
++  logic [1:0] cached_valid;
++  logic [29:0] cached_tag[0:1];logic [31:0] cached_data[0:1];
++  logic pending,pending_widen,pending_fill,pending_region;
++  logic [1:0] pending_lane;logic [29:0] pending_tag;
++  wire region=state==BR || state==BW;
++  wire cacheable=add && separate_output && (state==AR || state==AW || state==BR || state==BW);
++  wire [31:0] base=region?pb:pa;
++  wire [32:0] limit=region?b_end:a_end;
++  wire [31:0] aligned={core_addr[31:2],2'b00};
++  wire hit=!pending && core_valid && !core_write && cacheable && cached_valid[region] && cached_tag[region]==core_addr[31:2];
++  wire widen=core_valid && !core_write && core_byte && cacheable && aligned>=base && {1'b0,aligned}+33'd4<=limit;
++  wire accepted=valid && ready;
++  wire returned=response && (pending || accepted);
++  wire fill=pending?pending_fill:(cacheable && !core_write && !byte_access);
++  wire fill_region=pending?pending_region:region;
++  wire [29:0] fill_tag=pending?pending_tag:core_addr[31:2];
++  wire [1:0] byte_lane=pending?pending_lane:core_addr[1:0];
++  assign valid=core_valid && !hit;assign write=core_write;assign byte_access=widen?1'b0:core_byte;
++  assign addr=widen?aligned:core_addr;assign wdata=core_wdata;
++  assign core_ready=!pending && (hit || ready);assign core_response=hit || returned;
++  assign core_rdata=hit ? {24'd0,cached_data[region][core_addr[1:0]*8+:8]} :
++                    ((pending?pending_widen:widen)?{24'd0,rdata[byte_lane*8+:8]}:rdata);
++  always_ff @(posedge clk or negedge rst_n)begin
++   if(!rst_n)begin cached_valid<=0;pending<=0;pending_widen<=0;pending_fill<=0;pending_region<=0;pending_lane<=0;pending_tag<=0;end
++   else if(clear || (state==IDLE && start))begin cached_valid<=0;pending<=0;end
++   else begin
++    if(accepted)begin
++     pending<=!response;pending_widen<=widen;pending_fill<=cacheable && !core_write && !byte_access;
++     pending_region<=region;pending_lane<=core_addr[1:0];pending_tag<=core_addr[31:2];
++     if(core_write)for(integer b=0;b<2;b++)if(cached_tag[b]==core_addr[31:2])cached_valid[b]<=0;
++    end else if(returned)pending<=0;
++    if(returned && fill)begin cached_valid[fill_region]<=1;cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=rdata;end
++   end
++  end
++ end else begin:direct_memory
++  assign valid=core_valid;assign write=core_write;assign byte_access=core_byte;assign addr=core_addr;assign wdata=core_wdata;
++  assign core_ready=ready;assign core_response=response;assign core_rdata=rdata;
++ end endgenerate
+ endmodule
+--- a/rtl/cnn_quant/pad_hwc_engine.sv
++++ b/rtl/cnn_quant/pad_hwc_engine.sv
+@@ -1,6 +1,138 @@
++module pad_hwc_engine #(parameter ROW_PACKING=1)(
++ input logic clk,rst_n,clear,start,
++ input logic [31:0] source,destination,width,height,channels,
++ input logic [7:0] zero_point,
++ output wire busy,done,error,valid,write,byte_access,
++ output logic [31:0] addr,wdata,
++ input logic ready,response,input logic [31:0] rdata
++);
++wire [3:0] state;
++generate if(ROW_PACKING)begin:rows
++pad_rows_impl impl(.*);assign state=impl.state;
++end else begin:legacy
++pad_legacy_impl impl(.*);assign state=impl.state;
++end endgenerate
++endmodule
++// Copy each interior HWC row as a contiguous segment. Word assembly handles
++// different source/destination alignment without reading outside the segment.
++// Aliased tensors retain the original byte/word transaction order.
++module pad_rows_impl(
++ input logic clk,rst_n,clear,start,
++ input logic [31:0] source,destination,width,height,channels,
++ input logic [7:0] zero_point,
++ output wire busy,done,error,valid,write,byte_access,
++ output logic [31:0] addr,wdata,
++ input logic ready,response,input logic [31:0] rdata
++);
++ typedef enum logic [3:0] {IDLE=0,PREP=1,RREQ=2,RWAIT=3,WREQ=4,WWAIT=5,FINISH=6,FAIL=7,
++                          SETUP=8,CHECK=9,SEGMENT=10,BYTE_STEP=11} state_t;
++ state_t state;
++ logic [31:0] src,dst,source_cursor,destination_cursor;
++ logic [6:0] w,h,y;logic [9:0] c;logic [7:0] fill;
++ logic [15:0] row_bytes,out_row_bytes,remaining;
++ logic [31:0] input_extent,output_extent,lhs,acc;
++ logic [6:0] rhs;logic [2:0] bit_count;logic [1:0] setup_step,section;
++ logic aliasing,copy_segment,read_wide,direct_word,cache_valid,byte_valid;
++ logic [2:0] transfer,packed_count;
++ logic [31:0] packet,cache_word;logic [29:0] cache_tag;logic [7:0] byte_value;
++ wire [31:0] sum_value=acc+(rhs[0]?lhs:32'd0);
++ wire border_row=y==0 || y==h+1;
++ wire can_write_word=destination_cursor[1:0]==0 && remaining>=4 && (!aliasing || c[1:0]==0);
++ wire cache_hit=!aliasing && cache_valid && cache_tag==source_cursor[31:2];
++ wire read_return=response && (state==RWAIT || (state==RREQ && ready));
++ wire write_return=response && (state==WWAIT || (state==WREQ && ready));
++ assign busy=state!=IDLE && state!=FINISH && state!=FAIL;
++ assign done=state==FINISH;assign error=state==FAIL;
++ assign valid=!clear && (state==RREQ || state==WREQ);
++ assign write=state==WREQ;
++ assign byte_access=state==RREQ?!read_wide:transfer!=4;
++ always_comb begin
++  addr=state==RREQ?(read_wide?{source_cursor[31:2],2'b00}:source_cursor):destination_cursor;
++  wdata=packet;
++ end
++ always_ff @(posedge clk or negedge rst_n)begin
++  if(!rst_n)begin state<=IDLE;cache_valid<=0;byte_valid<=0;end
++  else if(clear)begin state<=IDLE;cache_valid<=0;byte_valid<=0;end
++  else case(state)
++   IDLE:if(start)begin
++    src<=source;dst<=destination;w<=width;h<=height;c<=channels;fill<=zero_point;
++    cache_valid<=0;byte_valid<=0;acc<=0;lhs<=channels;rhs<=width[6:0];bit_count<=0;setup_step<=0;
++    state<=width==0 || height==0 || channels==0 || width>112 || height>112 || channels>512 ||
++           (channels%4==0 && ((source|destination)&3)!=0)?FAIL:SETUP;
++   end
++   SETUP:begin
++    if(bit_count!=6)begin acc<=sum_value;lhs<=lhs<<1;rhs<=rhs>>1;bit_count<=bit_count+1'b1;end
++    else begin
++     bit_count<=0;acc<=0;setup_step<=setup_step+1'b1;
++     case(setup_step)
++      0:begin row_bytes<=sum_value[15:0];out_row_bytes<=sum_value[15:0]+(c<<1);lhs<=sum_value;rhs<=h;end
++      1:begin input_extent<=sum_value;lhs<={16'd0,out_row_bytes};rhs<=h+2;end
++      2:begin output_extent<=sum_value;state<=CHECK;end
++      default:state<=FAIL;
++     endcase
++    end
++   end
++   CHECK:begin
++    aliasing<=({1'b0,src}<{1'b0,dst}+{1'b0,output_extent}) && ({1'b0,dst}<{1'b0,src}+{1'b0,input_extent});
++    source_cursor<=src;destination_cursor<=dst;y<=0;section<=0;state<=SEGMENT;
++   end
++   SEGMENT:begin
++    copy_segment<=!border_row && section==1;
++    remaining<=border_row?out_row_bytes:(section==1?row_bytes:16'(c));
++    state<=PREP;
++   end
++   PREP:begin
++    if(remaining==0)begin
++     if(border_row || section==2)begin
++      if(y==h+1)state<=FINISH;
++      else begin y<=y+1'b1;section<=0;state<=SEGMENT;end
++     end else begin section<=section+1'b1;state<=SEGMENT;end
++    end else begin
++     transfer<=can_write_word?3'd4:3'd1;packet<=0;packed_count<=0;
++     if(!copy_segment)begin packet<={4{fill}};state<=WREQ;end
++     else if(can_write_word && source_cursor[1:0]==0)begin read_wide<=1;direct_word<=1;state<=RREQ;end
++     else state<=BYTE_STEP;
++    end
++   end
++   BYTE_STEP:begin
++    if(cache_hit || byte_valid)begin
++     packet[packed_count*8+:8]<=cache_hit?cache_word[source_cursor[1:0]*8+:8]:byte_value;
++     source_cursor<=source_cursor+1'b1;remaining<=remaining-1'b1;byte_valid<=0;
++     if(packed_count+1'b1==transfer)state<=WREQ;
++     else packed_count<=packed_count+1'b1;
++    end else begin
++     read_wide<=!aliasing && source_cursor[1:0]==0 && remaining>=4;
++     direct_word<=0;state<=RREQ;
++    end
++   end
++   RREQ,RWAIT:begin
++    if(state==RREQ && ready)state<=RWAIT;
++    if(read_return)begin
++     if(direct_word)begin packet<=rdata;source_cursor<=source_cursor+4;remaining<=remaining-4;state<=WREQ;end
++     else begin
++      if(read_wide)begin cache_valid<=1;cache_tag<=source_cursor[31:2];cache_word<=rdata;end
++      else begin byte_valid<=1;byte_value<=rdata[7:0];end
++      state<=BYTE_STEP;
++     end
++    end
++   end
++   WREQ,WWAIT:begin
++    if(state==WREQ && ready)state<=WWAIT;
++    if(write_return)begin
++     destination_cursor<=destination_cursor+transfer;
++     if(!copy_segment)remaining<=remaining-transfer;
++     state<=PREP;
++    end
++   end
++   FINISH,FAIL:state<=IDLE;
++   default:state<=FAIL;
++  endcase
++ end
++endmodule
++
+ // Materialize a one-pixel zero-point border around an HWC tensor.
+ // Packed word transfers when channels are a multiple of four, byte otherwise.
+-module pad_hwc_engine(
++module pad_legacy_impl(
+  input logic clk,rst_n,clear,start,
+  input logic [31:0] source,destination,width,height,channels,
+  input logic [7:0] zero_point,
+--- a/rtl/cnn_ddr/fixed_schedule_compact.sv
++++ b/rtl/cnn_ddr/fixed_schedule_compact.sv
+@@ -309,7 +309,7 @@
+  end
+  for(genvar e=POST;e<=ADD;e++)begin:postprocessing
+   if (LATEST_OPERATORS) begin:latest_post
+-   quant_post_pipe_engine #(.MAX_CHANNELS(512),.GROUP_BYTES(16)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
++   quant_post_pipe_engine #(.MAX_CHANNELS(512),.GROUP_BYTES(32)) post(.clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.mode_add(e==ADD),
+    .src_a(cmd[e][1]),.src_b(cmd[e][2]),.destination(cmd[e][3]),.parameter_base(cmd[e][4]),.count(cmd[e][5]),.channels(cmd[e][6]),
+    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]));

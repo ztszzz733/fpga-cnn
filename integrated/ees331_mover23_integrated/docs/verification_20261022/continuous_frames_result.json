@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "scope": "actual main CPU, bridge, banked SRAM, mailbox and tile scheduler; TEST-ONLY scalar convolution/PReLU models",
+  "firmware": {
+    "compiler": "D:\\vivado\\2026.1\\gnu\\riscv\\nt\\x86_64-w64-mingw32\\usr\\bin\\riscv32-xilinx-elf\\riscv32-xilinx-elf-gcc.exe",
+    "instruction_words": 943
+  },
+  "sources": {
+    "partners\\datapath\\delivery\\rtl\\common\\cpu_control_pkg.sv": "e57746529ab1d6d3fe7d425de57311ef2cf3f7b45dbeb73c04ee36b42692f2bd",
+    "rtl\\cpu_control\\main_decoder.sv": "5e5edb5e585ea0e1d791d71a1ef407d98625b1b227cdfe25fa15c0f448e89a3f",
+    "rtl\\cpu_control\\alu_decoder.sv": "beea8edcc3412fe65e371df58f2d98085d2daedf403b6a0e0170b8e990809ac4",
+    "rtl\\cpu_control\\hazard_unit.sv": "4c0fe06689d714157e7cb81c31ca908964bc6c6d3357544c7f3087514a0115bb",
+    "rtl\\cpu_control\\branch_control.sv": "7b43244500b6086f40e9ea64b6a0282c5cc5bfff97dc5b86516bcd74a7e18b25",
+    "rtl\\cpu_control\\pipeline_control.sv": "0daab293938302a8abe16496af84ae74e376328829f6ddd682f7c4320b624968",
+    "rtl\\cpu_control\\cpu_control.sv": "c393d0b83647600945bcb2ac271ddf9e1b5672b4b38094c9e38e5ceeb6deb659",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\alu.sv": "602a6ff749d916d985344f884e9d4c6c18f90d8a22ed6c1ca90b48a3857a50a3",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\imm_gen.sv": "3ebb51aa769c260de69fbb0e45918455f98f9f934016756fd41414d4fc9f5e01",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\pc.sv": "79722a65ade0afb49bcfbd16b52cd24d3ad7cd7b0a4285f4d806d323c9d656e5",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\regfile.sv": "15099db84ded5437f0adb01c2278c9b0be2cae65fac943140add0f7185264458",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\if_id_reg.sv": "370347441a2d58c0a30fa35296baddb5dbc70edbff56f7ee2c71e1c1b672120f",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\id_ex_reg.sv": "b777688682be769e2172cfcfc838ad6008c576eadd86a29866aa403d5ec4d601",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\ex_mem_reg.sv": "7ad530588ce49599b955c1ff00cc14e29d9a13c36b473f5a0774d34f58763c57",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\mem_wb_reg.sv": "f3c95b769ac9aecc9d1b722d028593fee94617ca022b985bb60a7ef5e5dd8e54",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\address_decoder.sv": "7a63df425ef204dae560d6d6ef4fa9696f5f72e1e58929e403183e0d40efdd94",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\lsu.sv": "a0ae3844103d21210b55294ee020c3cdbc190d762be49f4a5f94e4384207f940",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\fetch_adapter.sv": "2fc45b281b72e852981e4d15a6dc67843847e5b390b99a7400d3a096ca03441f",
+    "partners\\datapath\\delivery\\rtl\\cpu_datapath\\cpu_datapath.sv": "4fff76d6b44dc62958ebe2b102676aa60ff9ddc8da03dfcc362697fb2fd3c684",
+    "partners\\datapath\\delivery\\rtl\\soc_memory\\imem_rom.sv": "b38a76c66cb97f50a3f8268fc3f7040daf469d9cd8f918a6773187eb87370ae4",
+    "rtl\\soc\\clock_unit.sv": "6da22cfe47621fc172681ba9b52c84a18bffea77bd6cf9f05858edbf5ca796ce",
+    "rtl\\soc\\autoload\\autoload_uart.sv": "23bdfefba2e769ec295fcfd0ed6db68e034d062247febfed30759709f16ba7b1",
+    "rtl\\soc\\autoload\\cpu_core_autoload.sv": "de260dd45a457b0ded625fedac39800addfd10bf9dfd8a5f5866ca87ede750c9",
+    "rtl\\soc\\autoload\\image_bridge_autoload.sv": "1ada92e1e2dfb1f3f70d7a06d6072d28e5ade5b927c038e9e706a200a26ee30a",
+    "rtl\\overlap\\datasram_banked.sv": "df27b376ca00285264b29846c9baf59d45ca096d350c03ca5ebe8c448f02f632",
+    "rtl\\hybrid\\cnn_command_port.sv": "8e3bc3e6f6c7f197a3182b9d08802581391068e48dbc8672dd2f3cffd93a43bc",
+    "rtl\\neureka_pipeline\\neureka_tile_scheduler.sv": "b093b6d1bd72b0e9b1d350e15ad0a3c108b51460bb092d2ba7b3177d80d8c2f2",
+    "tb\\integration\\neureka_frame_models.sv": "52cf251754eb9045f75cd206cafef5de0a5dda6cf98e40d371a6499ca6cb5033",
+    "rtl\\neureka_pipeline\\neureka_pipeline_cnn_top.sv": "2bd5b611eceec182eb0f256cd4004e08c1decbf2010a322faf43abdb2e49b664",
+    "rtl\\neureka_pipeline\\face_soc_neureka_pipeline_top.sv": "e35bf7c211cdbba193d6b7ccf3876c834e0cb91faf3f71b55e1054d95dede086",
+    "tb\\integration\\tb_neureka_frames.sv": "65124be680152a1af81fcc9c6323af9040de2634dc05724c9bcb76e25b63887d",
+    "tb\\integration\\tb_image_load_descriptor.sv": "7f12a8268b73a447f240786ab9aa68a3b9963f429730e0d5dfeef17f8d2c8ad0",
+    "sw\\neureka_pipeline\\cnn_frames.h": "824f019fac8e27b4f7f4556cdd7b3aea10e200bed86d2067cd6f5e28ba562f93",
+    "sw\\neureka_pipeline\\neureka_pipeline.h": "0ed985265cd5bbfd80e871091129eca0b0f6af0558ec7ddf1ac043f61b19c3b9",
+    "firmware\\neureka_frames_demo\\main.c": "c12ee04be787eb285f4b5bd55f5e032561ee30351ff0236e14a82a1e0699932e",
+    "firmware\\neureka_frames_demo\\start.S": "e44bd03481ea4220b4449e55ec5e5b086faada75aafe02f6233d5188b1cb55ad",
+    "firmware\\neureka_frames_demo\\link.ld": "2f2f4997b57a9149db144de0878c47dd4a92202ea6f1853716b8e1f26186d0f9"
+  },
+  "tests": {
+    "frames_0_delay20000": "PASS",
+    "frames_0_delay0": "PASS",
+    "frames_1_delay20000": "PASS",
+    "descriptor": "PASS"
+  },
+  "model_metrics": {
+    "frames_0_delay20000": {
+      "overlap_cycles": 153395,
+      "cpu_access_while_cnn": 50805,
+      "three_way_bank_access": 11,
+      "cpu_work_bytes": 2985
+    },
+    "frames_0_delay0": {
+      "overlap_cycles": 88085,
+      "cpu_access_while_cnn": 13648,
+      "three_way_bank_access": 14,
+      "cpu_work_bytes": 1620
+    }
+  },
+  "assets": {
+    "cpu.hex": "2da8eecca1cb44103ffea3f858a4a0c64d817896be064efb25af1e078805818e",
+    "sram.hex": "62cef63edf5f30b31c4bacbfc6e0543f9de30339b568666a65900afdfff649e7",
+    "external.hex": "8c196232d9f2b9b830161560a069ef84dd7ae6e10fbe82f04d6a693630072b4d",
+    "frames_golden.hex": "d8649b404f9ff866ad7f93638cf026c370c1d6a2e661c1a761277a4a1685ca33",
+    "frames.json": "f9986edd6cdbbd02dbe697f6467e4cabb737745c98a83546cc0c0e6cece30692",
+    "vector.bin": "65430b1e75ef19e705b18083d7fe7d029397d9efeb8e5b46a9a5d3947c5e4d57"
+  }
+}

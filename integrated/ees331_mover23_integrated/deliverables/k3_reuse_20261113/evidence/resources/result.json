@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "part": "xc7z020clg484-1",
+  "scope": "K3 before/after halo and fitting-layer reuse; READ_WORD_BUFFER=1 on both; before from previously verified identical-settings OOC synthesis",
+  "production_rtl_edited": false,
+  "place_route": false,
+  "threads": 1,
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39"
+  },
+  "runs": {
+    "0": {
+      "seconds": 71.0,
+      "utilization": {
+        "Slice LUTs": 3078.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": 1795.0,
+        "Block RAM Tile": 5.5,
+        "DSPs": 0.0
+      }
+    },
+    "1": {
+      "seconds": 82.5779999999977,
+      "utilization": {
+        "Slice LUTs": 3125.0,
+        "LUT as Memory": 0.0,
+        "Slice Registers": 1794.0,
+        "Block RAM Tile": 5.5,
+        "DSPs": 0.0
+      }
+    }
+  },
+  "baseline_report": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_k3_word_buffer_20261113_144356\\1\\utilization.rpt",
+  "baseline_record_sha256": "33663331f211a2f84700ff2f931149611aeec0a2d9a59ac7e13d8759a2ea24df",
+  "baseline_measurement_reused": true,
+  "active_pid": 18868,
+  "mode": 1,
+  "delta_per_k3": {
+    "Slice LUTs": 47.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": -1.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "estimated_delta_two_k3": {
+    "Slice LUTs": 94.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": -2.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "sources_unchanged": true
+}

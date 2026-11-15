@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "old_sha256": "be832f215dd61c22548b30bc2eff0827ad6e541f63e0ceef2aeb1229a970eac3",
+  "new_sha256": "b10d0da08b434208aa68fce0ca6587615d01577617ce187fef9057413b16e8c3",
+  "result": "PASS old/new DDR models: 512 single-beat transfers, every ready/valid/data/last/ID/response cycle, random state and memory identical; cycles=5339\n"
+}

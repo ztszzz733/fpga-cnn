@@ -1,0 +1,458 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Fri Nov 13 20:34:59 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'no'.
+source {C:\Users\windows\.codex\visualizations\2026\10\09\01a11f57-abad-73d3-bace-ffb2cb9844cd\resource_pw8_addr_retry_20261113_203458\1\synth.tcl}
+# set_param general.maxThreads 1
+# create_project -in_memory -part xc7z020clg484-1
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 524.379 ; gain = 215.988
+# read_verilog -sv {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/compact_word_ram.sv}
+# read_verilog -sv {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv}
+# read_verilog -sv {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/resource_pw8.sv}
+# read_xdc {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/clock.xdc}
+# synth_design -top resource_pw8 -part xc7z020clg484-1 -mode out_of_context -flatten_hierarchy rebuilt
+Command: synth_design -top resource_pw8 -part xc7z020clg484-1 -mode out_of_context -flatten_hierarchy rebuilt
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 1 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 3932
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1299.504 ; gain = 542.000
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:52]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:53]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:53]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:55]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:60]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:61]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:61]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:68]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:68]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:70]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:74]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:74]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:75]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:75]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:76]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:76]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:76]
+WARNING: [Synth 8-6901] identifier 'compute_bank' is used before its declaration [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:90]
+INFO: [Synth 8-6157] synthesizing module 'resource_pw8' [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/resource_pw8.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'self_pw8_engine' [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:7]
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'compact_word_ram' [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/compact_word_ram.sv:3]
+	Parameter DEPTH bound to: 256 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'compact_word_ram' (0#1) [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/compact_word_ram.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'self_pw8_engine' (0#1) [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'resource_pw8' (0#1) [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/resource_pw8.sv:1]
+WARNING: [Synth 8-6014] Unused sequential element w_reg was removed.  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:251]
+WARNING: [Synth 8-7137] Register weight_c_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:130]
+WARNING: [Synth 8-7137] Register weight_addr_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:246]
+WARNING: [Synth 8-7137] Register ib_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:28]
+WARNING: [Synth 8-7137] Register wb_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:29]
+WARNING: [Synth 8-7137] Register ob_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:30]
+WARNING: [Synth 8-7137] Register ci_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:189]
+WARNING: [Synth 8-7137] Register co_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:134]
+WARNING: [Synth 8-7137] Register h_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:251]
+WARNING: [Synth 8-7137] Register stride_two_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:132]
+WARNING: [Synth 8-7137] Register ow_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:86]
+WARNING: [Synth 8-7137] Register oh_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:86]
+WARNING: [Synth 8-7137] Register setup_step_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:254]
+WARNING: [Synth 8-7137] Register mul_bit_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:254]
+WARNING: [Synth 8-7137] Register mul_acc_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:254]
+WARNING: [Synth 8-7137] Register mul_lhs_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:254]
+WARNING: [Synth 8-7137] Register mul_rhs_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:254]
+WARNING: [Synth 8-7137] Register input_row_bytes_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:133]
+WARNING: [Synth 8-7137] Register input_extent_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:28]
+WARNING: [Synth 8-7137] Register weight_extent_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:29]
+WARNING: [Synth 8-7137] Register output_row_bytes_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:56]
+WARNING: [Synth 8-7137] Register output_extent_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:30]
+WARNING: [Synth 8-7137] Register weight_last_byte_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:246]
+WARNING: [Synth 8-7137] Register weight_last_word_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:246]
+WARNING: [Synth 8-7137] Register weight_full_words_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:130]
+WARNING: [Synth 8-7137] Register tile_x_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:283]
+WARNING: [Synth 8-7137] Register tile_y_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:283]
+WARNING: [Synth 8-7137] Register tile_input_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:51]
+WARNING: [Synth 8-7137] Register tile_input_row_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:283]
+WARNING: [Synth 8-7137] Register tile_output_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:54]
+WARNING: [Synth 8-7137] Register tile_output_row_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:284]
+WARNING: [Synth 8-7137] Register panel_w_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:41]
+WARNING: [Synth 8-7137] Register panel_h_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:42]
+WARNING: [Synth 8-7137] Register load_slot_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:44]
+WARNING: [Synth 8-7137] Register compute_slot_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:44]
+WARNING: [Synth 8-7137] Register load_cache_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:290]
+WARNING: [Synth 8-7137] Register compute_cache_base_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:290]
+WARNING: [Synth 8-7137] Register load_origin_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:68]
+WARNING: [Synth 8-7137] Register load_row_origin_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:68]
+WARNING: [Synth 8-7137] Register store_origin_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:70]
+WARNING: [Synth 8-7137] Register store_row_origin_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:70]
+WARNING: [Synth 8-7137] Register load_lane_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:293]
+WARNING: [Synth 8-7137] Register load_c_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:293]
+WARNING: [Synth 8-7137] Register load_addr_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:293]
+WARNING: [Synth 8-7137] Register oc_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:294]
+WARNING: [Synth 8-7137] Register cache_channel_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:90]
+WARNING: [Synth 8-7137] Register compute_bank_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:90]
+WARNING: [Synth 8-7137] Register weight_channel_addr_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:294]
+WARNING: [Synth 8-7137] Register fill_bank_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:190]
+WARNING: [Synth 8-7137] Register sums_reg[0] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[1] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[2] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[3] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[4] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[5] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[6] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register sums_reg[7] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:317]
+WARNING: [Synth 8-7137] Register issue_c_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:189]
+WARNING: [Synth 8-7137] Register retire_c_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:318]
+WARNING: [Synth 8-7137] Register pipe_offset_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:323]
+WARNING: [Synth 8-7137] Register product_q_reg[0] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[1] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[2] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[3] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[4] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[5] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[6] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register product_q_reg[7] in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:326]
+WARNING: [Synth 8-7137] Register store_lane_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:331]
+WARNING: [Synth 8-7137] Register output_addr_reg in module self_pw8_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/self_pw8_engine.sv:331]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1445.930 ; gain = 688.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1445.930 ; gain = 688.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1445.930 ; gain = 688.426
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1445.930 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/clock.xdc]
+Finished Parsing XDC File [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/clock.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1517.727 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1517.727 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1517.727 ; gain = 760.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1517.727 ; gain = 760.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1517.727 ; gain = 760.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1517.727 ; gain = 760.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 4     
+	   2 Input   32 Bit       Adders := 24    
+	   3 Input   32 Bit       Adders := 2     
+	   9 Input   32 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 2     
+	   2 Input   11 Bit       Adders := 5     
+	   2 Input   10 Bit       Adders := 8     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
+	   3 Input    5 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 2     
+	   3 Input    4 Bit       Adders := 4     
+	   2 Input    3 Bit       Adders := 9     
++---Registers : 
+	               64 Bit    Registers := 5     
+	               32 Bit    Registers := 35    
+	               17 Bit    Registers := 8     
+	               16 Bit    Registers := 3     
+	               11 Bit    Registers := 4     
+	               10 Bit    Registers := 9     
+	                9 Bit    Registers := 9     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 3     
+	                3 Bit    Registers := 9     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 14    
++---RAMs : 
+	              32K Bit	(512 X 64 bit)          RAMs := 1     
+	               8K Bit	(256 X 32 bit)          RAMs := 1     
+	              256 Bit	(8 X 32 bit)          RAMs := 2     
++---Muxes : 
+	  12 Input   64 Bit        Muxes := 2     
+	   2 Input   64 Bit        Muxes := 15    
+	   3 Input   64 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 34    
+	  12 Input   32 Bit        Muxes := 23    
+	   6 Input   32 Bit        Muxes := 1     
+	   5 Input   32 Bit        Muxes := 1     
+	   8 Input   32 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 2     
+	   2 Input   15 Bit        Muxes := 1     
+	   2 Input   14 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 5     
+	   5 Input   11 Bit        Muxes := 1     
+	  12 Input   11 Bit        Muxes := 1     
+	   3 Input   11 Bit        Muxes := 1     
+	  12 Input   10 Bit        Muxes := 6     
+	   2 Input   10 Bit        Muxes := 5     
+	   2 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 1     
+	   3 Input    8 Bit        Muxes := 1     
+	  12 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 9     
+	   6 Input    4 Bit        Muxes := 1     
+	   3 Input    4 Bit        Muxes := 2     
+	  12 Input    3 Bit        Muxes := 5     
+	   2 Input    3 Bit        Muxes := 18    
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 17    
+	  12 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 50    
+	   4 Input    1 Bit        Muxes := 1     
+	  12 Input    1 Bit        Muxes := 39    
+	   6 Input    1 Bit        Muxes := 5     
+	   7 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 2     
+	   3 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (A[7]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[6]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[5]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[4]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[3]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[2]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[1]) is unused and will be removed from module self_pw8_engine.
+WARNING: [Synth 8-3332] Sequential element (A[0]) is unused and will be removed from module self_pw8_engine.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1629.379 ; gain = 871.875
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object     | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|dut/weights | single.mem_reg | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|dut         | pixels_reg     | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+--------------+-----------+----------------------+-------------+
+|Module Name | RTL Object   | Inference | Size (Depth x Width) | Primitives  | 
++------------+--------------+-----------+----------------------+-------------+
+|dut         | out_addr_reg | Implied   | 8 x 32               | RAM32M x 6  | 
+|dut         | out_data_reg | Implied   | 8 x 32               | RAM32M x 6  | 
++------------+--------------+-----------+----------------------+-------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1651.184 ; gain = 893.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 1775.340 ; gain = 1017.836
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object     | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|dut/weights | single.mem_reg | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|dut         | pixels_reg     | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
++------------+----------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++------------+--------------+-----------+----------------------+-------------+
+|Module Name | RTL Object   | Inference | Size (Depth x Width) | Primitives  | 
++------------+--------------+-----------+----------------------+-------------+
+|dut         | out_addr_reg | Implied   | 8 x 32               | RAM32M x 6  | 
+|dut         | out_data_reg | Implied   | 8 x 32               | RAM32M x 6  | 
++------------+--------------+-----------+----------------------+-------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance dut/weights/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance dut/pixels_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1784.395 ; gain = 1026.891
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:50 ; elapsed = 00:00:53 . Memory (MB): peak = 1938.508 ; gain = 1181.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:50 ; elapsed = 00:00:53 . Memory (MB): peak = 1938.508 ; gain = 1181.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1938.508 ; gain = 1181.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1938.508 ; gain = 1181.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1941.508 ; gain = 1184.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1941.508 ; gain = 1184.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   543|
+|2     |LUT1     |    77|
+|3     |LUT2     |  1218|
+|4     |LUT3     |   601|
+|5     |LUT4     |   618|
+|6     |LUT5     |   469|
+|7     |LUT6     |   815|
+|8     |MUXF7    |    32|
+|9     |RAM32M   |    11|
+|10    |RAMB18E1 |     1|
+|11    |RAMB36E1 |     1|
+|12    |FDCE     |   288|
+|13    |FDRE     |  1561|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1941.508 ; gain = 1184.004
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:50 . Memory (MB): peak = 1941.508 ; gain = 1112.207
+Synthesis Optimization Complete : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1941.508 ; gain = 1184.004
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 1950.617 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 588 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'resource_pw8' is not ideal for floorplanning, since the cellview 'self_pw8_engine' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/clock.xdc]
+Finished Parsing XDC File [C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/clock.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1954.301 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 11 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 11 instances
+
+Synth Design complete | Checksum: 1b286a5e
+INFO: [Common 17-83] Releasing license: Synthesis
+22 Infos, 97 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:01:00 . Memory (MB): peak = 1954.301 ; gain = 1429.922
+# report_utilization -file {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/utilization.rpt}
+# report_utilization -hierarchical -file {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/hierarchical.rpt}
+# report_timing_summary -max_paths 5 -file {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/timing.rpt}
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+report_timing_summary: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1954.301 ; gain = 0.000
+# write_checkpoint -force {C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/synth.dcp}
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1954.301 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_pw8_addr_retry_20261113_203458/1/synth.dcp' has been generated.
+# puts ADDR_SYNTH_COMPLETE
+ADDR_SYNTH_COMPLETE
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 13 20:36:21 2026...

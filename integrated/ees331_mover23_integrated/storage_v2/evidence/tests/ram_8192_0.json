@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "sources": {
+    "rtl\\download_ram.sv": "742c52233ef875614d79847b3de2498cfc264fe7069fa5ff07e21486ae3812bd",
+    "tb\\download_ram.cpp": "a5f953a9acb9e8fbcbbac383ecf6b4b850966ed0ddb6ee173eac6da9fc51cc86"
+  },
+  "flags": [
+    "-GBYTES=8192",
+    "-GBASE=0",
+    "-GREAD_ONLY_CPU=1"
+  ],
+  "cpp_defines": [
+    "RAM_BYTES=8192",
+    "RAM_BASE=0",
+    "ROM_CPU=1"
+  ],
+  "verilator": "C:\\msys64\\ucrt64\\bin\\verilator_bin.exe",
+  "verilator_sha256": "8987e8fbc4c0e884e4df18bc716c4bfced2973f84ff124ba63f1a747e8191c10",
+  "compile_seconds": 9.327941099996679,
+  "returncode": 0,
+  "exe_sha256": "4ef0cb709c282882344f6c5b969fc07ebe24926b1780067ff7518a8efa571c27",
+  "total_seconds": 9.432896299986169
+}

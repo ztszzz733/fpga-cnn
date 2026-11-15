@@ -1,0 +1,95 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Nov 12 12:59:00 2026
+[*]
+[dumpfile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\reduced_cnn_single_20261112\full_cpu_config.fst"
+[dumpfile_mtime] "Thu Nov 12 12:58:46 2026"
+[dumpfile_size] 19081
+[savefile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\reduced_cnn_single_20261112\full_cpu_config.gtkw"
+[timestart] 0
+[size] 1800 1050
+[pos] -1 -1
+*-30.101570 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 230
+[signals_width] 460
+[sst_expanded] 1
+[sst_vpaned_height] 311
+@200
+-CPU AND PS
+@28
+[color] 2
+SOC.RESET_RELEASED
+[color] 2
+SOC.PS_MAILBOX_READ
+[color] 2
+SOC.PS_MAILBOX_WRITE
+[color] 2
+SOC.CPU_WRITE_CNN
+[color] 2
+SOC.CPU_RAM_READ
+[color] 2
+SOC.CPU_RAM_WRITE
+@22
+[color] 2
+SOC.CPU_LAST_CFG_ADDR[31:0]
+[color] 2
+SOC.CPU_LAST_CFG_DATA[31:0]
+@200
+-CNN AND MEMORY
+@28
+[color] 3
+SOC.CNN_RUNNING
+[color] 3
+SOC.CNN_COMPUTE_DONE
+[color] 3
+SOC.CNN_ERROR
+[color] 3
+SOC.MEMORY_FAULT
+@22
+[color] 5
+SOC.MEMORY_STATE_TEXT
+[color] 5
+SOC.MOVER_STATE_TEXT
+@28
+[color] 6
+SOC.DDR_RETURNING_DATA
+[color] 6
+SOC.DDR_SENDING_DATA
+@24
+[color] 3
+SOC.COMPLETED_TASKS[10:0]
+[color] 5
+SOC.PAGE_MISSES[31:0]
+[color] 5
+SOC.DDR_READ_BYTES[31:0]
+[color] 5
+SOC.DDR_WRITE_BYTES[31:0]
+@200
+-INDIVIDUAL OPERATOR STATES
+@22
+[color] 3
++{K3_0_STATE} SOC.K3_0.STATE_TEXT
+[color] 3
++{K3_1_STATE} SOC.K3_1.STATE_TEXT
+[color] 4
++{K1_0_STATE} SOC.K1_0.STATE_TEXT
+[color] 4
++{K1_1_STATE} SOC.K1_1.STATE_TEXT
+[color] 5
++{K1_2_STATE} SOC.K1_2.STATE_TEXT
+[color] 5
++{K1_3_STATE} SOC.K1_3.STATE_TEXT
+[color] 6
++{K1_4_STATE} SOC.K1_4.STATE_TEXT
+[color] 6
++{K1_5_STATE} SOC.K1_5.STATE_TEXT
+[color] 3
++{POST_0_STATE} SOC.POST_0.STATE_TEXT
+[color] 3
++{POST_1_STATE} SOC.POST_1.STATE_TEXT
+[color] 4
++{ADD_STATE} SOC.ADD.STATE_TEXT
+[color] 4
++{PAD_STATE} SOC.PAD.STATE_TEXT
+[pattern_trace] 1
+[pattern_trace] 0

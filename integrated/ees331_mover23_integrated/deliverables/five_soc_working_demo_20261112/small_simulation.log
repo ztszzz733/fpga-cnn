@@ -1,0 +1,3 @@
+PROGRESS cycle=1000000 jobs=32/40 read=124928 write=74536
+PASS EES331 realCPU/23-CNN/tile-RAM/DATA-MOVER/DDR jobs=40 checked=89820 cycles=1150220 overlap=12969 misses=131 mover_read_bytes=134144 mover_write_bytes=98304
+UNIT_STARTS 2 3 3 2 1 1 1 1 1 0 0 0 0 0 0 0 0 4 4 4 3 0 10

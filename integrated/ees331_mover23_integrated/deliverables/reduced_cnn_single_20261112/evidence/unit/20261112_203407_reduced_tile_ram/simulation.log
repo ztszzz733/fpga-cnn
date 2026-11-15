@@ -1,0 +1,1 @@
+PASS all 100352 words of 392 KiB: both ports, byte masks, three bank boundaries, concurrent reads, collision, range/alignment, reset retention

@@ -1,0 +1,41 @@
+{
+  "status": "UNIT_PASS_PENDING_SOC_AND_SYNTHESIS",
+  "full_image_started": false,
+  "resource_synthesis_performed": false,
+  "operators": {
+    "pw8": {
+      "run": "20261113_161647_remaining_pw8",
+      "cases": 87,
+      "faster": 86,
+      "unchanged": 1,
+      "slower": 0,
+      "compile_seconds": 16.854978488,
+      "simulation_seconds": 0.9270045739999979
+    },
+    "post": {
+      "run": "20261113_162332_remaining_post",
+      "cases": 40,
+      "faster": 32,
+      "unchanged": 8,
+      "slower": 0,
+      "compile_seconds": 24.163241360999997,
+      "simulation_seconds": 0.22868452099999814
+    },
+    "pad": {
+      "run": "20261113_161948_remaining_pad",
+      "cases": 46,
+      "faster": 30,
+      "unchanged": 0,
+      "slower": 16,
+      "compile_seconds": 23.248204729,
+      "simulation_seconds": 0.32423517299999816
+    }
+  },
+  "production_sources": {
+    "rtl/cnn_self/self_pw8_engine.sv": "f01370b8d3c182163374c8e6082101801b05f895f4346fe6201488fb726799af",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "48b7275d3552857e7c0091141426f14443e4ccf3ec860ec29a05f7a15251e48b",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "328b217a2d5b2c04dbb3aa9ad00a9dfa29b18cc59c82fe0f14403ffc567060d2",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39"
+  }
+}

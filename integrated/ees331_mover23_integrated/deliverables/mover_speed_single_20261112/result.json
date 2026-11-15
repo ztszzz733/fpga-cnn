@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "latency_before_cycles": 248676566,
+  "latency_after_cycles": 111735457,
+  "speedup": 2.2255832900025636,
+  "latency_reduction_percent": 55.06795883613738,
+  "reference_clock_hz": 100000000,
+  "mover_busy_before_cycles": 159533536.0,
+  "mover_busy_after_cycles": 22593357.0,
+  "mover_busy_speedup": 7.0610815382592325,
+  "resources": {
+    "Slice LUTs": 47486.0,
+    "Slice Registers": 34938.0,
+    "Block RAM Tile": 137.0,
+    "DSPs": 33.0
+  },
+  "full": {
+    "metrics": {
+      "status": "PASS",
+      "cycles": 112407260,
+      "jobs": 129,
+      "checked_output_bytes": 19365452,
+      "results": 1,
+      "real_multiframe_work_cycles": 0,
+      "real_multiframe_mac_cycles": 0,
+      "peak_active_frames": 1,
+      "gp_reads": 2509725,
+      "gp_writes": 591738,
+      "cpu_ram_reads": 1,
+      "cpu_ram_writes": 1,
+      "ddr_read_bytes": 28649472,
+      "ddr_write_bytes": 16259072,
+      "unit_starts": [
+        9,
+        8,
+        6,
+        6,
+        6,
+        5,
+        5,
+        5,
+        25,
+        25,
+        12,
+        17
+      ]
+    },
+    "output_sha256": "8971dac0e8b2df60698e060a5e066b416213e8a71553161f66b037e613718485"
+  },
+  "run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261112_220556_mover_speed_soc",
+  "synthesis_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261112_220450_reduced_synth_401408",
+  "model_single_beat_exact_equivalence": true,
+  "rtl_scope": "Only production data_mover.sv changed; CNN/CPU/order/sizes/392KiB unchanged"
+}

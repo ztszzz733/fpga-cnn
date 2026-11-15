@@ -1,0 +1,12 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_conv_dsp_fixed_20261113_195332/k3/netlist_sim/tb.sv" into library work
+INFO: [VRFC 10-311] analyzing module tb_conv_dsp_netlist
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_conv_dsp_fixed_20261113_195332/k3/netlist.v" into library work
+INFO: [VRFC 10-311] analyzing module compact_word_ram
+INFO: [VRFC 10-311] analyzing module compact_word_ram_1
+INFO: [VRFC 10-311] analyzing module compact_word_ram__parameterized0
+INFO: [VRFC 10-311] analyzing module compact_word_ram__parameterized0_0
+INFO: [VRFC 10-311] analyzing module compact_word_ram__parameterized1
+INFO: [VRFC 10-311] analyzing module resource_k3
+INFO: [VRFC 10-311] analyzing module self_conv_spatial4_engine
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/vivado/2025.2/data/verilog/src/glbl.v" into library work

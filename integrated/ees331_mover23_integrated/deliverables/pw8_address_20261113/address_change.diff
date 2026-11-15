@@ -1,0 +1,76 @@
+--- before/self_pw8_engine.sv
++++ after/self_pw8_engine.sv
+@@ -4,7 +4,7 @@
+ // Aligned groups use 32-bit reads; unaligned starts/tails use exact byte reads.
+ // Double-buffered weights and an eight-word write FIFO overlap local MACs.
+ // One outstanding external transaction; clear requires fabric cancellation too.
+-module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1)(
++module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1)(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,width,height,
+  input logic [31:0] in_channels,out_channels,kernel,stride,
+@@ -48,17 +48,29 @@
+  wire [1:0] tile_h=(panel_h-{1'b0,active_row,1'b0})>=2?2'd2:2'd1;
+  wire [1:0] load_row=two_columns?load_slot[2:1]:load_slot[1:0];
+  wire [1:0] compute_row=two_columns?compute_slot[2:1]:compute_slot[1:0];
+- wire [31:0] load_tile_base=tile_input_base+
++ wire [31:0] load_tile_base_comb=tile_input_base+
+   ((two_columns && load_slot[0])?(pixel_input_step<<2):32'd0)+
+   (load_row[0]?(row_input_step<<1):32'd0)+(load_row[1]?(row_input_step<<2):32'd0);
+- wire [31:0] compute_tile_base=tile_output_base+
++ wire [31:0] compute_tile_base_comb=tile_output_base+
+   ((two_columns && compute_slot[0])?(output_pixel_step<<2):32'd0)+
+   (compute_row[0]?(output_row_bytes<<1):32'd0)+(compute_row[1]?(output_row_bytes<<2):32'd0);
+  wire [2:0] next_load_slot=load_slot+1'b1;
+  wire [1:0] next_load_row=two_columns?next_load_slot[2:1]:next_load_slot[1:0];
+- wire [31:0] next_load_base=tile_input_base+
++ wire [31:0] next_load_base_comb=tile_input_base+
+   ((two_columns && next_load_slot[0])?(pixel_input_step<<2):32'd0)+
+   (next_load_row[0]?(row_input_step<<1):32'd0)+(next_load_row[1]?(row_input_step<<2):32'd0);
++ // Runtime microtile origins are pointers. Each change uses one row/column
++ // increment rather than decoding slot -> row/column -> several 32-bit sums.
++ logic [31:0] load_origin,load_row_origin,store_origin,store_row_origin;
++ wire load_next_column=two_columns && !load_slot[0];
++ wire store_next_column=two_columns && !compute_slot[0];
++ wire [31:0] load_origin_next=load_next_column?
++  load_origin+(pixel_input_step<<2):load_row_origin+(row_input_step<<1);
++ wire [31:0] store_origin_next=store_next_column?
++  store_origin+(output_pixel_step<<2):store_row_origin+(output_row_bytes<<1);
++ wire [31:0] load_tile_base=ADDR_REGS?load_origin:load_tile_base_comb;
++ wire [31:0] compute_tile_base=ADDR_REGS?store_origin:compute_tile_base_comb;
++ wire [31:0] next_load_base=ADDR_REGS?load_origin_next:next_load_base_comb;
+  wire [31:0] panel_input_x_step=panel_limit_w==8?(pixel_input_step<<3):(pixel_input_step<<2);
+  wire [31:0] panel_output_x_step=panel_limit_w==8?(output_pixel_step<<3):(output_pixel_step<<2);
+  wire [31:0] panel_input_y_step=panel_limit_h==8?(row_input_step<<3):(panel_limit_h==4?(row_input_step<<2):(row_input_step<<1));
+@@ -276,6 +288,8 @@
+     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+     load_slot<=0;compute_slot<=0;load_cache_base<=0;compute_cache_base<=0;
++    load_origin<=tile_input_base;load_row_origin<=tile_input_base;
++    store_origin<=tile_output_base;store_row_origin<=tile_output_base;
+     load_lane<=0;load_c<=0;load_addr<=tile_input_base;
+     oc<=0;cache_channel<=0;compute_bank<=0;weight_loaded<=0;weight_channel_addr<=wb;state<=IREQ;
+    end
+@@ -287,6 +301,8 @@
+      load_addr<=load_tile_base+(next_load[2]?row_input_step:0)+(next_load[1:0]*pixel_input_step);
+     end else if({1'b0,load_slot}+1'b1<panel_slots)begin
+      load_slot<=next_load_slot;load_cache_base<=load_cache_base+ci;
++     load_origin<=load_origin_next;
++     if(!load_next_column)load_row_origin<=load_origin_next;
+      load_lane<=0;load_c<=0;load_addr<=next_load_base;
+     end else begin
+      if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;end
+@@ -322,10 +338,13 @@
+      output_addr<=compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step);
+     end else if({1'b0,compute_slot}+1'b1<panel_slots)begin
+      compute_slot<=compute_slot+1'b1;compute_cache_base<=compute_cache_base+ci;
++     store_origin<=store_origin_next;
++     if(!store_next_column)store_row_origin<=store_origin_next;
+      for(integer p=0;p<8;p++)sums[p]<=0;
+      issue_c<=0;retire_c<=0;pipe_valid<=0;product_valid<=0;state<=MAC_RUN;
+     end else if(oc+1'b1<co)begin
+      compute_slot<=0;compute_cache_base<=0;
++     store_origin<=tile_output_base;store_row_origin<=tile_output_base;
+      oc<=oc+1'b1;cache_channel<=cache_channel+ci;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
+     end else state<=OWAIT;
+    end

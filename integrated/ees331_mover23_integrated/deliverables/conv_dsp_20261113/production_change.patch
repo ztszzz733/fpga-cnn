@@ -1,0 +1,65 @@
+--- a/rtl/cnn_self/self_conv_spatial4_engine.sv
++++ b/rtl/cnn_self/self_conv_spatial4_engine.sv
+@@ -45,8 +45,8 @@
+  logic [31:0] input_word_q[0:3],weight_word_q;
+  logic [1:0] input_lane_q,weight_lane_q,bank_select_q[0:3];
+  wire signed [7:0] weight_q=weight_word_q[weight_lane_q*8+:8];
+- logic signed [16:0] product[0:3];
+- logic signed [16:0] product_q[0:3];
++ (* use_dsp = "yes" *) logic signed [16:0] product[0:3];
++ (* use_dsp = "yes" *) logic signed [16:0] product_q[0:3];
+  logic read_valid,product_valid,read_last,product_last;
+  logic signed [31:0] accumulator[0:3],accumulated[0:3];
+ 
+--- a/rtl/cnn_self/self_pw8_engine.sv
++++ b/rtl/cnn_self/self_pw8_engine.sv
+@@ -85,8 +85,8 @@
+  logic [C_BITS-1:0] prefetch_c;
+  wire promote_prefetch=prefetch_valid && input_fill_left<=1;
+  logic signed [31:0] sums[8];
+- logic signed [16:0] products[8];
+- logic signed [16:0] product_q[8];
++ (* use_dsp = "yes" *) logic signed [16:0] products[8];
++ (* use_dsp = "yes" *) logic signed [16:0] product_q[8];
+  logic [7:0] lane_mask;
+  logic [3:0] live_lanes;
+  // Weight producer owns the inactive bank until its last response arrives.
+@@ -145,12 +145,12 @@
+  for(genvar p=0;p<8;p++)begin:pixel_banks
+   // Kept only as a constant byte-enable selector, not a separate RAM.
+  end
+- (* ram_style="block" *) logic [63:0] pixels[0:MAX_CHANNELS-1];
+- always @(posedge clk)if(!clear)begin
+-  for(integer p=0;p<8;p++)if(input_fill_left!=0 && input_fill_lane==p)
+-   pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
+-  if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+- end
++ // Keep the synchronous RAM read boundary: otherwise DSP input-register
++ // absorption can turn this block RAM into asynchronous distributed RAM.
++ (* keep_hierarchy="yes" *) pw8_pixel_bram #(.DEPTH(MAX_CHANNELS),.AW(C_BITS)) pixel_storage(
++  .clk(clk),.clear(clear),.wr_en(input_fill_left!=0),.wr_addr(input_fill_c),
++  .wr_lane(input_fill_lane),.wr_byte(input_fill_word[7:0]),
++  .rd_en(state==MAC_RUN && issue_c<ci),.rd_addr(compute_cache_base+issue_c),.rd_data(pixel_q));
+  // One skid word lets external reads proceed while bytes drain into pixel RAM.
+  always_ff @(posedge clk or negedge rst_n)begin
+   if(!rst_n)begin input_fill_left<=0;input_fill_word<=0;input_fill_c<=0;input_fill_lane<=0;
+@@ -346,3 +346,19 @@
+   end
+  end
+ endmodule
++
++// Same 512x64 synchronous pixel RAM, isolated from DSP register absorption.
++module pw8_pixel_bram #(parameter DEPTH=512, AW=$clog2(DEPTH+1))(
++ input wire clk,clear,wr_en,rd_en,
++ input wire [AW-1:0] wr_addr,rd_addr,
++ input wire [2:0] wr_lane,input wire [7:0] wr_byte,
++ output wire [63:0] rd_data
++);
++ (* ram_style="block" *) logic [63:0] pixels[0:DEPTH-1];
++ logic [63:0] value;
++ always @(posedge clk)if(!clear)begin
++  for(integer p=0;p<8;p++)if(wr_en && wr_lane==p)pixels[wr_addr][p*8+:8]<=wr_byte;
++  if(rd_en)value<=pixels[rd_addr];
++ end
++ assign rd_data=value;
++endmodule

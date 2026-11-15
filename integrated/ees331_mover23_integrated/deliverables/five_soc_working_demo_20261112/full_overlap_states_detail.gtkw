@@ -1,0 +1,531 @@
+[*]
+[dumpfile] "full_overlap_states.fst"
+[size] 1800 1050
+[signals_width] 430
+[sst_width] 240
+@200
+-CPU AND PS
+@28
+[color] 2
+SOC.RESET_RELEASED
+@28
+[color] 2
+SOC.PS_MAILBOX_READ
+@28
+[color] 2
+SOC.PS_MAILBOX_WRITE
+@28
+[color] 2
+SOC.CPU_WRITE_CNN
+@28
+[color] 2
+SOC.CPU_RAM_READ
+@28
+[color] 2
+SOC.CPU_RAM_WRITE
+@22
+[color] 2
+SOC.CPU_LAST_CFG_ADDR[31:0]
+@22
+[color] 2
+SOC.CPU_LAST_CFG_DATA[31:0]
+@200
+-CNN AND MEMORY STATES
+@28
+[color] 3
+SOC.CNN_RUNNING
+@28
+[color] 3
+SOC.CNN_COMPUTE_DONE
+@28
+[color] 3
+SOC.CNN_ERROR
+@28
+[color] 3
+SOC.MEMORY_FAULT
+@22
+[color] 5
+SOC.MEMORY_STATE_TEXT
+@22
+[color] 5
+SOC.MOVER_STATE_TEXT
+@28
+[color] 6
+SOC.DDR_RETURNING_DATA
+@28
+[color] 6
+SOC.DDR_SENDING_DATA
+@24
+[color] 3
+SOC.COMPLETED_TASKS[11:0]
+@24
+[color] 5
+SOC.PAGE_MISSES[31:0]
+@24
+[color] 5
+SOC.DDR_READ_BYTES[31:0]
+@24
+[color] 5
+SOC.DDR_WRITE_BYTES[31:0]
+@200
+-INDIVIDUAL OPERATOR STATES
+@200
+-K3_0
+@22
+[color] 3
++{K3_0_STATE} SOC.K3_0.STATE_TEXT
+@28
+[color] 3
++{K3_0_ACTIVE} SOC.K3_0.ACTIVE
+@28
+[color] 3
++{K3_0_WORK} SOC.K3_0.WORK
+@24
+[color] 3
++{K3_0_TASK} SOC.K3_0.TASK[10:0]
+@24
+[color] 3
++{K3_0_FRAME_SLOT} SOC.K3_0.FRAME_SLOT[2:0]
+@24
+[color] 3
++{K3_0_STEP} SOC.K3_0.STEP[7:0]
+@200
+-K3_1
+@22
+[color] 3
++{K3_1_STATE} SOC.K3_1.STATE_TEXT
+@28
+[color] 3
++{K3_1_ACTIVE} SOC.K3_1.ACTIVE
+@28
+[color] 3
++{K3_1_WORK} SOC.K3_1.WORK
+@24
+[color] 3
++{K3_1_TASK} SOC.K3_1.TASK[10:0]
+@24
+[color] 3
++{K3_1_FRAME_SLOT} SOC.K3_1.FRAME_SLOT[2:0]
+@24
+[color] 3
++{K3_1_STEP} SOC.K3_1.STEP[7:0]
+@200
+-K3_2
+@22
+[color] 3
++{K3_2_STATE} SOC.K3_2.STATE_TEXT
+@28
+[color] 3
++{K3_2_ACTIVE} SOC.K3_2.ACTIVE
+@28
+[color] 3
++{K3_2_WORK} SOC.K3_2.WORK
+@24
+[color] 3
++{K3_2_TASK} SOC.K3_2.TASK[10:0]
+@24
+[color] 3
++{K3_2_FRAME_SLOT} SOC.K3_2.FRAME_SLOT[2:0]
+@24
+[color] 3
++{K3_2_STEP} SOC.K3_2.STEP[7:0]
+@200
+-K3_3
+@22
+[color] 3
++{K3_3_STATE} SOC.K3_3.STATE_TEXT
+@28
+[color] 3
++{K3_3_ACTIVE} SOC.K3_3.ACTIVE
+@28
+[color] 3
++{K3_3_WORK} SOC.K3_3.WORK
+@24
+[color] 3
++{K3_3_TASK} SOC.K3_3.TASK[10:0]
+@24
+[color] 3
++{K3_3_FRAME_SLOT} SOC.K3_3.FRAME_SLOT[2:0]
+@24
+[color] 3
++{K3_3_STEP} SOC.K3_3.STEP[7:0]
+@200
+-K1_0
+@22
+[color] 4
++{K1_0_STATE} SOC.K1_0.STATE_TEXT
+@28
+[color] 4
++{K1_0_ACTIVE} SOC.K1_0.ACTIVE
+@28
+[color] 4
++{K1_0_WORK} SOC.K1_0.WORK
+@24
+[color] 4
++{K1_0_TASK} SOC.K1_0.TASK[10:0]
+@24
+[color] 4
++{K1_0_FRAME_SLOT} SOC.K1_0.FRAME_SLOT[2:0]
+@24
+[color] 4
++{K1_0_STEP} SOC.K1_0.STEP[7:0]
+@200
+-K1_1
+@22
+[color] 4
++{K1_1_STATE} SOC.K1_1.STATE_TEXT
+@28
+[color] 4
++{K1_1_ACTIVE} SOC.K1_1.ACTIVE
+@28
+[color] 4
++{K1_1_WORK} SOC.K1_1.WORK
+@24
+[color] 4
++{K1_1_TASK} SOC.K1_1.TASK[10:0]
+@24
+[color] 4
++{K1_1_FRAME_SLOT} SOC.K1_1.FRAME_SLOT[2:0]
+@24
+[color] 4
++{K1_1_STEP} SOC.K1_1.STEP[7:0]
+@200
+-K1_2
+@22
+[color] 4
++{K1_2_STATE} SOC.K1_2.STATE_TEXT
+@28
+[color] 4
++{K1_2_ACTIVE} SOC.K1_2.ACTIVE
+@28
+[color] 4
++{K1_2_WORK} SOC.K1_2.WORK
+@24
+[color] 4
++{K1_2_TASK} SOC.K1_2.TASK[10:0]
+@24
+[color] 4
++{K1_2_FRAME_SLOT} SOC.K1_2.FRAME_SLOT[2:0]
+@24
+[color] 4
++{K1_2_STEP} SOC.K1_2.STEP[7:0]
+@200
+-K1_3
+@22
+[color] 4
++{K1_3_STATE} SOC.K1_3.STATE_TEXT
+@28
+[color] 4
++{K1_3_ACTIVE} SOC.K1_3.ACTIVE
+@28
+[color] 4
++{K1_3_WORK} SOC.K1_3.WORK
+@24
+[color] 4
++{K1_3_TASK} SOC.K1_3.TASK[10:0]
+@24
+[color] 4
++{K1_3_FRAME_SLOT} SOC.K1_3.FRAME_SLOT[2:0]
+@24
+[color] 4
++{K1_3_STEP} SOC.K1_3.STEP[7:0]
+@200
+-K1_4
+@22
+[color] 5
++{K1_4_STATE} SOC.K1_4.STATE_TEXT
+@28
+[color] 5
++{K1_4_ACTIVE} SOC.K1_4.ACTIVE
+@28
+[color] 5
++{K1_4_WORK} SOC.K1_4.WORK
+@24
+[color] 5
++{K1_4_TASK} SOC.K1_4.TASK[10:0]
+@24
+[color] 5
++{K1_4_FRAME_SLOT} SOC.K1_4.FRAME_SLOT[2:0]
+@24
+[color] 5
++{K1_4_STEP} SOC.K1_4.STEP[7:0]
+@200
+-K1_5
+@22
+[color] 5
++{K1_5_STATE} SOC.K1_5.STATE_TEXT
+@28
+[color] 5
++{K1_5_ACTIVE} SOC.K1_5.ACTIVE
+@28
+[color] 5
++{K1_5_WORK} SOC.K1_5.WORK
+@24
+[color] 5
++{K1_5_TASK} SOC.K1_5.TASK[10:0]
+@24
+[color] 5
++{K1_5_FRAME_SLOT} SOC.K1_5.FRAME_SLOT[2:0]
+@24
+[color] 5
++{K1_5_STEP} SOC.K1_5.STEP[7:0]
+@200
+-K1_6
+@22
+[color] 5
++{K1_6_STATE} SOC.K1_6.STATE_TEXT
+@28
+[color] 5
++{K1_6_ACTIVE} SOC.K1_6.ACTIVE
+@28
+[color] 5
++{K1_6_WORK} SOC.K1_6.WORK
+@24
+[color] 5
++{K1_6_TASK} SOC.K1_6.TASK[10:0]
+@24
+[color] 5
++{K1_6_FRAME_SLOT} SOC.K1_6.FRAME_SLOT[2:0]
+@24
+[color] 5
++{K1_6_STEP} SOC.K1_6.STEP[7:0]
+@200
+-K1_7
+@22
+[color] 5
++{K1_7_STATE} SOC.K1_7.STATE_TEXT
+@28
+[color] 5
++{K1_7_ACTIVE} SOC.K1_7.ACTIVE
+@28
+[color] 5
++{K1_7_WORK} SOC.K1_7.WORK
+@24
+[color] 5
++{K1_7_TASK} SOC.K1_7.TASK[10:0]
+@24
+[color] 5
++{K1_7_FRAME_SLOT} SOC.K1_7.FRAME_SLOT[2:0]
+@24
+[color] 5
++{K1_7_STEP} SOC.K1_7.STEP[7:0]
+@200
+-K1_8
+@22
+[color] 6
++{K1_8_STATE} SOC.K1_8.STATE_TEXT
+@28
+[color] 6
++{K1_8_ACTIVE} SOC.K1_8.ACTIVE
+@28
+[color] 6
++{K1_8_WORK} SOC.K1_8.WORK
+@24
+[color] 6
++{K1_8_TASK} SOC.K1_8.TASK[10:0]
+@24
+[color] 6
++{K1_8_FRAME_SLOT} SOC.K1_8.FRAME_SLOT[2:0]
+@24
+[color] 6
++{K1_8_STEP} SOC.K1_8.STEP[7:0]
+@200
+-K1_9
+@22
+[color] 6
++{K1_9_STATE} SOC.K1_9.STATE_TEXT
+@28
+[color] 6
++{K1_9_ACTIVE} SOC.K1_9.ACTIVE
+@28
+[color] 6
++{K1_9_WORK} SOC.K1_9.WORK
+@24
+[color] 6
++{K1_9_TASK} SOC.K1_9.TASK[10:0]
+@24
+[color] 6
++{K1_9_FRAME_SLOT} SOC.K1_9.FRAME_SLOT[2:0]
+@24
+[color] 6
++{K1_9_STEP} SOC.K1_9.STEP[7:0]
+@200
+-K1_10
+@22
+[color] 6
++{K1_10_STATE} SOC.K1_10.STATE_TEXT
+@28
+[color] 6
++{K1_10_ACTIVE} SOC.K1_10.ACTIVE
+@28
+[color] 6
++{K1_10_WORK} SOC.K1_10.WORK
+@24
+[color] 6
++{K1_10_TASK} SOC.K1_10.TASK[10:0]
+@24
+[color] 6
++{K1_10_FRAME_SLOT} SOC.K1_10.FRAME_SLOT[2:0]
+@24
+[color] 6
++{K1_10_STEP} SOC.K1_10.STEP[7:0]
+@200
+-K1_11
+@22
+[color] 6
++{K1_11_STATE} SOC.K1_11.STATE_TEXT
+@28
+[color] 6
++{K1_11_ACTIVE} SOC.K1_11.ACTIVE
+@28
+[color] 6
++{K1_11_WORK} SOC.K1_11.WORK
+@24
+[color] 6
++{K1_11_TASK} SOC.K1_11.TASK[10:0]
+@24
+[color] 6
++{K1_11_FRAME_SLOT} SOC.K1_11.FRAME_SLOT[2:0]
+@24
+[color] 6
++{K1_11_STEP} SOC.K1_11.STEP[7:0]
+@200
+-DW7
+@22
+[color] 3
++{DW7_STATE} SOC.DW7.STATE_TEXT
+@28
+[color] 3
++{DW7_ACTIVE} SOC.DW7.ACTIVE
+@28
+[color] 3
++{DW7_WORK} SOC.DW7.WORK
+@24
+[color] 3
++{DW7_TASK} SOC.DW7.TASK[10:0]
+@24
+[color] 3
++{DW7_FRAME_SLOT} SOC.DW7.FRAME_SLOT[2:0]
+@24
+[color] 3
++{DW7_STEP} SOC.DW7.STEP[7:0]
+@200
+-POST_0
+@22
+[color] 3
++{POST_0_STATE} SOC.POST_0.STATE_TEXT
+@28
+[color] 3
++{POST_0_ACTIVE} SOC.POST_0.ACTIVE
+@28
+[color] 3
++{POST_0_WORK} SOC.POST_0.WORK
+@24
+[color] 3
++{POST_0_TASK} SOC.POST_0.TASK[10:0]
+@24
+[color] 3
++{POST_0_FRAME_SLOT} SOC.POST_0.FRAME_SLOT[2:0]
+@24
+[color] 3
++{POST_0_STEP} SOC.POST_0.STEP[7:0]
+@200
+-POST_1
+@22
+[color] 3
++{POST_1_STATE} SOC.POST_1.STATE_TEXT
+@28
+[color] 3
++{POST_1_ACTIVE} SOC.POST_1.ACTIVE
+@28
+[color] 3
++{POST_1_WORK} SOC.POST_1.WORK
+@24
+[color] 3
++{POST_1_TASK} SOC.POST_1.TASK[10:0]
+@24
+[color] 3
++{POST_1_FRAME_SLOT} SOC.POST_1.FRAME_SLOT[2:0]
+@24
+[color] 3
++{POST_1_STEP} SOC.POST_1.STEP[7:0]
+@200
+-POST_2
+@22
+[color] 3
++{POST_2_STATE} SOC.POST_2.STATE_TEXT
+@28
+[color] 3
++{POST_2_ACTIVE} SOC.POST_2.ACTIVE
+@28
+[color] 3
++{POST_2_WORK} SOC.POST_2.WORK
+@24
+[color] 3
++{POST_2_TASK} SOC.POST_2.TASK[10:0]
+@24
+[color] 3
++{POST_2_FRAME_SLOT} SOC.POST_2.FRAME_SLOT[2:0]
+@24
+[color] 3
++{POST_2_STEP} SOC.POST_2.STEP[7:0]
+@200
+-POST_3
+@22
+[color] 4
++{POST_3_STATE} SOC.POST_3.STATE_TEXT
+@28
+[color] 4
++{POST_3_ACTIVE} SOC.POST_3.ACTIVE
+@28
+[color] 4
++{POST_3_WORK} SOC.POST_3.WORK
+@24
+[color] 4
++{POST_3_TASK} SOC.POST_3.TASK[10:0]
+@24
+[color] 4
++{POST_3_FRAME_SLOT} SOC.POST_3.FRAME_SLOT[2:0]
+@24
+[color] 4
++{POST_3_STEP} SOC.POST_3.STEP[7:0]
+@200
+-ADD
+@22
+[color] 4
++{ADD_STATE} SOC.ADD.STATE_TEXT
+@28
+[color] 4
++{ADD_ACTIVE} SOC.ADD.ACTIVE
+@28
+[color] 4
++{ADD_WORK} SOC.ADD.WORK
+@24
+[color] 4
++{ADD_TASK} SOC.ADD.TASK[10:0]
+@24
+[color] 4
++{ADD_FRAME_SLOT} SOC.ADD.FRAME_SLOT[2:0]
+@24
+[color] 4
++{ADD_STEP} SOC.ADD.STEP[7:0]
+@200
+-PAD
+@22
+[color] 4
++{PAD_STATE} SOC.PAD.STATE_TEXT
+@28
+[color] 4
++{PAD_ACTIVE} SOC.PAD.ACTIVE
+@28
+[color] 4
++{PAD_WORK} SOC.PAD.WORK
+@24
+[color] 4
++{PAD_TASK} SOC.PAD.TASK[10:0]
+@24
+[color] 4
++{PAD_FRAME_SLOT} SOC.PAD.FRAME_SLOT[2:0]
+@24
+[color] 4
++{PAD_STEP} SOC.PAD.STEP[7:0]

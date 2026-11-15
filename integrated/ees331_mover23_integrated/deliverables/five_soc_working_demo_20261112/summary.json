@@ -1,0 +1,68 @@
+{
+  "status": "STOPPED_BY_USER",
+  "full_network_completed": false,
+  "full_stopped_progress": {
+    "cycles": 914000000,
+    "started": 59,
+    "finished": 54,
+    "checked_bytes": 28831992,
+    "page_misses": 149094,
+    "ddr_read_bytes": 152671480,
+    "ddr_write_bytes": 80370688
+  },
+  "small_complete_soc_demo": {
+    "status": "PASS",
+    "cycles": 1150220,
+    "jobs": 40,
+    "checked_output_bytes": 89820,
+    "results": 5,
+    "real_multiframe_work_cycles": 12969,
+    "real_multiframe_mac_cycles": 11695,
+    "peak_active_frames": 5,
+    "gp_reads": 41611,
+    "gp_writes": 6720,
+    "cpu_ram_reads": 1,
+    "cpu_ram_writes": 1,
+    "ddr_read_bytes": 134144,
+    "ddr_write_bytes": 98304,
+    "unit_starts": [
+      2,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      4,
+      4,
+      3,
+      0,
+      10
+    ]
+  },
+  "waves": {
+    "full_start_states.fst": "Actual full-network startup, cycles 0..30000000; interrupted source, complete recorded blocks only",
+    "full_overlap_states.fst": "Actual full-network overlap window, cycles 700000000..700200000",
+    "small_complete_states.fst": "Completed five-image small SoC case, input through final DDR outputs"
+  },
+  "frame_mapping": "slots 0..4 correspond to images 1..5; task = step*5+slot",
+  "clock": "100MHz simulation reference, not board timing closure",
+  "raw_full_wave": "/mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/build/runs/20261112_164319_five_full_soc/full/soc_five.fst",
+  "raw_full_wave_note": "Interrupted FST with .hier sidecar; final unflushed tail may be missing. Exported windows lie within completed blocks.",
+  "sha256": {
+    "full_overlap_states.fst": "95e6660f32b7a2074367ee778ba2530c1784b027098fd062eff5b1340af7e8f5",
+    "full_start_states.fst": "21f7f3f11c32d4497992b125b6bcdfe4ddcc04022ff65d9e2f06ad3d55034020",
+    "small_complete_states.fst": "ad0c8e50f7ca8b77b5e8225a601d4a03debe4b10d58b9e31d1cd3c87a7bfae41"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "capacity": 3072,
+  "pages": 3,
+  "sources": {
+    "rtl/cnn_ddr/cnn_paged_mover.sv": "d81b1b4bab40d011f75b1b969baae0e311eda9b7169b6805ce8d7f77690a2b53",
+    "storage_v2/rtl/tile_local_ram.sv": "3c4562d153b80e95c585579b94efe04a85cdcf629bbca1be67ed0917a130255a",
+    "storage_v2/rtl/data_mover.sv": "912cb80f7d2bb0e30408ecb223fbdad037a65c58b99f1471ade84ef8f0407c9e",
+    "simulation/tb/integration/reduced_pager_main.cpp": "502244b592313066d501ea50b5c8b117d49094f1b96bed41fa41589306adfa71",
+    "simulation/tb/integration/ees331_axi_mover_model.hpp": "b10d0da08b434208aa68fce0ca6587615d01577617ce187fef9057413b16e8c3"
+  }
+}

@@ -1,0 +1,166 @@
+--- a/rtl/cnn_self/self_conv_spatial4_engine.sv
++++ b/rtl/cnn_self/self_conv_spatial4_engine.sv
+@@ -10,7 +10,7 @@
+ // clear aborts this master; the interconnect must also cancel its pending
+ // transaction, as this interface has no transaction ID for a late response.
+ module self_conv_spatial4_engine #(
+- parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1
++ parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1
+ )(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,
+@@ -23,6 +23,9 @@
+  output wire [3:0] phase,
+  output logic [31:0] input_reads,weight_reads,mac_count
+ );
++ logic core_valid,core_write,core_byte_access,core_ready,core_response;
++ logic [31:0] core_addr,core_wdata,core_rdata;
++
+  localparam integer EDGE=2*(TILE-1)+MAX_KERNEL;
+  localparam integer INPUT_BYTES=EDGE*EDGE*MAX_CHANNELS;
+  localparam integer WEIGHT_BYTES=MAX_KERNEL*MAX_KERNEL*MAX_CHANNELS;
+@@ -89,29 +92,29 @@
+  logic [WA_BITS-3:0] weight_full_words;
+  wire [31:0] channel_stride_bytes=stride_two?({{(32-C_BITS){1'b0}},ci}<<1):ci;
+  wire [31:0] output_pixel_bytes={{(32-C_BITS){1'b0}},co}<<2;
+- wire input_response=response && (state==IWAIT || (state==IREQ && ready));
+- wire weight_response=response && (state==WWAIT || (state==WREQ && ready));
+- wire output_response=response && (state==OWAIT || (state==OREQ && ready));
++ wire input_response=core_response && (state==IWAIT || (state==IREQ && core_ready));
++ wire weight_response=core_response && (state==WWAIT || (state==WREQ && core_ready));
++ wire output_response=core_response && (state==OWAIT || (state==OREQ && core_ready));
+ 
+  assign phase=state;
+  assign busy=(state!=IDLE && state!=FINISH && state!=FAIL);
+  assign done=(state==FINISH);
+  assign error=(state==FAIL);
+- assign valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
+- assign write=(state==OREQ);
++ assign core_valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
++ assign core_write=(state==OREQ);
+  wire input_wide=(load_addr[1:0]==0 && load_c[1:0]==0 && (load_c+32'd4<=ci));
+  wire weight_wide=(weight_addr[1:0]==0 && weight_load_index[1:0]==0 && (weight_load_index>>2)<weight_full_words);
+  wire [2:0] input_step=input_wide?3'd4:3'd1;
+  wire [2:0] weight_step=weight_wide?3'd4:3'd1;
+- assign byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
++ assign core_byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
+  wire last_issue=(dw || mac_c+1'b1>=ci) && tap_x+1'b1>=k && tap_y+1'b1>=k;
+  assign mac_fire=!clear && product_valid;
+  always_comb begin
+-  addr=0;wdata=0;
++  core_addr=0;core_wdata=0;
+   case(state)
+-   IREQ:addr=load_addr;
+-   WREQ:addr=weight_addr;
+-   OREQ:begin addr=output_addr;wdata=tile_sum[{store_y[0],store_x[0]}];end
++   IREQ:core_addr=load_addr;
++   WREQ:core_addr=weight_addr;
++   OREQ:begin core_addr=output_addr;core_wdata=tile_sum[{store_y[0],store_x[0]}];end
+    default:;
+   endcase
+   mul_value=mul_acc+(mul_rhs[0]?mul_lhs:64'd0);
+@@ -176,13 +179,13 @@
+   compact_word_ram #(.DEPTH(BANK_DEPTH)) mem(
+    .clk(clk),.wr_en(input_response && load_bank==b && !clear),.rd_en(state==MAC_READ && !clear),
+    .wr_addr($clog2(BANK_DEPTH)'(load_bank_index>>2)),.rd_addr($clog2(BANK_DEPTH)'(bank_read_index[b]>>2)),
+-   .wr_data(input_wide?rdata:{4{rdata[7:0]}}),
++   .wr_data(input_wide?core_rdata:{4{core_rdata[7:0]}}),
+    .wr_mask(input_wide?4'hf:(4'b1<<load_bank_index[1:0])),.rd_data(input_word_q[b]));
+  end
+  compact_word_ram #(.DEPTH((WEIGHT_BYTES+3)/4)) weights(
+   .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_READ && !clear),
+   .wr_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_load_index>>2)),.rd_addr($clog2((WEIGHT_BYTES+3)/4)'(weight_index>>2)),
+-  .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),
++  .wr_data(weight_wide?core_rdata:{4{core_rdata[7:0]}}),
+   .wr_mask(weight_wide?4'hf:(4'b1<<weight_load_index[1:0])),.rd_data(weight_word_q));
+  always_ff @(posedge clk)begin
+   if(!clear)begin
+@@ -264,7 +267,7 @@
+     state<=IREQ;
+    end
+    IREQ,IWAIT:begin
+-    if(state==IREQ && ready)state<=IWAIT;
++    if(state==IREQ && core_ready)state<=IWAIT;
+     if(input_response)begin
+      input_reads<=input_reads+input_step;load_index<=load_index+input_step;
+      if(load_c+input_step<ci)begin
+@@ -282,7 +285,7 @@
+     end
+    end
+    WREQ,WWAIT:begin
+-    if(state==WREQ && ready)state<=WWAIT;
++    if(state==WREQ && core_ready)state<=WWAIT;
+     if(weight_response || (state==WREQ && weight_hit))begin
+      if(weight_response)weight_reads<=weight_reads+weight_step;
+      if(!weight_hit && (weight_wide?(weight_load_index!=weight_last_word):(weight_load_index!=weight_last_byte)))begin
+@@ -319,7 +322,7 @@
+     end
+    end
+    OREQ,OWAIT:begin
+-    if(state==OREQ && ready)state<=OWAIT;
++    if(state==OREQ && core_ready)state<=OWAIT;
+     if(output_response)begin
+      if(store_x+1'b1<tile_w)begin
+       store_x<=store_x+1'b1;store_index<=store_index+1'b1;
+@@ -350,4 +353,61 @@
+    default:state<=FAIL;
+   endcase
+  end
++
++ generate if(READ_WORD_BUFFER)begin:read_word_buffers
++  logic [1:0] cached_valid;
++  logic [29:0] cached_tag[0:1];
++  logic [31:0] cached_data[0:1];
++  logic pending,pending_widen,pending_fill,pending_region;
++  logic [1:0] pending_lane;
++  logic [29:0] pending_tag;
++  wire region=(state==WREQ || state==WWAIT);
++  wire [31:0] base=region?wb:ib;
++  wire [63:0] limit=region?weight_end:input_end;
++  wire [31:0] aligned={core_addr[31:2],2'b00};
++  wire hit=!pending && core_valid && !core_write && cached_valid[region] &&
++           cached_tag[region]==core_addr[31:2];
++  // No widening past either end of the declared read-only tensor.
++  wire widen=core_valid && !core_write && core_byte_access &&
++             {32'd0,aligned}>={32'd0,base} && {32'd0,aligned}+64'd4<=limit;
++  wire accepted=valid && ready;
++  wire returned=response && (pending || accepted);
++  wire fill=pending?pending_fill:(!core_write && !byte_access);
++  wire fill_region=pending?pending_region:region;
++  wire [29:0] fill_tag=pending?pending_tag:core_addr[31:2];
++  wire [1:0] lane=pending?pending_lane:core_addr[1:0];
++  wire [7:0] returned_byte=rdata[lane*8+:8];
++  wire [7:0] cached_byte=cached_data[region][core_addr[1:0]*8+:8];
++  assign valid=core_valid && !hit;
++  assign write=core_write;
++  assign byte_access=widen?1'b0:core_byte_access;
++  assign addr=widen?aligned:core_addr;
++  assign wdata=core_wdata;
++  assign core_ready=!pending && (hit || ready);
++  assign core_response=hit || returned;
++  assign core_rdata=hit ? (core_byte_access?{{24{cached_byte[7]}},cached_byte}:cached_data[region]) :
++                    ((pending?pending_widen:widen)?{{24{returned_byte[7]}},returned_byte}:rdata);
++  always_ff @(posedge clk or negedge rst_n)begin
++   if(!rst_n)begin cached_valid<=0;pending<=0;pending_widen<=0;pending_fill<=0;
++    pending_region<=0;pending_lane<=0;pending_tag<=0;end
++   else if(clear || (state==IDLE && start))begin cached_valid<=0;pending<=0;end
++   else begin
++    if(accepted)begin
++     pending<=!response;pending_widen<=widen;
++     pending_fill<=!core_write && !byte_access;pending_region<=region;
++     pending_lane<=core_addr[1:0];pending_tag<=core_addr[31:2];
++     if(core_write)for(integer b=0;b<2;b++)
++      if(cached_tag[b]==core_addr[31:2])cached_valid[b]<=0;
++    end else if(returned)pending<=0;
++    if(returned && fill)begin
++     cached_valid[fill_region]<=1;
++     cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=rdata;
++    end
++   end
++  end
++ end else begin:no_read_word_buffers
++  assign valid=core_valid;assign write=core_write;assign byte_access=core_byte_access;
++  assign addr=core_addr;assign wdata=core_wdata;
++  assign core_ready=ready;assign core_response=response;assign core_rdata=rdata;
++ end endgenerate
+ endmodule

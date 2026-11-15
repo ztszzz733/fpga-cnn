@@ -1,0 +1,102 @@
+// Generated simulation observation wrapper; production wiring unchanged.
+module ees331_soc_sim_top (
+input wire FCLK_CLK0, FCLK_RESET0_N,
+ output wire M_AXI_GP0_ACLK, S_AXI_HP0_ACLK,
+ input wire [31:0] M_AXI_GP0_AWADDR,
+ input wire [31:0] M_AXI_GP0_ARADDR,
+ input wire [31:0] M_AXI_GP0_WDATA,
+ output wire [31:0] M_AXI_GP0_RDATA,
+ input wire [11:0] M_AXI_GP0_AWID,
+ input wire [11:0] M_AXI_GP0_ARID,
+ input wire [11:0] M_AXI_GP0_WID,
+ input wire [3:0] M_AXI_GP0_AWLEN,
+ input wire [3:0] M_AXI_GP0_ARLEN,
+ input wire [2:0] M_AXI_GP0_AWSIZE,
+ input wire [2:0] M_AXI_GP0_ARSIZE,
+ input wire [1:0] M_AXI_GP0_AWBURST,
+ input wire [1:0] M_AXI_GP0_ARBURST,
+ input wire [1:0] M_AXI_GP0_AWLOCK,
+ input wire [1:0] M_AXI_GP0_ARLOCK,
+ input wire [3:0] M_AXI_GP0_AWCACHE,
+ input wire [3:0] M_AXI_GP0_ARCACHE,
+ input wire [2:0] M_AXI_GP0_AWPROT,
+ input wire [2:0] M_AXI_GP0_ARPROT,
+ input wire [3:0] M_AXI_GP0_AWQOS,
+ input wire [3:0] M_AXI_GP0_ARQOS,
+ input wire [3:0] M_AXI_GP0_WSTRB,
+ input wire M_AXI_GP0_AWVALID,
+ input wire M_AXI_GP0_WVALID,
+ input wire M_AXI_GP0_WLAST,
+ input wire M_AXI_GP0_BREADY,
+ input wire M_AXI_GP0_ARVALID,
+ input wire M_AXI_GP0_RREADY,
+ output wire [11:0] M_AXI_GP0_BID,
+ output wire [11:0] M_AXI_GP0_RID,
+ output wire [1:0] M_AXI_GP0_BRESP,
+ output wire [1:0] M_AXI_GP0_RRESP,
+ output wire M_AXI_GP0_AWREADY,
+ output wire M_AXI_GP0_WREADY,
+ output wire M_AXI_GP0_BVALID,
+ output wire M_AXI_GP0_ARREADY,
+ output wire M_AXI_GP0_RVALID,
+ output wire M_AXI_GP0_RLAST,
+ output wire [31:0] S_AXI_HP0_AWADDR,
+ output wire [31:0] S_AXI_HP0_ARADDR,
+ output wire [63:0] S_AXI_HP0_WDATA,
+ input wire [63:0] S_AXI_HP0_RDATA,
+ output wire [5:0] S_AXI_HP0_AWID,
+ output wire [5:0] S_AXI_HP0_ARID,
+ output wire [5:0] S_AXI_HP0_WID,
+ output wire [3:0] S_AXI_HP0_AWLEN,
+ output wire [3:0] S_AXI_HP0_ARLEN,
+ output wire [2:0] S_AXI_HP0_AWSIZE,
+ output wire [2:0] S_AXI_HP0_ARSIZE,
+ output wire [1:0] S_AXI_HP0_AWBURST,
+ output wire [1:0] S_AXI_HP0_ARBURST,
+ output wire [1:0] S_AXI_HP0_AWLOCK,
+ output wire [1:0] S_AXI_HP0_ARLOCK,
+ output wire [3:0] S_AXI_HP0_AWCACHE,
+ output wire [3:0] S_AXI_HP0_ARCACHE,
+ output wire [2:0] S_AXI_HP0_AWPROT,
+ output wire [2:0] S_AXI_HP0_ARPROT,
+ output wire [3:0] S_AXI_HP0_AWQOS,
+ output wire [3:0] S_AXI_HP0_ARQOS,
+ output wire [7:0] S_AXI_HP0_WSTRB,
+ output wire S_AXI_HP0_AWVALID,
+ output wire S_AXI_HP0_WVALID,
+ output wire S_AXI_HP0_WLAST,
+ output wire S_AXI_HP0_BREADY,
+ output wire S_AXI_HP0_ARVALID,
+ output wire S_AXI_HP0_RREADY,
+ input wire [5:0] S_AXI_HP0_BID,
+ input wire [5:0] S_AXI_HP0_RID,
+ input wire [1:0] S_AXI_HP0_BRESP,
+ input wire [1:0] S_AXI_HP0_RRESP,
+ input wire S_AXI_HP0_AWREADY,
+ input wire S_AXI_HP0_WREADY,
+ input wire S_AXI_HP0_BVALID,
+ input wire S_AXI_HP0_ARREADY,
+ input wire S_AXI_HP0_RVALID,
+ input wire S_AXI_HP0_RLAST,
+ output wire [9:0] debug_unit_start,debug_unit_active,debug_completion,debug_work,
+ output wire [99:0] debug_node,
+ output wire [9:0] debug_valid,debug_write,debug_byte,debug_ready,debug_response,
+ output wire [319:0] debug_addr,debug_wdata,debug_rdata,
+ output wire [10:0] debug_completed,
+ output wire debug_error,debug_fault
+);
+
+ face_soc_ees331_top dut(.*);
+ assign debug_unit_start=dut.u_cnn.unit_start;
+ assign debug_unit_active=dut.u_cnn.unit_active;
+ assign debug_completion=dut.u_cnn.completion_pulse;
+ assign debug_work=dut.u_cnn.operator_work;
+ assign debug_node=dut.u_cnn.unit_node;
+ assign debug_completed=dut.u_cnn.completed_count;
+ assign debug_error=dut.u_cnn.error;
+ assign debug_fault=dut.cnn_mem_fault;
+ assign debug_valid=dut.cnn_valid;assign debug_write=dut.cnn_write;
+ assign debug_byte=dut.cnn_byte;assign debug_ready=dut.cnn_ready;
+ assign debug_response=dut.cnn_response;assign debug_addr=dut.cnn_addr;
+ assign debug_wdata=dut.cnn_wdata;assign debug_rdata=dut.cnn_rdata;
+endmodule

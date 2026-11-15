@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "pool": {
+    "K3": 2,
+    "K1": 6,
+    "Post": 2,
+    "DW7": 0,
+    "Add": 1,
+    "Pad": 1
+  },
+  "shared_bytes": 401408,
+  "shared_increase_bytes": 368640,
+  "resources": {
+    "Slice LUTs": 49053.0,
+    "Slice Registers": 34978.0,
+    "Block RAM Tile": 137.0,
+    "DSPs": 33.0
+  },
+  "full": {
+    "metrics": {
+      "status": "PASS",
+      "cycles": 249713514,
+      "jobs": 129,
+      "checked_output_bytes": 19365452,
+      "results": 1,
+      "real_multiframe_work_cycles": 0,
+      "real_multiframe_mac_cycles": 0,
+      "peak_active_frames": 1,
+      "gp_reads": 5546079,
+      "gp_writes": 1294950,
+      "cpu_ram_reads": 1,
+      "cpu_ram_writes": 1,
+      "ddr_read_bytes": 28649472,
+      "ddr_write_bytes": 16259072,
+      "unit_starts": [
+        9,
+        8,
+        6,
+        6,
+        6,
+        5,
+        5,
+        5,
+        25,
+        25,
+        12,
+        17
+      ]
+    },
+    "output_sha256": "8971dac0e8b2df60698e060a5e066b416213e8a71553161f66b037e613718485"
+  },
+  "source_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261112_203157_reduced_single_soc",
+  "synth_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261112_203002_reduced_synth_401408",
+  "latency_cycles": 248676566,
+  "ram_split_exact_cycles_metrics_events_equivalence": true
+}

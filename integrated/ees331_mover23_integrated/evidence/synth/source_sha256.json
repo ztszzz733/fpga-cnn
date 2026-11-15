@@ -1,0 +1,15 @@
+{
+  "part": "xc7z020clg484-1",
+  "top": "face_soc_ees331_mover_top",
+  "synthesis": "PASS",
+  "files": {
+    "rtl/filelists/system_ees331_mover23.f": "c5829c2dc778f1d0ebad37041cc1ff5167c7a58da271dc7c87bb371eba00e8b1",
+    "rtl/soc/ees331/face_soc_ees331_mover_top.sv": "c84a61651a2e88cecb7ba5c753270c39a662037fc5dfa3e7d126cd6ed4aaedc8",
+    "rtl/cnn_ddr/datasram_mover_subsystem.sv": "f2f79e0f457d639be11b9d04c9c45bbfead5ace0ffd18c9dfe39c3ed5ff04a46",
+    "rtl/cnn_ddr/cnn_paged_mover.sv": "7514466c9d0cf07d25c555d4fe0d64b8c5a7b47f26749570d5e82179268162fc",
+    "rtl/cnn_ddr/cnn_ees331.sv": "2bfd18a1678a13b68a1f2dff2405ec0312439c48ca7f2561b9d34107b9238b4f",
+    "storage_v2/rtl/data_mover.sv": "4b3e386556e35876a85559da2209cf1893235931d7b1c796af6410d7f0955922",
+    "storage_v2/rtl/tile_local_ram.sv": "6b170808c6276afd67dc6716c99220b397f548c5f826777acc0e243c8237dd39",
+    "storage_v2/rtl/download_ram.sv": "742c52233ef875614d79847b3de2498cfc264fe7069fa5ff07e21486ae3812bd"
+  }
+}

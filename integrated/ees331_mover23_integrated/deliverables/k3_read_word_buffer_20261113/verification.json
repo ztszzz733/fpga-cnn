@@ -1,0 +1,24 @@
+{
+  "unit_run": "20261113_122603_word_buffer_unit",
+  "soc_run": "20261113_143632_word_buffer_small_soc",
+  "source_hashes_verified": true,
+  "fixture_hashes_verified": true,
+  "output_hash_verified": true,
+  "cases": 168,
+  "fewer_requests": 151,
+  "fewer_cycles": 151,
+  "slower": 0,
+  "increased_read_bytes": 86,
+  "unit_timing": {
+    "compile_seconds": 16.800664951999998,
+    "test_seconds": 1.8899622499999964
+  },
+  "soc_timing": {
+    "compile_seconds": 143.519341939,
+    "small_seconds": 2.132700032999992,
+    "wall_seconds": 145.74379236299998
+  },
+  "production_rtl_sha256": "85c9fc65977f1beacc44fce79bc1c95180a9a2d0ea9a164232f1aab4cbf102ab",
+  "full_network": false,
+  "synthesis": false
+}

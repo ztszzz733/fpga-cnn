@@ -1,0 +1,39 @@
+{
+  "status": "UNIT_PASS_SYNTHESIS_COMPLETE",
+  "full_image_run": false,
+  "soc_integration_run": false,
+  "part": "xc7z020clg484-1",
+  "place_route": false,
+  "cases": 129,
+  "faster": 39,
+  "unchanged": 90,
+  "slower": 0,
+  "panel_off_cycle_compatibility": true,
+  "timing_refinement_did_not_change_cycles": true,
+  "source_hashes_verified": true,
+  "sources": {
+    "rtl/cnn_self/self_pw8_engine.sv": "690e7f0127449441f5e67e5ddf5a38112e37155bc4fda92e08d74ee2218de01b",
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "simulation/tb/pw8_panel_top.sv": "b3d514f8df92fb543a64c87e969c1abfea3736a0acafd71ed31d3d8cc20e158e",
+    "simulation/tb/baseline_pw8_panel.sv": "7307e7c7f71e6d30d428ff840e99baadc95632a3442f0d1caee17bc75001e8f6",
+    "simulation/tb/integration/pw8_panel_main.cpp": "b0eb339321d2450cf2e8e3396f61c8a2a71f05e34fcb14e53f760f84e5cf809c",
+    "simulation/scripts/run_pw8_panel_unit.py": "ed6f089e2b0874b6a71abac765a7c45d8f260fe2be9cffb908828340db4cceca"
+  },
+  "resource_delta_per_pw8": {
+    "Slice LUTs": 402.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 66.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "resource_delta_six_estimate": {
+    "Slice LUTs": 2412.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 396.0,
+    "Block RAM Tile": 0.0,
+    "DSPs": 0.0
+  },
+  "wns_ns_before": -2.316,
+  "wns_ns_after": -1.087,
+  "ooc_10ns_timing_met": false
+}

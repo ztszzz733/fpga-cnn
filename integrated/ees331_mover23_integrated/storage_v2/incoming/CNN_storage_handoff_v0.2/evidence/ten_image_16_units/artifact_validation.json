@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "png_visual_review": [
+    "output_cadence",
+    "full_network",
+    "cross_operator",
+    "mac_detail",
+    "pipeline_detail",
+    "images_1_5",
+    "images_6_10"
+  ],
+  "javascript_syntax": "PASS",
+  "default_range": "full",
+  "task_rows": 1320,
+  "frames": 10,
+  "operator_bus_width": 16,
+  "gtkwave_actual_load": "PASS",
+  "browser_preview": "Not performed; static HTML/JavaScript validation only"
+}
