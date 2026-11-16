@@ -7,8 +7,22 @@ module face_soc_ees331_mover_top #(
  parameter bit ENABLE_DW7=0,
  parameter integer CNN_FRAMES=4,
  parameter bit POOL23=1,
+ parameter bit TASK_GRAPH_STORAGE=1'b0,
  parameter string IMEM_INIT_FILE="firmware/ees331_cpu/program.mem"
 ) (
+`ifdef EES331_PLAN_EXTERNAL
+ input wire plan_cmd_valid,
+ output wire plan_cmd_ready,
+ input wire [31:0] plan_cmd_epoch,plan_cmd_frame_id,plan_cmd_id,
+ input wire plan_cmd_direction,
+ input wire [31:0] plan_cmd_ddr_offset,plan_cmd_local_offset,plan_cmd_bytes,
+ output wire plan_rsp_valid,
+ input wire plan_rsp_ready,
+ output wire [31:0] plan_rsp_epoch,plan_rsp_frame_id,plan_rsp_id,
+ output wire [31:0] plan_rsp_kind,plan_rsp_status,
+ input wire plan_recover,
+ output wire plan_busy,plan_drained,plan_fault,
+`endif
 `ifdef EES331_EXTERNAL_PS
  input wire FCLK_CLK0, FCLK_RESET0_N,
  output wire M_AXI_GP0_ACLK, S_AXI_HP0_ACLK,
@@ -292,7 +306,9 @@ module face_soc_ees331_mover_top #(
   .cnn_response(cnn_response),
   .cnn_mem_fault(cnn_mem_fault)
  );
- datasram_mover_subsystem #(.CLIENTS(CNN_CLIENTS),.LOCAL_BYTES(LOCAL_BYTES),.CPU_RAM_BYTES(16384),.LOGICAL_BYTES(POOL23 ? 32'h04000000 : 32'h01000000)) u_datasram (
+ datasram_mover_subsystem #(.CLIENTS(CNN_CLIENTS),.LOCAL_BYTES(LOCAL_BYTES),
+  .CPU_RAM_BYTES(16384),.LOGICAL_BYTES(POOL23 ? 32'h04000000 : 32'h01000000),
+  .TASK_GRAPH_STORAGE(TASK_GRAPH_STORAGE)) u_datasram (
   .clk(clk),
   .rst_n(rst_n),
   .dmem_addr(dmem_addr),
@@ -317,6 +333,27 @@ module face_soc_ees331_mover_top #(
   .cache_csr_re(cache_csr_re),
   .cache_csr_we(cache_csr_we),
   .cache_csr_ready(cache_csr_ready),
+`ifdef EES331_PLAN_EXTERNAL
+  .plan_cmd_valid(plan_cmd_valid),.plan_cmd_ready(plan_cmd_ready),
+  .plan_cmd_epoch(plan_cmd_epoch),.plan_cmd_frame_id(plan_cmd_frame_id),
+  .plan_cmd_id(plan_cmd_id),.plan_cmd_direction(plan_cmd_direction),
+  .plan_cmd_ddr_offset(plan_cmd_ddr_offset),
+  .plan_cmd_local_offset(plan_cmd_local_offset),.plan_cmd_bytes(plan_cmd_bytes),
+  .plan_rsp_valid(plan_rsp_valid),.plan_rsp_ready(plan_rsp_ready),
+  .plan_rsp_epoch(plan_rsp_epoch),.plan_rsp_frame_id(plan_rsp_frame_id),
+  .plan_rsp_id(plan_rsp_id),.plan_rsp_kind(plan_rsp_kind),
+  .plan_rsp_status(plan_rsp_status),.plan_recover(plan_recover),
+  .plan_busy(plan_busy),.plan_drained(plan_drained),.plan_fault(plan_fault),
+`else
+  .plan_cmd_valid(1'b0),.plan_cmd_ready(),
+  .plan_cmd_epoch(32'b0),.plan_cmd_frame_id(32'b0),.plan_cmd_id(32'b0),
+  .plan_cmd_direction(1'b0),.plan_cmd_ddr_offset(32'b0),
+  .plan_cmd_local_offset(32'b0),.plan_cmd_bytes(32'b0),
+  .plan_rsp_valid(),.plan_rsp_ready(1'b1),
+  .plan_rsp_epoch(),.plan_rsp_frame_id(),.plan_rsp_id(),
+  .plan_rsp_kind(),.plan_rsp_status(),.plan_recover(1'b0),
+  .plan_busy(),.plan_drained(),.plan_fault(),
+`endif
   .S_AXI_HP0_AWADDR(S_AXI_HP0_AWADDR),
   .S_AXI_HP0_ARADDR(S_AXI_HP0_ARADDR),
   .S_AXI_HP0_WDATA(S_AXI_HP0_WDATA),
@@ -356,6 +393,12 @@ module face_soc_ees331_mover_top #(
   .S_AXI_HP0_RVALID(S_AXI_HP0_RVALID),
   .S_AXI_HP0_RLAST(S_AXI_HP0_RLAST)
  );
+`ifndef EES331_PLAN_EXTERNAL
+`ifndef SYNTHESIS
+ initial assert(!TASK_GRAPH_STORAGE)
+  else $fatal(1,"task graph storage requires EES331_PLAN_EXTERNAL");
+`endif
+`endif
  image_control_bridge  u_image_bridge (
   .clk(clk),
   .rst_n(rst_n),

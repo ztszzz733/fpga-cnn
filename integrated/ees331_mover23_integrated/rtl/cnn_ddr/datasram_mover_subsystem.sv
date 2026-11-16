@@ -5,6 +5,9 @@ module datasram_mover_subsystem #(
  parameter integer LOCAL_BYTES=32768,
  parameter integer CPU_RAM_BYTES=16384,
  parameter logic [31:0] LOGICAL_BYTES=32'h01000000,
+ parameter bit TASK_GRAPH_STORAGE=1'b0,
+ parameter integer CACHE_BYTES=65536,
+ parameter logic [31:0] PLAN_DDR_BYTES=32'h01000000,
  parameter logic [31:0] DDR_BASE=32'h10000000
 )(
  input logic clk,rst_n,
@@ -22,6 +25,17 @@ module datasram_mover_subsystem #(
  input logic cache_csr_re,cache_csr_we,
  output wire [31:0] cache_csr_rdata,
  output wire cache_csr_ready,
+ input logic plan_cmd_valid,
+ output wire plan_cmd_ready,
+ input logic [31:0] plan_cmd_epoch,plan_cmd_frame_id,plan_cmd_id,
+ input logic plan_cmd_direction,
+ input logic [31:0] plan_cmd_ddr_offset,plan_cmd_local_offset,plan_cmd_bytes,
+ output wire plan_rsp_valid,
+ input logic plan_rsp_ready,
+ output wire [31:0] plan_rsp_epoch,plan_rsp_frame_id,plan_rsp_id,
+ output wire [31:0] plan_rsp_kind,plan_rsp_status,
+ input logic plan_recover,
+ output wire plan_busy,plan_drained,plan_fault,
  output wire [31:0] S_AXI_HP0_AWADDR,S_AXI_HP0_ARADDR,
  output wire [63:0] S_AXI_HP0_WDATA,
  input wire [63:0] S_AXI_HP0_RDATA,
@@ -49,8 +63,25 @@ module datasram_mover_subsystem #(
   .ld_addr(32'b0),.ld_wdata(32'b0),.ld_wstrb(4'b0),
   .ld_rsp_valid(),.ld_error(),.ld_rsp_ready(1'b0),.ld_rdata()
  );
- cnn_paged_mover #(.CLIENTS(CLIENTS),.LOCAL_BYTES(LOCAL_BYTES),
-  .LOGICAL_BYTES(LOGICAL_BYTES),.DDR_BASE(DDR_BASE)) cache(.*);
+ generate if(TASK_GRAPH_STORAGE)begin:task_graph
+  cnn_plan_storage #(.CLIENTS(CLIENTS),.LOCAL_BYTES(LOCAL_BYTES),
+   .CACHE_BYTES(CACHE_BYTES),.LOGICAL_BYTES(LOGICAL_BYTES),
+   .DDR_BYTES(PLAN_DDR_BYTES),.LOCAL_BASE(LOGICAL_BYTES),
+   .DDR_BASE(DDR_BASE)) cache(.*);
+ end else begin:legacy
+  cnn_paged_mover #(.CLIENTS(CLIENTS),.LOCAL_BYTES(LOCAL_BYTES),
+   .LOGICAL_BYTES(LOGICAL_BYTES),.DDR_BASE(DDR_BASE)) cache(.*);
+  assign plan_cmd_ready=1'b0;
+  assign plan_rsp_valid=1'b0;
+  assign plan_rsp_epoch='0;
+  assign plan_rsp_frame_id='0;
+  assign plan_rsp_id='0;
+  assign plan_rsp_kind='0;
+  assign plan_rsp_status='0;
+  assign plan_busy=1'b0;
+  assign plan_drained=1'b1;
+  assign plan_fault=1'b0;
+ end endgenerate
 `ifndef SYNTHESIS
  initial assert(CPU_RAM_BYTES>=8 && (CPU_RAM_BYTES & (CPU_RAM_BYTES-1))==0)
   else $fatal(1,"CPU local RAM geometry");

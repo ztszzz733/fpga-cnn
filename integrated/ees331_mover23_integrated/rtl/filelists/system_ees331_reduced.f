@@ -35,6 +35,8 @@ storage_v2/rtl/tile_local_ram.sv
 storage_v2/rtl/tile_local_ram_bank4.sv
 storage_v2/rtl/data_mover.sv
 rtl/cnn_ddr/cnn_paged_mover.sv
+rtl/cnn_ddr/storage_plan_queue.sv
+rtl/cnn_ddr/cnn_plan_storage.sv
 rtl/cnn_ddr/datasram_mover_subsystem.sv
 rtl/soc/clock_unit.sv
 rtl/soc/ees331/image_control_bridge.sv
