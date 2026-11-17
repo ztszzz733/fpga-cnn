@@ -1,0 +1,363 @@
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:46:25: Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's SHIFTR generates 7 bits.
+                                                                                                                 : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+   46 |  wire [3:0] linear_slots=(panel_pixels+7'd7)>>3;
+      |                         ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=0.000
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:101:83: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_w' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  101 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                   ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:101:103: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_h' generates 4 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  101 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                                       ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:145:75: Operator LT expects 11 bits on the RHS, but RHS's VARREF 'weight_full_words' generates 9 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  145 |  wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<weight_full_words;
+      |                                                                           ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:147:45: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'ci' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  147 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                             ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:147:41: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  147 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                         ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:149:34: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'co' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  149 |  wire [31:0] output_pixel_step=co<<2;
+      |                                  ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:178:10: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  178 |    pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
+      |          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:177:67: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'input_fill_lane' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  177 |   for(integer p=0;p<8;p++)if(input_fill_left!=0 && input_fill_lane==p)
+      |                                                                   ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:179:50: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  179 |   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+      |                                                  ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:205:75: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  205 |   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                           ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:260:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  260 |     weight_reads<=weight_reads+weight_count;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:261:102: Operator ADD expects 11 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  261 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:261:140: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  261 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                                                            ^
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:266:54: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'in_channels' generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  266 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:266:70: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'out_channels' generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  266 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:266:86: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'width' generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  266 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:266:95: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'height' generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  266 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                               ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:267:29: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  267 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                             ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:267:66: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  267 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:281:74: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'h' generates 16 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  281 |       0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=h;end
+      |                                                                          ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:282:46: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 42 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  282 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                              ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:282:66: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  282 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:283:117: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 48 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  283 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:283:137: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  283 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                         ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:284:81: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'oh' generates 16 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  284 |       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+      |                                                                                 ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:298:22: Operator ASSIGNDLY expects 9 bits on the Assign RHS, but Assign RHS's SHIFTR generates 11 bits.
+                                                                                                                  : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  298 |     weight_full_words<=weight_target_choice>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:310:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  310 |     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:311:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  311 |     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:325:29: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  325 |     input_reads<=input_reads+in_count;
+      |                             ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:326:31: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  326 |     if(LINEAR_GROUPS && load_c+in_count>=ci)begin
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:331:47: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  331 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:331:77: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  331 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                                                             ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:331:14: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  331 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |              ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:350:90: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'ci' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  350 |      fill_active<=1;fill_bank<=!compute_bank;weight_c<=0;weight_addr<=weight_channel_addr+ci;
+      |                                                                                          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:364:26: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'live_lanes' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  364 |      mac_count<=mac_count+live_lanes;retire_c<=retire_c+1'b1;
+      |                          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:366:86: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  366 |       pipe_valid<=0;product_valid<=0;store_lane<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      |                                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:373:85: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  373 |      output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
+      |                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:383:118: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'ci' generates 10 bits.
+                                                                                                                    : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  383 |      oc<=oc+1'b1;cache_channel<=cache_channel+ci;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
+      |                                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:388:64: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'panel_pixels' generates 7 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  388 |      if(pixels_left>panel_pixels)begin pixels_left<=pixels_left-panel_pixels;state<=TILE_BEGIN;end
+      |                                                                ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:391:21: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  391 |       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+      |                     ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:394:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  394 |       tile_x<=0;tile_y<=tile_y+panel_h;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:393:24: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  393 |      end else if(tile_y+panel_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/rtl/cnn_self/self_pw8_engine.sv:390:23: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                   : ... note: In instance 'pw8_linear_top.engines[2].tuned.engine'
+  390 |     end else if(tile_x+panel_w<ow)begin
+      |                       ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:86:52: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_w' generates 4 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+   86 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (ow>panel_limit_w || oh>panel_limit_h) && weight_extent<=8*WORDS;
+      |                                                    ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:86:72: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_h' generates 4 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+   86 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (ow>panel_limit_w || oh>panel_limit_h) && weight_extent<=8*WORDS;
+      |                                                                        ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:130:75: Operator LT expects 11 bits on the RHS, but RHS's VARREF 'weight_full_words' generates 9 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  130 |  wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<weight_full_words;
+      |                                                                           ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:132:45: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'ci' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  132 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                             ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:132:41: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  132 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                         ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:134:34: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'co' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  134 |  wire [31:0] output_pixel_step=co<<2;
+      |                                  ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:163:10: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  163 |    pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
+      |          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:162:67: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'input_fill_lane' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  162 |   for(integer p=0;p<8;p++)if(input_fill_left!=0 && input_fill_lane==p)
+      |                                                                   ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:164:50: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  164 |   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+      |                                                  ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:190:75: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  190 |   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                           ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:245:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  245 |     weight_reads<=weight_reads+weight_count;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:246:102: Operator ADD expects 11 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                         : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  246 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:246:140: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                         : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  246 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                                                            ^
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:251:54: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'in_channels' generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  251 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:251:70: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'out_channels' generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  251 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:251:86: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'width' generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  251 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:251:95: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'height' generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  251 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                               ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:252:29: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  252 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                             ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:252:66: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  252 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:266:74: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'h' generates 16 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  266 |       0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=h;end
+      |                                                                          ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:267:46: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 42 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  267 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                              ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:267:66: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  267 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:268:117: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 48 bits.
+                                                                                                                         : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  268 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:268:137: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                         : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  268 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                         ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:269:81: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'oh' generates 16 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  269 |       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+      |                                                                                 ^~
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:278:22: Operator ASSIGNDLY expects 9 bits on the Assign RHS, but Assign RHS's SHIFTR generates 11 bits.
+                                                                                                                       : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  278 |     weight_full_words<=weight_target_choice>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:288:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  288 |     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:289:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  289 |     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:297:29: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  297 |     input_reads<=input_reads+in_count;
+      |                             ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:298:47: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  298 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:298:77: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  298 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                                                             ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:298:14: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  298 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |              ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:315:90: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'ci' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  315 |      fill_active<=1;fill_bank<=!compute_bank;weight_c<=0;weight_addr<=weight_channel_addr+ci;
+      |                                                                                          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:329:26: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'live_lanes' generates 4 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  329 |      mac_count<=mac_count+live_lanes;retire_c<=retire_c+1'b1;
+      |                          ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:331:86: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  331 |       pipe_valid<=0;product_valid<=0;store_lane<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      |                                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:338:40: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  338 |      output_addr<=compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step);
+      |                                        ^~
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:348:118: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'ci' generates 10 bits.
+                                                                                                                         : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  348 |      oc<=oc+1'b1;cache_channel<=cache_channel+ci;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
+      |                                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:353:21: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  353 |       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+      |                     ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:356:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  356 |       tile_x<=0;tile_y<=tile_y+panel_h;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:355:24: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  355 |      end else if(tile_y+panel_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/baseline_pw8_linear.sv:352:14: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                        : ... note: In instance 'pw8_linear_top.engines[0].baseline.engine'
+  352 |     if(tile_x+panel_w<ow)begin
+      |              ^
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/pw8_linear_top.sv:16:30: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'optimized' generates 2 bits.
+                                                                                                                 : ... note: In instance 'pw8_linear_top'
+   16 |  assign queue_full=optimized && engines[1].tuned.engine.q_count==8;
+      |                              ^~
+make: Entering directory '/mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/build/runs/20261115_140955_remaining_pw8_linear/obj'
+make: Warning: File 'Vpw8_linear_top__ver.d' has modification time 2.3 s in the future
+c++  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20   -O2  -c -o pw8_linear_main.o /mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/tb/integration/pw8_linear_main.cpp
+c++ -Os  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20   -c -o verilated.o /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20   -c -o verilated_threads.o /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/verilated_threads.cpp
+python3 /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpw8_linear_top.cpp Vpw8_linear_top___024root__DepSet_h41aaad53__0.cpp Vpw8_linear_top___024root__DepSet_hda73c5ff__0.cpp Vpw8_linear_top___024root__Slow.cpp Vpw8_linear_top___024root__DepSet_h41aaad53__0__Slow.cpp Vpw8_linear_top___024root__DepSet_hda73c5ff__0__Slow.cpp Vpw8_linear_top__Syms.cpp > Vpw8_linear_top__ALL.cpp
+c++ -O2  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20   -c -o Vpw8_linear_top__ALL.o Vpw8_linear_top__ALL.cpp
+echo "" > Vpw8_linear_top__ALL.verilator_deplist.tmp
+c++    pw8_linear_main.o verilated.o verilated_threads.o Vpw8_linear_top__ALL.a       -o Vpw8_linear_top
+make: warning:  Clock skew detected.  Your build may be incomplete.
+rm Vpw8_linear_top__ALL.verilator_deplist.tmp
+make: Leaving directory '/mnt/d/code/FPGA1/integrated/ees331_mover23_integrated/simulation/build/runs/20261115_140955_remaining_pw8_linear/obj'
+- V e r i l a t i o n   R e p o r t:  rev UNKNOWN.REV
+- Verilator: Built from 0.157 MB sources in 5 modules, into 0.890 MB in 7 C++ files needing 0.001 MB
+- Verilator: Walltime 19.894 s (elab=0.032, cvt=0.126, bld=19.583); cpu 0.141 s on 1 threads; alloced 14.684 MB

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "source_sha256": {
+    "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "self_pw8_engine.sv": "a33e834a8f9a846fe7a71c3d3bd6c2a7a10cdf880b46004d8b393f78fdbdc258",
+    "baseline_pw8_wordfill.sv": "150503e3cd4cb1e99cacc648f013d41c13a2dae654a11ba345b512b6c9a854c8",
+    "pw8_wordfill_top.sv": "7d5fb1d282105380a8c4a24a9ba71d1e4f2b68a78ab0ba0abc2a0fcfe6668d8a",
+    "pw8_wordfill_main.cpp": "164c36816d93238c3f157f0dcf5928d9a279d5c313b3420c1bac9f9abd6b63e6"
+  },
+  "scope": "Experimental single-outstanding 64B FF transpose staging; parameter defaults off; no production changes",
+  "compile_seconds": 91.52031270500001,
+  "simulation_seconds": 104.089001299,
+  "parameter_cases": 213,
+  "wall_seconds": 195.643829601
+}

@@ -1,0 +1,13 @@
+{
+  "status": "DELIVERED_VERIFIED",
+  "run_dir": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261115_142138_pw8_linear_full_soc",
+  "deliverable": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\deliverables\\pw8_linear_full_20261115_142138_pw8_linear_full_soc",
+  "png_reviewed": true,
+  "gtk_validated": {
+    "full_unique_signals": 24,
+    "detail_unique_signals": 10
+  },
+  "source_hashes_unchanged": true,
+  "resource_status": "DEFERRED_BY_USER",
+  "auto_resume": false
+}

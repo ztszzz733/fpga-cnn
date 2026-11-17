@@ -1,0 +1,22 @@
+{
+  "status": "ROLLED_BACK_VERIFIED",
+  "restored_files": 9,
+  "archived_trial_files": 19,
+  "preserved_files": 363,
+  "main_numeric_cases": 385,
+  "full_network_run": false,
+  "synthesis_run": false,
+  "pending_shared_synthesis": false,
+  "files": {
+    "k3.log": "cbc8230cc732dcb177c0a3879412fc96a3a480f17ee94e69c0bddd4c3222df9b",
+    "k3_metrics.json": "1c240e4d04905c34be563fc5c80bfa5ad33903e96ecaa3d4a2780e37e786f2e4",
+    "post.log": "9e4c975e03c7c41cc297dc748522272bb990a74db924c5fdb9bea3c9a05e65dd",
+    "post_metrics.json": "cc0ad23d3d7635e7e4da9f66227938db844d1578796cbf209bb5c8935bf8497f",
+    "pw8.log": "009a4418045e089f7824f52b1189b871fc6d88521a430f2d2fb25e0615bd83e6",
+    "pw8_metrics.json": "63dab95893a5a883b264dc0da4de4d183644c8966577ce71edcecb3381c859f1",
+    "README.md": "4b90a68ef4339254b0fd0514cc4de360ce43adabc6bf657a1b71910d91db8fca",
+    "result.json": "266adf455a100618271f88427e1236265c55312d162b1788fb91ca3d8b10d204",
+    "soc_lint.log": "2798b58d8c3864b353c860897b340031b3dce2f5cfc5c40adc66cda00a5ccaf5",
+    "validation.json": "d3da16d5fb5c45dfa90c31575bb9a2082a91ff7447bbf3946ce9432c542dac76"
+  }
+}

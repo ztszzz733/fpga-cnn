@@ -1,0 +1,57 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Fri Nov 13 13:32:13 2026
+[*]
+[dumpfile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\conv_post_stream_20261113\k3_direct.vcd"
+[dumpfile_mtime] "Fri Nov 13 13:24:19 2026"
+[dumpfile_size] 1088084
+[savefile] "D:\code\FPGA1\integrated\ees331_mover23_integrated\deliverables\conv_post_stream_20261113\k3_direct.gtkw"
+[timestart] 0
+[size] 1600 950
+[pos] -1 -1
+*-23.925383 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 220
+[signals_width] 320
+[sst_expanded] 1
+[sst_vpaned_height] 276
+@28
+[color] 2
+TOP.request_stream
+[color] 2
+TOP.stream_active
+@22
+[color] 2
+TOP.decision_reason[3:0]
+@28
+[color] 3
+TOP.conv_work
+[color] 3
+TOP.conv_finished
+[color] 5
+TOP.raw_push
+[color] 5
+TOP.raw_pop
+@22
+[color] 5
+TOP.fifo_level[3:0]
+@28
+[color] 6
+TOP.post_work
+@22
+[color] 4
+TOP.mem_valid[1:0]
+[color] 4
+TOP.mem_write[1:0]
+[color] 4
+TOP.mem_ready[1:0]
+[color] 4
+TOP.mem_response[1:0]
+[color] 5
+TOP.forwarded_count[31:0]
+@28
+[color] 2
+TOP.done
+[color] 1
+TOP.error
+[pattern_trace] 1
+[pattern_trace] 0

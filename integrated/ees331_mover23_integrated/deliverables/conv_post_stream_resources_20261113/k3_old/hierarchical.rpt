@@ -1,0 +1,35 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Nov 13 21:49:09 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/resource_conv_post_stream_20261113_214236/k3_old/hierarchical.rpt
+| Design       : resource_pair
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------------+----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|        Instance        |              Module              | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++------------------------+----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| resource_pair          |                            (top) |       4989 |       4989 |       0 |    0 | 3390 |      6 |      3 |          8 |
+|   (resource_pair)      |                            (top) |          3 |          3 |       0 |    0 |  423 |      0 |      0 |          0 |
+|   conv                 |        self_conv_spatial4_engine |       3217 |       3217 |       0 |    0 | 1689 |      4 |      3 |          0 |
+|     (conv)             |        self_conv_spatial4_engine |       2027 |       2027 |       0 |    0 | 1687 |      0 |      0 |          0 |
+|     input_banks[0].mem |                 compact_word_ram |        459 |        459 |       0 |    0 |    1 |      1 |      1 |          0 |
+|     input_banks[1].mem | compact_word_ram__parameterized0 |        416 |        416 |       0 |    0 |    0 |      1 |      0 |          0 |
+|     weights            |               compact_word_ram_1 |        319 |        319 |       0 |    0 |    1 |      1 |      1 |          0 |
+|   post                 |           quant_post_pipe_engine |       1769 |       1769 |       0 |    0 | 1278 |      2 |      0 |          8 |
++------------------------+----------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

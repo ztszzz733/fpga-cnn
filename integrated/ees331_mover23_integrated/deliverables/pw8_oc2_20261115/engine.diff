@@ -1,0 +1,189 @@
+--- before/self_pw8_engine.sv
++++ after/self_pw8_engine.sv
+@@ -1,11 +1,12 @@
+-// Eight spatial lanes for ordinary 1x1 UINT8 x INT8 -> raw INT32.
++// Eight spatial lanes x up to two output channels for ordinary 1x1.
++// UINT8 x INT8 -> raw INT32; OUTPUT_PAR=1 preserves the prior 8-MAC engine.
+ // HWC / OHWI. Eight consecutive output pixels may cross row boundaries.
+ // LINEAR_GROUPS=0 preserves the earlier 4x2 rectangular grouping.
+ // One cached weight is broadcast to all live pixels; local sums wrap to INT32.
+ // Aligned groups use 32-bit reads; unaligned starts/tails use exact byte reads.
+ // Double-buffered weights and an eight-word write FIFO overlap local MACs.
+ // One outstanding external transaction; clear requires fabric cancellation too.
+-module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1, LINEAR_GROUPS=1)(
++module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1, LINEAR_GROUPS=1, OUTPUT_PAR=2)(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,width,height,
+  input logic [31:0] in_channels,out_channels,kernel,stride,
+@@ -20,6 +21,11 @@
+  state_t state;
+  logic [31:0] ib,wb,ob;
+  logic [C_BITS-1:0] ci,co,oc;
++ wire [C_BITS:0] next_oc={1'b0,oc}+(OUTPUT_PAR==2?2:1);
++ wire pair_live=OUTPUT_PAR==2 && ({1'b0,oc}+1'b1)<{1'b0,co};
++ wire next_pair_live=OUTPUT_PAR==2 && (next_oc+1'b1)<{1'b0,co};
++ wire [31:0] channel_weight_step=OUTPUT_PAR==2?(32'(ci)<<1):32'(ci);
++ logic store_second,fill_second,fill_pair;
+  logic [15:0] w,h,ow,oh;
+  logic stride_two;
+  logic [31:0] input_row_bytes,output_row_bytes;
+@@ -103,17 +109,18 @@
+  logic [WBITS-1:0] weight_last_byte,weight_last_word;
+  logic [WBITS-3:0] weight_full_words;
+  wire [WBITS-1:0] read_weight_index=(layer_cached?cache_channel:WBITS'(compute_bank?4*WORDS:0))+WBITS'(issue_c);
+- logic pipe_valid,product_valid;logic [1:0] pipe_offset;
+- logic [63:0] pixel_q;logic [31:0] weight_word_q;
++ logic pipe_valid,product_valid;logic [1:0] pipe_offset,pipe_offset_second;
++ wire [WBITS-1:0] read_weight_second=read_weight_index+WBITS'(layer_cached?ci:0);
++ logic [63:0] pixel_q;logic [31:0] weight_word_q,weight_word_second_q;
+  logic [31:0] input_fill_word;logic [2:0] input_fill_left,input_fill_lane;logic [C_BITS-1:0] input_fill_c;
+  logic prefetch_valid;
+  logic [31:0] prefetch_word;
+  logic [2:0] prefetch_count,prefetch_lane;
+  logic [C_BITS-1:0] prefetch_c;
+  wire promote_prefetch=prefetch_valid && input_fill_left<=1;
+- logic signed [31:0] sums[8];
+- logic signed [16:0] products[8];
+- logic signed [16:0] product_q[8];
++ logic signed [31:0] sums[8],sums_second[8];
++ logic signed [16:0] products[8],products_second[8];
++ logic signed [16:0] product_q[8],product_second_q[8];
+  logic [7:0] lane_mask;
+  logic [3:0] live_lanes;
+  // Weight producer owns the inactive bank until its last response arrives.
+@@ -165,6 +172,7 @@
+    lane_mask[p]=LINEAR_GROUPS?(p<linear_lanes):(p%4<tile_w && p/4<tile_h);
+    live_lanes=live_lanes+{2'b0,lane_mask[p]};
+    products[p]=$signed({1'b0,pixel_q[p*8+:8]}) * $signed(weight_word_q[pipe_offset*8+:8]);
++   products_second[p]=$signed({1'b0,pixel_q[p*8+:8]}) * $signed(weight_word_second_q[pipe_offset_second*8+:8]);
+   end
+  end
+  // Packed channel rows supply all eight pixel bytes with one 64-bit read.
+@@ -201,14 +209,28 @@
+  end
+  wire [3:0] weight_mask=weight_wide?4'hf:(4'b1<<weight_c[1:0]);
+  compact_word_ram #(.DEPTH(2*WORDS)) weights(
+-  .clk(clk),.wr_en(weight_response && !clear),.rd_en(state==MAC_RUN && issue_c<ci && !clear),
++  .clk(clk),.wr_en(weight_response && !clear && (layer_cached || !fill_second)),.rd_en(state==MAC_RUN && issue_c<ci && !clear),
+   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+   .rd_addr($clog2(2*WORDS)'(read_weight_index>>2)),
+   .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),.wr_mask(weight_mask),.rd_data(weight_word_q));
++ // The second read bank supplies an independent output-channel weight.
++ // Fitting whole layers are mirrored; larger layers store one parity channel
++ // in each RAM, with compute/fill ping-pong slots in both. Total weight RAM
++ // is 2KiB at MAX_CHANNELS=512; the input RAM and output queue are unchanged.
++ generate if(OUTPUT_PAR==2)begin:second_weights
++  compact_word_ram #(.DEPTH(2*WORDS)) weights(
++   .clk(clk),.wr_en(weight_response && !clear && (layer_cached || fill_second)),
++   .rd_en(state==MAC_RUN && issue_c<ci && pair_live && !clear),
++   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
++   .rd_addr($clog2(2*WORDS)'(read_weight_second>>2)),
++   .wr_data(weight_wide?rdata:{4{rdata[7:0]}}),.wr_mask(weight_mask),.rd_data(weight_word_second_q));
++ end else begin:no_second_weights
++  assign weight_word_second_q=32'd0;
++ end endgenerate
+  // Entries include absolute addresses. Keep the head until the write response,
+  // so done cannot precede an acknowledged SRAM write.
+  always_ff @(posedge clk)if(push)begin
+-  out_addr[q_write]<=output_addr;out_data[q_write]<=sums[store_lane];
++  out_addr[q_write]<=output_addr;out_data[q_write]<=store_second?sums_second[store_lane]:sums[store_lane];
+  end
+  always_ff @(posedge clk or negedge rst_n)begin
+   if(!rst_n)begin q_read<=0;q_write<=0;q_count<=0;end
+@@ -253,13 +275,16 @@
+   end
+  end
+  always_ff @(posedge clk or negedge rst_n)begin
+-  if(!rst_n)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+-  else if(clear)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  if(!rst_n)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  else if(clear)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+   else begin
+    if(weight_response)begin
+     weight_reads<=weight_reads+weight_count;
+     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+-    else begin fill_active<=0;if(layer_cached)layer_valid<=1;else weight_loaded[fill_bank]<=1;end
++    else if(!layer_cached && fill_pair && !fill_second)begin
++     // Complete channel 0 before loading channel 1, including odd ci/byte tails.
++     fill_second<=1;weight_c<=0;weight_addr<=weight_addr+weight_count;
++    end else begin fill_active<=0;if(layer_cached)layer_valid<=1;else weight_loaded[fill_bank]<=1;end
+    end
+    case(state)
+    IDLE:if(start)begin
+@@ -267,7 +292,7 @@
+     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+     panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;pipe_valid<=0;product_valid<=0;
+     setup_step<=0;mul_bit<=0;mul_acc<=0;mul_lhs<={32'd0,width};mul_rhs<=in_channels;
+-    if(MAX_CHANNELS<1 || MAX_CHANNELS>65535 || depthwise || kernel!=1 ||
++    if((OUTPUT_PAR!=1 && OUTPUT_PAR!=2) || MAX_CHANNELS<1 || MAX_CHANNELS>65535 || depthwise || kernel!=1 ||
+        width==0 || height==0 || width>65535 || height>65535 ||
+        in_channels==0 || out_channels==0 || in_channels>MAX_CHANNELS || out_channels>MAX_CHANNELS ||
+        (stride!=1 && stride!=2) || output_base[1:0]!=0)state<=FAIL;
+@@ -340,47 +365,53 @@
+      end
+      load_lane<=0;load_c<=0;load_addr<=LINEAR_GROUPS?linear_load_next:next_load_base;
+     end else begin
+-     if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;end
++     if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;fill_second<=0;fill_pair<=OUTPUT_PAR==2 && co>1;weight_c<=0;weight_addr<=wb;end
+      state<=WREQ;
+     end
+    end
+    WREQ:if((layer_cached?layer_valid:weight_loaded[compute_bank]) && input_fill_left==0 && !prefetch_valid)begin
+     weight_loaded[compute_bank]<=0;
+-    if(!layer_cached && oc+1'b1<co)begin
+-     fill_active<=1;fill_bank<=!compute_bank;weight_c<=0;weight_addr<=weight_channel_addr+ci;
+-    end
+-    for(integer p=0;p<8;p++)sums[p]<=0;
++    if(!layer_cached && next_oc<{1'b0,co})begin
++     fill_active<=1;fill_bank<=!compute_bank;fill_second<=0;fill_pair<=next_pair_live;
++     weight_c<=0;weight_addr<=weight_channel_addr+channel_weight_step;
++    end
++    for(integer p=0;p<8;p++)begin sums[p]<=0;sums_second[p]<=0;end
+     issue_c<=0;retire_c<=0;pipe_valid<=0;product_valid<=0;state<=MAC_RUN;
+    end
+    MAC_RUN:begin
+     pipe_valid<=issue_c<ci;
+     product_valid<=pipe_valid;
+-    if(issue_c<ci)begin issue_c<=issue_c+1'b1;pipe_offset<=read_weight_index[1:0];end
++    if(issue_c<ci)begin issue_c<=issue_c+1'b1;pipe_offset<=read_weight_index[1:0];pipe_offset_second<=read_weight_second[1:0];end
+     // Registered multiply separates RAM/multiply delay from the INT32 adder.
+     // Once filled, all live lanes still retire one channel every cycle.
+-    if(pipe_valid)for(integer p=0;p<8;p++)product_q[p]<=products[p];
++    if(pipe_valid)for(integer p=0;p<8;p++)begin product_q[p]<=products[p];if(pair_live)product_second_q[p]<=products_second[p];end
+     if(product_valid)begin
+-     for(integer p=0;p<8;p++)if(lane_mask[p])sums[p]<=sums[p]+{{15{product_q[p][16]}},product_q[p]};
+-     mac_count<=mac_count+live_lanes;retire_c<=retire_c+1'b1;
++     for(integer p=0;p<8;p++)if(lane_mask[p])begin
++      sums[p]<=sums[p]+{{15{product_q[p][16]}},product_q[p]};
++      if(pair_live)sums_second[p]<=sums_second[p]+{{15{product_second_q[p][16]}},product_second_q[p]};
++     end
++     mac_count<=mac_count+(pair_live?{27'd0,live_lanes,1'b0}:{28'd0,live_lanes});retire_c<=retire_c+1'b1;
+      if(retire_c+1'b1==ci)begin
+-      pipe_valid<=0;product_valid<=0;store_lane<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
++      pipe_valid<=0;product_valid<=0;store_lane<=0;store_second<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      end
+     end
+    end
+    OREQ:if(push)begin
+     if(has_next_store)begin
+      store_lane<=next_store;
+-     output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
++     output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(store_second?32'd4:32'd0)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
++    end else if(pair_live && !store_second)begin
++     store_second<=1;store_lane<=0;output_addr<=compute_tile_base+(oc<<2)+32'd4;
+     end else if({1'b0,compute_slot}+1'b1<panel_slots)begin
+      compute_slot<=compute_slot+1'b1;compute_cache_base<=compute_cache_base+ci;
+      store_origin<=LINEAR_GROUPS?store_origin+(output_pixel_step<<3):store_origin_next;
+      if(!LINEAR_GROUPS && !store_next_column)store_row_origin<=store_origin_next;
+-     for(integer p=0;p<8;p++)sums[p]<=0;
++     for(integer p=0;p<8;p++)begin sums[p]<=0;sums_second[p]<=0;end
+      issue_c<=0;retire_c<=0;pipe_valid<=0;product_valid<=0;state<=MAC_RUN;
+-    end else if(oc+1'b1<co)begin
++    end else if(next_oc<{1'b0,co})begin
+      compute_slot<=0;compute_cache_base<=0;
+      store_origin<=tile_output_base;store_row_origin<=tile_output_base;
+-     oc<=oc+1'b1;cache_channel<=cache_channel+ci;compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+ci;state<=WREQ;
++     oc<=next_oc[C_BITS-1:0];cache_channel<=cache_channel+WBITS'(channel_weight_step);compute_bank<=!compute_bank;weight_channel_addr<=weight_channel_addr+channel_weight_step;state<=WREQ;
+     end else state<=OWAIT;
+    end
+    OWAIT:begin

@@ -274,7 +274,7 @@ module fixed_schedule_compact #(
  for(genvar e=0;e<DW;e++)begin:engines
   localparam integer KERNEL=e<K3_UNITS?3:1;
   if (LATEST_OPERATORS && e<K3_UNITS) begin:latest_k3
-   self_conv_spatial4_engine #(.MAX_CHANNELS(512),.MAX_KERNEL(3),.TILE(2),.DW_CACHE(1)) convolution(
+   self_conv_spatial4_engine #(.READ_AHEAD(1),.MAX_CHANNELS(512),.MAX_KERNEL(3),.TILE(2),.DW_CACHE(1)) convolution(
    .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
    .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
    .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
@@ -282,7 +282,7 @@ module fixed_schedule_compact #(
    .addr(mem_addr[e*32+:32]),.wdata(mem_wdata[e*32+:32]),.ready(mem_ready[e]),.response(mem_response[e]),.rdata(mem_rdata[e*32+:32]),
    .mac_fire(operator_work[e]),.phase(),.input_reads(conv_input_reads[e]),.weight_reads(conv_weight_reads[e]),.mac_count(conv_mac_count[e]));
   end else if (LATEST_OPERATORS) begin:latest_k1
-   self_pw8_engine #(.MAX_CHANNELS(512)) convolution(
+   self_pw8_engine #(.READ_AHEAD(1),.MAX_CHANNELS(512)) convolution(
    .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
    .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
    .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),

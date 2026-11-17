@@ -1,0 +1,77 @@
+{
+  "status": "FAIL",
+  "part": "xc7z020clg484-1",
+  "period_ns": 10,
+  "threads": 1,
+  "sources": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+    "rtl/cnn_self/self_pw8_engine.sv": "6ab78a1aca3aa8f1c763336f3b0077bd922e5fbe3b0a943ea71bac961100c9de",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "66746c089a1c212b2648e7bc26beaea9a34448c5413f7e825a0adf51ac0f4476",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "b269396fb2df322f421b2deb900920817a091b36cfe39929eafdc72da939594d",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_ddr/quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+    "rtl/cnn_stream/conv_post_shared_pool.sv": "d10dae388424ae2cf81aa37a553b08e72408fef20886e40823ca882394427831",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "4df348d63ee229fdc0c2cb17b7c12c50bdb9c7d014cfd47d648ebe9c6b0a39d7",
+    "rtl/cnn_ddr/cnn_ees331.sv": "3af06dfee3a6b466f4dca3103c899d5823512cbbc527375b15fc2d0d5588ed9f"
+  },
+  "runs": {
+    "0": {
+      "seconds": 336.7659999999996,
+      "utilization": {
+        "Slice LUTs": 39546.0,
+        "LUT as Memory": 4580.0,
+        "Slice Registers": 24381.0,
+        "Block RAM Tile": 27.0,
+        "DSPs": 24.0
+      }
+    }
+  },
+  "functional_gates": [
+    "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_223045_shared_post_pool",
+    "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_223550_shared_post_mmio"
+  ],
+  "whole_soc": false,
+  "scope": "Actual cnn_ees331, 2K3/6PW8/2Post/Add/Pad, four contexts; shared backend off vs on; identical current operators, all CNN interface/debug ports preserved; synthesis only",
+  "staged_hashes": {
+    "0": {
+      "cnn_ees331.sv": "3af06dfee3a6b466f4dca3103c899d5823512cbbc527375b15fc2d0d5588ed9f",
+      "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+      "conv_post_shared_pool.sv": "d10dae388424ae2cf81aa37a553b08e72408fef20886e40823ca882394427831",
+      "fixed_schedule_compact.sv": "9268a0cc922eab4c6e3950f8b6758f8bb0d3dbe87447b0b7f2a7062c5cd3a054",
+      "pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+      "quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+      "quant_post_pipe_engine.sv": "b269396fb2df322f421b2deb900920817a091b36cfe39929eafdc72da939594d",
+      "resource_cnn.sv": "5d95d8248b7d77c81e66fa4da0eef8798f8e125c7644bb41b4146bb4f8e8340d",
+      "self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "self_conv_spatial4_engine.sv": "66746c089a1c212b2648e7bc26beaea9a34448c5413f7e825a0adf51ac0f4476",
+      "self_pw8_engine.sv": "6ab78a1aca3aa8f1c763336f3b0077bd922e5fbe3b0a943ea71bac961100c9de"
+    },
+    "1": {
+      "cnn_ees331.sv": "3af06dfee3a6b466f4dca3103c899d5823512cbbc527375b15fc2d0d5588ed9f",
+      "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+      "conv_post_shared_pool.sv": "d10dae388424ae2cf81aa37a553b08e72408fef20886e40823ca882394427831",
+      "fixed_schedule_compact.sv": "9268a0cc922eab4c6e3950f8b6758f8bb0d3dbe87447b0b7f2a7062c5cd3a054",
+      "pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+      "quant_post_bram_engine.sv": "5b9d227858d19d96e06d8e633f1f09e7ad0dd83043c55b11a592ee9d8392b38d",
+      "quant_post_pipe_engine.sv": "b269396fb2df322f421b2deb900920817a091b36cfe39929eafdc72da939594d",
+      "resource_cnn.sv": "48712c5a65561b097489668f16bd7c1b6505cf35201af93de5d7ecc042afd47f",
+      "self_conv_engine.sv": "5bbe644bb8398c4e159588ff690d1317734978bcfa410cc923625e9cdabf181b",
+      "self_conv_spatial4_engine.sv": "66746c089a1c212b2648e7bc26beaea9a34448c5413f7e825a0adf51ac0f4476",
+      "self_pw8_engine.sv": "6ab78a1aca3aa8f1c763336f3b0077bd922e5fbe3b0a943ea71bac961100c9de"
+    }
+  },
+  "failed_attempts_preserved": [
+    "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_shared_post_20261113_224004",
+    "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_shared_post_hier_20261113_225006"
+  ],
+  "directive": "RuntimeOptimized",
+  "flatten_hierarchy": "rebuilt",
+  "resource_only_pruning": "completed_mask is an observation output with no feedback and disconnected in cnn_ees331. Replace that dead generate block by zero before synthesis to avoid constructing its dynamic divide/modulo network; no functional top port or production RTL changed.",
+  "cleanup_timeout_attempt_preserved": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_shared_post_runtime_20261113_230541",
+  "timeout_seconds": 600,
+  "mode": 1,
+  "available_before_gib": 5.912837982177734,
+  "active_pid": 23660,
+  "error": "1: MEMORY_GUARD\n"
+}

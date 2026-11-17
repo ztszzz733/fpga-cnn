@@ -1,11 +1,12 @@
 // CNN memory backed by the storage_v2 DATA MOVER and tile BRAM.
-// Parameterized local RAM is divided into fully associative 1 KiB pages. Exactly one
-// CNN request or DDR page transfer is active; this correctness-first policy
-// preserves the existing CNN ready/response protocol without task rewrites.
+// Parameterized local RAM is divided into fully associative 1 KiB pages.
+// Four independent compute banks serve resident pages while one linear DMA
+// port transfers a page. A miss locks only its selected physical page slot.
 module cnn_paged_mover #(
  parameter integer CLIENTS=23,
  parameter integer LOCAL_BYTES=32768,
  parameter integer PAGE_BYTES=1024,
+ parameter bit ENABLE_FAST_HIT=1'b1,
  parameter logic [31:0] LOGICAL_BYTES=32'h04000000,
  parameter logic [31:0] DDR_BASE=32'h10000000
 )(
@@ -43,7 +44,30 @@ module cnn_paged_mover #(
  localparam integer SLOTS=LOCAL_BYTES/PAGE_BYTES;
  localparam integer PB=$clog2(PAGE_BYTES), SB=$clog2(SLOTS);
  localparam integer CW=(CLIENTS<=1)?1:$clog2(CLIENTS);
- typedef enum logic [2:0] {IDLE,ACCESS,REPLY,WB_REQ,WB_WAIT,FILL_REQ,FILL_WAIT,SCAN} state_t;
+ localparam integer LOOKUP_LEAVES=2**$clog2(SLOTS);
+ localparam integer GRANT_LEAVES=2**$clog2(CLIENTS);
+ function automatic logic [1:0] bank_of_slot(input logic [SB-1:0] slot);
+  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)
+   bank_of_slot=int'(slot)<96?2'd0:int'(slot)<192?2'd1:
+                int'(slot)<292?2'd2:2'd3;
+  else bank_of_slot=2'd0;
+ endfunction
+ // Interleave the replacement walk across banks, including their unequal
+ // four-page tails, so the first four filled pages occupy four banks.
+ function automatic logic [SB-1:0] slot_from_turn(input logic [SB-1:0] turn);
+  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)begin
+   if(int'(turn)<384)begin
+    case(turn[1:0])
+     2'd0:slot_from_turn=SB'(turn>>2);
+     2'd1:slot_from_turn=SB'(96+(int'(turn)>>2));
+     2'd2:slot_from_turn=SB'(192+(int'(turn)>>2));
+     default:slot_from_turn=SB'(292+(int'(turn)>>2));
+    endcase
+   end else slot_from_turn=turn[0] ?
+    SB'(388+((int'(turn)-384)>>1)) : SB'(288+((int'(turn)-384)>>1));
+  end else slot_from_turn=turn;
+ endfunction
+ typedef enum logic [2:0] {IDLE,ACCESS,DRAIN,WB_REQ,WB_WAIT,FILL_REQ,FILL_WAIT,SCAN} state_t;
  state_t state;
  logic [SLOTS-1:0] valid_page,dirty_page;
  logic [31:PB] page_number[0:SLOTS-1];
@@ -55,15 +79,24 @@ module cnn_paged_mover #(
  logic protect_enable;
  logic [31:0] hits,misses,writebacks,fills,ddr_read_bytes,ddr_write_bytes,wait_cycles;
  logic [CW-1:0] round_robin,request_owner;
+ logic [CW-1:0] bank_round_robin[4];
+ logic [CLIENTS-1:0] hint_valid;
+ logic [SB-1:0] hint_slot[CLIENTS];
+ logic [31:PB] hint_page[CLIENTS];
  logic [SB-1:0] request_slot,victim_turn;
  logic [31:0] request_addr,request_wdata;
  logic request_write,request_byte;
+ logic [3:0] issue_valid,reply_valid;
+ logic [3:0][CW-1:0] issue_owner,reply_owner;
+ logic [3:0][SB-1:0] issue_slot;
+ logic [3:0][31:0] issue_addr,issue_wdata;
+ logic [3:0] issue_write,issue_byte,reply_write,reply_byte;
+ logic [3:0][1:0] reply_byte_offset;
  logic [CLIENTS-1:0] response_q;
  logic [CLIENTS*32-1:0] rdata_q;
  wire [31:0] request_page={request_addr[31:PB],{PB{1'b0}}};
  wire [31:0] old_page={page_number[wb_slot],{PB{1'b0}}};
  wire [31:0] wb_local=32'(wb_slot)*PAGE_BYTES;
- wire [31:0] request_local=32'(request_slot)*PAGE_BYTES+(request_addr & 32'(PAGE_BYTES-1));
  wire [31:0] scan_page={page_number[scan_idx[SB-1:0]],{PB{1'b0}}};
  wire scan_match=valid_page[scan_idx[SB-1:0]] && scan_page<scan_end &&
                  {1'b0,scan_page}+33'(PAGE_BYTES)>{1'b0,scan_start};
@@ -73,42 +106,150 @@ module cnn_paged_mover #(
  logic [31:0] selected_addr;
  logic page_hit,free_found;
  logic [SB-1:0] hit_slot,free_slot;
+ wire [2*LOOKUP_LEAVES-1:1] hit_tree,free_tree;
+ wire [SB-1:0] hit_slot_tree[1:2*LOOKUP_LEAVES-1];
+ wire [SB-1:0] free_slot_tree[1:2*LOOKUP_LEAVES-1];
+ // A balanced lookup avoids a 392-entry serial priority path from the
+ // requester through page selection into the miss engine.
+ for(genvar s=0;s<LOOKUP_LEAVES;s++)begin:lookup_leaf
+  if(s<SLOTS)begin:present
+   assign hit_tree[LOOKUP_LEAVES+s]=valid_page[s] &&
+    page_number[s]==selected_addr[31:PB];
+   assign free_tree[LOOKUP_LEAVES+s]=!valid_page[s];
+  end else begin:absent
+   assign hit_tree[LOOKUP_LEAVES+s]=0;
+   assign free_tree[LOOKUP_LEAVES+s]=0;
+  end
+  assign hit_slot_tree[LOOKUP_LEAVES+s]=SB'(s);
+  assign free_slot_tree[LOOKUP_LEAVES+s]=SB'(s);
+ end
+ for(genvar n=1;n<LOOKUP_LEAVES;n++)begin:lookup_branch
+  assign hit_tree[n]=hit_tree[2*n] || hit_tree[2*n+1];
+  assign free_tree[n]=free_tree[2*n] || free_tree[2*n+1];
+  assign hit_slot_tree[n]=hit_tree[2*n] ?
+   hit_slot_tree[2*n] : hit_slot_tree[2*n+1];
+  assign free_slot_tree[n]=free_tree[2*n] ?
+   free_slot_tree[2*n] : free_slot_tree[2*n+1];
+ end
+ assign page_hit=hit_tree[1];
+ assign free_found=free_tree[1];
+ assign hit_slot=hit_slot_tree[1];
+ assign free_slot=free_slot_tree[1];
+ wire [SB-1:0] turn_slot=slot_from_turn(victim_turn);
+ wire [SB-1:0] alloc_slot=!valid_page[turn_slot] ? turn_slot :
+                           (free_found ? free_slot : turn_slot);
+ logic [CLIENTS-1:0] bad_client,fast_hint;
+ wire [3:0] fast_grant;
+ wire [3:0][CW-1:0] fast_owner;
+ wire [CLIENTS-1:0] bank_eligible[4],bank_after[4],bank_candidates[4];
+ wire [3:0][2*GRANT_LEAVES-1:1] grant_tree;
+ wire [3:0][2*GRANT_LEAVES-1:1][CW-1:0] grant_index_tree;
+ // Multi-outstanding clients must not cross slow/fast paths or banks
+ // before all earlier replies drain: no IDs exist on the client interface.
+ logic [CLIENTS-1:0][2:0] client_pending;
+ logic [CLIENTS-1:0] client_slow;
+ logic [CLIENTS-1:0][1:0] client_bank;
+ logic slow_take;
+ logic [2:0] hit_incr;
+ wire miss_serving=(state==WB_REQ || state==WB_WAIT ||
+                    state==FILL_REQ || state==FILL_WAIT) && !wb_for_scan;
+ wire can_accept=!pend_valid && !cnn_mem_fault && !mover_fault_locked &&
+                 !cnn_cancel && !cache_csr_we;
  always_comb begin
-  selected=0;selected_valid=0;cnn_ready='0;
+  for(integer c=0;c<CLIENTS;c++)begin
+   bad_client[c]=cnn_addr[c*32+:32]>=LOGICAL_BYTES ||
+    (!cnn_byte[c] && (cnn_addr[c*32+:2]!=0 ||
+      {1'b0,cnn_addr[c*32+:32]}+33'd4>{1'b0,LOGICAL_BYTES})) ||
+    (cnn_write[c] && protect_enable && cnn_addr[c*32+:32]<readonly_end);
+   fast_hint[c]=ENABLE_FAST_HIT && cnn_valid[c] && !bad_client[c] &&
+    hint_valid[c] && hint_page[c]==cnn_addr[c*32+PB+:32-PB];
+  end
+ end
+ for(genvar b=0;b<4;b++)begin:grant_bank
+  for(genvar c=0;c<CLIENTS;c++)begin:grant_client
+   assign bank_eligible[b][c]=can_accept && (state==IDLE || miss_serving) &&
+    !issue_valid[b] && fast_hint[c] && client_pending[c]<4 &&
+    (client_pending[c]==0 || (!client_slow[c] && client_bank[c]==2'(b))) &&
+    bank_of_slot(hint_slot[c])==2'(b) &&
+    (!miss_serving || hint_slot[c]!=request_slot);
+   assign bank_after[b][c]=bank_eligible[b][c] &&
+    c>=int'(bank_round_robin[b]);
+  end
+  assign bank_candidates[b]= (|bank_after[b]) ? bank_after[b] : bank_eligible[b];
+  for(genvar c=0;c<GRANT_LEAVES;c++)begin:grant_leaf
+   if(c<CLIENTS)assign grant_tree[b][GRANT_LEAVES+c]=bank_candidates[b][c];
+   else assign grant_tree[b][GRANT_LEAVES+c]=0;
+   assign grant_index_tree[b][GRANT_LEAVES+c]=CW'(c);
+  end
+  for(genvar n=1;n<GRANT_LEAVES;n++)begin:grant_branch
+   assign grant_tree[b][n]=grant_tree[b][2*n] || grant_tree[b][2*n+1];
+   assign grant_index_tree[b][n]=grant_tree[b][2*n] ?
+    grant_index_tree[b][2*n] : grant_index_tree[b][2*n+1];
+  end
+  assign fast_grant[b]=grant_tree[b][1];
+  assign fast_owner[b]=grant_index_tree[b][1];
+ end
+ always_comb begin
+  selected=0;selected_valid=0;index=0;
   for(integer n=0;n<CLIENTS;n++)begin
    index=integer'(round_robin)+n;
    if(index>=CLIENTS)index=index-CLIENTS;
-   if(!selected_valid && cnn_valid[index])begin selected=index;selected_valid=1;end
+   if(!selected_valid && cnn_valid[index] && !fast_hint[index] && client_pending[index]==0)begin
+    selected=index;selected_valid=1;
+   end
   end
   selected_addr=cnn_addr[selected*32+:32];
-  selected_bad=selected_addr>=LOGICAL_BYTES ||
-    (!cnn_byte[selected] && (selected_addr[1:0]!=0 ||
-      {1'b0,selected_addr}+33'd4>{1'b0,LOGICAL_BYTES})) ||
-    (cnn_write[selected] && protect_enable && selected_addr<readonly_end);
-  page_hit=0;free_found=0;hit_slot=0;free_slot=0;
-  for(integer s=0;s<SLOTS;s++)begin
-   if(!page_hit && valid_page[s] && page_number[s]==selected_addr[31:PB])begin
-    page_hit=1;hit_slot=SB'(s);
-   end
-   if(!free_found && !valid_page[s])begin free_found=1;free_slot=SB'(s);end
-  end
-  if(state==IDLE && !pend_valid && !cnn_mem_fault && !mover_fault_locked &&
-     !cnn_cancel && !cache_csr_we && selected_valid)cnn_ready[selected]=1;
+  selected_bad=bad_client[selected];
  end
- assign cnn_response=(cnn_cancel || cnn_mem_fault) ? '0 : response_q;
+ always_comb begin
+  cnn_ready='0;slow_take=0;
+  for(integer b=0;b<4;b++)if(fast_grant[b])cnn_ready[fast_owner[b]]=1;
+  if(can_accept && selected_valid &&
+    (state==IDLE || (miss_serving && !selected_bad && page_hit &&
+                     hit_slot!=request_slot)))begin
+   cnn_ready[selected]=1;slow_take=1;
+  end
+ end
+ always_comb begin
+  hit_incr=0;
+  for(integer b=0;b<4;b++)if(fast_grant[b])hit_incr=hit_incr+3'd1;
+  if(slow_take && !selected_bad && page_hit)hit_incr=hit_incr+3'd1;
+ end
+ assign cnn_response=(cnn_cancel || cnn_mem_fault || mover_fault_locked) ? '0 : response_q;
  assign cnn_rdata=rdata_q;
  assign cache_csr_ready=1'b1;
 
- // Only the selected, aligned word is presented to the compute port.
- wire comp_req=state==ACCESS && !drop_response && !cnn_cancel;
- wire comp_we=request_write;
- wire [31:0] comp_addr={request_local[31:2],2'b00};
- wire [31:0] comp_wdata=request_byte ?
-    ({24'b0,request_wdata[7:0]} << (request_addr[1:0]*8)) : request_wdata;
- wire [3:0] comp_wstrb=request_byte ? (4'b1 << request_addr[1:0]) : 4'hf;
- wire [31:0] comp_rdata;
- wire comp_error;
- wire [7:0] read_byte=comp_rdata[request_addr[1:0]*8+:8];
+ logic [3:0] comp_req,comp_we,comp_byte;
+ logic [3:0][CW-1:0] comp_owner;
+ logic [3:0][SB-1:0] comp_slot;
+ logic [3:0][31:0] comp_logical_addr,comp_addr,comp_wdata;
+ logic [3:0][3:0] comp_wstrb;
+ wire [3:0][31:0] comp_rdata;
+ wire [3:0] comp_error;
+ wire [3:0][7:0] read_byte;
+ for(genvar b=0;b<4;b++)assign read_byte[b]=
+    comp_rdata[b][reply_byte_offset[b]*8+:8];
+ always_comb begin
+  for(integer b=0;b<4;b++)begin
+   logic [31:0] source_wdata,local_addr;
+   comp_req[b]=(issue_valid[b] || fast_grant[b]) && !cnn_cancel &&
+     !cnn_mem_fault && !mover_fault_locked;
+   comp_owner[b]=issue_valid[b] ? issue_owner[b] : fast_owner[b];
+   comp_slot[b]=issue_valid[b] ? issue_slot[b] : hint_slot[fast_owner[b]];
+   comp_logical_addr[b]=issue_valid[b] ? issue_addr[b] :
+     cnn_addr[fast_owner[b]*32+:32];
+   source_wdata=issue_valid[b] ? issue_wdata[b] :
+     cnn_wdata[fast_owner[b]*32+:32];
+   comp_we[b]=issue_valid[b] ? issue_write[b] : cnn_write[fast_owner[b]];
+   comp_byte[b]=issue_valid[b] ? issue_byte[b] : cnn_byte[fast_owner[b]];
+   local_addr=32'(comp_slot[b])*PAGE_BYTES+
+     (comp_logical_addr[b] & 32'(PAGE_BYTES-1));
+   comp_addr[b]={local_addr[31:2],2'b00};
+   comp_wdata[b]=comp_byte[b] ?
+     ({24'b0,source_wdata[7:0]} << (comp_logical_addr[b][1:0]*8)) : source_wdata;
+   comp_wstrb[b]=comp_byte[b] ? (4'b1 << comp_logical_addr[b][1:0]) : 4'hf;
+  end
+ end
 
  wire mover_cmd_valid=state==WB_REQ || state==FILL_REQ;
  wire mover_cmd_ready,mover_rsp_valid,mover_fault_locked,mover_drained,mover_busy;
@@ -117,11 +258,12 @@ module cnn_paged_mover #(
  wire [31:0] mover_cmd_dst=state==WB_REQ ? old_page : 32'(request_slot)*PAGE_BYTES;
  wire [31:0] mover_cmd_flags=state==WB_REQ ? 32'd1 : 32'd0;
  wire mover_recover=cache_csr_we && cache_csr_addr[7:0]==8'h04 &&
-                    cache_csr_wdata==3 && state==IDLE && !pend_valid;
+                    cache_csr_wdata==3 && state==IDLE && !pend_valid &&
+                     !(|issue_valid) && !(|reply_valid);
  wire local_valid,local_write,local_ready,local_rsp_valid,local_error;
  wire [31:0] local_addr,local_wdata,local_rdata;
  wire [3:0] local_wstrb;
- tile_local_ram #(.BYTES(LOCAL_BYTES)) local_ram(
+ tile_local_ram_bank4 #(.BYTES(LOCAL_BYTES)) local_ram(
   .clk,.rst_n,.comp_req,.comp_we,.comp_addr,.comp_wdata,.comp_wstrb,
   .comp_rdata,.comp_error,.dma_valid(local_valid),.dma_write(local_write),
   .dma_ready(local_ready),.dma_addr(local_addr),.dma_wdata(local_wdata),
@@ -162,7 +304,8 @@ module cnn_paged_mover #(
   cache_csr_rdata=0;
   case(cache_csr_addr[7:0])
    8'h00:cache_csr_rdata={27'b0,(drop_response && state!=IDLE),
-     (cnn_mem_fault || mover_fault_locked),csr_error,(state!=IDLE || pend_valid),1'b1};
+     (cnn_mem_fault || mover_fault_locked),csr_error,
+     (state!=IDLE || pend_valid || (|issue_valid) || (|reply_valid)),1'b1};
    8'h08:cache_csr_rdata=range_start;
    8'h0c:cache_csr_rdata=range_bytes;
    8'h10:cache_csr_rdata=readonly_end;
@@ -179,6 +322,34 @@ module cnn_paged_mover #(
   endcase
  end
 
+ // One ordered response per client per cycle. Up to four accepted requests
+ // may use a same-bank fixed-latency fast stream; slow requests are isolated.
+ always_ff @(posedge clk)begin
+  if(!rst_n || cnn_cancel)begin client_pending<=0;client_slow<=0;client_bank<=0;end
+  else for(integer c=0;c<CLIENTS;c++)begin
+   case({(cnn_valid[c] && cnn_ready[c]),cnn_response[c]})
+    2'b10:client_pending[c]<=client_pending[c]+1'b1;
+    2'b01:client_pending[c]<=client_pending[c]-1'b1;
+    default:;
+   endcase
+   if(cnn_response[c] && client_pending[c]==1)client_slow[c]<=0;
+   if(slow_take && selected==c)client_slow[c]<=1;
+   for(integer b=0;b<4;b++)if(fast_grant[b] && fast_owner[b]==c)begin
+    client_bank[c]<=2'(b);client_slow[c]<=0;
+   end
+  end
+ end
+`ifndef SYNTHESIS
+ always_ff @(posedge clk)if(rst_n && !cnn_cancel && !cnn_mem_fault)begin
+  for(integer c=0;c<CLIENTS;c++)begin
+   assert(client_pending[c]<=4) else $fatal(1,"client read credits exceeded");
+   if(cnn_response[c])assert(client_pending[c]!=0) else $fatal(1,"reply without accepted request");
+   if(slow_take && selected==c)assert(client_pending[c]==0) else $fatal(1,"slow path overtakes outstanding read");
+  end
+  for(integer a=0;a<4;a++)for(integer b=a+1;b<4;b++)
+   if(reply_valid[a] && reply_valid[b])assert(reply_owner[a]!=reply_owner[b]) else $fatal(1,"same-client response collision");
+ end
+`endif
  always_ff @(posedge clk) begin
   if(!rst_n)begin
    state<=IDLE;valid_page<='0;dirty_page<='0;scan_idx<=0;wb_slot<=0;
@@ -189,11 +360,63 @@ module cnn_paged_mover #(
    hits<=0;misses<=0;writebacks<=0;fills<=0;
    ddr_read_bytes<=0;ddr_write_bytes<=0;wait_cycles<=0;
    round_robin<=0;request_owner<=0;request_slot<=0;victim_turn<=0;
+   hint_valid<='0;
+   for(integer c=0;c<CLIENTS;c++)begin hint_slot[c]<=0;hint_page[c]<=0;end
+   for(integer b=0;b<4;b++)bank_round_robin[b]<=0;
    request_addr<=0;request_wdata<=0;
    request_write<=0;request_byte<=0;response_q<='0;rdata_q<='0;
+   issue_valid<=0;reply_valid<=0;issue_owner<=0;reply_owner<=0;
+   issue_slot<=0;issue_addr<=0;issue_wdata<=0;
+   issue_write<=0;issue_byte<=0;reply_write<=0;reply_byte<=0;
+   reply_byte_offset<=0;
    for(integer k=0;k<SLOTS;k++)page_number[k]<='0;
   end else begin
    response_q<='0;
+   issue_valid<=0;
+   reply_valid<=comp_req;
+   hits<=hits+32'(hit_incr);
+   for(integer b=0;b<4;b++)begin
+    if(comp_req[b])begin
+     reply_owner[b]<=comp_owner[b];
+     reply_write[b]<=comp_we[b];
+     reply_byte[b]<=comp_byte[b];
+     reply_byte_offset[b]<=comp_logical_addr[b][1:0];
+     if(comp_we[b])dirty_page[comp_slot[b]]<=1;
+    end
+    if(reply_valid[b] && !cnn_cancel && !cnn_mem_fault && !mover_fault_locked)begin
+     if(comp_error[b])cnn_mem_fault<=1;
+     else begin
+      response_q[reply_owner[b]]<=1;
+      rdata_q[reply_owner[b]*32+:32]<=reply_write[b] ? 0 :
+       reply_byte[b] ? {{24{read_byte[b][7]}},read_byte[b]} : comp_rdata[b];
+     end
+    end
+    if(fast_grant[b])begin
+     bank_round_robin[b]<=fast_owner[b]==CW'(CLIENTS-1) ?
+      '0 : fast_owner[b]+1'b1;
+    end
+   end
+   if(cnn_cancel)begin issue_valid<=0;reply_valid<=0;end
+   if(slow_take)begin
+    round_robin<=selected==CLIENTS-1 ? '0 : CW'(selected+1);
+    if(!selected_bad && page_hit)begin
+      hint_valid[selected]<=1;hint_slot[selected]<=hit_slot;
+      hint_page[selected]<=selected_addr[31:PB];
+      issue_valid[bank_of_slot(hit_slot)]<=1;
+      issue_owner[bank_of_slot(hit_slot)]<=CW'(selected);
+      issue_slot[bank_of_slot(hit_slot)]<=hit_slot;
+      issue_addr[bank_of_slot(hit_slot)]<=selected_addr;
+      issue_wdata[bank_of_slot(hit_slot)]<=cnn_wdata[selected*32+:32];
+      issue_write[bank_of_slot(hit_slot)]<=cnn_write[selected];
+      issue_byte[bank_of_slot(hit_slot)]<=cnn_byte[selected];
+    end
+   end else if(selected_valid && !pend_valid && !cnn_cancel &&
+               !cnn_mem_fault && !mover_fault_locked &&
+               miss_serving)begin
+    // A second miss can hold valid high throughout a transfer. Rotate the
+    // lookup owner so resident requests behind it still get a turn.
+    round_robin<=selected==CLIENTS-1 ? '0 : CW'(selected+1);
+   end
    if(cnn_cancel && state!=IDLE)drop_response<=1;
    if(state==WB_WAIT || state==FILL_WAIT)wait_cycles<=wait_cycles+1;
    if(cache_csr_we)begin
@@ -220,43 +443,45 @@ module cnn_paged_mover #(
     endcase
    end
    case(state)
-    IDLE:if(pend_valid)begin
-     pend_valid<=0;scan_start<=pend_start;scan_end<=pend_end;
-     scan_invalidate<=pend_invalidate;scan_idx<=0;state<=SCAN;
-     drop_response<=0;
-    end else if(|cnn_ready)begin
-     round_robin<=selected==CLIENTS-1 ? '0 : CW'(selected+1);
+     IDLE:if(pend_valid)begin
+      if (!(|issue_valid) && !(|reply_valid))begin
+      pend_valid<=0;scan_start<=pend_start;scan_end<=pend_end;
+      scan_invalidate<=pend_invalidate;scan_idx<=0;state<=SCAN;
+      drop_response<=0;
+     end
+    end else if(slow_take)begin
      drop_response<=0;
      if(selected_bad)cnn_mem_fault<=1;
-     else begin
+     else if(!page_hit)begin
       request_owner<=CW'(selected);request_addr<=selected_addr;
       request_wdata<=cnn_wdata[selected*32+:32];
       request_write<=cnn_write[selected];request_byte<=cnn_byte[selected];
-      if(page_hit)begin
-       hits<=hits+1;request_slot<=hit_slot;state<=ACCESS;
-      end else begin
-       misses<=misses+1;
-       request_slot<=free_found ? free_slot : victim_turn;
-       wb_slot<=free_found ? free_slot : victim_turn;
-       victim_turn<=victim_turn==SB'(SLOTS-1)?'0:victim_turn+1'b1;
-       wb_for_scan<=0;
-       state<=!free_found && dirty_page[victim_turn] ? WB_REQ : FILL_REQ;
-      end
+      misses<=misses+1;
+      request_slot<=alloc_slot;
+      wb_slot<=alloc_slot;
+      for(integer c=0;c<CLIENTS;c++)
+       if(hint_slot[c]==alloc_slot)hint_valid[c]<=0;
+      victim_turn<=victim_turn==SB'(SLOTS-1)?'0:victim_turn+1'b1;
+      wb_for_scan<=0;
+      state<=DRAIN;
      end
     end
     ACCESS:begin
-     if(comp_req && request_write)dirty_page[request_slot]<=1;
-     state<=REPLY;
-    end
-    REPLY:begin
-     if(comp_error)cnn_mem_fault<=1;
-     else if(!drop_response && !cnn_cancel)begin
-      response_q[request_owner]<=1;
-      rdata_q[request_owner*32+:32]<=request_write ? 0 :
-       request_byte ? {{24{read_byte[7]}},read_byte} : comp_rdata;
+     if(!drop_response && !cnn_cancel && !cnn_mem_fault)begin
+      issue_valid[bank_of_slot(request_slot)]<=1;
+      issue_owner[bank_of_slot(request_slot)]<=request_owner;
+      issue_slot[bank_of_slot(request_slot)]<=request_slot;
+      issue_addr[bank_of_slot(request_slot)]<=request_addr;
+      issue_wdata[bank_of_slot(request_slot)]<=request_wdata;
+      issue_write[bank_of_slot(request_slot)]<=request_write;
+      issue_byte[bank_of_slot(request_slot)]<=request_byte;
+      hint_valid[request_owner]<=1;hint_slot[request_owner]<=request_slot;
+      hint_page[request_owner]<=request_addr[31:PB];
      end
      state<=IDLE;
     end
+    DRAIN:if (!(|issue_valid) && !(|reply_valid))
+     state<=valid_page[request_slot] && dirty_page[request_slot] ? WB_REQ : FILL_REQ;
     WB_REQ:if(mover_cmd_ready)state<=WB_WAIT;
     WB_WAIT:if(mover_rsp_valid)begin
      if(mover_rsp_status!=0 || mover_rsp_bytes!=PAGE_BYTES)begin
@@ -265,7 +490,11 @@ module cnn_paged_mover #(
       dirty_page[wb_slot]<=0;writebacks<=writebacks+1;
       ddr_write_bytes<=ddr_write_bytes+PAGE_BYTES;
       if(wb_for_scan)begin
-       if(scan_invalidate)valid_page[wb_slot]<=0;
+       if(scan_invalidate)begin
+        valid_page[wb_slot]<=0;
+        for(integer c=0;c<CLIENTS;c++)
+         if(hint_slot[c]==wb_slot)hint_valid[c]<=0;
+       end
        scan_idx<=scan_idx+1'b1;state<=SCAN;
       end else if(drop_response || cnn_cancel)state<=IDLE;
       else state<=FILL_REQ;
@@ -282,11 +511,15 @@ module cnn_paged_mover #(
       state<=drop_response || cnn_cancel ? IDLE : ACCESS;
      end
     end
-    SCAN:if(scan_idx==SLOTS)state<=IDLE;
+    SCAN:if(scan_idx==(SB+1)'(SLOTS))state<=IDLE;
      else if(scan_match && dirty_page[scan_idx[SB-1:0]])begin
       wb_slot<=scan_idx[SB-1:0];wb_for_scan<=1;state<=WB_REQ;
      end else begin
-      if(scan_match && scan_invalidate)valid_page[scan_idx[SB-1:0]]<=0;
+      if(scan_match && scan_invalidate)begin
+       valid_page[scan_idx[SB-1:0]]<=0;
+       for(integer c=0;c<CLIENTS;c++)
+        if(hint_slot[c]==scan_idx[SB-1:0])hint_valid[c]<=0;
+      end
       scan_idx<=scan_idx+1'b1;
      end
     default:state<=IDLE;
@@ -298,9 +531,12 @@ module cnn_paged_mover #(
   assert(CLIENTS>=1)else $fatal(1,"at least one CNN client required");
   assert(LOCAL_BYTES>=PAGE_BYTES*2 && LOCAL_BYTES%PAGE_BYTES==0 && PAGE_BYTES>=4 && (PAGE_BYTES&(PAGE_BYTES-1))==0)
    else $fatal(1,"paged mover geometry");
+  assert(LOCAL_BYTES!=401408 || PAGE_BYTES==1024)
+   else $fatal(1,"four-bank geometry requires 1 KiB pages");
   assert(LOGICAL_BYTES[PB-1:0]==0 && DDR_BASE[2:0]==0 &&
     {1'b0,DDR_BASE}+{1'b0,LOGICAL_BYTES}<=33'h100000000)
    else $fatal(1,"DDR aperture");
  end
 `endif
 endmodule
+

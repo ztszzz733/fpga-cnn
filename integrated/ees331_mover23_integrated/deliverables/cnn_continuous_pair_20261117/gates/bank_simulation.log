@@ -1,0 +1,2 @@
+COUNTERS cycles=928382 multi_bank=140 consecutive=6085
+PASS four clients ordered replies, bank parallelism, byte/word writes, page crossings/evictions and DDR fence

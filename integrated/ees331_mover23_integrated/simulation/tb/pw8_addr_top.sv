@@ -24,7 +24,7 @@ module pw8_addr_top(
  .ready(ready && optimized==i),.response(response && optimized==i),.rdata(rdata),
  .mac_fire(mf[i]),.phase(ph[i]),.input_reads(ir[i]),.weight_reads(wr[i]),.mac_count(mc[i]));
  end else begin:tuned
- self_pw8_engine #(.ADDR_REGS(i==1)) engine(
+ self_pw8_engine #(.OUTPUT_PAR(1),.LINEAR_GROUPS(0),.ADDR_REGS(i==1)) engine(
  .clk(clk),.rst_n(rst_n),.clear(clear || optimized!=i),.start(start && optimized==i),
  .depthwise(depthwise),.input_base(input_base),.weight_base(weight_base),.output_base(output_base),
  .width(width),.height(height),.in_channels(in_channels),.out_channels(out_channels),.kernel(kernel),.stride(stride),

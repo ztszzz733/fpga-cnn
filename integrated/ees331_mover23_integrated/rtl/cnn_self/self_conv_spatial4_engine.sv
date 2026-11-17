@@ -7,22 +7,27 @@
 // No activation, bias, zero-point correction, or requantization is applied.
 // Aligned groups of four channels/weights use 32-bit reads; exact byte tails.
 // Input/weight byte responses must return the addressed byte in rdata[7:0].
+// READ_AHEAD defaults off; opt-in fabrics support four ordered reads.
 // clear aborts this master; the interconnect must also cancel its pending
 // transaction, as this interface has no transaction ID for a late response.
 module self_conv_spatial4_engine #(
- parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1, INPUT_HALO_REUSE=1, WEIGHT_LAYER_REUSE=1
+ parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1, INPUT_HALO_REUSE=1, WEIGHT_LAYER_REUSE=1, READ_AHEAD=0
 )(
  input logic clk,rst_n,clear,start,depthwise,
  input logic [31:0] input_base,weight_base,output_base,
  input logic [31:0] width,height,in_channels,out_channels,kernel,stride,
  output wire busy,done,error,valid,write,byte_access,
- output logic [31:0] addr,wdata,
+ output wire [31:0] addr,wdata,
  input logic ready,response,
  input logic [31:0] rdata,
  output wire mac_fire,
  output wire [3:0] phase,
  output logic [31:0] input_reads,weight_reads,mac_count
 );
+ wire a_valid,a_write,a_byte,a_ready,a_response;
+ logic [31:0] a_addr,a_wdata;wire [31:0] a_rdata;
+ wire prefetch_idle,prefetch_fault;
+
  logic core_valid,core_write,core_byte_access,core_ready,core_response;
  logic [31:0] core_addr,core_wdata,core_rdata;
 
@@ -101,7 +106,7 @@ module self_conv_spatial4_engine #(
  assign phase=state;
  assign busy=(state!=IDLE && state!=FINISH && state!=FAIL);
  assign done=(state==FINISH);
- assign error=(state==FAIL);
+ assign error=(state==FAIL) || prefetch_fault;
  assign core_valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
  assign core_write=(state==OREQ);
  wire input_wide=(load_addr[1:0]==0 && load_c[1:0]==0 && (load_c+32'd4<=ci));
@@ -382,44 +387,62 @@ module self_conv_spatial4_engine #(
   // No widening past either end of the declared read-only tensor.
   wire widen=core_valid && !core_write && core_byte_access &&
              {32'd0,aligned}>={32'd0,base} && {32'd0,aligned}+64'd4<=limit;
-  wire accepted=valid && ready;
-  wire returned=response && (pending || accepted);
-  wire fill=pending?pending_fill:(!core_write && !byte_access);
+  wire accepted=a_valid && a_ready;
+  wire returned=a_response && (pending || accepted);
+  wire fill=pending?pending_fill:(!core_write && !a_byte);
   wire fill_region=pending?pending_region:region;
   wire [29:0] fill_tag=pending?pending_tag:core_addr[31:2];
   wire [1:0] lane=pending?pending_lane:core_addr[1:0];
-  wire [7:0] returned_byte=rdata[lane*8+:8];
+  wire [7:0] returned_byte=a_rdata[lane*8+:8];
   wire [7:0] cached_byte=cached_data[region][core_addr[1:0]*8+:8];
-  assign valid=core_valid && !hit;
-  assign write=core_write;
-  assign byte_access=widen?1'b0:core_byte_access;
-  assign addr=widen?aligned:core_addr;
-  assign wdata=core_wdata;
-  assign core_ready=!pending && (hit || ready);
+  assign a_valid=core_valid && !hit;
+  assign a_write=core_write;
+  assign a_byte=widen?1'b0:core_byte_access;
+  assign a_addr=widen?aligned:core_addr;
+  assign a_wdata=core_wdata;
+  assign core_ready=!pending && (hit || a_ready);
   assign core_response=hit || returned;
   assign core_rdata=hit ? (core_byte_access?{{24{cached_byte[7]}},cached_byte}:cached_data[region]) :
-                    ((pending?pending_widen:widen)?{{24{returned_byte[7]}},returned_byte}:rdata);
+                    ((pending?pending_widen:widen)?{{24{returned_byte[7]}},returned_byte}:a_rdata);
   always_ff @(posedge clk or negedge rst_n)begin
    if(!rst_n)begin cached_valid<=0;pending<=0;pending_widen<=0;pending_fill<=0;
     pending_region<=0;pending_lane<=0;pending_tag<=0;end
    else if(clear || (state==IDLE && start))begin cached_valid<=0;pending<=0;end
    else begin
     if(accepted)begin
-     pending<=!response;pending_widen<=widen;
-     pending_fill<=!core_write && !byte_access;pending_region<=region;
+     pending<=!a_response;pending_widen<=widen;
+     pending_fill<=!core_write && !a_byte;pending_region<=region;
      pending_lane<=core_addr[1:0];pending_tag<=core_addr[31:2];
      if(core_write)for(integer b=0;b<2;b++)
       if(cached_tag[b]==core_addr[31:2])cached_valid[b]<=0;
     end else if(returned)pending<=0;
     if(returned && fill)begin
      cached_valid[fill_region]<=1;
-     cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=rdata;
+     cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=a_rdata;
     end
    end
   end
  end else begin:no_read_word_buffers
-  assign valid=core_valid;assign write=core_write;assign byte_access=core_byte_access;
-  assign addr=core_addr;assign wdata=core_wdata;
-  assign core_ready=ready;assign core_response=response;assign core_rdata=rdata;
+  assign a_valid=core_valid;assign a_write=core_write;assign a_byte=core_byte_access;
+  assign a_addr=core_addr;assign a_wdata=core_wdata;
+  assign core_ready=a_ready;assign core_response=a_response;assign core_rdata=a_rdata;
  end endgenerate
+ wire [31:0] contig_remaining=state==WREQ?32'(weight_load_bytes)-32'(weight_load_index):32'(ci)-32'(load_c);
+ wire can_prefetch_run=(state==WREQ && weight_wide) || (state==IREQ && !dw && input_wide);
+ wire [31:0] read_run_end=a_byte?a_addr+1:can_prefetch_run?a_addr+{contig_remaining[31:2],2'b00}:a_addr+4;
+ generate if(READ_AHEAD)begin:continuous_reads
+ continuous_read_adapter adapter(
+  .clk,.rst_n,.clear(clear || (state==IDLE && start)),
+  .c_valid(a_valid),.c_write(a_write),.c_byte(a_byte),.c_addr(a_addr),.c_wdata(a_wdata),.read_end(read_run_end),
+  .c_ready(a_ready),.c_response(a_response),.c_rdata(a_rdata),
+  .m_valid(valid),.m_write(write),.m_byte(byte_access),.m_addr(addr),.m_wdata(wdata),
+  .m_ready(ready),.m_response(response),.m_rdata(rdata),.idle(prefetch_idle),.read_pending(),.fault(prefetch_fault));
+ end else begin:single_reads
+  assign valid=a_valid;assign write=a_write;assign byte_access=a_byte;assign addr=a_addr;assign wdata=a_wdata;
+  assign a_ready=ready;assign a_response=response;assign a_rdata=rdata;
+  assign prefetch_idle=1;assign prefetch_fault=0;
+ end endgenerate
+`ifndef SYNTHESIS
+ always_ff @(posedge clk)if(rst_n && !clear && done)assert(prefetch_idle) else $fatal(1,"done before read adapter drains");
+`endif
 endmodule

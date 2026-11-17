@@ -1,0 +1,184 @@
+--- before/self_pw8_engine.sv
++++ after/self_pw8_engine.sv
+@@ -1,10 +1,11 @@
+ // Eight spatial lanes for ordinary 1x1 UINT8 x INT8 -> raw INT32.
+-// HWC / OHWI, 4x2 output tile. Each input pixel has its own synchronous RAM.
++// HWC / OHWI. Eight consecutive output pixels may cross row boundaries.
++// LINEAR_GROUPS=0 preserves the earlier 4x2 rectangular grouping.
+ // One cached weight is broadcast to all live pixels; local sums wrap to INT32.
+ // Aligned groups use 32-bit reads; unaligned starts/tails use exact byte reads.
+ // Double-buffered weights and an eight-word write FIFO overlap local MACs.
+ // One outstanding external transaction; clear requires fabric cancellation too.
+-module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1)(
++module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1, LINEAR_GROUPS=1)(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,width,height,
+  input logic [31:0] in_channels,out_channels,kernel,stride,
+@@ -33,6 +34,16 @@
+  // A panel holds several existing 4x2 microtiles in the same pixel RAM.
+  // Each microtile consumes ci channel rows; no input byte is loaded twice.
+  logic [3:0] panel_w,panel_h;
++ // Linear panels use the same 512x64-bit input RAM: at most 8/4/2/1
++ // groups of eight pixels. No division or per-pixel address table is needed.
++ logic [31:0] pixels_left,linear_output_next;
++ logic [15:0] load_x;
++ logic [6:0] panel_pixels;
++ wire [3:0] linear_slot_limit=!panel_enabled?4'd1:
++  (ci<=MAX_CHANNELS/8?4'd8:(ci<=MAX_CHANNELS/4?4'd4:4'd2));
++ wire [6:0] linear_capacity={linear_slot_limit,3'b000};
++ wire [6:0] linear_pixels_choice=pixels_left<linear_capacity?7'(pixels_left):linear_capacity;
++ wire [3:0] linear_slots=(panel_pixels+7'd7)>>3;
+  logic [2:0] load_slot,compute_slot;
+  logic [C_BITS-1:0] load_cache_base,compute_cache_base;
+  logic panel_enabled;
+@@ -40,8 +51,10 @@
+  wire [3:0] panel_limit_h=!panel_enabled?4'd2:(ci<=MAX_CHANNELS/8?4'd8:(ci<=MAX_CHANNELS/4?4'd4:4'd2));
+  wire two_columns=panel_w>4;
+  wire [3:0] panel_rows=(panel_h+1'b1)>>1;
+- wire [3:0] panel_slots=two_columns?(panel_rows<<1):panel_rows;
++ wire [3:0] panel_slots=LINEAR_GROUPS?linear_slots:(two_columns?(panel_rows<<1):panel_rows);
+  wire [2:0] active_slot=state==IREQ?load_slot:compute_slot;
++ wire [6:0] linear_lane_left=panel_pixels-{1'b0,active_slot,3'b000};
++ wire [3:0] linear_lanes=linear_lane_left>=8?4'd8:linear_lane_left[3:0];
+  wire active_right=two_columns && active_slot[0];
+  wire [1:0] active_row=two_columns?active_slot[2:1]:active_slot[1:0];
+  wire [2:0] tile_w=active_right?3'(panel_w-4):(panel_w>4?3'd4:panel_w[2:0]);
+@@ -68,8 +81,10 @@
+   load_origin+(pixel_input_step<<2):load_row_origin+(row_input_step<<1);
+  wire [31:0] store_origin_next=store_next_column?
+   store_origin+(output_pixel_step<<2):store_row_origin+(output_row_bytes<<1);
++ wire linear_wrap=load_x==ow-1'b1;
++ wire [31:0] linear_load_next=linear_wrap?load_row_origin+row_input_step:load_origin+pixel_input_step;
+  wire [31:0] load_tile_base=ADDR_REGS?load_origin:load_tile_base_comb;
+- wire [31:0] compute_tile_base=ADDR_REGS?store_origin:compute_tile_base_comb;
++ wire [31:0] compute_tile_base=(LINEAR_GROUPS || ADDR_REGS)?store_origin:compute_tile_base_comb;
+  wire [31:0] next_load_base=ADDR_REGS?load_origin_next:next_load_base_comb;
+  wire [31:0] panel_input_x_step=panel_limit_w==8?(pixel_input_step<<3):(pixel_input_step<<2);
+  wire [31:0] panel_output_x_step=panel_limit_w==8?(output_pixel_step<<3):(output_pixel_step<<2);
+@@ -83,7 +98,7 @@
+  logic layer_cached;
+  // Descriptor choices settle before any memory request. Keep wide extent
+  // comparisons and final-beat arithmetic off the runtime handshake path.
+- wire layer_cached_choice=WEIGHT_LAYER_REUSE && (ow>panel_limit_w || oh>panel_limit_h) && weight_extent<=8*WORDS;
++ wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+  wire [WBITS-1:0] weight_target_choice=layer_cached_choice?weight_extent[WBITS-1:0]:WBITS'(ci);
+  logic [WBITS-1:0] weight_last_byte,weight_last_word;
+  logic [WBITS-3:0] weight_full_words;
+@@ -132,10 +147,10 @@
+  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+  wire [31:0] row_input_step=stride_two?(input_row_bytes<<1):input_row_bytes;
+  wire [31:0] output_pixel_step=co<<2;
+- wire has_next_load=(load_lane[1:0]+1<tile_w) || (!load_lane[2] && tile_h==2);
+- wire [2:0] next_load=(load_lane[1:0]+1<tile_w)?load_lane+1'b1:3'd4;
+- wire has_next_store=(store_lane[1:0]+1<tile_w) || (!store_lane[2] && tile_h==2);
+- wire [2:0] next_store=(store_lane[1:0]+1<tile_w)?store_lane+1'b1:3'd4;
++ wire has_next_load=LINEAR_GROUPS?({1'b0,load_lane}+1'b1<linear_lanes):((load_lane[1:0]+1<tile_w) || (!load_lane[2] && tile_h==2));
++ wire [2:0] next_load=LINEAR_GROUPS?load_lane+1'b1:((load_lane[1:0]+1<tile_w)?load_lane+1'b1:3'd4);
++ wire has_next_store=LINEAR_GROUPS?({1'b0,store_lane}+1'b1<linear_lanes):((store_lane[1:0]+1<tile_w) || (!store_lane[2] && tile_h==2));
++ wire [2:0] next_store=LINEAR_GROUPS?store_lane+1'b1:((store_lane[1:0]+1<tile_w)?store_lane+1'b1:3'd4);
+  assign busy=state!=IDLE && state!=FINISH && state!=FAIL;
+  assign done=state==FINISH;assign error=state==FAIL;assign phase=state;
+  assign valid=bus_valid && !clear;
+@@ -147,7 +162,7 @@
+   mul_value=mul_acc+(mul_rhs[0]?mul_lhs:64'd0);
+   lane_mask=0;live_lanes=0;
+   for(integer p=0;p<8;p++)begin
+-   lane_mask[p]=(p%4<tile_w && p/4<tile_h);
++   lane_mask[p]=LINEAR_GROUPS?(p<linear_lanes):(p%4<tile_w && p/4<tile_h);
+    live_lanes=live_lanes+{2'b0,lane_mask[p]};
+    products[p]=$signed({1'b0,pixel_q[p*8+:8]}) * $signed(weight_word_q[pipe_offset*8+:8]);
+   end
+@@ -267,7 +282,12 @@
+       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+-      4:begin output_extent<=mul_value;state<=CHECK;end
++      4:begin
++       output_extent<=mul_value;
++       if(LINEAR_GROUPS)begin mul_lhs<={48'd0,ow};mul_rhs<={16'd0,oh};end
++       else state<=CHECK;
++      end
++      5:begin pixels_left<=mul_value[31:0];state<=CHECK;end
+       default:state<=FAIL;
+      endcase
+     end
+@@ -281,29 +301,44 @@
+        ({32'd0,ob}<weight_end && {32'd0,wb}<output_end))state<=FAIL;
+     else begin
+      tile_x<=0;tile_y<=0;tile_input_base<=ib;tile_input_row_base<=ib;
+-     tile_output_base<=ob;tile_output_row_base<=ob;state<=TILE_BEGIN;
++     tile_output_base<=ob;tile_output_row_base<=ob;
++     if(LINEAR_GROUPS)begin load_origin<=ib;load_row_origin<=ib;load_x<=0;linear_output_next<=ob;end
++     state<=TILE_BEGIN;
+     end
+    end
+    TILE_BEGIN:begin
+     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+     load_slot<=0;compute_slot<=0;load_cache_base<=0;compute_cache_base<=0;
+-    load_origin<=tile_input_base;load_row_origin<=tile_input_base;
+-    store_origin<=tile_output_base;store_row_origin<=tile_output_base;
+-    load_lane<=0;load_c<=0;load_addr<=tile_input_base;
++    if(LINEAR_GROUPS)begin
++     panel_pixels<=linear_pixels_choice;
++     tile_output_base<=linear_output_next;store_origin<=linear_output_next;
++     load_addr<=load_origin;
++    end else begin
++     load_origin<=tile_input_base;load_row_origin<=tile_input_base;
++     store_origin<=tile_output_base;store_row_origin<=tile_output_base;load_addr<=tile_input_base;
++    end
++    load_lane<=0;load_c<=0;
+     oc<=0;cache_channel<=0;compute_bank<=0;weight_loaded<=0;weight_channel_addr<=wb;state<=IREQ;
+    end
+    IREQ:if(input_response)begin
+     input_reads<=input_reads+in_count;
++    if(LINEAR_GROUPS && load_c+in_count>=ci)begin
++     load_origin<=linear_load_next;load_x<=linear_wrap?16'd0:load_x+1'b1;
++     if(linear_wrap)load_row_origin<=linear_load_next;
++     linear_output_next<=linear_output_next+output_pixel_step;
++    end
+     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+     else if(has_next_load)begin
+      load_lane<=next_load;load_c<=0;
+-     load_addr<=load_tile_base+(next_load[2]?row_input_step:0)+(next_load[1:0]*pixel_input_step);
++     load_addr<=LINEAR_GROUPS?linear_load_next:(load_tile_base+(next_load[2]?row_input_step:0)+(next_load[1:0]*pixel_input_step));
+     end else if({1'b0,load_slot}+1'b1<panel_slots)begin
+      load_slot<=next_load_slot;load_cache_base<=load_cache_base+ci;
+-     load_origin<=load_origin_next;
+-     if(!load_next_column)load_row_origin<=load_origin_next;
+-     load_lane<=0;load_c<=0;load_addr<=next_load_base;
++     if(!LINEAR_GROUPS)begin
++      load_origin<=load_origin_next;
++      if(!load_next_column)load_row_origin<=load_origin_next;
++     end
++     load_lane<=0;load_c<=0;load_addr<=LINEAR_GROUPS?linear_load_next:next_load_base;
+     end else begin
+      if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;weight_c<=0;weight_addr<=wb;end
+      state<=WREQ;
+@@ -335,11 +370,11 @@
+    OREQ:if(push)begin
+     if(has_next_store)begin
+      store_lane<=next_store;
+-     output_addr<=compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step);
++     output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
+     end else if({1'b0,compute_slot}+1'b1<panel_slots)begin
+      compute_slot<=compute_slot+1'b1;compute_cache_base<=compute_cache_base+ci;
+-     store_origin<=store_origin_next;
+-     if(!store_next_column)store_row_origin<=store_origin_next;
++     store_origin<=LINEAR_GROUPS?store_origin+(output_pixel_step<<3):store_origin_next;
++     if(!LINEAR_GROUPS && !store_next_column)store_row_origin<=store_origin_next;
+      for(integer p=0;p<8;p++)sums[p]<=0;
+      issue_c<=0;retire_c<=0;pipe_valid<=0;product_valid<=0;state<=MAC_RUN;
+     end else if(oc+1'b1<co)begin
+@@ -349,7 +384,10 @@
+     end else state<=OWAIT;
+    end
+    OWAIT:begin
+-    if(tile_x+panel_w<ow)begin
++    if(LINEAR_GROUPS)begin
++     if(pixels_left>panel_pixels)begin pixels_left<=pixels_left-panel_pixels;state<=TILE_BEGIN;end
++     else state<=DRAIN;
++    end else if(tile_x+panel_w<ow)begin
+       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+       tile_output_base<=tile_output_base+panel_output_x_step;state<=TILE_BEGIN;
+      end else if(tile_y+panel_h<oh)begin

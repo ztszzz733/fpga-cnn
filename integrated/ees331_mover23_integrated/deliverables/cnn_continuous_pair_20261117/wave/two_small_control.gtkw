@@ -1,0 +1,52 @@
+[dumpfile] "two_small_control.vcd"
+[timestart] 0
+[size] 1600 1000
+@28
+[color] 2
+soc.CNN_RUNNING
+[color] 3
+soc.COMPLETED_TASKS[10:0]
+[color] 4
+soc.INPUT_COMMITTED
+[color] 5
+soc.RESULT_IN_DDR
+[color] 6
+soc.MEMORY_STATE[2:0]
+[color] 7
+soc.MOVER_STATE[3:0]
+[color] 2
+soc.ACTUAL_WORK[11:0]
+[color] 3
+soc.OPERATOR_BUSY[11:0]
+[color] 4
+soc.MEM_PENDING[11:0]
+[color] 5
+soc.REQUEST_VALID[11:0]
+[color] 6
+soc.RESPONSE[11:0]
+[color] 7
+soc.FAULT
+[color] 2
+soc.K3_0_STATE[3:0]
+[color] 3
+soc.K3_1_STATE[3:0]
+[color] 4
+soc.PW8_0_STATE[3:0]
+[color] 5
+soc.PW8_1_STATE[3:0]
+[color] 6
+soc.PW8_2_STATE[3:0]
+[color] 7
+soc.PW8_3_STATE[3:0]
+[color] 2
+soc.PW8_4_STATE[3:0]
+[color] 3
+soc.PW8_5_STATE[3:0]
+[color] 4
+soc.POST_0_STATE[3:0]
+[color] 5
+soc.POST_1_STATE[3:0]
+[color] 6
+soc.ADD_0_STATE[3:0]
+[color] 7
+soc.PAD_0_STATE[3:0]

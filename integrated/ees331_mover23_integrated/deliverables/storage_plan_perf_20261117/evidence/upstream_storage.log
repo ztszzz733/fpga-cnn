@@ -1,0 +1,2 @@
+PASS mixed DDR/local, coherence, 4-client bank access, DMA overlap, identity/backpressure cycles=5908 overlap_cycles=1 plan_dma_cycles=3123 HP0_read=8489 HP0_write=1032 plan_read=5417 plan_write=8
+PASS short overlap comparison serial=3816 overlapping=2280 saved=1536 gain_pct=40.2516

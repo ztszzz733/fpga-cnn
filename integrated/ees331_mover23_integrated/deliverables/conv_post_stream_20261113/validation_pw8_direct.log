@@ -1,0 +1,18 @@
+SIGNALS=16 UNIQUE=16
+TOP.request_stream
+TOP.stream_active
+TOP.decision_reason[3:0]
+TOP.conv_work
+TOP.conv_finished
+TOP.raw_push
+TOP.raw_pop
+TOP.fifo_level[3:0]
+TOP.post_work
+TOP.mem_valid[1:0]
+TOP.mem_write[1:0]
+TOP.mem_ready[1:0]
+TOP.mem_response[1:0]
+TOP.forwarded_count[31:0]
+TOP.done
+TOP.error
+PASS

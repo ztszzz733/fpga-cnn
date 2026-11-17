@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "new_storage_commit": "cbf211753b1687bb104d81af2bbf626302a9a13e",
+  "scope": "Two real convolution operators, two synthetic images per layer, same current production operators/MOVER/local RAM in both modes. Includes input/weight transfer and output DDR visibility; excludes CPU/UART and full network.",
+  "sources": {
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_self/self_pw8_engine.sv": "f34b3c290c6e7624460e8a7f03f6288d3238f1c9db9ad2ecc6400fcd0421567c",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/storage_v2/rtl/data_mover.sv": "912cb80f7d2bb0e30408ecb223fbdad037a65c58b99f1471ade84ef8f0407c9e",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/storage_v2/rtl/tile_local_ram.sv": "3c4562d153b80e95c585579b94efe04a85cdcf629bbca1be67ed0917a130255a",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/storage_v2/rtl/tile_local_ram_bank4.sv": "229be9ae3f7e8d38188df084c0f0ab4eb72ce40992f7a9816c184a091db1ed1d",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_ddr/cnn_paged_mover.sv": "d81b1b4bab40d011f75b1b969baae0e311eda9b7169b6805ce8d7f77690a2b53",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_ddr/cnn_plan_storage.sv": "d30a358c694990f99b279151e3d58394edc580c1a4edf1b34a03e8e2d1e0f3f2",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/rtl/cnn_ddr/storage_plan_queue.sv": "be688c49c60df5d637e7750dbd6dd744ca89a508acb4bb7f289f4a6bdfb17c59",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf/conv_memory_perf_top.sv": "c0b831945b8626b5792c5645ef8f7b61fbab7018b22324ee6ac286be1f0fbff5",
+    "/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/review_bai_datasram_20261117/conv_perf_main.cpp": "ac924f35e1bb883f09d80ba238eb9225242b9334bcf408b36552745469da56ea"
+  },
+  "common_sources": [
+    {
+      "path": "rtl/cnn_self/self_pw8_engine.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\rtl\\cnn_self\\self_pw8_engine.sv",
+      "sha256": "f34b3c290c6e7624460e8a7f03f6288d3238f1c9db9ad2ecc6400fcd0421567c"
+    },
+    {
+      "path": "rtl/cnn_self/self_conv_spatial4_engine.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\rtl\\cnn_self\\self_conv_spatial4_engine.sv",
+      "sha256": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39"
+    },
+    {
+      "path": "rtl/cnn_self/compact_word_ram.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\rtl\\cnn_self\\compact_word_ram.sv",
+      "sha256": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00"
+    },
+    {
+      "path": "storage_v2/rtl/data_mover.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\storage_v2\\rtl\\data_mover.sv",
+      "sha256": "912cb80f7d2bb0e30408ecb223fbdad037a65c58b99f1471ade84ef8f0407c9e"
+    },
+    {
+      "path": "storage_v2/rtl/tile_local_ram.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\storage_v2\\rtl\\tile_local_ram.sv",
+      "sha256": "3c4562d153b80e95c585579b94efe04a85cdcf629bbca1be67ed0917a130255a"
+    },
+    {
+      "path": "rtl/cnn_ddr/cnn_paged_mover.sv",
+      "origin": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\rtl\\cnn_ddr\\cnn_paged_mover.sv",
+      "sha256": "d81b1b4bab40d011f75b1b969baae0e311eda9b7169b6805ce8d7f77690a2b53"
+    },
+    {
+      "path": "rtl/cnn_ddr/cnn_plan_storage.sv",
+      "origin": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\review_bai_datasram_20261117\\source\\integrated\\ees331_mover23_integrated\\rtl\\cnn_ddr\\cnn_plan_storage.sv",
+      "sha256": "d30a358c694990f99b279151e3d58394edc580c1a4edf1b34a03e8e2d1e0f3f2"
+    },
+    {
+      "path": "rtl/cnn_ddr/storage_plan_queue.sv",
+      "origin": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\review_bai_datasram_20261117\\source\\integrated\\ees331_mover23_integrated\\rtl\\cnn_ddr\\storage_plan_queue.sv",
+      "sha256": "be688c49c60df5d637e7750dbd6dd744ca89a508acb4bb7f289f4a6bdfb17c59"
+    },
+    {
+      "path": "storage_v2/rtl/tile_local_ram_bank4.sv",
+      "origin": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\review_bai_datasram_20261117\\source\\integrated\\ees331_mover23_integrated\\storage_v2\\rtl\\tile_local_ram_bank4.sv",
+      "sha256": "229be9ae3f7e8d38188df084c0f0ab4eb72ce40992f7a9816c184a091db1ed1d"
+    },
+    {
+      "path": "simulation/tb/integration/ees331_axi_mover_model.hpp",
+      "origin": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\review_bai_datasram_20261117\\source\\integrated\\ees331_mover23_integrated\\simulation\\tb\\integration\\ees331_axi_mover_model.hpp",
+      "sha256": "2c8027f2ecee4fc034d1f3f630c5fd70219ba754e10a2a1c0c50384bf22b78fe"
+    }
+  ],
+  "variants": {
+    "legacy": {
+      "compile_seconds": 40.405270068,
+      "simulation_seconds": 1.5257063950000003,
+      "measurements": [
+        {
+          "mode": "legacy",
+          "kernel": 1,
+          "width": 14,
+          "height": 14,
+          "ci": 64,
+          "co": 64,
+          "images": 2,
+          "cycles": 236183,
+          "run0_cycles": 188592,
+          "run1_cycles": 188595,
+          "mac_work0": 51200,
+          "mac_work1": 51200,
+          "mac_overlap_cycles": 48800,
+          "ddr_read_bytes": 131072,
+          "ddr_write_bytes": 100352,
+          "local_dma_overlap_cycles": 0,
+          "checked_bytes": 100352,
+          "status": "PASS"
+        },
+        {
+          "mode": "legacy",
+          "kernel": 3,
+          "width": 18,
+          "height": 18,
+          "ci": 16,
+          "co": 16,
+          "images": 2,
+          "cycles": 231698,
+          "run0_cycles": 215924,
+          "run1_cycles": 215927,
+          "mac_work0": 147456,
+          "mac_work1": 147456,
+          "mac_overlap_cycles": 144384,
+          "ddr_read_bytes": 48128,
+          "ddr_write_bytes": 32768,
+          "local_dma_overlap_cycles": 0,
+          "checked_bytes": 32768,
+          "status": "PASS"
+        }
+      ]
+    },
+    "explicit": {
+      "compile_seconds": 35.03971952300001,
+      "simulation_seconds": 0.8291814620000082,
+      "measurements": [
+        {
+          "mode": "explicit",
+          "kernel": 1,
+          "width": 14,
+          "height": 14,
+          "ci": 64,
+          "co": 64,
+          "images": 2,
+          "cycles": 144209,
+          "run0_cycles": 88081,
+          "run1_cycles": 88078,
+          "mac_work0": 51200,
+          "mac_work1": 51200,
+          "mac_overlap_cycles": 22824,
+          "ddr_read_bytes": 29184,
+          "ddr_write_bytes": 100352,
+          "local_dma_overlap_cycles": 3361,
+          "checked_bytes": 100352,
+          "status": "PASS"
+        },
+        {
+          "mode": "explicit",
+          "kernel": 3,
+          "width": 18,
+          "height": 18,
+          "ci": 16,
+          "co": 16,
+          "images": 2,
+          "cycles": 191288,
+          "run0_cycles": 171713,
+          "run1_cycles": 171713,
+          "mac_work0": 147456,
+          "mac_work1": 147456,
+          "mac_overlap_cycles": 127120,
+          "ddr_read_bytes": 12672,
+          "ddr_write_bytes": 32768,
+          "local_dma_overlap_cycles": 752,
+          "checked_bytes": 32768,
+          "status": "PASS"
+        }
+      ]
+    }
+  },
+  "comparisons": [
+    {
+      "kernel": 1,
+      "old_cycles": 236183,
+      "new_cycles": 144209,
+      "saved_percent": 38.94183747348454,
+      "speedup": 1.637782662663218
+    },
+    {
+      "kernel": 3,
+      "old_cycles": 231698,
+      "new_cycles": 191288,
+      "saved_percent": 17.440806567169332,
+      "speedup": 1.2112521433649786
+    }
+  ],
+  "wall_seconds": 77.85167694100001
+}

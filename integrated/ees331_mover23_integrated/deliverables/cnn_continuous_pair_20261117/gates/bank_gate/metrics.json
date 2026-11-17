@@ -1,0 +1,1 @@
+{"status":"PASS","clients":4,"requests_per_client":2304,"cycles":928382,"multi_bank_accept_cycles":140,"consecutive_accept_cycles":6085,"peak_pending":[2,2,2,2],"ddr_read_bytes":1118208,"ddr_write_bytes":1118208,"fenced_ddr_verified":true}

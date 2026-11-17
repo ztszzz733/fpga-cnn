@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "pair_cases": 56,
+  "legacy_post_cases": 40,
+  "legacy_pw8_cases": 129,
+  "legacy_k3_cases": 216,
+  "legacy_driver_note": "Original legacy group collector saw the concurrently created trace run and asserted an ambiguous directory count. Individual post/PW8/K3 tests all passed. Their exact directories and source hashes were independently checked here; original FAIL retained.",
+  "runs": {
+    "pair": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_212215_conv_post_stream",
+    "post": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_212049_stream_legacy",
+    "pw8": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_212108_remaining_pw8_addr",
+    "k3": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_212138_reuse_unit"
+  },
+  "pair_source_hashes": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_pw8_engine.sv": "6ab78a1aca3aa8f1c763336f3b0077bd922e5fbe3b0a943ea71bac961100c9de",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "66746c089a1c212b2648e7bc26beaea9a34448c5413f7e825a0adf51ac0f4476",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "b269396fb2df322f421b2deb900920817a091b36cfe39929eafdc72da939594d",
+    "rtl/cnn_stream/conv_post_pair_engine.sv": "4ac77e3ce95477a745bcc2811de37e7529cdbb717db4a747b672d5818de083b8",
+    "simulation/tb/conv_post_stream_top.sv": "cac2b5430dea7443c1d061c9ea93f5b7ffb006bd4921ee56bbb263e0e85c3ac1",
+    "simulation/tb/integration/conv_post_stream_main.cpp": "823a3aa4fae11f3fa564376f58d6a42f7906338248a9289d92e10cc7c3c95198"
+  },
+  "default_post_cycles_unchanged": true,
+  "global_scheduler_connected": false,
+  "resource_and_timing_synthesized": false,
+  "png_reviewed": true,
+  "gtkwave": {
+    "k3_direct": {
+      "status": "PASS",
+      "signals": 16,
+      "unique": 16
+    },
+    "pw8_direct": {
+      "status": "PASS",
+      "signals": 16,
+      "unique": 16
+    },
+    "k3_memory": {
+      "status": "PASS",
+      "signals": 16,
+      "unique": 16
+    },
+    "pw8_memory": {
+      "status": "PASS",
+      "signals": 16,
+      "unique": 16
+    }
+  },
+  "existing_soc_lint": {
+    "status": "PASS",
+    "returncode": 0,
+    "top": "face_soc_ees331_mover_top",
+    "new_pair_connected": false,
+    "scope": "Existing complete top lint/elaboration only; not full simulation or timing closure"
+  },
+  "resource_synthesis_followup": {
+    "status": "PASS",
+    "report": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\deliverables\\conv_post_stream_resources_20261113\\README.md",
+    "place_route": false
+  }
+}

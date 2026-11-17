@@ -22,6 +22,7 @@ partners/datapath/delivery/rtl/soc_memory/imem_rom.sv
 rtl/soc/cpu_core.sv
 # Production EES331 CNN/cache. No old FPGA1/NEureka, no full-size SRAM array.
 rtl/cnn_self/compact_word_ram.sv
+rtl/cnn_self/continuous_read_adapter.sv
 rtl/cnn_self/self_conv_engine.sv
 rtl/cnn_self/self_conv_spatial4_engine.sv
 rtl/cnn_self/self_pw8_engine.sv
@@ -33,6 +34,7 @@ rtl/cnn_ddr/fixed_schedule_compact.sv
 rtl/cnn_ddr/cnn_ees331.sv
 storage_v2/rtl/download_ram.sv
 storage_v2/rtl/tile_local_ram.sv
+storage_v2/rtl/tile_local_ram_bank4.sv
 storage_v2/rtl/data_mover.sv
 rtl/cnn_ddr/cnn_paged_mover.sv
 rtl/cnn_ddr/datasram_mover_subsystem.sv

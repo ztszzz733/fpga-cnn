@@ -1,0 +1,58 @@
+{
+  "status": "RESOURCE_MEASURED",
+  "part": "xc7z020clg484-1",
+  "scope": "one PW8 engine OOC synthesis; both versions remeasured",
+  "old": {
+    "Slice LUTs": 2644.0,
+    "LUT as Memory": 44.0,
+    "Slice Registers": 1705.0,
+    "Block RAM Tile": 1.5,
+    "RAMB36/FIFO": 1.0,
+    "RAMB18": 1.0,
+    "DSPs": 0.0
+  },
+  "new": {
+    "Slice LUTs": 3566.0,
+    "LUT as Memory": 44.0,
+    "Slice Registers": 2101.0,
+    "Block RAM Tile": 2.0,
+    "RAMB36/FIFO": 1.0,
+    "RAMB18": 2.0,
+    "DSPs": 0.0
+  },
+  "delta_per_pw8": {
+    "Slice LUTs": 922.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 396.0,
+    "Block RAM Tile": 0.5,
+    "RAMB36/FIFO": 0.0,
+    "RAMB18": 1.0,
+    "DSPs": 0.0
+  },
+  "estimated_delta_six_pw8": {
+    "Slice LUTs": 5532.0,
+    "LUT as Memory": 0.0,
+    "Slice Registers": 2376.0,
+    "Block RAM Tile": 3.0,
+    "RAMB36/FIFO": 0.0,
+    "RAMB18": 6.0,
+    "DSPs": 0.0
+  },
+  "old_synthesis_timing": {
+    "wns_ns": 0.202,
+    "whs_ns": 0.189,
+    "setup_failing": 0,
+    "hold_failing": 0
+  },
+  "new_synthesis_timing": {
+    "wns_ns": 0.227,
+    "whs_ns": 0.189,
+    "setup_failing": 0,
+    "hold_failing": 0
+  },
+  "synthesis_10ns_met": true,
+  "place_route_run": false,
+  "full_soc_synthesis_run": false,
+  "resource_run": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_pw8_oc2_20261115_161056",
+  "sources_unchanged": true
+}

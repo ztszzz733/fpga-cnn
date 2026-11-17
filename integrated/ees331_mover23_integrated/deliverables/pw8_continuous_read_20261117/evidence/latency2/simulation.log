@@ -1,0 +1,33 @@
+CASE 0
+PERF 7x7 Ci=32 Co=64 old=14669 new=14494 saved_pct=1.19299
+CASE 1
+PERF 14x14 Ci=64 Co=64 old=88079 new=86153 saved_pct=2.18667
+CASE 2
+PERF 28x28 Ci=64 Co=64 old=342352 new=340218 saved_pct=0.623335
+CASE 3
+PERF 7x7 Ci=128 Co=128 old=75583 new=75093 saved_pct=0.648294
+CASE 4
+PERF 14x14 Ci=128 Co=64 old=153868 new=150244 saved_pct=2.35527
+CASE 5
+PERF 14x14 Ci=16 Co=64 old=41890 new=41526 saved_pct=0.868942
+CASE 6
+PERF 14x14 Ci=4 Co=64 old=38621 new=38497 saved_pct=0.321069
+CASE 7
+PERF 1x1 Ci=3 Co=1 old=224 new=224 saved_pct=0
+CASE 8
+PERF 1x3 Ci=7 Co=5 old=410 new=410 saved_pct=0
+CASE 9
+PERF 2x2 Ci=8 Co=7 old=355 new=356 saved_pct=-0.28169
+CASE 10
+PERF 5x3 Ci=64 Co=17 old=2915 new=2794 saved_pct=4.15094
+CASE 11
+PERF 9x5 Ci=65 Co=17 old=6753 new=6641 saved_pct=1.65852
+CASE 12
+PERF 7x3 Ci=512 Co=5 old=18864 new=16526 saved_pct=12.394
+CASE 13
+PERF 11x9 Ci=96 Co=17 old=18939 new=18939 saved_pct=0
+CASE 14
+PERF 5x3 Ci=64 Co=8 old=2453 new=2145 saved_pct=12.5561
+CASE 15
+PERF 1x1 Ci=512 Co=128 old=61784 new=34158 saved_pct=44.7138
+PASS real bank continuous reads numerical/physical readback, strided layout, tails, backpressure, completion and restart cases=16

@@ -1,0 +1,118 @@
+{
+  "status": "VERIFIED_EXPERIMENT_DEFAULT_OFF",
+  "candidate_sha256": "a33e834a8f9a846fe7a71c3d3bd6c2a7a10cdf880b46004d8b393f78fdbdc258",
+  "baseline_sha256": "f34b3c290c6e7624460e8a7f03f6288d3238f1c9db9ad2ecc6400fcd0421567c",
+  "parameter": "INPUT_WORD_FILL",
+  "default": 0,
+  "unit_cases": 213,
+  "unit_improved": 50,
+  "unit_regressed": 0,
+  "request_count_and_read_bytes_unchanged": true,
+  "performance": {
+    "old": {
+      "mode": "explicit",
+      "kernel": 1,
+      "width": 14,
+      "height": 14,
+      "ci": 64,
+      "co": 64,
+      "images": 2,
+      "fill_cycles0": 12556,
+      "fill_cycles1": 12556,
+      "fill_writes0": 12544,
+      "fill_writes1": 12544,
+      "cycles": 144209,
+      "run0_cycles": 88081,
+      "run1_cycles": 88078,
+      "mac_work0": 51200,
+      "mac_work1": 51200,
+      "mac_overlap_cycles": 22824,
+      "ddr_read_bytes": 29184,
+      "ddr_write_bytes": 100352,
+      "local_dma_overlap_cycles": 3361,
+      "checked_bytes": 100352,
+      "status": "PASS"
+    },
+    "new": {
+      "mode": "explicit",
+      "kernel": 1,
+      "width": 14,
+      "height": 14,
+      "ci": 64,
+      "co": 64,
+      "images": 2,
+      "fill_cycles0": 9424,
+      "fill_cycles1": 12556,
+      "fill_writes0": 1600,
+      "fill_writes1": 12544,
+      "cycles": 141146,
+      "run0_cycles": 85018,
+      "run1_cycles": 88080,
+      "mac_work0": 51200,
+      "mac_work1": 51200,
+      "mac_overlap_cycles": 25233,
+      "ddr_read_bytes": 29184,
+      "ddr_write_bytes": 100352,
+      "local_dma_overlap_cycles": 4256,
+      "checked_bytes": 100352,
+      "status": "PASS"
+    },
+    "saved_percent": 2.124000582487917,
+    "single_core_run_saved_percent": 3.4774809550300323,
+    "input_stage_saved_percent": 24.944249761070402
+  },
+  "resources": {
+    "baseline": {
+      "directory": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\deliverables\\pw8_oc2_resources_20261115\\new",
+      "source_sha256": "f34b3c290c6e7624460e8a7f03f6288d3238f1c9db9ad2ecc6400fcd0421567c",
+      "utilization": {
+        "Slice LUTs": 3566.0,
+        "LUT as Memory": 44.0,
+        "Slice Registers": 2101.0,
+        "Block RAM Tile": 2.0,
+        "RAMB36/FIFO": 1.0,
+        "RAMB18": 2.0,
+        "DSPs": 0.0
+      },
+      "timing": {
+        "wns_ns": 0.227,
+        "whs_ns": 0.189,
+        "setup_failing": 0,
+        "hold_failing": 0
+      },
+      "reuse_previous_verified_synthesis": true
+    },
+    "candidate": {
+      "Slice LUTs": 4245.0,
+      "LUT as Memory": 52.0,
+      "Slice Registers": 2883.0,
+      "Block RAM Tile": 2.0,
+      "RAMB36/FIFO": 1.0,
+      "RAMB18": 2.0,
+      "DSPs": 0.0
+    },
+    "delta": {
+      "Slice LUTs": 679.0,
+      "LUT as Memory": 8.0,
+      "Slice Registers": 782.0,
+      "Block RAM Tile": 0.0,
+      "RAMB36/FIFO": 0.0,
+      "RAMB18": 0.0,
+      "DSPs": 0.0
+    },
+    "timing": {
+      "wns_ns": 0.297,
+      "whs_ns": 0.189,
+      "setup_failing": 0,
+      "hold_failing": 0
+    }
+  },
+  "runs": {
+    "unit": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\pw8_wordfill_20261117\\unit_runs\\20261117_154906",
+    "performance": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\pw8_wordfill_20261117\\perf_runs\\20261117_155751",
+    "resources": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\pw8_wordfill_20261117\\resource_runs\\20261117_155457"
+  },
+  "full_network_run": false,
+  "multi_outstanding_interface": false,
+  "all_six_enabled": false
+}

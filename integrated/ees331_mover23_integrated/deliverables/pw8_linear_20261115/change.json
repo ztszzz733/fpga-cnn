@@ -1,0 +1,28 @@
+{
+  "status": "EDITED_NOT_YET_TESTED",
+  "run_dir": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261115_140738_pw8_linear_change",
+  "original_hashes": {
+    "rtl/cnn_self/self_pw8_engine.sv": "99e94b10cf431ad3a11094fab6983923fdd1218576ffef199cbb9b31de429685",
+    "simulation/tb/pw8_addr_top.sv": "bd8a3f97b13f7824fb697fe998c168916be32da22279119613b12c400351c0df",
+    "simulation/tb/pw8_panel_top.sv": "b3d514f8df92fb543a64c87e969c1abfea3736a0acafd71ed31d3d8cc20e158e",
+    "simulation/tb/remaining_pw8_top.sv": "ece35f93f7516ee3b8dd626fe36160858a0a9e83c5616c760f7f3c99b3d901e9"
+  },
+  "protected_hashes": {
+    "rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl/cnn_self/self_conv_spatial4_engine.sv": "15430f8b9af21d1efa1196a6152988edc5c7811e1e1c27078255031df1920a39",
+    "rtl/cnn_quant/quant_post_pipe_engine.sv": "48b7275d3552857e7c0091141426f14443e4ccf3ec860ec29a05f7a15251e48b",
+    "rtl/cnn_quant/pad_hwc_engine.sv": "044009d169f1de3a8eff8f508f225b8f452e5392769e2ee5ceb81ffacd721679",
+    "rtl/cnn_ddr/cnn_ees331.sv": "4ecf5e28c4de7f1278c9330f9629e731cc0e41c1258a25dfd2d62faf4bd3c88e",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv": "80b9c62cc504c177d5f14cc67a454ce8dcdc1572c4454f1fde84666ba9e753ed"
+  },
+  "modified_hashes": {
+    "rtl/cnn_self/self_pw8_engine.sv": "0a16ba33f74962235d487abd3d151635f2238e821b9ed4ae0709bfd2a16248c6",
+    "simulation/tb/baseline_pw8_linear.sv": "1fa6b1c4ff68975133fcb83e2ceee54eca7b3bdd5feaf03083adc465caf60f29",
+    "simulation/tb/pw8_linear_top.sv": "cfc4cc6e91fcb75fe959dace61c17389b20fa64a86dd30fd54f4a41bed1aa621",
+    "simulation/tb/integration/pw8_linear_main.cpp": "512d04a947eb35b140c4bf0c1d6895d1fe05474818dbd526ac0ee65efcefc084",
+    "simulation/scripts/run_pw8_linear_unit.py": "7213496b98f2801abb0c5309f996e9b5f6fb3eaecd740a1e620d9d0985877315",
+    "simulation/tb/pw8_addr_top.sv": "97a13534eb98de0b1bc878904b115b80cb6d5384bf0eac1fbcf0819ad3946a67",
+    "simulation/tb/pw8_panel_top.sv": "b9f23b25452f4ac9d49faa8e40c443e7921beef0e88db8d8f52dc3d1814cc3aa",
+    "simulation/tb/remaining_pw8_top.sv": "771adeb0958de9a4189ce4e231ce88e3a472de252bcb113bc509414bf7b6a8da"
+  }
+}

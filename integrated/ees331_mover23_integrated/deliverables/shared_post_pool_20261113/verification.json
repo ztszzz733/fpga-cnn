@@ -1,0 +1,22 @@
+{
+  "functional": "PASS",
+  "pool_batches": 10,
+  "mmio_cases": 3,
+  "software_checks": 24,
+  "convs": 8,
+  "posts": 2,
+  "fifos": 2,
+  "gtk_unique_signals": 16,
+  "soc_lint": "PASS",
+  "synthesis": "DEFERRED_AT_USER_REQUEST",
+  "png_reviewed": true,
+  "pool_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_223045_shared_post_pool",
+  "mmio_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261113_223550_shared_post_mmio",
+  "baseline_synthesis": "PASS",
+  "shared_synthesis": "NOT_COMPLETED_MEMORY_GUARD",
+  "user_deferred_synthesis": true,
+  "resource_run": "C:\\Users\\windows\\.codex\\visualizations\\2026\\10\\09\\01a11f57-abad-73d3-bace-ffb2cb9844cd\\resource_shared_post_final_20261113_231234",
+  "resource_delta": null,
+  "whole_soc_simulated": false,
+  "place_route": false
+}

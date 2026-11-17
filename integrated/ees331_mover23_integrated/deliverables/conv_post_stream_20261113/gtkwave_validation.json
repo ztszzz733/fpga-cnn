@@ -1,0 +1,22 @@
+{
+  "k3_direct": {
+    "status": "PASS",
+    "signals": 16,
+    "unique": 16
+  },
+  "pw8_direct": {
+    "status": "PASS",
+    "signals": 16,
+    "unique": 16
+  },
+  "k3_memory": {
+    "status": "PASS",
+    "signals": 16,
+    "unique": 16
+  },
+  "pw8_memory": {
+    "status": "PASS",
+    "signals": 16,
+    "unique": 16
+  }
+}

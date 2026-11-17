@@ -1,0 +1,20 @@
+{
+  "status": "FUNCTIONAL_PASS_RESOURCES_DEFERRED",
+  "date": "2026-11-15",
+  "scope": "PW8 linear spatial groups; no inter-operator streaming",
+  "regression": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261115_140955_remaining_pw8_linear",
+  "change_run": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261115_140738_pw8_linear_change",
+  "numeric_cases": 165,
+  "soc_lint": "PASS",
+  "resource_status": "DEFERRED_BY_USER",
+  "compile_seconds": 20.021953593000003,
+  "simulation_seconds": 12.455728622999999,
+  "production_pw8_sha256": "0a16ba33f74962235d487abd3d151635f2238e821b9ed4ae0709bfd2a16248c6",
+  "protected_hashes_unchanged": true,
+  "baseline_fallback_cycle_exact": true,
+  "full_network_run": false,
+  "resource_resume_automatic": false,
+  "slower_test_cases": 71,
+  "max_extra_cycles_in_slower_cases": 35,
+  "largest_slowdown_percent": 12.72727272727272
+}

@@ -1,0 +1,389 @@
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:45:27: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'comp_word' generates 15 bits.
+                                                                                                                                                                  : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                           ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:45:51: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'comp_word' generates 15 bits.
+                                                                                                                                                                  : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                                                   ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:46:25: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'dma_word' generates 15 bits.
+                                                                                                                                                                  : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                         ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:46:48: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'dma_word' generates 15 bits.
+                                                                                                                                                                  : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                                                ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:63:25: Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's SHIFTR generates 7 bits.
+                                                                                                                                                                        : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+   63 |  wire [3:0] linear_slots=(panel_pixels+7'd7)>>3;
+      |                         ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=0.000
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:118:83: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_w' generates 4 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  118 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                   ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:118:103: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_h' generates 4 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  118 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                                       ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:226:75: Operator LT expects 11 bits on the RHS, but RHS's VARREF 'weight_full_words' generates 9 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  226 |  wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<weight_full_words;
+      |                                                                           ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:228:45: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'ci' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  228 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                             ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:228:41: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  228 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                         ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:230:34: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  230 |  wire [31:0] output_pixel_step=co<<2;
+      |                                  ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:269:10: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  269 |    pixels[pixel_write_addr][p*8+:8]<=pixel_write_data[p*8+:8];
+      |          ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:270:50: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  270 |   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+      |                                                  ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:296:75: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  296 |   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                           ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:307:76: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  307 |    .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:368:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  368 |     weight_reads<=weight_reads+weight_count;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:369:102: Operator ADD expects 11 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  369 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:369:140: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  369 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                                                            ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:372:57: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  372 |      fill_second<=1;weight_c<=0;weight_addr<=weight_addr+weight_count;
+      |                                                         ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:377:54: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'in_channels' generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  377 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:377:70: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'out_channels' generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  377 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:377:86: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'width' generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  377 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:377:95: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'height' generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  377 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                               ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:379:29: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  379 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                             ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:379:66: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  379 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:393:74: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'h' generates 16 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  393 |       0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=h;end
+      |                                                                          ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:394:46: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 42 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  394 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                              ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:394:66: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  394 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:395:117: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 48 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  395 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:395:137: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  395 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                         ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:396:81: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'oh' generates 16 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  396 |       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+      |                                                                                 ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:410:22: Operator ASSIGNDLY expects 9 bits on the Assign RHS, but Assign RHS's SHIFTR generates 11 bits.
+                                                                                                                                                                         : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  410 |     weight_full_words<=weight_target_choice>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:422:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  422 |     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:423:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  423 |     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:437:29: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  437 |     input_reads<=input_reads+in_count;
+      |                             ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:462:31: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  462 |     if(LINEAR_GROUPS && load_c+in_count>=ci)begin
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:467:47: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  467 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:467:77: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  467 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                                                             ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:467:14: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  467 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |              ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:507:102: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                           : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  507 |       pipe_valid<=0;product_valid<=0;store_lane<=0;store_second<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      |                                                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:514:85: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  514 |      output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(store_second?32'd4:32'd0)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
+      |                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:516:70: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  516 |      store_second<=1;store_lane<=0;output_addr<=compute_tile_base+(oc<<2)+32'd4;
+      |                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:531:64: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'panel_pixels' generates 7 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  531 |      if(pixels_left>panel_pixels)begin pixels_left<=pixels_left-panel_pixels;state<=TILE_BEGIN;end
+      |                                                                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:534:21: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  534 |       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+      |                     ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:537:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  537 |       tile_x<=0;tile_y<=tile_y+panel_h;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:536:24: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  536 |      end else if(tile_y+panel_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/self_pw8_block_engine.sv:533:23: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                                                                          : ... note: In instance 'bank_benchmark_top.variants[1].new_core.core'
+  533 |     end else if(tile_x+panel_w<ow)begin
+      |                       ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:57:25: Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's SHIFTR generates 7 bits.
+                                                                                                                                                                  : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+   57 |  wire [3:0] linear_slots=(panel_pixels+7'd7)>>3;
+      |                         ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:112:83: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_w' generates 4 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  112 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                   ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:112:103: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_h' generates 4 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  112 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=8*WORDS;
+      |                                                                                                       ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:190:75: Operator LT expects 11 bits on the RHS, but RHS's VARREF 'weight_full_words' generates 9 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  190 |  wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<weight_full_words;
+      |                                                                           ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:192:45: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'ci' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  192 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                             ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:192:41: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  192 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                         ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:194:34: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  194 |  wire [31:0] output_pixel_step=co<<2;
+      |                                  ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:233:10: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  233 |    pixels[pixel_write_addr][p*8+:8]<=pixel_write_data[p*8+:8];
+      |          ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:234:50: Bit extraction of array[511:0] requires 9 bit index, not 10 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  234 |   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+      |                                                  ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:260:75: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  260 |   .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                           ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:271:76: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 11 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  271 |    .wr_addr($clog2(2*WORDS)'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:329:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  329 |     weight_reads<=weight_reads+weight_count;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:330:102: Operator ADD expects 11 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  330 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                      ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:330:140: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  330 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                                                            ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:333:57: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  333 |      fill_second<=1;weight_c<=0;weight_addr<=weight_addr+weight_count;
+      |                                                         ^
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:338:54: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'in_channels' generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  338 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:338:70: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'out_channels' generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  338 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:338:86: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'width' generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  338 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                      ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:338:95: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'height' generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  338 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                               ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:340:29: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  340 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                             ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:340:66: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  340 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:354:74: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'h' generates 16 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  354 |       0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=h;end
+      |                                                                          ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:355:46: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 42 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  355 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                              ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:355:66: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  355 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:356:117: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 48 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  356 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:356:137: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  356 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && mul_value>8*WORDS && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                         ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:357:81: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'oh' generates 16 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  357 |       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+      |                                                                                 ^~
+%Warning-WIDTHTRUNC: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:371:22: Operator ASSIGNDLY expects 9 bits on the Assign RHS, but Assign RHS's SHIFTR generates 11 bits.
+                                                                                                                                                                   : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  371 |     weight_full_words<=weight_target_choice>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:383:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  383 |     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:384:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  384 |     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+      |                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:398:29: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  398 |     input_reads<=input_reads+in_count;
+      |                             ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:423:31: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  423 |     if(LINEAR_GROUPS && load_c+in_count>=ci)begin
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:428:47: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  428 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:428:77: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  428 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                                                             ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:428:14: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 3 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  428 |     if(load_c+in_count<ci)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |              ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:468:102: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                     : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  468 |       pipe_valid<=0;product_valid<=0;store_lane<=0;store_second<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      |                                                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:475:85: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  475 |      output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(store_second?32'd4:32'd0)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
+      |                                                                                     ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:477:70: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  477 |      store_second<=1;store_lane<=0;output_addr<=compute_tile_base+(oc<<2)+32'd4;
+      |                                                                      ^~
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:492:64: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'panel_pixels' generates 7 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  492 |      if(pixels_left>panel_pixels)begin pixels_left<=pixels_left-panel_pixels;state<=TILE_BEGIN;end
+      |                                                                ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:495:21: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  495 |       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+      |                     ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:498:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  498 |       tile_x<=0;tile_y<=tile_y+panel_h;
+      |                               ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:497:24: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  497 |      end else if(tile_y+panel_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/original_engine.sv:494:23: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                                                                                                                                    : ... note: In instance 'bank_benchmark_top.variants[0].old.core'
+  494 |     end else if(tile_x+panel_w<ow)begin
+      |                       ^
+%Warning-UNSIGNED: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:45:27: Comparison is constant due to unsigned arithmetic
+                                                                                                                                                               : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                           ^~
+                   ... For warning description see https://verilator.org/warn/UNSIGNED?v=0.000
+                   ... Use "/* verilator lint_off UNSIGNED */" and lint_on around source to disable this message.
+%Warning-UNSIGNED: /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/tile_local_ram.sv:46:25: Comparison is constant due to unsigned arithmetic
+                                                                                                                                                               : ... note: In instance 'bank_benchmark_top.variants[1].bank.memory.four_banks.bank[3].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                         ^~
+make: Entering directory '/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/runs/20261117_163349/obj'
+make: Warning: File 'Vbank_benchmark_top__ver.d' has modification time 0.62 s in the future
+c++  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20 -O2   -O2  -c -o bank_benchmark_main.o /mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/bank_benchmark_main.cpp
+c++ -Os  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20 -O2   -c -o verilated.o /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/verilated.cpp
+c++ -Os  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20 -O2   -c -o verilated_threads.o /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/verilated_threads.cpp
+python3 /mnt/d/code/FPGA1/.neureka_build/neureka/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vbank_benchmark_top.cpp Vbank_benchmark_top___024root__DepSet_he9d9cf84__0.cpp Vbank_benchmark_top___024root__DepSet_hb6d64ebd__0.cpp Vbank_benchmark_top_block_bank__DepSet_h2a4b76b9__0.cpp Vbank_benchmark_top_block_bank__DepSet_h7764b5b0__0.cpp Vbank_benchmark_top__ConstPool_0.cpp Vbank_benchmark_top___024root__Slow.cpp Vbank_benchmark_top___024root__DepSet_he9d9cf84__0__Slow.cpp Vbank_benchmark_top___024root__DepSet_hb6d64ebd__0__Slow.cpp Vbank_benchmark_top_block_bank__Slow.cpp Vbank_benchmark_top_block_bank__DepSet_h2a4b76b9__0__Slow.cpp Vbank_benchmark_top_block_bank__DepSet_h7764b5b0__0__Slow.cpp Vbank_benchmark_top__Syms.cpp > Vbank_benchmark_top__ALL.cpp
+echo "" > Vbank_benchmark_top__ALL.verilator_deplist.tmp
+c++ -O2  -I.  -MMD -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include -I/mnt/d/code/FPGA1/.neureka_build/neureka/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -DVM_TRACE_SAIF=0     -std=c++20 -O2   -c -o Vbank_benchmark_top__ALL.o Vbank_benchmark_top__ALL.cpp
+c++    bank_benchmark_main.o verilated.o verilated_threads.o Vbank_benchmark_top__ALL.a       -o Vbank_benchmark_top
+make: warning:  Clock skew detected.  Your build may be incomplete.
+rm Vbank_benchmark_top__ALL.verilator_deplist.tmp
+make: Leaving directory '/mnt/c/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/pw8_block_output_20261117/runs/20261117_163349/obj'
+- V e r i l a t i o n   R e p o r t:  rev UNKNOWN.REV
+- Verilator: Built from 0.418 MB sources in 8 modules, into 2.075 MB in 13 C++ files needing 0.000 MB
+- Verilator: Walltime 15.738 s (elab=0.075, cvt=0.669, bld=14.714); cpu 0.759 s on 2 threads; alloced 24.980 MB

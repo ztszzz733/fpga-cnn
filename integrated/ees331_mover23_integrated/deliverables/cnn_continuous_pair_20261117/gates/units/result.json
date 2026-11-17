@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "variants": {
+    "pw": {
+      "status": "PASS",
+      "compile_seconds": 12.653032770000038,
+      "simulation_seconds": 0.6890899079999713,
+      "cases": 72,
+      "sources": {
+        "new/rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+        "new/rtl/cnn_self/continuous_read_adapter.sv": "11537668727fd9efa0ecd69b5972bc195bfc7eaa74be623539e3563a45c4f345",
+        "new/rtl/cnn_self/self_pw8_engine.sv": "9eaa0ba2800500e69d85fbddc726023c1797468428b2638b8a0b456dfe9078de",
+        "new/rtl/cnn_self/self_conv_spatial4_engine.sv": "4a1cc43217caadfdcf5d340a21cf4919105c548e7a1a20dfd59ef1aa722ce87e",
+        "units/self_word_buffer_unit_top.sv": "4c454854fa72bbf8941707299aebf155c0df1f937712c657d344b772f3adf6a8",
+        "units/pw_main.cpp": "eda8b92e1d9757f348909e35e20829eed201aae6605fb73bc8a4ab04cdcd77f4"
+      }
+    },
+    "k3": {
+      "status": "PASS",
+      "compile_seconds": 14.771240091999971,
+      "simulation_seconds": 1.844451131000028,
+      "cases": 168,
+      "sources": {
+        "new/rtl/cnn_self/compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+        "new/rtl/cnn_self/continuous_read_adapter.sv": "11537668727fd9efa0ecd69b5972bc195bfc7eaa74be623539e3563a45c4f345",
+        "new/rtl/cnn_self/self_pw8_engine.sv": "9eaa0ba2800500e69d85fbddc726023c1797468428b2638b8a0b456dfe9078de",
+        "new/rtl/cnn_self/self_conv_spatial4_engine.sv": "4a1cc43217caadfdcf5d340a21cf4919105c548e7a1a20dfd59ef1aa722ce87e",
+        "units/self_word_buffer_unit_top.sv": "4c454854fa72bbf8941707299aebf155c0df1f937712c657d344b772f3adf6a8",
+        "units/k3_main.cpp": "b752e88aca78484d4dbc3fb3fdbfef6a3a029cdc9efc82daeebb822917ccde06"
+      }
+    }
+  },
+  "wall_seconds": 30.088997055999982
+}

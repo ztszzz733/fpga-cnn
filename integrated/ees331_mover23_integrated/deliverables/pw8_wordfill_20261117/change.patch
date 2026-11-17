@@ -1,0 +1,158 @@
+--- a/rtl/cnn_self/self_pw8_engine.sv
++++ b/rtl/cnn_self/self_pw8_engine.sv
+@@ -5,8 +5,13 @@
+ // One cached weight is broadcast to all live pixels; local sums wrap to INT32.
+ // Aligned groups use 32-bit reads; unaligned starts/tails use exact byte reads.
+ // Double-buffered weights and an eight-word write FIFO overlap local MACs.
++// Optional 64-byte FF transpose staging writes complete 64-bit pixel rows.
++// Aligned Ci%4==0 linear groups use channel-word-major input requests;
++// other descriptors retain the byte-fill path. External protocol stays one
++// outstanding transaction; this is not a multi-outstanding interface change.
++// INPUT_WORD_FILL defaults off until measured on the integrated workload.
+ // One outstanding external transaction; clear requires fabric cancellation too.
+-module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1, LINEAR_GROUPS=1, OUTPUT_PAR=2)(
++module self_pw8_engine #(parameter MAX_CHANNELS=512, INPUT_PREFETCH=1, WEIGHT_LAYER_REUSE=1, PANEL_REUSE=1, ADDR_REGS=1, LINEAR_GROUPS=1, OUTPUT_PAR=2, INPUT_WORD_FILL=0)(
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,width,height,
+  input logic [31:0] in_channels,out_channels,kernel,stride,
+@@ -118,6 +123,39 @@
+  logic [2:0] prefetch_count,prefetch_lane;
+  logic [C_BITS-1:0] prefetch_c;
+  wire promote_prefetch=prefetch_valid && input_fill_left<=1;
++ logic word_fill_mode;
++ logic [63:0] word_rows[2][4];
++ logic [1:0] word_ready;
++ logic word_write_bank,word_read_bank;
++ logic [1:0] word_drain_row;
++ logic [C_BITS-1:0] word_base[2];
++ logic [31:0] word_pixel_addr[8];
++ wire word_commit=word_fill_mode && word_ready[word_read_bank] && !clear;
++ // Capture four channel rows across eight pixels in 2x32B register banks.
++ // Payload registers deliberately have no reset; inactive spatial lanes are
++ // never consumed and each active byte is filled before ready is asserted.
++ always_ff @(posedge clk)if(!clear && word_fill_mode && input_response)begin
++  for(integer r=0;r<4;r++)
++   for(integer p=0;p<8;p++)if(load_lane==3'(p))
++    word_rows[word_write_bank][r][p*8+:8]<=rdata[r*8+:8];
++  if(load_c==0)word_pixel_addr[load_lane]<=load_addr;
++  if(!has_next_load)word_base[word_write_bank]<=load_cache_base+load_c;
++ end
++ always_ff @(posedge clk or negedge rst_n)begin
++  if(!rst_n)begin word_ready<=0;word_write_bank<=0;word_read_bank<=0;word_drain_row<=0;end
++  else if(clear || (state==IDLE && start))begin
++   word_ready<=0;word_write_bank<=0;word_read_bank<=0;word_drain_row<=0;
++  end else begin
++   if(word_commit)begin
++    if(word_drain_row==3)begin
++     word_ready[word_read_bank]<=0;word_read_bank<=!word_read_bank;word_drain_row<=0;
++    end else word_drain_row<=word_drain_row+1'b1;
++   end
++   if(word_fill_mode && input_response && !has_next_load)begin
++    word_ready[word_write_bank]<=1;word_write_bank<=!word_write_bank;
++   end
++  end
++ end
+  logic signed [31:0] sums[8],sums_second[8];
+  logic signed [16:0] products[8],products_second[8];
+  logic signed [16:0] product_q[8],product_second_q[8];
+@@ -181,9 +219,18 @@
+   // Kept only as a constant byte-enable selector, not a separate RAM.
+  end
+  (* ram_style="block" *) logic [63:0] pixels[0:MAX_CHANNELS-1];
++ // Both modes share exactly one write address, data bus and byte mask.
++ // Keeping the mux outside the memory process preserves byte-enable BRAM
++ // inference instead of presenting eight apparent independent write ports.
++ wire pixel_write=word_fill_mode ? word_commit : input_fill_left!=0;
++ wire [C_BITS-1:0] pixel_write_addr=word_fill_mode ?
++  word_base[word_read_bank]+C_BITS'(word_drain_row) : input_fill_c;
++ wire [63:0] pixel_write_data=word_fill_mode ?
++  word_rows[word_read_bank][word_drain_row] : {8{input_fill_word[7:0]}};
++ wire [7:0] pixel_write_mask=word_fill_mode ? 8'hff : (8'b1<<input_fill_lane);
+  always @(posedge clk)if(!clear)begin
+-  for(integer p=0;p<8;p++)if(input_fill_left!=0 && input_fill_lane==p)
+-   pixels[input_fill_c][p*8+:8]<=input_fill_word[7:0];
++  for(integer p=0;p<8;p++)if(pixel_write && pixel_write_mask[p])
++   pixels[pixel_write_addr][p*8+:8]<=pixel_write_data[p*8+:8];
+   if(state==MAC_RUN && issue_c<ci)pixel_q<=pixels[compute_cache_base+issue_c];
+  end
+  // One skid word lets external reads proceed while bytes drain into pixel RAM.
+@@ -198,7 +245,7 @@
+    if(promote_prefetch)begin
+     input_fill_word<=prefetch_word;input_fill_left<=prefetch_count;input_fill_c<=prefetch_c;input_fill_lane<=prefetch_lane;prefetch_valid<=0;
+    end
+-   if(input_response)begin
++   if(input_response && !word_fill_mode)begin
+     if(input_fill_left<=1 && !prefetch_valid)begin
+      input_fill_word<=rdata;input_fill_left<=in_count;input_fill_c<=load_cache_base+load_c;input_fill_lane<=load_lane;
+     end else begin
+@@ -249,7 +296,7 @@
+  // Keep the accepted metadata through its response, including byte enables.
+  always_comb begin
+   offer_valid=0;offer_kind=INPUT_READ;offer_addr=0;offer_data=0;offer_byte=0;
+-  if(state==IREQ && (INPUT_PREFETCH?(!prefetch_valid || promote_prefetch):(input_fill_left==0)))begin
++  if(state==IREQ && (word_fill_mode ? !word_ready[word_write_bank] : (INPUT_PREFETCH?(!prefetch_valid || promote_prefetch):(input_fill_left==0))))begin
+    offer_valid=1;offer_kind=INPUT_READ;offer_addr=load_addr;offer_byte=!in_wide;
+   end else if(q_count!=0 && (q_count>=4 || !fill_active || prefer_write))begin
+    offer_valid=1;offer_kind=OUTPUT_WRITE;offer_addr=out_addr[q_read];offer_data=out_data[q_read];
+@@ -275,8 +322,8 @@
+   end
+  end
+  always_ff @(posedge clk or negedge rst_n)begin
+-  if(!rst_n)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+-  else if(clear)begin state<=IDLE;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  if(!rst_n)begin state<=IDLE;word_fill_mode<=0;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
++  else if(clear)begin state<=IDLE;word_fill_mode<=0;pipe_valid<=0;product_valid<=0;fill_active<=0;fill_second<=0;fill_pair<=0;store_second<=0;weight_loaded<=0;panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;end
+   else begin
+    if(weight_response)begin
+     weight_reads<=weight_reads+weight_count;
+@@ -289,6 +336,7 @@
+    case(state)
+    IDLE:if(start)begin
+     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
++    word_fill_mode<=INPUT_WORD_FILL && LINEAR_GROUPS && input_base[1:0]==0 && in_channels[1:0]==0;
+     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+     panel_enabled<=0;layer_cached<=0;layer_valid<=0;input_reads<=0;weight_reads<=0;mac_count<=0;pipe_valid<=0;product_valid<=0;
+     setup_step<=0;mul_bit<=0;mul_acc<=0;mul_lhs<={32'd0,width};mul_rhs<=in_channels;
+@@ -348,6 +396,30 @@
+    end
+    IREQ:if(input_response)begin
+     input_reads<=input_reads+in_count;
++    if(word_fill_mode)begin
++     // First channel word walks the real pixel coordinates exactly once.
++     // Later words replay the eight saved bases; row/stride wrap is retained.
++     if(load_c==0)begin
++      load_origin<=linear_load_next;load_x<=linear_wrap?16'd0:load_x+1'b1;
++      if(linear_wrap)load_row_origin<=linear_load_next;
++      linear_output_next<=linear_output_next+output_pixel_step;
++     end
++     if(has_next_load)begin
++      load_lane<=next_load;
++      load_addr<=load_c==0 ? linear_load_next : word_pixel_addr[next_load]+32'(load_c);
++     end else if(load_c+4<ci)begin
++      load_lane<=0;load_c<=load_c+4;
++      // A one-pixel tail captures address[0] on this same edge.
++      load_addr<=load_lane==0 ? load_addr+4 : word_pixel_addr[0]+32'(load_c)+4;
++     end else if({1'b0,load_slot}+1'b1<panel_slots)begin
++      load_slot<=next_load_slot;load_cache_base<=load_cache_base+ci;
++      load_lane<=0;load_c<=0;
++      load_addr<=load_c==0 ? linear_load_next : load_origin;
++     end else begin
++      if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;fill_second<=0;fill_pair<=OUTPUT_PAR==2 && co>1;weight_c<=0;weight_addr<=wb;end
++      state<=WREQ;
++     end
++    end else begin
+     if(LINEAR_GROUPS && load_c+in_count>=ci)begin
+      load_origin<=linear_load_next;load_x<=linear_wrap?16'd0:load_x+1'b1;
+      if(linear_wrap)load_row_origin<=linear_load_next;
+@@ -368,8 +440,9 @@
+      if(!layer_cached || !layer_valid)begin fill_active<=1;fill_bank<=0;fill_second<=0;fill_pair<=OUTPUT_PAR==2 && co>1;weight_c<=0;weight_addr<=wb;end
+      state<=WREQ;
+     end
+-   end
+-   WREQ:if((layer_cached?layer_valid:weight_loaded[compute_bank]) && input_fill_left==0 && !prefetch_valid)begin
++    end
++   end
++   WREQ:if((layer_cached?layer_valid:weight_loaded[compute_bank]) && input_fill_left==0 && !prefetch_valid && (!word_fill_mode || word_ready==0))begin
+     weight_loaded[compute_bank]<=0;
+     if(!layer_cached && next_oc<{1'b0,co})begin
+      fill_active<=1;fill_bank<=!compute_bank;fill_second<=0;fill_pair<=next_pair_live;
