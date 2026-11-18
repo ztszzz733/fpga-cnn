@@ -1,0 +1,18 @@
+# EES331 manual, printed p. 10, and the internal TTC0 for the FreeRTOS tick.
+set_property -dict [list \
+ CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V} \
+ CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V} \
+ CONFIG.PCW_SD0_PERIPHERAL_ENABLE {1} \
+ CONFIG.PCW_SD0_SD0_IO {MIO 40 .. 45} \
+ CONFIG.PCW_SD0_GRP_CD_ENABLE {1} \
+ CONFIG.PCW_SD0_GRP_CD_IO {MIO 0} \
+ CONFIG.PCW_SD0_GRP_WP_ENABLE {0} \
+ CONFIG.PCW_SD0_GRP_POW_ENABLE {0} \
+ CONFIG.PCW_TTC0_PERIPHERAL_ENABLE {1} \
+ CONFIG.PCW_TTC0_TTC0_IO {EMIO} \
+ CONFIG.PCW_MIO_0_PULLUP {disabled} \
+ CONFIG.PCW_MIO_0_SLEW {slow} \
+] $ps
+for {set mio 40} {$mio <= 45} {incr mio} {
+ set_property -dict [list CONFIG.PCW_MIO_${mio}_PULLUP {disabled} CONFIG.PCW_MIO_${mio}_SLEW {fast}] $ps
+}

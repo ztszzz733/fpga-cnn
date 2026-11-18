@@ -1,0 +1,12 @@
+__pycache__/
+**/__pycache__/
+**/compile/
+sw/
+project/
+temp/
+.Xil/
+*.jou
+*.log
+
+# Small, reviewed handshake waveform delivered with this release
+!arm_schedule/simulation_bank2/waveform_detail.vcd

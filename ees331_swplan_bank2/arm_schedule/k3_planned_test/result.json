@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "sources_sha256": {
+    "rtl\\cnn_self\\self_conv_spatial4_engine.sv": "90eaaaa01c3f24f93589bdf5df821548c16c393ca5a91576c0b9e4decedf540a",
+    "rtl\\cnn_self\\compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "rtl\\cnn_self\\planned_read_adapter.sv": "85756e760da0dc31885b4273567ea53aeb1b2dd6cadb731782f0b45db142b946"
+  },
+  "test_sha256": "d671f8b4540cdc266f669468c6c279af8d79ae5d5f2bdb71cda6b829ce3780f2",
+  "output": "PASS K3 software plans: 40 scalar-golden convolutions; regular/depthwise, strides 1/2, channel tails, unaligned buffers, partial tiles, halo and weight reuse; cycles=34181\n"
+}

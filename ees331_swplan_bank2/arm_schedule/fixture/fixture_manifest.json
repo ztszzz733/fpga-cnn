@@ -1,0 +1,52 @@
+{
+  "fixture_manifest_sha256": "5add2d08a16845ec1d058a5330880022fe62aa66a7f049db8cc2bd9310e4d1f1",
+  "input_shape": [
+    112,
+    112,
+    3
+  ],
+  "input_sha256": [
+    "b7b02fc873d485ff6610d70adf6468afea159a3c5390b42b2deb8ca183dbe010",
+    "b5dab8973cfee5783971da1d9340d29f33b99b268652f12d767ab08572bea4b0"
+  ],
+  "frames": [
+    100,
+    101
+  ],
+  "steps": 129,
+  "jobs": 258,
+  "result_shape": [
+    7,
+    7,
+    128
+  ],
+  "ddr": {
+    "model_bytes": 1214464,
+    "frame_partitions": [
+      {
+        "frame": 100,
+        "input": 1214464,
+        "input_bytes": 37632,
+        "workspace": 1252352,
+        "workspace_bytes": 2810880
+      },
+      {
+        "frame": 101,
+        "input": 4063232,
+        "input_bytes": 37632,
+        "workspace": 4101120,
+        "workspace_bytes": 2810880
+      }
+    ]
+  },
+  "oracle_bytes": 38730904,
+  "expected_results_sha256": "97ea50f0e05b15b7d5ed6bee04916069461be37259418bf112155aab80035018",
+  "model_variant": "DW7 and its following Post bypassed; final K1 and Post run over 7x7",
+  "unit_mask": "0x3ff",
+  "k1_units": 4,
+  "plan_sha256": "90af2634084dbb237494c927133b9c4bba956f70f1414dd4ceb244a6968a1bde",
+  "bank_count": 2,
+  "cache_bytes": 401408,
+  "k3_plan_version": 1,
+  "k3_planned_templates": 17
+}

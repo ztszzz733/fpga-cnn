@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sources_sha256": {
+    "rtl\\cnn_ddr\\cnn_paged_mover.sv": "6a5fb95e8af1ad3934e38b82006b21800cb90a978140dadb0501978660c16ebb",
+    "storage_v2\\rtl\\data_mover.sv": "416e9989a04fdbb2bee8fc547cab2f76db0ace961218dfb460cb2b2525ac957f",
+    "storage_v2\\rtl\\tile_local_ram.sv": "6ea1acb81fccfa1df4d00490deae2f880a86d86bc56de3d5921564d200da1f3c",
+    "storage_v2\\rtl\\tile_local_ram_bank2.sv": "740d12423e26da7531debcb30fa5bc4788769ba50fff1e9a8f6946fd45b5571d"
+  },
+  "test_sha256": "c2ec4716d443b64bf92bfab6216c36962aa277f7cb25ff73e48e6463d80163f7",
+  "output": "Checking two-bank parallel streams\nChecking dirty eviction and replacement wrap\nChecking cancel, AXI faults and recovery\nPASS 392 KiB two-bank paging: two simultaneous physical bank requests, 512 ordered stream reads, 401-page dirty eviction, wrap, byte write, partial-page fence, invalidate/refill, cancel drain, AXI error/recovery, alignment and readonly faults. cycles=2491492 page-isolation checks=250\n"
+}
