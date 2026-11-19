@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETE",
+  "clock_ns": 10,
+  "part": "xc7z020clg484-1",
+  "top": "cnn_simple_top",
+  "max_channels": 512,
+  "sources": {
+    "cnn_simple_top.sv": "51b9a0733a8ebe1d944ecf9c8ddb6ecf75fcc2ddcde3cc3a44d4f86086bc5563",
+    "compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
+    "simple_k1_engine.sv": "79d72abff34b6c88b62c55655d3087b6d41bf41b7f6ea62194e240d98e008600",
+    "simple_k3_engine.sv": "aab97c84fdce505f1f5521ee4f94a17771120676a127493d7330c873dbb06bdc",
+    "simple_mem_bridge.sv": "2a6ee19ef4aacb6cd583180c149d6e807973ca86160169d0491291517f5fde8d"
+  },
+  "free_commit_gib": 17.382213592529297,
+  "pid": 26568,
+  "exit_code": 0,
+  "wall_seconds": 120.02417120000018
+}

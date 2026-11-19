@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "source_sha256": "85756e760da0dc31885b4273567ea53aeb1b2dd6cadb731782f0b45db142b946",
+  "test_sha256": "46664b57d39efd7e8a572a864efa535947a5663c6ce210be5844dfa948c8d102",
+  "output": "PASS planned reads: byte/word segments, exact bounds, ordered data, FIFO/backpressure, read/write transitions, cancellation barrier, errors and software schema; cycles=31205\n"
+}

@@ -1,0 +1,112 @@
+{
+  "status": "VERIFIED_CNN_ONLY",
+  "base_moon_commit": "f26d4af97754faa9d6a1d20faf72f1f6b36ddbdf",
+  "units": {
+    "k3": 2,
+    "k1": 2,
+    "post": 0,
+    "add": 0,
+    "pad": 0,
+    "dw7": 0
+  },
+  "mac_lanes": {
+    "per_k3": 4,
+    "per_k1": 8
+  },
+  "memory_outstanding_per_unit": 1,
+  "resources": {
+    "Slice LUTs": 10399.0,
+    "Slice Registers": 9346.0,
+    "Block RAM Tile": 14.0,
+    "DSPs": 16.0
+  },
+  "synthesis_timing_10ns": {
+    "wns_ns": 2.184,
+    "tns_ns": 0.0,
+    "setup_failures": 0,
+    "whs_ns": 0.186,
+    "hold_failures": 0
+  },
+  "regression": {
+    "status": "PASS",
+    "numerical_jobs": 160,
+    "invalid_jobs": 4,
+    "abort_restart_jobs": 4,
+    "cycles": 305843,
+    "actual_mac_overlap_cycles": 4644,
+    "all_four_mac_cycles": 161,
+    "max_outstanding_total": 4
+  },
+  "iteration_timing": [
+    {
+      "wns_ns": -0.51,
+      "tns_ns": -23.927,
+      "setup_failures": 128,
+      "whs_ns": 0.186,
+      "hold_failures": 0
+    },
+    {
+      "wns_ns": -0.02,
+      "tns_ns": -1.281,
+      "setup_failures": 64,
+      "whs_ns": 0.186,
+      "hold_failures": 0
+    },
+    {
+      "wns_ns": 0.203,
+      "tns_ns": 0.0,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0
+    },
+    {
+      "wns_ns": 0.286,
+      "tns_ns": 0.0,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0
+    },
+    {
+      "wns_ns": 2.184,
+      "tns_ns": 0.0,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0
+    }
+  ],
+  "synthesis_wall_seconds": 120.02631740000015,
+  "source_sha256": {
+    "cnn_simple_top.sv": "c770525c71dadc29d5143bdc8d72e7ad55a4c2351e7b84b551716bd0cdeffb59",
+    "compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
+    "simple_k1_engine.sv": "e53aa4c3ebf3ab9a41cab28cd4120cba6b51aa353421a7139078f37ea0e7e146",
+    "simple_k3_engine.sv": "f011844c3fd8bbc3be16a9971e6855c288299ff360c129993d1e3fa1556536f7",
+    "simple_mem_bridge.sv": "2a6ee19ef4aacb6cd583180c149d6e807973ca86160169d0491291517f5fde8d"
+  },
+  "soc_lint": "PASS_WITH_EXISTING_STORAGE_TREE_WARNINGS",
+  "gtkwave_unique_signals": 8,
+  "production_place_route": false,
+  "old_cpu_rom_plan_compatible": false,
+  "limitations": [
+    "CNN-only synthesis, not SoC fit or board timing",
+    "Four small concurrent tasks plus scalar golden regressions, not full MobileFaceNet",
+    "SoC variant statically checked only; CPU/ARM scheduling must use new MMIO",
+    "Raw INT32 convolution output; no quantization/ReLU/Add/Pad",
+    "Reduced operator count, K1 OUTPUT_PAR=1 and single-outstanding ports trade throughput for simplicity"
+  ],
+  "cnn_only_post_route_timing_10ns": {
+    "wns_ns": 0.589,
+    "tns_ns": 0.0,
+    "setup_failures": 0,
+    "whs_ns": 0.042,
+    "hold_failures": 0
+  },
+  "before_k1_fill_post_route_timing_10ns": {
+    "wns_ns": 0.321,
+    "tns_ns": 0.0,
+    "setup_failures": 0,
+    "whs_ns": 0.038,
+    "hold_failures": 0
+  },
+  "cnn_only_post_route_clock_source": "BUFGCTRL_X0Y0 (OOC assumption)",
+  "k1_address_interval_cases_passed": 12
+}

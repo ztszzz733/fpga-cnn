@@ -1,0 +1,571 @@
+--- baseline/rtl/cnn_self/self_conv_spatial4_engine.sv
++++ bank2_swplan/rtl/cnn_self/self_conv_spatial4_engine.sv
+@@ -16,6 +16,8 @@
+  input logic clk,rst_n,clear,start,depthwise,
+  input logic [31:0] input_base,weight_base,output_base,
+  input logic [31:0] width,height,in_channels,out_channels,kernel,stride,
++ input logic [31:0] plan_flags,plan_input_row_bytes,plan_weight_per_channel,
++ input logic [31:0] plan_input_extent,plan_weight_extent,
+  output wire busy,done,error,valid,write,byte_access,
+  output wire [31:0] addr,wdata,
+  input logic ready,response,
+@@ -60,6 +62,7 @@
+  logic [C_BITS-1:0] ci,co,oc,load_c,mac_c;
+  logic [2:0] k,tap_x,tap_y;
+  logic dw,stride_two;
++ logic planned_input_word,planned_weight_word,planned_reuse;
+  logic [31:0] input_row_bytes,output_row_bytes,weight_per_channel;
+  logic [63:0] input_extent,weight_extent,output_extent;
+  // One shared serial unsigned multiplier handles descriptor sizes only.
+@@ -94,7 +97,7 @@
+  logic [WA_BITS-1:0] dw_weight_base;
+  wire dw_cached=DW_CACHE && dw;
+  // A single tile cannot reuse weights across tiles; keep its original path.
+- wire layer_cached=dw_cached || (WEIGHT_LAYER_REUSE && !dw && (ow>TILE || oh>TILE) && weight_extent<=WEIGHT_BYTES);
++ wire layer_cached=planned_reuse;
+  wire weight_hit=layer_cached && dw_weights_valid;
+  // Valid descriptors bound this count to WEIGHT_BYTES; avoid 32-bit control carry chains.
+  wire [WA_BITS-1:0] weight_load_bytes=layer_cached?weight_extent[WA_BITS-1:0]:weight_per_channel[WA_BITS-1:0];
+@@ -114,8 +117,8 @@
+  assign error=(state==FAIL) || prefetch_fault;
+  assign core_valid=!clear && (state==IREQ || (state==WREQ && !weight_hit) || state==OREQ);
+  assign core_write=(state==OREQ);
+- wire input_wide=(load_addr[1:0]==0 && load_c[1:0]==0 && ({1'b0,load_c}+(C_BITS+1)'(4)<={1'b0,ci}));
+- wire weight_wide=(weight_addr[1:0]==0 && weight_load_index[1:0]==0 && (weight_load_index>>2)<weight_full_words);
++ wire input_wide=planned_input_word;
++ wire weight_wide=planned_weight_word;
+  wire [2:0] input_step=input_wide?3'd4:3'd1;
+  wire [2:0] weight_step=weight_wide?3'd4:3'd1;
+  assign core_byte_access=(state==IREQ && !input_wide) || (state==WREQ && !weight_wide);
+@@ -233,9 +236,16 @@
+     k<=kernel[2:0];dw<=depthwise;stride_two<=(stride==2);
+     ow<=((width-kernel)>>((stride==2)?1:0))+1;
+     oh<=((height-kernel)>>((stride==2)?1:0))+1;
+-    setup_step<=0;mul_bit<=0;mul_acc<=0;
+-    mul_lhs<={32'd0,width};mul_rhs<=in_channels;
+-    if(MAX_CHANNELS<1 || MAX_CHANNELS>65535 || TILE!=2 || (MAX_CHANNELS%4)!=0 ||
++    // Software has already planned read geometry; only output setup remains.
++    input_row_bytes<=plan_input_row_bytes;weight_per_channel<=plan_weight_per_channel;
++    input_extent<={32'd0,plan_input_extent};weight_extent<={32'd0,plan_weight_extent};
++    planned_input_word<=plan_flags[8];planned_weight_word<=plan_flags[9];planned_reuse<=plan_flags[10];
++    setup_step<=4;mul_bit<=0;mul_acc<=0;
++    mul_lhs<={32'd0,(((width-kernel)>>((stride==2)?1:0))+32'd1)};mul_rhs<=out_channels;
++    if(!plan_flags[31] || (plan_flags & 32'h7ffff8fe)!=0 ||
++       plan_input_row_bytes==0 || plan_weight_per_channel==0 || plan_input_extent==0 || plan_weight_extent==0 ||
++       (plan_flags[8] && ((input_base[1:0]!=0) || in_channels[1:0]!=0)) ||
++       MAX_CHANNELS<1 || MAX_CHANNELS>65535 || TILE!=2 || (MAX_CHANNELS%4)!=0 ||
+        (MAX_KERNEL!=1 && MAX_KERNEL!=3) ||
+        (kernel!=1 && kernel!=3) || kernel>MAX_KERNEL ||
+        (stride!=1 && stride!=2) || width<kernel || height<kernel ||
+@@ -251,10 +261,6 @@
+     end else begin
+      mul_bit<=0;mul_acc<=0;setup_step<=setup_step+1'b1;
+      case(setup_step)
+-      0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<={16'd0,h};end
+-      1:begin input_extent<=mul_value;mul_lhs<=dw?64'd1:{{(64-C_BITS){1'b0}},ci};mul_rhs<=(k==3)?32'd9:32'd1;end
+-      2:begin weight_per_channel<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=co;end
+-      3:begin weight_extent<=mul_value;mul_lhs<={48'd0,ow};mul_rhs<=co;end
+       4:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<={16'd0,oh};end
+       5:begin output_extent<=mul_value;state<=CHECK;end
+       default:state<=FAIL;
+@@ -267,7 +273,9 @@
+     weight_full_words<=weight_load_bytes>>2;
+     // Intervals are half-open: an end of 2^32 is legal. Read-only input
+     // and weights may share storage, but output must not overwrite either.
+-    if(input_end>64'h100000000 || weight_end>64'h100000000 || output_end>64'h100000000 ||
++    if(weight_load_bytes==0 || (layer_cached?weight_extent:{32'd0,weight_per_channel})>WEIGHT_BYTES ||
++       (planned_weight_word && (wb[1:0]!=0 || weight_load_bytes[1:0]!=0)) ||
++       input_end>64'h100000000 || weight_end>64'h100000000 || output_end>64'h100000000 ||
+        ({32'd0,ob}<input_end && {32'd0,ib}<output_end) ||
+        ({32'd0,ob}<weight_end && {32'd0,wb}<output_end))state<=FAIL;
+     else begin
+@@ -376,79 +384,17 @@
+   endcase
+  end
+ 
+- generate if(READ_WORD_BUFFER)begin:read_word_buffers
+-  logic [1:0] cached_valid;
+-  logic [29:0] cached_tag[0:1];
+-  logic [31:0] cached_data[0:1];
+-  logic pending,pending_widen,pending_fill,pending_region;
+-  logic [1:0] pending_lane;
+-  logic [29:0] pending_tag;
+-  wire region=(state==WREQ || state==WWAIT);
+-  wire [31:0] base=region?wb:ib;
+-  wire [32:0] limit=region?weight_limit_q:input_limit_q;
+-  wire [31:0] aligned={core_addr[31:2],2'b00};
+-  wire hit=!pending && core_valid && !core_write && cached_valid[region] &&
+-           cached_tag[region]==core_addr[31:2];
+-  // No widening past either end of the declared read-only tensor.
+-  wire widen=core_valid && !core_write && core_byte_access &&
+-             aligned>=base && {1'b0,aligned[31:2]}<limit[32:2];
+-  wire accepted=a_valid && a_ready;
+-  wire returned=a_response && (pending || accepted);
+-  wire fill=pending?pending_fill:(!core_write && !a_byte);
+-  wire fill_region=pending?pending_region:region;
+-  wire [29:0] fill_tag=pending?pending_tag:core_addr[31:2];
+-  wire [1:0] lane=pending?pending_lane:core_addr[1:0];
+-  wire [7:0] returned_byte=a_rdata[lane*8+:8];
+-  wire [7:0] cached_byte=cached_data[region][core_addr[1:0]*8+:8];
+-  assign a_valid=core_valid && !hit;
+-  assign a_write=core_write;
+-  assign a_byte=widen?1'b0:core_byte_access;
+-  assign a_addr=widen?aligned:core_addr;
+-  assign a_wdata=core_wdata;
+-  assign core_ready=!pending && (hit || a_ready);
+-  assign core_response=hit || returned;
+-  assign core_rdata=hit ? (core_byte_access?{{24{cached_byte[7]}},cached_byte}:cached_data[region]) :
+-                    ((pending?pending_widen:widen)?{{24{returned_byte[7]}},returned_byte}:a_rdata);
+-  always_ff @(posedge clk or negedge rst_n)begin
+-   if(!rst_n)begin cached_valid<=0;pending<=0;pending_widen<=0;pending_fill<=0;
+-    pending_region<=0;pending_lane<=0;pending_tag<=0;end
+-   else if(clear || (state==IDLE && start))begin cached_valid<=0;pending<=0;end
+-   else begin
+-    if(accepted)begin
+-     pending<=!a_response;pending_widen<=widen;
+-     pending_fill<=!core_write && !a_byte;pending_region<=region;
+-     pending_lane<=core_addr[1:0];pending_tag<=core_addr[31:2];
+-     if(core_write)for(integer b=0;b<2;b++)
+-      if(cached_tag[b]==core_addr[31:2])cached_valid[b]<=0;
+-    end else if(returned)pending<=0;
+-    if(returned && fill)begin
+-     cached_valid[fill_region]<=1;
+-     cached_tag[fill_region]<=fill_tag;cached_data[fill_region]<=a_rdata;
+-    end
+-   end
+-  end
+- end else begin:no_read_word_buffers
+-  assign a_valid=core_valid;assign a_write=core_write;assign a_byte=core_byte_access;
+-  assign a_addr=core_addr;assign a_wdata=core_wdata;
+-  assign core_ready=a_ready;assign core_response=a_response;assign core_rdata=a_rdata;
+- end endgenerate
+- wire [WA_BITS-1:0] weight_remaining=weight_load_bytes-weight_load_index;
+- wire [C_BITS-1:0] input_remaining=ci-load_c;
+- wire [31:0] contig_remaining=state==WREQ?32'(weight_remaining):32'(input_remaining);
+- wire can_prefetch_run=(state==WREQ && weight_wide) || (state==IREQ && !dw && input_wide);
+- wire [31:0] read_run_end=a_byte?a_addr+1:can_prefetch_run?a_addr+{contig_remaining[31:2],2'b00}:a_addr+4;
+- generate if(READ_AHEAD)begin:continuous_reads
+- continuous_read_adapter adapter(
++ // Planned segments replace both generic read-word widening and the
++ // address-tagged prefetch adapter. No legacy branch enters this netlist.
++ wire [31:0] segment_bytes=state==WREQ?32'(weight_load_bytes):32'(ci);
++ wire [31:0] segment_beats=segment_bytes>>(core_byte_access?0:2);
++ planned_read_adapter #(.DEPTH(4)) planned_reads(
+   .clk,.rst_n,.clear(clear || (state==IDLE && start)),
+-  .c_valid(a_valid),.c_write(a_write),.c_byte(a_byte),.c_addr(a_addr),.c_wdata(a_wdata),.read_end(read_run_end),
+-  .c_ready(a_ready),.c_response(a_response),.c_rdata(a_rdata),
++  .c_valid(core_valid),.c_write(core_write),.c_byte(core_byte_access),
++  .c_addr(core_addr),.c_wdata(core_wdata),.segment_beats,
++  .c_ready(core_ready),.c_response(core_response),.c_rdata(core_rdata),
+   .m_valid(valid),.m_write(write),.m_byte(byte_access),.m_addr(addr),.m_wdata(wdata),
+-  .m_ready(ready),.m_response(response),.m_rdata(rdata),.idle(prefetch_idle),.read_pending(),.fault(prefetch_fault));
+- end else begin:single_reads
+-  assign valid=a_valid;assign write=a_write;assign byte_access=a_byte;assign addr=a_addr;assign wdata=a_wdata;
+-  assign a_ready=ready;assign a_response=response;assign a_rdata=rdata;
+-  assign prefetch_idle=1;assign prefetch_fault=0;
+- end endgenerate
++  .m_ready(ready),.m_response(response),.m_rdata(rdata),.idle(prefetch_idle),.fault(prefetch_fault));
+ `ifndef SYNTHESIS
+  always_ff @(posedge clk)if(rst_n && !clear && done)assert(prefetch_idle) else $fatal(1,"done before read adapter drains");
+ `endif
+--- baseline/rtl/cnn_ddr/fixed_schedule_compact.sv
++++ bank2_swplan/rtl/cnn_ddr/fixed_schedule_compact.sv
+@@ -276,6 +276,8 @@
+   if (LATEST_OPERATORS && e<K3_UNITS) begin:latest_k3
+    self_conv_spatial4_engine #(.READ_AHEAD(1),.MAX_CHANNELS(512),.MAX_KERNEL(3),.TILE(2),.DW_CACHE(1)) convolution(
+    .clk(clk),.rst_n(rst_n),.clear(cancel),.start(unit_start[e]),.depthwise(cmd[e][11][0]),
++   .plan_flags(cmd[e][11]),.plan_input_row_bytes(cmd[e][4]),
++   .plan_weight_per_channel(cmd[e][5]),.plan_input_extent(cmd[e][12]),.plan_weight_extent(cmd[e][15]),
+    .input_base(cmd[e][1]),.weight_base(cmd[e][2]),.output_base(cmd[e][3]),
+    .width(cmd[e][7]),.height(cmd[e][8]),.in_channels(cmd[e][6]),.out_channels(cmd[e][9]),.kernel(32'(KERNEL)),.stride(cmd[e][10]),
+    .busy(ub[e]),.done(ud[e]),.error(ue[e]),.valid(mem_valid[e]),.write(mem_write[e]),.byte_access(mem_byte[e]),
+--- baseline/storage_v2/rtl/tile_local_ram_bank2.sv
++++ bank2_swplan/storage_v2/rtl/tile_local_ram_bank2.sv
+@@ -0,0 +1,53 @@
++// Two independent compute ports over 392 KiB, plus one linear DMA port.
++module tile_local_ram_bank2 #(
++ parameter integer BYTES=401408, parameter bit DISJOINT_PORTS=0
++)(
++ input logic clk,rst_n,
++ input logic [1:0] comp_req,comp_we,
++ input logic [1:0][31:0] comp_addr,comp_wdata,
++ input logic [1:0][3:0] comp_wstrb,
++ output wire [1:0][31:0] comp_rdata,
++ output wire [1:0] comp_error,
++ input logic dma_valid,dma_write,
++ output wire dma_ready,
++ input logic [31:0] dma_addr,dma_wdata,
++ input logic [3:0] dma_wstrb,
++ output wire dma_rsp_valid,dma_error,
++ output wire [31:0] dma_rdata
++);
++ generate if(BYTES==401408)begin:two_banks
++  localparam integer BANK_BYTES=200704; // 196 KiB = 49 RAMB36 at x32.
++  wire in_range=dma_addr<BYTES;
++  wire dma_bank=dma_addr>=BANK_BYTES;
++  wire [1:0] bank_ready,bank_response,bank_error;
++  wire [1:0][31:0] bank_data;
++  logic reply_bank,invalid_reply;
++  for(genvar b=0;b<2;b++)begin:bank
++   tile_local_ram #(.BYTES(BANK_BYTES),.DISJOINT_PORTS(DISJOINT_PORTS)) ram(
++    .clk,.rst_n,.comp_req(comp_req[b]),.comp_we(comp_we[b]),
++    .comp_addr(comp_addr[b]-32'(b*BANK_BYTES)),.comp_wdata(comp_wdata[b]),
++    .comp_wstrb(comp_wstrb[b]),.comp_rdata(comp_rdata[b]),.comp_error(comp_error[b]),
++    .dma_valid(dma_valid && in_range && dma_bank==1'(b)),.dma_write,
++    .dma_ready(bank_ready[b]),.dma_addr(dma_addr-32'(b*BANK_BYTES)),.dma_wdata,.dma_wstrb,
++    .dma_rsp_valid(bank_response[b]),.dma_error(bank_error[b]),.dma_rdata(bank_data[b]));
++  end
++  assign dma_ready=rst_n && (!in_range || bank_ready[dma_bank]);
++  always_ff @(posedge clk)begin
++   if(!rst_n)begin reply_bank<=0;invalid_reply<=0;end
++   else begin
++    invalid_reply<=dma_valid && dma_ready && !in_range;
++    if(dma_valid && dma_ready && in_range)reply_bank<=dma_bank;
++   end
++  end
++  assign dma_rsp_valid=invalid_reply || bank_response[reply_bank];
++  assign dma_error=invalid_reply || bank_error[reply_bank];
++  assign dma_rdata=bank_data[reply_bank];
++ end else begin:one_bank
++  tile_local_ram #(.BYTES(BYTES),.DISJOINT_PORTS(DISJOINT_PORTS)) ram(
++   .clk,.rst_n,.comp_req(comp_req[0]),.comp_we(comp_we[0]),.comp_addr(comp_addr[0]),
++   .comp_wdata(comp_wdata[0]),.comp_wstrb(comp_wstrb[0]),.comp_rdata(comp_rdata[0]),
++   .comp_error(comp_error[0]),.dma_valid,.dma_write,.dma_ready,.dma_addr,.dma_wdata,
++   .dma_wstrb,.dma_rsp_valid,.dma_error,.dma_rdata);
++  assign comp_rdata[1]=0;assign comp_error[1]=0;
++ end endgenerate
++endmodule
+--- baseline/rtl/cnn_ddr/cnn_paged_mover.sv
++++ bank2_swplan/rtl/cnn_ddr/cnn_paged_mover.sv
+@@ -1,6 +1,6 @@
+ // CNN memory backed by the storage_v2 DATA MOVER and tile BRAM.
+ // Parameterized local RAM is divided into fully associative 1 KiB pages.
+-// Four independent compute banks serve resident pages while one linear DMA
++// Two independent compute banks serve resident pages while one linear DMA
+ // port transfers a page. A miss locks only its selected physical page slot.
+ module cnn_paged_mover #(
+  parameter integer CLIENTS=23,
+@@ -106,26 +106,15 @@
+  localparam integer LOOKUP_GROUPS=LOOKUP_LEAVES>8 ? LOOKUP_LEAVES/8 : 1;
+  localparam integer TAG_BITS=LOGICAL_BYTES>PAGE_BYTES ? $clog2(LOGICAL_BYTES/PAGE_BYTES) : 1;
+  localparam integer GRANT_LEAVES=2**$clog2(CLIENTS);
++ // 392 KiB remains resident: two banks of 196 one-KiB slots.
+  function automatic logic [1:0] bank_of_slot(input logic [SB-1:0] slot);
+-  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)
+-   bank_of_slot=int'(slot)<96?2'd0:int'(slot)<192?2'd1:
+-                int'(slot)<292?2'd2:2'd3;
++  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)bank_of_slot=slot>=SB'(196)?2'd1:2'd0;
+   else bank_of_slot=2'd0;
+  endfunction
+- // Interleave the replacement walk across banks, including their unequal
+- // four-page tails, so the first four filled pages occupy four banks.
+  function automatic logic [SB-1:0] slot_from_turn(input logic [SB-1:0] turn);
+-  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)begin
+-   if(int'(turn)<384)begin
+-    case(turn[1:0])
+-     2'd0:slot_from_turn=SB'(turn>>2);
+-     2'd1:slot_from_turn=SB'(96+(int'(turn)>>2));
+-     2'd2:slot_from_turn=SB'(192+(int'(turn)>>2));
+-     default:slot_from_turn=SB'(292+(int'(turn)>>2));
+-    endcase
+-   end else slot_from_turn=turn[0] ?
+-    SB'(388+((int'(turn)-384)>>1)) : SB'(288+((int'(turn)-384)>>1));
+-  end else slot_from_turn=turn;
++  if(LOCAL_BYTES==401408 && PAGE_BYTES==1024)
++   slot_from_turn=turn[0]?SB'(196+(int'(turn)>>1)):SB'(turn>>1);
++  else slot_from_turn=turn;
+  endfunction
+  typedef enum logic [2:0] {IDLE,ACCESS,DRAIN,WB_REQ,WB_WAIT,FILL_REQ,FILL_WAIT,SCAN} state_t;
+  state_t state;
+@@ -139,7 +128,7 @@
+  logic protect_enable;
+  logic [31:0] hits,misses,writebacks,fills,ddr_read_bytes,ddr_write_bytes,wait_cycles;
+  logic [CW-1:0] round_robin,request_owner;
+- logic [CW-1:0] bank_round_robin[4];
++ logic [CW-1:0] bank_round_robin[2];
+  logic [CLIENTS-1:0] hint_valid;
+  logic [SB-1:0] hint_slot[CLIENTS];
+  logic [1:0] hint_bank[CLIENTS];
+@@ -147,12 +136,12 @@
+  logic [SB-1:0] request_slot,victim_turn;
+  logic [31:0] request_addr,request_wdata;
+  logic request_write,request_byte;
+- logic [3:0] issue_valid,reply_valid;
+- logic [3:0][CW-1:0] issue_owner,reply_owner;
+- logic [3:0][SB-1:0] issue_slot;
+- logic [3:0][31:0] issue_addr,issue_wdata;
+- logic [3:0] issue_write,issue_byte,reply_write,reply_byte;
+- logic [3:0][1:0] reply_byte_offset;
++ logic [1:0] issue_valid,reply_valid;
++ logic [1:0][CW-1:0] issue_owner,reply_owner;
++ logic [1:0][SB-1:0] issue_slot;
++ logic [1:0][31:0] issue_addr,issue_wdata;
++ logic [1:0] issue_write,issue_byte,reply_write,reply_byte;
++ logic [1:0][1:0] reply_byte_offset;
+  logic [CLIENTS-1:0] response_q;
+  logic [CLIENTS*32-1:0] rdata_q;
+  wire [31:0] request_page={request_addr[31:PB],{PB{1'b0}}};
+@@ -225,11 +214,11 @@
+  wire [SB-1:0] alloc_slot=!valid_page[turn_slot] ? turn_slot :
+                            (free_found ? free_slot : turn_slot);
+  logic [CLIENTS-1:0] bad_client,fast_hint;
+- wire [3:0] fast_grant;
+- wire [3:0][CW-1:0] fast_owner;
+- wire [CLIENTS-1:0] bank_eligible[4],bank_after[4],bank_candidates[4];
+- wire [3:0][2*GRANT_LEAVES-1:1] grant_tree;
+- wire [3:0][2*GRANT_LEAVES-1:1][CW-1:0] grant_index_tree;
++ wire [1:0] fast_grant;
++ wire [1:0][CW-1:0] fast_owner;
++ wire [CLIENTS-1:0] bank_eligible[2],bank_after[2],bank_candidates[2];
++ wire [1:0][2*GRANT_LEAVES-1:1] grant_tree;
++ wire [1:0][2*GRANT_LEAVES-1:1][CW-1:0] grant_index_tree;
+  // Multi-outstanding clients must not cross slow/fast paths or banks
+  // before all earlier replies drain: no IDs exist on the client interface.
+  logic [CLIENTS-1:0][2:0] client_pending;
+@@ -249,7 +238,7 @@
+     hint_valid[c] && queued_page_match[c];
+   end
+  end
+- for(genvar b=0;b<4;b++)begin:grant_bank
++ for(genvar b=0;b<2;b++)begin:grant_bank
+   for(genvar c=0;c<CLIENTS;c++)begin:grant_client
+    assign bank_eligible[b][c]=can_accept && (state==IDLE || miss_serving) &&
+     !(selected_valid && page_hit && !selected_bad && bank_of_slot(hit_slot)==2'(b)) && fast_hint[c] && client_pending[c]<4 &&
+@@ -307,7 +296,7 @@
+  end
+  always_comb begin
+   queued_ready='0;slow_take=0;
+-  for(integer b=0;b<4;b++)if(fast_grant[b])queued_ready[fast_owner[b]]=1;
++  for(integer b=0;b<2;b++)if(fast_grant[b])queued_ready[fast_owner[b]]=1;
+   if(can_accept && selected_valid &&
+     (state==IDLE || (miss_serving && !selected_bad && page_hit &&
+                      hit_slot!=request_slot)))begin
+@@ -316,7 +305,7 @@
+  end
+  always_comb begin
+   hit_incr=0;
+-  for(integer b=0;b<4;b++)if(fast_grant[b])hit_incr=hit_incr+3'd1;
++  for(integer b=0;b<2;b++)if(fast_grant[b])hit_incr=hit_incr+3'd1;
+   if(slow_take && !selected_bad && page_hit)hit_incr=hit_incr+3'd1;
+  end
+  // Counter carry propagation must not share a cycle with arbitration.
+@@ -327,21 +316,21 @@
+  assign cnn_rdata=rdata_q;
+  assign cache_csr_ready=1'b1;
+ 
+- logic [3:0] comp_req,comp_we,comp_byte;
+- logic [3:0][CW-1:0] comp_owner;
+- logic [3:0][SB-1:0] comp_slot;
+- logic [3:0][31:0] comp_logical_addr,comp_addr,comp_wdata;
+- logic [3:0][3:0] comp_wstrb;
+- wire [3:0][31:0] comp_rdata;
+- wire [3:0] comp_error;
+- logic [3:0] bank_reply_valid,bank_reply_error;
+- logic [3:0][CW-1:0] bank_reply_owner;
+- logic [3:0][31:0] bank_reply_data;
+- wire [3:0][7:0] read_byte;
+- for(genvar b=0;b<4;b++)assign read_byte[b]=
++ logic [1:0] comp_req,comp_we,comp_byte;
++ logic [1:0][CW-1:0] comp_owner;
++ logic [1:0][SB-1:0] comp_slot;
++ logic [1:0][31:0] comp_logical_addr,comp_addr,comp_wdata;
++ logic [1:0][3:0] comp_wstrb;
++ wire [1:0][31:0] comp_rdata;
++ wire [1:0] comp_error;
++ logic [1:0] bank_reply_valid,bank_reply_error;
++ logic [1:0][CW-1:0] bank_reply_owner;
++ logic [1:0][31:0] bank_reply_data;
++ wire [1:0][7:0] read_byte;
++ for(genvar b=0;b<2;b++)assign read_byte[b]=
+     comp_rdata[b][reply_byte_offset[b]*8+:8];
+  always_comb begin
+-  for(integer b=0;b<4;b++)begin
++  for(integer b=0;b<2;b++)begin
+    logic [31:0] source_wdata,local_addr;
+    // Every accepted request crosses the bank issue register before BRAM.
+    comp_req[b]=issue_valid[b] && !cnn_cancel && !cnn_mem_fault && !mover_fault_locked;
+@@ -364,7 +353,7 @@
+  always_ff @(posedge clk)begin
+   if(!rst_n || cnn_cancel || cnn_mem_fault || mover_fault_locked)bank_reply_valid<=0;
+   else bank_reply_valid<=reply_valid;
+-  for(integer b=0;b<4;b++)if(reply_valid[b])begin
++  for(integer b=0;b<2;b++)if(reply_valid[b])begin
+    bank_reply_owner[b]<=reply_owner[b];bank_reply_error[b]<=comp_error[b];
+    bank_reply_data[b]<=reply_write[b] ? 0 :
+     reply_byte[b] ? {{24{read_byte[b][7]}},read_byte[b]} : comp_rdata[b];
+@@ -382,7 +371,7 @@
+  wire local_valid,local_write,local_ready,local_rsp_valid,local_error;
+  wire [31:0] local_addr,local_wdata,local_rdata;
+  wire [3:0] local_wstrb;
+- tile_local_ram_bank4 #(.BYTES(LOCAL_BYTES),.DISJOINT_PORTS(1)) local_ram(
++ tile_local_ram_bank2 #(.BYTES(LOCAL_BYTES),.DISJOINT_PORTS(1)) local_ram(
+   .clk,.rst_n,.comp_req,.comp_we,.comp_addr,.comp_wdata,.comp_wstrb,
+   .comp_rdata,.comp_error,.dma_valid(local_valid),.dma_write(local_write),
+   .dma_ready(local_ready),.dma_addr(local_addr),.dma_wdata(local_wdata),
+@@ -455,7 +444,7 @@
+    endcase
+    if(cnn_response[c] && client_pending[c]==1)client_slow[c]<=0;
+    if(slow_take && selected==c)client_slow[c]<=1;
+-   for(integer b=0;b<4;b++)if(fast_grant[b] && fast_owner[b]==c)begin
++   for(integer b=0;b<2;b++)if(fast_grant[b] && fast_owner[b]==c)begin
+     client_bank[c]<=2'(b);client_slow[c]<=0;
+    end
+   end
+@@ -467,9 +456,9 @@
+    if(cnn_response[c])assert(client_pending[c]!=0) else $fatal(1,"reply without accepted request");
+    if(slow_take && selected==c)assert(client_pending[c]==0) else $fatal(1,"slow path overtakes outstanding read");
+   end
+-  for(integer a=0;a<4;a++)for(integer b=a+1;b<4;b++)
++  for(integer a=0;a<2;a++)for(integer b=a+1;b<2;b++)
+    if(reply_valid[a] && reply_valid[b])assert(reply_owner[a]!=reply_owner[b]) else $fatal(1,"same-client response collision");
+-  for(integer b=0;b<4;b++)if(fast_grant[b])begin
++  for(integer b=0;b<2;b++)if(fast_grant[b])begin
+    assert(hint_valid[fast_owner[b]] &&
+      hint_page[fast_owner[b]]==queued_addr[fast_owner[b]*32+PB+:TAG_BITS])
+      else $fatal(1,"registered FIFO page classification became stale");
+@@ -488,7 +477,7 @@
+    round_robin<=0;request_owner<=0;request_slot<=0;victim_turn<=0;
+    hint_valid<='0;
+    for(integer c=0;c<CLIENTS;c++)begin hint_slot[c]<=0;hint_page[c]<=0;hint_bank[c]<=0;end
+-   for(integer b=0;b<4;b++)bank_round_robin[b]<=0;
++   for(integer b=0;b<2;b++)bank_round_robin[b]<=0;
+    request_addr<=0;request_wdata<=0;
+    request_write<=0;request_byte<=0;response_q<='0;rdata_q<='0;
+    issue_valid<=0;reply_valid<=0;issue_owner<=0;reply_owner<=0;
+@@ -500,7 +489,7 @@
+    issue_valid<=0;
+    reply_valid<=comp_req;
+    hits<=hits+32'(hit_incr_q);
+-   for(integer b=0;b<4;b++)begin
++   for(integer b=0;b<2;b++)begin
+     if(comp_req[b])begin
+      reply_owner[b]<=comp_owner[b];
+      reply_write[b]<=comp_we[b];
+--- baseline/rtl/filelists/system_ees331_reduced.f
++++ bank2_swplan/rtl/filelists/system_ees331_reduced.f
+@@ -24,6 +24,7 @@
+ rtl/cnn_self/compact_word_ram.sv
+ rtl/cnn_self/continuous_read_adapter.sv
+ rtl/cnn_self/self_conv_engine.sv
++rtl/cnn_self/planned_read_adapter.sv
+ rtl/cnn_self/self_conv_spatial4_engine.sv
+ rtl/cnn_self/self_pw8_engine.sv
+ rtl/cnn_ddr/quant_post_bram_engine.sv
+@@ -33,7 +34,7 @@
+ rtl/cnn_ddr/cnn_ees331.sv
+ storage_v2/rtl/download_ram.sv
+ storage_v2/rtl/tile_local_ram.sv
+-storage_v2/rtl/tile_local_ram_bank4.sv
++storage_v2/rtl/tile_local_ram_bank2.sv
+ storage_v2/rtl/data_mover.sv
+ rtl/cnn_ddr/cnn_paged_mover.sv
+ rtl/cnn_ddr/datasram_mover_subsystem.sv
+--- baseline/rtl/cnn_self/planned_read_adapter.sv
++++ bank2_swplan/rtl/cnn_self/planned_read_adapter.sv
+@@ -0,0 +1,106 @@
++// Ordered, counted segments. No per-demand address/tag comparison or widening.
++// clear is an epoch barrier: the fabric must cancel all client replies too.
++// After clear, new work starts only after the enclosing fabric has quiesced.
++module planned_read_adapter #(parameter integer DEPTH=4,MAX_BEATS=4608)(
++ input logic clk,rst_n,clear,
++ input wire c_valid,c_write,c_byte,
++ input wire [31:0] c_addr,c_wdata,segment_beats,
++ output wire c_ready,c_response,
++ output wire [31:0] c_rdata,
++ output wire m_valid,m_write,m_byte,
++ output wire [31:0] m_addr,m_wdata,
++ input wire m_ready,m_response,
++ input wire [31:0] m_rdata,
++ output wire idle,
++ output logic fault
++);
++ localparam integer P=$clog2(DEPTH),C=$clog2(DEPTH+1),B=$clog2(MAX_BEATS+1);
++ logic active,read_byte,write_queued,write_pending;
++ logic [31:0] next_addr,write_addr,write_data;
++ logic [B-1:0] issue_left,consume_left;
++ logic write_byte;
++ logic [P-1:0] head,tail,return_slot;
++ logic [C-1:0] reserved,pending;
++ logic [DEPTH-1:0] got;
++ logic [31:0] data[DEPTH];
++ logic reply_valid;
++ logic [31:0] reply_data;
++ wire read_offer=active && issue_left!=0 && reserved<DEPTH;
++ assign m_valid=rst_n && !clear && !fault && (write_queued || read_offer);
++ assign m_write=write_queued;
++ assign m_addr=write_queued?write_addr:next_addr;
++ assign m_wdata=write_data;
++ assign m_byte=write_queued?write_byte:read_byte;
++ wire issue=m_valid && m_ready && !m_write;
++ wire write_take=m_valid && m_ready && m_write;
++ wire read_return=m_response && !write_pending && !write_take;
++ wire have_read=active && reserved!=0 && got[head];
++ wire accept_write=c_valid && c_write && c_ready;
++ wire consume=c_valid && !c_write && c_ready;
++ assign c_ready=rst_n && !clear && !fault &&
++  (c_write?(!active && reserved==0 && !write_queued && !write_pending && !reply_valid):have_read);
++ assign c_response=reply_valid && !clear && !fault;
++ assign c_rdata=reply_data;
++ assign idle=!active && reserved==0 && !write_queued && !write_pending && !reply_valid;
++ wire [32:0] segment_end={1'b0,c_addr}+({1'b0,segment_beats}<<(c_byte?0:2));
++ always_ff @(posedge clk)begin
++  if(!rst_n || clear)begin
++   active<=0;read_byte<=0;write_queued<=0;write_pending<=0;
++   next_addr<=0;issue_left<=0;consume_left<=0;write_addr<=0;write_data<=0;write_byte<=0;
++   head<=0;tail<=0;return_slot<=0;reserved<=0;pending<=0;got<=0;
++   reply_valid<=0;reply_data<=0;fault<=0;
++  end else begin
++   reply_valid<=0;
++   // A demand starts a whole segment; the engine subsequently consumes the
++   // FIFO in order. Segment metadata is latched before any bus request.
++   if(c_valid && !c_write && idle && !fault)begin
++    if(segment_beats==0 || segment_beats>MAX_BEATS || segment_end>33'h100000000 ||
++       (!c_byte && c_addr[1:0]!=0))fault<=1;
++    else begin
++     active<=1;read_byte<=c_byte;next_addr<=c_addr;
++     issue_left<=B'(segment_beats);consume_left<=B'(segment_beats);
++     head<=0;tail<=0;return_slot<=0;got<=0;
++    end
++   end
++   case({issue,consume})
++    2'b10:reserved<=reserved+1'b1;
++    2'b01:reserved<=reserved-1'b1;
++    default:;
++   endcase
++   case({issue,read_return})
++    2'b10:pending<=pending+1'b1;
++    2'b01:pending<=pending-1'b1;
++    default:;
++   endcase
++   if(consume)begin
++    reply_data<=data[head];reply_valid<=1;
++    got[head]<=0;head<=head+1'b1;consume_left<=consume_left-1'b1;
++    if(consume_left==1)active<=0;
++   end
++   if(issue)begin
++    got[tail]<=0;tail<=tail+1'b1;issue_left<=issue_left-1'b1;
++    next_addr<=next_addr+(read_byte?32'd1:32'd4);
++   end
++   if(read_return)begin
++    if(pending==0 && !issue)fault<=1;
++    else begin data[return_slot]<=m_rdata;got[return_slot]<=1;return_slot<=return_slot+1'b1;end
++   end
++   if(accept_write)begin
++    write_queued<=1;write_addr<=c_addr;write_data<=c_wdata;write_byte<=c_byte;
++   end
++   if(write_take)begin write_queued<=0;write_pending<=1;end
++   // Includes zero-cycle bus completion for a newly accepted write.
++   if(m_response && (write_pending || write_take))begin
++    write_pending<=0;reply_valid<=1;reply_data<=m_rdata;
++   end
++  end
++ end
++`ifndef SYNTHESIS
++ initial assert(DEPTH>=2 && (DEPTH&(DEPTH-1))==0);
++ always_ff @(posedge clk)if(rst_n && !clear && !fault)begin
++  assert(reserved<=DEPTH && pending<=reserved)else $fatal(1,"planned read credit overflow");
++  if(consume && consume_left==1)
++   assert(issue_left==0 && pending==0 && reserved==1)else $fatal(1,"segment ended before drain");
++ end
++`endif
++endmodule

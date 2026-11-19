@@ -1,7 +1,0 @@
-{
-  "status": "PASS",
-  "returncode": 0,
-  "top": "face_soc_ees331_mover_top",
-  "new_pair_connected": false,
-  "scope": "Existing complete top lint/elaboration only; not full simulation or timing closure"
-}

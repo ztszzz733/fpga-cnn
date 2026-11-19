@@ -1,7 +1,0 @@
-{
-  "vcd": "D:\\code\\FPGA1\\integrated\\ees331_mover23_integrated\\simulation\\build\\runs\\20261115_142138_pw8_linear_full_soc\\new\\full\\control.vcd",
-  "signals": 24,
-  "complete_run": true,
-  "timescale": "1ns",
-  "sample_clock_reference_ns": 10
-}

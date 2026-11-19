@@ -1,0 +1,92 @@
+{
+  "remaining": [
+    ".git",
+    "moon_latest",
+    "tools",
+    "zonghe",
+    ".gitignore"
+  ],
+  "status": "COMPLETE",
+  "tools_moved": [
+    {
+      "source": "D:\\code\\FPGA1\\.neureka_build\\neureka\\verilator",
+      "destination": "D:\\code\\FPGA1\\tools\\verilator-wsl"
+    },
+    {
+      "source": "D:\\code\\FPGA1\\.nvdla_build\\nv_small\\verilator",
+      "destination": "D:\\code\\FPGA1\\tools\\verilator-nvdla"
+    },
+    {
+      "source": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\tools",
+      "destination": "D:\\code\\FPGA1\\tools\\legacy-tools"
+    },
+    {
+      "source": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\.tools",
+      "destination": "D:\\code\\FPGA1\\tools\\legacy-dot-tools"
+    },
+    {
+      "source": "D:\\code\\FPGA1\\.vicuna_build\\toolchain",
+      "destination": "D:\\code\\FPGA1\\tools\\riscv-toolchain"
+    },
+    {
+      "source": "D:\\code\\FPGA1\\cpu_control (2)\\cpu_control\\deliverables\\GTKWave_SoC_36_Portable\\runtime",
+      "destination": "D:\\code\\FPGA1\\tools\\gtkwave-runtime"
+    }
+  ],
+  "removed": [
+    "D:\\code\\FPGA1\\.conv_overlap_unit_k1",
+    "D:\\code\\FPGA1\\.conv_overlap_unit_k3",
+    "D:\\code\\FPGA1\\.conv_wide_unit_k3",
+    "D:\\code\\FPGA1\\.dispatch_frame_priority_unit",
+    "D:\\code\\FPGA1\\.dispatch_priority_unit",
+    "D:\\code\\FPGA1\\.dw7_cached_build",
+    "D:\\code\\FPGA1\\.dwcache_unit_k3",
+    "D:\\code\\FPGA1\\.hybrid_build",
+    "D:\\code\\FPGA1\\.k3par4_unit_k3",
+    "D:\\code\\FPGA1\\.network_buffered_build",
+    "D:\\code\\FPGA1\\.network_output_build",
+    "D:\\code\\FPGA1\\.network_pair_build",
+    "D:\\code\\FPGA1\\.network_parallel_build",
+    "D:\\code\\FPGA1\\.neureka_build",
+    "D:\\code\\FPGA1\\.neureka_chain_build",
+    "D:\\code\\FPGA1\\.neureka_dual_build",
+    "D:\\code\\FPGA1\\.neureka_full_build",
+    "D:\\code\\FPGA1\\.neureka_full_hier_build",
+    "D:\\code\\FPGA1\\.neureka_pipeline_build",
+    "D:\\code\\FPGA1\\.neureka_residual_build",
+    "D:\\code\\FPGA1\\.neureka_stripes_build",
+    "D:\\code\\FPGA1\\.neureka_triple_build",
+    "D:\\code\\FPGA1\\.nvdla_build",
+    "D:\\code\\FPGA1\\.post_group_unit",
+    "D:\\code\\FPGA1\\.post_pipe_unit",
+    "D:\\code\\FPGA1\\.pw4_unit_build",
+    "D:\\code\\FPGA1\\.pw8_unit_k1",
+    "D:\\code\\FPGA1\\.self_fifteen_pw8_build_frame_priority",
+    "D:\\code\\FPGA1\\.self_fifteen_pw8_build_frame_priority_dwcache_post16",
+    "D:\\code\\FPGA1\\.self_fifteen_pw8_build_frame_priority_dwcache_post16_k3par4",
+    "D:\\code\\FPGA1\\.self_fifteen_pw8_build_frame_priority_dwcache_post16_k3par4_compat",
+    "D:\\code\\FPGA1\\.self_fifteen_pw8_build_frame_priority_dwcache_post16_k3par4_pool4_12_4",
+    "D:\\code\\FPGA1\\.self_five_pw8_build_frame_priority_dwcache_post16_k3par4_pool4_6_3",
+    "D:\\code\\FPGA1\\.self_six_build",
+    "D:\\code\\FPGA1\\.self_six_overlap_build",
+    "D:\\code\\FPGA1\\.self_six_pw4_baseline_build",
+    "D:\\code\\FPGA1\\.self_six_pw4_build",
+    "D:\\code\\FPGA1\\.self_six_pw8_build",
+    "D:\\code\\FPGA1\\.self_six_pw8_build_priority",
+    "D:\\code\\FPGA1\\.self_six_wide_build",
+    "D:\\code\\FPGA1\\.self_six_wide_build_priority",
+    "D:\\code\\FPGA1\\.self_synth_launch",
+    "D:\\code\\FPGA1\\.self_ten_pw8_build",
+    "D:\\code\\FPGA1\\.self_ten_pw8_build_frame_priority",
+    "D:\\code\\FPGA1\\.self_ten_pw8_build_frame_priority_dwcache_post16_k3par4_pool4_6_3",
+    "D:\\code\\FPGA1\\.self_ten_pw8_build_priority",
+    "D:\\code\\FPGA1\\.self_thirty_pw8_build_frame_priority",
+    "D:\\code\\FPGA1\\.vicuna_build",
+    "D:\\code\\FPGA1\\cpu_control (2)",
+    "D:\\code\\FPGA1\\integrated",
+    "D:\\code\\FPGA1\\mover23_top_waveform_20261111",
+    "D:\\code\\FPGA1\\mover23_top_waveform_20261111.zip",
+    "D:\\code\\FPGA1\\moon_latest\\cpu_control (2)",
+    "D:\\code\\FPGA1\\moon_latest\\releases"
+  ]
+}

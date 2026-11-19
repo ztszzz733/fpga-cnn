@@ -1,0 +1,65 @@
+{
+  "top_unchanged": true,
+  "top_sha256": "d14b5041a9c708e814b6d2720ac0b8278f275cec932e9451a9d5f78f3772f35c",
+  "cache_bytes": 401408,
+  "bank_count": 2,
+  "k3_units": 2,
+  "k1_units": 4,
+  "k3_planned_templates": 17,
+  "changed_inputs": [
+    "rtl/cnn_self/self_conv_spatial4_engine.sv",
+    "rtl/cnn_ddr/fixed_schedule_compact.sv",
+    "storage_v2/rtl/tile_local_ram_bank2.sv",
+    "rtl/cnn_ddr/cnn_paged_mover.sv",
+    "rtl/filelists/system_ees331_reduced.f",
+    "rtl/cnn_self/planned_read_adapter.sv"
+  ],
+  "plan_sha256": "90af2634084dbb237494c927133b9c4bba956f70f1414dd4ceb244a6968a1bde",
+  "checks": {
+    "pager_regression": "PASS",
+    "planned_reads_test": "PASS",
+    "k3_planned_test": "PASS",
+    "two_image_regression": {
+      "status": "PASS",
+      "cycles": 180785683,
+      "jobs": 258,
+      "checked_output_bytes": 38730904,
+      "frames": 2,
+      "overlap_cycles": 174503547,
+      "ddr_read_bytes": 71562240,
+      "ddr_write_bytes": 37423104,
+      "page_misses": 69885,
+      "unit_starts": [
+        17,
+        17,
+        17,
+        17,
+        16,
+        16,
+        51,
+        49,
+        24,
+        34
+      ],
+      "compile_seconds": 19.89099999999962,
+      "fclk_mhz": 100,
+      "simulation_seconds": 744.4840000000004,
+      "outputs_sha256": "97ea50f0e05b15b7d5ed6bee04916069461be37259418bf112155aab80035018",
+      "plan_sha256": "90af2634084dbb237494c927133b9c4bba956f70f1414dd4ceb244a6968a1bde",
+      "scheduler_sha256": "06e5646df51cc83bb75265f5b5a21c28b3cdc8972c0dad4c00a2422dc6ee0c77",
+      "harness_sha256": "8c928af3892e93605a27c3bcf8c5840bd6449a39907249988bf7f473f4ac3656",
+      "cpu_model": "Native execution of common ARM scheduling code; AXI GP0/DDR modeled",
+      "rtl": "Board RISC-V ROM/core, CNN, page RAM and HP0 mover"
+    }
+  },
+  "software_sources_sha256": {
+    "main.c": "2c720abd6265f669201f92f8bde64c3589d0a5eb6d38bbbd715439e10f9a1f2e",
+    "schedule.c": "06e5646df51cc83bb75265f5b5a21c28b3cdc8972c0dad4c00a2422dc6ee0c77",
+    "schedule.h": "18ec1f77e9dc42dada07e22f8468520843047460460f408b2e479d5dd8280769",
+    "k3_plan.h": "c8dc16a601a402555bed33a5dfdf1cb3635575af3f44c3da188cd3d0b5aefc74",
+    "planned_schema.py": "e5cf539d833512f5f6b49adfc68cd4565783f2883af93c2a5a2ff1aac6f44658"
+  },
+  "synthesis_run": false,
+  "board_tested": false,
+  "timing_verified": false
+}

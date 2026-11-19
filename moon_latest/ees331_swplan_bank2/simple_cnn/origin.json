@@ -1,0 +1,24 @@
+{
+  "base_commit": "f26d4af97754faa9d6a1d20faf72f1f6b36ddbdf",
+  "base_project": "D:\\code\\FPGA1\\moon_latest\\ees331_swplan_bank2",
+  "source_sha256": {
+    "compact_word_ram.sv": "ad121138c92cc0b9b32d4dd24cb6cbee6c30f4552c00a9420334d28ca4ae2d00",
+    "self_conv_spatial4_engine.sv": "90eaaaa01c3f24f93589bdf5df821548c16c393ca5a91576c0b9e4decedf540a",
+    "self_pw8_engine.sv": "7a99543ea3adf62cbc449645c6cc31836dca5ee500dec904e862742f233fa1e0"
+  },
+  "changes": [
+    "New manual four-unit command frontend",
+    "New registered single-outstanding completion bridge",
+    "Retain tested arithmetic/RAM reuse, remove both prefetch paths",
+    "K1 uses OUTPUT_PAR=1, INPUT_PREFETCH=0, READ_AHEAD=0"
+  ],
+  "final_changes": [
+    "Manual four-unit frontend",
+    "Registered single-outstanding memory bridges",
+    "K3 selected-byte pipeline",
+    "K3 range-end/compare pipeline",
+    "K1 OUTPUT_PAR=1 and no external prefetch",
+    "K1 captures transfer width and last-channel marker with each input request",
+    "K1 registers exclusive address ends during the existing linear-group setup"
+  ]
+}

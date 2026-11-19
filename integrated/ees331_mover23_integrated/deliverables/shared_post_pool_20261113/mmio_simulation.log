@@ -1,3 +1,0 @@
-PASS MMIO case 0 steps=2 frames=4 cycles=5124
-PASS MMIO case 1 steps=4 frames=4 cycles=4184
-PASS MMIO case 2 steps=2 frames=4 cycles=16288

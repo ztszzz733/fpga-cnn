@@ -1,0 +1,35 @@
+# Generated build output and local tools
+build/
+tools/
+.tools/
+.neureka_build/
+.neureka_stripes_build/
+.neureka_chain_build/
+.neureka_pipeline_build/
+.vicuna_build/
+.hybrid_build/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+mobilefacenet/.deps/
+mobilefacenet/.deps-py39/
+
+# Generated simulation waveforms and compiled simulation output
+*.vcd
+*.fst
+*.wdb
+*.vvp
+
+.neureka_dual_build/
+
+.neureka_triple_build/
+.neureka_residual_build/
+.dw7_cached_build/
+.neureka_full_build/
+.neureka_full_hier_build/
+.network_parallel_build/
+
+.network_buffered_build/
+.network_output_build/
+.network_pair_build/

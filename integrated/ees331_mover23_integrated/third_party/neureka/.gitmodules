@@ -1,3 +1,0 @@
-[submodule "model/deps/pulp-nnx"]
-	path = model/deps/pulp-nnx
-	url = https://github.com/pulp-platform/pulp-nnx

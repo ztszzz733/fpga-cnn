@@ -1,0 +1,20 @@
+[dumpfile] "small_control.vcd"
+[timestart] 0
+[size] 1500 900
+@28
+[color] 2
+cnn_simple.busy[3:0]
+[color] 3
+cnn_simple.actual_mac[3:0]
+[color] 4
+cnn_simple.request[3:0]
+[color] 5
+cnn_simple.ready[3:0]
+[color] 6
+cnn_simple.response[3:0]
+[color] 7
+cnn_simple.write[3:0]
+[color] 2
+cnn_simple.operator_state[15:0]
+[color] 3
+cnn_simple.memory_state[11:0]

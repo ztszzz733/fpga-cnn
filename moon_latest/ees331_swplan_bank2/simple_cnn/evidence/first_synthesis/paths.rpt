@@ -1,0 +1,1629 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Thu Nov 19 22:14:12 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 20 -nworst 1 -input_pins -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_simple_20261119/synthesis/paths.rpt
+| Design       : cnn_simple_top
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[0][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_13
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][16]_i_2/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][16]_i_2/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[0].k3.engine/input_banks[1].mem_n_143
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[0][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[1][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_20
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][16]_i_2/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][16]_i_2/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[0].k3.engine/input_banks[1].mem_n_134
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[1][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[2][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_16
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][16]_i_2/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][16]_i_2/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[0].k3.engine/input_banks[1].mem_n_125
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[2][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[3][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/p_0_in2_out[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][16]_i_2/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][16]_i_2/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[0].k3.engine/input_banks[1].mem_n_116
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[3][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[0][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_13
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][16]_i_2__0/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][16]_i_2__0/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[1].k3.engine/input_banks[1].mem_n_143
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[0][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[0][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[0][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[1][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_20
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][16]_i_2__0/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][16]_i_2__0/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[1].k3.engine/input_banks[1].mem_n_134
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[1][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[1][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[1][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[2][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_16
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][16]_i_2__0/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][16]_i_2__0/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[1].k3.engine/input_banks[1].mem_n_125
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[2][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[2][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[2][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.510ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[3][16]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.535ns  (logic 5.222ns (49.569%)  route 5.313ns (50.431%))
+  Logic Levels:           11  (CARRY4=4 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_16__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_16__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/p_0_in2_out[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    11.276 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.276    unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][16]_i_2__0/CI
+                         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.232    11.508 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][16]_i_2__0/O[0]
+                         net (fo=1, unplaced)         0.000    11.508    unit[1].k3.engine/input_banks[1].mem_n_116
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[3][16]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[3][16]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[3][16]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.508    
+  -------------------------------------------------------------------
+                         slack                                 -0.510    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[0][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_13
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[0].k3.engine/input_banks[1].mem_n_146
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[0][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[1][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_20
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[0].k3.engine/input_banks[1].mem_n_137
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[1][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[2][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_16
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[0].k3.engine/input_banks[1].mem_n_128
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[2][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[3][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/p_0_in2_out[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[0].k3.engine/input_banks[1].mem_n_119
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[3][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[0][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_13
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[0][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1__0/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[1].k3.engine/input_banks[1].mem_n_146
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[0][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[0][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[0][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[1][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_20
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[1][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1__0/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[1].k3.engine/input_banks[1].mem_n_137
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[1][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[1][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[1][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[2][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_20__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_13__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][2]_i_13__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_16
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[2][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1__0/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[1].k3.engine/input_banks[1].mem_n_128
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[2][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[2][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[2][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.498ns  (required time - arrival time)
+  Source:                 unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/product_q_reg[3][13]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.523ns  (logic 5.210ns (49.512%)  route 5.313ns (50.488%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[1].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[1].k3.engine/input_banks[0].mem/product_q[3][2]_i_44__0/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[1].k3.engine/input_banks[1].mem/input_word_q[0]_19[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_29__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_16__0/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][2]_i_16__0/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[1].k3.engine/input_banks[1].mem/p_0_in2_out[2]
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_51__0_n_0
+                                                                      f  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_30__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12__0_n_4
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_5__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[1].k3.engine/input_banks[1].mem/product_q[3][11]_i_9__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1__0_n_0
+                                                                      r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1__0/CI
+                         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.337    11.496 r  unit[1].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1__0/O[1]
+                         net (fo=1, unplaced)         0.000    11.496    unit[1].k3.engine/input_banks[1].mem_n_119
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[3][13]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/product_q_reg[3][13]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[1].k3.engine/product_q_reg[3][13]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.496    
+  -------------------------------------------------------------------
+                         slack                                 -0.498    
+
+Slack (VIOLATED) :        -0.492ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[0][15]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.517ns  (logic 5.204ns (49.483%)  route 5.313ns (50.517%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_13
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[0][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331    11.490 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[0][15]_i_1/O[3]
+                         net (fo=1, unplaced)         0.000    11.490    unit[0].k3.engine/input_banks[1].mem_n_144
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][15]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[0][15]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[0][15]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.490    
+  -------------------------------------------------------------------
+                         slack                                 -0.492    
+
+Slack (VIOLATED) :        -0.492ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[1][15]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.517ns  (logic 5.204ns (49.483%)  route 5.313ns (50.517%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_20
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[1][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331    11.490 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[1][15]_i_1/O[3]
+                         net (fo=1, unplaced)         0.000    11.490    unit[0].k3.engine/input_banks[1].mem_n_135
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][15]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[1][15]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[1][15]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.490    
+  -------------------------------------------------------------------
+                         slack                                 -0.492    
+
+Slack (VIOLATED) :        -0.492ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[2][15]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.517ns  (logic 5.204ns (49.483%)  route 5.313ns (50.517%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_20_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][2]_i_13/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/input_lane_q_reg[1]_16
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[2][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331    11.490 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[2][15]_i_1/O[3]
+                         net (fo=1, unplaced)         0.000    11.490    unit[0].k3.engine/input_banks[1].mem_n_126
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][15]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[2][15]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[2][15]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.490    
+  -------------------------------------------------------------------
+                         slack                                 -0.492    
+
+Slack (VIOLATED) :        -0.492ns  (required time - arrival time)
+  Source:                 unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/product_q_reg[3][15]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        10.517ns  (logic 5.204ns (49.483%)  route 5.313ns (50.517%))
+  Logic Levels:           10  (CARRY4=3 LUT2=1 LUT3=3 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=8789, unset)         0.973     0.973    unit[0].k3.engine/input_banks[0].mem/clk
+                         RAMB36E1                                     r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/CLKBWRCLK
+  -------------------------------------------------------------------    -------------------
+                         RAMB36E1 (Prop_ramb36e1_CLKBWRCLK_DOBDO[2])
+                                                      2.454     3.427 r  unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg/DOBDO[2]
+                         net (fo=1, unplaced)         0.800     4.227    unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg_n_65
+                                                                      r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/I1
+                         LUT3 (Prop_lut3_I1_O)        0.124     4.351 r  unit[0].k3.engine/input_banks[0].mem/product_q[3][2]_i_44/O
+                         net (fo=4, unplaced)         0.473     4.824    unit[0].k3.engine/input_banks[1].mem/input_word_q[0]_18[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     4.948 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29/O
+                         net (fo=1, unplaced)         0.902     5.850    unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_29_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     5.974 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][2]_i_16/O
+                         net (fo=11, unplaced)        0.465     6.439    unit[0].k3.engine/input_banks[1].mem/p_0_in2_out[2]
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/I0
+                         LUT2 (Prop_lut2_I0_O)        0.124     6.563 f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51/O
+                         net (fo=3, unplaced)         0.920     7.483    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_51_n_0
+                                                                      f  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     7.607 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30/O
+                         net (fo=1, unplaced)         0.639     8.246    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_30_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/DI[1]
+                         CARRY4 (Prop_carry4_DI[1]_O[3])
+                                                      0.629     8.875 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12/O[3]
+                         net (fo=2, unplaced)         0.629     9.504    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_12_n_4
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/I2
+                         LUT3 (Prop_lut3_I2_O)        0.302     9.806 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5/O
+                         net (fo=2, unplaced)         0.485    10.291    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_5_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/I3
+                         LUT4 (Prop_lut4_I3_O)        0.355    10.646 r  unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9/O
+                         net (fo=1, unplaced)         0.000    10.646    unit[0].k3.engine/input_banks[1].mem/product_q[3][11]_i_9_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/S[0]
+                         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    11.159 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1/CO[3]
+                         net (fo=1, unplaced)         0.000    11.159    unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][11]_i_1_n_0
+                                                                      r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/CI
+                         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.331    11.490 r  unit[0].k3.engine/input_banks[1].mem/product_q_reg[3][15]_i_1/O[3]
+                         net (fo=1, unplaced)         0.000    11.490    unit[0].k3.engine/input_banks[1].mem_n_117
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][15]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=8789, unset)         0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/product_q_reg[3][15]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_D)        0.109    10.998    unit[0].k3.engine/product_q_reg[3][15]
+  -------------------------------------------------------------------
+                         required time                         10.998    
+                         arrival time                         -11.490    
+  -------------------------------------------------------------------
+                         slack                                 -0.492    
+
+
+
+

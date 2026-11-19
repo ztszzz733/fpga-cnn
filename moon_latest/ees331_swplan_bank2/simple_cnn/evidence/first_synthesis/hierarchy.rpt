@@ -1,0 +1,47 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Thu Nov 19 22:14:07 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_simple_20261119/synthesis/hierarchy.rpt
+| Design       : cnn_simple_top
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------------+------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|         Instance        |               Module               | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------------+------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| cnn_simple_top          |                              (top) |      10582 |      10494 |      88 |    0 | 8562 |     10 |      8 |         16 |
+|   (cnn_simple_top)      |                              (top) |         12 |         12 |       0 |    0 | 2204 |      0 |      0 |          0 |
+|   unit[0].k3.engine     |                   simple_k3_engine |       2784 |       2784 |       0 |    0 | 1474 |      4 |      3 |          0 |
+|     (unit[0].k3.engine) |                   simple_k3_engine |       2186 |       2186 |       0 |    0 | 1472 |      0 |      0 |          0 |
+|     input_banks[0].mem  |                 compact_word_ram_8 |         75 |         75 |       0 |    0 |    1 |      1 |      1 |          0 |
+|     input_banks[1].mem  | compact_word_ram__parameterized0_9 |        405 |        405 |       0 |    0 |    0 |      1 |      0 |          0 |
+|     weights             |                compact_word_ram_12 |        136 |        136 |       0 |    0 |    1 |      1 |      1 |          0 |
+|   unit[0].port          |                  simple_mem_bridge |         89 |         89 |       0 |    0 |  102 |      0 |      0 |          0 |
+|   unit[1].k3.engine     |                 simple_k3_engine_0 |       2942 |       2942 |       0 |    0 | 1466 |      4 |      3 |          0 |
+|     (unit[1].k3.engine) |                 simple_k3_engine_0 |       2344 |       2344 |       0 |    0 | 1464 |      0 |      0 |          0 |
+|     input_banks[0].mem  |                   compact_word_ram |         75 |         75 |       0 |    0 |    1 |      1 |      1 |          0 |
+|     input_banks[1].mem  |   compact_word_ram__parameterized0 |        405 |        405 |       0 |    0 |    0 |      1 |      0 |          0 |
+|     weights             |                 compact_word_ram_7 |        136 |        136 |       0 |    0 |    1 |      1 |      1 |          0 |
+|   unit[1].port          |                simple_mem_bridge_1 |         95 |         95 |       0 |    0 |  102 |      0 |      0 |          0 |
+|   unit[2].k1.engine     |                   simple_k1_engine |       2208 |       2164 |      44 |    0 | 1505 |      1 |      1 |          8 |
+|     (unit[2].k1.engine) |                   simple_k1_engine |       2164 |       2120 |      44 |    0 | 1505 |      0 |      0 |          8 |
+|   unit[2].port          |                simple_mem_bridge_2 |         77 |         77 |       0 |    0 |  102 |      0 |      0 |          0 |
+|   unit[3].k1.engine     |                 simple_k1_engine_3 |       2272 |       2228 |      44 |    0 | 1505 |      1 |      1 |          8 |
+|     (unit[3].k1.engine) |                 simple_k1_engine_3 |       2228 |       2184 |      44 |    0 | 1505 |      0 |      0 |          8 |
+|   unit[3].port          |                simple_mem_bridge_4 |        103 |        103 |       0 |    0 |  102 |      0 |      0 |          0 |
++-------------------------+------------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

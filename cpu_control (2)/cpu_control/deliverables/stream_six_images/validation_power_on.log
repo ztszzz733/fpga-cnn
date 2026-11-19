@@ -1,3 +1,0 @@
-SIGNALS=64 UNIQUE=64
-CNN_STATE=WORK
-PASS GTKWave stream session

@@ -1,0 +1,12 @@
+{
+  "top": "face_soc_ees331_simple_top",
+  "cnn_clients": 4,
+  "k3_units": 2,
+  "k1_units": 2,
+  "build_tcl_sha256": "bdde6a49882b3ecc35f211447c0bafff8f4d1c58e2bb1dba6d20e538dbaebee8",
+  "k1_units_file_sha256": "df4e26a04a444901b95afef44e4a96cfae34690fff2ad2c66389c70079cdff2b",
+  "soc_filelist_sha256": "094372ced757a693b7c959d6af981915a69aae2f715deabb8849dfcee67de7ad",
+  "soc_top_sha256": "318120a3ccc690e25198b9c2c3029c3e0f5db051b138027798a514240df66659",
+  "lint": "PASS_WITH_BASELINE_STORAGE_TREE_WARNINGS",
+  "old_boot_software_compatible": false
+}

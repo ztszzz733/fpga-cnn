@@ -1,0 +1,17 @@
+{
+  "file": "D:\\12-cal\\ees331_swplan_bank2\\docs\\diagrams\\EES331_两bank_软件规划访存_顶层连线图.drawio",
+  "pages": [
+    "01 顶层六模块与PS连线",
+    "02 两bank与软件规划读段",
+    "03 接口方向与位宽明细"
+  ],
+  "source_top_sha256": "d14b5041a9c708e814b6d2720ac0b8278f275cec932e9451a9d5f78f3772f35c",
+  "k1_units": 4,
+  "cache_bytes": 401408,
+  "bank_count": 2,
+  "node_count": 92,
+  "edge_count": 52,
+  "text_overflow": 0,
+  "unrelated_box_crossings": 0,
+  "label_edge_collisions": 0
+}
