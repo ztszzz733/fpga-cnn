@@ -1,0 +1,32 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 20:31:29 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_bank256_trial/k1_weight2k_trial/synth_2048/hierarchy.rpt
+| Design       : simple_k1_engine
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+|          Instance          |      Module      | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+| simple_k1_engine           |            (top) |       3785 |       2981 |     804 |    0 | 2175 |      8 |      5 |          9 |
+|   (simple_k1_engine)       |            (top) |       1598 |       1598 |       0 |    0 | 1980 |      0 |      0 |          9 |
+|   bulk_pixels.pixel_memory |   k1_bulk_pixels |       1071 |        303 |     768 |    0 |    0 |      0 |      0 |          0 |
+|   packed_writeback.queue   |  k1_write_buffer |       1045 |       1009 |      36 |    0 |  195 |      8 |      4 |          0 |
+|   weights                  | compact_word_ram |         71 |         71 |       0 |    0 |    0 |      0 |      1 |          0 |
++----------------------------+------------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

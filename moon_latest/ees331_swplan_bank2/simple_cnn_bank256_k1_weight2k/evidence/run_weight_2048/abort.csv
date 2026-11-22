@@ -1,0 +1,2 @@
+unit,cycles,bank_reads,bank_read_bytes,writes,input_commands,weight_commands,max_input_bytes,max_weight_bytes,bank_reads_64,writes_wide,write_bytes
+2,74145,517,4096,2048,4,1,512,2048,507,2048,65536

@@ -1,5 +1,7 @@
 > **2026-11-19 当前开发入口：[简化四算子CNN](simple_cnn/README.md)。两套K3＋两套K1，软件直接下发，不使用原硬件调度器。下文为原moon基线说明，旧PLAN/ROM不能驱动新CNN。**
 
+> [四算子 CNN 突发读取实验与同条件对比](simple_cnn_burst/README.md)
+
 # EES331 两 bank、软件规划读段版本
 
 本工程从 `ees331_bank4_100/build_k1x4_post` 独立复制并适配。旧工程及其构建目录保持原状。本轮仅修改代码和验证功能，没有启动新的 Vivado 综合、布局布线或上板操作，不能据此宣称 100 MHz 已达标。

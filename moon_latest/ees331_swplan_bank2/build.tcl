@@ -23,12 +23,31 @@ if {$stage eq "synth"} {
   }
   reset_run synth_1
  }
- set manifest [open [file join $out simple_cnn soc.f] r]
+ set cnn_variant simple_cnn
+ if {[info exists ::env(EES331_CNN_VARIANT)]} {
+  switch -- $::env(EES331_CNN_VARIANT) {
+   "" - simple { }
+   bank128_write {set cnn_variant simple_cnn_bank128_write}
+   bank256_fifo {set cnn_variant simple_cnn_bank256_fifo}
+   bank256_k3_wide {set cnn_variant simple_cnn_bank256_k3_wide}
+   bank256_k1_weight2k {set cnn_variant simple_cnn_bank256_k1_weight2k}
+   bank256_page_write {set cnn_variant simple_cnn_bank256_page_write}
+   default {error "Unknown EES331_CNN_VARIANT: $::env(EES331_CNN_VARIANT)"}
+  }
+ }
+ foreach other {simple_cnn simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write} {
+  if {$other ne $cnn_variant &&
+      [llength [get_files -quiet [file join $out $other rtl cnn_simple_top.sv]]]} {
+   error "Use a fresh Vivado project when changing the CNN variant"
+  }
+ }
+ puts "EES331_CNN_VARIANT=$cnn_variant"
+ set manifest [open [file join $out $cnn_variant soc.f] r]
  set sources {}
  foreach line [split [read $manifest] \n] {
   set line [string trim $line]
   if {$line eq "" || [string match {#*} $line]} {continue}
-  lappend sources [file normalize [file join $out simple_cnn $line]]
+  lappend sources [file normalize [file join $out $cnn_variant $line]]
  }
  close $manifest
  add_files -norecurse $sources
@@ -42,9 +61,12 @@ if {$stage eq "synth"} {
   set f [open $local_config r]
   set local_kib [string trim [read $f]]
   close $f
-  if {![string is integer -strict $local_kib] || $local_kib < 8 ||
-      ($local_kib & ($local_kib-1)) != 0} {
-   error "Expected a power-of-two LOCAL_BYTES configuration in KiB"
+  if {![string is integer -strict $local_kib]} {
+   error "Expected total local memory in KiB"
+  }
+  set two_bank_override [expr {$cnn_variant in {simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write} && ($local_kib == 192 || $local_kib == 392)}]
+  if {!$two_bank_override && ($local_kib < 8 || ($local_kib & ($local_kib-1)) != 0)} {
+   error "Expected a power-of-two LOCAL_BYTES configuration, or 192/392 KiB for a wide-write variant"
   }
   lappend generics "LOCAL_BYTES=[expr {$local_kib * 1024}]"
   puts "EES331_LOCAL_KIB=$local_kib"

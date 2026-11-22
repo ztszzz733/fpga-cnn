@@ -1,0 +1,607 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 16:06:09 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 10 -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_mover_stream_trial/vivado_write_1_192k/route_paths.rpt
+| Design       : burst_bank_test
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[103]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[103]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[103]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[103]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[104]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[104]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[104]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[104]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[105]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[105]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[105]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[105]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[106]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[106]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[106]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[106]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[15]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[15]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[15]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[15]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[16]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[16]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[16]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[16]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[63]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[63]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[63]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[63]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.236ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[64]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.360ns  (logic 2.005ns (21.422%)  route 7.355ns (78.578%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.164ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.487ns = ( 11.487 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.427    11.011    pager/mover_n_1083
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[64]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.487    11.487    pager/clk
+    SLICE_X43Y17         FDRE                                         r  pager/request_queue[2].front_reg[64]/C
+                         clock pessimism              0.000    11.487    
+                         clock uncertainty           -0.035    11.452    
+    SLICE_X43Y17         FDRE (Setup_fdre_C_CE)      -0.205    11.247    pager/request_queue[2].front_reg[64]
+  -------------------------------------------------------------------
+                         required time                         11.247    
+                         arrival time                         -11.011    
+  -------------------------------------------------------------------
+                         slack                                  0.236    
+
+Slack (MET) :             0.255ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[125]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.337ns  (logic 2.005ns (21.475%)  route 7.332ns (78.525%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.168ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.483ns = ( 11.483 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.404    10.988    pager/mover_n_1083
+    SLICE_X47Y19         FDRE                                         r  pager/request_queue[2].front_reg[125]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.483    11.483    pager/clk
+    SLICE_X47Y19         FDRE                                         r  pager/request_queue[2].front_reg[125]/C
+                         clock pessimism              0.000    11.483    
+                         clock uncertainty           -0.035    11.448    
+    SLICE_X47Y19         FDRE (Setup_fdre_C_CE)      -0.205    11.243    pager/request_queue[2].front_reg[125]
+  -------------------------------------------------------------------
+                         required time                         11.243    
+                         arrival time                         -10.988    
+  -------------------------------------------------------------------
+                         slack                                  0.255    
+
+Slack (MET) :             0.255ns  (required time - arrival time)
+  Source:                 pager/request_slot_reg[6]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/request_queue[2].front_reg[126]/CE
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.337ns  (logic 2.005ns (21.475%)  route 7.332ns (78.525%))
+  Logic Levels:           7  (LUT3=1 LUT4=2 LUT5=1 LUT6=3)
+  Clock Path Skew:        -0.168ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.483ns = ( 11.483 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.651ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20287, unset)        1.651     1.651    pager/clk
+    SLICE_X41Y55         FDRE                                         r  pager/request_slot_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X41Y55         FDRE (Prop_fdre_C_Q)         0.456     2.107 r  pager/request_slot_reg[6]/Q
+                         net (fo=144, routed)         1.038     3.145    pager/slot[6]
+    SLICE_X39Y59         LUT4 (Prop_lut4_I3_O)        0.149     3.294 r  pager/request_queue[0].front[164]_i_23/O
+                         net (fo=2, routed)           0.961     4.254    pager/request_queue[0].front[164]_i_23_n_0
+    SLICE_X37Y57         LUT5 (Prop_lut5_I0_O)        0.332     4.586 f  pager/request_queue[0].front[164]_i_15/O
+                         net (fo=2, routed)           0.728     5.314    pager/mover/issue_byte[1]_i_4_7
+    SLICE_X37Y52         LUT6 (Prop_lut6_I5_O)        0.124     5.438 r  pager/mover/request_queue[0].front[164]_i_11/O
+                         net (fo=6, routed)           0.556     5.994    pager/mover/request_queue[0].front[164]_i_11_n_0
+    SLICE_X37Y51         LUT4 (Prop_lut4_I3_O)        0.118     6.112 r  pager/mover/request_queue[2].front[164]_i_7/O
+                         net (fo=3, routed)           0.822     6.934    pager/mover/request_queue[2].front[164]_i_7_n_0
+    SLICE_X38Y51         LUT3 (Prop_lut3_I0_O)        0.354     7.288 r  pager/mover/request_queue[2].front[164]_i_3/O
+                         net (fo=40, routed)          1.105     8.394    pager/mover/request_queue[2].front[164]_i_3_n_0
+    SLICE_X42Y41         LUT6 (Prop_lut6_I0_O)        0.348     8.742 r  pager/mover/request_queue[2].front[164]_i_6/O
+                         net (fo=167, routed)         0.718     9.460    pager/mover/request_queue[2].front[164]_i_6_n_0
+    SLICE_X44Y39         LUT6 (Prop_lut6_I3_O)        0.124     9.584 r  pager/mover/request_queue[2].front[164]_i_1/O
+                         net (fo=165, routed)         1.404    10.988    pager/mover_n_1083
+    SLICE_X47Y19         FDRE                                         r  pager/request_queue[2].front_reg[126]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20287, unset)        1.483    11.483    pager/clk
+    SLICE_X47Y19         FDRE                                         r  pager/request_queue[2].front_reg[126]/C
+                         clock pessimism              0.000    11.483    
+                         clock uncertainty           -0.035    11.448    
+    SLICE_X47Y19         FDRE (Setup_fdre_C_CE)      -0.205    11.243    pager/request_queue[2].front_reg[126]
+  -------------------------------------------------------------------
+                         required time                         11.243    
+                         arrival time                         -10.988    
+  -------------------------------------------------------------------
+                         slack                                  0.255    
+
+
+
+

@@ -1,0 +1,20 @@
+{
+  "four_ops_full": {
+    "signals": 29,
+    "window_start_ns": 0,
+    "window_end_ns": 19644569,
+    "marker_ns": 0
+  },
+  "weight_load": {
+    "signals": 29,
+    "window_start_ns": 0,
+    "window_end_ns": 168285,
+    "marker_ns": 90000
+  },
+  "fifo_wait": {
+    "signals": 29,
+    "window_start_ns": 3181060,
+    "window_end_ns": 3231545,
+    "marker_ns": 3197390
+  }
+}

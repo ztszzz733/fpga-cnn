@@ -1,0 +1,1 @@
+- Verilator: Walltime 63.249 s (elab=0.145, cvt=1.009, bld=61.579); cpu 1.378 s on 2 threads; alloced 50.316 MB

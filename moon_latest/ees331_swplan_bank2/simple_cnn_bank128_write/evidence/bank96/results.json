@@ -1,0 +1,697 @@
+{
+  "modes": {
+    "392": {
+      "aligned": {
+        "summary": {
+          "cache_bytes": 401408,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 4875,
+          "bank1_issue_cycles": 5968,
+          "batch_cycles": 175292,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 152
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 69379,
+            "bank_reads": 667,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 47,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 89578,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1152,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175290,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 73809,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1152,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "original": {
+        "summary": {
+          "cache_bytes": 401408,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 6064,
+          "bank1_issue_cycles": 5332,
+          "batch_cycles": 175972,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 281
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 62960,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 79669,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175970,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 82459,
+            "bank_reads": 1155,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1149,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "edge": {
+        "summary": {
+          "cache_bytes": 401408,
+          "fills": 24,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 303,
+          "bank1_issue_cycles": 530,
+          "batch_cycles": 33179,
+          "ddr_fill_bytes": 24576,
+          "verified_int32": 969,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 19148,
+            "bank_reads": 86,
+            "bank_read_bytes": 267,
+            "writes": 36,
+            "input_commands": 16,
+            "weight_commands": 1,
+            "max_input_bytes": 15,
+            "max_weight_bytes": 27,
+            "bank_reads_64": 19,
+            "writes_128": 0,
+            "write_bytes": 144
+          },
+          {
+            "unit": 1,
+            "cycles": 29706,
+            "bank_reads": 144,
+            "bank_read_bytes": 450,
+            "writes": 63,
+            "input_commands": 28,
+            "weight_commands": 1,
+            "max_input_bytes": 20,
+            "max_weight_bytes": 135,
+            "bank_reads_64": 33,
+            "writes_128": 0,
+            "write_bytes": 252
+          },
+          {
+            "unit": 2,
+            "cycles": 33177,
+            "bank_reads": 152,
+            "bank_read_bytes": 1106,
+            "writes": 201,
+            "input_commands": 3,
+            "weight_commands": 1,
+            "max_input_bytes": 448,
+            "max_weight_bytes": 35,
+            "bank_reads_64": 135,
+            "writes_128": 188,
+            "write_bytes": 3060
+          },
+          {
+            "unit": 3,
+            "cycles": 21949,
+            "bank_reads": 112,
+            "bank_read_bytes": 608,
+            "writes": 39,
+            "input_commands": 35,
+            "weight_commands": 1,
+            "max_input_bytes": 16,
+            "max_weight_bytes": 48,
+            "bank_reads_64": 40,
+            "writes_128": 22,
+            "write_bytes": 420
+          }
+        ]
+      },
+      "limits": {
+        "summary": {
+          "cache_bytes": 401408,
+          "fills": 340,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 16633,
+          "bank1_issue_cycles": 23879,
+          "batch_cycles": 675164,
+          "ddr_fill_bytes": 348160,
+          "verified_int32": 79296,
+          "four_mac_cycles": 161
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 74068,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 82049,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 675162,
+            "bank_reads": 15494,
+            "bank_read_bytes": 62392,
+            "writes": 15277,
+            "input_commands": 15,
+            "weight_commands": 7680,
+            "max_input_bytes": 64,
+            "max_weight_bytes": 8,
+            "bank_reads_64": 104,
+            "writes_128": 15217,
+            "write_bytes": 243712
+          },
+          {
+            "unit": 3,
+            "cycles": 231119,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4108,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4092,
+            "write_bytes": 65536
+          }
+        ]
+      },
+      "abort": {
+        "summary": {
+          "cache_bytes": 401408,
+          "fills": 76,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 2692,
+          "bank1_issue_cycles": 3069,
+          "batch_cycles": 148701,
+          "ddr_fill_bytes": 77824,
+          "verified_int32": 16384,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 2,
+            "cycles": 148701,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          }
+        ]
+      }
+    },
+    "192": {
+      "aligned": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 4875,
+          "bank1_issue_cycles": 5968,
+          "batch_cycles": 175292,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 152
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 69379,
+            "bank_reads": 667,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 47,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 89578,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1152,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175290,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 73809,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1152,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "original": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 6064,
+          "bank1_issue_cycles": 5332,
+          "batch_cycles": 175972,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 281
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 62960,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 79669,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175970,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 82459,
+            "bank_reads": 1155,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1149,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "edge": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 24,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 303,
+          "bank1_issue_cycles": 530,
+          "batch_cycles": 33179,
+          "ddr_fill_bytes": 24576,
+          "verified_int32": 969,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 19148,
+            "bank_reads": 86,
+            "bank_read_bytes": 267,
+            "writes": 36,
+            "input_commands": 16,
+            "weight_commands": 1,
+            "max_input_bytes": 15,
+            "max_weight_bytes": 27,
+            "bank_reads_64": 19,
+            "writes_128": 0,
+            "write_bytes": 144
+          },
+          {
+            "unit": 1,
+            "cycles": 29706,
+            "bank_reads": 144,
+            "bank_read_bytes": 450,
+            "writes": 63,
+            "input_commands": 28,
+            "weight_commands": 1,
+            "max_input_bytes": 20,
+            "max_weight_bytes": 135,
+            "bank_reads_64": 33,
+            "writes_128": 0,
+            "write_bytes": 252
+          },
+          {
+            "unit": 2,
+            "cycles": 33177,
+            "bank_reads": 152,
+            "bank_read_bytes": 1106,
+            "writes": 201,
+            "input_commands": 3,
+            "weight_commands": 1,
+            "max_input_bytes": 448,
+            "max_weight_bytes": 35,
+            "bank_reads_64": 135,
+            "writes_128": 188,
+            "write_bytes": 3060
+          },
+          {
+            "unit": 3,
+            "cycles": 21949,
+            "bank_reads": 112,
+            "bank_read_bytes": 608,
+            "writes": 39,
+            "input_commands": 35,
+            "weight_commands": 1,
+            "max_input_bytes": 16,
+            "max_weight_bytes": 48,
+            "bank_reads_64": 40,
+            "writes_128": 22,
+            "write_bytes": 420
+          }
+        ]
+      },
+      "limits": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 346,
+          "writebacks_before_verify": 126,
+          "bank0_issue_cycles": 18422,
+          "bank1_issue_cycles": 22090,
+          "batch_cycles": 822673,
+          "ddr_fill_bytes": 354304,
+          "verified_int32": 79296,
+          "four_mac_cycles": 161
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 74068,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 82049,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 822671,
+            "bank_reads": 15494,
+            "bank_read_bytes": 62392,
+            "writes": 15277,
+            "input_commands": 15,
+            "weight_commands": 7680,
+            "max_input_bytes": 64,
+            "max_weight_bytes": 8,
+            "bank_reads_64": 104,
+            "writes_128": 15217,
+            "write_bytes": 243712
+          },
+          {
+            "unit": 3,
+            "cycles": 231119,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4108,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4092,
+            "write_bytes": 65536
+          }
+        ]
+      },
+      "abort": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 76,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 2692,
+          "bank1_issue_cycles": 3069,
+          "batch_cycles": 148701,
+          "ddr_fill_bytes": 77824,
+          "verified_int32": 16384,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 2,
+            "cycles": 148701,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          }
+        ]
+      }
+    }
+  },
+  "prior_ppa": {
+    "status": "COMPLETE",
+    "part": "xc7z020clg484-1",
+    "clock_ns": 10,
+    "synth": {
+      "wns_ns": 0.217,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0,
+      "LUT": 29827.0,
+      "FF": 21854.0,
+      "BRAM36": 132.0,
+      "DSP": 18.0,
+      "start_and_end": [
+        "pager/valid_page_reg[307]/C",
+        "pager/hint_valid_reg[0]/D"
+      ]
+    },
+    "route": {
+      "wns_ns": 0.043,
+      "setup_failures": 0,
+      "whs_ns": 0.021,
+      "hold_failures": 0,
+      "LUT": 29375.0,
+      "FF": 21854.0,
+      "BRAM36": 132.0,
+      "DSP": 18.0,
+      "start_and_end": [
+        "pager/valid_page_reg[118]/C",
+        "pager/hint_valid_reg[2]/D"
+      ]
+    }
+  },
+  "ppa": {
+    "synth": {
+      "wns_ns": 0.401,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0,
+      "LUT": 24355.0,
+      "FF": 17324.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/valid_page_reg[105]/C",
+        "pager/hint_valid_reg[2]/D"
+      ]
+    },
+    "route": {
+      "wns_ns": 0.389,
+      "setup_failures": 0,
+      "whs_ns": 0.024,
+      "hold_failures": 0,
+      "LUT": 23927.0,
+      "FF": 17296.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/request_addr_reg[18]_rep/C",
+        "pager/page_number_reg[32][8]/D"
+      ]
+    }
+  }
+}

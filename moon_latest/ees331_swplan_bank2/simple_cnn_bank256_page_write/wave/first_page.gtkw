@@ -1,0 +1,59 @@
+[dumpfile] "D:/code/FPGA1/moon_latest/ees331_swplan_bank2/simple_cnn_bank256_page_write/evidence/first_page.vcd"
+[timestart] 204690
+[size] 1560 900
+*-11.0 205090
+@22
+[color] 2
+four_ops.K1_0_STATE[3:0]
+@28
+[color] 3
+four_ops.K1_0_MAC
+@28
+[color] 4
+four_ops.K1_0_READ
+@28
+[color] 1
+four_ops.K1_0_WRITE
+@22
+[color] 5
+four_ops.K1_0_PAGE_LEN[5:0]
+@28
+[color] 6
+four_ops.K1_0_BANK_WRITE256
+@28
+[color] 3
+four_ops.K1_0_PAGE_ACK
+@28
+[color] 2
+four_ops.K1_0_WAIT_OUTPUT_SLOT
+@200
+-
+@22
+[color] 2
+four_ops.K1_1_STATE[3:0]
+@28
+[color] 3
+four_ops.K1_1_MAC
+@28
+[color] 4
+four_ops.K1_1_READ
+@28
+[color] 1
+four_ops.K1_1_WRITE
+@22
+[color] 5
+four_ops.K1_1_PAGE_LEN[5:0]
+@28
+[color] 6
+four_ops.K1_1_BANK_WRITE256
+@28
+[color] 3
+four_ops.K1_1_PAGE_ACK
+@28
+[color] 2
+four_ops.K1_1_WAIT_OUTPUT_SLOT
+@200
+-
+@22
+[color] 2
+four_ops.PAGER_STATE[2:0]

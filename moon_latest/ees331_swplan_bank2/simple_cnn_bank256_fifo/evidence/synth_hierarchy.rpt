@@ -1,0 +1,77 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 19:42:42 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_bank256_trial/fifo_trial/vivado_fifo_1_192k_256bit/synth_hierarchy.rpt
+| Design       : burst_bank_test
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                 Instance                 |        Module        | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++------------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| burst_bank_test                          |                (top) |      27516 |      25164 |    2352 |    0 | 19208 |     76 |     16 |         18 |
+|   (burst_bank_test)                      |                (top) |          0 |          0 |       0 |    0 |  2112 |      0 |      0 |          0 |
+|   cnn                                    |       cnn_simple_top |      14863 |      13055 |    1808 |    0 | 10798 |     28 |     16 |         18 |
+|     (cnn)                                |       cnn_simple_top |        727 |        727 |       0 |    0 |  2206 |      0 |      0 |          0 |
+|     unit[0].k3.engine                    |     simple_k3_engine |       2532 |       2532 |       0 |    0 |  1640 |      4 |      3 |          0 |
+|       (unit[0].k3.engine)                |     simple_k3_engine |       2451 |       2451 |       0 |    0 |  1638 |      0 |      0 |          0 |
+|     unit[0].long_reads.client            |       conv_span_port |         52 |         52 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[0].long_reads.reader            |     bank_span_reader |        180 |        130 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[0].long_reads.write_port        |    simple_mem_bridge |        118 |        118 |       0 |    0 |     5 |      0 |      0 |          0 |
+|     unit[1].k3.engine                    |  simple_k3_engine_16 |       2545 |       2545 |       0 |    0 |  1642 |      4 |      3 |          0 |
+|       (unit[1].k3.engine)                |  simple_k3_engine_16 |       2464 |       2464 |       0 |    0 |  1640 |      0 |      0 |          0 |
+|     unit[1].long_reads.client            |    conv_span_port_18 |         52 |         52 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[1].long_reads.reader            |  bank_span_reader_19 |        180 |        130 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[1].long_reads.write_port        | simple_mem_bridge_20 |        119 |        119 |       0 |    0 |     5 |      0 |      0 |          0 |
+|     unit[2].k1.engine                    |     simple_k1_engine |       3768 |       2964 |     804 |    0 |  2104 |      8 |      5 |          9 |
+|       (unit[2].k1.engine)                |     simple_k1_engine |       2086 |       2086 |       0 |    0 |  1909 |      0 |      0 |          9 |
+|       bulk_pixels.pixel_memory           |    k1_bulk_pixels_28 |        976 |        208 |     768 |    0 |     0 |      0 |      0 |          0 |
+|       packed_writeback.queue             |   k1_write_buffer_29 |        688 |        652 |      36 |    0 |   195 |      8 |      4 |          0 |
+|     unit[2].long_reads.client            |    conv_span_port_21 |         79 |         79 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[2].long_reads.reader            |  bank_span_reader_22 |        186 |        136 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[2].long_reads.write_port        | simple_mem_bridge_23 |        121 |        121 |       0 |    0 |   294 |      0 |      0 |          0 |
+|     unit[3].k1.engine                    |  simple_k1_engine_24 |       3792 |       2988 |     804 |    0 |  2104 |      8 |      5 |          9 |
+|       (unit[3].k1.engine)                |  simple_k1_engine_24 |       2110 |       2110 |       0 |    0 |  1909 |      0 |      0 |          9 |
+|       bulk_pixels.pixel_memory           |       k1_bulk_pixels |        976 |        208 |     768 |    0 |     0 |      0 |      0 |          0 |
+|       packed_writeback.queue             |      k1_write_buffer |        688 |        652 |      36 |    0 |   195 |      8 |      4 |          0 |
+|     unit[3].long_reads.client            |    conv_span_port_25 |         77 |         77 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[3].long_reads.reader            |  bank_span_reader_26 |        186 |        136 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[3].long_reads.write_port        | simple_mem_bridge_27 |        119 |        119 |       0 |    0 |   294 |      0 |      0 |          0 |
+|   pager                                  |      cnn_paged_mover |      12717 |      12173 |     544 |    0 |  6298 |     48 |      0 |          0 |
+|     (pager)                              |      cnn_paged_mover |       5457 |       4961 |     496 |    0 |  5900 |      0 |      0 |          0 |
+|     local_ram                            | tile_local_ram_bank2 |       3143 |       3143 |       0 |    0 |   128 |     48 |      0 |          0 |
+|       two_banks.bank[1].ram              |    tile_read_width_0 |       1613 |       1613 |       0 |    0 |    63 |     24 |      0 |          0 |
+|         striped_words.word_stripe[7].ram |     tile_local_ram_7 |        316 |        316 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[0].ram |       tile_local_ram |        175 |        175 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[1].ram |     tile_local_ram_1 |        175 |        175 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[2].ram |     tile_local_ram_2 |        176 |        176 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[3].ram |     tile_local_ram_3 |        210 |        210 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[4].ram |     tile_local_ram_4 |        175 |        175 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[5].ram |     tile_local_ram_5 |        175 |        175 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[6].ram |     tile_local_ram_6 |        207 |        207 |       0 |    0 |     7 |      3 |      0 |          0 |
+|       two_banks.bank[0].ram              |      tile_read_width |       1491 |       1491 |       0 |    0 |    63 |     24 |      0 |          0 |
+|         striped_words.word_stripe[7].ram |    tile_local_ram_15 |        301 |        301 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[0].ram |     tile_local_ram_8 |        160 |        160 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[1].ram |     tile_local_ram_9 |        160 |        160 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[2].ram |    tile_local_ram_10 |        161 |        161 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[3].ram |    tile_local_ram_11 |        193 |        193 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[4].ram |    tile_local_ram_12 |        160 |        160 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[5].ram |    tile_local_ram_13 |        160 |        160 |       0 |    0 |     7 |      3 |      0 |          0 |
+|         striped_words.word_stripe[6].ram |    tile_local_ram_14 |        192 |        192 |       0 |    0 |     7 |      3 |      0 |          0 |
+|     mover                                |           data_mover |       4117 |       4069 |      48 |    0 |   270 |      0 |      0 |          0 |
++------------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

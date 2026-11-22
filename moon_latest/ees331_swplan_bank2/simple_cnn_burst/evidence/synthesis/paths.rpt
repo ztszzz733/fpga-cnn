@@ -1,0 +1,1457 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Fri Nov 20 00:02:46 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 20 -nworst 1 -input_pins -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_burst_final/synthesis/paths.rpt
+| Design       : cnn_simple_top
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[10]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[10]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[10]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[10]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[11]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[11]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[11]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[11]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[12]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[12]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[12]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[12]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[1]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[1]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[1]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[2]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[2]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[2]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[2]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[3]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[3]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[3]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[3]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[4]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[4]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[4]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[4]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[5]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[5]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[5]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[5]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[6]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[6]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[6]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[6]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[7]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[7]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[7]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[7]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[8]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[8]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[8]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[8]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[0].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[0].k3.engine/weight_load_index_reg[9]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[0].long_reads.reader/clk
+                         FDRE                                         r  unit[0].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[0].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[0].long_reads.reader/returned[1]
+                                                                      r  unit[0].long_reads.reader/consumed[2]_i_5/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[0].long_reads.reader/consumed[2]_i_5/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[0].long_reads.reader/consumed[2]_i_5_n_0
+                                                                      f  unit[0].long_reads.reader/consumed[2]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[0].long_reads.reader/consumed[2]_i_4/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[0].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[0].k3.engine/FSM_sequential_state[0]_i_4/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[0].k3.engine/FSM_sequential_state[0]_i_4/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[0].long_reads.write_port/unit[0].long_reads.read_ready
+                                                                      r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[0].long_reads.write_port/FSM_sequential_state[0]_i_2/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[0].k3.engine/cr_0
+                                                                      r  unit[0].k3.engine/store_x[7]_i_6/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[0].k3.engine/store_x[7]_i_6/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[0].k3.engine/store_x[7]_i_6_n_0
+                                                                      r  unit[0].k3.engine/dw_weight_base[12]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[0].k3.engine/dw_weight_base[12]_i_4/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[0].k3.engine/dw_weight_base[12]_i_4_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_6/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[0].k3.engine/weight_load_index[12]_i_6/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[0].k3.engine/weight_load_index[12]_i_6_n_0
+                                                                      f  unit[0].k3.engine/weight_load_index[12]_i_2/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[0].k3.engine/weight_load_index[12]_i_2/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[0].k3.engine/weight_load_index[12]_i_2_n_0
+                                                                      r  unit[0].k3.engine/weight_load_index[12]_i_1/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[0].k3.engine/weight_load_index[12]_i_1/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[0].k3.engine/weight_load_index[12]_i_1_n_0
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[9]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[0].k3.engine/clk
+                         FDRE                                         r  unit[0].k3.engine/weight_load_index_reg[9]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[0].k3.engine/weight_load_index_reg[9]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[10]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[10]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[10]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[10]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[11]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[11]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[11]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[11]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[12]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[12]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[12]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[12]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[1]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[1]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[1]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[2]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[2]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[2]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[2]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+Slack (MET) :             1.909ns  (required time - arrival time)
+  Source:                 unit[1].long_reads.reader/returned_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            unit[1].k3.engine/weight_load_index_reg[3]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        7.483ns  (logic 1.797ns (24.014%)  route 5.686ns (75.986%))
+  Logic Levels:           9  (LUT4=2 LUT5=2 LUT6=5)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=10079, unset)        0.973     0.973    unit[1].long_reads.reader/clk
+                         FDRE                                         r  unit[1].long_reads.reader/returned_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  unit[1].long_reads.reader/returned_reg[1]/Q
+                         net (fo=50, unplaced)        1.047     2.538    unit[1].long_reads.reader/returned[1]
+                                                                      r  unit[1].long_reads.reader/consumed[2]_i_5__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.295     2.833 f  unit[1].long_reads.reader/consumed[2]_i_5__0/O
+                         net (fo=1, unplaced)         0.449     3.282    unit[1].long_reads.reader/consumed[2]_i_5__0_n_0
+                                                                      f  unit[1].long_reads.reader/consumed[2]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.116     3.398 f  unit[1].long_reads.reader/consumed[2]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     3.858    unit[1].k3.engine/consumed_reg[0]_0
+                                                                      f  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     3.982 r  unit[1].k3.engine/FSM_sequential_state[0]_i_4__0/O
+                         net (fo=4, unplaced)         0.473     4.455    unit[1].long_reads.write_port/unit[1].long_reads.read_ready
+                                                                      r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/I0
+                         LUT6 (Prop_lut6_I0_O)        0.124     4.579 r  unit[1].long_reads.write_port/FSM_sequential_state[0]_i_2__0/O
+                         net (fo=16, unplaced)        0.503     5.082    unit[1].k3.engine/cr_1
+                                                                      r  unit[1].k3.engine/store_x[7]_i_6__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     5.206 r  unit[1].k3.engine/store_x[7]_i_6__0/O
+                         net (fo=9, unplaced)         0.490     5.696    unit[1].k3.engine/store_x[7]_i_6__0_n_0
+                                                                      r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     5.820 r  unit[1].k3.engine/dw_weight_base[12]_i_4__0/O
+                         net (fo=2, unplaced)         0.460     6.280    unit[1].k3.engine/dw_weight_base[12]_i_4__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_6__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.404 f  unit[1].k3.engine/weight_load_index[12]_i_6__0/O
+                         net (fo=1, unplaced)         0.449     6.853    unit[1].k3.engine/weight_load_index[12]_i_6__0_n_0
+                                                                      f  unit[1].k3.engine/weight_load_index[12]_i_2__0/I5
+                         LUT6 (Prop_lut6_I5_O)        0.124     6.977 r  unit[1].k3.engine/weight_load_index[12]_i_2__0/O
+                         net (fo=46, unplaced)        0.529     7.506    unit[1].k3.engine/weight_load_index[12]_i_2__0_n_0
+                                                                      r  unit[1].k3.engine/weight_load_index[12]_i_1__0/I4
+                         LUT5 (Prop_lut5_I4_O)        0.124     7.630 r  unit[1].k3.engine/weight_load_index[12]_i_1__0/O
+                         net (fo=13, unplaced)        0.826     8.456    unit[1].k3.engine/weight_load_index[12]_i_1__0_n_0
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[3]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=10079, unset)        0.924    10.924    unit[1].k3.engine/clk
+                         FDRE                                         r  unit[1].k3.engine/weight_load_index_reg[3]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    unit[1].k3.engine/weight_load_index_reg[3]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                          -8.456    
+  -------------------------------------------------------------------
+                         slack                                  1.909    
+
+
+
+

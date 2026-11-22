@@ -1,0 +1,20 @@
+{
+  "status": "COMPLETE",
+  "clock_ns": 10,
+  "part": "xc7z020clg484-1",
+  "top": "cnn_simple_top",
+  "max_channels": 512,
+  "sources": {
+    "bank_span_reader.sv": "81935075f13abca6243845da8ca47b81ccf768f288f46bf370550fcb54c8030b",
+    "cnn_simple_top.sv": "c634dd6911b1af2727ec32ab46a6616ee53eaf7bc7d343c7c441f13b15229b4e",
+    "compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
+    "conv_span_port.sv": "ae7bd1cb8bc6b5e2fa47cde4b5133286be5f93b71b8c70bd91f3ca504443d056",
+    "simple_k1_engine.sv": "e2301d188e4791daafb9e7b09e66fed70983bdde528296ff9510d3b038820dae",
+    "simple_k3_engine.sv": "807a9484e49c227d196a2b6600748ca0eff864a9d3a62fd44befe44b2aebe064",
+    "simple_mem_bridge.sv": "2a6ee19ef4aacb6cd583180c149d6e807973ca86160169d0491291517f5fde8d"
+  },
+  "free_commit_gib": 14.047847747802734,
+  "pid": 27492,
+  "exit_code": 0,
+  "wall_seconds": 120.02308670000093
+}

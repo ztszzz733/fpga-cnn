@@ -1,0 +1,16 @@
+{
+  "first_page": {
+    "trace_signals": 37,
+    "displayed_signals": 17,
+    "window_start_ns": 202150,
+    "window_end_ns": 213588,
+    "marker_ns": 205090
+  },
+  "four_ops": {
+    "trace_signals": 37,
+    "displayed_signals": 25,
+    "window_start_ns": 0,
+    "window_end_ns": 23425187,
+    "marker_ns": 205090
+  }
+}

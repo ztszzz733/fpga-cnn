@@ -1,0 +1,13 @@
+{
+  "batch_cycles": 1824359,
+  "zoom_start": 45800,
+  "zoom_end": 48400,
+  "cursor": 46776,
+  "cursor_states": {
+    "K3_0": "MAC_READ",
+    "K3_1": "MAC_READ",
+    "K1_0": "WEIGHT_REQ",
+    "K1_1": "ENQUEUE"
+  },
+  "signals": 29
+}

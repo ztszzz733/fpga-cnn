@@ -1,0 +1,63 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 14:42:25 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_bank64_trial/vivado_1/synth_hierarchy.rpt
+| Design       : burst_bank_test
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++---------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                Instance               |        Module        | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++---------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| burst_bank_test                       |                (top) |      28061 |      25997 |    2064 |    0 | 19947 |    108 |      8 |         18 |
+|   (burst_bank_test)                   |                (top) |          3 |          3 |       0 |    0 |   792 |      0 |      0 |          0 |
+|   cnn                                 |       cnn_simple_top |      13788 |      11964 |    1824 |    0 |  9660 |      8 |      8 |         18 |
+|     (cnn)                             |       cnn_simple_top |        722 |        722 |       0 |    0 |  2204 |      0 |      0 |          0 |
+|     unit[0].k3.engine                 |     simple_k3_engine |       2571 |       2571 |       0 |    0 |  1651 |      4 |      3 |          0 |
+|       (unit[0].k3.engine)             |     simple_k3_engine |       2491 |       2491 |       0 |    0 |  1649 |      0 |      0 |          0 |
+|     unit[0].long_reads.client         |       conv_span_port |         65 |         65 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[0].long_reads.reader         |     bank_span_reader |        177 |        127 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[0].long_reads.write_port     |    simple_mem_bridge |        122 |        122 |       0 |    0 |    70 |      0 |      0 |          0 |
+|     unit[1].k3.engine                 |   simple_k3_engine_4 |       2570 |       2570 |       0 |    0 |  1650 |      4 |      3 |          0 |
+|       (unit[1].k3.engine)             |   simple_k3_engine_4 |       2490 |       2490 |       0 |    0 |  1648 |      0 |      0 |          0 |
+|     unit[1].long_reads.client         |     conv_span_port_5 |         77 |         77 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[1].long_reads.reader         |   bank_span_reader_6 |        177 |        127 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[1].long_reads.write_port     |  simple_mem_bridge_7 |        123 |        123 |       0 |    0 |    70 |      0 |      0 |          0 |
+|     unit[2].k1.engine                 |     simple_k1_engine |       3217 |       2405 |     812 |    0 |  1719 |      0 |      1 |          9 |
+|       (unit[2].k1.engine)             |     simple_k1_engine |       2182 |       2138 |      44 |    0 |  1719 |      0 |      0 |          9 |
+|       bulk_pixels.pixel_memory        |    k1_bulk_pixels_15 |       1010 |        242 |     768 |    0 |     0 |      0 |      0 |          0 |
+|     unit[2].long_reads.client         |     conv_span_port_8 |         78 |         78 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[2].long_reads.reader         |   bank_span_reader_9 |        186 |        136 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[2].long_reads.write_port     | simple_mem_bridge_10 |        120 |        120 |       0 |    0 |    70 |      0 |      0 |          0 |
+|     unit[3].k1.engine                 |  simple_k1_engine_11 |       3236 |       2424 |     812 |    0 |  1716 |      0 |      1 |          9 |
+|       (unit[3].k1.engine)             |  simple_k1_engine_11 |       2201 |       2157 |      44 |    0 |  1716 |      0 |      0 |          9 |
+|       bulk_pixels.pixel_memory        |       k1_bulk_pixels |       1010 |        242 |     768 |    0 |     0 |      0 |      0 |          0 |
+|     unit[3].long_reads.client         |    conv_span_port_12 |         80 |         80 |       0 |    0 |    53 |      0 |      0 |          0 |
+|     unit[3].long_reads.reader         |  bank_span_reader_13 |        186 |        136 |      50 |    0 |    57 |      0 |      0 |          0 |
+|     unit[3].long_reads.write_port     | simple_mem_bridge_14 |        117 |        117 |       0 |    0 |    70 |      0 |      0 |          0 |
+|   pager                               |      cnn_paged_mover |      14334 |      14094 |     240 |    0 |  9495 |    100 |      0 |          0 |
+|     (pager)                           |      cnn_paged_mover |       6572 |       6380 |     192 |    0 |  9145 |      0 |      0 |          0 |
+|     local_ram                         | tile_local_ram_bank2 |       1084 |       1084 |       0 |    0 |    44 |    100 |      0 |          0 |
+|       two_banks.bank[1].ram           |    tile_read_width_0 |        565 |        565 |       0 |    0 |    21 |     50 |      0 |          0 |
+|         wide_words.word_stripe[1].ram |     tile_local_ram_1 |        320 |        320 |       0 |    0 |     9 |     25 |      0 |          0 |
+|         wide_words.word_stripe[0].ram |       tile_local_ram |        245 |        245 |       0 |    0 |     9 |     25 |      0 |          0 |
+|       two_banks.bank[0].ram           |      tile_read_width |        514 |        514 |       0 |    0 |    21 |     50 |      0 |          0 |
+|         wide_words.word_stripe[1].ram |     tile_local_ram_3 |        289 |        289 |       0 |    0 |     9 |     25 |      0 |          0 |
+|         wide_words.word_stripe[0].ram |     tile_local_ram_2 |        225 |        225 |       0 |    0 |     9 |     25 |      0 |          0 |
+|     mover                             |           data_mover |       6678 |       6630 |      48 |    0 |   306 |      0 |      0 |          0 |
++---------------------------------------+----------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

@@ -1,0 +1,690 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 15:51:24 2026
+| Host         : LAPTOP-56DQ4O7B running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 10 -file C:/Users/windows/.codex/visualizations/2026/10/09/01a11f57-abad-73d3-bace-ffb2cb9844cd/cnn_bank96_trial/vivado_write_1_192k/route_paths.rpt
+| Design       : burst_bank_test
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.389ns  (required time - arrival time)
+  Source:                 pager/request_addr_reg[18]_rep/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/page_number_reg[32][8]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.495ns  (logic 0.456ns (4.802%)  route 9.039ns (95.198%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.021ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.652ns = ( 11.652 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.645ns
+    Clock Pessimism Removal (CPR):    0.014ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.645     1.645    pager/clk
+    SLICE_X49Y64         FDRE                                         r  pager/request_addr_reg[18]_rep/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X49Y64         FDRE (Prop_fdre_C_Q)         0.456     2.101 r  pager/request_addr_reg[18]_rep/Q
+                         net (fo=128, routed)         9.039    11.140    pager/request_addr_reg[18]_rep_n_0
+    SLICE_X40Y107        FDRE                                         r  pager/page_number_reg[32][8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.652    11.652    pager/clk
+    SLICE_X40Y107        FDRE                                         r  pager/page_number_reg[32][8]/C
+                         clock pessimism              0.014    11.666    
+                         clock uncertainty           -0.035    11.631    
+    SLICE_X40Y107        FDRE (Setup_fdre_C_D)       -0.101    11.530    pager/page_number_reg[32][8]
+  -------------------------------------------------------------------
+                         required time                         11.530    
+                         arrival time                         -11.140    
+  -------------------------------------------------------------------
+                         slack                                  0.389    
+
+Slack (MET) :             0.427ns  (required time - arrival time)
+  Source:                 pager/request_addr_reg[20]_rep/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/page_number_reg[48][10]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.466ns  (logic 0.456ns (4.817%)  route 9.010ns (95.183%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.640ns = ( 11.640 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.645ns
+    Clock Pessimism Removal (CPR):    0.014ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.645     1.645    pager/clk
+    SLICE_X49Y64         FDRE                                         r  pager/request_addr_reg[20]_rep/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X49Y64         FDRE (Prop_fdre_C_Q)         0.456     2.101 r  pager/request_addr_reg[20]_rep/Q
+                         net (fo=128, routed)         9.010    11.111    pager/request_addr_reg[20]_rep_n_0
+    SLICE_X52Y106        FDRE                                         r  pager/page_number_reg[48][10]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.640    11.640    pager/clk
+    SLICE_X52Y106        FDRE                                         r  pager/page_number_reg[48][10]/C
+                         clock pessimism              0.014    11.654    
+                         clock uncertainty           -0.035    11.619    
+    SLICE_X52Y106        FDRE (Setup_fdre_C_D)       -0.081    11.538    pager/page_number_reg[48][10]
+  -------------------------------------------------------------------
+                         required time                         11.538    
+                         arrival time                         -11.111    
+  -------------------------------------------------------------------
+                         slack                                  0.427    
+
+Slack (MET) :             0.441ns  (required time - arrival time)
+  Source:                 pager/request_addr_reg[20]_rep/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/page_number_reg[39][10]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.466ns  (logic 0.456ns (4.817%)  route 9.010ns (95.183%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.009ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.640ns = ( 11.640 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.645ns
+    Clock Pessimism Removal (CPR):    0.014ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.645     1.645    pager/clk
+    SLICE_X49Y64         FDRE                                         r  pager/request_addr_reg[20]_rep/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X49Y64         FDRE (Prop_fdre_C_Q)         0.456     2.101 r  pager/request_addr_reg[20]_rep/Q
+                         net (fo=128, routed)         9.010    11.111    pager/request_addr_reg[20]_rep_n_0
+    SLICE_X53Y104        FDRE                                         r  pager/page_number_reg[39][10]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.640    11.640    pager/clk
+    SLICE_X53Y104        FDRE                                         r  pager/page_number_reg[39][10]/C
+                         clock pessimism              0.014    11.654    
+                         clock uncertainty           -0.035    11.619    
+    SLICE_X53Y104        FDRE (Setup_fdre_C_D)       -0.067    11.552    pager/page_number_reg[39][10]
+  -------------------------------------------------------------------
+                         required time                         11.552    
+                         arrival time                         -11.111    
+  -------------------------------------------------------------------
+                         slack                                  0.441    
+
+Slack (MET) :             0.449ns  (required time - arrival time)
+  Source:                 cnn/unit[2].k1.engine/ow_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[2].k1.engine/load_origin_reg[31]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.138ns  (logic 4.471ns (48.928%)  route 4.667ns (51.072%))
+  Logic Levels:           16  (CARRY4=11 LUT1=1 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.135ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.546ns = ( 11.546 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.796ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.796     1.796    cnn/unit[2].k1.engine/clk
+    SLICE_X91Y12         FDRE                                         r  cnn/unit[2].k1.engine/ow_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X91Y12         FDRE (Prop_fdre_C_Q)         0.456     2.252 f  cnn/unit[2].k1.engine/ow_reg[1]/Q
+                         net (fo=3, routed)           0.883     3.135    cnn/unit[2].k1.engine/ow[1]
+    SLICE_X88Y17         LUT1 (Prop_lut1_I0_O)        0.124     3.259 r  cnn/unit[2].k1.engine/i___126_i_12/O
+                         net (fo=1, routed)           0.000     3.259    cnn/unit[2].k1.engine/i___126_i_12_n_0
+    SLICE_X88Y17         CARRY4 (Prop_carry4_S[0]_O[2])
+                                                      0.547     3.806 r  cnn/unit[2].k1.engine/i___126_i_8/O[2]
+                         net (fo=1, routed)           0.920     4.726    cnn/unit[2].k1.engine/linear_wrap0[3]
+    SLICE_X89Y20         LUT6 (Prop_lut6_I1_O)        0.302     5.028 r  cnn/unit[2].k1.engine/i___126_i_6/O
+                         net (fo=1, routed)           0.000     5.028    cnn/unit[2].k1.engine/i___126_i_6_n_0
+    SLICE_X89Y20         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     5.578 r  cnn/unit[2].k1.engine/i___126_i_2/CO[3]
+                         net (fo=1, routed)           0.000     5.578    cnn/unit[2].k1.engine/i___126_i_2_n_0
+    SLICE_X89Y21         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.735 r  cnn/unit[2].k1.engine/i___126_i_1/CO[1]
+                         net (fo=66, routed)          1.001     6.736    cnn/unit[2].k1.engine/linear_wrap
+    SLICE_X82Y15         LUT6 (Prop_lut6_I2_O)        0.329     7.065 r  cnn/unit[2].k1.engine/i___467_i_5/O
+                         net (fo=2, routed)           0.411     7.476    cnn/unit[2].k1.engine/i___467_i_5_n_0
+    SLICE_X85Y16         LUT4 (Prop_lut4_I0_O)        0.124     7.600 r  cnn/unit[2].k1.engine/i___467_i_9/O
+                         net (fo=1, routed)           0.000     7.600    cnn/unit[2].k1.engine/i___467_i_9_n_0
+    SLICE_X85Y16         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550     8.150 r  cnn/unit[2].k1.engine/i___467_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.150    cnn/unit[2].k1.engine/i___467_i_1_n_0
+    SLICE_X85Y17         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.264 r  cnn/unit[2].k1.engine/i___463_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.264    cnn/unit[2].k1.engine/i___463_i_1_n_0
+    SLICE_X85Y18         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.378 r  cnn/unit[2].k1.engine/i___459_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.378    cnn/unit[2].k1.engine/i___459_i_1_n_0
+    SLICE_X85Y19         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.492 r  cnn/unit[2].k1.engine/i___455_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.492    cnn/unit[2].k1.engine/i___455_i_1_n_0
+    SLICE_X85Y20         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.606 r  cnn/unit[2].k1.engine/i___451_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.606    cnn/unit[2].k1.engine/i___451_i_1_n_0
+    SLICE_X85Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.720 r  cnn/unit[2].k1.engine/i___447_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.720    cnn/unit[2].k1.engine/i___447_i_1_n_0
+    SLICE_X85Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     8.834 r  cnn/unit[2].k1.engine/i___443_i_1/CO[3]
+                         net (fo=1, routed)           0.000     8.834    cnn/unit[2].k1.engine/i___443_i_1_n_0
+    SLICE_X85Y23         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313     9.147 r  cnn/unit[2].k1.engine/i___439_i_1/O[3]
+                         net (fo=2, routed)           0.873    10.020    cnn/unit[2].k1.engine/i___439_i_1_n_4
+    SLICE_X87Y24         LUT3 (Prop_lut3_I2_O)        0.335    10.355 r  cnn/unit[2].k1.engine/load_origin[31]_i_2/O
+                         net (fo=2, routed)           0.579    10.934    cnn/unit[2].k1.engine/load_origin[31]_i_2_n_0
+    SLICE_X87Y24         FDRE                                         r  cnn/unit[2].k1.engine/load_origin_reg[31]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.546    11.546    cnn/unit[2].k1.engine/clk
+    SLICE_X87Y24         FDRE                                         r  cnn/unit[2].k1.engine/load_origin_reg[31]/C
+                         clock pessimism              0.115    11.661    
+                         clock uncertainty           -0.035    11.626    
+    SLICE_X87Y24         FDRE (Setup_fdre_C_D)       -0.243    11.383    cnn/unit[2].k1.engine/load_origin_reg[31]
+  -------------------------------------------------------------------
+                         required time                         11.383    
+                         arrival time                         -10.934    
+  -------------------------------------------------------------------
+                         slack                                  0.449    
+
+Slack (MET) :             0.471ns  (required time - arrival time)
+  Source:                 cnn/unit[0].k3.engine/ib_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[0].k3.engine/tile_y_reg[4]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        8.910ns  (logic 2.729ns (30.628%)  route 6.181ns (69.371%))
+  Logic Levels:           14  (CARRY4=8 LUT3=1 LUT4=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.581ns = ( 11.581 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.756ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.756     1.756    cnn/unit[0].k3.engine/clk
+    SLICE_X8Y4           FDRE                                         r  cnn/unit[0].k3.engine/ib_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y4           FDRE (Prop_fdre_C_Q)         0.478     2.234 r  cnn/unit[0].k3.engine/ib_reg[0]/Q
+                         net (fo=6, routed)           1.313     3.547    cnn/unit[0].k3.engine/ib__0[0]
+    SLICE_X7Y15          LUT4 (Prop_lut4_I2_O)        0.301     3.848 r  cnn/unit[0].k3.engine/i___20_i_440/O
+                         net (fo=1, routed)           0.000     3.848    cnn/unit[0].k3.engine/i___20_i_440_n_0
+    SLICE_X7Y15          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     4.380 r  cnn/unit[0].k3.engine/i___20_i_415/CO[3]
+                         net (fo=1, routed)           0.000     4.380    cnn/unit[0].k3.engine/i___20_i_415_n_0
+    SLICE_X7Y16          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.494 r  cnn/unit[0].k3.engine/i___20_i_389/CO[3]
+                         net (fo=1, routed)           0.000     4.494    cnn/unit[0].k3.engine/i___20_i_389_n_0
+    SLICE_X7Y17          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.608 r  cnn/unit[0].k3.engine/i___20_i_354/CO[3]
+                         net (fo=1, routed)           0.000     4.608    cnn/unit[0].k3.engine/i___20_i_354_n_0
+    SLICE_X7Y18          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.722 r  cnn/unit[0].k3.engine/i___20_i_310/CO[3]
+                         net (fo=1, routed)           0.000     4.722    cnn/unit[0].k3.engine/i___20_i_310_n_0
+    SLICE_X7Y19          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.836 r  cnn/unit[0].k3.engine/i___20_i_249/CO[3]
+                         net (fo=1, routed)           0.000     4.836    cnn/unit[0].k3.engine/i___20_i_249_n_0
+    SLICE_X7Y20          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.950 r  cnn/unit[0].k3.engine/i___20_i_179/CO[3]
+                         net (fo=1, routed)           0.000     4.950    cnn/unit[0].k3.engine/i___20_i_179_n_0
+    SLICE_X7Y21          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.064 r  cnn/unit[0].k3.engine/i___20_i_114/CO[3]
+                         net (fo=1, routed)           0.000     5.064    cnn/unit[0].k3.engine/i___20_i_114_n_0
+    SLICE_X7Y22          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.178 f  cnn/unit[0].k3.engine/i___20_i_72/CO[3]
+                         net (fo=1, routed)           1.593     6.771    cnn/unit[0].k3.engine/state4
+    SLICE_X11Y13         LUT4 (Prop_lut4_I1_O)        0.124     6.895 f  cnn/unit[0].k3.engine/i___20_i_32/O
+                         net (fo=1, routed)           0.601     7.496    cnn/unit[0].k3.engine/i___20_i_32_n_0
+    SLICE_X14Y12         LUT5 (Prop_lut5_I4_O)        0.124     7.620 f  cnn/unit[0].k3.engine/i___20_i_9/O
+                         net (fo=1, routed)           0.607     8.227    cnn/unit[0].k3.engine/i___20_i_9_n_0
+    SLICE_X20Y10         LUT6 (Prop_lut6_I1_O)        0.124     8.351 f  cnn/unit[0].k3.engine/i___20_i_5/O
+                         net (fo=2, routed)           0.728     9.079    cnn/unit[0].k3.engine/i___20_i_5_n_0
+    SLICE_X21Y7          LUT3 (Prop_lut3_I2_O)        0.124     9.203 r  cnn/unit[0].k3.engine/i___20_i_1/O
+                         net (fo=4, routed)           0.618     9.821    cnn/unit[0].k3.engine/i___20_i_1_n_0
+    SLICE_X20Y3          LUT6 (Prop_lut6_I3_O)        0.124     9.945 r  cnn/unit[0].k3.engine/i___21/O
+                         net (fo=16, routed)          0.721    10.666    cnn/unit[0].k3.engine/i___21_n_0
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[4]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.581    11.581    cnn/unit[0].k3.engine/clk
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[4]/C
+                         clock pessimism              0.115    11.696    
+                         clock uncertainty           -0.035    11.661    
+    SLICE_X16Y1          FDRE (Setup_fdre_C_R)       -0.524    11.137    cnn/unit[0].k3.engine/tile_y_reg[4]
+  -------------------------------------------------------------------
+                         required time                         11.137    
+                         arrival time                         -10.666    
+  -------------------------------------------------------------------
+                         slack                                  0.471    
+
+Slack (MET) :             0.471ns  (required time - arrival time)
+  Source:                 cnn/unit[0].k3.engine/ib_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[0].k3.engine/tile_y_reg[5]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        8.910ns  (logic 2.729ns (30.628%)  route 6.181ns (69.371%))
+  Logic Levels:           14  (CARRY4=8 LUT3=1 LUT4=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.581ns = ( 11.581 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.756ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.756     1.756    cnn/unit[0].k3.engine/clk
+    SLICE_X8Y4           FDRE                                         r  cnn/unit[0].k3.engine/ib_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y4           FDRE (Prop_fdre_C_Q)         0.478     2.234 r  cnn/unit[0].k3.engine/ib_reg[0]/Q
+                         net (fo=6, routed)           1.313     3.547    cnn/unit[0].k3.engine/ib__0[0]
+    SLICE_X7Y15          LUT4 (Prop_lut4_I2_O)        0.301     3.848 r  cnn/unit[0].k3.engine/i___20_i_440/O
+                         net (fo=1, routed)           0.000     3.848    cnn/unit[0].k3.engine/i___20_i_440_n_0
+    SLICE_X7Y15          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     4.380 r  cnn/unit[0].k3.engine/i___20_i_415/CO[3]
+                         net (fo=1, routed)           0.000     4.380    cnn/unit[0].k3.engine/i___20_i_415_n_0
+    SLICE_X7Y16          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.494 r  cnn/unit[0].k3.engine/i___20_i_389/CO[3]
+                         net (fo=1, routed)           0.000     4.494    cnn/unit[0].k3.engine/i___20_i_389_n_0
+    SLICE_X7Y17          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.608 r  cnn/unit[0].k3.engine/i___20_i_354/CO[3]
+                         net (fo=1, routed)           0.000     4.608    cnn/unit[0].k3.engine/i___20_i_354_n_0
+    SLICE_X7Y18          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.722 r  cnn/unit[0].k3.engine/i___20_i_310/CO[3]
+                         net (fo=1, routed)           0.000     4.722    cnn/unit[0].k3.engine/i___20_i_310_n_0
+    SLICE_X7Y19          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.836 r  cnn/unit[0].k3.engine/i___20_i_249/CO[3]
+                         net (fo=1, routed)           0.000     4.836    cnn/unit[0].k3.engine/i___20_i_249_n_0
+    SLICE_X7Y20          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.950 r  cnn/unit[0].k3.engine/i___20_i_179/CO[3]
+                         net (fo=1, routed)           0.000     4.950    cnn/unit[0].k3.engine/i___20_i_179_n_0
+    SLICE_X7Y21          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.064 r  cnn/unit[0].k3.engine/i___20_i_114/CO[3]
+                         net (fo=1, routed)           0.000     5.064    cnn/unit[0].k3.engine/i___20_i_114_n_0
+    SLICE_X7Y22          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.178 f  cnn/unit[0].k3.engine/i___20_i_72/CO[3]
+                         net (fo=1, routed)           1.593     6.771    cnn/unit[0].k3.engine/state4
+    SLICE_X11Y13         LUT4 (Prop_lut4_I1_O)        0.124     6.895 f  cnn/unit[0].k3.engine/i___20_i_32/O
+                         net (fo=1, routed)           0.601     7.496    cnn/unit[0].k3.engine/i___20_i_32_n_0
+    SLICE_X14Y12         LUT5 (Prop_lut5_I4_O)        0.124     7.620 f  cnn/unit[0].k3.engine/i___20_i_9/O
+                         net (fo=1, routed)           0.607     8.227    cnn/unit[0].k3.engine/i___20_i_9_n_0
+    SLICE_X20Y10         LUT6 (Prop_lut6_I1_O)        0.124     8.351 f  cnn/unit[0].k3.engine/i___20_i_5/O
+                         net (fo=2, routed)           0.728     9.079    cnn/unit[0].k3.engine/i___20_i_5_n_0
+    SLICE_X21Y7          LUT3 (Prop_lut3_I2_O)        0.124     9.203 r  cnn/unit[0].k3.engine/i___20_i_1/O
+                         net (fo=4, routed)           0.618     9.821    cnn/unit[0].k3.engine/i___20_i_1_n_0
+    SLICE_X20Y3          LUT6 (Prop_lut6_I3_O)        0.124     9.945 r  cnn/unit[0].k3.engine/i___21/O
+                         net (fo=16, routed)          0.721    10.666    cnn/unit[0].k3.engine/i___21_n_0
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[5]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.581    11.581    cnn/unit[0].k3.engine/clk
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[5]/C
+                         clock pessimism              0.115    11.696    
+                         clock uncertainty           -0.035    11.661    
+    SLICE_X16Y1          FDRE (Setup_fdre_C_R)       -0.524    11.137    cnn/unit[0].k3.engine/tile_y_reg[5]
+  -------------------------------------------------------------------
+                         required time                         11.137    
+                         arrival time                         -10.666    
+  -------------------------------------------------------------------
+                         slack                                  0.471    
+
+Slack (MET) :             0.471ns  (required time - arrival time)
+  Source:                 cnn/unit[0].k3.engine/ib_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[0].k3.engine/tile_y_reg[6]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        8.910ns  (logic 2.729ns (30.628%)  route 6.181ns (69.371%))
+  Logic Levels:           14  (CARRY4=8 LUT3=1 LUT4=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.581ns = ( 11.581 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.756ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.756     1.756    cnn/unit[0].k3.engine/clk
+    SLICE_X8Y4           FDRE                                         r  cnn/unit[0].k3.engine/ib_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y4           FDRE (Prop_fdre_C_Q)         0.478     2.234 r  cnn/unit[0].k3.engine/ib_reg[0]/Q
+                         net (fo=6, routed)           1.313     3.547    cnn/unit[0].k3.engine/ib__0[0]
+    SLICE_X7Y15          LUT4 (Prop_lut4_I2_O)        0.301     3.848 r  cnn/unit[0].k3.engine/i___20_i_440/O
+                         net (fo=1, routed)           0.000     3.848    cnn/unit[0].k3.engine/i___20_i_440_n_0
+    SLICE_X7Y15          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     4.380 r  cnn/unit[0].k3.engine/i___20_i_415/CO[3]
+                         net (fo=1, routed)           0.000     4.380    cnn/unit[0].k3.engine/i___20_i_415_n_0
+    SLICE_X7Y16          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.494 r  cnn/unit[0].k3.engine/i___20_i_389/CO[3]
+                         net (fo=1, routed)           0.000     4.494    cnn/unit[0].k3.engine/i___20_i_389_n_0
+    SLICE_X7Y17          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.608 r  cnn/unit[0].k3.engine/i___20_i_354/CO[3]
+                         net (fo=1, routed)           0.000     4.608    cnn/unit[0].k3.engine/i___20_i_354_n_0
+    SLICE_X7Y18          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.722 r  cnn/unit[0].k3.engine/i___20_i_310/CO[3]
+                         net (fo=1, routed)           0.000     4.722    cnn/unit[0].k3.engine/i___20_i_310_n_0
+    SLICE_X7Y19          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.836 r  cnn/unit[0].k3.engine/i___20_i_249/CO[3]
+                         net (fo=1, routed)           0.000     4.836    cnn/unit[0].k3.engine/i___20_i_249_n_0
+    SLICE_X7Y20          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.950 r  cnn/unit[0].k3.engine/i___20_i_179/CO[3]
+                         net (fo=1, routed)           0.000     4.950    cnn/unit[0].k3.engine/i___20_i_179_n_0
+    SLICE_X7Y21          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.064 r  cnn/unit[0].k3.engine/i___20_i_114/CO[3]
+                         net (fo=1, routed)           0.000     5.064    cnn/unit[0].k3.engine/i___20_i_114_n_0
+    SLICE_X7Y22          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.178 f  cnn/unit[0].k3.engine/i___20_i_72/CO[3]
+                         net (fo=1, routed)           1.593     6.771    cnn/unit[0].k3.engine/state4
+    SLICE_X11Y13         LUT4 (Prop_lut4_I1_O)        0.124     6.895 f  cnn/unit[0].k3.engine/i___20_i_32/O
+                         net (fo=1, routed)           0.601     7.496    cnn/unit[0].k3.engine/i___20_i_32_n_0
+    SLICE_X14Y12         LUT5 (Prop_lut5_I4_O)        0.124     7.620 f  cnn/unit[0].k3.engine/i___20_i_9/O
+                         net (fo=1, routed)           0.607     8.227    cnn/unit[0].k3.engine/i___20_i_9_n_0
+    SLICE_X20Y10         LUT6 (Prop_lut6_I1_O)        0.124     8.351 f  cnn/unit[0].k3.engine/i___20_i_5/O
+                         net (fo=2, routed)           0.728     9.079    cnn/unit[0].k3.engine/i___20_i_5_n_0
+    SLICE_X21Y7          LUT3 (Prop_lut3_I2_O)        0.124     9.203 r  cnn/unit[0].k3.engine/i___20_i_1/O
+                         net (fo=4, routed)           0.618     9.821    cnn/unit[0].k3.engine/i___20_i_1_n_0
+    SLICE_X20Y3          LUT6 (Prop_lut6_I3_O)        0.124     9.945 r  cnn/unit[0].k3.engine/i___21/O
+                         net (fo=16, routed)          0.721    10.666    cnn/unit[0].k3.engine/i___21_n_0
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[6]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.581    11.581    cnn/unit[0].k3.engine/clk
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[6]/C
+                         clock pessimism              0.115    11.696    
+                         clock uncertainty           -0.035    11.661    
+    SLICE_X16Y1          FDRE (Setup_fdre_C_R)       -0.524    11.137    cnn/unit[0].k3.engine/tile_y_reg[6]
+  -------------------------------------------------------------------
+                         required time                         11.137    
+                         arrival time                         -10.666    
+  -------------------------------------------------------------------
+                         slack                                  0.471    
+
+Slack (MET) :             0.471ns  (required time - arrival time)
+  Source:                 cnn/unit[0].k3.engine/ib_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[0].k3.engine/tile_y_reg[7]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        8.910ns  (logic 2.729ns (30.628%)  route 6.181ns (69.371%))
+  Logic Levels:           14  (CARRY4=8 LUT3=1 LUT4=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.581ns = ( 11.581 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.756ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.756     1.756    cnn/unit[0].k3.engine/clk
+    SLICE_X8Y4           FDRE                                         r  cnn/unit[0].k3.engine/ib_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y4           FDRE (Prop_fdre_C_Q)         0.478     2.234 r  cnn/unit[0].k3.engine/ib_reg[0]/Q
+                         net (fo=6, routed)           1.313     3.547    cnn/unit[0].k3.engine/ib__0[0]
+    SLICE_X7Y15          LUT4 (Prop_lut4_I2_O)        0.301     3.848 r  cnn/unit[0].k3.engine/i___20_i_440/O
+                         net (fo=1, routed)           0.000     3.848    cnn/unit[0].k3.engine/i___20_i_440_n_0
+    SLICE_X7Y15          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     4.380 r  cnn/unit[0].k3.engine/i___20_i_415/CO[3]
+                         net (fo=1, routed)           0.000     4.380    cnn/unit[0].k3.engine/i___20_i_415_n_0
+    SLICE_X7Y16          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.494 r  cnn/unit[0].k3.engine/i___20_i_389/CO[3]
+                         net (fo=1, routed)           0.000     4.494    cnn/unit[0].k3.engine/i___20_i_389_n_0
+    SLICE_X7Y17          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.608 r  cnn/unit[0].k3.engine/i___20_i_354/CO[3]
+                         net (fo=1, routed)           0.000     4.608    cnn/unit[0].k3.engine/i___20_i_354_n_0
+    SLICE_X7Y18          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.722 r  cnn/unit[0].k3.engine/i___20_i_310/CO[3]
+                         net (fo=1, routed)           0.000     4.722    cnn/unit[0].k3.engine/i___20_i_310_n_0
+    SLICE_X7Y19          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.836 r  cnn/unit[0].k3.engine/i___20_i_249/CO[3]
+                         net (fo=1, routed)           0.000     4.836    cnn/unit[0].k3.engine/i___20_i_249_n_0
+    SLICE_X7Y20          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.950 r  cnn/unit[0].k3.engine/i___20_i_179/CO[3]
+                         net (fo=1, routed)           0.000     4.950    cnn/unit[0].k3.engine/i___20_i_179_n_0
+    SLICE_X7Y21          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.064 r  cnn/unit[0].k3.engine/i___20_i_114/CO[3]
+                         net (fo=1, routed)           0.000     5.064    cnn/unit[0].k3.engine/i___20_i_114_n_0
+    SLICE_X7Y22          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.178 f  cnn/unit[0].k3.engine/i___20_i_72/CO[3]
+                         net (fo=1, routed)           1.593     6.771    cnn/unit[0].k3.engine/state4
+    SLICE_X11Y13         LUT4 (Prop_lut4_I1_O)        0.124     6.895 f  cnn/unit[0].k3.engine/i___20_i_32/O
+                         net (fo=1, routed)           0.601     7.496    cnn/unit[0].k3.engine/i___20_i_32_n_0
+    SLICE_X14Y12         LUT5 (Prop_lut5_I4_O)        0.124     7.620 f  cnn/unit[0].k3.engine/i___20_i_9/O
+                         net (fo=1, routed)           0.607     8.227    cnn/unit[0].k3.engine/i___20_i_9_n_0
+    SLICE_X20Y10         LUT6 (Prop_lut6_I1_O)        0.124     8.351 f  cnn/unit[0].k3.engine/i___20_i_5/O
+                         net (fo=2, routed)           0.728     9.079    cnn/unit[0].k3.engine/i___20_i_5_n_0
+    SLICE_X21Y7          LUT3 (Prop_lut3_I2_O)        0.124     9.203 r  cnn/unit[0].k3.engine/i___20_i_1/O
+                         net (fo=4, routed)           0.618     9.821    cnn/unit[0].k3.engine/i___20_i_1_n_0
+    SLICE_X20Y3          LUT6 (Prop_lut6_I3_O)        0.124     9.945 r  cnn/unit[0].k3.engine/i___21/O
+                         net (fo=16, routed)          0.721    10.666    cnn/unit[0].k3.engine/i___21_n_0
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[7]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.581    11.581    cnn/unit[0].k3.engine/clk
+    SLICE_X16Y1          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[7]/C
+                         clock pessimism              0.115    11.696    
+                         clock uncertainty           -0.035    11.661    
+    SLICE_X16Y1          FDRE (Setup_fdre_C_R)       -0.524    11.137    cnn/unit[0].k3.engine/tile_y_reg[7]
+  -------------------------------------------------------------------
+                         required time                         11.137    
+                         arrival time                         -10.666    
+  -------------------------------------------------------------------
+                         slack                                  0.471    
+
+Slack (MET) :             0.474ns  (required time - arrival time)
+  Source:                 pager/request_addr_reg[18]_rep/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            pager/page_number_reg[62][8]/D
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        9.512ns  (logic 0.456ns (4.794%)  route 9.056ns (95.206%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.082ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.713ns = ( 11.713 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.645ns
+    Clock Pessimism Removal (CPR):    0.014ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.645     1.645    pager/clk
+    SLICE_X49Y64         FDRE                                         r  pager/request_addr_reg[18]_rep/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X49Y64         FDRE (Prop_fdre_C_Q)         0.456     2.101 r  pager/request_addr_reg[18]_rep/Q
+                         net (fo=128, routed)         9.056    11.157    pager/request_addr_reg[18]_rep_n_0
+    SLICE_X60Y107        FDRE                                         r  pager/page_number_reg[62][8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.713    11.713    pager/clk
+    SLICE_X60Y107        FDRE                                         r  pager/page_number_reg[62][8]/C
+                         clock pessimism              0.014    11.727    
+                         clock uncertainty           -0.035    11.692    
+    SLICE_X60Y107        FDRE (Setup_fdre_C_D)       -0.061    11.631    pager/page_number_reg[62][8]
+  -------------------------------------------------------------------
+                         required time                         11.631    
+                         arrival time                         -11.157    
+  -------------------------------------------------------------------
+                         slack                                  0.474    
+
+Slack (MET) :             0.476ns  (required time - arrival time)
+  Source:                 cnn/unit[0].k3.engine/ib_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            cnn/unit[0].k3.engine/tile_y_reg[10]/R
+                            (rising edge-triggered cell FDRE clocked by cnn_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             cnn_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (cnn_clk rise@10.000ns - cnn_clk rise@0.000ns)
+  Data Path Delay:        8.905ns  (logic 2.729ns (30.647%)  route 6.176ns (69.353%))
+  Logic Levels:           14  (CARRY4=8 LUT3=1 LUT4=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    1.581ns = ( 11.581 - 10.000 ) 
+    Source Clock Delay      (SCD):    1.756ns
+    Clock Pessimism Removal (CPR):    0.115ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock cnn_clk rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=20257, unset)        1.756     1.756    cnn/unit[0].k3.engine/clk
+    SLICE_X8Y4           FDRE                                         r  cnn/unit[0].k3.engine/ib_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y4           FDRE (Prop_fdre_C_Q)         0.478     2.234 r  cnn/unit[0].k3.engine/ib_reg[0]/Q
+                         net (fo=6, routed)           1.313     3.547    cnn/unit[0].k3.engine/ib__0[0]
+    SLICE_X7Y15          LUT4 (Prop_lut4_I2_O)        0.301     3.848 r  cnn/unit[0].k3.engine/i___20_i_440/O
+                         net (fo=1, routed)           0.000     3.848    cnn/unit[0].k3.engine/i___20_i_440_n_0
+    SLICE_X7Y15          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532     4.380 r  cnn/unit[0].k3.engine/i___20_i_415/CO[3]
+                         net (fo=1, routed)           0.000     4.380    cnn/unit[0].k3.engine/i___20_i_415_n_0
+    SLICE_X7Y16          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.494 r  cnn/unit[0].k3.engine/i___20_i_389/CO[3]
+                         net (fo=1, routed)           0.000     4.494    cnn/unit[0].k3.engine/i___20_i_389_n_0
+    SLICE_X7Y17          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.608 r  cnn/unit[0].k3.engine/i___20_i_354/CO[3]
+                         net (fo=1, routed)           0.000     4.608    cnn/unit[0].k3.engine/i___20_i_354_n_0
+    SLICE_X7Y18          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.722 r  cnn/unit[0].k3.engine/i___20_i_310/CO[3]
+                         net (fo=1, routed)           0.000     4.722    cnn/unit[0].k3.engine/i___20_i_310_n_0
+    SLICE_X7Y19          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.836 r  cnn/unit[0].k3.engine/i___20_i_249/CO[3]
+                         net (fo=1, routed)           0.000     4.836    cnn/unit[0].k3.engine/i___20_i_249_n_0
+    SLICE_X7Y20          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     4.950 r  cnn/unit[0].k3.engine/i___20_i_179/CO[3]
+                         net (fo=1, routed)           0.000     4.950    cnn/unit[0].k3.engine/i___20_i_179_n_0
+    SLICE_X7Y21          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.064 r  cnn/unit[0].k3.engine/i___20_i_114/CO[3]
+                         net (fo=1, routed)           0.000     5.064    cnn/unit[0].k3.engine/i___20_i_114_n_0
+    SLICE_X7Y22          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     5.178 f  cnn/unit[0].k3.engine/i___20_i_72/CO[3]
+                         net (fo=1, routed)           1.593     6.771    cnn/unit[0].k3.engine/state4
+    SLICE_X11Y13         LUT4 (Prop_lut4_I1_O)        0.124     6.895 f  cnn/unit[0].k3.engine/i___20_i_32/O
+                         net (fo=1, routed)           0.601     7.496    cnn/unit[0].k3.engine/i___20_i_32_n_0
+    SLICE_X14Y12         LUT5 (Prop_lut5_I4_O)        0.124     7.620 f  cnn/unit[0].k3.engine/i___20_i_9/O
+                         net (fo=1, routed)           0.607     8.227    cnn/unit[0].k3.engine/i___20_i_9_n_0
+    SLICE_X20Y10         LUT6 (Prop_lut6_I1_O)        0.124     8.351 f  cnn/unit[0].k3.engine/i___20_i_5/O
+                         net (fo=2, routed)           0.728     9.079    cnn/unit[0].k3.engine/i___20_i_5_n_0
+    SLICE_X21Y7          LUT3 (Prop_lut3_I2_O)        0.124     9.203 r  cnn/unit[0].k3.engine/i___20_i_1/O
+                         net (fo=4, routed)           0.618     9.821    cnn/unit[0].k3.engine/i___20_i_1_n_0
+    SLICE_X20Y3          LUT6 (Prop_lut6_I3_O)        0.124     9.945 r  cnn/unit[0].k3.engine/i___21/O
+                         net (fo=16, routed)          0.716    10.661    cnn/unit[0].k3.engine/i___21_n_0
+    SLICE_X16Y2          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[10]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock cnn_clk rise edge)   10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=20257, unset)        1.581    11.581    cnn/unit[0].k3.engine/clk
+    SLICE_X16Y2          FDRE                                         r  cnn/unit[0].k3.engine/tile_y_reg[10]/C
+                         clock pessimism              0.115    11.696    
+                         clock uncertainty           -0.035    11.661    
+    SLICE_X16Y2          FDRE (Setup_fdre_C_R)       -0.524    11.137    cnn/unit[0].k3.engine/tile_y_reg[10]
+  -------------------------------------------------------------------
+                         required time                         11.137    
+                         arrival time                         -10.661    
+  -------------------------------------------------------------------
+                         slack                                  0.476    
+
+
+
+

@@ -1,0 +1,729 @@
+{
+  "upstream": {
+    "repository": "ztszzz733/fpga-cnn",
+    "commit": "f0f8e7cc7ae5310d73628457bcfdd54ac2aaa0b8",
+    "blobs": {
+      "mover_src": "07166d766f62b900d9775a0c3c212e2b64fc114a",
+      "dma_test": "fc763591509bc0328cd2433b5563a9a680b30ab2",
+      "build_test": "e09974f617521aa35e7ca1b276b3bdf2c2df538b",
+      "time_stub": "fd12798b56077dc666ca5fc3a44d6c1f44197c26",
+      "dma_model": "49cb8a4144b2770634eb092f4d0a5349ad2e4bb9"
+    }
+  },
+  "dma": {
+    "baseline": {
+      "status": "PASS",
+      "cases": 82,
+      "fill_cycles": 1211,
+      "writeback_cycles": 1059,
+      "longest_local_stream": 1,
+      "longest_axi_write_stream": 1
+    },
+    "stream": {
+      "status": "PASS",
+      "cases": 82,
+      "fill_cycles": 467,
+      "writeback_cycles": 459,
+      "longest_local_stream": 32,
+      "longest_axi_write_stream": 16
+    }
+  },
+  "integration": {
+    "aligned": {
+      "baseline": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 4875,
+          "bank1_issue_cycles": 5968,
+          "batch_cycles": 175292,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 152
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 69379,
+            "bank_reads": 667,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 47,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 89578,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1152,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175290,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 73809,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1152,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "stream": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 5071,
+          "bank1_issue_cycles": 5772,
+          "batch_cycles": 100272,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 1922
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 44934,
+            "bank_reads": 667,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 47,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 55440,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1152,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 100270,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 39716,
+            "bank_reads": 1152,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1152,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      }
+    },
+    "original": {
+      "baseline": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 6064,
+          "bank1_issue_cycles": 5332,
+          "batch_cycles": 175972,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 281
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 62960,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 79669,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 175970,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 82459,
+            "bank_reads": 1155,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1149,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      },
+      "stream": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 112,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 5823,
+          "bank1_issue_cycles": 5573,
+          "batch_cycles": 104859,
+          "ddr_fill_bytes": 114688,
+          "verified_int32": 20416,
+          "four_mac_cycles": 1773
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 44938,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 54116,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 104857,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          },
+          {
+            "unit": 3,
+            "cycles": 47260,
+            "bank_reads": 1155,
+            "bank_read_bytes": 9216,
+            "writes": 512,
+            "input_commands": 2,
+            "weight_commands": 1,
+            "max_input_bytes": 4096,
+            "max_weight_bytes": 1024,
+            "bank_reads_64": 1149,
+            "writes_128": 512,
+            "write_bytes": 8192
+          }
+        ]
+      }
+    },
+    "edge": {
+      "baseline": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 24,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 303,
+          "bank1_issue_cycles": 530,
+          "batch_cycles": 33179,
+          "ddr_fill_bytes": 24576,
+          "verified_int32": 969,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 19148,
+            "bank_reads": 86,
+            "bank_read_bytes": 267,
+            "writes": 36,
+            "input_commands": 16,
+            "weight_commands": 1,
+            "max_input_bytes": 15,
+            "max_weight_bytes": 27,
+            "bank_reads_64": 19,
+            "writes_128": 0,
+            "write_bytes": 144
+          },
+          {
+            "unit": 1,
+            "cycles": 29706,
+            "bank_reads": 144,
+            "bank_read_bytes": 450,
+            "writes": 63,
+            "input_commands": 28,
+            "weight_commands": 1,
+            "max_input_bytes": 20,
+            "max_weight_bytes": 135,
+            "bank_reads_64": 33,
+            "writes_128": 0,
+            "write_bytes": 252
+          },
+          {
+            "unit": 2,
+            "cycles": 33177,
+            "bank_reads": 152,
+            "bank_read_bytes": 1106,
+            "writes": 201,
+            "input_commands": 3,
+            "weight_commands": 1,
+            "max_input_bytes": 448,
+            "max_weight_bytes": 35,
+            "bank_reads_64": 135,
+            "writes_128": 188,
+            "write_bytes": 3060
+          },
+          {
+            "unit": 3,
+            "cycles": 21949,
+            "bank_reads": 112,
+            "bank_read_bytes": 608,
+            "writes": 39,
+            "input_commands": 35,
+            "weight_commands": 1,
+            "max_input_bytes": 16,
+            "max_weight_bytes": 48,
+            "bank_reads_64": 40,
+            "writes_128": 22,
+            "write_bytes": 420
+          }
+        ]
+      },
+      "stream": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 24,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 278,
+          "bank1_issue_cycles": 555,
+          "batch_cycles": 15664,
+          "ddr_fill_bytes": 24576,
+          "verified_int32": 969,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 8122,
+            "bank_reads": 86,
+            "bank_read_bytes": 267,
+            "writes": 36,
+            "input_commands": 16,
+            "weight_commands": 1,
+            "max_input_bytes": 15,
+            "max_weight_bytes": 27,
+            "bank_reads_64": 19,
+            "writes_128": 0,
+            "write_bytes": 144
+          },
+          {
+            "unit": 1,
+            "cycles": 11776,
+            "bank_reads": 144,
+            "bank_read_bytes": 450,
+            "writes": 63,
+            "input_commands": 28,
+            "weight_commands": 1,
+            "max_input_bytes": 20,
+            "max_weight_bytes": 135,
+            "bank_reads_64": 33,
+            "writes_128": 0,
+            "write_bytes": 252
+          },
+          {
+            "unit": 2,
+            "cycles": 15662,
+            "bank_reads": 152,
+            "bank_read_bytes": 1106,
+            "writes": 201,
+            "input_commands": 3,
+            "weight_commands": 1,
+            "max_input_bytes": 448,
+            "max_weight_bytes": 35,
+            "bank_reads_64": 135,
+            "writes_128": 188,
+            "write_bytes": 3060
+          },
+          {
+            "unit": 3,
+            "cycles": 13014,
+            "bank_reads": 112,
+            "bank_read_bytes": 608,
+            "writes": 39,
+            "input_commands": 35,
+            "weight_commands": 1,
+            "max_input_bytes": 16,
+            "max_weight_bytes": 48,
+            "bank_reads_64": 40,
+            "writes_128": 22,
+            "write_bytes": 420
+          }
+        ]
+      }
+    },
+    "limits": {
+      "baseline": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 346,
+          "writebacks_before_verify": 126,
+          "bank0_issue_cycles": 18422,
+          "bank1_issue_cycles": 22090,
+          "batch_cycles": 822673,
+          "ddr_fill_bytes": 354304,
+          "verified_int32": 79296,
+          "four_mac_cycles": 161
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 74068,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 82049,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 822671,
+            "bank_reads": 15494,
+            "bank_read_bytes": 62392,
+            "writes": 15277,
+            "input_commands": 15,
+            "weight_commands": 7680,
+            "max_input_bytes": 64,
+            "max_weight_bytes": 8,
+            "bank_reads_64": 104,
+            "writes_128": 15217,
+            "write_bytes": 243712
+          },
+          {
+            "unit": 3,
+            "cycles": 231119,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4108,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4092,
+            "write_bytes": 65536
+          }
+        ]
+      },
+      "stream": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 346,
+          "writebacks_before_verify": 126,
+          "bank0_issue_cycles": 20116,
+          "bank1_issue_cycles": 20396,
+          "batch_cycles": 525651,
+          "ddr_fill_bytes": 354304,
+          "verified_int32": 79296,
+          "four_mac_cycles": 684
+        },
+        "units": [
+          {
+            "unit": 0,
+            "cycles": 50099,
+            "bank_reads": 668,
+            "bank_read_bytes": 1656,
+            "writes": 1760,
+            "input_commands": 220,
+            "weight_commands": 1,
+            "max_input_bytes": 12,
+            "max_weight_bytes": 216,
+            "bank_reads_64": 46,
+            "writes_128": 0,
+            "write_bytes": 7040
+          },
+          {
+            "unit": 1,
+            "cycles": 56990,
+            "bank_reads": 1185,
+            "bank_read_bytes": 9216,
+            "writes": 224,
+            "input_commands": 32,
+            "weight_commands": 1,
+            "max_input_bytes": 256,
+            "max_weight_bytes": 4608,
+            "bank_reads_64": 1119,
+            "writes_128": 0,
+            "write_bytes": 896
+          },
+          {
+            "unit": 2,
+            "cycles": 525649,
+            "bank_reads": 15494,
+            "bank_read_bytes": 62392,
+            "writes": 15277,
+            "input_commands": 15,
+            "weight_commands": 7680,
+            "max_input_bytes": 64,
+            "max_weight_bytes": 8,
+            "bank_reads_64": 104,
+            "writes_128": 15217,
+            "write_bytes": 243712
+          },
+          {
+            "unit": 3,
+            "cycles": 112622,
+            "bank_reads": 1796,
+            "bank_read_bytes": 10240,
+            "writes": 4108,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 764,
+            "writes_128": 4092,
+            "write_bytes": 65536
+          }
+        ]
+      }
+    },
+    "abort": {
+      "baseline": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 76,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 2692,
+          "bank1_issue_cycles": 3069,
+          "batch_cycles": 148701,
+          "ddr_fill_bytes": 77824,
+          "verified_int32": 16384,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 2,
+            "cycles": 148701,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          }
+        ]
+      },
+      "stream": {
+        "summary": {
+          "cache_bytes": 196608,
+          "fills": 76,
+          "writebacks_before_verify": 0,
+          "bank0_issue_cycles": 2692,
+          "bank1_issue_cycles": 3069,
+          "batch_cycles": 96621,
+          "ddr_fill_bytes": 77824,
+          "verified_int32": 16384,
+          "four_mac_cycles": 0
+        },
+        "units": [
+          {
+            "unit": 2,
+            "cycles": 96621,
+            "bank_reads": 1280,
+            "bank_read_bytes": 10240,
+            "writes": 4096,
+            "input_commands": 4,
+            "weight_commands": 512,
+            "max_input_bytes": 512,
+            "max_weight_bytes": 16,
+            "bank_reads_64": 1280,
+            "writes_128": 4096,
+            "write_bytes": 65536
+          }
+        ]
+      }
+    }
+  },
+  "prior_ppa": {
+    "synth": {
+      "wns_ns": 0.401,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0,
+      "LUT": 24355.0,
+      "FF": 17324.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/valid_page_reg[105]/C",
+        "pager/hint_valid_reg[2]/D"
+      ]
+    },
+    "route": {
+      "wns_ns": 0.389,
+      "setup_failures": 0,
+      "whs_ns": 0.024,
+      "hold_failures": 0,
+      "LUT": 23927.0,
+      "FF": 17296.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/request_addr_reg[18]_rep/C",
+        "pager/page_number_reg[32][8]/D"
+      ]
+    }
+  },
+  "ppa": {
+    "synth": {
+      "wns_ns": 0.401,
+      "setup_failures": 0,
+      "whs_ns": 0.186,
+      "hold_failures": 0,
+      "LUT": 24373.0,
+      "FF": 17354.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/valid_page_reg[105]/C",
+        "pager/hint_valid_reg[2]/D"
+      ]
+    },
+    "route": {
+      "wns_ns": 0.236,
+      "setup_failures": 0,
+      "whs_ns": 0.018,
+      "hold_failures": 0,
+      "LUT": 23925.0,
+      "FF": 17326.0,
+      "BRAM36": 76.0,
+      "DSP": 18.0,
+      "critical_endpoints": [
+        "pager/request_slot_reg[6]/C",
+        "pager/request_queue[2].front_reg[103]/CE"
+      ]
+    }
+  }
+}

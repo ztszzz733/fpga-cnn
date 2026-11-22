@@ -1,0 +1,199 @@
+{
+  "baseline": {
+    "batch": {
+      "batch_cycles": 324961,
+      "ddr_fill_bytes": 114688,
+      "verified_int32": 20416,
+      "four_mac_cycles": 0
+    },
+    "per_unit": [
+      {
+        "unit": 0,
+        "cycles": 84151,
+        "bank_reads": 1494,
+        "bank_read_bytes": 1656,
+        "writes": 1760,
+        "input_commands": 0,
+        "weight_commands": 0,
+        "max_input_bytes": 0,
+        "max_weight_bytes": 0
+      },
+      {
+        "unit": 1,
+        "cycles": 109272,
+        "bank_reads": 2304,
+        "bank_read_bytes": 9216,
+        "writes": 224,
+        "input_commands": 0,
+        "weight_commands": 0,
+        "max_input_bytes": 0,
+        "max_weight_bytes": 0
+      },
+      {
+        "unit": 2,
+        "cycles": 324959,
+        "bank_reads": 1536,
+        "bank_read_bytes": 6144,
+        "writes": 16384,
+        "input_commands": 0,
+        "weight_commands": 0,
+        "max_input_bytes": 0,
+        "max_weight_bytes": 0
+      },
+      {
+        "unit": 3,
+        "cycles": 96927,
+        "bank_reads": 2304,
+        "bank_read_bytes": 9216,
+        "writes": 2048,
+        "input_commands": 0,
+        "weight_commands": 0,
+        "max_input_bytes": 0,
+        "max_weight_bytes": 0
+      }
+    ],
+    "simulation_regression": {
+      "status": "PASS",
+      "numerical_jobs": 160,
+      "invalid_jobs": 4,
+      "abort_restart_jobs": 4,
+      "cycles": 305228,
+      "actual_mac_overlap_cycles": 4900,
+      "all_four_mac_cycles": 159,
+      "max_outstanding_total": 4
+    },
+    "synth_utilization": {
+      "LUT": 10399,
+      "FF": 9346,
+      "DSP": 16,
+      "BRAM36_equivalent": 14
+    },
+    "routed_utilization": {
+      "LUT": 10204,
+      "FF": 9346,
+      "DSP": 16,
+      "BRAM36_equivalent": 14
+    },
+    "routed_timing": {
+      "setup_slack_ns": 0.589,
+      "setup_failures": 0,
+      "hold_slack_ns": 0.042,
+      "hold_failures": 0
+    }
+  },
+  "burst": {
+    "batch": {
+      "batch_cycles": 315529,
+      "ddr_fill_bytes": 114688,
+      "verified_int32": 20416,
+      "four_mac_cycles": 0
+    },
+    "per_unit": [
+      {
+        "unit": 0,
+        "cycles": 64347,
+        "bank_reads": 714,
+        "bank_read_bytes": 1656,
+        "writes": 1760,
+        "input_commands": 220,
+        "weight_commands": 1,
+        "max_input_bytes": 12,
+        "max_weight_bytes": 216
+      },
+      {
+        "unit": 1,
+        "cycles": 89878,
+        "bank_reads": 2304,
+        "bank_read_bytes": 9216,
+        "writes": 224,
+        "input_commands": 32,
+        "weight_commands": 1,
+        "max_input_bytes": 256,
+        "max_weight_bytes": 4608
+      },
+      {
+        "unit": 2,
+        "cycles": 315527,
+        "bank_reads": 1536,
+        "bank_read_bytes": 6144,
+        "writes": 16384,
+        "input_commands": 2,
+        "weight_commands": 256,
+        "max_input_bytes": 1024,
+        "max_weight_bytes": 16
+      },
+      {
+        "unit": 3,
+        "cycles": 92045,
+        "bank_reads": 2304,
+        "bank_read_bytes": 9216,
+        "writes": 2048,
+        "input_commands": 2,
+        "weight_commands": 1,
+        "max_input_bytes": 4096,
+        "max_weight_bytes": 1024
+      }
+    ],
+    "simulation_regression": {
+      "status": "PASS",
+      "numerical_jobs": 160,
+      "invalid_jobs": 4,
+      "abort_restart_jobs": 4,
+      "cycles": 176932,
+      "actual_mac_overlap_cycles": 4827,
+      "all_four_mac_cycles": 245,
+      "max_outstanding_total": 11
+    },
+    "synth_utilization": {
+      "LUT": 11262,
+      "FF": 9658,
+      "DSP": 18,
+      "BRAM36_equivalent": 14
+    },
+    "routed_utilization": {
+      "LUT": 11047,
+      "FF": 9658,
+      "DSP": 18,
+      "BRAM36_equivalent": 14
+    },
+    "routed_timing": {
+      "setup_slack_ns": 0.37,
+      "setup_failures": 0,
+      "hold_slack_ns": 0.032,
+      "hold_failures": 0
+    }
+  },
+  "project_dependency_sha256": {
+    "../source/partners/datapath/delivery/rtl/common/cpu_control_pkg.sv": "282674f7b85146db982bc045e68cb7ade87014ded611260697889941553ff8ab",
+    "../source/rtl/cpu_control/main_decoder.sv": "8c0d9e00efeaf56ec228e721c55c2e1c54693b595dcd407dd27cfcc98caf4b19",
+    "../source/rtl/cpu_control/alu_decoder.sv": "0c75f2dd2aad254ee6d884c4879500c9352970c15d41d09066f759dc8e49930f",
+    "../source/rtl/cpu_control/hazard_unit.sv": "8cf9ae3bb11d1560f9c6663f7e84738eb84dc1454f87ab2c9ab5d35bfad0b54d",
+    "../source/rtl/cpu_control/branch_control.sv": "dc044aa97aa3311110efe587199848d83bb56295556885836aac3bdbee18eb74",
+    "../source/rtl/cpu_control/pipeline_control.sv": "bd15824b24040c9f10df23feb979d8ec03c9d8a573b01561cad58f396eba29fc",
+    "../source/rtl/cpu_control/cpu_control.sv": "d1e049875d1309ef7d50c327dcf4dbecb2187d129cadcbc5b373557aa3ace239",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/alu.sv": "133e1b5c05850410c50e34090afd5d8d575145dc1d8c1b5f7bc25390605aa487",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv": "da329cce5cffabe808fc525e47f6256ce457da37e33e34b4635303ecfcf7e707",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/pc.sv": "ec3d15f60e25aaeea58a3e219a6b750d1f8bbf84f02e0d3999c7dfe34550d3ad",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/regfile.sv": "810dd840850adbefd2b6cf937954a233c0827ef376b2278172eb5fc7909d18fb",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv": "8de5655cb646af4112a30765d169895c5e6433b897b014aa45ca7b736e358c24",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv": "16dfd5bd5050c35b358c990c3708dbbe3bee929c8682de15ccff01c0e564c2de",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv": "835c3d52ba53c890d03192fe13dcc91e94b9e7d7c426ebf9fbdafc77739565be",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv": "f1f6e9f395f5957b433b1be35ebe50208d63cba00a007b3fa39041be6132b078",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv": "ffa8f530cde9a1272eda25108c81e1a4774ad981985407d2f103afc1080f59b1",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/lsu.sv": "0cf58c3e1496dcff2954793ea8a16ce410dc7a7b5d3c63b1af56ac29917a98d1",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv": "f08d75bdc22b6fa4c9a20345493e95591acaa64f9ccc15b73563c2a1695f67e1",
+    "../source/partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv": "b27aa4e3725dc58398c88c4f75f13d9245ef6697f120f873cc5a56f1597bc9e1",
+    "../source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv": "38ae89d6f040a231d434cc26b24c3a9d5b787c31de9ee2ef57b199cd3c4b9e60",
+    "../source/rtl/soc/cpu_core.sv": "af7a2cb69311f2ca1b8d58c340fe7962cfc1fb381ad0357c982a26bac5e1ec9b",
+    "../source/storage_v2/rtl/download_ram.sv": "05fcf2f463edfd712c022c316c3e8390aaadeb4e74d6c84465caa386acc07162",
+    "../source/storage_v2/rtl/tile_local_ram.sv": "6ea1acb81fccfa1df4d00490deae2f880a86d86bc56de3d5921564d200da1f3c",
+    "../source/storage_v2/rtl/tile_local_ram_bank2.sv": "740d12423e26da7531debcb30fa5bc4788769ba50fff1e9a8f6946fd45b5571d",
+    "../source/storage_v2/rtl/data_mover.sv": "416e9989a04fdbb2bee8fc547cab2f76db0ace961218dfb460cb2b2525ac957f",
+    "../source/rtl/cnn_ddr/cnn_paged_mover.sv": "6a5fb95e8af1ad3934e38b82006b21800cb90a978140dadb0501978660c16ebb",
+    "../source/rtl/cnn_ddr/datasram_mover_subsystem.sv": "f2f79e0f457d639be11b9d04c9c45bbfead5ace0ffd18c9dfe39c3ed5ff04a46",
+    "../source/rtl/soc/clock_unit.sv": "8da70a1d1fe7973e8731d96c308720078b290945c85c224ce4b462b389d485c3",
+    "../source/rtl/soc/ees331/image_control_bridge.sv": "a36c45c067c0bdb435eebf31dbb5b81b8d8108a1cfc47ce19c5ac76aa032fc5a",
+    "../source/rtl/soc/ees331/ees331_ps_wrapper.sv": "72d00674aa17a17fa1586519a55017ff160e7ce29108182c44deff83157fd936",
+    "../arm_schedule/ees331_axi_mover_model.hpp": "b10d0da08b434208aa68fce0ca6587615d01577617ce187fef9057413b16e8c3"
+  }
+}

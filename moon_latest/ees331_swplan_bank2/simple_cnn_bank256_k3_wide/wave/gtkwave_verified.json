@@ -1,0 +1,14 @@
+{
+  "four_ops_full": {
+    "signals": 29,
+    "window_start": "0",
+    "window_end": "19188943",
+    "marker": "0"
+  },
+  "four_ops_zoom": {
+    "signals": 29,
+    "window_start": "458000",
+    "window_end": "485345",
+    "marker": "467760"
+  }
+}

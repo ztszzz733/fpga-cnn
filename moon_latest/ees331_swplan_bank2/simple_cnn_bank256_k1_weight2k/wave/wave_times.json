@@ -1,0 +1,74 @@
+{
+  "dump_sha256": "f4ac35ec67f466ebd1d9c53b5d1d335ce2952aa5b646d248289aa2dd0f73d8bf",
+  "batch_cycles": 1867678,
+  "signals": 29,
+  "sessions": {
+    "four_ops_full": {
+      "start_cycle": 0,
+      "end_cycle": 1867678,
+      "cursor": -1
+    },
+    "weight_load": {
+      "start_cycle": 0,
+      "end_cycle": 16000,
+      "cursor": 9000,
+      "cursor_signals": {
+        "K3_0": {
+          "state": "WEIGHT_REQ",
+          "READ": 1,
+          "MAC": 0,
+          "WRITE": 0
+        },
+        "K3_1": {
+          "state": "WEIGHT_REQ",
+          "READ": 1,
+          "MAC": 0,
+          "WRITE": 0
+        },
+        "K1_0": {
+          "state": "WEIGHT_REQ",
+          "READ": 1,
+          "MAC": 0,
+          "WRITE": 0
+        },
+        "K1_1": {
+          "state": "WEIGHT_REQ",
+          "READ": 1,
+          "MAC": 0,
+          "WRITE": 0
+        }
+      }
+    },
+    "fifo_wait": {
+      "start_cycle": 318106,
+      "end_cycle": 322906,
+      "cursor": 319739,
+      "cursor_signals": {
+        "K3_0": {
+          "state": "MAC_READ",
+          "READ": 0,
+          "MAC": 1,
+          "WRITE": 0
+        },
+        "K3_1": {
+          "state": "MAC_READ",
+          "READ": 0,
+          "MAC": 1,
+          "WRITE": 0
+        },
+        "K1_0": {
+          "state": "TILE_BEGIN",
+          "READ": 0,
+          "MAC": 0,
+          "WRITE": 1
+        },
+        "K1_1": {
+          "state": "TILE_BEGIN",
+          "READ": 0,
+          "MAC": 0,
+          "WRITE": 1
+        }
+      }
+    }
+  }
+}

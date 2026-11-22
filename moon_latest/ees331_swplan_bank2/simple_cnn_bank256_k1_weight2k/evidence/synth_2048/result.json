@@ -1,0 +1,12 @@
+{
+  "weight_cache_bytes": 2048,
+  "part": "xc7z020clg484-1",
+  "top": "simple_k1_engine",
+  "seconds": 60.97,
+  "source_sha256": {
+    "rtl/compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
+    "rtl/k1_bulk_pixels.sv": "ca85cebda93236dffd52a0050a689de7fca1f86eb13b17fcef0d8e87af05f3b4",
+    "rtl/k1_write_buffer.sv": "637cb287b67c6e0caca8ee95b9e8fd31b3fd1964e381c83bf521c1c4d8cf6499",
+    "rtl/simple_k1_engine.sv": "5caacbc9377a49032b090ea3e76ed5fc0938886d3276ce1e2bb90e6a3083b79f"
+  }
+}

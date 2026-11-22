@@ -1,0 +1,5 @@
+case,unit,cycles,bank_reads,read_bytes,writes,span_commands,input_commands,weight_commands,max_input_bytes,max_weight_bytes
+0,0,39300,1494,1656,1760,0,0,0,0,0
+1,1,13148,1345,1345,200,0,0,0,0,0
+2,2,145580,1536,6144,16384,0,0,0,0,0
+3,3,46570,2304,9216,2048,0,0,0,0,0

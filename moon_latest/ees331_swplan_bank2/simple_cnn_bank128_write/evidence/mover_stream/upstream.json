@@ -1,0 +1,11 @@
+{
+  "repository": "ztszzz733/fpga-cnn",
+  "commit": "f0f8e7cc7ae5310d73628457bcfdd54ac2aaa0b8",
+  "blobs": {
+    "mover_src": "07166d766f62b900d9775a0c3c212e2b64fc114a",
+    "dma_test": "fc763591509bc0328cd2433b5563a9a680b30ab2",
+    "build_test": "e09974f617521aa35e7ca1b276b3bdf2c2df538b",
+    "time_stub": "fd12798b56077dc666ca5fc3a44d6c1f44197c26",
+    "dma_model": "49cb8a4144b2770634eb092f4d0a5349ad2e4bb9"
+  }
+}

@@ -1,0 +1,614 @@
+{
+  "baseline": {
+    "batch_cycles": 2492274,
+    "ddr_fill_bytes": 1728512,
+    "verified_int32": 383232,
+    "four_mac_cycles": 18717,
+    "cache_bytes": 196608,
+    "fills": 1688,
+    "writebacks_before_verify": 1328,
+    "bank0_issue_cycles": 82430,
+    "bank1_issue_cycles": 80002,
+    "extra": [],
+    "units": [
+      {
+        "unit": 0,
+        "cycles": 2480723,
+        "bank_reads": 6336,
+        "bank_read_bytes": 50688,
+        "writes": 44160,
+        "input_commands": 1380,
+        "weight_commands": 1,
+        "max_input_bytes": 64,
+        "max_weight_bytes": 4608,
+        "bank_reads_64": 6336,
+        "writes_wide": 0,
+        "write_bytes": 176640
+      },
+      {
+        "unit": 1,
+        "cycles": 2492273,
+        "bank_reads": 6336,
+        "bank_read_bytes": 50688,
+        "writes": 44160,
+        "input_commands": 1380,
+        "weight_commands": 1,
+        "max_input_bytes": 64,
+        "max_weight_bytes": 4608,
+        "bank_reads_64": 6336,
+        "writes_wide": 0,
+        "write_bytes": 176640
+      },
+      {
+        "unit": 2,
+        "cycles": 1319333,
+        "bank_reads": 12288,
+        "bank_read_bytes": 98304,
+        "writes": 18432,
+        "input_commands": 48,
+        "weight_commands": 4608,
+        "max_input_bytes": 512,
+        "max_weight_bytes": 16,
+        "bank_reads_64": 12288,
+        "writes_wide": 18432,
+        "write_bytes": 589824
+      },
+      {
+        "unit": 3,
+        "cycles": 1293214,
+        "bank_reads": 12288,
+        "bank_read_bytes": 98304,
+        "writes": 18432,
+        "input_commands": 48,
+        "weight_commands": 4608,
+        "max_input_bytes": 512,
+        "max_weight_bytes": 16,
+        "bank_reads_64": 12288,
+        "writes_wide": 18432,
+        "write_bytes": 589824
+      }
+    ]
+  },
+  "expanded_fifo": {
+    "aligned": {
+      "batch_cycles": 94011,
+      "ddr_fill_bytes": 114688,
+      "verified_int32": 20416,
+      "four_mac_cycles": 2321,
+      "cache_bytes": 196608,
+      "fills": 112,
+      "writebacks_before_verify": 0,
+      "bank0_issue_cycles": 4163,
+      "bank1_issue_cycles": 4376,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 294,
+          "k3_mac_during_write": 10939,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        },
+        {
+          "index": 1,
+          "k3_peak": 4,
+          "k3_mac_during_write": 2012,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 0,
+          "cycles": 34294,
+          "bank_reads": 667,
+          "bank_read_bytes": 1656,
+          "writes": 1760,
+          "input_commands": 220,
+          "weight_commands": 1,
+          "max_input_bytes": 12,
+          "max_weight_bytes": 216,
+          "bank_reads_64": 47,
+          "writes_wide": 0,
+          "write_bytes": 7040
+        },
+        {
+          "unit": 1,
+          "cycles": 54475,
+          "bank_reads": 1152,
+          "bank_read_bytes": 9216,
+          "writes": 224,
+          "input_commands": 32,
+          "weight_commands": 1,
+          "max_input_bytes": 256,
+          "max_weight_bytes": 4608,
+          "bank_reads_64": 1152,
+          "writes_wide": 0,
+          "write_bytes": 896
+        },
+        {
+          "unit": 2,
+          "cycles": 94009,
+          "bank_reads": 1280,
+          "bank_read_bytes": 10240,
+          "writes": 2048,
+          "input_commands": 4,
+          "weight_commands": 512,
+          "max_input_bytes": 512,
+          "max_weight_bytes": 16,
+          "bank_reads_64": 1280,
+          "writes_wide": 2048,
+          "write_bytes": 65536
+        },
+        {
+          "unit": 3,
+          "cycles": 37805,
+          "bank_reads": 1152,
+          "bank_read_bytes": 9216,
+          "writes": 256,
+          "input_commands": 2,
+          "weight_commands": 1,
+          "max_input_bytes": 4096,
+          "max_weight_bytes": 1024,
+          "bank_reads_64": 1152,
+          "writes_wide": 256,
+          "write_bytes": 8192
+        }
+      ]
+    },
+    "edge": {
+      "batch_cycles": 14450,
+      "ddr_fill_bytes": 24576,
+      "verified_int32": 969,
+      "four_mac_cycles": 0,
+      "cache_bytes": 196608,
+      "fills": 24,
+      "writebacks_before_verify": 0,
+      "bank0_issue_cycles": 170,
+      "bank1_issue_cycles": 593,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 15,
+          "k3_mac_during_write": 94,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 1
+        },
+        {
+          "index": 1,
+          "k3_peak": 12,
+          "k3_mac_during_write": 436,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 0,
+          "cycles": 7663,
+          "bank_reads": 86,
+          "bank_read_bytes": 267,
+          "writes": 36,
+          "input_commands": 16,
+          "weight_commands": 1,
+          "max_input_bytes": 15,
+          "max_weight_bytes": 27,
+          "bank_reads_64": 19,
+          "writes_wide": 0,
+          "write_bytes": 144
+        },
+        {
+          "unit": 1,
+          "cycles": 12107,
+          "bank_reads": 144,
+          "bank_read_bytes": 450,
+          "writes": 63,
+          "input_commands": 28,
+          "weight_commands": 1,
+          "max_input_bytes": 20,
+          "max_weight_bytes": 135,
+          "bank_reads_64": 33,
+          "writes_wide": 0,
+          "write_bytes": 252
+        },
+        {
+          "unit": 2,
+          "cycles": 14448,
+          "bank_reads": 152,
+          "bank_read_bytes": 1106,
+          "writes": 121,
+          "input_commands": 3,
+          "weight_commands": 1,
+          "max_input_bytes": 448,
+          "max_weight_bytes": 35,
+          "bank_reads_64": 135,
+          "writes_wide": 92,
+          "write_bytes": 3060
+        },
+        {
+          "unit": 3,
+          "cycles": 13401,
+          "bank_reads": 112,
+          "bank_read_bytes": 608,
+          "writes": 49,
+          "input_commands": 35,
+          "weight_commands": 1,
+          "max_input_bytes": 16,
+          "max_weight_bytes": 48,
+          "bank_reads_64": 40,
+          "writes_wide": 8,
+          "write_bytes": 420
+        }
+      ]
+    },
+    "limits": {
+      "batch_cycles": 508364,
+      "ddr_fill_bytes": 354304,
+      "verified_int32": 79296,
+      "four_mac_cycles": 610,
+      "cache_bytes": 196608,
+      "fills": 346,
+      "writebacks_before_verify": 126,
+      "bank0_issue_cycles": 17227,
+      "bank1_issue_cycles": 16793,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 296,
+          "k3_mac_during_write": 10936,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 6
+        },
+        {
+          "index": 1,
+          "k3_peak": 6,
+          "k3_mac_during_write": 2099,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 0,
+          "cycles": 37478,
+          "bank_reads": 668,
+          "bank_read_bytes": 1656,
+          "writes": 1760,
+          "input_commands": 220,
+          "weight_commands": 1,
+          "max_input_bytes": 12,
+          "max_weight_bytes": 216,
+          "bank_reads_64": 46,
+          "writes_wide": 0,
+          "write_bytes": 7040
+        },
+        {
+          "unit": 1,
+          "cycles": 56590,
+          "bank_reads": 1185,
+          "bank_read_bytes": 9216,
+          "writes": 224,
+          "input_commands": 32,
+          "weight_commands": 1,
+          "max_input_bytes": 256,
+          "max_weight_bytes": 4608,
+          "bank_reads_64": 1119,
+          "writes_wide": 0,
+          "write_bytes": 896
+        },
+        {
+          "unit": 2,
+          "cycles": 508362,
+          "bank_reads": 18569,
+          "bank_read_bytes": 74680,
+          "writes": 7742,
+          "input_commands": 18,
+          "weight_commands": 9216,
+          "max_input_bytes": 64,
+          "max_weight_bytes": 8,
+          "bank_reads_64": 101,
+          "writes_wide": 7598,
+          "write_bytes": 243712
+        },
+        {
+          "unit": 3,
+          "cycles": 107280,
+          "bank_reads": 1796,
+          "bank_read_bytes": 10240,
+          "writes": 2076,
+          "input_commands": 4,
+          "weight_commands": 512,
+          "max_input_bytes": 512,
+          "max_weight_bytes": 16,
+          "bank_reads_64": 764,
+          "writes_wide": 2044,
+          "write_bytes": 65536
+        }
+      ]
+    },
+    "abort": {
+      "batch_cycles": 90425,
+      "ddr_fill_bytes": 77824,
+      "verified_int32": 16384,
+      "four_mac_cycles": 0,
+      "cache_bytes": 196608,
+      "fills": 76,
+      "writebacks_before_verify": 0,
+      "bank0_issue_cycles": 1988,
+      "bank1_issue_cycles": 2371,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 0,
+          "k3_mac_during_write": 0,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        },
+        {
+          "index": 1,
+          "k3_peak": 0,
+          "k3_mac_during_write": 0,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 2,
+          "cycles": 90425,
+          "bank_reads": 1796,
+          "bank_read_bytes": 10240,
+          "writes": 2048,
+          "input_commands": 4,
+          "weight_commands": 512,
+          "max_input_bytes": 512,
+          "max_weight_bytes": 16,
+          "bank_reads_64": 764,
+          "writes_wide": 2048,
+          "write_bytes": 65536
+        }
+      ]
+    },
+    "abort-k3": {
+      "batch_cycles": 29998,
+      "ddr_fill_bytes": 16384,
+      "verified_int32": 1760,
+      "four_mac_cycles": 0,
+      "cache_bytes": 196608,
+      "fills": 16,
+      "writebacks_before_verify": 0,
+      "bank0_issue_cycles": 1437,
+      "bank1_issue_cycles": 1047,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 294,
+          "k3_mac_during_write": 10985,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        },
+        {
+          "index": 1,
+          "k3_peak": 0,
+          "k3_mac_during_write": 0,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 0,
+          "cycles": 29998,
+          "bank_reads": 668,
+          "bank_read_bytes": 1656,
+          "writes": 1760,
+          "input_commands": 220,
+          "weight_commands": 1,
+          "max_input_bytes": 12,
+          "max_weight_bytes": 216,
+          "bank_reads_64": 46,
+          "writes_wide": 0,
+          "write_bytes": 7040
+        }
+      ]
+    },
+    "large": {
+      "batch_cycles": 1828016,
+      "ddr_fill_bytes": 1735680,
+      "verified_int32": 383232,
+      "four_mac_cycles": 31830,
+      "cache_bytes": 196608,
+      "fills": 1695,
+      "writebacks_before_verify": 1324,
+      "bank0_issue_cycles": 81982,
+      "bank1_issue_cycles": 80450,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 128,
+          "k3_mac_during_write": 706499,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        },
+        {
+          "index": 1,
+          "k3_peak": 128,
+          "k3_mac_during_write": 701315,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 0
+        }
+      ],
+      "units": [
+        {
+          "unit": 0,
+          "cycles": 1828016,
+          "bank_reads": 6336,
+          "bank_read_bytes": 50688,
+          "writes": 44160,
+          "input_commands": 1380,
+          "weight_commands": 1,
+          "max_input_bytes": 64,
+          "max_weight_bytes": 4608,
+          "bank_reads_64": 6336,
+          "writes_wide": 0,
+          "write_bytes": 176640
+        },
+        {
+          "unit": 1,
+          "cycles": 1820929,
+          "bank_reads": 6336,
+          "bank_read_bytes": 50688,
+          "writes": 44160,
+          "input_commands": 1380,
+          "weight_commands": 1,
+          "max_input_bytes": 64,
+          "max_weight_bytes": 4608,
+          "bank_reads_64": 6336,
+          "writes_wide": 0,
+          "write_bytes": 176640
+        },
+        {
+          "unit": 2,
+          "cycles": 1372686,
+          "bank_reads": 12288,
+          "bank_read_bytes": 98304,
+          "writes": 18432,
+          "input_commands": 48,
+          "weight_commands": 4608,
+          "max_input_bytes": 512,
+          "max_weight_bytes": 16,
+          "bank_reads_64": 12288,
+          "writes_wide": 18432,
+          "write_bytes": 589824
+        },
+        {
+          "unit": 3,
+          "cycles": 1387664,
+          "bank_reads": 12288,
+          "bank_read_bytes": 98304,
+          "writes": 18432,
+          "input_commands": 48,
+          "weight_commands": 4608,
+          "max_input_bytes": 512,
+          "max_weight_bytes": 16,
+          "bank_reads_64": 12288,
+          "writes_wide": 18432,
+          "write_bytes": 589824
+        }
+      ]
+    },
+    "spill": {
+      "batch_cycles": 1148393,
+      "ddr_fill_bytes": 1206272,
+      "verified_int32": 294912,
+      "four_mac_cycles": 0,
+      "cache_bytes": 196608,
+      "fills": 1178,
+      "writebacks_before_verify": 962,
+      "bank0_issue_cycles": 19373,
+      "bank1_issue_cycles": 19373,
+      "extra": [
+        {
+          "index": 0,
+          "k3_peak": 0,
+          "k3_mac_during_write": 0,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 14
+        },
+        {
+          "index": 1,
+          "k3_peak": 0,
+          "k3_mac_during_write": 0,
+          "k3_full_stalls": 0,
+          "k1_small_panels": 14
+        }
+      ],
+      "units": [
+        {
+          "unit": 2,
+          "cycles": 1147822,
+          "bank_reads": 640,
+          "bank_read_bytes": 5120,
+          "writes": 18733,
+          "input_commands": 43,
+          "weight_commands": 1,
+          "max_input_bytes": 128,
+          "max_weight_bytes": 512,
+          "bank_reads_64": 640,
+          "writes_wide": 18389,
+          "write_bytes": 589824
+        },
+        {
+          "unit": 3,
+          "cycles": 1148392,
+          "bank_reads": 640,
+          "bank_read_bytes": 5120,
+          "writes": 18733,
+          "input_commands": 43,
+          "weight_commands": 1,
+          "max_input_bytes": 128,
+          "max_weight_bytes": 512,
+          "bank_reads_64": 640,
+          "writes_wide": 18389,
+          "write_bytes": 589824
+        }
+      ]
+    }
+  },
+  "route_baseline": {
+    "LUT": 26631.0,
+    "FF": 19033.0,
+    "DSP": 18.0,
+    "BRAM36": 76.0,
+    "WNS": 0.147,
+    "TNS": 0.0,
+    "WHS": 0.019,
+    "k3_result_fifo": [],
+    "k1_write_buffer": [
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        0
+      ]
+    ],
+    "small_extra": [],
+    "Source": "pager/valid_page_reg[32]/C",
+    "Destination": "pager/hint_valid_reg[2]/D",
+    "Data Path Delay": "9.777ns  (logic 2.060ns (21.070%)  route 7.717ns (78.930%))"
+  },
+  "route_new": {
+    "LUT": 26989.0,
+    "FF": 19208.0,
+    "DSP": 18.0,
+    "BRAM36": 84.0,
+    "WNS": 0.387,
+    "TNS": 0.0,
+    "WHS": 0.028,
+    "k3_result_fifo": [
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "k1_write_buffer": [
+      [
+        8,
+        4
+      ],
+      [
+        8,
+        4
+      ]
+    ],
+    "small_extra": [],
+    "Source": "cnn/unit[2].k1.engine/ow_reg[2]/C",
+    "Destination": "cnn/unit[2].k1.engine/load_row_origin_reg[23]/D",
+    "Data Path Delay": "9.373ns  (logic 4.097ns (43.709%)  route 5.276ns (56.291%))"
+  }
+}

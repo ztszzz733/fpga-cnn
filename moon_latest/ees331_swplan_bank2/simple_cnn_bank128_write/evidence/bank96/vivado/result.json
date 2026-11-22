@@ -1,0 +1,27 @@
+{
+  "mode": 1,
+  "local_bytes": 196608,
+  "part": "xc7z020clg484-1",
+  "clock_ns": 10,
+  "top": "burst_bank_test",
+  "status": "COMPLETE",
+  "source_sha256": {
+    "rtl/compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
+    "rtl/simple_k3_engine.sv": "807a9484e49c227d196a2b6600748ca0eff864a9d3a62fd44befe44b2aebe064",
+    "rtl/k1_bulk_pixels.sv": "ca85cebda93236dffd52a0050a689de7fca1f86eb13b17fcef0d8e87af05f3b4",
+    "rtl/k1_write_buffer.sv": "e5195a8b6ee874d6cfa729ab753bf772021dc399632df02e6dca9d3e18abb0ed",
+    "rtl/simple_k1_engine.sv": "9d1de9ec5a32c13a8c031a0c32630600f23aac73ac9b698c3b99d5781b15de83",
+    "rtl/simple_mem_bridge.sv": "6e3e213a2cb54e04160cd120e5cec4d1149c0ef2aa79d2e5dc94f935b33fa97f",
+    "rtl/conv_span_port.sv": "75751720492b0835f89b1f9fb966bcdc7f936e705cbf0e93a5850c3192a1e5a2",
+    "rtl/bank_span_reader.sv": "3efb87c19204cb99ede7af6ef88d1696d77424ceba0122c175fe976c80677c73",
+    "rtl/cnn_simple_top.sv": "6ebf92b6ef92a9bad540293c4dddff281fae2b0dadcec80ba8a11a30dd057ec2",
+    "rtl/tile_local_ram.sv": "6ea1acb81fccfa1df4d00490deae2f880a86d86bc56de3d5921564d200da1f3c",
+    "rtl/tile_read_width.sv": "cdf970cfb77d4736e80034ee677c6c25a06b87f2590e9c0a70a8015abda67a2e",
+    "rtl/tile_local_ram_bank2.sv": "4fcdd2753bb819723d11b6703147294d80745f8a6f496b551c16bb329a2f5db9",
+    "rtl/data_mover.sv": "416e9989a04fdbb2bee8fc547cab2f76db0ace961218dfb460cb2b2525ac957f",
+    "rtl/cnn_paged_mover.sv": "264fb2dc6d46144b8d6a1c9f26da93cb1c42708531194c983d9fbd2ba4d96f4c",
+    "burst_bank_test.sv": "354e3a5d03d3b1bafabcd3be6cc32f159ed8696dadffddef040bcd365ae8de80"
+  },
+  "synth_seconds": 240.05,
+  "route_seconds": 324.04
+}
