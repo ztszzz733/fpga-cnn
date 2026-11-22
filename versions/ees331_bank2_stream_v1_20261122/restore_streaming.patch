@@ -1,0 +1,466 @@
+--- a/source/storage_v2/rtl/data_mover.sv
++++ b/source/storage_v2/rtl/data_mover.sv
+@@ -1,5 +1,6 @@
+ // 1 KiB aligned pages on the EES331 cache path. Each command transfers
+-// eight 128-byte AXI3 bursts. Synchronous staging separates the AXI and
++// eight 128-byte AXI3 bursts. Ordered local requests stream with four credits.
++// Synchronous staging separates the AXI and
+ // local BRAM timing paths. No byte shifter or arbitrary-length burst planner.
+ module data_mover #(
+  parameter integer TIMEOUT_CYCLES=1024,
+@@ -37,8 +38,8 @@
+  output wire [7:0] wstrb
+ );
+  typedef enum logic [3:0] {
+-  IDLE, VALIDATE, ADDRESS, AR, AXI_READ, LOCAL_PREFETCH, LOCAL_REQ,
+-  LOCAL_WAIT, LOCAL_RETIRE, AW, WRITE_PREFETCH, WRITE_SEND, B, NEXT, RESPONSE
++  IDLE, VALIDATE, ADDRESS, AR, AXI_READ, LOCAL_PREFETCH, LOCAL_STREAM,
++  LOCAL_DRAIN, AW, WRITE_PREFETCH, WRITE_SEND, B, NEXT, RESPONSE
+  } state_t;
+  localparam integer WD_BITS=$clog2(TIMEOUT_CYCLES);
+  state_t state;
+@@ -52,6 +53,12 @@
+  logic [WD_BITS-1:0] watchdog;
+  (* ram_style="distributed" *) logic [31:0] low_words[16],high_words[16];
+  logic [31:0] read_low,read_high,returned_word;
++ logic [5:0] local_sent,local_received;
++ logic [2:0] local_pending;
++ logic local_failed,returned_valid;
++ logic [4:0] returned_index;
++ wire [5:0] next_local=local_sent+6'd1;
++ wire local_take=local_valid && local_ready;
+ 
+  assign cmd_ready=rst_n && enable && !fault_locked && state==IDLE;
+  assign rsp_valid=state==RESPONSE;
+@@ -71,36 +78,58 @@
+  assign wdata={read_high,read_low};
+  assign wstrb=8'hff;
+  assign bready=state==B;
+- assign local_valid=state==LOCAL_REQ;
++ assign local_valid=state==LOCAL_STREAM && local_sent<32 && local_pending<4 && !timed_out && !local_failed;
+  assign local_write=!writeback;
+- assign local_addr={local_page,burst,local_word,2'b00};
++ assign local_addr={local_page,burst,local_sent[4:0],2'b00};
+  assign local_wstrb=!writeback?4'hf:4'b0;
+- assign local_wdata=local_word[0]?read_high:read_low;
+-
+- wire local_done=(state==LOCAL_WAIT || (state==LOCAL_REQ && local_ready)) && local_rsp_valid;
++ assign local_wdata=local_sent[0]?read_high:read_low;
++
++ wire local_done=(state==LOCAL_STREAM || state==LOCAL_DRAIN) && local_rsp_valid && (local_pending!=0 || local_take);
+  wire progress=(arvalid && arready) || (rready && rvalid) ||
+                (awvalid && awready) || (wvalid && wready) || (bready && bvalid) ||
+                (local_valid && local_ready) || local_done;
+- wire waiting=state==AR || state==AXI_READ || state==LOCAL_REQ || state==LOCAL_WAIT ||
++ wire waiting=state==AR || state==AXI_READ || state==LOCAL_STREAM || (state==LOCAL_DRAIN && local_pending!=0) ||
+               state==AW || state==WRITE_SEND || state==B;
+  wire expire=waiting && !progress && watchdog==WD_BITS'(TIMEOUT_CYCLES-1);
+  wire read_bad=rresp!=0 || rid!=0 || (rlast!=(rx_beat==15));
+  wire accept_beat=state==AXI_READ && rvalid && rx_beat<16;
+- wire publish_word=state==LOCAL_RETIRE && writeback && !timed_out;
+- wire [3:0] staging_read_index=(state==WRITE_PREFETCH)?tx_beat:local_word[4:1];
+- wire [3:0] staging_write_index=accept_beat?rx_beat[3:0]:local_word[4:1];
++ wire publish_word=returned_valid;
++ wire [3:0] staging_read_index=(state==WRITE_PREFETCH)?tx_beat:((state==WRITE_SEND)?(tx_beat+4'd1):(state==LOCAL_PREFETCH?4'd0:next_local[4:1]));
++ wire [3:0] staging_write_index=accept_beat?rx_beat[3:0]:returned_index[4:1];
+  wire [31:0] low_in=accept_beat?rdata[31:0]:returned_word;
+  wire [31:0] high_in=accept_beat?rdata[63:32]:returned_word;
+  always_ff @(posedge clk)begin
+-  if(accept_beat || (publish_word && !local_word[0]))
++  if(accept_beat || (publish_word && !returned_index[0]))
+    low_words[staging_write_index]<=low_in;
+-  if(accept_beat || (publish_word && local_word[0]))
++  if(accept_beat || (publish_word && returned_index[0]))
+    high_words[staging_write_index]<=high_in;
+-  if(state==LOCAL_PREFETCH || state==WRITE_PREFETCH)begin
++  if(state==LOCAL_PREFETCH || state==WRITE_PREFETCH || (state==WRITE_SEND && wready && !wlast) || (local_take && !writeback && local_sent<31))begin
+    read_low<=low_words[staging_read_index];
+    read_high<=high_words[staging_read_index];
+   end
+-  if(local_done)returned_word<=local_rdata;
++  if(!rst_n)begin
++   local_sent<=0;local_received<=0;local_pending<=0;local_failed<=0;
++   returned_valid<=0;returned_index<=0;returned_word<=0;
++  end else begin
++   returned_valid<=0;
++   if(state==LOCAL_PREFETCH)begin
++    local_sent<=0;local_received<=0;local_pending<=0;local_failed<=0;
++   end else begin
++    if(local_take)local_sent<=local_sent+1'b1;
++    if(local_done)begin
++     local_received<=local_received+1'b1;
++     if(local_error)local_failed<=1;
++     if(writeback && !local_error && !timed_out && !local_failed)begin
++      returned_word<=local_rdata;returned_index<=local_received[4:0];returned_valid<=1;
++     end
++    end
++    case({local_take,local_done})
++     2'b10:local_pending<=local_pending+1'b1;
++     2'b01:local_pending<=local_pending-1'b1;
++     default:;
++    endcase
++   end
++  end
+  end
+ 
+  always_ff @(posedge clk)begin
+@@ -137,7 +166,7 @@
+     ADDRESS:if(physical_addr[32])begin rsp_status<=3;state<=RESPONSE;end
+      else begin
+       ddr_page<=physical_addr[31:10];burst<=0;rx_beat<=0;local_word<=0;tx_beat<=0;
+-      state<=writeback?LOCAL_REQ:AR;
++      state<=writeback?LOCAL_PREFETCH:AR;
+      end
+     AR:if(arready)state<=AXI_READ;
+     AXI_READ:if(rvalid)begin
+@@ -145,24 +174,26 @@
+      if(rx_beat<16)rx_beat<=rx_beat+1'b1;
+      if(rlast)state<=timed_out || rsp_status!=0 || read_bad ? RESPONSE : LOCAL_PREFETCH;
+     end
+-    LOCAL_PREFETCH:state<=LOCAL_REQ;
+-    LOCAL_REQ,LOCAL_WAIT:begin
+-     if(state==LOCAL_REQ && local_ready)state<=LOCAL_WAIT;
+-     if(local_done)begin
+-      if(local_error)begin fault_locked<=1;if(!timed_out)rsp_status<=10;end
+-      state<=timed_out || local_error ? RESPONSE : LOCAL_RETIRE;
+-     end
+-    end
+-    LOCAL_RETIRE:if(local_word==31)state<=writeback?AW:NEXT;
+-     else begin
+-      local_word<=local_word+1'b1;
+-      state<=writeback?LOCAL_REQ:LOCAL_PREFETCH;
+-     end
++    LOCAL_PREFETCH:state<=LOCAL_STREAM;
++    LOCAL_STREAM:begin
++     if(local_done && local_error)begin
++      fault_locked<=1;if(!timed_out)rsp_status<=10;
++     end
++     if((local_take && local_sent==31) || (local_done && local_error) || timed_out)
++      state<=LOCAL_DRAIN;
++    end
++    LOCAL_DRAIN:begin
++     if(local_done && local_error)begin
++      fault_locked<=1;if(!timed_out)rsp_status<=10;
++     end
++     if(local_pending==0 && !returned_valid)
++      state<=(timed_out || local_failed)?RESPONSE:(writeback?AW:NEXT);
++    end
+     AW:if(awready)state<=WRITE_PREFETCH;
+     WRITE_PREFETCH:state<=WRITE_SEND;
+     WRITE_SEND:if(wready)begin
+      if(wlast)state<=B;
+-     else begin tx_beat<=tx_beat+1'b1;state<=WRITE_PREFETCH;end
++     else tx_beat<=tx_beat+1'b1; // Synchronous staging prepares the next beat on this edge.
+     end
+     B:if(bvalid)begin
+      if(bresp!=0 || bid!=0)begin fault_locked<=1;if(!timed_out)rsp_status<=6;end
+@@ -171,7 +202,7 @@
+     NEXT:if(burst==7)begin rsp_bytes_done<=1024;state<=RESPONSE;end
+      else begin
+       burst<=burst+1'b1;rx_beat<=0;local_word<=0;tx_beat<=0;
+-      state<=writeback?LOCAL_REQ:AR;
++      state<=writeback?LOCAL_PREFETCH:AR;
+      end
+     RESPONSE:if(rsp_ready)state<=IDLE;
+     default:state<=IDLE;
+@@ -180,6 +211,11 @@
+  end
+ 
+ `ifndef SYNTHESIS
++ always_ff @(posedge clk)if(rst_n)begin
++  assert(local_pending<=4)else $fatal(1,"local credit overflow");
++  if(local_rsp_valid)assert(local_pending!=0 || local_take)else $fatal(1,"unsolicited local response");
++  if(state==RESPONSE)assert(local_pending==0 && !returned_valid)else $fatal(1,"response before local drain");
++ end
+  initial assert(TIMEOUT_CYCLES>=2 && MAX_BURST_BEATS==16)
+   else $fatal(1,"aligned page mover geometry");
+ `endif
+--- a/simple_cnn/rtl/simple_k3_engine.sv
++++ b/simple_cnn/rtl/simple_k3_engine.sv
+@@ -7,8 +7,8 @@
+ // No activation, bias, zero-point correction, or requantization is applied.
+ // Aligned groups of four channels/weights use 32-bit reads; exact byte tails.
+ // Input/weight byte responses must return the addressed byte in rdata[7:0].
+-// This derivative has no prefetch adapter; one registered transaction is outstanding.
+-// clear aborts this master; the interconnect must also cancel its pending
++// The outer stream bridge issues up to four reads within read_beats.
++// clear aborts this master; the outer bridge drains its pending
+ // transaction, as this interface has no transaction ID for a late response.
+ module simple_k3_engine #(
+  parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1, INPUT_HALO_REUSE=1, WEIGHT_LAYER_REUSE=1, READ_AHEAD=0
+@@ -24,7 +24,8 @@
+  input logic [31:0] rdata,
+  output wire mac_fire,
+  output wire [3:0] phase,
+- output logic [31:0] input_reads,weight_reads,mac_count
++ output logic [31:0] input_reads,weight_reads,mac_count,
++ output wire [12:0] read_beats
+ );
+  wire a_valid,a_write,a_byte,a_ready,a_response;
+  logic [31:0] a_addr,a_wdata;wire [31:0] a_rdata;
+@@ -399,8 +400,9 @@
+   endcase
+  end
+ 
+- // Simple baseline: direct request port. The outer registered bridge
+- // accepts and completes one request before this core can issue another.
++ // Core demand port. The outer registered bridge prefetches counted spans.
++ assign read_beats=state==IREQ ? ((13'(ci)-13'(load_c))>>(input_wide?2:0)) :
++                   state==WREQ ? ((13'(weight_load_bytes)-13'(weight_load_index))>>(weight_wide?2:0)) : 13'd1;
+  assign valid=core_valid;assign write=core_write;assign byte_access=core_byte_access;
+  assign addr=core_addr;assign wdata=core_wdata;
+  assign core_ready=ready;assign core_response=response;assign core_rdata=rdata;
+--- a/simple_cnn/rtl/simple_k1_engine.sv
++++ b/simple_cnn/rtl/simple_k1_engine.sv
+@@ -20,7 +20,8 @@
+  output wire [31:0] addr,wdata,
+  input logic ready,response,input logic [31:0] rdata,
+  output wire mac_fire,output wire [3:0] phase,
+- output logic [31:0] input_reads,weight_reads,mac_count
++ output logic [31:0] input_reads,weight_reads,mac_count,
++ output wire [12:0] read_beats
+ );
+  wire a_valid,a_write,a_byte,a_ready,a_response;
+  logic [31:0] a_addr,a_wdata;wire [31:0] a_rdata;
+@@ -522,7 +523,10 @@
+    endcase
+   end
+  end
+- // No address-tagged prefetch, automatic stream restart or bypass path.
++ // The outer bridge prefetches the bounded contiguous span reported below.
++ assign read_beats=word_fill_mode ? 13'd1 :
++                   bus_kind==INPUT_READ ? ((13'(ci)-13'(load_c))>>(bus_byte?0:2)) :
++                   bus_kind==WEIGHT_READ ? ((13'(weight_last_byte)+13'd1-13'(weight_c))>>(bus_byte?0:2)) : 13'd1;
+  assign valid=a_valid;assign write=a_write;assign byte_access=a_byte;
+  assign addr=a_addr;assign wdata=a_wdata;
+  assign a_ready=ready;assign a_response=response;assign a_rdata=rdata;
+--- a/simple_cnn/rtl/simple_mem_bridge.sv
++++ b/simple_cnn/rtl/simple_mem_bridge.sv
+@@ -1,52 +1,137 @@
+-// One buffered request, one outstanding external transaction, registered reply.
+-// c_ready and c_response are returned together only after external completion.
+-// Abort drains a buffered/accepted request before becoming idle; no late reply
+-// can be reassigned to a later job. It may finish an already buffered write.
++// Four ordered reads, two posted writes, registered external request/data.
++// Read-ahead is bounded by the engine's current contiguous span. A changed
++// request drains and discards the unfinished span before crossing modes.
++// Abort drains accepted reads and captured writes before releasing busy.
+ module simple_mem_bridge(
+  input wire clk,rst_n,abort,
+  input wire c_valid,c_write,c_byte,input wire [31:0] c_addr,c_wdata,
++ input wire [12:0] c_read_beats,
+  output wire c_ready,c_response,output wire [31:0] c_rdata,
+  output wire m_valid,m_write,m_byte,output wire [31:0] m_addr,m_wdata,
+  input wire m_ready,m_response,input wire [31:0] m_rdata,
+  output wire busy,output wire [2:0] phase
+ );
+- typedef enum logic [2:0] {IDLE,OFFER,WAIT_REPLY,RETURN,QUIET} state_t;
++ typedef enum logic [1:0] {IDLE,READS,WRITES} state_t;
+  state_t state;
+- logic write_q,byte_q,discard;
+- logic [31:0] addr_q,wdata_q,rdata_q;
+- assign m_valid=state==OFFER;
+- assign m_write=write_q;assign m_byte=byte_q;
+- assign m_addr=addr_q;assign m_wdata=wdata_q;
+- assign c_ready=state==RETURN && !abort && !discard;
+- assign c_response=c_ready;assign c_rdata=rdata_q;
+- assign busy=state!=IDLE;assign phase=state;
++ logic offer_valid,offer_write,offer_byte,discard,delivery_valid;
++ logic [31:0] delivery_data;
++ logic [31:0] offer_addr,offer_data,next_addr,consume_addr;
++ logic read_byte;
++ logic [12:0] issue_left,consume_left;
++ logic [1:0] read_head,read_tail,reply_tail;
++ logic [2:0] reserved,read_pending,write_pending;
++ logic [3:0] got;
++ logic [31:0] data[4];
++ logic [31:0] write_addr[2],write_data[2];
++ logic write_byte[2];
++ logic write_head,write_tail;
++ logic [1:0] write_count;
++ wire external_take=offer_valid && m_ready;
++ wire read_take=external_take && !offer_write;
++ wire write_take=external_take && offer_write;
++ wire read_reply=state==READS && m_response && (read_pending!=0 || read_take);
++ wire write_reply=state==WRITES && m_response && (write_pending!=0 || write_take);
++ wire read_match=c_valid && !c_write && c_addr==consume_addr && c_byte==read_byte;
++ wire consume=state==READS && delivery_valid && c_valid && !discard && !abort;
++ wire push_write=c_valid && c_write && c_ready;
++ // An offered transaction holds valid and payload through external stalls.
++ wire load_read=state==READS && !discard && !abort && issue_left!=0 &&
++                (!offer_valid || external_take) && reserved<(external_take?3:4);
++ wire load_write=state==WRITES && (!offer_valid || external_take) && write_count!=0 && write_pending<3;
++ assign c_ready=!abort && ((state==READS && delivery_valid && !discard) ||
++                           (state!=READS && c_write && write_count<2));
++ assign c_response=c_ready;
++ assign c_rdata=delivery_data;
++ assign m_valid=offer_valid;assign m_write=offer_write;assign m_byte=offer_byte;
++ assign m_addr=offer_addr;assign m_wdata=offer_data;
++ assign busy=state!=IDLE || offer_valid || write_count!=0 || write_pending!=0;
++ assign phase={1'b0,state};
+  always_ff @(posedge clk)begin
+   if(!rst_n)begin
+-   state<=IDLE;write_q<=0;byte_q<=0;addr_q<=0;wdata_q<=0;rdata_q<=0;discard<=0;
++   state<=IDLE;offer_valid<=0;offer_write<=0;offer_byte<=0;offer_addr<=0;offer_data<=0;
++   discard<=0;delivery_valid<=0;delivery_data<=0;
++   read_byte<=0;next_addr<=0;consume_addr<=0;issue_left<=0;consume_left<=0;
++   read_head<=0;read_tail<=0;reply_tail<=0;reserved<=0;read_pending<=0;write_pending<=0;got<=0;
++   write_head<=0;write_tail<=0;write_count<=0;
+   end else begin
+-   if(abort)discard<=1;
++   if(external_take)offer_valid<=0;
++   if(push_write)begin
++    write_addr[write_tail]<=c_addr;write_data[write_tail]<=c_wdata;write_byte[write_tail]<=c_byte;
++    write_tail<=!write_tail;
++   end
++   if(load_write)begin
++    offer_valid<=1;offer_write<=1;offer_byte<=write_byte[write_head];
++    offer_addr<=write_addr[write_head];offer_data<=write_data[write_head];write_head<=!write_head;
++   end
++   case({push_write,load_write})
++    2'b10:write_count<=write_count+1'b1;
++    2'b01:write_count<=write_count-1'b1;
++    default:;
++   endcase
++   case({write_take,write_reply})
++    2'b10:write_pending<=write_pending+1'b1;
++    2'b01:write_pending<=write_pending-1'b1;
++    default:;
++   endcase
+    case(state)
+     IDLE:begin
+-     discard<=abort;
+-     if(c_valid && !abort)begin
+-      write_q<=c_write;byte_q<=c_byte;addr_q<=c_addr;wdata_q<=c_wdata;
+-      state<=OFFER;discard<=0;
++     discard<=0;delivery_valid<=0;
++     if(write_count!=0)state<=WRITES;
++     else if(c_valid && !c_write && !abort)begin
++      state<=READS;read_byte<=c_byte;next_addr<=c_addr;consume_addr<=c_addr;
++      issue_left<=c_read_beats==0?13'd1:c_read_beats;
++      consume_left<=c_read_beats==0?13'd1:c_read_beats;
++      read_head<=0;read_tail<=0;reply_tail<=0;reserved<=0;read_pending<=0;got<=0;
+      end
+     end
+-    OFFER:if(m_ready)begin
+-     if(m_response)begin rdata_q<=m_rdata;state<=(abort || discard)?QUIET:RETURN;end
+-     else state<=WAIT_REPLY;
++    READS:begin
++     // Register address validation and data before completing the core demand.
++     // The core holds this demand until c_ready, or abort cancels it.
++     if(!delivery_valid && read_match && reserved!=0 && got[read_head] && !discard && !abort)begin
++      delivery_valid<=1;delivery_data<=data[read_head];
++     end
++     if(load_read)begin
++      offer_valid<=1;offer_write<=0;offer_byte<=read_byte;offer_addr<=next_addr;offer_data<=0;
++      next_addr<=next_addr+(read_byte?32'd1:32'd4);issue_left<=issue_left-1'b1;
++     end
++     if(read_take)read_tail<=read_tail+1'b1;
++     if(consume)begin
++      delivery_valid<=0;
++      got[read_head]<=0;read_head<=read_head+1'b1;
++      consume_addr<=consume_addr+(read_byte?32'd1:32'd4);consume_left<=consume_left-1'b1;
++      if(consume_left==1)state<=IDLE;
++     end
++     if(read_reply)begin
++      data[reply_tail]<=m_rdata;got[reply_tail]<=1;reply_tail<=reply_tail+1'b1;
++     end
++     case({read_take,consume})
++      2'b10:reserved<=reserved+1'b1;
++      2'b01:reserved<=reserved-1'b1;
++      default:;
++     endcase
++     case({read_take,read_reply})
++      2'b10:read_pending<=read_pending+1'b1;
++      2'b01:read_pending<=read_pending-1'b1;
++      default:;
++     endcase
++     if(abort || (c_valid && !read_match))begin discard<=1;delivery_valid<=0;end
++     if(discard && !offer_valid && read_pending==0)begin
++      state<=IDLE;reserved<=0;got<=0;discard<=0;
++     end
+     end
+-    WAIT_REPLY:if(m_response)begin rdata_q<=m_rdata;state<=(abort || discard)?QUIET:RETURN;end
+-    RETURN:state<=QUIET;
+-    QUIET:state<=IDLE;
++    WRITES:if(write_count==0 && !offer_valid && write_pending==0)state<=IDLE;
+     default:state<=IDLE;
+    endcase
+   end
+  end
+ `ifndef SYNTHESIS
+  always_ff @(posedge clk)if(rst_n)begin
+-  assert(!(m_response && state!=WAIT_REPLY && !(state==OFFER && m_ready))) else $fatal(1,"unsolicited memory reply");
++  assert(reserved<=4 && read_pending<=4 && write_pending<=4 && write_count<=2)
++   else $fatal(1,"stream bridge credit overflow");
++  if(m_response)assert(read_reply || write_reply)else $fatal(1,"unsolicited stream reply");
++  if(consume && consume_left==1)
++   assert(reserved==1 && read_pending==0 && !offer_valid && issue_left==0)
++    else $fatal(1,"segment completed with unread requests");
+  end
+ `endif
+ endmodule
+--- a/simple_cnn/rtl/cnn_simple_top.sv
++++ b/simple_cnn/rtl/cnn_simple_top.sv
+@@ -14,12 +14,13 @@
+  output wire [127:0] mac_counts
+ );
+  logic [31:0] descriptor[0:3][0:15];
+- logic [3:0] start_q,abort_q,done_q,error_q;
++ logic [3:0] start_q,abort_q,done_q,error_q,finish_pending;
+  logic [31:0] error_code[0:3],completed[0:3];
+  wire [3:0] core_busy,core_done,core_error,bridge_busy;
+  wire [3:0] cv,cw,cb,cr,cp;
+  wire [127:0] ca,cd,cdata;
+  wire [3:0] addressed;
++ wire [3:0][12:0] read_beats;
+  assign mmio_ready=1;
+  assign unit_busy=core_busy|bridge_busy|start_q|abort_q;
+  assign unit_done=done_q;assign unit_error=error_q;
+@@ -31,16 +32,20 @@
+   always_ff @(posedge clk)begin
+    if(!rst_n)begin
+     start_q[u]<=0;abort_q[u]<=0;done_q[u]<=0;error_q[u]<=0;
+-    error_code[u]<=0;completed[u]<=0;
++    error_code[u]<=0;completed[u]<=0;finish_pending[u]<=0;
+     for(integer w=0;w<16;w++)descriptor[u][w]<=0;
+    end else begin
+     start_q[u]<=0;
+     if(abort_q[u] && !core_busy[u] && !bridge_busy[u] && !start_q[u])abort_q[u]<=0;
+-    if(core_done[u] && !abort_q[u])begin done_q[u]<=1;completed[u]<=completed[u]+1'b1;end
++    if(core_done[u] && !abort_q[u])finish_pending[u]<=1;
++    if(finish_pending[u] && !core_busy[u] && !bridge_busy[u] && !abort_q[u] && !start_q[u])begin
++     done_q[u]<=1;completed[u]<=completed[u]+1'b1;finish_pending[u]<=0;
++    end
++    if(abort_q[u])finish_pending[u]<=0;
+     if(core_error[u] && !abort_q[u])begin error_q[u]<=1;error_code[u]<=1;end
+     if(mmio_we && addressed[u])begin
+      if(mmio_addr[7:0]==0)case(mmio_wdata)
+-      1:if(!unit_busy[u])begin start_q[u]<=1;done_q[u]<=0;error_q[u]<=0;error_code[u]<=0;end
++      1:if(!unit_busy[u])begin start_q[u]<=1;done_q[u]<=0;finish_pending[u]<=0;error_q[u]<=0;error_code[u]<=0;end
+         else begin error_q[u]<=1;error_code[u]<=2;end
+       2:begin done_q[u]<=0;error_q[u]<=0;error_code[u]<=0;end
+       4:begin abort_q[u]<=1;done_q[u]<=0;error_q[u]<=1;error_code[u]<=3;end
+@@ -64,7 +69,7 @@
+     .plan_weight_per_channel(descriptor[u][10]),.plan_input_extent(descriptor[u][11]),.plan_weight_extent(descriptor[u][12]),
+     .busy(core_busy[u]),.done(core_done[u]),.error(core_error[u]),.valid(cv[u]),.write(cw[u]),.byte_access(cb[u]),
+     .addr(ca[u*32+:32]),.wdata(cd[u*32+:32]),.ready(cr[u]),.response(cp[u]),.rdata(cdata[u*32+:32]),
+-    .mac_fire(unit_work[u]),.phase(operator_phase[u*4+:4]),.input_reads(),.weight_reads(),.mac_count(mac_counts[u*32+:32]));
++    .mac_fire(unit_work[u]),.phase(operator_phase[u*4+:4]),.input_reads(),.weight_reads(),.mac_count(mac_counts[u*32+:32]),.read_beats(read_beats[u]));
+   end else begin:k1
+    simple_k1_engine #(.MAX_CHANNELS(MAX_CHANNELS),.OUTPUT_PAR(1),.INPUT_PREFETCH(0),.READ_AHEAD(0)) engine(
+     .clk,.rst_n,.clear(abort_q[u]),.start(start_q[u]),.depthwise(descriptor[u][8][0]),
+@@ -73,11 +78,11 @@
+     .out_channels(descriptor[u][6]),.kernel(32'd1),.stride(descriptor[u][7]),
+     .busy(core_busy[u]),.done(core_done[u]),.error(core_error[u]),.valid(cv[u]),.write(cw[u]),.byte_access(cb[u]),
+     .addr(ca[u*32+:32]),.wdata(cd[u*32+:32]),.ready(cr[u]),.response(cp[u]),.rdata(cdata[u*32+:32]),
+-    .mac_fire(unit_work[u]),.phase(operator_phase[u*4+:4]),.input_reads(),.weight_reads(),.mac_count(mac_counts[u*32+:32]));
++    .mac_fire(unit_work[u]),.phase(operator_phase[u*4+:4]),.input_reads(),.weight_reads(),.mac_count(mac_counts[u*32+:32]),.read_beats(read_beats[u]));
+   end
+   simple_mem_bridge port(
+    .clk,.rst_n,.abort(abort_q[u]),.c_valid(cv[u]),.c_write(cw[u]),.c_byte(cb[u]),.c_addr(ca[u*32+:32]),.c_wdata(cd[u*32+:32]),
+-   .c_ready(cr[u]),.c_response(cp[u]),.c_rdata(cdata[u*32+:32]),
++   .c_read_beats(read_beats[u]),.c_ready(cr[u]),.c_response(cp[u]),.c_rdata(cdata[u*32+:32]),
+    .m_valid(mem_valid[u]),.m_write(mem_write[u]),.m_byte(mem_byte[u]),.m_addr(mem_addr[u*32+:32]),.m_wdata(mem_wdata[u*32+:32]),
+    .m_ready(mem_ready[u]),.m_response(mem_response[u]),.m_rdata(mem_rdata[u*32+:32]),.busy(bridge_busy[u]),.phase(memory_phase[u*3+:3]));
+  end

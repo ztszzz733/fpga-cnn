@@ -1,0 +1,847 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 15:24:48 2026
+| Host         : LAPTOP-R9M0PARI running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 10 -nworst 1 -input_pins -file D:/FPGA/bank2_restore_20261122/stage3_registered_synth/paths.rpt
+| Design       : face_soc_ees331_simple_top
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[1]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[1]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[1]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[2]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[2]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[2]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[2]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[3]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[3]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[3]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_ctrl_e_reg[3]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]_rep/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]_rep/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]_rep/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[0]_rep
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]_rep/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]_rep/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]_rep/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_src_a_sel_e_reg[1]_rep
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/alu_src_b_sel_e_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_b_sel_e_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/alu_src_b_sel_e_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/alu_src_b_sel_e_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+Slack (VIOLATED) :        -0.078ns  (required time - arrival time)
+  Source:                 u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            u_cpu_core/u_datapath/u_id_ex/branch_type_e_reg[0]/R
+                            (rising edge-triggered cell FDRE clocked by FCLK_CLK0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             FCLK_CLK0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (FCLK_CLK0 rise@10.000ns - FCLK_CLK0 rise@0.000ns)
+  Data Path Delay:        9.470ns  (logic 2.769ns (29.240%)  route 6.701ns (70.760%))
+  Logic Levels:           11  (CARRY4=3 LUT3=1 LUT4=1 LUT5=4 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock FCLK_CLK0 rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.973     0.973    u_cpu_core/u_datapath/u_ex_mem/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.518     1.491 r  u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[3]/Q
+                         net (fo=4, unplaced)         0.830     2.321    u_cpu_core/u_datapath/u_ex_mem/rd_m_reg[4]_0[3]
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/I0
+                         LUT5 (Prop_lut5_I0_O)        0.295     2.616 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13/O
+                         net (fo=2, unplaced)         0.913     3.529    u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_13_n_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/I2
+                         LUT5 (Prop_lut5_I2_O)        0.124     3.653 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_8/O
+                         net (fo=6, unplaced)         0.451     4.104    u_cpu_core/u_datapath/u_ex_mem/regwrite_m_reg_0
+                                                                      r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/I0
+                         LUT4 (Prop_lut4_I0_O)        0.124     4.228 r  u_cpu_core/u_datapath/u_ex_mem/write_data_m[31]_i_4/O
+                         net (fo=36, unplaced)        0.523     4.751    u_cpu_core/u_datapath/u_mem_wb/write_data_m_reg[2]_1[0]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/I3
+                         LUT5 (Prop_lut5_I3_O)        0.124     4.875 r  u_cpu_core/u_datapath/u_mem_wb/write_data_m[3]_i_1/O
+                         net (fo=10, unplaced)        1.154     6.029    u_cpu_core/u_datapath/u_mem_wb/store_data_fwd_e[3]
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/I1
+                         LUT6 (Prop_lut6_I1_O)        0.124     6.153 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76/O
+                         net (fo=1, unplaced)         0.000     6.153    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_76_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/S[1]
+                         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.533     6.686 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51/CO[3]
+                         net (fo=1, unplaced)         0.009     6.695    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_51_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CI
+                         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     6.812 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29/CO[3]
+                         net (fo=1, unplaced)         0.000     6.812    u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_29_n_0
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CI
+                         CARRY4 (Prop_carry4_CI_CO[2])
+                                                      0.252     7.064 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_reg_i_13/CO[2]
+                         net (fo=1, unplaced)         0.905     7.969    u_cpu_core/u_datapath/u_mem_wb/cmp_eq_e
+                                                                      r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/I2
+                         LUT6 (Prop_lut6_I2_O)        0.310     8.279 r  u_cpu_core/u_datapath/u_mem_wb/req_valid_q_i_6/O
+                         net (fo=3, unplaced)         0.467     8.746    u_cpu_core/u_datapath/u_id_ex/pc_q_reg[31]
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/I0
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.870 r  u_cpu_core/u_datapath/u_id_ex/req_valid_q_i_3/O
+                         net (fo=136, unplaced)       0.556     9.426    u_cpu_core/u_datapath/u_id_ex/jump_e_reg[0]_1
+                                                                      r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/I0
+                         LUT3 (Prop_lut3_I0_O)        0.124     9.550 r  u_cpu_core/u_datapath/u_id_ex/valid_e_i_1/O
+                         net (fo=201, unplaced)       0.893    10.443    u_cpu_core/u_datapath/u_id_ex/valid_e_i_1_n_0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/branch_type_e_reg[0]/R
+  -------------------------------------------------------------------    -------------------
+
+                         (clock FCLK_CLK0 rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  FCLK_CLK0 (IN)
+                         net (fo=23825, unset)        0.924    10.924    u_cpu_core/u_datapath/u_id_ex/FCLK_CLK0
+                         FDRE                                         r  u_cpu_core/u_datapath/u_id_ex/branch_type_e_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_R)       -0.524    10.365    u_cpu_core/u_datapath/u_id_ex/branch_type_e_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.365    
+                         arrival time                         -10.443    
+  -------------------------------------------------------------------
+                         slack                                 -0.078    
+
+
+
+

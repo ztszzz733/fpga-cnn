@@ -1,0 +1,4 @@
+Checking two-bank parallel streams
+Checking dirty eviction and replacement wrap
+Checking cancel, AXI faults and recovery
+PASS 392 KiB two-bank paging: two simultaneous physical bank requests, 512 ordered stream reads, 401-page dirty eviction, wrap, byte write, partial-page fence, invalidate/refill, cancel drain, AXI error/recovery, alignment and readonly faults. cycles=1100471 page-isolation checks=250

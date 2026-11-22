@@ -1,0 +1,60 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Nov 22 15:00:08 2026
+| Host         : LAPTOP-R9M0PARI running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file D:/FPGA/bank2_restore_20261122/stage1_synth/hierarchy.rpt
+| Design       : face_soc_ees331_simple_top
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++--------------------------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|            Instance            |          Module          | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++--------------------------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| face_soc_ees331_simple_top     |                    (top) |      26529 |      26209 |     320 |    0 | 21878 |    114 |      8 |         16 |
+|   (face_soc_ees331_simple_top) |                    (top) |          0 |          0 |       0 |    0 |   396 |      0 |      0 |          0 |
+|   u_cnn                        |           cnn_simple_top |       9995 |       9907 |      88 |    0 |  9349 |     10 |      8 |         16 |
+|     (u_cnn)                    |           cnn_simple_top |        642 |        642 |       0 |    0 |  2204 |      0 |      0 |          0 |
+|     unit[0].k3.engine          |         simple_k3_engine |       2477 |       2477 |       0 |    0 |  1649 |      4 |      3 |          0 |
+|       (unit[0].k3.engine)      |         simple_k3_engine |       2398 |       2398 |       0 |    0 |  1647 |      0 |      0 |          0 |
+|     unit[0].port               |        simple_mem_bridge |         76 |         76 |       0 |    0 |   102 |      0 |      0 |          0 |
+|     unit[1].k3.engine          |       simple_k3_engine_1 |       2467 |       2467 |       0 |    0 |  1650 |      4 |      3 |          0 |
+|       (unit[1].k3.engine)      |       simple_k3_engine_1 |       2388 |       2388 |       0 |    0 |  1648 |      0 |      0 |          0 |
+|     unit[1].port               |      simple_mem_bridge_2 |         85 |         85 |       0 |    0 |   102 |      0 |      0 |          0 |
+|     unit[2].k1.engine          |         simple_k1_engine |       2065 |       2021 |      44 |    0 |  1719 |      1 |      1 |          8 |
+|       (unit[2].k1.engine)      |         simple_k1_engine |       2039 |       1995 |      44 |    0 |  1719 |      0 |      0 |          8 |
+|     unit[2].port               |      simple_mem_bridge_3 |         57 |         57 |       0 |    0 |   102 |      0 |      0 |          0 |
+|     unit[3].k1.engine          |       simple_k1_engine_4 |       2065 |       2021 |      44 |    0 |  1719 |      1 |      1 |          8 |
+|       (unit[3].k1.engine)      |       simple_k1_engine_4 |       2039 |       1995 |      44 |    0 |  1719 |      0 |      0 |          8 |
+|     unit[3].port               |      simple_mem_bridge_5 |         61 |         61 |       0 |    0 |   102 |      0 |      0 |          0 |
+|   u_cpu_core                   |                 cpu_core |       1982 |       1982 |       0 |    0 |  1735 |      0 |      0 |          0 |
+|     u_datapath                 |             cpu_datapath |       1982 |       1982 |       0 |    0 |  1735 |      0 |      0 |          0 |
+|       u_regfile                |                  regfile |        576 |        576 |       0 |    0 |  1024 |      0 |      0 |          0 |
+|       u_ex_mem                 |               ex_mem_reg |        336 |        336 |       0 |    0 |   111 |      0 |      0 |          0 |
+|       u_fetch                  |            fetch_adapter |        101 |        101 |       0 |    0 |   162 |      0 |      0 |          0 |
+|       u_id_ex                  |                id_ex_reg |        721 |        721 |       0 |    0 |   201 |      0 |      0 |          0 |
+|       u_if_id                  |                if_id_reg |         61 |         61 |       0 |    0 |   100 |      0 |      0 |          0 |
+|       u_mem_wb                 |               mem_wb_reg |        150 |        150 |       0 |    0 |   105 |      0 |      0 |          0 |
+|   u_datasram                   | datasram_mover_subsystem |      13080 |      12848 |     232 |    0 |  9402 |    102 |      0 |          0 |
+|     cache                      |          cnn_paged_mover |      12985 |      12753 |     232 |    0 |  9316 |     98 |      0 |          0 |
+|       (cache)                  |          cnn_paged_mover |       6529 |       6345 |     184 |    0 |  8998 |      0 |      0 |          0 |
+|       local_ram                |     tile_local_ram_bank2 |        491 |        491 |       0 |    0 |    20 |     98 |      0 |          0 |
+|         two_banks.bank[1].ram  |         tile_local_ram_0 |        249 |        249 |       0 |    0 |     9 |     49 |      0 |          0 |
+|         two_banks.bank[0].ram  |           tile_local_ram |        242 |        242 |       0 |    0 |     9 |     49 |      0 |          0 |
+|       mover                    |               data_mover |       5965 |       5917 |      48 |    0 |   298 |      0 |      0 |          0 |
+|     cpu_ram                    |             download_ram |         95 |         95 |       0 |    0 |    86 |      4 |      0 |          0 |
+|   u_image_bridge               |     image_control_bridge |       1489 |       1489 |       0 |    0 |   980 |      0 |      0 |          0 |
++--------------------------------+--------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+
+

@@ -1,0 +1,1394 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Nov 22 14:36:23 2026
+# Process ID         : 50452
+# Current directory  : D:/FPGA/bank2_restore_20261122
+# Command line       : vivado.exe -mode batch -source D:/FPGA/bank2_restore_20261122/synth_soc.tcl -tclargs D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2 D:/FPGA/bank2_restore_20261122/baseline_synth -log D:/FPGA/bank2_restore_20261122/baseline_vivado.log -journal D:/FPGA/bank2_restore_20261122/baseline_vivado.jou
+# Log file           : D:/FPGA/bank2_restore_20261122/vivado.log
+# Journal file       : D:/FPGA/bank2_restore_20261122\vivado.jou
+# Running On         : LAPTOP-R9M0PARI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 275HX
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 24
+# CPU Logical cores  : 24
+# Host memory        : 33752 MB
+# Swap memory        : 2159 MB
+# Total Virtual      : 35912 MB
+# Available Virtual  : 4430 MB
+#-----------------------------------------------------------
+source D:/FPGA/bank2_restore_20261122/synth_soc.tcl
+# set project_root [file normalize [lindex $argv 0]]
+# set output [file normalize [lindex $argv 1]]
+# file mkdir $output
+# set_param general.maxThreads 2
+# create_project -in_memory -part xc7z020clg484-1
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 575.688 ; gain = 218.930
+# set manifest [open [file join $project_root simple_cnn soc.f] r]
+# set sources {}
+# foreach line [split [read $manifest] \n] {
+#  set line [string trim $line]
+#  if {$line eq "" || [string match {#*} $line]} {continue}
+#  set path [file normalize [file join $project_root simple_cnn $line]]
+#  if {![file exists $path]} {error "Missing source: $path"}
+#  lappend sources $path
+# }
+# close $manifest
+# set_property verilog_define EES331_EXTERNAL_PS [current_fileset]
+# read_verilog -sv $sources
+# set constraints [file join $output clock.xdc]
+# set fd [open $constraints w]
+# puts $fd {create_clock -name FCLK_CLK0 -period 10.000 [get_ports FCLK_CLK0]}
+# close $fd
+# read_xdc $constraints
+# set rom [file join $project_root source firmware ees331_cpu program.mem]
+# set options [list LOCAL_BYTES=401408 POOL23=1 "IMEM_INIT_FILE=\"$rom\""]
+Command: synth_design -top face_soc_ees331_simple_top -part xc7z020clg484-1 -verilog_define EES331_EXTERNAL_PS -generic {LOCAL_BYTES=401408 POOL23=1 IMEM_INIT_FILE=\"D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/firmware/ees331_cpu/program.mem\"} -flatten_hierarchy rebuilt -no_iobuf -max_bram_cascade_height 1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-549] User specified maximum number of BRAM that can be cascaded is 1
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 49208
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1353.328 ; gain = 542.406
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-6901] identifier 'input_bad' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:59]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:64]
+WARNING: [Synth 8-6901] identifier 'pend_valid' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:64]
+WARNING: [Synth 8-6901] identifier 'protect_enable' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:69]
+WARNING: [Synth 8-6901] identifier 'readonly_end' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:69]
+WARNING: [Synth 8-6901] identifier 'hint_page' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:78]
+WARNING: [Synth 8-6901] identifier 'PB' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:78]
+WARNING: [Synth 8-6901] identifier 'TAG_BITS' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:78]
+WARNING: [Synth 8-6901] identifier 'hint_page' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:81]
+WARNING: [Synth 8-6901] identifier 'PB' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:81]
+WARNING: [Synth 8-6901] identifier 'TAG_BITS' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:81]
+WARNING: [Synth 8-6901] identifier 'hint_page' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:82]
+WARNING: [Synth 8-6901] identifier 'PB' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:82]
+WARNING: [Synth 8-6901] identifier 'TAG_BITS' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:82]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:83]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:231]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:315]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:336]
+WARNING: [Synth 8-6901] identifier 'mover_fault_locked' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:354]
+WARNING: [Synth 8-6901] identifier 'active_mask' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:164]
+WARNING: [Synth 8-6901] identifier 'panel_enabled' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:63]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:86]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:87]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:87]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:89]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:94]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:95]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:95]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:102]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:102]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:104]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:106]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:106]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:110]
+WARNING: [Synth 8-6901] identifier 'pixel_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:110]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:111]
+WARNING: [Synth 8-6901] identifier 'output_pixel_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:111]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:112]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:112]
+WARNING: [Synth 8-6901] identifier 'row_input_step' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:112]
+WARNING: [Synth 8-6901] identifier 'compute_bank' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:126]
+WARNING: [Synth 8-6901] identifier 'input_response' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:147]
+WARNING: [Synth 8-6901] identifier 'has_next_load' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:152]
+WARNING: [Synth 8-6901] identifier 'input_response' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:164]
+WARNING: [Synth 8-6901] identifier 'has_next_load' is used before its declaration [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:164]
+INFO: [Synth 8-6157] synthesizing module 'face_soc_ees331_simple_top' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/face_soc_ees331_simple_top.sv:4]
+	Parameter LOCAL_BYTES bound to: 401408 - type: integer 
+	Parameter POOL23 bound to: 1'b1 
+	Parameter IMEM_INIT_FILE bound to: D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/firmware/ees331_cpu/program.mem - type: string 
+INFO: [Synth 8-6157] synthesizing module 'clock_unit' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/clock_unit.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'clock_unit' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/clock_unit.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'cpu_core' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/cpu_core.sv:2]
+	Parameter SRAM_BASE bound to: 0 - type: integer 
+	Parameter SRAM_SIZE bound to: 16384 - type: integer 
+	Parameter CNN_MMIO_BASE bound to: 1073741824 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cpu_control' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/cpu_control.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'main_decoder' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/main_decoder.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'main_decoder' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/main_decoder.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'alu_decoder' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/alu_decoder.sv:3]
+INFO: [Synth 8-226] default block is never used [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/alu_decoder.sv:28]
+INFO: [Synth 8-6155] done synthesizing module 'alu_decoder' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/alu_decoder.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'hazard_unit' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/hazard_unit.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'hazard_unit' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/hazard_unit.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'branch_control' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/branch_control.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'branch_control' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/branch_control.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'pipeline_control' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/pipeline_control.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline_control' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/pipeline_control.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_control' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cpu_control/cpu_control.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'cpu_datapath' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv:1]
+	Parameter RESET_PC bound to: 0 - type: integer 
+	Parameter SRAM_BASE bound to: 0 - type: integer 
+	Parameter SRAM_SIZE bound to: 16384 - type: integer 
+	Parameter CNN_MMIO_BASE bound to: 1073741824 - type: integer 
+	Parameter CNN_MMIO_SIZE bound to: 4096 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'pc' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/pc.sv:1]
+	Parameter RESET_PC bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'pc' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/pc.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'fetch_adapter' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'fetch_adapter' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/fetch_adapter.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'if_id_reg' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'if_id_reg' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/if_id_reg.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/regfile.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/regfile.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'imm_gen' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv:1]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv:8]
+INFO: [Synth 8-6155] done synthesizing module 'imm_gen' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/imm_gen.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'id_ex_reg' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'id_ex_reg' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/id_ex_reg.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'alu' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/alu.sv:1]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/alu.sv:10]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/alu.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'address_decoder' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv:1]
+	Parameter SRAM_BASE bound to: 0 - type: integer 
+	Parameter SRAM_SIZE bound to: 16384 - type: integer 
+	Parameter CNN_MMIO_BASE bound to: 1073741824 - type: integer 
+	Parameter CNN_MMIO_SIZE bound to: 4096 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'address_decoder' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/address_decoder.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'lsu' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/lsu.sv:1]
+INFO: [Synth 8-226] default block is never used [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/lsu.sv:22]
+INFO: [Synth 8-6155] done synthesizing module 'lsu' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/lsu.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'ex_mem_reg' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'ex_mem_reg' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/ex_mem_reg.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'mem_wb_reg' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'mem_wb_reg' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/mem_wb_reg.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_datapath' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/cpu_datapath/cpu_datapath.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_core' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/cpu_core.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'imem_rom' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:1]
+	Parameter IMEM_SIZE bound to: 8192 - type: integer 
+	Parameter INIT_FILE bound to: D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/firmware/ees331_cpu/program.mem - type: string 
+INFO: [Synth 8-3876] $readmem data file 'D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/firmware/ees331_cpu/program.mem' is read successfully [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'imem_rom' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'cnn_simple_top' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/cnn_simple_top.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'simple_k3_engine' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:13]
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'compact_word_ram' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+	Parameter DEPTH bound to: 1152 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'compact_word_ram' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'compact_word_ram__parameterized0' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+	Parameter DEPTH bound to: 768 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'compact_word_ram__parameterized0' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'compact_word_ram__parameterized1' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+	Parameter DEPTH bound to: 512 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'compact_word_ram__parameterized1' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'simple_k3_engine' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'simple_mem_bridge' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_mem_bridge.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'simple_mem_bridge' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_mem_bridge.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'simple_k1_engine' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:15]
+	Parameter MAX_CHANNELS bound to: 512 - type: integer 
+	Parameter INPUT_PREFETCH bound to: 0 - type: integer 
+	Parameter OUTPUT_PAR bound to: 1 - type: integer 
+	Parameter READ_AHEAD bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'self_pw8_pixels' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:535]
+	Parameter DEPTH bound to: 512 - type: integer 
+	Parameter AW bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'self_pw8_pixels' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:535]
+INFO: [Synth 8-6157] synthesizing module 'compact_word_ram__parameterized2' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+	Parameter DEPTH bound to: 256 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'compact_word_ram__parameterized2' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/compact_word_ram.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'simple_k1_engine' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:15]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_simple_top' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/cnn_simple_top.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'datasram_mover_subsystem' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/datasram_mover_subsystem.sv:3]
+	Parameter CLIENTS bound to: 4 - type: integer 
+	Parameter LOCAL_BYTES bound to: 401408 - type: integer 
+	Parameter CPU_RAM_BYTES bound to: 16384 - type: integer 
+	Parameter LOGICAL_BYTES bound to: 67108864 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'download_ram' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/download_ram.sv:3]
+	Parameter BYTES bound to: 16384 - type: integer 
+	Parameter BASE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'download_ram' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/download_ram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'cnn_paged_mover' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:5]
+	Parameter CLIENTS bound to: 4 - type: integer 
+	Parameter LOCAL_BYTES bound to: 401408 - type: integer 
+	Parameter LOGICAL_BYTES bound to: 67108864 - type: integer 
+	Parameter DDR_BASE bound to: 268435456 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'tile_local_ram_bank2' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/tile_local_ram_bank2.sv:2]
+	Parameter BYTES bound to: 401408 - type: integer 
+	Parameter DISJOINT_PORTS bound to: 1'b1 
+INFO: [Synth 8-6157] synthesizing module 'tile_local_ram' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/tile_local_ram.sv:3]
+	Parameter BYTES bound to: 200704 - type: integer 
+	Parameter DISJOINT_PORTS bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'tile_local_ram' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/tile_local_ram.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'tile_local_ram_bank2' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/tile_local_ram_bank2.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'data_mover' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/data_mover.sv:4]
+	Parameter TIMEOUT_CYCLES bound to: 100000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'data_mover' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/storage_v2/rtl/data_mover.sv:4]
+INFO: [Synth 8-226] default block is never used [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:566]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_paged_mover' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:5]
+INFO: [Synth 8-6155] done synthesizing module 'datasram_mover_subsystem' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/datasram_mover_subsystem.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'image_control_bridge' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/ees331/image_control_bridge.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'image_control_bridge' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/soc/ees331/image_control_bridge.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'face_soc_ees331_simple_top' (0#1) [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/face_soc_ees331_simple_top.sv:4]
+WARNING: [Synth 8-6014] Unused sequential element input_limit_q_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:85]
+WARNING: [Synth 8-6014] Unused sequential element weight_limit_q_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element w_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:247]
+WARNING: [Synth 8-6014] Unused sequential element h_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:247]
+WARNING: [Synth 8-6014] Unused sequential element weight_full_words_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:285]
+WARNING: [Synth 8-6014] Unused sequential element load_index_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:308]
+WARNING: [Synth 8-6014] Unused sequential element cache_row_bytes_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element pixel_x_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:340]
+WARNING: [Synth 8-6014] Unused sequential element pixel_y_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:340]
+WARNING: [Synth 8-6014] Unused sequential element pixel_index_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:340]
+WARNING: [Synth 8-6014] Unused sequential element window_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:340]
+WARNING: [Synth 8-6014] Unused sequential element window_row_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:340]
+WARNING: [Synth 8-6014] Unused sequential element input_index_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:341]
+WARNING: [Synth 8-6014] Unused sequential element kernel_row_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:341]
+WARNING: [Synth 8-6014] Unused sequential element store_index_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:365]
+WARNING: [Synth 8-7137] Register selected_input_reg[0] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:160]
+WARNING: [Synth 8-7137] Register selected_input_reg[1] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:160]
+WARNING: [Synth 8-7137] Register selected_input_reg[2] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:160]
+WARNING: [Synth 8-7137] Register selected_input_reg[3] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:160]
+WARNING: [Synth 8-7137] Register selected_weight_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:161]
+WARNING: [Synth 8-7137] Register product_q_reg[0] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:164]
+WARNING: [Synth 8-7137] Register product_q_reg[1] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:164]
+WARNING: [Synth 8-7137] Register product_q_reg[2] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:164]
+WARNING: [Synth 8-7137] Register product_q_reg[3] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:164]
+WARNING: [Synth 8-7137] Register ib_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:246]
+WARNING: [Synth 8-7137] Register wb_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:246]
+WARNING: [Synth 8-7137] Register ob_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:246]
+WARNING: [Synth 8-7137] Register ci_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:114]
+WARNING: [Synth 8-7137] Register co_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:115]
+WARNING: [Synth 8-7137] Register k_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:131]
+WARNING: [Synth 8-7137] Register dw_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:104]
+WARNING: [Synth 8-7137] Register stride_two_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:114]
+WARNING: [Synth 8-7137] Register ow_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:249]
+WARNING: [Synth 8-7137] Register oh_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:250]
+WARNING: [Synth 8-7137] Register input_row_bytes_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:252]
+WARNING: [Synth 8-7137] Register weight_per_channel_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:109]
+WARNING: [Synth 8-7137] Register input_extent_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:253]
+WARNING: [Synth 8-7137] Register weight_extent_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:253]
+WARNING: [Synth 8-7137] Register planned_input_word_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:126]
+WARNING: [Synth 8-7137] Register planned_weight_word_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:127]
+WARNING: [Synth 8-7137] Register planned_reuse_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:106]
+WARNING: [Synth 8-7137] Register setup_step_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:255]
+WARNING: [Synth 8-7137] Register mul_bit_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:255]
+WARNING: [Synth 8-7137] Register mul_acc_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:255]
+WARNING: [Synth 8-7137] Register mul_lhs_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:256]
+WARNING: [Synth 8-7137] Register mul_rhs_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:256]
+WARNING: [Synth 8-7137] Register output_row_bytes_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:276]
+WARNING: [Synth 8-7137] Register output_extent_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:277]
+WARNING: [Synth 8-7137] Register weight_last_byte_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:283]
+WARNING: [Synth 8-7137] Register weight_last_word_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:284]
+WARNING: [Synth 8-7137] Register tile_x_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:191]
+WARNING: [Synth 8-7137] Register tile_y_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:297]
+WARNING: [Synth 8-7137] Register tile_input_base_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:298]
+WARNING: [Synth 8-7137] Register tile_input_row_base_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:298]
+WARNING: [Synth 8-7137] Register tile_output_base_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:299]
+WARNING: [Synth 8-7137] Register tile_output_row_base_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:299]
+WARNING: [Synth 8-7137] Register tile_w_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:195]
+WARNING: [Synth 8-7137] Register tile_h_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:195]
+WARNING: [Synth 8-7137] Register tile_iw_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:306]
+WARNING: [Synth 8-7137] Register tile_ih_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:307]
+WARNING: [Synth 8-7137] Register load_x_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:198]
+WARNING: [Synth 8-7137] Register load_y_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:198]
+WARNING: [Synth 8-7137] Register load_c_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:199]
+WARNING: [Synth 8-7137] Register load_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:309]
+WARNING: [Synth 8-7137] Register load_row_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:309]
+WARNING: [Synth 8-7137] Register oc_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:197]
+WARNING: [Synth 8-7137] Register dw_weight_base_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:310]
+WARNING: [Synth 8-7137] Register weight_channel_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:310]
+WARNING: [Synth 8-7137] Register weight_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:310]
+WARNING: [Synth 8-7137] Register weight_load_index_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:224]
+WARNING: [Synth 8-7137] Register output_channel_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:311]
+WARNING: [Synth 8-7137] Register weight_index_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:342]
+WARNING: [Synth 8-7137] Register tap_x_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:131]
+WARNING: [Synth 8-7137] Register tap_y_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:131]
+WARNING: [Synth 8-7137] Register mac_c_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:131]
+WARNING: [Synth 8-7137] Register accumulator_reg[0] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:343]
+WARNING: [Synth 8-7137] Register accumulator_reg[1] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:343]
+WARNING: [Synth 8-7137] Register accumulator_reg[2] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:343]
+WARNING: [Synth 8-7137] Register accumulator_reg[3] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:343]
+WARNING: [Synth 8-7137] Register tile_sum_reg[0] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:364]
+WARNING: [Synth 8-7137] Register tile_sum_reg[1] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:364]
+WARNING: [Synth 8-7137] Register tile_sum_reg[2] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:364]
+WARNING: [Synth 8-7137] Register tile_sum_reg[3] in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:364]
+WARNING: [Synth 8-7137] Register store_x_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:365]
+WARNING: [Synth 8-7137] Register store_y_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:365]
+WARNING: [Synth 8-7137] Register output_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:366]
+WARNING: [Synth 8-7137] Register output_pixel_row_addr_reg in module simple_k3_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k3_engine.sv:366]
+WARNING: [Synth 8-6014] Unused sequential element w_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:351]
+WARNING: [Synth 8-6014] Unused sequential element output_row_bytes_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:90]
+WARNING: [Synth 8-6014] Unused sequential element tile_x_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:392]
+WARNING: [Synth 8-6014] Unused sequential element tile_y_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:392]
+WARNING: [Synth 8-6014] Unused sequential element tile_input_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:85]
+WARNING: [Synth 8-6014] Unused sequential element tile_input_row_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:392]
+WARNING: [Synth 8-6014] Unused sequential element tile_output_row_base_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:393]
+WARNING: [Synth 8-6014] Unused sequential element panel_w_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:73]
+WARNING: [Synth 8-6014] Unused sequential element panel_h_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:74]
+WARNING: [Synth 8-6014] Unused sequential element store_row_origin_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:104]
+WARNING: [Synth 8-6014] Unused sequential element pipe_offset_second_reg was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:473]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[0] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[1] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[2] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[3] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[4] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[5] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[6] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-6014] Unused sequential element product_second_q_reg[7] was removed.  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:476]
+WARNING: [Synth 8-7137] Register held_input_last_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:330]
+WARNING: [Synth 8-7137] Register weight_c_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:203]
+WARNING: [Synth 8-7137] Register weight_addr_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:343]
+WARNING: [Synth 8-7137] Register ib_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:351]
+WARNING: [Synth 8-7137] Register wb_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:351]
+WARNING: [Synth 8-7137] Register ob_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:351]
+WARNING: [Synth 8-7137] Register ci_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:37]
+WARNING: [Synth 8-7137] Register co_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:208]
+WARNING: [Synth 8-7137] Register h_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:351]
+WARNING: [Synth 8-7137] Register stride_two_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:206]
+WARNING: [Synth 8-7137] Register ow_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:105]
+WARNING: [Synth 8-7137] Register oh_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:353]
+WARNING: [Synth 8-7137] Register setup_step_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:355]
+WARNING: [Synth 8-7137] Register mul_bit_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:355]
+WARNING: [Synth 8-7137] Register mul_acc_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:355]
+WARNING: [Synth 8-7137] Register mul_lhs_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:355]
+WARNING: [Synth 8-7137] Register mul_rhs_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:355]
+WARNING: [Synth 8-7137] Register input_row_bytes_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:207]
+WARNING: [Synth 8-7137] Register input_extent_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:368]
+WARNING: [Synth 8-7137] Register weight_extent_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:369]
+WARNING: [Synth 8-7137] Register output_extent_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:372]
+WARNING: [Synth 8-7137] Register pixels_left_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:66]
+WARNING: [Synth 8-7137] Register input_last_byte_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:383]
+WARNING: [Synth 8-7137] Register input_last_word_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:384]
+WARNING: [Synth 8-7137] Register weight_last_byte_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:343]
+WARNING: [Synth 8-7137] Register weight_last_word_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:343]
+WARNING: [Synth 8-7137] Register weight_full_words_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:203]
+WARNING: [Synth 8-7137] Register tile_output_base_reg in module simple_k1_engine has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/simple_cnn/rtl/simple_k1_engine.sv:88]
+INFO: [Common 17-14] Message 'Synth 8-7137' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3936] Found unconnected internal register 'comp_logical_addr_reg[1]' and it is trimmed from '32' to '2' bits. [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:339]
+WARNING: [Synth 8-3936] Found unconnected internal register 'comp_logical_addr_reg[0]' and it is trimmed from '32' to '2' bits. [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:339]
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWCACHE[3] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWCACHE[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWCACHE[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWCACHE[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARCACHE[3] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARCACHE[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARCACHE[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARCACHE[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWPROT[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWPROT[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWPROT[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARPROT[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARPROT[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARPROT[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWQOS[3] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWQOS[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWQOS[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_AWQOS[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARQOS[3] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARQOS[2] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARQOS[1] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_GP0_ARQOS[0] in module image_control_bridge is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[9] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[8] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[7] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[6] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[5] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[4] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[3] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[2] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[1] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_ddr_bytes[0] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[9] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[8] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[7] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[6] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[5] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[4] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[3] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[2] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[1] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cfg_local_bytes[0] in module data_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[31] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[30] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[29] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[28] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[27] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[26] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[25] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[24] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[23] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[22] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[21] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[20] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[19] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[18] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[17] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[16] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[15] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[14] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[13] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[12] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[11] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[10] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[9] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_addr[8] in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port cache_csr_re in module cnn_paged_mover is either unconnected or has no load
+WARNING: [Synth 8-7129] Port waddr[9] in module self_pw8_pixels is either unconnected or has no load
+WARNING: [Synth 8-7129] Port raddr[9] in module self_pw8_pixels is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[31] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[30] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[29] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[28] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[27] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[26] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[25] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[24] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[23] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[22] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[21] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[20] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[19] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[18] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[17] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[16] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[15] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[14] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[13] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[12] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[11] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[10] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[9] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[8] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[7] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[6] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[5] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[4] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[3] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port addr[2] in module lsu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[6] in module imm_gen is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1738.867 ; gain = 927.945
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1738.867 ; gain = 927.945
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1738.867 ; gain = 927.945
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.328 . Memory (MB): peak = 1738.867 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/FPGA/bank2_restore_20261122/baseline_synth/clock.xdc]
+Finished Parsing XDC File [D:/FPGA/bank2_restore_20261122/baseline_synth/clock.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1867.660 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.351 . Memory (MB): peak = 1867.660 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1867.660 ; gain = 1056.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1867.660 ; gain = 1056.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1867.660 ; gain = 1056.738
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'simple_k3_engine'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'simple_mem_bridge'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cnn_paged_mover'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                             0101 |                             0000
+                   SETUP |                             0100 |                             0001
+                   CHECK |                             0011 |                             0010
+            CHECK_BOUNDS |                             0001 |                             0011
+              TILE_BEGIN |                             0010 |                             0100
+                    IREQ |                             1110 |                             0101
+                   IWAIT |                             1101 |                             0110
+                    WREQ |                             0111 |                             0111
+                   WWAIT |                             1100 |                             1000
+                MAC_READ |                             1011 |                             1001
+                 MAC_ACC |                             1010 |                             1010
+                    OREQ |                             0110 |                             1011
+                   OWAIT |                             1001 |                             1100
+                  FINISH |                             1000 |                             1101
+                    FAIL |                             0000 |                             1110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'simple_k3_engine'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              000
+                   OFFER |                              001 |                              001
+              WAIT_REPLY |                              010 |                              010
+                  RETURN |                              011 |                              011
+                   QUIET |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'simple_mem_bridge'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                         00000010 |                              000
+                   DRAIN |                         10000000 |                              010
+                  WB_REQ |                         00000100 |                              011
+                 WB_WAIT |                         01000000 |                              100
+                    SCAN |                         00000001 |                              111
+                FILL_REQ |                         00100000 |                              101
+               FILL_WAIT |                         00001000 |                              110
+                  ACCESS |                         00010000 |                              001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'cnn_paged_mover'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:34 . Memory (MB): peak = 1867.660 ; gain = 1056.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 16    
+	   2 Input   33 Bit       Adders := 4     
+	   2 Input   32 Bit       Adders := 97    
+	   3 Input   32 Bit       Adders := 9     
+	   3 Input   17 Bit       Adders := 4     
+	   2 Input   16 Bit       Adders := 16    
+	   2 Input   13 Bit       Adders := 10    
+	   2 Input   11 Bit       Adders := 12    
+	   2 Input   10 Bit       Adders := 31    
+	   2 Input    9 Bit       Adders := 2     
+	   3 Input    8 Bit       Adders := 4     
+	   2 Input    8 Bit       Adders := 18    
+	   2 Input    7 Bit       Adders := 2     
+	   3 Input    7 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 6     
+	   3 Input    5 Bit       Adders := 8     
+	   2 Input    4 Bit       Adders := 15    
+	   8 Input    4 Bit       Adders := 2     
+	   2 Input    3 Bit       Adders := 44    
+	   2 Input    2 Bit       Adders := 14    
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 6     
++---Registers : 
+	              392 Bit    Registers := 1     
+	              128 Bit    Registers := 1     
+	               67 Bit    Registers := 4     
+	               64 Bit    Registers := 50    
+	               33 Bit    Registers := 1     
+	               32 Bit    Registers := 342   
+	               22 Bit    Registers := 2     
+	               17 Bit    Registers := 24    
+	               16 Bit    Registers := 413   
+	               13 Bit    Registers := 10    
+	               12 Bit    Registers := 5     
+	               11 Bit    Registers := 8     
+	               10 Bit    Registers := 35    
+	                9 Bit    Registers := 44    
+	                8 Bit    Registers := 50    
+	                7 Bit    Registers := 10    
+	                6 Bit    Registers := 4     
+	                5 Bit    Registers := 13    
+	                4 Bit    Registers := 14    
+	                3 Bit    Registers := 45    
+	                2 Bit    Registers := 65    
+	                1 Bit    Registers := 227   
++---RAMs : 
+	            1024K Bit	(32768 X 32 bit)          RAMs := 2     
+	             512K Bit	(16384 X 32 bit)          RAMs := 2     
+	              32K Bit	(1024 X 32 bit)          RAMs := 6     
+	              32K Bit	(512 X 64 bit)          RAMs := 2     
+	              32K Bit	(4096 X 8 bit)          RAMs := 4     
+	              24K Bit	(768 X 32 bit)          RAMs := 4     
+	              16K Bit	(512 X 32 bit)          RAMs := 2     
+	               8K Bit	(256 X 32 bit)          RAMs := 2     
+	               4K Bit	(128 X 32 bit)          RAMs := 4     
+	              256 Bit	(8 X 32 bit)          RAMs := 4     
+	               20 Bit	(2 X 10 bit)          RAMs := 2     
++---ROMs : 
+	                    ROMs := 1     
++---Muxes : 
+	   8 Input  392 Bit        Muxes := 3     
+	   2 Input  392 Bit        Muxes := 20    
+	   2 Input  128 Bit        Muxes := 5     
+	   2 Input   67 Bit        Muxes := 4     
+	   2 Input   64 Bit        Muxes := 52    
+	  10 Input   64 Bit        Muxes := 4     
+	  13 Input   64 Bit        Muxes := 4     
+	   4 Input   64 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 17    
+	   2 Input   32 Bit        Muxes := 347   
+	   4 Input   32 Bit        Muxes := 53    
+	  10 Input   32 Bit        Muxes := 46    
+	  13 Input   32 Bit        Muxes := 42    
+	   7 Input   32 Bit        Muxes := 2     
+	   8 Input   32 Bit        Muxes := 6     
+	   2 Input   26 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 24    
+	  10 Input   16 Bit        Muxes := 4     
+	  13 Input   16 Bit        Muxes := 2     
+	   8 Input   16 Bit        Muxes := 4     
+	   2 Input   13 Bit        Muxes := 4     
+	  10 Input   13 Bit        Muxes := 6     
+	  13 Input   12 Bit        Muxes := 2     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 26    
+	  13 Input   11 Bit        Muxes := 2     
+	   3 Input   11 Bit        Muxes := 2     
+	   2 Input   10 Bit        Muxes := 22    
+	  10 Input   10 Bit        Muxes := 6     
+	  13 Input   10 Bit        Muxes := 12    
+	   8 Input   10 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 92    
+	   8 Input    9 Bit        Muxes := 7     
+	   4 Input    9 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 53    
+	   4 Input    8 Bit        Muxes := 16    
+	  10 Input    8 Bit        Muxes := 8     
+	   3 Input    8 Bit        Muxes := 2     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 6     
+	   2 Input    6 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 5     
+	  10 Input    5 Bit        Muxes := 2     
+	  13 Input    5 Bit        Muxes := 2     
+	  15 Input    5 Bit        Muxes := 2     
+	  15 Input    4 Bit        Muxes := 3     
+	  29 Input    4 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 86    
+	   3 Input    4 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 1     
+	   8 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 76    
+	   3 Input    3 Bit        Muxes := 10    
+	  10 Input    3 Bit        Muxes := 6     
+	  13 Input    3 Bit        Muxes := 10    
+	   5 Input    3 Bit        Muxes := 11    
+	   4 Input    3 Bit        Muxes := 6     
+	  15 Input    3 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 112   
+	  13 Input    2 Bit        Muxes := 4     
+	   3 Input    2 Bit        Muxes := 11    
+	   8 Input    2 Bit        Muxes := 6     
+	   4 Input    2 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 679   
+	  10 Input    1 Bit        Muxes := 62    
+	  11 Input    1 Bit        Muxes := 4     
+	  13 Input    1 Bit        Muxes := 84    
+	   7 Input    1 Bit        Muxes := 14    
+	   8 Input    1 Bit        Muxes := 427   
+	   4 Input    1 Bit        Muxes := 39    
+	   5 Input    1 Bit        Muxes := 24    
+	  15 Input    1 Bit        Muxes := 8     
+	   3 Input    1 Bit        Muxes := 32    
+	   6 Input    1 Bit        Muxes := 11    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP p_0_out, operation Mode is: A*B.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][4]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][5]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][2]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][3]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][0]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][1]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][10]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][11]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][8]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][9]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][6]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][7]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][16]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][17]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][14]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][15]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][12]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][13]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][22]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][23]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][20]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][21]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][18]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][19]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][28]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][29]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][26]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][27]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][24]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][25]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3886] merging instance 'sums_second_reg[0][30]' (FDE) to 'sums_second_reg[0][31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sums_second_reg[0][31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (store_second_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\prefetch_count_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (fill_pair_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (word_fill_mode_reg)
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][0]' (FDE) to 'word_rows_reg[0][0][0]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][0]' (FDE) to 'word_rows_reg[0][0][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][0]' (FDE) to 'word_rows_reg[0][1][0]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][0]' (FDE) to 'word_rows_reg[0][1][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][0]' (FDE) to 'word_rows_reg[0][2][0]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][0]' (FDE) to 'word_rows_reg[0][2][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][0]' (FDE) to 'word_rows_reg[0][3][0]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][0]' (FDE) to 'word_rows_reg[0][3][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][1]' (FDE) to 'word_rows_reg[0][0][1]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][1]' (FDE) to 'word_rows_reg[0][0][9]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][1]' (FDE) to 'word_rows_reg[0][1][1]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][1]' (FDE) to 'word_rows_reg[0][1][9]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][1]' (FDE) to 'word_rows_reg[0][2][1]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][1]' (FDE) to 'word_rows_reg[0][2][9]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][1]' (FDE) to 'word_rows_reg[0][3][1]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][1]' (FDE) to 'word_rows_reg[0][3][9]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][2]' (FDE) to 'word_rows_reg[0][0][2]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][2]' (FDE) to 'word_rows_reg[0][0][10]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][2]' (FDE) to 'word_rows_reg[0][1][2]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][2]' (FDE) to 'word_rows_reg[0][1][10]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][2]' (FDE) to 'word_rows_reg[0][2][2]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][2]' (FDE) to 'word_rows_reg[0][2][10]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][2]' (FDE) to 'word_rows_reg[0][3][2]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][2]' (FDE) to 'word_rows_reg[0][3][10]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][3]' (FDE) to 'word_rows_reg[0][0][3]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][3]' (FDE) to 'word_rows_reg[0][0][11]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][3]' (FDE) to 'word_rows_reg[0][1][3]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][3]' (FDE) to 'word_rows_reg[0][1][11]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][3]' (FDE) to 'word_rows_reg[0][2][3]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][3]' (FDE) to 'word_rows_reg[0][2][11]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][3]' (FDE) to 'word_rows_reg[0][3][3]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][3]' (FDE) to 'word_rows_reg[0][3][11]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][4]' (FDE) to 'word_rows_reg[0][0][4]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][4]' (FDE) to 'word_rows_reg[0][0][12]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][4]' (FDE) to 'word_rows_reg[0][1][4]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][4]' (FDE) to 'word_rows_reg[0][1][12]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][4]' (FDE) to 'word_rows_reg[0][2][4]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][4]' (FDE) to 'word_rows_reg[0][2][12]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][4]' (FDE) to 'word_rows_reg[0][3][4]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][4]' (FDE) to 'word_rows_reg[0][3][12]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][5]' (FDE) to 'word_rows_reg[0][0][5]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][5]' (FDE) to 'word_rows_reg[0][0][13]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][5]' (FDE) to 'word_rows_reg[0][1][5]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][5]' (FDE) to 'word_rows_reg[0][1][13]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][5]' (FDE) to 'word_rows_reg[0][2][5]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][5]' (FDE) to 'word_rows_reg[0][2][13]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][5]' (FDE) to 'word_rows_reg[0][3][5]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][5]' (FDE) to 'word_rows_reg[0][3][13]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][6]' (FDE) to 'word_rows_reg[0][0][6]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][6]' (FDE) to 'word_rows_reg[0][0][14]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][6]' (FDE) to 'word_rows_reg[0][1][6]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][6]' (FDE) to 'word_rows_reg[0][1][14]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][6]' (FDE) to 'word_rows_reg[0][2][6]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][6]' (FDE) to 'word_rows_reg[0][2][14]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][6]' (FDE) to 'word_rows_reg[0][3][6]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][6]' (FDE) to 'word_rows_reg[0][3][14]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][7]' (FDE) to 'word_rows_reg[0][0][7]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][7]' (FDE) to 'word_rows_reg[0][0][15]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][7]' (FDE) to 'word_rows_reg[0][1][7]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][7]' (FDE) to 'word_rows_reg[0][1][15]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][7]' (FDE) to 'word_rows_reg[0][2][7]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][2][7]' (FDE) to 'word_rows_reg[0][2][15]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][3][7]' (FDE) to 'word_rows_reg[0][3][7]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][3][7]' (FDE) to 'word_rows_reg[0][3][15]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][0][8]' (FDE) to 'word_rows_reg[0][0][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][0][8]' (FDE) to 'word_rows_reg[0][0][16]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][1][8]' (FDE) to 'word_rows_reg[0][1][8]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[0][1][8]' (FDE) to 'word_rows_reg[0][1][16]'
+INFO: [Synth 8-3886] merging instance 'word_rows_reg[1][2][8]' (FDE) to 'word_rows_reg[0][2][8]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][56] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][56] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][56] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][56] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][57] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][57] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][57] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][57] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][59] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][59] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][59] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][59] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][60] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][60] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][60] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][60] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][61] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][62] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][0][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][1][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][2][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_rows_reg[0][3][63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (fill_second_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\word_pixel_addr_reg[6][23] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-7067] Removed DRAM instance i_7/i_0/word_base_reg_0_1_6_9 from module extram__14 due to constant propagation
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[88].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[89].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[90].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[91].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[92].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[93].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[94].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[95].slot_q_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[88].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[89].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[90].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[91].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[92].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[93].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[94].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[95].slot_q_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[88].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[89].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[90].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\lookup_group[91].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[92].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[93].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[94].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[95].slot_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[88].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[89].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[90].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[91].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[92].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[93].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[94].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[95].slot_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[88].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[89].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[90].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[91].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[92].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[93].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[94].slot_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\lookup_group[95].slot_q_reg[7] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-4471] merging register 'issue_slot_reg[0][8:0]' into 'issue_slot_reg[0][8:0]' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:484]
+INFO: [Synth 8-4471] merging register 'issue_slot_reg[1][8:0]' into 'issue_slot_reg[1][8:0]' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:484]
+INFO: [Synth 8-4471] merging register 'wb_slot_reg[8:0]' into 'wb_slot_reg[8:0]' [D:/FPGA/bank2_restore_20261122/snapshot/moon_latest/ees331_swplan_bank2/source/rtl/cnn_ddr/cnn_paged_mover.sv:148]
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[9] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[8] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[7] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[6] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[5] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[4] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[3] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[2] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[1] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out2[0] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[9] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[8] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[7] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[6] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[5] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[4] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[3] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[2] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[1] driven by constant 0
+WARNING: [Synth 8-3917] design cnn_paged_mover__GB2 has port out3[0] driven by constant 0
+WARNING: [Synth 8-6841] Block RAM (two_banks.bank[0].ram/banks[14].present.mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (14) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg" was recognized as a true dual port RAM template.
+WARNING: [Synth 8-6841] Block RAM (two_banks.bank[0].ram/banks[15].present.mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (15) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[0].ram/banks[10].present.mem_reg" was recognized as a true dual port RAM template.
+WARNING: [Synth 8-6841] Block RAM (two_banks.bank[1].ram/banks[14].present.mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (14) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[1].ram/banks[14].present.mem_reg" was recognized as a true dual port RAM template.
+WARNING: [Synth 8-6841] Block RAM (two_banks.bank[1].ram/banks[15].present.mem_reg) originally specified as a Byte Wide Write Enable RAM cannot take advantage of ByteWide feature and is implemented with single write enable per RAM due to following reason.
+(address width (15) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired.)
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[1].ram/banks[15].present.mem_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-3971] The signal "local_ram/two_banks.bank[1].ram/banks[10].present.mem_reg" was recognized as a true dual port RAM template.
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_main_decoder/decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_main_decoder/decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "u_cpu_core/u_control/u_main_decoder/decoded" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_alu_decoder/alu_decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_alu_decoder/legal_alu" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_main_decoder/decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_main_decoder/decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "u_cpu_core/u_control/u_main_decoder/decoded" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_alu_decoder/alu_decoded" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u_cpu_core/u_control/u_alu_decoder/legal_alu" won't be mapped to RAM because it is too sparse
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:10 . Memory (MB): peak = 1867.660 ; gain = 1056.738
+---------------------------------------------------------------------------------
+ Sort Area is simple_k1_engine p_0_out_0 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_2 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_3 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_4 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_5 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_6 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_7 : 0 0 : 502 502 : Used 2 time 100
+ Sort Area is simple_k1_engine p_0_out_8 : 0 0 : 502 502 : Used 2 time 100
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name          | RTL Object                                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|\input_banks[0].mem  | split.main_mem_reg                              | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[0].mem  | split.tail_mem_reg                              | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|\input_banks[1].mem  | single.mem_reg                                  | 768 x 32(READ_FIRST)   | W |   | 768 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[2].mem  | single.mem_reg                                  | 768 x 32(READ_FIRST)   | W |   | 768 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[3].mem  | single.mem_reg                                  | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|weights              | split.main_mem_reg                              | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|weights              | split.tail_mem_reg                              | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|pixel_memory         | pixels_reg                                      | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|weights              | single.mem_reg                                  | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|\u_datasram/cpu_ram  | lanes[0].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[1].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[2].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[3].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|local_ram            | two_banks.bank[0].ram/banks[14].present.mem_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 16     | 
+|local_ram            | two_banks.bank[0].ram/banks[15].present.mem_reg | 32 K x 32(READ_FIRST)  | W | R | 32 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 32     | 
+|local_ram            | two_banks.bank[0].ram/banks[10].present.mem_reg | 1 K x 32(READ_FIRST)   | W | R | 1 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      | 
+|local_ram            | two_banks.bank[1].ram/banks[14].present.mem_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 16     | 
+|local_ram            | two_banks.bank[1].ram/banks[15].present.mem_reg | 32 K x 32(READ_FIRST)  | W | R | 32 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 32     | 
+|local_ram            | two_banks.bank[1].ram/banks[10].present.mem_reg | 1 K x 32(READ_FIRST)   | W | R | 1 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      | 
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++---------------------+------------------------------+----------------+----------------------+--------------+
+|Module Name          | RTL Object                   | Inference      | Size (Depth x Width) | Primitives   | 
++---------------------+------------------------------+----------------+----------------------+--------------+
+|simple_k1_engine     | out_addr_reg                 | Implied        | 8 x 32               | RAM32M x 6   | 
+|simple_k1_engine     | out_data_reg                 | Implied        | 8 x 32               | RAM32M x 6   | 
+|cachei_3/mover       | low_words_reg                | User Attribute | 16 x 32              | RAM32M x 6   | 
+|cachei_3/mover       | high_words_reg               | User Attribute | 16 x 32              | RAM32M x 6   | 
+|cnn_paged_mover__GB2 | request_queue[3].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[2].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[1].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[0].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
++---------------------+------------------------------+----------------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|simple_k1_engine | A*B         | 9      | 8      | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:17 . Memory (MB): peak = 1910.066 ; gain = 1099.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:48 ; elapsed = 00:02:03 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name          | RTL Object                                      | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|\input_banks[0].mem  | split.main_mem_reg                              | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[0].mem  | split.tail_mem_reg                              | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|\input_banks[1].mem  | single.mem_reg                                  | 768 x 32(READ_FIRST)   | W |   | 768 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[2].mem  | single.mem_reg                                  | 768 x 32(READ_FIRST)   | W |   | 768 x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|\input_banks[3].mem  | single.mem_reg                                  | 512 x 32(READ_FIRST)   | W |   | 512 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|weights              | split.main_mem_reg                              | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|weights              | split.tail_mem_reg                              | 128 x 32(READ_FIRST)   | W |   | 128 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|pixel_memory         | pixels_reg                                      | 512 x 64(READ_FIRST)   | W |   | 512 x 64(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|weights              | single.mem_reg                                  | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|\u_datasram/cpu_ram  | lanes[0].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[1].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[2].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|\u_datasram/cpu_ram  | lanes[3].mem_reg                                | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
+|local_ram            | two_banks.bank[0].ram/banks[14].present.mem_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 16     | 
+|local_ram            | two_banks.bank[0].ram/banks[15].present.mem_reg | 32 K x 32(READ_FIRST)  | W | R | 32 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 32     | 
+|local_ram            | two_banks.bank[0].ram/banks[10].present.mem_reg | 1 K x 32(READ_FIRST)   | W | R | 1 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      | 
+|local_ram            | two_banks.bank[1].ram/banks[14].present.mem_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 16     | 
+|local_ram            | two_banks.bank[1].ram/banks[15].present.mem_reg | 32 K x 32(READ_FIRST)  | W | R | 32 K x 32(READ_FIRST)  | W | R | Port A and B     | 0      | 32     | 
+|local_ram            | two_banks.bank[1].ram/banks[10].present.mem_reg | 1 K x 32(READ_FIRST)   | W | R | 1 K x 32(READ_FIRST)   | W | R | Port A and B     | 0      | 1      | 
++---------------------+-------------------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++---------------------+------------------------------+----------------+----------------------+--------------+
+|Module Name          | RTL Object                   | Inference      | Size (Depth x Width) | Primitives   | 
++---------------------+------------------------------+----------------+----------------------+--------------+
+|simple_k1_engine     | out_addr_reg                 | Implied        | 8 x 32               | RAM32M x 6   | 
+|simple_k1_engine     | out_data_reg                 | Implied        | 8 x 32               | RAM32M x 6   | 
+|cachei_3/mover       | low_words_reg                | User Attribute | 16 x 32              | RAM32M x 6   | 
+|cachei_3/mover       | high_words_reg               | User Attribute | 16 x 32              | RAM32M x 6   | 
+|cnn_paged_mover__GB2 | request_queue[3].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[2].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[1].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
+|cnn_paged_mover__GB2 | request_queue[0].entries_reg | User Attribute | 4 x 67               | RAM32M x 12  | 
++---------------------+------------------------------+----------------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/input_banks[0].mem/split.main_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/input_banks[0].mem/split.tail_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/input_banks[1].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/input_banks[2].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/input_banks[3].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/weights/split.main_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[0].k3.engine/weights/split.tail_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/input_banks[0].mem/split.main_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/input_banks[0].mem/split.tail_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/input_banks[1].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/input_banks[2].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/input_banks[3].mem/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/weights/split.main_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[1].k3.engine/weights/split.tail_mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[2].k1.engine/pixel_memory/pixels_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[2].k1.engine/weights/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[3].k1.engine/pixel_memory/pixels_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_cnn/unit[3].k1.engine/weights/single.mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_datasram/cpu_ram/lanes[0].mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_datasram/cpu_ram/lanes[1].mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_datasram/cpu_ram/lanes[2].mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance u_datasram/cpu_ram/lanes[3].mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_2_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[14].present.mem_reg_3_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_0_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_1_0_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance i_0/u_datasram/cache/local_ram/two_banks.bank[0].ram/banks[15].present.mem_reg_2_0_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Common 17-14] Message 'Synth 8-7052' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-7052' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:55 ; elapsed = 00:02:15 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:02:01 ; elapsed = 00:02:22 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:02 ; elapsed = 00:02:22 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:05 ; elapsed = 00:02:26 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:05 ; elapsed = 00:02:26 . Memory (MB): peak = 2284.535 ; gain = 1473.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:06 ; elapsed = 00:02:27 . Memory (MB): peak = 2299.887 ; gain = 1488.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:06 ; elapsed = 00:02:27 . Memory (MB): peak = 2299.887 ; gain = 1488.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|simple_k1_engine | (A*B)'      | 8      | 18     | -      | -      | 17     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++-----------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |  2562|
+|2     |DSP48E1  |    16|
+|3     |LUT1     |   376|
+|4     |LUT2     |  4932|
+|5     |LUT3     |  2479|
+|6     |LUT4     |  3236|
+|7     |LUT5     |  4040|
+|8     |LUT6     | 14408|
+|9     |MUXF7    |  2321|
+|10    |MUXF8    |  1005|
+|11    |RAM32M   |    76|
+|12    |RAM32X1D |     8|
+|13    |RAMB18E1 |     8|
+|14    |RAMB36E1 |   114|
+|22    |FDCE     |  1544|
+|23    |FDPE     |    14|
+|24    |FDRE     | 20351|
+|25    |FDSE     |     2|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:07 ; elapsed = 00:02:28 . Memory (MB): peak = 2299.887 ; gain = 1488.965
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 115 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:53 ; elapsed = 00:02:22 . Memory (MB): peak = 2299.887 ; gain = 1360.172
+Synthesis Optimization Complete : Time (s): cpu = 00:02:07 ; elapsed = 00:02:28 . Memory (MB): peak = 2299.887 ; gain = 1488.965
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.316 . Memory (MB): peak = 2308.984 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6110 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [D:/FPGA/bank2_restore_20261122/baseline_synth/clock.xdc]
+Finished Parsing XDC File [D:/FPGA/bank2_restore_20261122/baseline_synth/clock.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 2327.785 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 84 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 76 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 8 instances
+
+Synth Design complete | Checksum: 4fb7f205
+INFO: [Common 17-83] Releasing license: Synthesis
+431 Infos, 305 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:15 ; elapsed = 00:02:48 . Memory (MB): peak = 2327.785 ; gain = 1752.098
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+check_timing: Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 2327.785 ; gain = 0.000
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 2327.785 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/FPGA/bank2_restore_20261122/baseline_synth/soc_synth.dcp' has been generated.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {IS_BLACKBOX == 1}'.
+# set code [catch {
+#  synth_design -top face_soc_ees331_simple_top -part xc7z020clg484-1 -verilog_define EES331_EXTERNAL_PS \
+#   -generic $options -flatten_hierarchy rebuilt -no_iobuf -max_bram_cascade_height 1
+#  report_utilization -file [file join $output utilization.rpt]
+#  report_utilization -hierarchical -file [file join $output hierarchy.rpt]
+#  check_timing -verbose -file [file join $output check_timing.rpt]
+#  report_timing_summary -delay_type min_max -report_unconstrained -max_paths 10 -file [file join $output timing.rpt]
+#  report_timing -delay_type max -max_paths 10 -nworst 1 -input_pins -file [file join $output paths.rpt]
+#  write_checkpoint -force [file join $output soc_synth.dcp]
+#  set black_boxes [get_cells -hier -filter {IS_BLACKBOX == 1}]
+#  if {[llength $black_boxes]} {error "Unresolved black boxes: $black_boxes"}
+# } message]
+# set fd [open [file join $output status.txt] w]
+# puts $fd "commit=b165edc176e14a51c57f4937a7681cd510974c68"
+# puts $fd "top=face_soc_ees331_simple_top"
+# puts $fd "part=xc7z020clg484-1"
+# puts $fd "LOCAL_BYTES=401408;POOL23=1;CNN_CLIENTS=4"
+# puts $fd "clock_period_ns=10.000;external_ps=1;no_iobuf=1;flatten_hierarchy=rebuilt"
+# puts $fd "result=[expr {$code ? {FAIL} : {PASS}}]"
+# puts $fd "message=$message"
+# close $fd
+# if {$code} {puts stderr "BANK2_SOC_SYNTH_FAIL $message";exit 1}
+# puts BANK2_SOC_SYNTH_COMPLETE
+BANK2_SOC_SYNTH_COMPLETE
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 22 14:39:39 2026...

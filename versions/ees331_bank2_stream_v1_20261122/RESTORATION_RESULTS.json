@@ -1,0 +1,154 @@
+{
+  "status": "FUNCTIONAL_AND_RESOURCE_GATES_PASS",
+  "base_commit": "b165edc176e14a51c57f4937a7681cd510974c68",
+  "final_variant": "stage3_cnn_stream",
+  "changed_production_files": [
+    "source/storage_v2/rtl/data_mover.sv",
+    "simple_cnn/rtl/simple_k3_engine.sv",
+    "simple_cnn/rtl/simple_k1_engine.sv",
+    "simple_cnn/rtl/simple_mem_bridge.sv",
+    "simple_cnn/rtl/cnn_simple_top.sv"
+  ],
+  "capacity": {
+    "LUT": 53200,
+    "FF": 106400,
+    "BRAM": 140,
+    "DSP": 220
+  },
+  "full_pl_synthesis": {
+    "baseline": {
+      "LUT": 26451.0,
+      "FF": 21911.0,
+      "BRAM": 118.0,
+      "DSP": 16.0,
+      "wns_ns": -0.685,
+      "tns_ns": -131.542,
+      "setup_failures": 567,
+      "whs_ns": 0.164,
+      "hold_failures": 0,
+      "resource_fit": true
+    },
+    "stage1_local_stream": {
+      "LUT": 26529.0,
+      "FF": 21878.0,
+      "BRAM": 118.0,
+      "DSP": 16.0,
+      "wns_ns": -0.685,
+      "tns_ns": -131.679,
+      "setup_failures": 567,
+      "whs_ns": 0.164,
+      "hold_failures": 0,
+      "resource_fit": true
+    },
+    "stage2_axi_stream": {
+      "LUT": 27032.0,
+      "FF": 21986.0,
+      "BRAM": 118.0,
+      "DSP": 16.0,
+      "wns_ns": -0.357,
+      "tns_ns": -133.419,
+      "setup_failures": 472,
+      "whs_ns": 0.164,
+      "hold_failures": 0,
+      "resource_fit": true
+    },
+    "stage3_cnn_stream": {
+      "LUT": 28652.0,
+      "FF": 22408.0,
+      "BRAM": 118.0,
+      "DSP": 16.0,
+      "wns_ns": -0.078,
+      "tns_ns": -30.986,
+      "setup_failures": 460,
+      "whs_ns": 0.164,
+      "hold_failures": 0,
+      "resource_fit": true
+    }
+  },
+  "dma_directed": {
+    "baseline": {
+      "status": "PASS",
+      "cases": 82,
+      "fill_cycles": 1211,
+      "writeback_cycles": 1059,
+      "longest_local_stream": 1,
+      "longest_axi_write_stream": 1
+    },
+    "stage1_local_stream": {
+      "status": "PASS",
+      "cases": 82,
+      "fill_cycles": 467,
+      "writeback_cycles": 579,
+      "longest_local_stream": 32,
+      "longest_axi_write_stream": 1
+    },
+    "stage2_axi_stream": {
+      "status": "PASS",
+      "cases": 82,
+      "fill_cycles": 467,
+      "writeback_cycles": 459,
+      "longest_local_stream": 32,
+      "longest_axi_write_stream": 16
+    }
+  },
+  "cnn_regression": {
+    "baseline": {
+      "status": "PASS",
+      "numerical_jobs": 160,
+      "invalid_jobs": 4,
+      "abort_restart_jobs": 4,
+      "cycles": 305228,
+      "actual_mac_overlap_cycles": 4900,
+      "all_four_mac_cycles": 159,
+      "max_outstanding_total": 4
+    },
+    "stage3_cnn_stream": {
+      "status": "PASS",
+      "numerical_jobs": 160,
+      "invalid_jobs": 4,
+      "abort_restart_jobs": 4,
+      "cycles": 202092,
+      "actual_mac_overlap_cycles": 5194,
+      "all_four_mac_cycles": 505,
+      "max_outstanding_total": 12
+    }
+  },
+  "integration": {
+    "baseline": {
+      "jobs": 8,
+      "cycles": 83550,
+      "total_cycles": 85271,
+      "peak_outstanding": 4,
+      "output_fnv64": "9d45ac45582e4ae6",
+      "ddr_read": 32768,
+      "ddr_write": 14336
+    },
+    "stage3_cnn_stream": {
+      "jobs": 8,
+      "cycles": 37745,
+      "total_cycles": 39466,
+      "peak_outstanding": 16,
+      "output_fnv64": "9d45ac45582e4ae6",
+      "ddr_read": 32768,
+      "ddr_write": 14336
+    }
+  },
+  "bridge_cases": 10,
+  "k1_range_cases": 12,
+  "baseline_source_unchanged": true,
+  "full_network_simulation": false,
+  "cpu_firmware_integrated_simulation": false,
+  "place_route": false,
+  "limits": {
+    "simulation_seconds": 30,
+    "build_seconds": 240,
+    "synthesis_seconds": 420,
+    "idle_without_log_or_cpu_seconds": 90
+  },
+  "timing_closed": false,
+  "publication_target": {
+    "branch": "bai-datasram",
+    "version": "ees331-bank2-stream-v1-20261122",
+    "project_directory": "project"
+  }
+}

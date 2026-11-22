@@ -1,0 +1,1 @@
+PASS CNN+2bank+DMA+DDR jobs=8 cycles=83550 total_cycles=85271 peak_outstanding=4 output_fnv64=9d45ac45582e4ae6 ddr_read=32768 ddr_write=14336

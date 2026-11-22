@@ -1,0 +1,19 @@
+{
+  "version": "ees331-bank2-stream-v1-20261122",
+  "date": "2026-11-22",
+  "target_branch": "bai-datasram",
+  "branch_parent": "cbf211753b1687bb104d81af2bbf626302a9a13e",
+  "source_base": "b165edc176e14a51c57f4937a7681cd510974c68",
+  "project": "project",
+  "top": "face_soc_ees331_simple_top",
+  "filelist": "project/simple_cnn/soc.f",
+  "resource_fit": true,
+  "timing_closed": false,
+  "full_network_verified": false,
+  "lut": 28652,
+  "ff": 22408,
+  "bram_tile": 118,
+  "dsp": 16,
+  "synthesis_wns_ns": -0.078,
+  "notes": "Independent version snapshot on bai-datasram; existing 4-bank and task-graph projects retained."
+}

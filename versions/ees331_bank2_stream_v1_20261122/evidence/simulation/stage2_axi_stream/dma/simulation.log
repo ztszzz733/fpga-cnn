@@ -1,0 +1,1 @@
+{"status":"PASS","cases":82,"fill_cycles":467,"writeback_cycles":459,"longest_local_stream":32,"longest_axi_write_stream":16}
