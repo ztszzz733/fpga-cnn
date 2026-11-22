@@ -1,3 +1,5 @@
+> **zhang 当前四算子联调版** [bank 256 位读写与更新说明](docs/bank256_rw256_update.md) · [RTL、仿真和波形](simple_cnn_bank256_rw256/README.md)
+
 > **2026-11-19 当前开发入口：[简化四算子CNN](simple_cnn/README.md)。两套K3＋两套K1，软件直接下发，不使用原硬件调度器。下文为原moon基线说明，旧PLAN/ROM不能驱动新CNN。**
 
 > [四算子 CNN 突发读取实验与同条件对比](simple_cnn_burst/README.md)

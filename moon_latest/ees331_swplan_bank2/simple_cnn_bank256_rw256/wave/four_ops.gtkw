@@ -1,0 +1,122 @@
+[timestart] 0
+[size] 1560 990
+*-22.0 730
+@22
+[color] 2
+four_ops.K3_0_STATE[3:0]
+@28
+[color] 2
+four_ops.K3_0_BUSY
+@28
+[color] 3
+four_ops.K3_0_MAC
+@28
+[color] 5
+four_ops.K3_0_PAIR_MAC
+@28
+[color] 6
+four_ops.K3_0_QUAD_MAC
+@28
+[color] 4
+four_ops.K3_0_READ
+@28
+[color] 6
+four_ops.K3_0_READ_256_ACCEPT
+@28
+[color] 1
+four_ops.K3_0_WRITE
+@28
+[color] 5
+four_ops.K3_0_WRITE_256_ACCEPT
+@28
+[color] 2
+four_ops.K3_0_DONE
+@200
+-
+@22
+[color] 3
+four_ops.K3_1_STATE[3:0]
+@28
+[color] 3
+four_ops.K3_1_BUSY
+@28
+[color] 3
+four_ops.K3_1_MAC
+@28
+[color] 5
+four_ops.K3_1_PAIR_MAC
+@28
+[color] 6
+four_ops.K3_1_QUAD_MAC
+@28
+[color] 4
+four_ops.K3_1_READ
+@28
+[color] 6
+four_ops.K3_1_READ_256_ACCEPT
+@28
+[color] 1
+four_ops.K3_1_WRITE
+@28
+[color] 5
+four_ops.K3_1_WRITE_256_ACCEPT
+@28
+[color] 3
+four_ops.K3_1_DONE
+@200
+-
+@22
+[color] 4
+four_ops.K1_0_STATE[3:0]
+@28
+[color] 4
+four_ops.K1_0_BUSY
+@28
+[color] 3
+four_ops.K1_0_MAC
+@28
+[color] 4
+four_ops.K1_0_READ
+@28
+[color] 6
+four_ops.K1_0_READ_256_ACCEPT
+@28
+[color] 1
+four_ops.K1_0_WRITE
+@28
+[color] 5
+four_ops.K1_0_WRITE_256_ACCEPT
+@28
+[color] 4
+four_ops.K1_0_DONE
+@200
+-
+@22
+[color] 5
+four_ops.K1_1_STATE[3:0]
+@28
+[color] 5
+four_ops.K1_1_BUSY
+@28
+[color] 3
+four_ops.K1_1_MAC
+@28
+[color] 4
+four_ops.K1_1_READ
+@28
+[color] 6
+four_ops.K1_1_READ_256_ACCEPT
+@28
+[color] 1
+four_ops.K1_1_WRITE
+@28
+[color] 5
+four_ops.K1_1_WRITE_256_ACCEPT
+@28
+[color] 5
+four_ops.K1_1_DONE
+@200
+-
+@22
+[color] 2
+four_ops.PAGER_STATE[2:0]

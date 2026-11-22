@@ -1,0 +1,3 @@
+unit,cycles,bank_reads,bank_read_bytes,writes,input_commands,weight_commands,max_input_bytes,max_weight_bytes,bank_reads_64,writes_wide,write_bytes,mac_ticks,paired_mac_ticks,quad_mac_ticks,mac_terms,bank_reads_256,input_ticks,bank_reads_8,bank_reads_32
+0,62260,11044,88064,48,24,12,2048,4608,10972,0,192,13824,0,13824,221184,0,25869,0,72
+1,6769,157,712,12,16,1,40,72,72,12,384,288,0,0,864,0,4122,68,17

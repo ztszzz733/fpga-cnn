@@ -1,0 +1,4 @@
+cache_bytes=196608 fills=35 writebacks_before_verify=0 bank0_issue_cycles=2443 bank1_issue_cycles=1957
+FIFO index=0 k3_peak=73 k3_mac_during_write=21415 k3_full_stalls=0 k1_small_panels=0
+FIFO index=1 k3_peak=23 k3_mac_during_write=5150 k3_full_stalls=0 k1_small_panels=0
+PASS batch_cycles=76518 ddr_fill_bytes=35840 verified_int32=4811 four_mac_cycles=0

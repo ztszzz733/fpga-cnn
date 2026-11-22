@@ -32,10 +32,11 @@ if {$stage eq "synth"} {
    bank256_k3_wide {set cnn_variant simple_cnn_bank256_k3_wide}
    bank256_k1_weight2k {set cnn_variant simple_cnn_bank256_k1_weight2k}
    bank256_page_write {set cnn_variant simple_cnn_bank256_page_write}
+   bank256_rw256 {set cnn_variant simple_cnn_bank256_rw256}
    default {error "Unknown EES331_CNN_VARIANT: $::env(EES331_CNN_VARIANT)"}
   }
  }
- foreach other {simple_cnn simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write} {
+ foreach other {simple_cnn simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write simple_cnn_bank256_rw256} {
   if {$other ne $cnn_variant &&
       [llength [get_files -quiet [file join $out $other rtl cnn_simple_top.sv]]]} {
    error "Use a fresh Vivado project when changing the CNN variant"
@@ -64,7 +65,7 @@ if {$stage eq "synth"} {
   if {![string is integer -strict $local_kib]} {
    error "Expected total local memory in KiB"
   }
-  set two_bank_override [expr {$cnn_variant in {simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write} && ($local_kib == 192 || $local_kib == 392)}]
+  set two_bank_override [expr {$cnn_variant in {simple_cnn_bank128_write simple_cnn_bank256_fifo simple_cnn_bank256_k3_wide simple_cnn_bank256_k1_weight2k simple_cnn_bank256_page_write simple_cnn_bank256_rw256} && ($local_kib == 192 || $local_kib == 392)}]
   if {!$two_bank_override && ($local_kib < 8 || ($local_kib & ($local_kib-1)) != 0)} {
    error "Expected a power-of-two LOCAL_BYTES configuration, or 192/392 KiB for a wide-write variant"
   }

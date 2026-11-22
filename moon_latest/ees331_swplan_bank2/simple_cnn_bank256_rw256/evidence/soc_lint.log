@@ -1,0 +1,511 @@
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:15:148: Operator VAR 'BACKGROUND_WRITE' expects 32 bits on the Initial value, but Initial value's CONST '1'h1' generates 1 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+   15 |  parameter integer MAX_CHANNELS=512, MAX_KERNEL=3, TILE=2, DW_CACHE=1, READ_WORD_BUFFER=1, INPUT_HALO_REUSE=1, WEIGHT_LAYER_REUSE=1, READ_AHEAD=0, BACKGROUND_WRITE=0,
+      |                                                                                                                                                    ^~~~~~~~~~~~~~~~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:335:38: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's MODDIVS generates 32 or 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  335 |   localparam integer BANK_DEPTH=((b%2?2:3)*(b/2?2:3)*MAX_CHANNELS+3)/4;
+      |                                      ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=0.000
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:335:48: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's DIVS generates 32 or 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  335 |   localparam integer BANK_DEPTH=((b%2?2:3)*(b/2?2:3)*MAX_CHANNELS+3)/4;
+      |                                                ^
+%Warning-WIDTHEXPAND: rtl/tile_local_ram.sv:45:27: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'comp_word' generates 12 bits.
+                                                 : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                           ^~
+%Warning-WIDTHEXPAND: rtl/tile_local_ram.sv:45:51: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'comp_word' generates 12 bits.
+                                                 : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                                                   ^
+%Warning-WIDTHEXPAND: rtl/tile_local_ram.sv:46:25: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'dma_word' generates 12 bits.
+                                                 : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                         ^~
+%Warning-WIDTHEXPAND: rtl/tile_local_ram.sv:46:48: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'dma_word' generates 12 bits.
+                                                 : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                                                ^
+%Warning-WIDTHEXPAND: rtl/k1_write_buffer.sv:44:34: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'left' generates 13 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine.packed_writeback.queue'
+   44 |  assign wide=head_lane==0 && left>=WORDS;
+      |                                  ^~
+%Warning-WIDTHEXPAND: rtl/cnn_paged_mover.sv:498:28: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'selected' generates 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  498 |    if(slow_take && selected==c)client_slow[c]<=1;
+      |                            ^~
+%Warning-WIDTHEXPAND: rtl/cnn_paged_mover.sv:499:61: Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  499 |    for(integer b=0;b<2;b++)if(fast_grant[b] && fast_owner[b]==c)begin
+      |                                                             ^~
+%Warning-WIDTHEXPAND: rtl/cnn_paged_mover.sv:509:28: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'selected' generates 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  509 |    if(slow_take && selected==c)assert(client_pending[c]==0) else $fatal(1,"slow path overtakes outstanding read");
+      |                            ^~
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:584:18: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  584 |       issue_valid[bank_of_slot(hit_slot)]<=1;
+      |                  ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:588:18: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  588 |       issue_write[bank_of_slot(hit_slot)]<=selected_write;
+      |                  ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:589:17: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  589 |       issue_byte[bank_of_slot(hit_slot)]<=selected_byte;
+      |                 ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:590:19: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  590 |       issue_double[bank_of_slot(hit_slot)]<=selected_double;
+      |                   ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:591:17: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  591 |       issue_wide[bank_of_slot(hit_slot)]<=selected_wide;
+      |                 ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:653:18: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  653 |       issue_valid[bank_of_slot(request_slot)]<=1;
+      |                  ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:657:19: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  657 |       issue_replay[bank_of_slot(request_slot)]<=1;
+      |                   ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:658:18: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  658 |       issue_write[bank_of_slot(request_slot)]<=request_write;
+      |                  ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:659:17: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  659 |       issue_byte[bank_of_slot(request_slot)]<=request_byte;
+      |                 ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:660:19: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  660 |       issue_double[bank_of_slot(request_slot)]<=request_double;
+      |                   ^
+%Warning-WIDTHTRUNC: rtl/cnn_paged_mover.sv:661:17: Bit extraction of var[1:0] requires 1 bit index, not 2 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  661 |       issue_wide[bank_of_slot(request_slot)]<=request_wide;
+      |                 ^
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:76:25: Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's SHIFTR generates 7 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+   76 |  wire [3:0] linear_slots=(panel_pixels+7'd7)>>3;
+      |                         ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:135:83: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_w' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  135 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=64'(LAYER_WEIGHT_BYTES);
+      |                                                                                   ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:135:103: Operator GT expects 16 bits on the RHS, but RHS's VARREF 'panel_limit_h' generates 4 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  135 |  wire layer_cached_choice=WEIGHT_LAYER_REUSE && (LINEAR_GROUPS?(pixels_left>8):(ow>panel_limit_w || oh>panel_limit_h)) && weight_extent<=64'(LAYER_WEIGHT_BYTES);
+      |                                                                                                       ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:226:75: Operator LT expects 12 bits on the RHS, but RHS's VARREF 'weight_full_words' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  226 |  wire weight_wide=weight_addr[1:0]==0 && weight_c[1:0]==0 && (weight_c>>2)<weight_full_words;
+      |                                                                           ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:233:45: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'ci' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  233 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                             ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:233:41: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  233 |  wire [31:0] pixel_input_step=stride_two?(ci<<1):ci;
+      |                                         ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:235:34: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'co' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  235 |  wire [31:0] output_pixel_step=co<<2;
+      |                                  ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:309:76: Operator SHIFTR expects 32 bits on the LHS, but LHS's VARREF 'weight_c' generates 12 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  309 |   .wr_addr(WEIGHT_ADDR_BITS'((layer_cached?0:(fill_bank?WORDS:0))+(weight_c>>2))),
+      |                                                                            ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:411:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  411 |     weight_reads<=weight_reads+weight_count;
+      |                               ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:412:102: Operator ADD expects 12 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  412 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:412:140: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  412 |     if(weight_wide?(weight_c!=weight_last_word):(weight_c!=weight_last_byte))begin weight_c<=weight_c+weight_count;weight_addr<=weight_addr+weight_count;end
+      |                                                                                                                                            ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:415:57: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_count' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  415 |      fill_second<=1;weight_c<=0;weight_addr<=weight_addr+weight_count;
+      |                                                         ^
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:420:54: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'in_channels' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  420 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                      ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:420:70: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's VARREF 'out_channels' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  420 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                      ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:420:86: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'width' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  420 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                      ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:420:95: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's VARREF 'height' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  420 |     ib<=input_base;wb<=weight_base;ob<=output_base;ci<=in_channels;co<=out_channels;w<=width;h<=height;
+      |                                                                                               ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:423:29: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  423 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                             ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:423:66: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  423 |     stride_two<=stride==2;ow<=((width-1)>>((stride==2)?1:0))+1;oh<=((height-1)>>((stride==2)?1:0))+1;
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:437:74: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'h' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  437 |       0:begin input_row_bytes<=mul_value[31:0];mul_lhs<=mul_value;mul_rhs<=h;end
+      |                                                                          ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:438:46: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 42 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  438 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                              ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:438:66: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  438 |       1:begin input_extent<=mul_value;mul_lhs<={32'd0,ci};mul_rhs<=co;end
+      |                                                                  ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:439:167: Operator ASSIGNDLY expects 64 bits on the Assign RHS, but Assign RHS's REPLICATE generates 48 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  439 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && (mul_value>8*WORDS || (BURST_READ && LINEAR_GROUPS && !stride_two)) && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                                                       ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:439:187: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'co' generates 10 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  439 |       2:begin weight_extent<=mul_value;panel_enabled<=PANEL_REUSE && (mul_value>8*WORDS || (BURST_READ && LINEAR_GROUPS && !stride_two)) && ci<=MAX_CHANNELS/2;mul_lhs<={32'd0,ow};mul_rhs<=co;end
+      |                                                                                                                                                                                           ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:440:81: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  440 |       3:begin output_row_bytes<=mul_value[31:0]<<2;mul_lhs<=mul_value<<2;mul_rhs<=oh;end
+      |                                                                                 ^~
+%Warning-WIDTHTRUNC: rtl/simple_k1_engine.sv:457:22: Operator ASSIGNDLY expects 10 bits on the Assign RHS, but Assign RHS's SHIFTR generates 12 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  457 |     weight_full_words<=weight_target_choice>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:469:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  469 |     panel_w<=ow-tile_x<panel_limit_w?4'(ow-tile_x):panel_limit_w;
+      |                ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:470:16: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  470 |     panel_h<=oh-tile_y<panel_limit_h?4'(oh-tile_y):panel_limit_h;
+      |                ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:484:29: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  484 |     input_reads<=input_reads+in_count;
+      |                             ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:514:45: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'in_count' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  514 |     if(!held_input_last)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                             ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:514:75: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'in_count' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  514 |     if(!held_input_last)begin load_c<=load_c+in_count;load_addr<=load_addr+in_count;end
+      |                                                                           ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:554:102: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                     : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  554 |       pipe_valid<=0;product_valid<=0;store_lane<=0;store_second<=0;output_addr<=compute_tile_base+(oc<<2);state<=OREQ;
+      |                                                                                                      ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:561:85: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  561 |      output_addr<=LINEAR_GROUPS?output_addr+output_pixel_step:(compute_tile_base+(oc<<2)+(store_second?32'd4:32'd0)+(next_store[2]?output_row_bytes:0)+(next_store[1:0]*output_pixel_step));
+      |                                                                                     ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:563:70: Operator SHIFTL expects 32 bits on the LHS, but LHS's VARREF 'oc' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  563 |      store_second<=1;store_lane<=0;output_addr<=compute_tile_base+(oc<<2)+32'd4;
+      |                                                                      ^~
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:578:64: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'panel_pixels' generates 7 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  578 |      if(pixels_left>panel_pixels)begin pixels_left<=pixels_left-panel_pixels;state<=TILE_BEGIN;end
+      |                                                                ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:581:21: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  581 |       tile_x<=tile_x+panel_w;tile_input_base<=tile_input_base+panel_input_x_step;
+      |                     ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:584:31: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  584 |       tile_x<=0;tile_y<=tile_y+panel_h;
+      |                               ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:583:24: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_h' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  583 |      end else if(tile_y+panel_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: rtl/simple_k1_engine.sv:580:23: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'panel_w' generates 4 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].k1.engine'
+  580 |     end else if(tile_x+panel_w<ow)begin
+      |                       ^
+%Warning-WIDTHEXPAND: rtl/bank_span_reader.sv:35:51: Operator LT expects 32 bits on the LHS, but LHS's VARREF 'reserved' generates 3 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].long_reads.reader'
+   35 |  assign m_valid=active && remaining!=0 && reserved<DEPTH &&
+      |                                                   ^
+%Warning-WIDTHEXPAND: rtl/bank_span_reader.sv:76:28: Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'reserved' generates 3 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[3].long_reads.reader'
+   76 |   if(active)assert(reserved<=DEPTH);
+      |                            ^~
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:116:26: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'DW_CACHE' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  116 |  wire dw_cached=DW_CACHE && dw;
+      |                          ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:126:45: Operator COND expects 32 bits on the Conditional False, but Conditional False's VARREF 'ci' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  126 |  wire [31:0] channel_stride_bytes=stride_two?({{(32-C_BITS){1'b0}},ci}<<1):ci;
+      |                                             ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:303:33: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'bx' generates 2 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  303 |    bank_offset=(by*(bank[0]?2:3)+bx)*MAX_CHANNELS+ch;
+      |                                 ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:303:50: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'ch' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  303 |    bank_offset=(by*(bank[0]?2:3)+bx)*MAX_CHANNELS+ch;
+      |                                                  ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:303:15: Operator ASSIGN expects 13 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  303 |    bank_offset=(by*(bank[0]?2:3)+bx)*MAX_CHANNELS+ch;
+      |               ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:310:37: Logical operator LOGAND expects 1 bit on the LHS, but LHS's VARREF 'INPUT_HALO_REUSE' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  310 |  wire halo_enabled=INPUT_HALO_REUSE && !stride_two && k==3;
+      |                                     ^~
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:325:32: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's MODDIVS generates 32 or 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  325 |   assign lane_x[l]=tap_x+((l%2)?(stride_two?3'd2:3'd1):3'd0);
+      |                                ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:326:32: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's DIVS generates 32 or 2 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  326 |   assign lane_y[l]=tap_y+((l/2)?(stride_two?3'd2:3'd1):3'd0);
+      |                                ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:371:7: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  371 |     ow<=((width-kernel)>>((stride==2)?1:0))+1;
+      |       ^~
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:372:7: Operator ASSIGNDLY expects 16 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                  : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  372 |     oh<=((height-kernel)>>((stride==2)?1:0))+1;
+      |       ^~
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:407:22: Operator ASSIGNDLY expects 11 bits on the Assign RHS, but Assign RHS's SHIFTR generates 13 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  407 |     weight_full_words<=weight_load_bytes>>2;
+      |                      ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:413:87: Operator GT expects 64 bits on the RHS, but RHS's VARREF 'WEIGHT_BYTES' generates 32 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  413 |     if(weight_load_bytes==0 || (layer_cached?weight_extent:{32'd0,weight_per_channel})>WEIGHT_BYTES ||
+      |                                                                                       ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:426:17: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  426 |     tile_w<=((ow-tile_x)<TILE)?(ow-tile_x):TILE;
+      |                 ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:426:17: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_x' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  426 |     tile_w<=((ow-tile_x)<TILE)?(ow-tile_x):TILE;
+      |                 ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:426:35: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  426 |     tile_w<=((ow-tile_x)<TILE)?(ow-tile_x):TILE;
+      |                                   ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:426:35: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_x' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  426 |     tile_w<=((ow-tile_x)<TILE)?(ow-tile_x):TILE;
+      |                                   ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:426:11: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  426 |     tile_w<=((ow-tile_x)<TILE)?(ow-tile_x):TILE;
+      |           ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:427:17: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  427 |     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
+      |                 ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:427:17: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_y' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  427 |     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
+      |                 ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:427:35: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  427 |     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
+      |                                   ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:427:35: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_y' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  427 |     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
+      |                                   ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:427:11: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's COND generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  427 |     tile_h<=((oh-tile_y)<TILE)?(oh-tile_y):TILE;
+      |           ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:428:20: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |                    ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:428:20: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_x' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |                    ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:428:38: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'ow' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:428:38: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_x' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:428:72: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'k' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |                                                                        ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:428:12: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  428 |     tile_iw<=((((ow-tile_x)<TILE)?(ow-tile_x):TILE)-1)*(stride_two?2:1)+k;
+      |            ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:429:20: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |                    ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:429:20: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_y' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |                    ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:429:38: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'oh' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:429:38: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'tile_y' generates 16 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:429:72: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'k' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |                                                                        ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:429:12: Operator ASSIGNDLY expects 8 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  429 |     tile_ih<=((((oh-tile_y)<TILE)?(oh-tile_y):TILE)-1)*(stride_two?2:1)+k;
+      |            ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:439:30: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  439 |      input_reads<=input_reads+input_step;load_index<=load_index+input_step;
+      |                              ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:439:64: Operator ADD expects 14 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  439 |      input_reads<=input_reads+input_step;load_index<=load_index+input_step;
+      |                                                                ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:441:21: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  441 |       load_c<=load_c+input_step;load_addr<=load_addr+input_step;state<=IREQ;
+      |                     ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:441:53: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  441 |       load_c<=load_c+input_step;load_addr<=load_addr+input_step;state<=IREQ;
+      |                                                     ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:443:57: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  443 |       load_c<=0;load_x<=load_x+1'b1;load_addr<=load_addr+input_step;state<=IREQ;
+      |                                                         ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:445:47: Operator ADD expects 14 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  445 |       if(load_y==0)cache_row_bytes<=load_index+input_step;
+      |                                               ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:440:15: Operator ADD expects 10 bits on the RHS, but RHS's VARREF 'input_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  440 |      if(load_c+input_step<ci)begin
+      |               ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:457:51: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  457 |      if(weight_response)weight_reads<=weight_reads+weight_step;
+      |                                                   ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:459:43: Operator ADD expects 13 bits on the RHS, but RHS's VARREF 'weight_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  459 |       weight_load_index<=weight_load_index+weight_step;weight_addr<=weight_addr+weight_step;state<=WREQ;
+      |                                           ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:459:80: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'weight_step' generates 3 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  459 |       weight_load_index<=weight_load_index+weight_step;weight_addr<=weight_addr+weight_step;state<=WREQ;
+      |                                                                                ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:463:22: Operator COND expects 32 or 14 bits on the Conditional True, but Conditional True's VARREF 'oc' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  463 |       input_index<=dw?oc:0;kernel_row_base<=dw?oc:0;
+      |                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:463:47: Operator COND expects 32 or 14 bits on the Conditional True, but Conditional True's VARREF 'oc' generates 10 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  463 |       input_index<=dw?oc:0;kernel_row_base<=dw?oc:0;
+      |                                               ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:503:70: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'dw_weight_base' generates 13 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  503 |       oc<=oc+1'b1;weight_load_index<=0;dw_weight_base<=dw_weight_base+weight_per_channel;
+      |                                                                      ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:503:54: Operator ASSIGNDLY expects 13 bits on the Assign RHS, but Assign RHS's ADD generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  503 |       oc<=oc+1'b1;weight_load_index<=0;dw_weight_base<=dw_weight_base+weight_per_channel;
+      |                                                      ^~
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:508:21: Operator ADD expects 16 bits on the RHS, but RHS's VARREF 'tile_w' generates 8 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  508 |       tile_x<=tile_x+tile_w;
+      |                     ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:512:31: Operator ADD expects 16 bits on the RHS, but RHS's VARREF 'tile_h' generates 8 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  512 |       tile_x<=0;tile_y<=tile_y+tile_h;
+      |                               ^
+%Warning-WIDTHTRUNC: rtl/simple_k3_engine.sv:517:38: Logical operator COND expects 1 bit on the Conditional Test, but Conditional Test's VARREF 'BACKGROUND_WRITE' generates 32 bits.
+                                                   : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  517 |      end else state<=BACKGROUND_WRITE?DRAIN:FINISH;
+      |                                      ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:511:24: Operator ADD expects 16 bits on the RHS, but RHS's VARREF 'tile_h' generates 8 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  511 |      end else if(tile_y+tile_h<oh)begin
+      |                        ^
+%Warning-WIDTHEXPAND: rtl/simple_k3_engine.sv:507:24: Operator ADD expects 16 bits on the RHS, but RHS's VARREF 'tile_w' generates 8 bits.
+                                                    : ... note: In instance 'face_soc_ees331_simple_top.u_cnn.unit[1].k3.engine'
+  507 |      end else if(tile_x+tile_w<ow)begin
+      |                        ^
+%Warning-WIDTHTRUNC: /mnt/d/code/FPGA1/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:23:23: Operator ASSIGNW expects 11 bits on the Assign RHS, but Assign RHS's SHIFTR generates 32 bits.
+                                                                                                                                         : ... note: In instance 'face_soc_ees331_simple_top.u_imem'
+   23 |     assign word_index = (imem_addr - IMEM_BASE) >> 2;
+      |                       ^
+%Warning-UNSIGNED: rtl/tile_local_ram.sv:45:27: Comparison is constant due to unsigned arithmetic
+                                              : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   45 |    wire comp_hit=comp_word>=BASE_WORD && comp_word<BASE_WORD+DEPTH;
+      |                           ^~
+                   ... For warning description see https://verilator.org/warn/UNSIGNED?v=0.000
+                   ... Use "/* verilator lint_off UNSIGNED */" and lint_on around source to disable this message.
+%Warning-UNSIGNED: rtl/tile_local_ram.sv:46:25: Comparison is constant due to unsigned arithmetic
+                                              : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache.local_ram.two_banks.bank[1].ram.striped_words.word_stripe[7].ram'
+   46 |    wire dma_hit=dma_word>=BASE_WORD && dma_word<BASE_WORD+DEPTH;
+      |                         ^~
+%Warning-CMPCONST: rtl/cnn_paged_mover.sv:298:50: Comparison is constant due to limited range
+                                                : ... note: In instance 'face_soc_ees331_simple_top.u_datasram.cache'
+  298 |   assign slow_after[c]=slow_eligible[c] && CW'(c)>=round_robin;
+      |                                                  ^~
+                   ... For warning description see https://verilator.org/warn/CMPCONST?v=0.000
+                   ... Use "/* verilator lint_off CMPCONST */" and lint_on around source to disable this message.
+%Warning-UNSIGNED: /mnt/d/code/FPGA1/moon_latest/ees331_swplan_bank2/source/partners/datapath/delivery/rtl/soc_memory/imem_rom.sv:20:36: Comparison is constant due to unsigned arithmetic
+                                                                                                                                       : ... note: In instance 'face_soc_ees331_simple_top.u_imem'
+   20 |     assign addr_valid = (imem_addr >= IMEM_BASE) &&
+      |                                    ^~
+%Warning-UNOPTFLAT: rtl/cnn_paged_mover.sv:195:16: Signal unoptimizable: Circular combinational logic: 'face_soc_ees331_simple_top.u_datasram.cache.free_slot_tree'
+  195 |  wire [SB-1:0] free_slot_tree[1:2*LOOKUP_LEAVES-1];
+      |                ^~~~~~~~~~~~~~
+                    ... For warning description see https://verilator.org/warn/UNOPTFLAT?v=0.000
+                    ... Use "/* verilator lint_off UNOPTFLAT */" and lint_on around source to disable this message.
+                    rtl/cnn_paged_mover.sv:195:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.free_slot_tree
+                    rtl/cnn_paged_mover.sv:219:27:      Example path: ASSIGNW
+                    rtl/cnn_paged_mover.sv:195:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.free_slot_tree
+%Warning-UNOPTFLAT: rtl/cnn_paged_mover.sv:194:16: Signal unoptimizable: Circular combinational logic: 'face_soc_ees331_simple_top.u_datasram.cache.hit_slot_tree'
+  194 |  wire [SB-1:0] hit_slot_tree[1:2*LOOKUP_LEAVES-1];
+      |                ^~~~~~~~~~~~~
+                    rtl/cnn_paged_mover.sv:194:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.hit_slot_tree
+                    rtl/cnn_paged_mover.sv:215:27:      Example path: ASSIGNW
+                    rtl/cnn_paged_mover.sv:194:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.hit_slot_tree
+%Warning-UNOPTFLAT: rtl/cnn_paged_mover.sv:197:16: Signal unoptimizable: Circular combinational logic: 'face_soc_ees331_simple_top.u_datasram.cache.group_slot'
+  197 |  wire [SB-1:0] group_slot[1:2*LOOKUP_GROUPS-1];
+      |                ^~~~~~~~~~
+                    rtl/cnn_paged_mover.sv:197:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.group_slot
+                    rtl/cnn_paged_mover.sv:234:23:      Example path: ASSIGNW
+                    rtl/cnn_paged_mover.sv:197:16:      Example path: face_soc_ees331_simple_top.u_datasram.cache.group_slot
+- V e r i l a t i o n   R e p o r t:  rev UNKNOWN.REV
+- Verilator: Built from 3.731 MB sources in 46 modules, into 4.449 MB in 18 C++ files needing 0.000 MB
+- Verilator: Walltime 1.898 s (elab=0.188, cvt=1.074, bld=0.000); cpu 1.418 s on 1 threads; alloced 49.637 MB

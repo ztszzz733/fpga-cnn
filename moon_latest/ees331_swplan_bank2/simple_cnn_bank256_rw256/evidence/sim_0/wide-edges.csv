@@ -1,0 +1,5 @@
+unit,cycles,bank_reads,bank_read_bytes,writes,input_commands,weight_commands,max_input_bytes,max_weight_bytes,bank_reads_64,writes_wide,write_bytes,mac_ticks,paired_mac_ticks,quad_mac_ticks,mac_terms,bank_reads_256,input_ticks,bank_reads_8,bank_reads_32
+0,51182,1868,8288,1361,207,1,64,1296,828,46,6732,17496,0,17496,242352,0,24460,832,208
+1,34442,1020,6464,360,52,1,80,2304,755,40,2560,6912,0,6912,92160,0,17304,212,53
+2,45594,516,3968,518,4,1,1024,272,491,487,15708,7888,0,0,62832,0,17662,20,5
+3,53035,280,2080,940,4,1,512,256,255,908,29184,7424,0,0,58368,0,13319,20,5

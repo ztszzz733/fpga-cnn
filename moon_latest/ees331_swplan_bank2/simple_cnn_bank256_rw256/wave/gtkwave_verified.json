@@ -1,0 +1,14 @@
+{
+  "four_ops": {
+    "signals": 37,
+    "marker_ns": 730,
+    "window_start_ns": 0,
+    "window_end_ns": 23425187
+  },
+  "read256": {
+    "signals": 21,
+    "marker_ns": 730,
+    "window_start_ns": 80,
+    "window_end_ns": 5799
+  }
+}

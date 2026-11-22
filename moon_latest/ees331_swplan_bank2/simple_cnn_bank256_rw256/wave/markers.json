@@ -1,0 +1,10 @@
+{
+  "four_ops": {
+    "cursor_ns": 730,
+    "displayed_signals": 37
+  },
+  "read256": {
+    "cursor_ns": 730,
+    "displayed_signals": 21
+  }
+}
