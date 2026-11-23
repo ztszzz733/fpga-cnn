@@ -38,7 +38,7 @@
   "lint_soc.sh": "655b7a1f4bab11cc87a931e63780862a4bf3e3f6ff96e614ce7b7f81629c71eb",
   "README.md": "d860c091ef01bfc2d27ec733131e1b368b653745adda5f05bcfb35b0fc52fc30",
   "rtl/bank_span_reader.sv": "3efb87c19204cb99ede7af6ef88d1696d77424ceba0122c175fe976c80677c73",
-  "rtl/cnn_paged_mover.sv": "ff51e21b0dfb4d4a09aa7c2bd995f5abf7e5a755c5625efa0572c535e8413833",
+  "rtl/cnn_paged_mover.sv": "22c874953ac7db2c10e9928864cf9bc86849b3fc967aba2c34e57c1bdbf0573f",
   "rtl/cnn_simple_top.sv": "e3ac7d6840c56f13d1403d6b450f0871e6eb0e30ed2875f91fc8d7195d5406bd",
   "rtl/compact_word_ram.sv": "a0473b99e30f6dd8c29259bf5e45a1d190e18c5b3ee3a76475f8090f02b99b72",
   "rtl/conv_span_port.sv": "75751720492b0835f89b1f9fb966bcdc7f936e705cbf0e93a5850c3192a1e5a2",
