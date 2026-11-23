@@ -178,6 +178,8 @@ module cnn_paged_mover #(
  logic [1:0] hint_bank[CLIENTS];
  logic [TAG_BITS-1:0] hint_page[CLIENTS];
  logic [SB-1:0] request_slot,victim_turn;
+ logic allocation_pending;
+ logic [SB-1:0] allocation_slot_q;
  logic [31:0] request_addr;
  logic [WRITE_BITS-1:0] request_wdata;
  logic request_payload_pending;
@@ -286,14 +288,17 @@ module cnn_paged_mover #(
                     state==FILL_REQ || state==FILL_WAIT) && !wb_for_scan;
  wire can_accept=!(pend_valid && queue_empty && !burst_open) && !cnn_mem_fault && !mover_fault_locked &&
                  !cnn_cancel;
+ // Isolate replacement-slot selection from burst protection and bank grants.
+ // Keep the selected FIFO head in place until this slot is reserved.
+ wire selected_miss=can_accept && state==IDLE && selected_valid && !selected_bad && !page_hit;
+ wire allocation_check=can_accept && state==IDLE && allocation_pending;
  logic alloc_locked;
  always_comb begin
   alloc_locked=0;
   for(integer c=0;c<CLIENTS;c++)
-   if(burst_live[c] && hint_slot[c]==alloc_slot)alloc_locked=1;
+   if(burst_live[c] && hint_slot[c]==allocation_slot_q)alloc_locked=1;
  end
- wire selected_miss=can_accept && state==IDLE && selected_valid && !selected_bad && !page_hit;
- wire will_allocate=selected_miss && !alloc_locked;
+ wire allocation_commit=allocation_check && !alloc_locked;
  always_comb begin
   for(integer c=0;c<CLIENTS;c++)begin
    // A four-byte aligned access below the page-aligned limit fits in range.
@@ -307,7 +312,10 @@ module cnn_paged_mover #(
    assign bank_eligible[b][c]=can_accept && (state==IDLE || miss_serving) &&
     !(selected_valid && page_hit && !selected_bad && bank_of_slot(hit_slot)==2'(b)) && fast_hint[c] &&
     client_pending[c]<(burst_live[c] ? 3'd7 : 3'd4) &&
-    !(queued_head[c] && will_allocate && hint_slot[c]==alloc_slot) &&
+    !((selected_valid || allocation_pending) && selected==CW'(c)) &&
+    // Only existing burst bodies may issue to the candidate while it is
+    // checked. This protection is independent of the live-burst reduction.
+    !(allocation_check && hint_slot[c]==allocation_slot_q && !queued_body[c]) &&
     (client_pending[c]==0 || (!client_slow[c] && client_bank[c]==2'(b))) &&
     hint_bank[c]==2'(b) &&
     (!miss_serving || hint_slot[c]!=request_slot);
@@ -345,11 +353,14 @@ module cnn_paged_mover #(
   if(!rst_n || !can_accept || !(state==IDLE || miss_serving))begin
    lookup_pending<=0;lookup_result_pending<=0;
    selected_valid<=0;
+   allocation_pending<=0;
   end else begin
    selected_valid<=lookup_result_pending;
    lookup_result_pending<=lookup_pending;
    lookup_pending<=0;
-   if(!selected_valid && !lookup_pending && !lookup_result_pending && (|slow_priority))begin
+   allocation_pending<=selected_miss;
+   if(selected_miss)allocation_slot_q<=alloc_slot;
+   if(!allocation_pending && !selected_valid && !lookup_pending && !lookup_result_pending && (|slow_priority))begin
     lookup_pending<=1;
     selected<=next_owner;
     selected_addr<=queued_addr[next_owner*32+:32];
@@ -366,16 +377,16 @@ module cnn_paged_mover #(
  always_comb begin
   queued_ready='0;slow_take=0;
   for(integer b=0;b<2;b++)if(fast_grant[b])queued_ready[fast_owner[b]]=1;
-  if(can_accept && selected_valid &&
-    ((state==IDLE && (selected_bad || page_hit || !alloc_locked)) || (miss_serving && !selected_bad && page_hit &&
-                     hit_slot!=request_slot)))begin
+  if(allocation_commit || (can_accept && selected_valid &&
+     ((state==IDLE && (selected_bad || page_hit)) ||
+      (miss_serving && !selected_bad && page_hit && hit_slot!=request_slot))))begin
    queued_ready[selected]=1;slow_take=1;
   end
  end
  always_comb begin
   hit_incr=0;
   for(integer b=0;b<2;b++)if(fast_grant[b])hit_incr=hit_incr+3'd1;
-  if(slow_take && !selected_bad && page_hit)hit_incr=hit_incr+3'd1;
+  if(slow_take && !allocation_pending && !selected_bad && page_hit)hit_incr=hit_incr+3'd1;
  end
  // Counter carry propagation must not share a cycle with arbitration.
  // Maintenance becomes idle only after the longer response pipeline drains,
@@ -549,9 +560,18 @@ module cnn_paged_mover #(
    if(beat_return[c])assert(client_pending[c]!=0) else $fatal(1,"reply without accepted request");
    if(slow_take && selected==c)assert(client_pending[c]==0) else $fatal(1,"slow path overtakes outstanding read");
   end
+  if(allocation_pending)begin
+   assert(queued_valid[selected] && queued_addr[selected*32+:32]==selected_addr)
+    else $fatal(1,"allocation lost its selected FIFO head");
+   assert(queued_ready[selected]==allocation_commit)
+    else $fatal(1,"allocation consumed its FIFO head without reserving a slot");
+  end
   for(integer a=0;a<2;a++)for(integer b=a+1;b<2;b++)
    if(reply_valid[a] && reply_valid[b])assert(reply_owner[a]!=reply_owner[b]) else $fatal(1,"same-client response collision");
   for(integer b=0;b<2;b++)if(fast_grant[b])begin
+   if(allocation_check && hint_slot[fast_owner[b]]==allocation_slot_q)
+    assert(queued_body[fast_owner[b]] && burst_live[fast_owner[b]] && !allocation_commit)
+     else $fatal(1,"bank grant raced with the reserved slot");
    assert(hint_valid[fast_owner[b]] &&
      hint_page[fast_owner[b]]==queued_addr[fast_owner[b]*32+PB+:TAG_BITS])
      else $fatal(1,"registered FIFO page classification became stale");
@@ -629,11 +649,11 @@ module cnn_paged_mover #(
    end
    // A page used by an in-flight write may not be evicted until the last
    // physical beat commits. Try the next victim if the current one is busy.
-   if(selected_miss && alloc_locked)
+   if(allocation_check && alloc_locked)
     victim_turn<=victim_turn==SB'(SLOTS-1)?'0:victim_turn+1'b1;
    if(slow_take)begin
     round_robin<=selected==CW'(CLIENTS-1) ? '0 : selected+1'b1;
-    if(!selected_bad && page_hit)begin
+    if(!allocation_pending && !selected_bad && page_hit)begin
       hint_valid[selected]<=1;hint_slot[selected]<=hit_slot;
       hint_page[selected]<=selected_addr[PB+:TAG_BITS];
       hint_bank[selected]<=bank_of_slot(hit_slot);
@@ -690,7 +710,7 @@ module cnn_paged_mover #(
     end else if(slow_take)begin
      drop_response<=0;
      if(selected_bad)cnn_mem_fault<=1;
-     else if(!page_hit)begin
+     else if(allocation_commit)begin
       request_owner<=CW'(selected);request_addr<=selected_addr;
       request_payload_pending<=1;
       request_write<=selected_write;request_byte<=selected_byte;
@@ -698,10 +718,10 @@ module cnn_paged_mover #(
       request_wide<=selected_wide;
       request_burst<=selected_burst;request_notify<=selected_notify;
       misses<=misses+1;
-      request_slot<=alloc_slot;
-      wb_slot<=alloc_slot;
+      request_slot<=allocation_slot_q;
+      wb_slot<=allocation_slot_q;
       for(integer c=0;c<CLIENTS;c++)
-       if(hint_slot[c]==alloc_slot)hint_valid[c]<=0;
+       if(hint_slot[c]==allocation_slot_q)hint_valid[c]<=0;
       victim_turn<=victim_turn==SB'(SLOTS-1)?'0:victim_turn+1'b1;
       wb_for_scan<=0;
       state<=DRAIN;

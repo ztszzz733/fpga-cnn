@@ -52,23 +52,33 @@ def main():
          "EES331_PS_BD_COMPLETE"),
         ("synth", "build.tcl", ["synth", out], "EES331_STAGE_COMPLETE synth"),
     ]
-    if args.implement:
-        stages.append(("impl", "build.tcl", ["impl", out], "EES331_STAGE_COMPLETE impl"))
-
-    for stage, script, arguments, marker in stages:
+    def run_stage(stage, script, arguments, marker):
         command = [vivado, "-mode", "batch", "-nojournal", "-log", str(out / f"{stage}.log"),
                    "-source", str(out / script), "-tclargs", *map(str, arguments)]
         log = out / f"{stage}_console.log"
         print(f"{stage}: {log}", flush=True)
         with log.open("wb") as stream:
             result = subprocess.run(command, cwd=out, env=env, stdout=stream, stderr=subprocess.STDOUT)
-        if result.returncode or not any(line.startswith(marker.encode("ascii")) for line in log.read_bytes().splitlines()):
-            raise SystemExit(f"Vivado stage {stage} did not complete. See {log}")
+        output = log.read_bytes()
+        if not result.returncode and any(line.startswith(marker.encode("ascii")) for line in output.splitlines()):
+            return True
+        if stage == "impl" and b"Routed timing failed; see timing_summary.rpt" in output:
+            return False
+        raise SystemExit(f"Vivado stage {stage} did not complete. See {log}")
+
+    for stage in stages:
+        run_stage(*stage)
+
+    if args.implement:
+        implementation = "impl"
+        if not run_stage(implementation, "build.tcl", [implementation, out], "EES331_STAGE_COMPLETE impl"):
+            implementation = "impl_timing"
+            run_stage(implementation, "build.tcl", [implementation, out], "EES331_STAGE_COMPLETE impl_timing")
 
     print(f"Vivado project: {out / 'project/ees331_ddr.xpr'}")
     print(f"Synthesis timing: {out / 'synth/timing_summary.rpt'}")
     if args.implement:
-        print(f"Implementation timing: {out / 'impl/timing_summary.rpt'}")
+        print(f"Implementation timing: {out / implementation / 'timing_summary.rpt'}")
 
 if __name__ == "__main__":
     main()
